@@ -1,4 +1,4 @@
-package co.company.MatchFootball.controller;
+package co.company.spring.doeun;
 
 import java.io.IOException;
 
@@ -9,10 +9,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class HomeController {
+public class MemberController {
 
 	@RequestMapping(value="/")
 	public ModelAndView test(HttpServletResponse response) throws IOException{
 		return new ModelAndView("home");
 	}
+	@RequestMapping(value="/doeun/dd")
+	public String dd() {
+		return "doeun/dd";
+	}
+	
 }
