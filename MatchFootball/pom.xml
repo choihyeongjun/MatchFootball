@@ -67,6 +67,57 @@
 			<version>2.1</version>
 			<scope>provided</scope>
 		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/com.oracle.ojdbc/ojdbc10 -->
+<dependency>
+    <groupId>com.oracle.ojdbc</groupId>
+    <artifactId>ojdbc10</artifactId>
+    <version>19.3.0.0</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/com.oracle.database.security/oraclepki -->
+<dependency>
+    <groupId>com.oracle.database.security</groupId>
+    <artifactId>oraclepki</artifactId>
+    <version>19.8.0.0</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/com.oracle.database.nls/orai18n -->
+<dependency>
+    <groupId>com.oracle.database.nls</groupId>
+    <artifactId>orai18n</artifactId>
+    <version>19.8.0.0</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/com.oracle.database.security/osdt_cert -->
+<dependency>
+    <groupId>com.oracle.database.security</groupId>
+    <artifactId>osdt_cert</artifactId>
+    <version>19.8.0.0</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/com.oracle.database.security/osdt_core -->
+<dependency>
+    <groupId>com.oracle.database.security</groupId>
+    <artifactId>osdt_core</artifactId>
+    <version>19.8.0.0</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/com.oracle.database.jdbc/ucp -->
+<dependency>
+    <groupId>com.oracle.database.jdbc</groupId>
+    <artifactId>ucp</artifactId>
+    <version>19.8.0.0</version>
+</dependency>
+
+
+<!-- https://mvnrepository.com/artifact/com.oracle.database.xml/xdb -->
+<dependency>
+    <groupId>com.oracle.database.xml</groupId>
+    <artifactId>xdb</artifactId>
+    <version>19.8.0.0</version>
+</dependency>
+
 	</dependencies>
 
 	<repositories>
