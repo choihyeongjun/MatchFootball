@@ -123,7 +123,7 @@
 							</ul>
 						</div>
 						<div class="col-md-3 col-sm-6">
-						<div><h3>마이페이지</h3></div>
+						<div><h3>팀페이지</h3></div>
 							<ul>
 							<li class="lili">마이페이지</li>
 							<li class="lili">마이페이지</li>
@@ -132,7 +132,7 @@
 							</ul>
 						</div>
 						<div class="col-md-3 col-sm-6">
-						<div><h3>마이페이지</h3></div>
+						<div><h3>매치</h3></div>
 							<ul>
 							<li class="lili">마이페이지</li>
 							<li class="lili">마이페이지</li>
@@ -140,6 +140,36 @@
 							<li class="lili">마이페이지</li>
 							</ul>
 						</div>
+						<div class="col-md-3 col-sm-6">
+						<div><h3>경기장</h3></div>
+							<ul>
+							<li class="lili">마이페이지</li>
+							<li class="lili">마이페이지</li>
+							<li class="lili">마이페이지</li>
+							<li class="lili">마이페이지</li>
+							</ul>
+						</div>
+					</div>
+						<div class="col-md-3 col-sm-6">
+						<div><h3>용병</h3></div>
+							<ul>
+							<li class="lili">마이페이지</li>
+							<li class="lili">마이페이지</li>
+							<li class="lili">마이페이지</li>
+							<li class="lili">마이페이지</li>
+							</ul>
+						</div>
+						<div class="col-md-3 col-sm-6">
+						<div><h3>커뮤니티</h3></div>
+							<ul>
+							<li class="lili">마이페이지</li>
+							<li class="lili">마이페이지</li>
+							<li class="lili">마이페이지</li>
+							<li class="lili">마이페이지</li>
+							</ul>
+						</div>
+					</div>
+					</div>
 					</div>
 				</div>
 
