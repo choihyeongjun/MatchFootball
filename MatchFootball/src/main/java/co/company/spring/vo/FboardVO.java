@@ -1,5 +1,8 @@
 package co.company.spring.vo;
 
+import lombok.Data;
+
+@Data
 public class FboardVO {//자유게시판
 	String id;//작성자
 	String num;//시퀀스

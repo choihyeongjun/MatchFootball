@@ -1,5 +1,8 @@
 package co.company.spring.vo;
 
+import lombok.Data;
+
+@Data
 public class MembersVO {
 	String id;//멤버아이디
 	String pw;//비밀번호

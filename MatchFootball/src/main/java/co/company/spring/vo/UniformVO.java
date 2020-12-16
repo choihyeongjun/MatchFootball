@@ -1,5 +1,8 @@
 package co.company.spring.vo;
 
+import lombok.Data;
+
+@Data
 public class UniformVO {
 	String u_no;//유니폼시퀀스
 	String m_id;//구매자 아이디

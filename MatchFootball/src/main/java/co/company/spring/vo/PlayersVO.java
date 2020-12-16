@@ -1,5 +1,8 @@
 package co.company.spring.vo;
 
+import lombok.Data;
+
+@Data
 public class PlayersVO {//매치인원목록
 	String m_no;//매치시퀀스
 	String t_num;//팀번호

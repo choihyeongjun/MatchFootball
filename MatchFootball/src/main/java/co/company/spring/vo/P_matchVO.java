@@ -1,5 +1,8 @@
 package co.company.spring.vo;
 
+import lombok.Data;
+
+@Data
 public class P_matchVO {//개인매치
 	String m_no;//매치시퀀스
 	String mtype;//경기타입

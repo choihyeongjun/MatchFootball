@@ -1,5 +1,8 @@
 package co.company.spring.vo;
 
+import lombok.Data;
+
+@Data
 public class FieldVO {
 	String f_id;//구장아이디
 	String name;//구장이름

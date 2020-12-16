@@ -1,5 +1,8 @@
 package co.company.spring.vo;
 
+import lombok.Data;
+
+@Data
 public class CuponVO {
 	String c_no;//쿠폰인덱스
 	String a_id;//관리자아이디

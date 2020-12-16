@@ -1,5 +1,8 @@
 package co.company.spring.vo;
 
+import lombok.Data;
+
+@Data
 public class WriterVO {//댓글
 	String w_id;//댓글작성자
 	String comm;//내용

@@ -1,5 +1,8 @@
 package co.company.spring.vo;
 
+import lombok.Data;
+
+@Data
 public class MessageVO {
 	String message_no;//쪽지 시퀀스
 	String id;//보낸사람

@@ -1,5 +1,8 @@
 package co.company.spring.vo;
 
+import lombok.Data;
+
+@Data
 public class TimgVO {//팀갤러리게시판 이미지리스트
 	String t_no;//게시판시퀀스
 	String t_num;//팀이름

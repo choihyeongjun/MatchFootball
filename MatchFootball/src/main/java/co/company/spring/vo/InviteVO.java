@@ -1,5 +1,8 @@
 package co.company.spring.vo;
 
+import lombok.Data;
+
+@Data
 public class InviteVO {
 	String c_id;//팀장아이디
 	String s_date;//보내는날짜

@@ -1,5 +1,8 @@
 package co.company.spring.vo;
 
+import lombok.Data;
+
+@Data
 public class Rboard {
 	String seq;//시퀀스
 	String s_id;//판매자

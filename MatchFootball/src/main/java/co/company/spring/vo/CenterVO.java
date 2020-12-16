@@ -1,5 +1,8 @@
 package co.company.spring.vo;
 
+import lombok.Data;
+
+@Data
 public class CenterVO {
 	String c_no;//고객센터 시퀀스
 	String category;//카테고리

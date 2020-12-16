@@ -1,5 +1,8 @@
 package co.company.spring.vo;
 
+import lombok.Data;
+
+@Data
 public class NoticeVO {
 	String n_no;//시퀀스
 	String n_title;//공지사항제목

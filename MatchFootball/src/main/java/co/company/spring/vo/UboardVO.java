@@ -1,5 +1,8 @@
 package co.company.spring.vo;
 
+import lombok.Data;
+
+@Data
 public class UboardVO {
 	String num;//유니폼게시판 시퀀스
 	String u_id;//관리자아이디

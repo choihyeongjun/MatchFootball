@@ -1,5 +1,8 @@
 package co.company.spring.vo;
 
+import lombok.Data;
+
+@Data
 public class FieldmanagerVO {
 	String f_id;//구장아이디
 	String pw;//비밀전호

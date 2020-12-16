@@ -1,5 +1,8 @@
 package co.company.spring.vo;
 
+import lombok.Data;
+
+@Data
 public class TeamVO {
 	String t_num;//팀번호(시퀀스)
 	String t_name;//팀명

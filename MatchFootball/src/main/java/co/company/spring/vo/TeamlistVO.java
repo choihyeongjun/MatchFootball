@@ -1,5 +1,8 @@
 package co.company.spring.vo;
 
+import lombok.Data;
+
+@Data
 public class TeamlistVO {
 	String t_num;//팀번호
 	String id;//팀원아이디
