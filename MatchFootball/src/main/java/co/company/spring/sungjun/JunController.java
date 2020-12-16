@@ -16,4 +16,12 @@ public class JunController {
 	public ModelAndView test(HttpServletResponse response) throws IOException{
 		return new ModelAndView("/sungjun/mainmenu");
 	}
+	@RequestMapping(value="/match")
+	public ModelAndView test1(HttpServletResponse response) throws IOException{
+		return new ModelAndView("/sungjun/match");
+	}
+	@RequestMapping(value="/call")
+	public ModelAndView test2(HttpServletResponse response) throws IOException{
+		return new ModelAndView("/sungjun/call");
+	}
 }
