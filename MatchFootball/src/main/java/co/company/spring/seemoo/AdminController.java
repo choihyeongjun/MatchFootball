@@ -1,4 +1,4 @@
-package co.company.MatchFootball.controller;
+package co.company.spring.seemoo;
 
 import java.io.IOException;
 
@@ -11,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class AdminController {
 
-	@RequestMapping(value="/")
+	@RequestMapping(value="/admin")
 	public ModelAndView test(HttpServletResponse response) throws IOException{
 		return new ModelAndView("home");
 	}
