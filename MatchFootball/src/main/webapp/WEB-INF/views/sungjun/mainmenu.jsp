@@ -107,14 +107,14 @@
 						<div class="col-md-3 col-sm-6">
 							<div><h3>마이페이지</h3></div>
 							<ul>
-								<li class="lili">마이페이지</li>
-								<li class="lili">마이페이지</li>
-								<li class="lili">마이페이지</li>
-								<li class="lili">마이페이지</li>
+								<li class="lili">내 정보</li>
+								<li class="lili">결제 | 쿠폰</li>
+								<li class="lili">사용 내역</li>
+								<li class="lili">쪽지 | 내 게시글</li>
 							</ul>
 						</div>
 						<div class="col-md-3 col-sm-6">
-						<div><h3>마이페이지</h3></div>
+						<div><h3>매니저 마이페이지</h3></div>
 							<ul>
 							<li class="lili">마이페이지</li>
 							<li class="lili">마이페이지</li>

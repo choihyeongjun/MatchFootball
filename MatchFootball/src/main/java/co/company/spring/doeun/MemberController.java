@@ -10,5 +10,10 @@ public class MemberController {
 	public String dd() {
 		return "doeun/dd";
 	}
+
+	@RequestMapping(value="/doeun/index")
+	public String mypage() {
+		return "doeun/index";
+	}
 	
 }
