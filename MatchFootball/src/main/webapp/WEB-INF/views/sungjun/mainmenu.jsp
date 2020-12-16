@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>matchfootball</title>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -18,10 +19,11 @@
 .site {
 	
 }
+
 .lili {
 	padding: 3px 0 3px 0;
-    text-indent: 20px;
-    line-height: 170%;
+	text-indent: 20px;
+	line-height: 170%;
 }
 </style>
 <script>
@@ -54,9 +56,11 @@
 			</div>
 		</div>
 	</nav>
-	<div align="center">
-		<img src="https://www.youtube.com/watch?v=QxZ1bQIahkY">
-	</div>
+	<section class="content">
+		<tiles:insertAttribute name="body" />
+	</section>
+
+
 	<!--로그인  -->
 	<div class="modal fade bd-example-modal-xl" id="id01" tabindex="-1"
 		role="dialog" aria-labelledby="myExtraLargeModalLabel"
@@ -105,7 +109,9 @@
 				<div class="container-fluid">
 					<div class="row">
 						<div class="col-md-3 col-sm-6">
-							<div><h3>마이페이지</h3></div>
+							<div>
+								<h3>마이페이지</h3>
+							</div>
 							<ul>
 								<li class="lili">내 정보</li>
 								<li class="lili">결제 | 쿠폰</li>
@@ -114,67 +120,79 @@
 							</ul>
 						</div>
 						<div class="col-md-3 col-sm-6">
-						<div><h3>매니저 마이페이지</h3></div>
+							<div>
+								<h3>매니저 마이페이지</h3>
+							</div>
 							<ul>
-							<li class="lili">마이페이지</li>
-							<li class="lili">마이페이지</li>
-							<li class="lili">마이페이지</li>
-							<li class="lili">마이페이지</li>
+								<li class="lili">마이페이지</li>
+								<li class="lili">마이페이지</li>
+								<li class="lili">마이페이지</li>
+								<li class="lili">마이페이지</li>
 							</ul>
 						</div>
 						<div class="col-md-3 col-sm-6">
-						<div><h3>팀페이지</h3></div>
+							<div>
+								<h3>팀페이지</h3>
+							</div>
 							<ul>
-							<li class="lili">마이페이지</li>
-							<li class="lili">마이페이지</li>
-							<li class="lili">마이페이지</li>
-							<li class="lili">마이페이지</li>
+								<li class="lili">마이페이지</li>
+								<li class="lili">마이페이지</li>
+								<li class="lili">마이페이지</li>
+								<li class="lili">마이페이지</li>
 							</ul>
 						</div>
 						<div class="col-md-3 col-sm-6">
-						<div><h3>매치</h3></div>
+							<div>
+								<h3>매치</h3>
+							</div>
 							<ul>
-							<li class="lili">마이페이지</li>
-							<li class="lili">마이페이지</li>
-							<li class="lili">마이페이지</li>
-							<li class="lili">마이페이지</li>
+								<li class="lili">마이페이지</li>
+								<li class="lili">마이페이지</li>
+								<li class="lili">마이페이지</li>
+								<li class="lili">마이페이지</li>
 							</ul>
 						</div>
 						<div class="col-md-3 col-sm-6">
-						<div><h3>경기장</h3></div>
+							<div>
+								<h3>경기장</h3>
+							</div>
 							<ul>
-							<li class="lili">마이페이지</li>
-							<li class="lili">마이페이지</li>
-							<li class="lili">마이페이지</li>
-							<li class="lili">마이페이지</li>
+								<li class="lili">마이페이지</li>
+								<li class="lili">마이페이지</li>
+								<li class="lili">마이페이지</li>
+								<li class="lili">마이페이지</li>
 							</ul>
 						</div>
 					</div>
-						<div class="col-md-3 col-sm-6">
-						<div><h3>용병</h3></div>
-							<ul>
-							<li class="lili">마이페이지</li>
-							<li class="lili">마이페이지</li>
-							<li class="lili">마이페이지</li>
-							<li class="lili">마이페이지</li>
-							</ul>
+					<div class="col-md-3 col-sm-6">
+						<div>
+							<h3>용병</h3>
 						</div>
-						<div class="col-md-3 col-sm-6">
-						<div><h3>커뮤니티</h3></div>
-							<ul>
+						<ul>
 							<li class="lili">마이페이지</li>
 							<li class="lili">마이페이지</li>
 							<li class="lili">마이페이지</li>
 							<li class="lili">마이페이지</li>
-							</ul>
+						</ul>
+					</div>
+					<div class="col-md-3 col-sm-6">
+						<div>
+							<h3>커뮤니티</h3>
 						</div>
-					</div>
-					</div>
+						<ul>
+							<li class="lili">마이페이지</li>
+							<li class="lili">마이페이지</li>
+							<li class="lili">마이페이지</li>
+							<li class="lili">마이페이지</li>
+						</ul>
 					</div>
 				</div>
-
 			</div>
 		</div>
+	</div>
+
+	</div>
+	</div>
 	</div>
 <body>
 </html>

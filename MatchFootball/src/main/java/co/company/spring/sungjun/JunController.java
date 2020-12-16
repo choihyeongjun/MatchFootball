@@ -12,16 +12,17 @@ import org.springframework.web.servlet.ModelAndView;
 public class JunController {
 
 	
-	@RequestMapping(value="/mainmenu")
-	public ModelAndView test(HttpServletResponse response) throws IOException{
-		return new ModelAndView("/sungjun/mainmenu");
-	}
+//	/*
+//	 * @RequestMapping(value="/mainmenu") public ModelAndView
+//	 * test(HttpServletResponse response) throws IOException{ return new
+//	 * ModelAndView("/sungjun/mainmenu"); }
+//	 */
 	@RequestMapping(value="/match")
 	public ModelAndView test1(HttpServletResponse response) throws IOException{
-		return new ModelAndView("/sungjun/match");
+		return new ModelAndView("sungjun/match");
 	}
 	@RequestMapping(value="/call")
 	public ModelAndView test2(HttpServletResponse response) throws IOException{
-		return new ModelAndView("/sungjun/call");
+		return new ModelAndView("sungjun/call");
 	}
 }
