@@ -8,12 +8,16 @@ public class MemberController {
 
 	@RequestMapping(value="/doeun/dd")
 	public String dd() {
-		return "doeun/dd";
+		return "doeun/Pay";
 	}
 
 	@RequestMapping(value="/doeun/index")
 	public String mypage() {
 		return "doeun/index";
+	}
+	@RequestMapping(value="/doeun/aa")
+	public String mypag() {
+		return "doeun/aa";
 	}
 	
 }
