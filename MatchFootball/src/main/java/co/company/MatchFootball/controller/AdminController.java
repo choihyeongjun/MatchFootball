@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class AdminController {
 
+	
 	@RequestMapping(value="/")
 	public ModelAndView test(HttpServletResponse response) throws IOException{
 		return new ModelAndView("home");
