@@ -15,8 +15,4 @@ public class AdminController {
 	public ModelAndView test(HttpServletResponse response) throws IOException{
 		return new ModelAndView("home");
 	}
-	@RequestMapping("/")
-	public String main() {
-		return "seemoo/index";
-	}
 }
