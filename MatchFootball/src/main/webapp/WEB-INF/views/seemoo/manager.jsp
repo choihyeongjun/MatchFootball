@@ -174,6 +174,8 @@
 							무엇을 적을까? <a target="_blank" href="https://datatables.net/">무엇을 적을까</a> .
 						</div>
 					</div>
+					
+					<!-- 매니저현황 -->
 					<div class="card mb-4">
 						<div class="card-header">
 							<i class="fas fa-table mr-1"></i> 매니저 현황
@@ -251,6 +253,7 @@
 						</div>
 					</div>
 					
+					<!-- 매니저 승인대기 현황 -->
 						<div class="card mb-4">
 						<div class="card-header">
 							<i class="fas fa-table mr-1"></i> 매니저 승인대기 현황
@@ -346,6 +349,8 @@
 					</div>
 				</div>
 			</footer>
+			
+			
 		</div>
 	</div>
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
