@@ -14,4 +14,14 @@ public class HyenDongController {
 	public String teamInfo() {
 		return "hyendong/teamInfo";
 	}
+	
+	@RequestMapping("/teamUpdate")
+	public String teamUpdate() {
+		return "hyendong/teamUpdate";
+	}
+	
+	@RequestMapping("/teamGallery")
+	public String teamGallery() {
+		return "hyendong/teamGallery";
+	}
 }
