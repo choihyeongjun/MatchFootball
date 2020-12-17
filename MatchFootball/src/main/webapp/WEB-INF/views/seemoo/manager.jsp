@@ -20,7 +20,7 @@
 
 <body class="sb-nav-fixed">
 	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-		<a class="navbar-brand" href="index.html">유저관리 페이지</a>
+		<a class="navbar-brand" href="index.html">매니저 페이지</a>
 		<button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#">
 			<i class="fas fa-bars"></i>
 		</button>
@@ -164,22 +164,19 @@
 		<div id="layoutSidenav_content">
 			<main>
 				<div class="container-fluid">
-					<h1 class="mt-4">유저</h1>
+					<h1 class="mt-4">매니저</h1>
 					<ol class="breadcrumb mb-4">
-						<li class="breadcrumb-item"><a href="#">매니저</a></li>
+						<li class="breadcrumb-item"><a href="#">매니저공고페이지</a></li>
 						<li class="breadcrumb-item active">매니저 신청관리 및 현재 매니저현황</li>
 					</ol>
 					<div class="card mb-4">
 						<div class="card-body">
-							DataTables is a third party plugin that is used to generate the
-							demo table below. For more information about DataTables, please
-							visit the <a target="_blank" href="https://datatables.net/">official
-								DataTables documentation</a> .
+							무엇을 적을까? <a target="_blank" href="https://datatables.net/">무엇을 적을까</a> .
 						</div>
 					</div>
 					<div class="card mb-4">
 						<div class="card-header">
-							<i class="fas fa-table mr-1"></i> DataTable Example
+							<i class="fas fa-table mr-1"></i> 매니저 현황
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
@@ -189,11 +186,11 @@
 											<th>No.</th>
 											<th>ID</th>
 											<th>Name</th>
-											<th>닉네임</th>
 											<th>연락처</th>
 											<th>권한</th>
-											<th>팀</th>
-											<th>포인트</th>
+											<th>포부</th>
+											<th>설문지</th>
+											<th>이미지</th>
 										</tr>
 									</thead>
 									<tfoot>
@@ -201,12 +198,11 @@
 											<th>No.</th>
 											<th>ID</th>
 											<th>Name</th>
-											<th>닉네임</th>
 											<th>연락처</th>
 											<th>권한</th>
-											<th>팀</th>
-											<th>포인트</th>
-											<th></th>
+											<th>포부</th>
+											<th>설문지</th>
+											<th>이미지</th>
 										</tr>
 									</tfoot>
 									<tbody>
@@ -214,11 +210,11 @@
 											<td>1</td>
 											<td>형준</td>
 											<td>최형준</td>
-											<td>최행배</td>
 											<td>010-1111-1234</td>
 											<td></td>
-											<td>영남대 아이돌</td>
-											<td>100,000P</td>
+											<td></td>
+											<td></td>
+											<td></td>
 											<td width="10"><input type="button" value="프로필" onclick=""></td>
 											<td width="10"><input type="button" value="수정" onclick=""></td>
 											<td width="10"><input type="button" value="삭제" onclick=""></td>
@@ -227,11 +223,11 @@
 											<td>2</td>
 											<td>도은</td>
 											<td>김도은</td>
-											<td>나무늘보</td>
 											<td>010-2222-1234</td>
 											<td></td>
-											<td>선애와 아이들</td>
-											<td>100,000P</td>
+											<td></td>
+											<td></td>
+											<td></td>
 											<td width="10"><input type="button" value="프로필" onclick=""></td>
 											<td width="10"><input type="button" value="수정" onclick=""></td>
 											<td width="10"><input type="button" value="삭제" onclick=""></td>
@@ -240,11 +236,11 @@
 											<td>3</td>
 											<td>현동</td>
 											<td>김현동</td>
-											<td>김텐동</td>
 											<td>010-3333-1234</td>
 											<td></td>
-											<td>내당엡씨</td>
-											<td>100,000P</td>
+											<td></td>
+											<td></td>
+											<td></td>
 											<td width="10"><input type="button" value="프로필" onclick=""></td>
 											<td width="10"><input type="button" value="수정" onclick=""></td>
 											<td width="10"><input type="button" value="삭제" onclick=""></td>
@@ -254,8 +250,89 @@
 							</div>
 						</div>
 					</div>
+					
+						<div class="card mb-4">
+						<div class="card-header">
+							<i class="fas fa-table mr-1"></i> 매니저 승인대기 현황
+						</div>
+						<div class="card-body">
+							<div class="table-responsive">
+								<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+									<thead>
+										<tr>
+											<th>No.</th>
+											<th>ID</th>
+											<th>Name</th>
+											<th>연락처</th>
+											<th>권한</th>
+											<th>포부</th>
+											<th>설문지</th>
+											<th>이미지</th>
+										</tr>
+									</thead>
+									<tfoot>
+										<tr>
+											<th>No.</th>
+											<th>ID</th>
+											<th>Name</th>
+											<th>연락처</th>
+											<th>권한</th>
+											<th>포부</th>
+											<th>설문지</th>
+											<th>이미지</th>
+										</tr>
+									</tfoot>
+									<tbody>
+										<tr>
+											<td>1</td>
+											<td>형준</td>
+											<td>최형준</td>
+											<td>010-1111-1234</td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td width="10"><input type="button" value="프로필" onclick=""></td>
+											<td width="10"><input type="button" value="수정" onclick=""></td>
+											<td width="10"><input type="button" value="삭제" onclick=""></td>
+										</tr>
+										<tr>
+											<td>2</td>
+											<td>도은</td>
+											<td>김도은</td>
+											<td>010-2222-1234</td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td width="10"><input type="button" value="프로필" onclick=""></td>
+											<td width="10"><input type="button" value="수정" onclick=""></td>
+											<td width="10"><input type="button" value="삭제" onclick=""></td>
+										</tr>
+										<tr>
+											<td>3</td>
+											<td>현동</td>
+											<td>김현동</td>
+											<td>010-3333-1234</td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td width="10"><input type="button" value="프로필" onclick=""></td>
+											<td width="10"><input type="button" value="수정" onclick=""></td>
+											<td width="10"><input type="button" value="삭제" onclick=""></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					
 				</div>
 			</main>
+			
+			
+			
 			
 			<!-- footer -->
 			<footer class="py-4 bg-light mt-auto">
