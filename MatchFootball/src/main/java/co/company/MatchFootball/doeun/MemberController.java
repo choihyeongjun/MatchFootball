@@ -13,7 +13,7 @@ public class MemberController {
 
 	@RequestMapping(value="/doeun/index")
 	public String mypage() {
-		return "doeun/index";
+		return "doeun/userprofile";
 	}
 	@RequestMapping(value="/doeun/aa")
 	public String mypag() {
