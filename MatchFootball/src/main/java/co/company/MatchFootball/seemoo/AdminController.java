@@ -21,6 +21,11 @@ public class AdminController {
 		return "seemoo/team";
 	}
 	
+	@RequestMapping("/admin/manager")
+	public String manager() {
+		return "seemoo/manager";
+	}
+	
 	@RequestMapping("/admin/field")
 	public String field() {
 		return "seemoo/field";
