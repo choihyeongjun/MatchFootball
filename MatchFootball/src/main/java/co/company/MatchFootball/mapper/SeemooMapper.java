@@ -1,5 +1,5 @@
 package co.company.MatchFootball.mapper;
 
-public interface hyeongjunMapper {
+public interface SeemooMapper {
 
 }

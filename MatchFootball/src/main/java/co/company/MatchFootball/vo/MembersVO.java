@@ -6,6 +6,7 @@ import lombok.Data;
 public class MembersVO {
 	String id;//멤버아이디
 	String pw;//비밀번호
+	String name;//이름
 	String gender;//성별
 	String location1;//주소 대분류
 	String location2;//주소 소분류

@@ -1,5 +1,5 @@
 package co.company.MatchFootball.mapper;
 
-public interface hyendongMapper {
+public interface SungjunMapper {
 
 }
