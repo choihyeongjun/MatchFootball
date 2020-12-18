@@ -1,4 +1,4 @@
-package co.company.MatchFootball.controller;
+package co.company.MatchFootball.config;
 
 import java.sql.SQLException;
 import java.util.Properties;
@@ -15,7 +15,6 @@ import oracle.jdbc.pool.OracleDataSource;
 
 @Configuration
 @EnableTransactionManagement
-@ComponentScan(basePackages="co.company") //자동 스캔
 public class DataSourceSample {
 	  
 	final static String DB_URL="jdbc:oracle:thin:@db202012151659_high?TNS_ADMIN=D://Dev//Wallet";
@@ -36,6 +35,7 @@ public class DataSourceSample {
 			ods = new OracleDataSource();
 			ods.setURL(DB_URL);    
 			ods.setConnectionProperties(info);
+			System.out.println(ods);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

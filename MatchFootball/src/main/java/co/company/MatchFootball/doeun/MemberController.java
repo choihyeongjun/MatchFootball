@@ -19,5 +19,8 @@ public class MemberController {
 	public String mypag() {
 		return "doeun/aa";
 	}
-	
+	@RequestMapping(value="/doeun/msg")
+	public String my() {
+		return "doeun/message";
+	}
 }
