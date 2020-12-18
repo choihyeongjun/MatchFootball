@@ -1,52 +1,51 @@
 package co.company.MatchFootball.controller;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Properties;
 
-import oracle.jdbc.pool.OracleDataSource;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+
 import oracle.jdbc.OracleConnection;
-import java.sql.DatabaseMetaData;
+import oracle.jdbc.pool.OracleDataSource;
 
-public class DataSourceSample {  
-   
-  final static String DB_URL="jdbc:oracle:thin:@db202012151659_high?TNS_ADMIN=D://Dev//Wallet";
-  final static String DB_USER = "admin";
-  final static String DB_PASSWORD = "RLAgusehd12!@";
-  public static void main(String args[]) throws SQLException {
-    Properties info = new Properties();     
-    info.put(OracleConnection.CONNECTION_PROPERTY_USER_NAME, DB_USER);
-    info.put(OracleConnection.CONNECTION_PROPERTY_PASSWORD, DB_PASSWORD);          
-    info.put(OracleConnection.CONNECTION_PROPERTY_DEFAULT_ROW_PREFETCH, "20");    
-  
-
-    OracleDataSource ods = new OracleDataSource();
-    ods.setURL(DB_URL);    
-    ods.setConnectionProperties(info);
-    try (OracleConnection connection = (OracleConnection) ods.getConnection()) {
-      DatabaseMetaData dbmd = connection.getMetaData();       
-      System.out.println("Driver Name: " + dbmd.getDriverName());
-      System.out.println("Driver Version: " + dbmd.getDriverVersion());
-      System.out.println("Default Row Prefetch Value is: " + 
-         connection.getDefaultRowPrefetch());
-      System.out.println("Database Username is: " + connection.getUserName());
-      System.out.println();
-      printEmployees(connection);
-    }   
-  }
-  public static void printEmployees(Connection connection) throws SQLException {
-    try (Statement statement = connection.createStatement()) {      
-      try (ResultSet resultSet = statement
-          .executeQuery("select * from center")) {
-        System.out.println("DB연결");
-        System.out.println("---------------------");
-        while (resultSet.next())
-          System.out.println(resultSet.getString(1) + " ");       
-      }
-    }   
-  } 
+@Configuration
+@EnableTransactionManagement
+@ComponentScan(basePackages="co.company") //자동 스캔
+public class DataSourceSample {
+	  
+	final static String DB_URL="jdbc:oracle:thin:@db202012151659_high?TNS_ADMIN=D://Dev//Wallet";
+	final static String DB_USER = "admin";
+	final static String DB_PASSWORD = "RLAgusehd12!@";
+	
+	//데이터소스 등록
+	@Bean(destroyMethod="close")
+	public OracleDataSource dataSource() {
+		Properties info = new Properties();     
+	    info.put(OracleConnection.CONNECTION_PROPERTY_USER_NAME, DB_USER);
+	    info.put(OracleConnection.CONNECTION_PROPERTY_PASSWORD, DB_PASSWORD);          
+	    info.put(OracleConnection.CONNECTION_PROPERTY_DEFAULT_ROW_PREFETCH, "20");    
+	  
+	    OracleDataSource ods = null;
+	    
+		try {
+			ods = new OracleDataSource();
+			ods.setURL(DB_URL);    
+			ods.setConnectionProperties(info);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    return ods;
+	}
+	
+	// 트랜잭션 매니저 등록	 
+    @Bean
+    public DataSourceTransactionManager transactionManager() {
+        return new DataSourceTransactionManager(dataSource());
+    }
 }
