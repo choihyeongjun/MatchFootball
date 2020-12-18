@@ -25,4 +25,8 @@ public class JunController {
 	public ModelAndView test2(HttpServletResponse response) throws IOException{
 		return new ModelAndView("sungjun/call");
 	}
+	@RequestMapping(value="/manageremploy")
+	public ModelAndView test3(HttpServletResponse response) throws IOException{
+		return new ModelAndView("sungjun/manageremploy");
+	}
 }

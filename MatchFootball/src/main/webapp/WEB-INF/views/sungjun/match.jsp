@@ -357,6 +357,7 @@ img {
 				</tbody>
 			</table>
 		</div>
+		</div>
 		<script>
 			new Swiper('.swiper-container', {
 
