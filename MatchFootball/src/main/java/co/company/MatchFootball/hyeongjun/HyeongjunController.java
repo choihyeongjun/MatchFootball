@@ -1,20 +1,30 @@
 package co.company.MatchFootball.hyeongjun;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.company.MatchFootball.mapper.HyeongjunMapper;
+import co.company.MatchFootball.vo.MembersVO;
 
-@RestController
+@Controller
 public class HyeongjunController {
 
 	@Autowired HyeongjunMapper hyeongjunMapper;
-	@RequestMapping(value="/bollow",method = RequestMethod.GET)
+	
+	@ResponseBody
+	@RequestMapping(value="/bollow/ajax")
+	public List<MembersVO>ajaxbollow(Model model){
+		return hyeongjunMapper.getbollowlist();
+	}
+	@RequestMapping(value="/bollow")
 	public String bollow(Model model) {
-		model.addAttribute("list",hyeongjunMapper.getbollowlist());
+		//model.addAttribute("list",hyeongjunMapper.getbollowlist());
 		return "hyeongjun/bollowlist";
 	}
 	@RequestMapping("/dd")

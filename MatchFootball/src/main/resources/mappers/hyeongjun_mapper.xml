@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="co.company.MatchFootball.mapper.hyeonjunMapper"> <!-- 패키지.EmpMapper -->
+<mapper namespace="co.company.MatchFootball.mapper.HyeongjunMapper"> <!-- 패키지.EmpMapper -->
 <!-- 용병리스트 뽑기 -->
-	<select id="getbollowlist" parameterType="members">
+	<select id="getbollowlist" parameterType="membersVO" resultType="membersVO">
 	SELECT 
 		id,name,gender,location1,pnum,manner,lv,pos
 		from members

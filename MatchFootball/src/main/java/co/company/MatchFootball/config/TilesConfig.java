@@ -11,6 +11,7 @@ public class TilesConfig {
 	@Bean
 	public UrlBasedViewResolver viewResolver() {
 		UrlBasedViewResolver tilesView = new UrlBasedViewResolver();
+		tilesView.setOrder(2);
 		tilesView.setViewClass(TilesView.class);
 		return tilesView;
 	}

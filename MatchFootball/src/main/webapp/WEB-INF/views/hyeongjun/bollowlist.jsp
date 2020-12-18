@@ -11,7 +11,7 @@
 	});
 	function memberlist(){
 	$.ajax({
-		url:"/bollow",
+		url:"bollow/ajax",
 		type:'GET',
 		dataType:'json',
 		error:function(xhr,status,msg){
