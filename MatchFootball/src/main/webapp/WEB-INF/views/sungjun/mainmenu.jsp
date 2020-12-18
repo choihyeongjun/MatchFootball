@@ -15,26 +15,39 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/css/swiper.min.css">
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js"></script>
 <style>
-body.modal-open {
+body, html {
+	height: 100%;
+}
 
-    overflow: hidden;
-    position: fixed;
+.bodywrapper {
+	overflow: auto;
+	height: 100%;
 }
-body.viewport-lg {
-    position: absolute; 
+
+/* unset bs3 setting */
+.modal-open {
+	overflow: auto;
 }
+
+/* extra stetting for fixed navbar, see bs3 doc
+*/
 body {
-    overflow-x: hidden;
-    overflow-y: scroll !important;
-    
+	padding-bottom: 50px;
 }
+
 .site {
 	
 }
-.menul{
+
+.menul {
 	list-style: none;
 }
+
 .lili {
 	padding: 3px 0 3px 0;
 	text-indent: 20px;
@@ -56,17 +69,18 @@ body {
 	<nav class="navbar navbar-expand-lg navbar-light bg-light"
 		style="box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)">
 		<div class="container-md">
-			<a class="navbar-brand" href="#" style="color: #04519b"><img src="resources/img/99.png" width="100px" height="50px"/></a>
+			<a class="navbar-brand" href="#" style="color: #04519b"><img
+				src="resources/img/99.png" width="100px" height="50px" /></a>
 			<h1 class="aa" style="color: #04519b">MatchFootball</h1>
 			<div>
 				<button type="button" class="btn abc" data-toggle="modal"
 					data-target="#id01">
-					<i class="fas fa-user fa-1x" ></i>
+					<i class="fas fa-user fa-1x"></i>
 				</button>
 
 				<button type="button" class="btn bbb" data-toggle="modal"
 					data-target="#main_menu">
-					<i class="fas fa-bars fa-2x" ></i>
+					<i class="fas fa-bars fa-2x"></i>
 				</button>
 			</div>
 		</div>
@@ -117,14 +131,14 @@ body {
 	<!-- Extra large modal -->
 	<div class="modal fade bd-example-modal-xl" id="main_menu"
 		tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel"
-		aria-hidden="true" >
+		aria-hidden="true">
 		<div class="modal-dialog modal-xl" role="document">
 			<div class="modal-content" style="background-color: none;">
 				<div class="container-fluid">
 					<div class="row">
 						<div class="col-md-3 col-sm-6">
 							<div>
-								<h3 style="text-align:center">마이페이지</h3>
+								<h3 style="text-align: center">마이페이지</h3>
 							</div>
 							<ul class="menul">
 								<li class="lili">내 정보</li>
@@ -135,7 +149,7 @@ body {
 						</div>
 						<div class="col-md-3 col-sm-6">
 							<div>
-								<h3 style="text-align:center">매니저 마이페이지</h3>
+								<h3 style="text-align: center">매니저 마이페이지</h3>
 							</div>
 							<ul class="menul">
 								<li class="lili">마이페이지</li>
@@ -146,7 +160,7 @@ body {
 						</div>
 						<div class="col-md-3 col-sm-6">
 							<div>
-								<h3 style="text-align:center">팀페이지</h3>
+								<h3 style="text-align: center">팀페이지</h3>
 							</div>
 							<ul class="menul">
 								<li class="lili">마이페이지</li>
@@ -157,7 +171,7 @@ body {
 						</div>
 						<div class="col-md-3 col-sm-6">
 							<div>
-								<h3 style="text-align:center">매치</h3>
+								<h3 style="text-align: center">매치</h3>
 							</div>
 							<ul class="menul">
 								<li class="lili">마이페이지</li>
@@ -168,7 +182,7 @@ body {
 						</div>
 						<div class="col-md-3 col-sm-6">
 							<div>
-								<h3 style="text-align:center">경기장</h3>
+								<h3 style="text-align: center">경기장</h3>
 							</div>
 							<ul class="menul">
 								<li class="lili">마이페이지</li>
@@ -177,33 +191,33 @@ body {
 								<li class="lili">마이페이지</li>
 							</ul>
 						</div>
-					</div>
-					<div class="col-md-3 col-sm-6">
-						<div>
-							<h3 style="text-align:center">용병</h3>
+
+						<div class="col-md-3 col-sm-6">
+							<div>
+								<h3 style="text-align: center">용병</h3>
+							</div>
+							<ul class="menul">
+								<li class="lili">마이페이지</li>
+								<li class="lili">마이페이지</li>
+								<li class="lili">마이페이지</li>
+								<li class="lili">마이페이지</li>
+							</ul>
 						</div>
-						<ul class="menul">
-							<li class="lili">마이페이지</li>
-							<li class="lili">마이페이지</li>
-							<li class="lili">마이페이지</li>
-							<li class="lili">마이페이지</li>
-						</ul>
-					</div>
-					<div class="col-md-3 col-sm-6">
-						<div>
-							<h3 style="text-align:center">커뮤니티</h3>
+						<div class="col-md-3 col-sm-6">
+							<div>
+								<h3 style="text-align: center">커뮤니티</h3>
+							</div>
+							<ul class="menul">
+								<li class="lili">마이페이지</li>
+								<li class="lili">마이페이지</li>
+								<li class="lili">마이페이지</li>
+								<li class="lili">마이페이지</li>
+							</ul>
 						</div>
-						<ul class="menul">
-							<li class="lili">마이페이지</li>
-							<li class="lili">마이페이지</li>
-							<li class="lili">마이페이지</li>
-							<li class="lili">마이페이지</li>
-						</ul>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-
-<body>
+	</body>
 </html>
