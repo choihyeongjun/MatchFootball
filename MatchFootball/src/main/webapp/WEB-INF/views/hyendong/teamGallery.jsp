@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="resources/css/teamMenu.css">
 <style>
 div.gallery:hover {
 	border: 1px solid #777;
@@ -13,43 +14,13 @@ div.gallery:hover {
 	float: left;
 	width: 14.99999%;
 }
-
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #1E285A;
-}
-
-li {
-  float: left;
-  border-right:1px solid #bbb;
-}
-
-li:last-child {
-  border-right: none;
-}
-
-li a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-li a:hover:not(.active) {
-  background-color: #111;
-}
-
 .active {
   background-color: #4CAF50;
 }
 </style>
 </head>
 <body>
-	<ul>
+	<ul class="hi">
 	  <li><a href="http://localhost/MatchFootball/teamInfo">ÆÀ Á¤º¸</a></li>
 	  <li><a href="http://localhost/MatchFootball/teamGallery">ÆÀ °¶·¯¸®</a></li>
 	  <li><a href="http://localhost/MatchFootball/teamNotice">ÆÀ °øÁö</a></li>

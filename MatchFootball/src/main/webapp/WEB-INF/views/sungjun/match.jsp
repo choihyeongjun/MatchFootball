@@ -63,10 +63,13 @@ img {
   padding: 50px;
   font-size: 20px;
 }
+.pp{
+margin-bottom: 100px;
+}
 </style>
 </head>
 <body>
-	<div class="container" style="backgroundcolor:white; width:100%;">
+	<div class="container" style="backgroundcolor:white; width:100%; flex: 1;">
 		<!-- 사진  -->
 		<div align="center" style="margin: 40px;">
 			<div id="carouselExampleControls" class="carousel slide"
@@ -126,7 +129,6 @@ img {
 
 
 			<!-- 매치 정보  -->
-
 			<table class="table " style="margin: 40px;">
 				<tbody>
 					<tr>
