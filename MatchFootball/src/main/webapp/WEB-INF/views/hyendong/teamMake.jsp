@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="resources/css/teamMenu.css">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -14,8 +15,17 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>
+</style>
 </head>
 <body>
+	<ul class="hi">
+	  <li><a href="http://localhost/MatchFootball/teamInfo">팀 정보</a></li>
+	  <li><a href="http://localhost/MatchFootball/teamGallery">팀 갤러리</a></li>
+	  <li><a href="http://localhost/MatchFootball/teamNotice">팀 공지</a></li>
+	  <li><a href="http://localhost/MatchFootball/#">팀 초대</a></li>
+	  <li><a href="http://localhost/MatchFootball/#">팀 리스트</a></li>
+	</ul>
 	<script type="text/javascript">
 		function register() {
 			alert("팀 생성이 완료되었습니다");

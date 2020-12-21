@@ -8,47 +8,54 @@ div.gallery:hover {
 	border: 1px solid #777;
 }
 
-div.gallery img {
-	width: 100%;
-	height: auto;
-}
-
-div.desc {
-	padding: 15px;
-	text-align: center;
-}
-
-* {
-	box-sizing: border-box;
-}
-
 .responsive {
-	padding: 0 6px;
+	padding: 6px;
 	float: left;
-	width: 24.99999%;
+	width: 14.99999%;
 }
 
-@media only screen and (max-width: 700px) {
-	.responsive {
-		width: 49.99999%;
-		margin: 6px 0;
-	}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #1E285A;
 }
 
-@media only screen and (max-width: 500px) {
-	.responsive {
-		width: 100%;
-	}
+li {
+  float: left;
+  border-right:1px solid #bbb;
 }
 
-.clearfix:after {
-	content: "";
-	display: table;
-	clear: both;
+li:last-child {
+  border-right: none;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover:not(.active) {
+  background-color: #111;
+}
+
+.active {
+  background-color: #4CAF50;
 }
 </style>
 </head>
 <body>
+	<ul>
+	  <li><a href="http://localhost/MatchFootball/teamInfo">ÆÀ Á¤º¸</a></li>
+	  <li><a href="http://localhost/MatchFootball/teamGallery">ÆÀ °¶·¯¸®</a></li>
+	  <li><a href="http://localhost/MatchFootball/teamNotice">ÆÀ °øÁö</a></li>
+	  <li><a href="http://localhost/MatchFootball/#">ÆÀ ÃÊ´ë</a></li>
+	  <li><a href="http://localhost/MatchFootball/#">ÆÀ ¸®½ºÆ®</a></li>
+	</ul>
 	<div align="center">
 		<div>
 			<h1>ÆÀ °¶·¯¸®</h1>
@@ -57,8 +64,8 @@ div.desc {
 	</div>
 	<div class="responsive">
 		<div class="gallery">
-			<a target="_blank" href="resources/to.png"> <img
-				src="resources/to.png" alt="Cinque Terre" width="250" height="250" style="border-radius : 70px;">
+			<a target="_blank" href="resources/to.png"> 
+			<img src="resources/to.png"  width="270" height="270" style="border-radius : 80px">
 			</a>
 		</div>
 	</div>
@@ -67,7 +74,7 @@ div.desc {
 	<div class="responsive">
 		<div class="gallery">
 			<a target="_blank" href="resources/to.png"> <img
-				src="resources/to.png" alt="Forest" width="250" height="250" style="border-radius : 70px;">
+				src="resources/to.png" width="270" height="270" style="border-radius : 80px">
 			</a>
 		</div>
 	</div>
@@ -75,8 +82,7 @@ div.desc {
 	<div class="responsive">
 		<div class="gallery">
 			<a target="_blank" href="resources/to.png"> <img
-				src="resources/to.png" alt="Northern Lights" width="250"
-				height="250" style="border-radius : 70px;">
+				src="resources/to.png" width="270" height="270" style="border-radius : 80px">
 			</a>
 		</div>
 	</div>
@@ -84,7 +90,7 @@ div.desc {
 	<div class="responsive">
 		<div class="gallery">
 			<a target="_blank" href="resources/to.png"> <img
-				src="resources/to.png" alt="Mountains" width="250" height="250" style="border-radius : 70px;">
+				src="resources/to.png" width="270" height="270" style="border-radius : 80px">
 			</a>
 		</div>
 	</div>

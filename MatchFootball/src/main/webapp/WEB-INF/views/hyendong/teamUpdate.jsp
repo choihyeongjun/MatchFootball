@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="resources/css/teamMenu.css">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -21,6 +22,13 @@
 			alert("팀 수정이 완료되었습니다");
 		}
 	</script>
+	<ul class="hi">
+	  <li><a href="http://localhost/MatchFootball/teamInfo">팀 정보</a></li>
+	  <li><a href="http://localhost/MatchFootball/teamGallery">팀 갤러리</a></li>
+	  <li><a href="http://localhost/MatchFootball/teamNotice">팀 공지</a></li>
+	  <li><a href="http://localhost/MatchFootball/#">팀 초대</a></li>
+	  <li><a href="http://localhost/MatchFootball/#">팀 리스트</a></li>
+	</ul>
 	<div align="center">
 		<div>
 			<h1>팀 수 정</h1>

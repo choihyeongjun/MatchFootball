@@ -24,4 +24,9 @@ public class HyenDongController {
 	public String teamGallery() {
 		return "hyendong/teamGallery";
 	}
+	
+	@RequestMapping("/teamNotice")
+	public String teamNotice() {
+		return "hyendong/teamNotice";
+	}
 }
