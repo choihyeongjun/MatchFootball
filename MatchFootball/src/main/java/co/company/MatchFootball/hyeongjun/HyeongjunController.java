@@ -29,6 +29,6 @@ public class HyeongjunController {
 	}
 	@RequestMapping("/dd")
 	public String userjoin() {
-		return "hyeongjun/userjoin";
+		return "hyeongjun/fieldcommit";
 	}
 }
