@@ -85,9 +85,7 @@ body {
 			</div>
 		</div>
 	</nav>
-	<section class="content">
 		<tiles:insertAttribute name="body" />
-	</section>
 
 	<!--로그인  -->
 	<div class="modal fade bd-example-modal-xl" id="id01" tabindex="-1"

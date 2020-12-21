@@ -66,7 +66,7 @@ img {
 </style>
 </head>
 <body>
-	<div class="container">
+	<div class="container" style="backgroundcolor:white; width:100%;">
 		<!-- 사진  -->
 		<div align="center" style="margin: 40px;">
 			<div id="carouselExampleControls" class="carousel slide"
@@ -108,10 +108,11 @@ img {
 			<!--날 짜 선 택  -->
 
 			<!-- 클래스명은 변경하면 안 됨 -->
+				<hr>
 			<div class="swiper-container" style="margin:40px">
-				<div class="swiper-wrapper">
+				<div class="swiper-wrapper" style="cursor:point;">
 					<c:forEach begin="1" end="31" var="i">
-						<div class="swiper-slide">${i}</div>
+						<div class="swiper-slide" style="hover:blue">${i}</div>
 					</c:forEach>
 				</div>
 				<!-- 네비게이션 -->
