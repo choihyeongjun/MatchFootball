@@ -40,47 +40,43 @@
 	  <li><a href="http://localhost/MatchFootball/#">팀 초대</a></li>
 	  <li><a href="http://localhost/MatchFootball/#">팀 리스트</a></li>
 	</ul>
+	<div align="center">
+		<h1>팀 공 지</h1>
+	</div>
 <div class="topicList">
       <ul>
-        
           <li>
-            <a href="/cs/2/topic/140/">
-              <!-- <p class="time">2020년 12월 18일</p> -->
+            <a href="#">
               <h2>{여기에 제목 넣기}</h2>
             </a>
           </li>
         
           <li>
-            <a href="/cs/2/topic/133/">
-              <!-- <p class="time">2020년 12월 18일</p> -->
+            <a href="#">
               <h2>{여기에 제목 넣기}</h2>
             </a>
           </li>
         
           <li>
-            <a href="/cs/2/topic/22/">
-              <!-- <p class="time">2020년 12월 18일</p> -->
+            <a href="#">
               <h2>{여기에 제목 넣기}</h2>
             </a>
           </li>
         
           <li>
-            <a href="/cs/2/topic/21/">
-              <!-- <p class="time">2020년 12월 18일</p> -->
+            <a href="#">
               <h2>{여기에 제목 넣기}</h2>
             </a>
           </li>
         
           <li>
-            <a href="/cs/2/topic/126/">
-              <!-- <p class="time">2020년 12월 18일</p> -->
+            <a href="#">
               <h2>{여기에 제목 넣기}</h2>
             </a>
           </li>
         
           <li>
-            <a href="/cs/2/topic/159/">
-              <!-- <p class="time">2020년 12월 18일</p> -->
+            <a href="#">
               <h2>{여기에 제목 넣기}</h2>
             </a>
           </li>

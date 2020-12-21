@@ -1,0 +1,62 @@
+@charset "EUC-KR";
+.site-links {
+    width: 100%;
+    background-color: #0f142a;
+    color: #fff;
+    text-align: center;
+    padding: 50px 0;
+    font-size: .8em;
+}
+.site-links ul {
+    list-style-type: none;
+    margin-bottom: -15px;
+}
+.site-links ul li {
+    text-transform: uppercase;
+    display: inline-block;
+    line-height: 1;
+    padding: 0 1em;
+    margin-bottom: 15px;
+    border-left: 1px solid;
+}
+.site-links ul li a {
+    color: #fff;
+}
+.hygiene-links {
+    width: 100%;
+    background-color: #0b0e1e;
+    color: #fff;
+    text-align: center;
+    padding: 15px 0;
+    margin: 0;
+}
+.hygiene-links li a {
+    color: #999;
+}
+ul {
+    margin: 0;
+    padding: 0;
+}
+.hygiene-links li {
+    display: inline-block;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0 5px;
+}
+.social-links {
+    width: 100%;
+    background-color: #fff;
+    color: #0f142a;
+    text-align: center;
+    padding: 20px 0 15px;
+    margin: 0;
+    overflow: hidden;
+}
+.social-links li {
+    list-style-type: none;
+    width: calc(100% - 20px);
+}
+.social-links li img {
+    height: 45px;
+    width: auto;
+}
