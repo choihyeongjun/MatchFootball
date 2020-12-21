@@ -24,15 +24,15 @@
 		$("#search").empty();
 		for(var i=0;i<data.length;i++){
 			var tag="<tr>"+
-				"<td>"+data[i].id+"</td>"
-				"<td>"+data[i].name+"</td>"
-				"<td>"+data[i].gender+"</td>"
-				"<td>"+data[i].location1+"</td>"
-				"<td>"+data[i].pnum+"</td>"
-				"<td>"+data[i].manner+"</td>"
-				"<td>"+data[i].lv+"</td>"
-				"<td>"+data[i].pos+"</td>"
-				"<td>"+data[i].pos+"</td>"
+				"<td>"+data[i].id+"</td>"+
+				"<td>"+data[i].name+"</td>"+
+				"<td>"+data[i].gender+"</td>"+
+				"<td>"+data[i].location1+"</td>"+
+				"<td>"+data[i].pnum+"</td>"+
+				"<td>"+data[i].manner+"</td>"+
+				"<td>"+data[i].lv+"</td>"+
+				"<td>"+data[i].pos+"</td>"+
+				"<td>"+data[i].pos+"</td>"+
 				"<td>"+"<button id=\'btnSelect\'>초대하기</button>"+"</td>"
 				+"</tr>"
 				$("#search").append(tag);
