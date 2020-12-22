@@ -9,7 +9,8 @@
 }
 .site-links ul {
     list-style-type: none;
-    margin-bottom: -15px;
+    margin-bottom: -20px;
+    margin-top: -5px;
 }
 .site-links ul li {
     text-transform: uppercase;
@@ -44,6 +45,7 @@ ul {
     padding: 0 5px;
 }
 .social-links {
+	box-shadow: inset 0px 3px 6px 0px rgb(0 0 0 / 39%), 0px -4px 20px 20px rgb(0 0 0 / 43%);
     width: 100%;
     background-color: #f8f9fa!important;
     color: #0f142a;
@@ -58,14 +60,13 @@ ul {
     width:50px;
 }
 .social-links li img {
-    height: 45px;
+    height: 30px;
     width: auto;
 }
 .footer {
-   position:fixed; 
+  position:fixed; 
   left:0px; 
   bottom:0px; 
-  height:125px; 
   width:100%; 
   background:grey; 
   color: white; 
