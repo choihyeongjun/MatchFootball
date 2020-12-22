@@ -43,8 +43,8 @@
 </script>
 </head>
 <body>
-<div>
-		<div class="container" style="float:left;width:40%">
+<div display="inline-block">
+		<div class="container" style="float:left;width:50%">
 		<h2 class="table text-center">용병참가 목록</h2>
 		<table class="table text-center">
 				<tr class="tr1">
@@ -68,7 +68,7 @@
 				<tr class="tr1">
 					<th class="text-center">아이디</th>
 					<th class="text-center">이  름</th>
-					<th class="text-center">초대</th>
+					<th class="text-center">초대 여부</th>
 				</tr>
 				<tbody id="search">
 				</tbody>

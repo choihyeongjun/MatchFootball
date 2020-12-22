@@ -93,7 +93,9 @@
 				</tbody>
 			</table>
 		</div>
+		<div style="float:bottom">
 		<button type="button" class="btn btn-primary">팀 정보 변경</button>
+		</div>
 	</div>
 </body>
 </html>

@@ -27,8 +27,16 @@ public class HyeongjunController {
 		//model.addAttribute("list",hyeongjunMapper.getbollowlist());
 		return "hyeongjun/bollowlist";
 	}
-	@RequestMapping("/dd")
-	public String userjoin() {
-		return "hyeongjun/userjoin";
+	@RequestMapping("/fieldcom")
+	public String fieldcommit() {
+		return "hyeongjun/fieldcommit";
+	}
+	@RequestMapping("/fieldlist")
+	public String fieldlist() {
+		return "hyeongjun/fieldlist";
+	}
+	@RequestMapping("/free")
+	public String freeboard() {
+		return "hyeongjun/freeboard";
 	}
 }

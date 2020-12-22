@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>matchfootball</title>
+<link rel="stylesheet" href="resources/css/footter.css">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -20,6 +21,10 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js"></script>
 <style>
+.navbar-brand>img {
+    display: block;
+    margin-top: -15px;
+}
 body, html {
 	height: 100%;
 }
@@ -66,12 +71,12 @@ body {
 </script>
 </head>
 <body>
+	<!-- header -->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light"
 		style="box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)">
 		<div class="container-md">
 			<a class="navbar-brand" href="#" style="color: #04519b"><img
 				src="resources/img/99.png" width="100px" height="50px" /></a>
-			<h1 class="aa" style="color: #04519b">MatchFootball</h1>
 			<div>
 				<button type="button" class="btn abc" data-toggle="modal"
 					data-target="#id01">
@@ -85,7 +90,7 @@ body {
 			</div>
 		</div>
 	</nav>
-		<tiles:insertAttribute name="body" />
+	<tiles:insertAttribute name="body" />
 
 	<!--로그인  -->
 	<div class="modal fade bd-example-modal-xl" id="id01" tabindex="-1"
@@ -126,6 +131,7 @@ body {
 			</div>
 		</div>
 	</div>
+
 	<!-- Extra large modal -->
 	<div class="modal fade bd-example-modal-xl" id="main_menu"
 		tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel"
@@ -217,5 +223,66 @@ body {
 			</div>
 		</div>
 	</div>
-	</body>
+
+	<!-- 	footer -->
+	<footer class="footer">
+		<div class="site-links">
+			<div class="site-links-wrapper">
+				<ul>
+					<li><a href="/the-club/careers/" target="_self"
+						style="text-decoration: none">Careers</a></li>
+					<li><a href="/the-club/" target="_self"
+						style="text-decoration: none">The Club</a></li>
+					<li><a href="/the-club/history/" target="_self"
+						style="text-decoration: none">History</a></li>
+					<li><a
+						href="https://shop.tottenhamhotspur.com/?scn=link&amp;csc=footer-nav"
+						target="_self" style="text-decoration: none">Shop</a></li>
+					<li><a href="/the-club/foundation/" target="_self"
+						style="text-decoration: none">Foundation</a></li>
+					<li><a
+						href="https://ask.tottenhamhotspur.com/hc/en-us/categories/200992345-Accessibility"
+						target="_self" style="text-decoration: none">Accessibility</a></li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="social-links">
+			<div class="social-links__wrapper" align="center">
+				<ul>
+					<li style="width: 80px; float: left; margin-left:37%;"><a
+						href="https://www.facebook.com/TottenhamHotspur/" target="_blank"><img
+							src="https://tot-tmp.azureedge.net/media/11676/facebook.png?anchor=center&amp;mode=crop&amp;width=750"
+							data-src="https://tot-tmp.azureedge.net/media/11676/facebook.png?anchor=center&amp;mode=crop&amp;width=750"
+							alt="" data-set="true"></a></li>
+					<li style="width: 80px; float: left;"><a
+						href="https://www.instagram.com/spursofficial/" target="_blank"><img
+							src="https://tot-tmp.azureedge.net/media/11675/instagram.png?anchor=center&amp;mode=crop&amp;width=750"
+							data-src="https://tot-tmp.azureedge.net/media/11675/instagram.png?anchor=center&amp;mode=crop&amp;width=750"
+							alt="" data-set="true"></a></li>
+					<li style="width: 80px; float: left;"><a
+						href="https://twitter.com/SpursOfficial" target="_blank"><img
+							src="https://tot-tmp.azureedge.net/media/11678/twitter.png?anchor=center&amp;mode=crop&amp;width=750"
+							data-src="https://tot-tmp.azureedge.net/media/11678/twitter.png?anchor=center&amp;mode=crop&amp;width=750"
+							alt="" data-set="true"></a></li>
+					<li style="width: 80px; float: left;"><a
+						href="https://www.youtube.com/user/spursofficial" target="_self"><img
+							src="https://tot-tmp.azureedge.net/media/11679/youtube.png?anchor=center&amp;mode=crop&amp;width=750"
+							data-src="https://tot-tmp.azureedge.net/media/11679/youtube.png?anchor=center&amp;mode=crop&amp;width=750"
+							alt="" data-set="true"></a></li>
+					<li style="width: 80px; float: left;"><a
+						href="https://www.snapchat.com/add/spursofficial" target="_blank"><img
+							src="https://tot-tmp.azureedge.net/media/11677/snapchat.png?anchor=center&amp;mode=crop&amp;width=750"
+							data-src="https://tot-tmp.azureedge.net/media/11677/snapchat.png?anchor=center&amp;mode=crop&amp;width=750"
+							alt="" data-set="true"></a></li>
+					<li style="width: 80px; float: left;"><a
+						href="https://www.naver.com/" target="_self"><img
+							src="https://tot-tmp.azureedge.net/media/28598/naver-v2.png?anchor=center&amp;mode=crop&amp;width=405"
+							data-src="https://tot-tmp.azureedge.net/media/28598/naver-v2.png?anchor=center&amp;mode=crop&amp;width=405"
+							alt="" data-set="true"></a></li>
+				</ul>
+			</div>
+		</div>
+	</footer>
+</body>
 </html>
