@@ -3,9 +3,11 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="co.company.MatchFootball.mapper.SeemooMapper"> <!-- 패키지.EmpMapper -->
+	
+<!-- 유저 -->	
 	<!-- 부분조회 -->
-	<select id="aa" resultType="int">
-	select 1 from dual
+	<select id="memberList" resultType="MembersVO">
+	SELECT ID, NAME, PNUM, AUTHOR, T_NAME, MANNER, POINT FROM MEMBERS
 	</select>
 
 </mapper>

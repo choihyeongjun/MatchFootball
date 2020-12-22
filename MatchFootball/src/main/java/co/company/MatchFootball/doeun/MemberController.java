@@ -11,16 +11,24 @@ public class MemberController {
 		return "doeun/Pay";
 	}
 
-	@RequestMapping(value="/doeun/index")
+	@RequestMapping(value="/doeun/index")//남의 정보보기
 	public String mypage() {
 		return "doeun/userprofile";
 	}
-	@RequestMapping(value="/doeun/aa")
+	@RequestMapping(value="/doeun/aa")//마이페이지 메인
 	public String mypag() {
 		return "doeun/aa";
 	}
-	@RequestMapping(value="/doeun/msg")
+	@RequestMapping(value="/doeun/msg")//메세지함
 	public String my() {
-		return "doeun/message";
+		return "doeun/Message";
+	}
+	@RequestMapping(value="/doeun/test") // 정보수정
+	public String test() {
+		return "doeun/pfUpdate";
+	}
+	@RequestMapping(value="/doeun/review")//게시글
+	public String review() {
+		return "doeun/review";
 	}
 }

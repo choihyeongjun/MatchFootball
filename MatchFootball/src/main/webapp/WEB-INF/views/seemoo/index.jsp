@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +17,7 @@
 </head>
 <body class="sb-nav-fixed">
 	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-		<a class="navbar-brand" href="index.html">관리자페이지</a>
+		<a class="navbar-brand" href="${pageContext.request.contextPath}/admin">관리자페이지</a>
 		<button class="btn btn-link btn-sm order-1 order-lg-0"
 			id="sidebarToggle" href="#">
 			<i class="fas fa-bars"></i>
@@ -35,7 +36,7 @@
 			</div>
 		</form>
 		
-		<!-- Navbar-->
+		<!-- 사이드메뉴-->
 		<ul class="navbar-nav ml-auto ml-md-0">
 			<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" 
 			id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -97,8 +98,9 @@
 						<div class="collapse" id="collapseLayouts1"
 							aria-labelledby="heading" data-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
-								<a class="nav-link" href="#">매치관리</a> <a class="nav-link"
-									href="#">토너먼트관리</a> <a class="nav-link" href="#">경기장관리</a>
+								<a class="nav-link" href="${pageContext.request.contextPath}/admin/match">매치관리</a> 
+								<a class="nav-link" href="${pageContext.request.contextPath}/admin/tournament">토너먼트관리</a> 
+								<a class="nav-link" href="${pageContext.request.contextPath}/admin/field">경기장관리</a>
 							</nav>
 						</div>
 
@@ -124,12 +126,17 @@
 										<i class="fas fa-angle-down"></i>
 									</div>
 								</a>
+								
+								
+								
+								
 								<div class="collapse" id="pagesCollapseAuth"
 									aria-labelledby="headingOne"
 									data-parent="#sidenavAccordionPages">
 									<nav class="sb-sidenav-menu-nested nav">
-										<a class="nav-link" href="#">공지사항</a> <a class="nav-link"
-											href="#">커뮤니티</a> <a class="nav-link" href="#">리뷰관리</a>
+										<a class="nav-link" href="${pageContext.request.contextPath}/admin/notice">공지사항</a> 
+										<a class="nav-link" href="#">커뮤니티</a> 
+										<a class="nav-link" href="#">리뷰관리</a>
 									</nav>
 								</div>
 								<a class="nav-link collapsed" href="#" data-toggle="collapse"
@@ -143,8 +150,9 @@
 									aria-labelledby="headingOne"
 									data-parent="#sidenavAccordionPages">
 									<nav class="sb-sidenav-menu-nested nav">
-										<a class="nav-link" href="#">유니폼제작</a> <a class="nav-link"
-											href="#">유니폼판매</a> <a class="nav-link" href="#">중고판매</a>
+										<a class="nav-link" href="#">유니폼제작</a> 
+										<a class="nav-link" href="#">유니폼판매</a> 
+										<a class="nav-link" href="#">중고판매</a>
 									</nav>
 								</div>
 
@@ -161,14 +169,19 @@
 							</div> Tables
 						</a>
 					</div>
-
 				</div>
+				
+				
 				<div class="sb-sidenav-footer">
 					<div class="small">Logged in as:</div>
 					Start Bootstrap
 				</div>
 			</nav>
 		</div>
+		
+		
+		
+		
 		<div id="layoutSidenav_content">
 			<main>
 				<div class="container-fluid">
