@@ -220,7 +220,11 @@
 											<td>${member.id}</td>
 											<td>${member.name}</td>
 											<td>${member.pnum}</td>
-											<td><%-- <form:select path="author" items="${members}" itemLabel="author" itemValue="author2" /> --%></td>										
+											<td><%-- <form:select path="author" items="${members}" itemLabel="author" itemValue="author2" /> --%>
+												<select>
+													<option >
+												</select>
+											</td>										
 											<td>${member.t_name}</td>
 											<td>${member.manner}</td>
 											<td>${member.point}</td>
