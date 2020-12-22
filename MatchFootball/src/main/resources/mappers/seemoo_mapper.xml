@@ -3,7 +3,9 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="co.company.MatchFootball.mapper.seemooMapper"> <!-- 패키지.EmpMapper -->
-
-
+	<!-- 부분조회 -->
+	<select id="" resultType="">
+	
+	</select>
 
 </mapper>
