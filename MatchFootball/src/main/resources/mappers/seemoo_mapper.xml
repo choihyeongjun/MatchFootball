@@ -2,10 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="co.company.MatchFootball.mapper.seemooMapper"> <!-- 패키지.EmpMapper -->
+<mapper namespace="co.company.MatchFootball.mapper.SeemooMapper"> <!-- 패키지.EmpMapper -->
 	<!-- 부분조회 -->
-	<select id="" resultType="">
-	
+	<select id="aa" resultType="int">
+	select 1 from dual
 	</select>
 
 </mapper>
