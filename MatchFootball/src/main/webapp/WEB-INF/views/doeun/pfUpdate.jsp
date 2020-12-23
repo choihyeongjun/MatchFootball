@@ -27,7 +27,6 @@
 </head>
 <body>
   <div id="main">
-    <div id='heun-header'></div>
     <div class="clearfix"></div>
     <div id="content">
       <div class="container">
