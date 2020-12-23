@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/hyeongjun/scripts/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="scripts/bootstrap/bootstrap.min.css">
 		<!-- IonIcons -->
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/hyeongjun/scripts/ionicons/css/ionicons.min.css">
 		<!-- Toast -->
@@ -16,6 +16,10 @@
 		<!-- Magnific Popup -->
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/hyeongjun/scripts/magnific-popup/dist/magnific-popup.css">
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/hyeongjun/scripts/sweetalert/dist/sweetalert.css">
+		<!-- Custom style -->
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/hyeongjun/css1/style.css">
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/hyeongjun/css1/skins/all.css">
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/hyeongjun/css1/demo.css">
 </head>
 <body>
 <section class="login first grey">
@@ -61,6 +65,7 @@
 		<script src="${pageContext.request.contextPath}/resources/hyeongjun/scripts/easescroll/jquery.easeScroll.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/hyeongjun/scripts/sweetalert/dist/sweetalert.min.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/hyeongjun/scripts/toast/jquery.toast.min.js"></script>
+		<script src="${pageContext.request.contextPath}/resources/hyeongjun/js1/demo.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/hyeongjun/js1/e-magz.js"></script>
 </body>
 </html>
