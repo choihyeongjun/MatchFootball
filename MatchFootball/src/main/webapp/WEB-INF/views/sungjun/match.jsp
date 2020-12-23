@@ -65,23 +65,16 @@ img {
 	padding: 50px;
 	font-size: 20px;
 }
-<<<<<<< HEAD
 a {
  text-decoration:none !important;
  } 
-=======
 .pp{
 margin-bottom: 100px;
 }
->>>>>>> branch 'master' of https://github.com/tjdwns631/MatchFootball.git
 </style>
 </head>
 <body>
-<<<<<<< HEAD
-	<div class="container" style="backgroundcolor: white; width: 100%;">
-=======
 	<div class="container" style="backgroundcolor:white; width:100%; flex: 1;">
->>>>>>> branch 'master' of https://github.com/tjdwns631/MatchFootball.git
 		<!-- 사진  -->
 		<div align="center" style="margin: 40px;">
 			<div id="carouselExampleControls" class="carousel slide"
@@ -130,7 +123,7 @@ margin-bottom: 100px;
 					<c:forEach begin="1" end="${cal.lastDate }" var="i">
 						<div class="swiper-slide" style="hover: blue; cursor: point;" >
 						<a href="#">
-							<div style="<c:if test="${i ==cal.day }">background-color:purple</c:if>; width:130px; border-radius: 10px">
+							<div style="<c:if test="${i ==cal.day }">background-color:purple; color:white;</c:if>; width:130px; border-radius: 10px; ">
 							<c:choose>
 								<c:when test="${i % 7 == 6 }"><p style="color:red">${i}</c:when>
 								<c:when test="${i % 7 == 5 }"><p style="color:blue">${i}</c:when>
@@ -165,7 +158,7 @@ margin-bottom: 100px;
 				<div class="swiper-pagination"></div>
 			</div>
 
-
+${p_matchVO }=====================
 			<!-- 매치 정보  -->
 			<table class="table " style="margin: 40px;">
 				<tbody>
@@ -178,40 +171,13 @@ margin-bottom: 100px;
 					</tr>
 					<tr>
 						<td scope="row" align="center" style="font-weight: bold">시간</td>
-						<td><div>경기장 이름</div>
+						<td><div>${p_matchVO }</div>
 							<div>경기 정보</div></td>
 						<td align="center"><button type="button" class="btn btn-info">신청
 								가능</button>
 							</button></td>
 					</tr>
-					<tr>
-						<td scope="row" align="center" style="font-weight: bold">13:00</td>
-						<td><div>대구 성준 풋살장</div>
-							<div>남성 6vs6매치 일반1~3Lv</div></td>
-						<td align="center"><button type="button"
-								class="btn btn-danger">매칭 완료</button></td>
-					</tr>
-					<tr>
-						<td scope="row" align="center" style="font-weight: bold">13:00</td>
-						<td><div>대구 성준 풋살장</div>
-							<div>남성 6vs6매치 일반1~3Lv</div></td>
-						<td align="center"><button type="button"
-								class="btn btn-danger">매칭 완료</button></td>
-					</tr>
-					<tr>
-						<td scope="row" align="center" style="font-weight: bold">13:00</td>
-						<td><div>대구 성준 풋살장</div>
-							<div>남성 6vs6매치 일반1~3Lv</div></td>
-						<td align="center"><button type="button"
-								class="btn btn-danger">매칭 완료</button></td>
-					</tr>
-					<tr>
-						<td scope="row" align="center" style="font-weight: bold">13:00</td>
-						<td><div>대구 성준 풋살장</div>
-							<div>남성 6vs6매치 일반1~3Lv</div></td>
-						<td align="center"><button type="button"
-								class="btn btn-danger">매칭 완료</button></td>
-					</tr>
+					
 				</tbody>
 			</table>
 		</div>
@@ -226,7 +192,7 @@ margin-bottom: 100px;
 			// 그룹수가 맞지 않을 경우 빈칸으로 메우기
 			// 3개가 나와야 되는데 1개만 있다면 2개는 빈칸으로 채워서 3개를 만듬
 			loopFillGroupWithBlank : true,
-			initialSlide: ${cal.day-1},
+			initialSlide: ${cal.day-3},
 			loop : false, //  반복
 
 			navigation : { // 네비게이션
