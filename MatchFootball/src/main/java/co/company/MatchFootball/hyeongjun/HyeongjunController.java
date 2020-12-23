@@ -39,4 +39,8 @@ public class HyeongjunController {
 	public String freeboard() {
 		return "hyeongjun/freeboard";
 	}
+	@RequestMapping("/login")
+	public String login() {
+		return "hyeongjun/login";
+	}
 }
