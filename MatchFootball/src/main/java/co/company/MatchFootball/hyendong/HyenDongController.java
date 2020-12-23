@@ -1,10 +1,17 @@
 package co.company.MatchFootball.hyendong;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import co.company.MatchFootball.mapper.HyendongMapper;
 
 @Controller
 public class HyenDongController {
+	@Autowired
+	HyendongMapper hyendongMapper;
+	
 	//팀생성
 	@RequestMapping("/teamMake")
 	public String teamMake() {
@@ -40,9 +47,10 @@ public class HyenDongController {
 	public String teamNoticeInsert() {
 		return "hyendong/teamNoticeInsert";
 	}
-	//전체 팀
-	@RequestMapping("/teamList")
-	public String teamList() {
+	//전체 팀 보기
+	@RequestMapping(value="/teamList")
+	public String teamList(Model model) {
+		model.addAttribute("teamList", hyendongMapper.teamListSelect());
 		return "hyendong/teamList";
 	}
 	//토너먼트 리스트
