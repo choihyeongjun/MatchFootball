@@ -8,7 +8,33 @@
 <script>
 	$(function(){
 		memberlist();
+		inviteSelect();
 	});
+	function inviteSelect(){
+		$('body').on('click','#btnSelect',function(){
+			var userId=$(this).closest('tr').find('#hidden_userId').val();
+			console.log(userId);
+			$.ajax({
+			url:"bollowsearch/ajax",
+			type:'GET',
+			data:{id:userId},
+			dataType:'json',
+			error:function(xhr,status,msg){
+				alert("상태값 :" + status + " Http에러메시지 :"+msg);
+			},
+			success:invitelist
+			});
+		});
+	}//inviteselect
+	//document.querySelector('#dd > tr > td').innerHTML = 111
+	
+	function invitelist(data){
+		$('<tr>')
+		.append($('<td>').html(data.id))
+		.append($('<td>').html(data.name))
+		.append($('<td>').html("초대중"))
+		.appendTo('#dd')
+	};
 	function memberlist(){
 	$.ajax({
 		url:"bollow/ajax",
@@ -22,21 +48,21 @@
 	}//memberlist
 	function memberListResult(data){
 		$("#search").empty();
-		for(var i=0;i<data.length;i++){
-			var tag="<tr>"+
-				"<td>"+data[i].id+"</td>"+
-				"<td>"+data[i].name+"</td>"+
-				"<td>"+data[i].gender+"</td>"+
-				"<td>"+data[i].location1+"</td>"+
-				"<td>"+data[i].pnum+"</td>"+
-				"<td>"+data[i].manner+"</td>"+
-				"<td>"+data[i].lv+"</td>"+
-				"<td>"+data[i].pos+"</td>"+
-				"<td>"+data[i].pos+"</td>"+
-				"<td>"+"<button id=\'btnSelect\'>초대하기</button>"+"</td>"
-				+"</tr>"
-				$("#search").append(tag);
-		}
+		$.each(data,function(idx,item){
+			$('<tr>')
+			.append($('<td>').html(item.id))
+			.append($('<td>').html(item.name))
+			.append($('<td>').html(item.gender))
+			.append($('<td>').html(item.location1))
+			.append($('<td>').html(item.pnum))
+			.append($('<td>').html(item.manner))
+			.append($('<td>').html(item.lv))
+			.append($('<td>').html(item.pos))
+			.append($('<input type=\'hidden\' id=\'hidden_userId\'>').val(item.id))
+			.append($('<td>').html('<button type="button" id=\'btnSelect\'>초대하기</button>'))
+			.appendTo('#search');
+			
+		});
 		
 	};
 	
@@ -70,7 +96,7 @@
 					<th class="text-center">이  름</th>
 					<th class="text-center">초대 여부</th>
 				</tr>
-				<tbody id="search">
+				<tbody id="dd">
 				</tbody>
 		</table>
 		</div>
