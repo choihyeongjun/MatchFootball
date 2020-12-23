@@ -27,7 +27,7 @@ public class MemberController {
 	public String test() {
 		return "doeun/pfUpdate";
 	}
-	@RequestMapping(value="/doeun/review")//게시글
+	@RequestMapping(value="/doeun/review")//경기참가내역
 	public String review() {
 		return "doeun/review";
 	}

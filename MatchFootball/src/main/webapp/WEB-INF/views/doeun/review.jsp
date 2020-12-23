@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>게시글 관리</title>
+<title>경기참가내역</title>
 
 <link rel="shortcut icon" href="/heunheuntrip/img/favicon.ico">
 <link rel="stylesheet"
@@ -50,7 +50,7 @@
 
 <body>
 	<div id="main">
-		<div id='heun-header'></div>
+		
 		<div class="clearfix"></div>
 		<div id="content">
 			<div class="container">
@@ -82,18 +82,9 @@
 							</div>
 							<div class="col-md-7 col-lg-8 col-xl-8">
 								<div class="page-header bordered">
-									<h1>리뷰 관리<small>Review</small></h1>
+									<h1>경기내역<small>Review</small></h1>
 								</div>
-								<div class="card-list"></div>
-								<div class="pagination-menu"></div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<button class="btn btn-primary btn-circle" id="to-top">
+								<button class="btn btn-primary btn-circle" id="to-top">
 		<i class="fa fa-angle-up"></i>
 	</button>
 	<div id='heun-footer'></div>
@@ -137,33 +128,17 @@
     </nav>
     </div>
     
-<div class="modal fade  item-badge-rightm" id="leadform" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-body">
-      
-      <div class="guest-say" >
-	      <img class="media-object riw-photo" src="" width="100" height="100" alt=""
-	           style="margin: 10px; border-radius: 7px;"> 
-	      <div class="bubble" style="float: right; box-shadow:3px 3px #ebebeb;" ><b class="riw-name"></b><br><span class="riw-conts"></span></div>
-      </div>
-      
-      <div class="host-say">
-        <div>
-		      <img class="media-object reply-photo" src="" width="100" height="100" alt=""
-		           style="margin-top: 30px; margin-right:10px; border-radius: 7px; float: right;">
-	      </div> 
-	      <div class="bubble-ans" style="float: left; box-shadow:3px 3px #ebebeb; color: white;"><b class="reply-hostname"></b><br><span class="reply-conts"></span></div>
-      </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal">닫기</button>
-      </div>
-    </div>
-  </div>
-</div>
-<script src='../common_profile.js'></script>
-	<script src='js/review.js'></script>
+								<div class="card-list"></div>
+								<div class="pagination-menu"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+
 </body>
 
 </html>

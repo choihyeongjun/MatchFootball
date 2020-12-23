@@ -35,11 +35,6 @@ public class HyenDongController {
 	public String teamNoticeInfo() {
 		return "hyendong/teamNoticeInfo";
 	}
-	//팀 공지 등록
-	@RequestMapping("/teamNoticeInsert")
-	public String teamNoticeInsert() {
-		return "hyendong/teamNoticeInsert";
-	}
 	//전체 팀
 	@RequestMapping("/teamList")
 	public String teamList() {
@@ -50,14 +45,9 @@ public class HyenDongController {
 	public String tournamentList() {
 		return "hyendong/tournamentList";
 	}
-	//토너먼트 상세
-	@RequestMapping("/tournamentInfo")
-	public String tournamentInfo() {
-		return "hyendong/tournamentInfo";
-	}
-	//토너먼트 대진표
-	@RequestMapping("/tournamentPVP")
-	public String tournamentPVP() {
-		return "hyendong/tournamentPVP";
-	}
+	//토너먼트 리스트
+		@RequestMapping("/footter")
+		public String footter() {
+			return "hyendong/footter";
+		}
 }

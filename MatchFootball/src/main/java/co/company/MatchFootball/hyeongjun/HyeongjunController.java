@@ -27,10 +27,11 @@ public class HyeongjunController {
 		//model.addAttribute("list",hyeongjunMapper.getbollowlist());
 		return "hyeongjun/bollowlist";
 	}
-	@RequestMapping("/fieldcom")
-	public String fieldcommit() {
+	@RequestMapping("/dd")
+	public String userjoin() {
 		return "hyeongjun/fieldcommit";
 	}
+<<<<<<< HEAD
 	@RequestMapping("/fieldlist")
 	public String fieldlist() {
 		return "hyeongjun/fieldlist";
@@ -43,4 +44,6 @@ public class HyeongjunController {
 	public String login() {
 		return "hyeongjun/login";
 	}
+=======
+>>>>>>> branch 'master' of https://github.com/tjdwns631/MatchFootball.git
 }
