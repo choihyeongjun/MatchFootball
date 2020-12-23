@@ -13,7 +13,7 @@
 
 <title>커뮤니티 페이지</title>
 
-<link href="${pageContext.request.contextPath}/resources/css/seemoo/styles.css" rel="stylesheet" />
+<link href="${pageContext.request.contextPath}/resources/seemoo/css/styles.css" rel="stylesheet" />
 <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
 </head>

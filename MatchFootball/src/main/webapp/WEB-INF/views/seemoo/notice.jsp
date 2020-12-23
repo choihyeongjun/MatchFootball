@@ -245,8 +245,6 @@
 											<td>최행배</td>
 											<td>2020.01.01</td>
 											<td>10</td>
-											<td width="10"><input type="button" value="수정" onclick=""></td>
-											<td width="10"><input type="button" value="삭제" onclick=""></td>
 										</tr>
 										<tr>
 											<td>2</td>
@@ -254,8 +252,6 @@
 											<td>김도은</td>
 											<td>2020.01.01</td>
 											<td>10</td>
-											<td width="10"><input type="button" value="수정" onclick=""></td>
-											<td width="10"><input type="button" value="삭제" onclick=""></td>
 										</tr>
 										<tr>
 											<td>3</td>
@@ -263,8 +259,6 @@
 											<td>김현동</td>
 											<td>2020.01.01</td>
 											<td>10</td>
-											<td width="10"><input type="button" value="수정" onclick=""></td>
-											<td width="10"><input type="button" value="삭제" onclick=""></td>
 										</tr>
 									</tbody>
 								</table>

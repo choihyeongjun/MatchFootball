@@ -1,34 +1,47 @@
 package co.company.MatchFootball.sungjun;
 
 import java.io.IOException;
+<<<<<<< HEAD
 import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.List;
+=======
+>>>>>>> branch 'master' of https://github.com/tjdwns631/MatchFootball.git
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+<<<<<<< HEAD
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+=======
+>>>>>>> branch 'master' of https://github.com/tjdwns631/MatchFootball.git
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+<<<<<<< HEAD
 import co.company.MatchFootball.mapper.SungjunMapper;
 import co.company.MatchFootball.vo.CalVO;
 import co.company.MatchFootball.vo.P_matchVO;
 
+=======
+>>>>>>> branch 'master' of https://github.com/tjdwns631/MatchFootball.git
 @Controller
 public class JunController {
+<<<<<<< HEAD
 	
 	@Autowired SungjunMapper dao;
 
+=======
+
+	
+>>>>>>> branch 'master' of https://github.com/tjdwns631/MatchFootball.git
 //	/*
 //	 * @RequestMapping(value="/mainmenu") public ModelAndView
 //	 * test(HttpServletResponse response) throws IOException{ return new
 //	 * ModelAndView("/sungjun/mainmenu"); }
 //	 */
+<<<<<<< HEAD
 
 	@RequestMapping(value = "/match")
 	public String test1(HttpServletResponse response,Model model ,CalVO vo, P_matchVO mvo ,HttpServletRequest request) throws IOException {
@@ -52,25 +65,22 @@ public class JunController {
 		mvo.setM_date(year+"-"+month+"-" + day);
 		model.addAttribute("p_matchVO",dao.pmatchselect(mvo));
 		return "sungjun/match";
+=======
+	@RequestMapping(value="/match")
+	public ModelAndView test1(HttpServletResponse response) throws IOException{
+		return new ModelAndView("sungjun/match");
+>>>>>>> branch 'master' of https://github.com/tjdwns631/MatchFootball.git
 	}
-
-	@RequestMapping(value = "/call")
-	public ModelAndView test2(HttpServletResponse response) throws IOException {
+	@RequestMapping(value="/call")
+	public ModelAndView test2(HttpServletResponse response) throws IOException{
 		return new ModelAndView("sungjun/call");
 	}
-
-	@RequestMapping(value = "/manageremploy")
-	public ModelAndView test3(HttpServletResponse response) throws IOException {
+	@RequestMapping(value="/manageremploy")
+	public ModelAndView test3(HttpServletResponse response) throws IOException{
 		return new ModelAndView("sungjun/manageremploy");
 	}
-
-	@RequestMapping(value = "/managermypage")
-	public ModelAndView test4(HttpServletResponse response) throws IOException {
+	@RequestMapping(value="/managermypage")
+	public ModelAndView test4(HttpServletResponse response) throws IOException{
 		return new ModelAndView("sungjun/managermypage");
-	}
-
-	@RequestMapping(value = "/teammatch")
-	public ModelAndView test5(HttpServletResponse response) throws IOException {
-		return new ModelAndView("sungjun/teammatch");
 	}
 }

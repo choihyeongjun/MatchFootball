@@ -27,10 +27,11 @@ public class HyeongjunController {
 		//model.addAttribute("list",hyeongjunMapper.getbollowlist());
 		return "hyeongjun/bollowlist";
 	}
-	@RequestMapping("/fieldcom")
-	public String fieldcommit() {
+	@RequestMapping("/dd")
+	public String userjoin() {
 		return "hyeongjun/fieldcommit";
 	}
+
 	@RequestMapping("/fieldlist")
 	public String fieldlist() {
 		return "hyeongjun/fieldlist";
@@ -39,4 +40,9 @@ public class HyeongjunController {
 	public String freeboard() {
 		return "hyeongjun/freeboard";
 	}
+	@RequestMapping("/login")
+	public String login() {
+		return "hyeongjun/login";
+	}
+
 }
