@@ -27,6 +27,7 @@
 		});
 	}//inviteselect
 	//document.querySelector('#dd > tr > td').innerHTML = 111
+	
 	function invitelist(data){
 		$('<tr>')
 		.append($('<td>').html(data.id))
