@@ -17,7 +17,7 @@ public class AdminController {
 	@RequestMapping(value = "/admin", method = RequestMethod.GET) // 관리자 메인페이지
 	public String admin(Model model) {
 		model.addAttribute("members", seemoomapper.memberList());
-		return "seemoo/index";
+		return "no/seemoo/index";
 	}
 
 	@RequestMapping(value = "/admin/user", method = RequestMethod.GET) // 유저관리 페이지
