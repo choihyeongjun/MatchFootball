@@ -31,4 +31,12 @@ public class DoeunController {
 	public String review() {
 		return "doeun/review";
 	}
+	@RequestMapping(value="/doeun/usercupon")//쿠폰 사용 처리
+	public String userCp() {
+		return "";
+	}
+	@RequestMapping(value="/doeun/cupon")//쿠폰 생성
+	public String cupon() {
+		return "";
+	}
 }
