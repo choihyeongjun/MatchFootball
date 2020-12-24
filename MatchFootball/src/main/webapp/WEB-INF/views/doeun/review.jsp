@@ -58,48 +58,40 @@
 					<div class="col col-lg-12 col-xl-10">
 						<div class="row has-sidebar">
 							<div class="col-md-5 col-lg-4 col-xl-4 col-sidebar">
-								<div id="sidebar" class="sidebar-left">
-									<div class="sidebar_inner">
-										<div class="agent-detail">
-											<div class="text-center">
-												<div id='profileimg'></div>
-												<h4 class="main-name" style="color: #869E9E; font-weight:bold;"></h4>
-											</div>
-										</div>
-										<div class="list-group no-border list-unstyled">
-
-											<a href="my_profile.html" class="list-group-item"><i
-												class="far fa-id-card"></i> 내 프로필</a> <a href="my_password.html"
-												class="list-group-item "><i class="fas fa-unlock-alt"></i>
-												비밀번호 변경</a> <a href="list.html" class="list-group-item"><i
-												class="fas fa-h-square"></i> 예약</a> <a href="bookmark.html"
-												class="list-group-item"><i class="fas fa-bookmark"></i>
-												찜 관리</a> <a href="review.html" class="list-group-item active"><i
-												class="fas fa-sliders-h"></i> 리뷰 관리</a>
-										</div>
-									</div>
-								</div>
+									<div id="sidebar" class="sidebar-left">
+					<div class="sidebar_inner">
+						<div class="agent-detail">
+							<div class="text-center">
+								<div id='profileimg'></div>
+								<h4 class="main-name" style="color: #869E9E; font-weight: bold;"></h4>
+							</div>
+						</div>
+						<div class="list-group no-border list-unstyled">
+							<a href="#" class="list-group-item active"> <i class="far fa-id-card"></i> 내 프로필
+							</a> 
+							<a href="#" class="list-group-item"><i	class="fas fa-unlock-alt"></i> </a> 
+							<a href="#"	class="list-group-item"><i class="fas fa-h-square"></i> </a> 
+							<a href="#" class="list-group-item"><i class="fas fa-bookmark"></i>관리 </a> 
+							<a href="#" class="list-group-item"><i class="fas fa-sliders-h"></i> 관리 </a>
+						</div>
+					</div>
+				</div>
 							</div>
 							<div class="col-md-7 col-lg-8 col-xl-8">
 								<div class="page-header bordered">
 									<h1>경기내역<small>Review</small></h1>
 								</div>
-								<button class="btn btn-primary btn-circle" id="to-top">
-		<i class="fa fa-angle-up"></i>
-	</button>
-	<div id='heun-footer'></div>
-	<div id="tr-template" type="text/x-handlebars-template">
-    <input type="hidden" class="riw-page" data-page={{pageNo}}>
-    {{#each list}}
+								
+	<div id="tr-template">
                  <div class="card">
                     <div class="media mt-0">
                           <div class="media-left"> 
-                             <img class="media-object rounded-circle" src="/heunheuntrip/app/json/images/down/{{roomPhoto}}.jpeg" width="100" height="100" alt=""> 
+                             <img class="media-object rounded-circle" src="#" width="100" height="100" alt=""> 
                           </div>
                             <div class="media-body row" style="position: relative">
                               <div class="main-riw col-12 col-sm-6 col-md-8" data-photo={{userPhoto}} data-hostphoto={{hostphoto}}>
                                <h6 class="media-heading riw-cont" id="aaa-{{no}}" data-reply="{{reply}}" data-hostname={{hostname}} data-name={{name}}>{{contents}}</h6>
-                               <p class="text-muted"><i class="fas fa-map-marker-alt"></i>        {{roomName}}</p>
+                               <p class="text-muted"><i class="fas fa-map-marker-alt"></i>      </p>
                                <p class="text-muted">작성일 : {{createdDate}}</p>
                               </div>
                               <div class="riw-btn col-6 col-md-4" data-no={{no}} data-grd={{grd}}>
@@ -112,7 +104,7 @@
 
   </div>
 
-	<div id="page-template" type="text/x-handlebars-template">
+	<div id="page-template" >
     <nav>
       <ul class="pagination pagination-centered">
           <li class="page-item {{#if disabled}}disabled{{/if}}"><a class="page-link" href="#" onclick="loadList({{n}})">&laquo;&laquo;</a></li>
@@ -138,7 +130,10 @@
 		</div>
 	</div>
 	
-
+<button class="btn btn-primary btn-circle" id="to-top" 
+				style="visibility: visible; opacity: 0.5;" onclick="toTop()"><!-- 위로가기버튼 -->
+		<i class="fa fa-angle-up"></i>
+	</button>
 </body>
 
 </html>

@@ -80,8 +80,10 @@
               <h2>{여기에 제목 넣기}</h2>
             </a>
           </li>
-        
       </ul>
+    </div>
+    <div align="center">
+    	<button type="button" class="btn btn-primary">공지 등록</button>
     </div>
 </body>
 </html>
