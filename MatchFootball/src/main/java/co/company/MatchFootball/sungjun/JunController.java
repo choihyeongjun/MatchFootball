@@ -3,6 +3,7 @@ package co.company.MatchFootball.sungjun;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.Calendar;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -19,6 +21,7 @@ import co.company.MatchFootball.vo.P_matchVO;
 
 @Controller
 public class JunController {
+
 	@Autowired
 	SungjunMapper dao;
 
@@ -27,6 +30,7 @@ public class JunController {
 //	 * test(HttpServletResponse response) throws IOException{ return new
 //	 * ModelAndView("/sungjun/mainmenu"); }
 //	 */
+
 	@RequestMapping(value = "/match")
 	public String test1(HttpServletResponse response, Model model, CalVO vo, P_matchVO mvo, HttpServletRequest request)
 			throws IOException {
@@ -49,6 +53,10 @@ public class JunController {
 		mvo.setM_date(year + "-" + month + "-" + day);
 		model.addAttribute("p_matchVO", dao.pmatchselect(mvo));
 		return "sungjun/match";
+	}
+	@RequestMapping(value = "/matchDetail")
+	public ModelAndView test6(HttpServletResponse response) throws IOException {
+		return new ModelAndView("sungjun/matchDetail");
 	}
 
 	@RequestMapping(value = "/call")
