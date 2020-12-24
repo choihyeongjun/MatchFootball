@@ -2,8 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="co.company.MatchFootball.mapper.sungjunMapper"> <!-- 패키지.EmpMapper -->
+<mapper namespace="co.company.MatchFootball.mapper.SungjunMapper"> <!-- 패키지.EmpMapper -->
 
+<!--해당 날의 개인 매치 조회  -->
+<select id="pmatchselect" parameterType="P_matchVO" resultType="P_matchVO">
+	select * from p_match
+	where m_date = #{m_date}
+</select>
 
 	
 

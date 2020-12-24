@@ -10,5 +10,10 @@
 		from members
 		where author2='Y'
 	</select>
+	<select id="bollowsearch" parameterType="membersVO" resultType="membersVO">
+	SELECT id,name
+	from members
+	where id=#{id}
+	</select>
 
 </mapper>
