@@ -65,16 +65,23 @@ img {
 	padding: 50px;
 	font-size: 20px;
 }
+<<<<<<< HEAD
 a {
  text-decoration:none !important;
  } 
+=======
 .pp{
 margin-bottom: 100px;
 }
+>>>>>>> branch 'master' of https://github.com/tjdwns631/MatchFootball.git
 </style>
 </head>
 <body>
+<<<<<<< HEAD
+	<div class="container" style="backgroundcolor: white; width: 100%;">
+=======
 	<div class="container" style="backgroundcolor:white; width:100%; flex: 1;">
+>>>>>>> branch 'master' of https://github.com/tjdwns631/MatchFootball.git
 		<!-- 사진  -->
 		<div align="center" style="margin: 40px;">
 			<div id="carouselExampleControls" class="carousel slide"
