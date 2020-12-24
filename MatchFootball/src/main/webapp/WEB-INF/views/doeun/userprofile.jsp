@@ -19,6 +19,29 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/css/swiper.min.css">
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js"></script>
+	
+<link rel="shortcut icon" href="/heunheuntrip/img/favicon.ico">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	 <link href="${pageContext.request.contextPath}/resources/css/animate.css" rel="stylesheet">
+  <link href="${pageContext.request.contextPath}/resources/css/selectric.css" rel="stylesheet">
+  <link href="${pageContext.request.contextPath}/resources/css/Magnific-popup.css" rel="stylesheet">
+  <link href="${pageContext.request.contextPath}/resources/css/myStyle.css" rel="stylesheet">
+  <link href="${pageContext.request.contextPath}/resources/css/colors/blue.css" rel="stylesheet">
+<link href="../../../lib/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet">
+<link href="../../../lib/aos/aos.css" rel="stylesheet">
+
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/review.css">
+<link href="https://fonts.googleapis.com/css?family=Pacifico|ZCOOL+XiaoWei&display=swap&subset=cyrillic" rel="stylesheet">
+<link href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" rel="stylesheet">
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script type="text/javascript"
+  src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d91f3d18bd10e8cd72b2f2827dea9f7c&libraries=services"></script>
 <style>
 body {
 	margin-top: 20px;
@@ -47,9 +70,11 @@ body {
 	border: 0 solid rgba(0, 0, 0, .125);
 	border-radius: .25rem;
 }
-.card h-1001{
-width: 600px;
+
+.card h-1001 {
+	width: 600px;
 }
+
 .card-body {
 	flex: 1 1 auto;
 	min-height: 1px;
@@ -88,137 +113,138 @@ width: 600px;
 	left: 0;
 }
 </style>
+
 </head>
 <body>
 
-	<div class="container">
-		<div class="main-body">
-			<div class="sidenav">
-				<br> <a class="navbar-brand" href="#">마이페이지</a><br>
-				<br>
-				<hr>
-				<nav class="nav nav-pills flex-column">
-					<a class="nav-link" href="#">내 정보</a>
-					<hr>
-					<a class="nav-link" href="#">결제 | 쿠폰</a><br>
-					<nav class="nav nav-pills flex-column">
-						<a class="nav-link ms-3 my-1" href="#item-2-1">포인트 충전</a> <a
-							class="nav-link ms-3 my-1" href="#item-2-2">내 쿠폰</a> <a
-							class="nav-link ms-3 my-1" href="#item-2-3">환전</a>
-					</nav>
-					<hr>
-					<a class="nav-link" href="#item-3">내역</a><br>
-					<nav class="nav nav-pills flex-column">
-						<a class="nav-link ms-3 my-1" href="#">포인트 사용 내역</a> <a
-							class="nav-link ms-3 my-1" href="#">매치 신청 내역</a>
-					</nav>
-					<hr>
-					<a class="nav-link" href="#item-4">게시글 | 쪽지</a><br>
-					<nav class="nav nav-pills flex-column">
-						<a class="nav-link ms-3 my-1" href="#">쪽지</a> <a
-							class="nav-link ms-3 my-1" href="#">내가 쓴 게시글</a>
-					</nav>
-				</nav>
-			</div>
-			<div class="row gutters-sm">
-				<div class="col-md-4 mb-3">
-					<div class="card">
-						<div class="card-body">
-							<div class="d-flex flex-column align-items-center text-center">
-								<br> <img
-									src="https://bootdey.com/img/Content/avatar/avatar7.png"
-									alt="Admin" class="rounded-circle" width="150">
-								<div class="mt-3">
-									<h4>이름</h4>
-									<p class="text-secondary mb-1">활동지역</p>
-									<p class="text-muted font-size-sm">포지션</p>
-									<button class="btn btn-primary">수정</button>
-									<button class="btn btn-outline-primary">Message</button>
-									<br>
+	<div class="main">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-5 col-lg-4 col-xl-4 col-sidebar">
+					<div id="sidebar" class="sidebar-left">
+						<div class="sidebar_inner">
+							<div class="agent-detail">
+								<div class="text-center">
+									<div id='profileimg'></div>
+									<h4 class="main-name"
+										style="color: #869E9E; font-weight: bold;"></h4>
 								</div>
+							</div>
+							<div class="list-group no-border list-unstyled">
+								<a href="#" class="list-group-item active"> <i
+									class="far fa-id-card"></i> 내 프로필
+								</a> <a href="#" class="list-group-item"><i
+									class="fas fa-unlock-alt"></i> </a> <a href="#"
+									class="list-group-item"><i class="fas fa-h-square"></i> </a> <a
+									href="#" class="list-group-item"><i class="fas fa-bookmark"></i>관리
+								</a> <a href="#" class="list-group-item"><i
+									class="fas fa-sliders-h"></i> 관리 </a>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="col-md-8">
-					<div class="card mb-3">
-						<div class="card-body">
-							<div class="row">
-								<div class="col-sm-3">
-									<h6 class="mb-0">성별</h6>
-								</div>
-								<div class="col-sm-9 text-secondary">남/여</div>
-							</div>
-							<div class="row">
-								<div class="col-sm-3">
-									<h6 class="mb-0">주소</h6>
-								</div>
-								<div class="col-sm-9 text-secondary">대구시 웅앵웅</div>
-							</div>
-							<hr>
-							<div class="row">
-								<div class="col-sm-3">
-									<h6 class="mb-0">Email</h6>
-								</div>
-								<div class="col-sm-9 text-secondary">fip@jukmuh.al</div>
-							</div>
-							<hr>
-							<div class="row">
-								<div class="col-sm-3">
-									<h6 class="mb-0">Phone</h6>
-								</div>
-								<div class="col-sm-9 text-secondary">(239) 816-9029</div>
-							</div>
-							<hr>
-
-							<hr>
-							<div class="row">
-								<div class="col-sm-3">
-									<h6 class="mb-0"></h6>
-								</div>
-								<div class="col-sm-9 text-secondary">Bay Area, San
-									Francisco, CA</div>
-							</div>
-							<hr>
-
-						</div>
-					</div>
+				<div class="col-md-7 col-lg-8 col-xl-8">
 					<div class="row gutters-sm">
+						<div class="col-md-4 mb-3">
+							<div class="card">
+								<div class="card-body">
+									<div class="d-flex flex-column align-items-center text-center">
+										<br> <img
+											src="https://bootdey.com/img/Content/avatar/avatar7.png"
+											alt="Admin" class="rounded-circle" width="150">
+										<div class="mt-3">
+											<h4>이름</h4>
+											<p class="text-secondary mb-1">활동지역</p>
+											<p class="text-muted font-size-sm">포지션</p>
+											<button class="btn btn-primary">수정</button>
+											<button class="btn btn-outline-primary">Message</button>
+											<br>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 						<div class="col-md-8">
 							<div class="card mb-3">
-								<div class="card-body" >
-									<h6 class="d-flex align-items-center mb-3">
-										<i class="material-icons text-info mr-2">assignment</i>경기 승률
-									</h6>
-									<small>매너점수</small>
-									<div class="progress mb-3" style="height: 5px">
-										<div class="progress-bar bg-primary" role="progressbar"
-											style="width: 80%" aria-valuenow="80" aria-valuemin="0"
-											aria-valuemax="100"></div>
+								<div class="card-body">
+									<div class="row">
+										<div class="col-sm-3">
+											<h6 class="mb-0">성별</h6>
+										</div>
+										<div class="col-sm-9 text-secondary">남/여</div>
 									</div>
-									<small></small>
-									<div class="progress mb-3" style="height: 5px">
-										<div class="progress-bar bg-primary" role="progressbar"
-											style="width: 72%" aria-valuenow="72" aria-valuemin="0"
-											aria-valuemax="100"></div>
+									<div class="row">
+										<div class="col-sm-3">
+											<h6 class="mb-0">주소</h6>
+										</div>
+										<div class="col-sm-9 text-secondary">대구시 웅앵웅</div>
 									</div>
-									<small></small>
-									<div class="progress mb-3" style="height: 5px">
-										<div class="progress-bar bg-primary" role="progressbar"
-											style="width: 89%" aria-valuenow="89" aria-valuemin="0"
-											aria-valuemax="100"></div>
+									<hr>
+									<div class="row">
+										<div class="col-sm-3">
+											<h6 class="mb-0">Email</h6>
+										</div>
+										<div class="col-sm-9 text-secondary">fip@jukmuh.al</div>
 									</div>
-									<small></small>
-									<div class="progress mb-3" style="height: 5px">
-										<div class="progress-bar bg-primary" role="progressbar"
-											style="width: 55%" aria-valuenow="55" aria-valuemin="0"
-											aria-valuemax="100"></div>
+									<hr>
+									<div class="row">
+										<div class="col-sm-3">
+											<h6 class="mb-0">Phone</h6>
+										</div>
+										<div class="col-sm-9 text-secondary">(239) 816-9029</div>
 									</div>
-									<small></small>
-									<div class="progress mb-3" style="height: 5px">
-										<div class="progress-bar bg-primary" role="progressbar"
-											style="width: 66%" aria-valuenow="66" aria-valuemin="0"
-											aria-valuemax="100"></div>
+									<hr>
+
+									<hr>
+									<div class="row">
+										<div class="col-sm-3">
+											<h6 class="mb-0"></h6>
+										</div>
+										<div class="col-sm-9 text-secondary">Bay Area, San
+											Francisco, CA</div>
+									</div>
+									<hr>
+
+								</div>
+							</div>
+							<div class="row gutters-sm">
+								<div class="col-md-8">
+									<div class="card mb-3">
+										<div class="card-body">
+											<h6 class="d-flex align-items-center mb-3">
+												<i class="material-icons text-info mr-2">assignment</i>경기 승률
+											</h6>
+											<small>매너점수</small>
+											<div class="progress mb-3" style="height: 5px">
+												<div class="progress-bar bg-primary" role="progressbar"
+													style="width: 80%" aria-valuenow="80" aria-valuemin="0"
+													aria-valuemax="100"></div>
+											</div>
+											<small></small>
+											<div class="progress mb-3" style="height: 5px">
+												<div class="progress-bar bg-primary" role="progressbar"
+													style="width: 72%" aria-valuenow="72" aria-valuemin="0"
+													aria-valuemax="100"></div>
+											</div>
+											<small></small>
+											<div class="progress mb-3" style="height: 5px">
+												<div class="progress-bar bg-primary" role="progressbar"
+													style="width: 89%" aria-valuenow="89" aria-valuemin="0"
+													aria-valuemax="100"></div>
+											</div>
+											<small></small>
+											<div class="progress mb-3" style="height: 5px">
+												<div class="progress-bar bg-primary" role="progressbar"
+													style="width: 55%" aria-valuenow="55" aria-valuemin="0"
+													aria-valuemax="100"></div>
+											</div>
+											<small></small>
+											<div class="progress mb-3" style="height: 5px">
+												<div class="progress-bar bg-primary" role="progressbar"
+													style="width: 66%" aria-valuenow="66" aria-valuemin="0"
+													aria-valuemax="100"></div>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
