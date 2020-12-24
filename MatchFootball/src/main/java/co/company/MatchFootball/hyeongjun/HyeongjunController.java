@@ -22,7 +22,14 @@ public class HyeongjunController {
 	public List<MembersVO>ajaxbollow(Model model){
 		return hyeongjunMapper.getbollowlist();
 	}
-	@RequestMapping(value="/bollow")
+	
+	@ResponseBody
+	@RequestMapping(value="/bollowsearch/ajax")
+	public MembersVO ajaxbollowseach(Model model,MembersVO vo){
+		return hyeongjunMapper.bollowsearch(vo);
+	}
+	
+	@RequestMapping("/bollow")
 	public String bollow(Model model) {
 		//model.addAttribute("list",hyeongjunMapper.getbollowlist());
 		return "hyeongjun/bollowlist";
@@ -31,4 +38,18 @@ public class HyeongjunController {
 	public String userjoin() {
 		return "hyeongjun/fieldcommit";
 	}
+
+	@RequestMapping("/fieldlist")
+	public String fieldlist() {
+		return "hyeongjun/fieldlist";
+	}
+	@RequestMapping("/free")
+	public String freeboard() {
+		return "hyeongjun/freeboard";
+	}
+	@RequestMapping("/login")
+	public String login() {
+		return "hyeongjun/login";
+	}
+
 }

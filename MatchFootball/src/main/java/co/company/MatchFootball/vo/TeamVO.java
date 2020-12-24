@@ -8,7 +8,7 @@ public class TeamVO {
 	String t_name;//팀명
 	String t_max;//최대인원수
 	String t_address;//팀지역
-	String ttype;//경기유형
+	String t_type;//경기유형
 	String t_age;//평균연령
 	String t_info;//팀소개
 	String t_logo;//팀이미지

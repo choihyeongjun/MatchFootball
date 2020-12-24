@@ -38,19 +38,6 @@
 			</div>
 		</form>
 		
-		<!--ABC-->
-		<ul class="navbar-nav ml-auto ml-md-0">
-			<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" 
-			data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
-				<div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-					<a class="dropdown-item" href="#">세팅</a> 
-					<a class="dropdown-item" href="#">엑티비티 로그</a>
-				<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="login.html">로그아웃</a>
-				</div></li>
-		</ul>
-	</nav>
-<!-- 사이드메뉴-->
 		<ul class="navbar-nav ml-auto ml-md-0">
 			<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" 
 			id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -64,6 +51,8 @@
 			</li>
 		</ul>
 	</nav>
+	
+	
 	
 	<!--사이드 메뉴 -->
 	<div id="layoutSidenav">
@@ -245,8 +234,6 @@
 											<td>최행배</td>
 											<td>2020.01.01</td>
 											<td>10</td>
-											<td width="10"><input type="button" value="수정" onclick=""></td>
-											<td width="10"><input type="button" value="삭제" onclick=""></td>
 										</tr>
 										<tr>
 											<td>2</td>
@@ -254,8 +241,6 @@
 											<td>김도은</td>
 											<td>2020.01.01</td>
 											<td>10</td>
-											<td width="10"><input type="button" value="수정" onclick=""></td>
-											<td width="10"><input type="button" value="삭제" onclick=""></td>
 										</tr>
 										<tr>
 											<td>3</td>
@@ -263,8 +248,90 @@
 											<td>김현동</td>
 											<td>2020.01.01</td>
 											<td>10</td>
-											<td width="10"><input type="button" value="수정" onclick=""></td>
-											<td width="10"><input type="button" value="삭제" onclick=""></td>
+										</tr>
+										<tr>
+											<td>1</td>
+											<td>성준배토너먼트 현황</td>
+											<td>최행배</td>
+											<td>2020.01.01</td>
+											<td>10</td>
+										</tr>
+										<tr>
+											<td>2</td>
+											<td>도은이배리그시작</td>
+											<td>김도은</td>
+											<td>2020.01.01</td>
+											<td>10</td>
+										</tr>
+										<tr>
+											<td>3</td>
+											<td>현동이축구는체력빨?</td>
+											<td>김현동</td>
+											<td>2020.01.01</td>
+											<td>10</td>
+										</tr>
+										<tr>
+											<td>1</td>
+											<td>성준배토너먼트 현황</td>
+											<td>최행배</td>
+											<td>2020.01.01</td>
+											<td>10</td>
+										</tr>
+										<tr>
+											<td>2</td>
+											<td>도은이배리그시작</td>
+											<td>김도은</td>
+											<td>2020.01.01</td>
+											<td>10</td>
+										</tr>
+										<tr>
+											<td>3</td>
+											<td>현동이축구는체력빨?</td>
+											<td>김현동</td>
+											<td>2020.01.01</td>
+											<td>10</td>
+										</tr>
+										<tr>
+											<td>1</td>
+											<td>성준배토너먼트 현황</td>
+											<td>최행배</td>
+											<td>2020.01.01</td>
+											<td>10</td>
+										</tr>
+										<tr>
+											<td>2</td>
+											<td>도은이배리그시작</td>
+											<td>김도은</td>
+											<td>2020.01.01</td>
+											<td>10</td>
+										</tr>
+										<tr>
+											<td>3</td>
+											<td>현동이축구는체력빨?</td>
+											<td>김현동</td>
+											<td>2020.01.01</td>
+											<td>10</td>
+										</tr>
+										<tr>
+											<td>1</td>
+											<td>성준배토너먼트 현황</td>
+											<td>최행배</td>
+											<td>2020.01.01</td>
+											<td>10</td>
+										</tr>
+										<tr>
+											<td>2</td>
+											<td>도은이배리그시작</td>
+											<td>김도은</td>
+											<td>2020.01.01</td>
+											<td>10</td>
+										</tr>
+										<tr>
+											<td>3</td>
+											<td>현동이축구는체력빨?</td>
+											<td>김현동</td>
+											<td>2020.01.01</td>
+											<td>10</td>
 										</tr>
 									</tbody>
 								</table>
@@ -274,7 +341,6 @@
 				</div>
 			</main>
 			
-			
 			<div align="center">
 			<input type="button" value="글쓰기" onclick="">
 			</div>
@@ -283,7 +349,7 @@
 			<!-- footer -->
 			<footer class="py-4 bg-light mt-auto">
 				<div class="container-fluid">
-					<div class="d-flex align-items-center justify-content-between small">
+					<div class="d-flex align-items-center justify-content-between sm	all">
 						<div class="text-muted">Copyright &copy; Your Website 2020</div>
 						<div>
 							<a href="#">Privacy Policy</a> &middot; <a href="#">Terms

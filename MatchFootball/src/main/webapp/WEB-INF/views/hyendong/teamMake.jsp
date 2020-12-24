@@ -1,87 +1,104 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<!-- Required Meta Tags -->
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" href="resources/css/teamMenu.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<!-- Page Title -->
+<title>Elements</title>
+
+<!-- Favicon -->
+<link rel="shortcut icon" href="assets/images/logo/favicon.png"
+	type="image/x-icon">
+
+<!-- CSS Files -->
 <link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-<script src="https://kit.fontawesome.com/a076d05399.js"></script>
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<style>
-</style>
+	href="${pageContext.request.contextPath}/resources/css/dong1/assets/css/animate-3.7.0.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/dong1/assets/css/font-awesome-4.7.0.min.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/dong1/assets/fonts/flat-icon/flaticon.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/dong1/assets/css/bootstrap-4.1.3.min.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/dong1/assets/css/owl-carousel.min.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/dong1/assets/css/nice-select.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/dong1/assets/css/style.css">
 </head>
 <body>
-	<ul class="hi">
-	  <li><a href="http://localhost/MatchFootball/teamInfo">팀 정보</a></li>
-	  <li><a href="http://localhost/MatchFootball/teamGallery">팀 갤러리</a></li>
-	  <li><a href="http://localhost/MatchFootball/teamNotice">팀 공지</a></li>
-	  <li><a href="http://localhost/MatchFootball/#">팀 초대</a></li>
-	  <li><a href="http://localhost/MatchFootball/#">팀 리스트</a></li>
-	</ul>
-	<script type="text/javascript">
-		function register() {
-			alert("팀 생성이 완료되었습니다");
-		}
-	</script>
-	<div align="center">
-		<div>
-			<h1>팀 생 성</h1>
+	<div class="section-top-border" style="margin-left: 670px; width: 50%">
+		<div class="row">
+			<div class="col-lg-8 col-md-8">
+				<h3>팀 생성</h3>
+				<form action="#">
+					<div class="mt-10">
+						<input type="text" name="first_name" placeholder="팀명"
+							class="single-input-accent">
+					</div>
+					<hr>
+					<div class="mt-10">
+						<input type="text" name="first_name" placeholder="팀원수"
+							class="single-input-accent">
+					</div>
+					<hr>
+					<div class="input-group-icon mt-10">
+						<div class="form-select" id="default-select" style="border: none; padding-right: 2px">
+							<select>
+								<option value="1">중구</option>
+								<option value="1">서구</option>
+							</select>
+						</div>
+					</div>
+					<hr>
+					<div class="input-group-icon mt-10">
+						<div class="form-select" id="default-select2"
+							style="border: none;  padding-right: 2px">
+							<select>
+								<option value="1">축구</option>
+								<option value="1">풋살</option>
+							</select>
+						</div>
+					</div>
+					<hr>
+					<div class="mt-30">
+						<textarea class="single-input-accent" placeholder="팀소개"></textarea>
+					</div>
+					<hr>
+						<p>팀원 공개 여부</p>
+					<div class="switch-wrap d-flex justify-content-between">
+						<div class="primary-switch">
+							<input type="checkbox" id="default-switch"> <label
+								for="default-switch"></label>
+						</div>
+					</div>
+				</form>
+			</div>
 		</div>
-		<hr />
-		<div>
-			<div class="input-group mb-3" style="width: 30%">
-				<span class="input-group-text" id="basic-addon1" style="width: 16%">팀&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;명</span>
-				<input type="text" class="form-control" placeholder="TeamName"
-					aria-label="Username" aria-describedby="basic-addon1">
-			</div>
-
-			<div class="input-group mb-3" style="width: 30%">
-				<span class="input-group-text" id="basic-addon1" style="width: 16%">팀
-					&nbsp;원&nbsp;수</span> <input type="text" class="form-control"
-					placeholder="TeamMax" aria-label="Username"
-					aria-describedby="basic-addon1">
-			</div>
-			
-			<div style="width: 30%">
-				<span class="input-group-text" id="basic-addon1" style="width: 16%">지&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;역</span>
-				<select class="form-select" aria-label="Default select example" style="float:left">
-					<option selected>선택</option>
-					<option value="1">중구</option>
-					<option value="2">수성구</option>
-				</select> 
-			</div>
-			
-			<div style="width: 30%">
-				<span class="input-group-text" id="basic-addon1" style="width: 16%">경기 유형</span>
-				<select class="form-select" aria-label="Default select example">
-					<option selected>선택</option>
-					<option value="1">축구</option>
-					<option value="2">풋살</option>
-				</select>
-			</div>
-			<br>
-			<div class="input-group" style="width: 30%">
-				<input type="file" class="form-control" id="inputGroupFile04"
-					aria-describedby="inputGroupFileAddon04" aria-label="Upload">
-			</div>
-			<br>
-			<div class="input-group" style="width: 30%">
-				<span class="input-group-text" style="width: 16%">팀
-					&nbsp;소&nbsp;개</span>
-				<textarea class="form-control" aria-label="With textarea"></textarea>
-			</div>
-			<br>
-		</div>
-		<button type="button" class="btn btn-primary">팀 생성</button>
-		<button type="button" class="btn btn-primary">뒤로</button>
+		<br>
+		<button class="genric-btn info circle">확인</button>
 	</div>
+	<!-- End Align Area -->
+
+	<!-- Javascript -->
+	<script
+		src="${pageContext.request.contextPath}/resources/css/dong1/assets/js/vendor/jquery-2.2.4.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/css/dong1/assets/js/vendor/bootstrap-4.1.3.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/css/dong1/assets/js/vendor/wow.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/css/dong1/assets/js/vendor/owl-carousel.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/css/dong1/assets/js/vendor/jquery.datetimepicker.full.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/css/dong1/assets/js/vendor/jquery.nice-select.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/css/dong1/assets/js/main.js"></script>
 </body>
 </html>
