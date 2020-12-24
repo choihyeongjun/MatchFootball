@@ -150,7 +150,7 @@
 					</div>
 					</div>
 
-						<div align="center">
+		<div align="center">
 		<div id="calendarForm" align="center"></div>
 		<div id="sitterForm" class="strongYellow" align="center">
 			<img class="sitterProfileImg" alt="시터이미지"
