@@ -15,5 +15,11 @@
 	from members
 	where id=#{id}
 	</select>
+	
+	<select id="invitelist" parameterType="inviteVO" resultType="inviteVO">
+	SELECT i.c_id,m.name,i.s_date,m.pnum,i.comm,i.check1,m.t_name
+	from members m,invite i
+	where i.r_id=#{r_id}
+	</select>
 
 </mapper>

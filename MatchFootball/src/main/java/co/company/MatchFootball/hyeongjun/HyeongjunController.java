@@ -51,5 +51,13 @@ public class HyeongjunController {
 	public String login() {
 		return "hyeongjun/login";
 	}
+	@RequestMapping("/invite")
+	public String invitepage() {
+		return "hyeongjun/invite";
+	}
+	@RequestMapping("/invitelist")
+	public String invitelist() {
+		return "hyeongjun/invitelist";
+	}
 
 }
