@@ -17,6 +17,15 @@ div.gallery:hover {
 .active {
   background-color: #4CAF50;
 }
+footer {
+  position: fixed;
+  left:0px; 
+  bottom:0px; 
+  width:100%; 
+  background:grey; 
+  color: white; 
+}
+
 </style>
 </head>
 <body>
