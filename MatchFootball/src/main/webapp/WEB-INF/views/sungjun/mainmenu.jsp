@@ -21,6 +21,10 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js"></script>
 <style>
+.navbar-brand>img {
+    display: block;
+    margin-top: -15px;
+}
 body, html {
 	height: 100%;
 }

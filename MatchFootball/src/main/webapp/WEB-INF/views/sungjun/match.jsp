@@ -23,9 +23,10 @@
 .swiper-container {
 	height: 100px;
 	border: none;
-	outline:none;
+	outline: none;
 	border-radius: 7px;
 }
+
 .swiper-slide {
 	text-align: center;
 	display: flex; /* 내용을 중앙정렬 하기위해 flex 사용 */
@@ -55,14 +56,18 @@
 img {
 	border-radius: 25px;
 }
+
 .swiper-container {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-  background-color: white;
-  padding: 50px;
-  font-size: 20px;
+	position: -webkit-sticky;
+	position: sticky;
+	top: 0;
+	background-color: white;
+	padding: 50px;
+	font-size: 20px;
 }
+a {
+ text-decoration:none !important;
+ } 
 .pp{
 margin-bottom: 100px;
 }
@@ -76,26 +81,26 @@ margin-bottom: 100px;
 				data-ride="carousel">
 				<div class="carousel-inner">
 					<div class="carousel-item active">
-						<iframe width="929" height="320"
+						<iframe width="929" height="520"
 							src="https://www.youtube.com/embed/GKz7d5Wx77s" frameborder="0"
 							allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 							allowfullscreen></iframe>
 					</div>
 					<div class="carousel-item">
 						<img src="resources/img/11.jpg" class="d-block w-100" alt="..."
-							width="929" height="320">
+							width="929" height="520">
 					</div>
 					<div class="carousel-item">
 						<img src="resources/img/22.jpg" class="d-block w-100" alt="..."
-							width="929" height="320">
+							width="929" height="520">
 					</div>
 					<div class="carousel-item">
 						<img src="resources/img/33.jpg" class="d-block w-100" alt="..."
-							width="929" height="320">
+							width="929" height="520">
 					</div>
 					<div class="carousel-item">
 						<img src="resources/img/44.jpg" class="d-block w-100" alt="..."
-							width="929" height="320">
+							width="929" height="520">
 					</div>
 				</div>
 				<a class="carousel-control-prev" href="#carouselExampleControls"
@@ -111,13 +116,39 @@ margin-bottom: 100px;
 			<!--날 짜 선 택  -->
 
 			<!-- 클래스명은 변경하면 안 됨 -->
-				<hr>
-			<div class="swiper-container" style="margin:40px">
-				<div class="swiper-wrapper" style="cursor:point;">
-					<c:forEach begin="1" end="31" var="i">
-						<div class="swiper-slide" style="hover:blue">${i}</div>
+			<hr>
+			<div class="swiper-container" style="margin: 40px">
+				<div class="swiper-wrapper" style="cursor: point;">
+					<c:set var="week" value="${cal.getIDayOfWeek()}" />
+					<c:forEach begin="1" end="${cal.lastDate }" var="i">
+						<div class="swiper-slide" style="hover: blue; cursor: point;" >
+						<a href="#">
+							<div style="<c:if test="${i ==cal.day }">background-color:purple</c:if>; width:130px; border-radius: 10px">
+							<c:choose>
+								<c:when test="${i % 7 == 6 }"><p style="color:red">${i}</c:when>
+								<c:when test="${i % 7 == 5 }"><p style="color:blue">${i}</c:when>
+								<c:otherwise><p>${i}</c:otherwise>
+							</c:choose>
+								 <br>
+								<div style="font-size:14px;">
+								<c:choose>
+									<c:when test="${ week == 1}"><p style="color:red;">일</p></c:when>
+									<c:when test="${ week == 2}"><p>월</p></c:when>
+									<c:when test="${ week == 3}"><p>화</p></c:when>
+									<c:when test="${ week == 4}"><p>수</p></c:when>
+									<c:when test="${ week == 5}"><p>목</p></c:when>
+									<c:when test="${ week == 6}"><p>금</p></c:when>
+									<c:when test="${ week == 7}"><p style="color:blue;">토</p></c:when>
+								</c:choose>
+								<c:set var="week" value="${(week+1) == 7 ? 7 : (week+1)% 7 }" />
+								</div>
+							</div>
+							</a>
+						</div>
 					</c:forEach>
+
 				</div>
+
 				<!-- 네비게이션 -->
 				<div class="swiper-button-next"></div>
 				<!-- 다음 버튼 (오른쪽에 있는 버튼) -->
@@ -174,211 +205,28 @@ margin-bottom: 100px;
 						<td align="center"><button type="button"
 								class="btn btn-danger">매칭 완료</button></td>
 					</tr>
-					<tr>
-						<td scope="row" align="center" style="font-weight: bold">13:00</td>
-						<td><div>대구 성준 풋살장</div>
-							<div>남성 6vs6매치 일반1~3Lv</div></td>
-						<td align="center"><button type="button"
-								class="btn btn-danger">매칭 완료</button></td>
-					</tr>
-					<tr>
-						<td scope="row" align="center" style="font-weight: bold">13:00</td>
-						<td><div>대구 성준 풋살장</div>
-							<div>남성 6vs6매치 일반1~3Lv</div></td>
-						<td align="center"><button type="button"
-								class="btn btn-danger">매칭 완료</button></td>
-					</tr>
-					<tr>
-						<td scope="row" align="center" style="font-weight: bold">13:00</td>
-						<td><div>대구 성준 풋살장</div>
-							<div>남성 6vs6매치 일반1~3Lv</div></td>
-						<td align="center"><button type="button"
-								class="btn btn-danger">매칭 완료</button></td>
-					</tr>
-					<tr>
-						<td scope="row" align="center" style="font-weight: bold">13:00</td>
-						<td><div>대구 성준 풋살장</div>
-							<div>남성 6vs6매치 일반1~3Lv</div></td>
-						<td align="center"><button type="button"
-								class="btn btn-danger">매칭 완료</button></td>
-					</tr>
-					<tr>
-						<td scope="row" align="center" style="font-weight: bold">13:00</td>
-						<td><div>대구 성준 풋살장</div>
-							<div>남성 6vs6매치 일반1~3Lv</div></td>
-						<td align="center"><button type="button"
-								class="btn btn-danger">매칭 완료</button></td>
-					</tr>
-					<tr>
-						<td scope="row" align="center" style="font-weight: bold">13:00</td>
-						<td><div>대구 성준 풋살장</div>
-							<div>남성 6vs6매치 일반1~3Lv</div></td>
-						<td align="center"><button type="button"
-								class="btn btn-danger">매칭 완료</button></td>
-					</tr>
-					<tr>
-						<td scope="row" align="center" style="font-weight: bold">13:00</td>
-						<td><div>대구 성준 풋살장</div>
-							<div>남성 6vs6매치 일반1~3Lv</div></td>
-						<td align="center"><button type="button"
-								class="btn btn-danger">매칭 완료</button></td>
-					</tr>
-					<tr>
-						<td scope="row" align="center" style="font-weight: bold">13:00</td>
-						<td><div>대구 성준 풋살장</div>
-							<div>남성 6vs6매치 일반1~3Lv</div></td>
-						<td align="center"><button type="button"
-								class="btn btn-danger">매칭 완료</button></td>
-					</tr>
-					<tr>
-						<td scope="row" align="center" style="font-weight: bold">13:00</td>
-						<td><div>대구 성준 풋살장</div>
-							<div>남성 6vs6매치 일반1~3Lv</div></td>
-						<td align="center"><button type="button"
-								class="btn btn-danger">매칭 완료</button></td>
-					</tr>
-					<tr>
-						<td scope="row" align="center" style="font-weight: bold">13:00</td>
-						<td><div>대구 성준 풋살장</div>
-							<div>남성 6vs6매치 일반1~3Lv</div></td>
-						<td align="center"><button type="button"
-								class="btn btn-danger">매칭 완료</button></td>
-					</tr>
-					<tr>
-						<td scope="row" align="center" style="font-weight: bold">13:00</td>
-						<td><div>대구 성준 풋살장</div>
-							<div>남성 6vs6매치 일반1~3Lv</div></td>
-						<td align="center"><button type="button"
-								class="btn btn-danger">매칭 완료</button></td>
-					</tr>
-					<tr>
-						<td scope="row" align="center" style="font-weight: bold">13:00</td>
-						<td><div>대구 성준 풋살장</div>
-							<div>남성 6vs6매치 일반1~3Lv</div></td>
-						<td align="center"><button type="button"
-								class="btn btn-danger">매칭 완료</button></td>
-					</tr>
-					<tr>
-						<td scope="row" align="center" style="font-weight: bold">13:00</td>
-						<td><div>대구 성준 풋살장</div>
-							<div>남성 6vs6매치 일반1~3Lv</div></td>
-						<td align="center"><button type="button"
-								class="btn btn-danger">매칭 완료</button></td>
-					</tr>
-					<tr>
-						<td scope="row" align="center" style="font-weight: bold">13:00</td>
-						<td><div>대구 성준 풋살장</div>
-							<div>남성 6vs6매치 일반1~3Lv</div></td>
-						<td align="center"><button type="button"
-								class="btn btn-danger">매칭 완료</button></td>
-					</tr>
-					<tr>
-						<td scope="row" align="center" style="font-weight: bold">13:00</td>
-						<td><div>대구 성준 풋살장</div>
-							<div>남성 6vs6매치 일반1~3Lv</div></td>
-						<td align="center"><button type="button"
-								class="btn btn-danger">매칭 완료</button></td>
-					</tr>
-					<tr>
-						<td scope="row" align="center" style="font-weight: bold">13:00</td>
-						<td><div>대구 성준 풋살장</div>
-							<div>남성 6vs6매치 일반1~3Lv</div></td>
-						<td align="center"><button type="button"
-								class="btn btn-danger">매칭 완료</button></td>
-					</tr>
-					<tr>
-						<td scope="row" align="center" style="font-weight: bold">13:00</td>
-						<td><div>대구 성준 풋살장</div>
-							<div>남성 6vs6매치 일반1~3Lv</div></td>
-						<td align="center"><button type="button"
-								class="btn btn-danger">매칭 완료</button></td>
-					</tr>
-					<tr>
-						<td scope="row" align="center" style="font-weight: bold">13:00</td>
-						<td><div>대구 성준 풋살장</div>
-							<div>남성 6vs6매치 일반1~3Lv</div></td>
-						<td align="center"><button type="button"
-								class="btn btn-danger">매칭 완료</button></td>
-					</tr>
-					<tr>
-						<td scope="row" align="center" style="font-weight: bold">13:00</td>
-						<td><div>대구 성준 풋살장</div>
-							<div>남성 6vs6매치 일반1~3Lv</div></td>
-						<td align="center"><button type="button"
-								class="btn btn-danger">매칭 완료</button></td>
-					</tr>
-					<tr>
-						<td scope="row" align="center" style="font-weight: bold">13:00</td>
-						<td><div>대구 성준 풋살장</div>
-							<div>남성 6vs6매치 일반1~3Lv</div></td>
-						<td align="center"><button type="button"
-								class="btn btn-danger">매칭 완료</button></td>
-					</tr>
-					<tr>
-						<td scope="row" align="center" style="font-weight: bold">13:00</td>
-						<td><div>대구 성준 풋살장</div>
-							<div>남성 6vs6매치 일반1~3Lv</div></td>
-						<td align="center"><button type="button"
-								class="btn btn-danger">매칭 완료</button></td>
-					</tr>
-					<tr>
-						<td scope="row" align="center" style="font-weight: bold">13:00</td>
-						<td><div>대구 성준 풋살장</div>
-							<div>남성 6vs6매치 일반1~3Lv</div></td>
-						<td align="center"><button type="button"
-								class="btn btn-danger">매칭 완료</button></td>
-					</tr>
-					<tr>
-						<td scope="row" align="center" style="font-weight: bold">13:00</td>
-						<td><div>대구 성준 풋살장</div>
-							<div>남성 6vs6매치 일반1~3Lv</div></td>
-						<td align="center"><button type="button"
-								class="btn btn-danger">매칭 완료</button></td>
-					</tr>
-					<tr>
-						<td scope="row" align="center" style="font-weight: bold">13:00</td>
-						<td><div>대구 성준 풋살장</div>
-							<div>남성 6vs6매치 일반1~3Lv</div></td>
-						<td align="center"><button type="button"
-								class="btn btn-danger">매칭 완료</button></td>
-					</tr>
-					<tr>
-						<td scope="row" align="center" style="font-weight: bold">13:00</td>
-						<td><div>대구 성준 풋살장</div>
-							<div>남성 6vs6매치 일반1~3Lv</div></td>
-						<td align="center"><button type="button"
-								class="btn btn-danger">매칭 완료</button></td>
-					</tr>
-					<tr>
-						<td scope="row" align="center" style="font-weight: bold">13:00</td>
-						<td><div>대구 성준 풋살장</div>
-							<div>남성 6vs6매치 일반1~3Lv</div></td>
-						<td align="center"><button type="button"
-								class="btn btn-danger">매칭 완료</button></td>
-					</tr>
-					
 				</tbody>
 			</table>
 		</div>
-		</div>
-		<script>
-			new Swiper('.swiper-container', {
+	</div>
+	<script>
+		new Swiper('.swiper-container', {
 
-				slidesPerView : 7, // 동시에 보여줄 슬라이드 갯수
-				spaceBetween : 30, // 슬라이드간 간격
-				slidesPerGroup : 1, // 그룹으로 묶을 수, slidesPerView 와 같은 값을 지정하는게 좋음
+			slidesPerView : 7, // 동시에 보여줄 슬라이드 갯수
+			spaceBetween : 30, // 슬라이드간 간격
+			slidesPerGroup : 1, // 그룹으로 묶을 수, slidesPerView 와 같은 값을 지정하는게 좋음
 
-				// 그룹수가 맞지 않을 경우 빈칸으로 메우기
-				// 3개가 나와야 되는데 1개만 있다면 2개는 빈칸으로 채워서 3개를 만듬
-				loopFillGroupWithBlank : true,
+			// 그룹수가 맞지 않을 경우 빈칸으로 메우기
+			// 3개가 나와야 되는데 1개만 있다면 2개는 빈칸으로 채워서 3개를 만듬
+			loopFillGroupWithBlank : true,
+			initialSlide: ${cal.day-1},
+			loop : false, //  반복
 
-				loop : true, // 무한 반복
-
-				navigation : { // 네비게이션
-					nextEl : '.swiper-button-next', // 다음 버튼 클래스명
-					prevEl : '.swiper-button-prev', // 이번 버튼 클래스명
-				},
-			});
-		</script>
+			navigation : { // 네비게이션
+				nextEl : '.swiper-button-next', // 다음 버튼 클래스명
+				prevEl : '.swiper-button-prev', // 이번 버튼 클래스명
+			},
+		});
+	</script>
 </body>
 </html>
