@@ -229,7 +229,7 @@ a {
 			// 그룹수가 맞지 않을 경우 빈칸으로 메우기
 			// 3개가 나와야 되는데 1개만 있다면 2개는 빈칸으로 채워서 3개를 만듬
 			loopFillGroupWithBlank : true,
-			initialSlide: ${cal.day-3},
+			initialSlide:${cal.day-3},
 			loop : false, //  반복
 
 			navigation : { // 네비게이션
