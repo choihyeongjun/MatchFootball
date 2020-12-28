@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,61 +11,28 @@ div.gallery:hover {
 }
 
 .responsive {
-	padding: 6px;
+	padding: 10px;
 	float: left;
-	width: 14.99999%;
 }
+
 .active {
-  background-color: #4CAF50;
+	background-color: #4CAF50;
 }
 </style>
 </head>
 <body>
-	<ul class="hi">
-	  <li><a href="http://localhost/MatchFootball/teamInfo">ÆÀ Á¤º¸</a></li>
-	  <li><a href="http://localhost/MatchFootball/teamGallery">ÆÀ °¶·¯¸®</a></li>
-	  <li><a href="http://localhost/MatchFootball/teamNotice">ÆÀ °øÁö</a></li>
-	  <li><a href="http://localhost/MatchFootball/#">ÆÀ ÃÊ´ë</a></li>
-	  <li><a href="http://localhost/MatchFootball/#">ÆÀ ¸®½ºÆ®</a></li>
-	</ul>
-	<div align="center">
+	<div class=container>
+		<ul class="hi">
+			<li><a href="http://localhost/MatchFootball/teamInfo">íŒ€ ì •ë³´</a></li>
+			<li><a href="http://localhost/MatchFootball/teamGallery">íŒ€
+					ê°¤ëŸ¬ë¦¬</a></li>
+			<li><a href="http://localhost/MatchFootball/teamNotice">íŒ€ ê³µì§€</a></li>
+			<li><a href="http://localhost/MatchFootball/#">íŒ€ ì´ˆëŒ€</a></li>
+			<li><a href="http://localhost/MatchFootball/#">íŒ€ ë¦¬ìŠ¤íŠ¸</a></li>
+		</ul>
 		<div>
-			<h1>ÆÀ °¶·¯¸®</h1>
-		</div>
-		<hr />
-	</div>
-	<div class="responsive">
-		<div class="gallery">
-			<a target="_blank" href="resources/to.png"> 
-			<img src="resources/to.png"  width="270" height="270" style="border-radius : 80px">
-			</a>
+			<img src="resources/to.png" width="150px" height="150px">
 		</div>
 	</div>
-
-
-	<div class="responsive">
-		<div class="gallery">
-			<a target="_blank" href="resources/to.png"> <img
-				src="resources/to.png" width="270" height="270" style="border-radius : 80px">
-			</a>
-		</div>
-	</div>
-
-	<div class="responsive">
-		<div class="gallery">
-			<a target="_blank" href="resources/to.png"> <img
-				src="resources/to.png" width="270" height="270" style="border-radius : 80px">
-			</a>
-		</div>
-	</div>
-
-	<div class="responsive">
-		<div class="gallery">
-			<a target="_blank" href="resources/to.png"> <img
-				src="resources/to.png" width="270" height="270" style="border-radius : 80px">
-			</a>
-		</div>
-	</div>
-
 </body>
 </html>

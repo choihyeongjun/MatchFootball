@@ -33,6 +33,8 @@
 </style>
 </head>
 <body>
+<div class="container">
+<div>
 	<ul class="hi">
 	  <li><a href="http://localhost/MatchFootball/teamInfo">ÆÀ Á¤º¸</a></li>
 	  <li><a href="http://localhost/MatchFootball/teamGallery">ÆÀ °¶·¯¸®</a></li>
@@ -40,6 +42,7 @@
 	  <li><a href="http://localhost/MatchFootball/#">ÆÀ ÃÊ´ë</a></li>
 	  <li><a href="http://localhost/MatchFootball/#">ÆÀ ¸®½ºÆ®</a></li>
 	</ul>
+	</div>
 	<div align="center">
 		<h1>ÆÀ °ø Áö</h1>
 	</div>
@@ -82,6 +85,7 @@
           </li>
         
       </ul>
+    </div>
     </div>
 </body>
 </html>
