@@ -51,11 +51,10 @@
 </head>
 
 <body>
-	<div id="main" style="padding-bottom: 320px">
-	<div id="content">
+	<div id="main" >
 		<div class="container">
 		
-		<div class="row has-sidebar">
+		<div class="row">
 						<jsp:include page="Mybar.jsp"></jsp:include>
 
 			<div class="col-md-7 col-lg-8 col-xl-8"
@@ -66,38 +65,25 @@
 					</h1>
 				</div>
 				<div class="row" style="width: auto">
-					<div  style="margin-top: 15px;">
+					<div class="col-md-9" style="margin-top: 15px;">
 						<a href="#" class="btn btn-primary float-right send-message" >메세지 보내기</a>
 					</div>
-					<div style="margin-top: 15px;" >
+					<div class="col-md-9" style="margin-top: 15px;" >
 						<table border="1" style="width: 100%">
 							<tr>
-								<td><input type="checkbox"></td>
 								<th>날짜</th>
-								<th>시간</th>
 								<th>제목</th>
 								<th>보낸 사람</th>
 								<td colspan="2" align="right">
-								답장하기 &nbsp;&nbsp;&nbsp;&nbsp;
+								수락여부
 								</td>
 							</tr>
 							<tr>
-								<td><input type="checkbox"></td>
 								<td>오늘</td>
-								<td>sysdate</td>
 								<td>고고</td>
 								<td>나</td>
-								<td colspan="2" align="right"><button class="btn btn-primary acception">답장</button>
-								<button class="btn btn-primary acception">삭제</button></td>
-							</tr>
-								<tr>
-								<td><input type="checkbox"></td>
-								<td>오늘</td>
-								<td>sysdate</td>
-								<td>고고</td>
-								<td>나</td>
-								<td colspan="2" align="right"><button class="btn btn-primary acception">답장</button>
-								<button class="btn btn-primary acception">삭제</button></td>
+								<td colspan="2" align="right"><button class="btn btn-primary acception">수락</button>
+								<button class="btn btn-primary acception">거절</button></td>
 							</tr>
 						</table>
 					</div>
@@ -108,9 +94,8 @@
 			</div>
 		</div>
 	</div>
-	</div>
 	<button class="btn btn-primary btn-circle" id="to-top" 
-				style="visibility: visible; opacity: 0.5;"><!-- 위로가기버튼 -->
+				style="visibility: visible; opacity: 1;"><!-- 위로가기버튼 -->
 		<i class="fa fa-angle-up"></i>
 	</button>
 
