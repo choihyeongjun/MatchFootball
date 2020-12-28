@@ -6,4 +6,5 @@ import co.company.MatchFootball.vo.TeamVO;
 
 public interface HyendongMapper {
 	public List<TeamVO> teamListSelect();
+	public int teamInsert(TeamVO teamVO);
 }

@@ -20,15 +20,12 @@
 		<div id="layoutSidenav_content">
 			<main>
 				<div class="container-fluid">
-					<h1 class="mt-4">매니저관리</h1>
+					<h1 class="mt-4">매니저 신청 승인대기</h1>
 					<ol class="breadcrumb mb-4">
 						<li class="breadcrumb-item">
-						<a href="${pageContext.request.contextPath}/admin/applymanager">매니저신청|승인대기</a>
-						<li class="breadcrumb-item active"></li>
-						<a href="${pageContext.request.contextPath}/manageremploy">매니저지원페이지</a></li>
-						</li>
+						<a href="${pageContext.request.contextPath}/admin/manager">매니저관리</a></li>
+						<li class="breadcrumb-item active">매니저 신청관리 및 현재 매니저현황</li>
 					</ol>
-					
 					<div class="card mb-4">
 						<div class="card-body">
 							 <a target="_blank" href="https://www.youtube.com/watch?v=hSEcM3McYyM">매니저 지원 영상</a>
@@ -37,10 +34,10 @@
 						</div>
 					</div>
 					
-					<!-- 매니저현황 -->
-					<div class="card mb-4">
+					<!-- 매니저 승인대기 현황 -->
+						<div class="card mb-4">
 						<div class="card-header">
-							<i class="fas fa-table mr-1"></i> 매니저 현황
+							<i class="fas fa-table mr-1"></i> 매니저 승인대기 현황
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
@@ -52,9 +49,9 @@
 											<th>Name</th>
 											<th>연락처</th>
 											<th>권한</th>
-											<th>??</th>
+											<th>포부</th>
+											<th>설문지</th>
 											<th>이미지</th>
-											<th></th>
 										</tr>
 									</thead>
 									<tfoot align="center">
@@ -64,9 +61,9 @@
 											<th>Name</th>
 											<th>연락처</th>
 											<th>권한</th>
-											<th>??</th>
+											<th>포부</th>
+											<th>설문지</th>
 											<th>이미지</th>
-											<th></th>
 										</tr>
 									</tfoot>
 									<tbody align="center">
@@ -78,11 +75,7 @@
 											<td></td>
 											<td></td>
 											<td></td>
-											<td>
-											<input type="button" value="프로필" onclick="">
-											<input type="button" value="수정" onclick="">
-											<input type="button" value="삭제" onclick="">
-											</td>
+											<td></td>
 										</tr>
 										<tr>
 											<td>2</td>
@@ -92,11 +85,7 @@
 											<td></td>
 											<td></td>
 											<td></td>
-											<td>
-											<input type="button" value="프로필" onclick="">
-											<input type="button" value="수정" onclick="">
-											<input type="button" value="삭제" onclick="">
-											</td>
+											<td></td>
 										</tr>
 										<tr>
 											<td>3</td>
@@ -106,11 +95,7 @@
 											<td></td>
 											<td></td>
 											<td></td>
-											<td>
-											<input type="button" value="프로필" onclick="">
-											<input type="button" value="수정" onclick="">
-											<input type="button" value="삭제" onclick="">
-											</td>
+											<td></td>
 										</tr>
 									</tbody>
 								</table>

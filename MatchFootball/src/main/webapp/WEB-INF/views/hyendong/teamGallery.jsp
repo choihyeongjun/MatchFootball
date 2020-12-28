@@ -33,16 +33,16 @@
 </head>
 <body>
 	<ul class="hi">
-		<li><a href="http://localhost/MatchFootball/teamInfo">ÆÀ Á¤º¸</a></li>
-		<li><a href="http://localhost/MatchFootball/teamGallery">ÆÀ
-				°¶·¯¸®</a></li>
-		<li><a href="http://localhost/MatchFootball/teamNotice">ÆÀ °øÁö</a></li>
-		<li><a href="http://localhost/MatchFootball/#">ÆÀ ÃÊ´ë</a></li>
-		<li><a href="http://localhost/MatchFootball/#">ÆÀ ¸®½ºÆ®</a></li>
+		<li><a href="http://localhost/MatchFootball/teamInfo">ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½</a></li>
+		<li><a href="http://localhost/MatchFootball/teamGallery">ï¿½ï¿½
+				ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</a></li>
+		<li><a href="http://localhost/MatchFootball/teamNotice">ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½</a></li>
+		<li><a href="http://localhost/MatchFootball/#">ï¿½ï¿½ ï¿½Ê´ï¿½</a></li>
+		<li><a href="http://localhost/MatchFootball/#">ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®</a></li>
 	</ul>
 	<div align="center">
 		<div>
-			<h1>ÆÀ °¶·¯¸®</h1>
+			<h1>ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</h1>
 		</div>
 		<hr />
 	</div>

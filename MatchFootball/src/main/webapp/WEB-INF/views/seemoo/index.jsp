@@ -42,10 +42,10 @@
 			id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 				<i class="fas fa-user fa-fw"></i></a>
 				<div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-					<a class="dropdown-item" href="#">세팅</a> 
+					<a class="dropdown-item" href="${pageContext.request.contextPath}/match">홈페이지</a> 
 					<a class="dropdown-item" href="#">엑티비티 로그</a>
 					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="#">로그아웃</a>
+					<a class="dropdown-item" href="${pageContext.request.contextPath}/admin">로그아웃</a>
 				</div>
 			</li>
 		</ul>
@@ -54,8 +54,7 @@
 	<!--사이드 메뉴 -->
 	<div id="layoutSidenav">
 		<div id="layoutSidenav_nav">
-			<nav class="sb-sidenav accordion sb-sidenav-dark"
-				id="sidenavAccordion">
+			<nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
 				<div class="sb-sidenav-menu">
 					<div class="nav">
 						<div class="sb-sidenav-menu-heading">Home</div>
@@ -184,7 +183,7 @@
 		
 		<div id="layoutSidenav_content">
 			<main>
-				<div class="container-fluid">
+				<div class="container-fluid">	
 					
 					
 					<div class="row">

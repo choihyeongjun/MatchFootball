@@ -3,7 +3,6 @@ package co.company.MatchFootball.sungjun;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.Calendar;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,13 +10,15 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import co.company.MatchFootball.mapper.SungjunMapper;
 import co.company.MatchFootball.vo.CalVO;
 import co.company.MatchFootball.vo.P_matchVO;
+import co.company.MatchFootball.vo.Paging;
+import co.company.MatchFootball.vo.PointVO;
+import co.company.MatchFootball.vo.TeammatchVO;
 
 @Controller
 public class JunController {
@@ -54,6 +55,7 @@ public class JunController {
 		model.addAttribute("p_matchVO", dao.pmatchselect(mvo));
 		return "sungjun/match";
 	}
+
 	@RequestMapping(value = "/matchDetail")
 	public ModelAndView test6(HttpServletResponse response) throws IOException {
 		return new ModelAndView("sungjun/matchDetail");
@@ -70,7 +72,19 @@ public class JunController {
 	}
 
 	@RequestMapping(value = "/managermypage")
-	public ModelAndView test4(HttpServletResponse response) throws IOException {
+	public ModelAndView test4(Paging paging, PointVO p_pointVO, P_matchVO p_match, TeammatchVO teammatch,
+			HttpServletResponse response, Model model, HttpServletRequest request) throws IOException {
+		
+		// 레코드 건수 조회
+		paging.setPageUnit(3); // (한페이지를 출력 할)레코드 수
+		paging.setPageSize(5); // 페이지 번호 수
+		p_pointVO.setFirst(paging.getFirst());
+		p_pointVO.setLast(paging.getLast());
+		paging.setTotalRecord(dao.getCount());
+		model.addAttribute("paging", paging);
+		p_pointVO.setP_id("105");
+		model.addAttribute("p_point", dao.pointconselect(p_pointVO));
+
 		return new ModelAndView("sungjun/managermypage");
 	}
 
@@ -78,4 +92,5 @@ public class JunController {
 	public ModelAndView test5(HttpServletResponse response) throws IOException {
 		return new ModelAndView("sungjun/teammatch");
 	}
+
 }

@@ -11,4 +11,29 @@
 	ORDER BY T_NUM
 </select>
 
+<!-- 팀 등록 -->
+<insert id="teamInsert" parameterType="TeamVO">
+<selectKey order="BEFORE"
+				   keyProperty="t_num" 
+				   resultType="string">
+			SELECT MAX(t_num)+1 
+			FROM team
+		</selectKey>
+	INSERT INTO TEAM (t_num, 
+					  t_name, 
+					  t_max, 
+					  t_address, 
+					  t_type, 
+					  t_info, 
+					  t_logo
+					  )
+				VALUES(
+					  #{t_num},
+					  #{t_name},
+					  #{t_max},
+					  #{t_address},
+					  #{t_type},
+					  #{t_info},
+					  #{t_logo})
+</insert>
 </mapper>

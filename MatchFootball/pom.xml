@@ -215,6 +215,13 @@
 			<version>4.13</version>
 			<scope>test</scope>
 		</dependency>
+		
+		<!-- 이미지해볼라꼬 -->
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.3.2</version>
+		</dependency>
 	</dependencies>
 
 	<repositories>

@@ -26,9 +26,10 @@
 			id="sidebarToggle" href="#">
 			<i class="fas fa-bars"></i>
 		</button>
+		
+
 		<!-- Navbar Search-->
-		<form
-			class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+		<form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
 			<div class="input-group">
 				<input class="form-control" type="text" placeholder="Search for..." 
 				aria-label="Search" aria-describedby="basic-addon2" />
@@ -40,16 +41,16 @@
 			</div>
 		</form>
 		
-		<!-- 사이드메뉴-->
+		<!-- 오른쪽 상단-->
 		<ul class="navbar-nav ml-auto ml-md-0">
 			<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" 
 			id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 				<i class="fas fa-user fa-fw"></i></a>
 				<div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-					<a class="dropdown-item" href="#">세팅</a> 
+					<a class="dropdown-item" href="${pageContext.request.contextPath}/match">홈페이지</a> 
 					<a class="dropdown-item" href="#">엑티비티 로그</a>
 					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="#">로그아웃</a>
+					<a class="dropdown-item" href="${pageContext.request.contextPath}/admin">로그아웃</a>
 				</div>
 			</li>
 		</ul>
@@ -167,10 +168,10 @@
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-chart-area"></i>
 							</div> 통계관리
-						</a> <a class="nav-link" href="tables.html">
+						</a> <a class="nav-link" href="${pageContext.request.contextPath}/admin/point">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-table"></i>
-							</div> Tables
+							</div> 쿠폰관리 및 포인트관리
 						</a>
 					</div>
 				</div>
