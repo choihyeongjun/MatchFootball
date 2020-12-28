@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,7 +25,7 @@
 	  <li ><a href="http://localhost/MatchFootball/#">팀 초대</a></li>
 	  <li ><a href="http://localhost/MatchFootball/#">팀 리스트</a></li>
 	</ul>
-	<div align="center">
+	<div align="center" style="padding-bottom: 606px">
 		<div>
 			<h1>팀 정 보</h1>
 		</div>
@@ -34,29 +35,29 @@
 			<table class="table table-bordered">
 					<tr>
 						<th scope="col">팀명</th>
-						<td>토트넘</td>
+						<td>${teamInfo.t_name}</td>
 						<th scope="col">연령대</th>
 						<td>10세</td>
 					</tr>
 					<tr>
 						<th scope="row">팀원수</th>
-						<td>10/22</td>
+						<td>${teamInfo.t_max }</td>
 						<th scope="row">실력</th>
 						<td>중상</td>
 					</tr>
 					<tr>
 						<th scope="row">지역</th>
-						<td>대구 서구</td>
+						<td>${teamInfo.t_address }</td>
 						<th scope="row">승률</th>
 						<td>75%</td>
 					</tr>
 					 <tr>
 				      <th scope="row">경기유형</th>
-				      <td colspan="3">축구</td>
+				      <td colspan="3">${teamInfo.t_type }</td>
 				    </tr>
 					 <tr>
 				      <th scope="row">팀 소개</th>
-				      <td colspan="3">어서 옵쇼 하하하하하</td>
+				      <td colspan="3">${teamInfo.t_info }</td>
 				    </tr>
 			</table>
 		</div>
@@ -66,30 +67,18 @@
 				<thead>
 					<tr class="table-secondary">
 						<th scope="col">#</th>
-						<th scope="col">이름</th>
-						<th scope="col">포지션</th>
-						<th scope="col">역할</th>
+						<th scope="col">ID</th>
+						<th scope="col">권한</th>
 					</tr>
 				</thead>
 				<tbody>
+				<%-- <c:forEach items="${teamMembers}" var="teamMembers">
 					<tr>
 						<th scope="row">1</th>
-						<td>Mark</td>
-						<td>Otto</td>
-						<td>@mdo</td>
+						<td>${teamMembers.id }</td>
+						<td>${teamMembers.t_author }</td>
 					</tr>
-					<tr>
-						<th scope="row">2</th>
-						<td>Jacob</td>
-						<td>Thornton</td>
-						<td>@fat</td>
-					</tr>
-					<tr>
-						<th scope="row">3</th>
-						<td>Jacob</td>
-						<td>Thornton</td>
-						<td>@fat</td>
-					</tr>
+				</c:forEach> --%>
 				</tbody>
 			</table>
 		</div>

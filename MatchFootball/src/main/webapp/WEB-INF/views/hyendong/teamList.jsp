@@ -23,6 +23,9 @@
 	href="${pageContext.request.contextPath}/resources/css/dong1/assets/css/nice-select.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/dong1/assets/css/style.css">
+<style>
+a { text-decoration:none ; color:#000000}
+</style>
 </head>
 <body>
 	<div style="padding-bottom: 400px">
@@ -49,20 +52,22 @@
 			</div>
 
 			<c:forEach items="${teamList }" var="teamList">
-				<div class="table-row">
-					<div class="serial">${teamList.t_num}</div>
-					<div class="country">
-						<img
-							src="${pageContext.request.contextPath}/resources/css/dong1/assets/images/elements/f1.jpg">${teamList.t_name}
+				<a href="teamInfo?t_num=${teamList.t_num}">
+					<div class="table-row">
+						<div class="serial">${teamList.t_num}</div>
+						<div class="country">
+							<img
+								src="${pageContext.request.contextPath}/resources/css/dong1/assets/images/elements/f1.jpg">${teamList.t_name}
+						</div>
+						<div class="visit">${teamList.t_type}</div>
+						<div class="visit">
+							&nbsp;&nbsp;&nbsp;&nbsp;인원&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18
+							/ ${teamList.t_max}<br>평균
+							연령&nbsp;&nbsp;&nbsp;${teamList.t_age }<br>경기
+							유형&nbsp;&nbsp;&nbsp;${teamList.t_type }
+						</div>
 					</div>
-					<div class="visit">${teamList.t_type}</div>
-					<div class="visit">
-						&nbsp;&nbsp;&nbsp;&nbsp;인원&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18
-						/ ${teamList.t_max}<br>평균
-						연령&nbsp;&nbsp;&nbsp;${teamList.t_age }<br>경기
-						유형&nbsp;&nbsp;&nbsp;${teamList.t_type }
-					</div>
-				</div>
+				</a>
 			</c:forEach>
 		</div>
 	</div>

@@ -36,4 +36,26 @@
 					  #{t_info},
 					  #{t_logo})
 </insert>
+
+<!-- 팀 단건 정보 조회 -->
+<select id="getTeam" parameterType="teamVO" resultType="teamVO">
+	SELECT t_num,
+		   t_name,
+		   t_max,
+		   t_address,
+		   t_type,
+		   t_info,
+		   t_logo
+	FROM team
+	WHERE t_num = #{t_num}
+</select>
+
+<!-- 팀원 조회 -->
+<select id="getTeamMembers" resultType="TeamlistVO">
+	SELECT t_num,
+		   id,
+		   t_author
+	FROM teamlist
+	where t_num = #{t_num}
+</select>
 </mapper>
