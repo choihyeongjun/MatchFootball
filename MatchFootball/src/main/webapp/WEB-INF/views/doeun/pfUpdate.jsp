@@ -41,42 +41,20 @@
 
 </head>
 <body>
+<form>
 	<div id="main">
 		<div id="content">
 			<div class="container">
 				<div class="row has-sidebar">
-					<div class="col-md-5 col-lg-4 col-xl-4 col-sidebar">
-						<div id="sidebar" class="sidebar-left">
-							<div class="sidebar_inner">
-								<div class="agent-detail">
-									<div class="text-center">
-										<div id='profileimg'></div>
-										<h4 class="main-name" style="color: #869E9E; font-weight: bold;"></h4>
-									</div>
-								</div>
-								<div class="list-group no-border list-unstyled">
-									<a href="#" class="list-group-item active">
-										<i class="far fa-id-card"></i> 내 프로필
-									</a> 
-									<a href="#" class="list-group-item"><i class="fas fa-unlock-alt"></i>
-									</a> 
-									<a href="#" class="list-group-item"><i class="fas fa-h-square"></i> 
-									</a> 
-									<a href="#" class="list-group-item"><i class="fas fa-bookmark"></i>	관리
-									</a> 
-									<a href="#" class="list-group-item"><i class="fas fa-sliders-h"></i> 관리
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
+							<jsp:include page="Mybar.jsp"></jsp:include>
+
 					<div class="col-md-7 col-lg-8 col-xl-8">
 						<div class="page-header bordered">
-							<h1>내 프로필<small>기본 정보</small></h1>
+							<h1>내 프로필<small>기본 정보 수정</small></h1>
 						</div>
 						<div class="form-group">
 							<label>이름</label> 
-							<input type="text" class="form-control form-control-lg name" placeholder="" value="John">
+							<input type="text" class="form-control form-control-lg name" placeholder="" value="${mb.name}">
 						</div>
 						<div class="form-group has-feedback">
 							<label class="control-label" for="photo">프로필 사진</label>
@@ -95,29 +73,28 @@
 						<div class="form-group">
 							<label>이메일</label> 
 							<input type="text" class="form-control form-control-lg email"
-										value="john.doe@email.com" readonly>
+										value="${mb.email}" readonly>
 						</div>
 						<div class="form-group">
-							<label class="control-label" for="email">전화번호</label>
+							<label class="control-label" for="tel">전화번호</label>
 								<div class="row form-group has-feedback in-line">
 									<div class="col col-lg-8">
 										<input class="form-control form-control-lg required"
-												type="text" data-name='전화번호' name="tel" id="tel" />
+												type="text" data-name='전화번호' name="tel" id="tel" width="100%"/>
 									</div>
-									<div class="col col-lg-4 tel-div">
-										<button type='button' class='btn btn-primary' id='tel-btn'
-												style="height: 48px">인증번호 받기</button>
+									<div class="col col-lg-4 tel-div" align="right">
+										<button type='button' class='btn btn-primary' id='tel-btn' style="height: 48px">인증번호 받기</button>
 									</div>
 								</div>
 								<div class="form-group">
 									<label>주소</label> 
 									<input type="text"
-											class="form-control form-control-lg address" value="">
+											class="form-control form-control-lg address" value="${mb.location1}">
 								</div>
 								<div class="form-group">
 									<label>활동지역</label> 
 									<input type="text"
-											class="form-control form-control-lg mian" value="">
+											class="form-control form-control-lg mian" value="${mb.location2}">
 								</div>
 								<div id="sms-tag"></div>
 								</div>
@@ -138,18 +115,22 @@
 										<span class="glyphicon glyphicon-ok form-control-feedback"></span>
 									</div>
 									<div class="form-group">
-										<label>성별</label> 
-										<
+										<label>성별</label> <br>
+										<input type="radio" name="gender" id="" value="남">남 <input type="radio" name="gender" id="" value="여">여
 									</div>
 									<div class="form-group">
 										<label>생년월일</label> <input type="date"
-											class="form-control form-control-lg birth" value="생년월일">
+											class="form-control form-control-lg birth" value="${mb.birth}">
 									</div>
 									<div class="form-group">
-										<label>포지션</label> <select id="position" name="position"></select>
+										<label>포지션</label> 
+										<select id="position" name="position" checked="">
+										<option value="${mb.pos }">${mb.pos}</option>
+										</select>
 									</div>
 									<div class="form-group">
-										<label>실력</label> <select id="level" name="level"></select>
+										<label>실력</label> <br>
+										<input type="radio" name="level" id="" value="상">상 <input type="radio" name="level" id="" value="중">중 <input type="radio" name="level" id="" value="하">하
 									</div>
 								</div>
 
@@ -165,11 +146,12 @@
 					</div>
 				</div>
 			</div>
+			
 		<button class="btn btn-primary btn-circle" id="to-top" 
-				style="visibility: visible; opacity: 1;"><!-- 위로가기버튼 -->
+				style="visibility: visible; opacity: 0.5;"><!-- 위로가기버튼 -->
 		<i class="fa fa-angle-up"></i>
 	</button>
-
+</form>
 	<!-- <div id='heun-footer'></div>
   <script src='../common_profile.js'></script>
   <script src='js/my_profile.js'></script>

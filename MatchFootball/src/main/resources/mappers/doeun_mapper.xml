@@ -2,8 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="co.company.MatchFootball.mapper.doeunMapper"> <!-- 패키지.EmpMapper -->
+<mapper namespace="co.company.MatchFootball.mapper.DoeunMapper"> <!-- 패키지.EmpMapper -->
 
+<select id="getUser" parameterType="MembersVO" resultType="MembersVO">
+select * from members
+where id = #{id}
+</select>
 
 	
 

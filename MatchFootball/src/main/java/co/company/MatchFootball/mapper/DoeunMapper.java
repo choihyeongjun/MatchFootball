@@ -1,5 +1,7 @@
 package co.company.MatchFootball.mapper;
 
-public interface DoeunMapper {
+import co.company.MatchFootball.vo.MembersVO;
 
+public interface DoeunMapper {
+	public MembersVO getUser(MembersVO members);
 }
