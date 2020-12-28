@@ -3,6 +3,7 @@ package co.company.MatchFootball.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -34,7 +35,13 @@ public class MvcConfiguration implements WebMvcConfigurer{
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
+		registry.addResourceHandler("/resources/hyendong/**").addResourceLocations("/images/"); //이미지 정적 데이터인거 알려주기
 	}
 
-	
+	@Bean
+	CommonsMultipartResolver multipartResolver() {
+		CommonsMultipartResolver multi = new CommonsMultipartResolver();
+		multi.setMaxUploadSize(1024*10000);
+		return multi;
+	}
 }
