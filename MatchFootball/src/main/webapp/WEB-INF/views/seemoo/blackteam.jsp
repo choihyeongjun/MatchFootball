@@ -11,7 +11,7 @@
 <meta name="description" content="" />
 <meta name="author" content="" />
 
-<title>팀관리페이지</title>
+<title>블랙리스트팀관리페이지</title>
 
 </head>
 		<body>
@@ -20,11 +20,11 @@
 		<div id="layoutSidenav_content">
 			<main>
 				<div class="container-fluid">
-					<h1 class="mt-4">팀관리</h1>
+					<h1 class="mt-4">블랙리스트 팀관리</h1>
 					<ol class="breadcrumb mb-4">
 						<li class="breadcrumb-item">
-						<a href="${pageContext.request.contextPath}/admin/blackteam">블랙리스트 팀관리</a></li>
-						<li class="breadcrumb-item active">월별 경기일정 및 토너먼트</li>
+						<a href="${pageContext.request.contextPath}/admin/team">팀관리</a></li>
+						<li class="breadcrumb-item active">블랙리스트 팀관리</li>
 					</ol>
 					<div class="card mb-4">
 						<div class="card-body">
@@ -35,7 +35,7 @@
 					<!-- 팀현황 -->
 					<div class="card mb-4">
 						<div class="card-header">
-							<i class="fas fa-table mr-1"></i> 현재 팀 현황
+							<i class="fas fa-table mr-1"></i> 블랙리스트 팀현황
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
@@ -44,10 +44,9 @@
 										<tr>
 											<th style="width: 10px;">No.</th>
 											<th>팀이름</th>
-											<th>팀평균레벨</th>
-											<th>팀승률</th>
-											<th>팀권한</th>
-											<th>팀매너점수</th>
+											<th>팀주장</th>
+											<th>블랙사유</th>
+											<th>남은기간</th>
 											<th></th>
 										</tr>
 									</thead>
@@ -55,10 +54,9 @@
 										<tr>
 											<th>No.</th>
 											<th>팀이름</th>
-											<th>팀평균레벨</th>
-											<th>팀승률</th>
-											<th>팀권한</th>
-											<th>팀매너점수</th>
+											<th>팀주장</th>
+											<th>블랙사유</th>
+											<th>남은기간</th>
 											<th></th>
 										</tr>
 									</tfoot>
@@ -69,11 +67,31 @@
 											<td>최형준</td>
 											<td>11</td>
 											<td></td>
+											<td>
+											<width="10"><input type="button" value="복귀" onclick="">
+											<width="10"><input type="button" value="삭제" onclick="">
+											</td>
+										</tr>
+										<tr>
+											<td>2</td>
+											<td>도은와 성준</td>
+											<td>허성준</td>
+											<td>2</td>
 											<td></td>
 											<td>
-											<input type="button" value="상세프로필" onclick="">
-											<input type="button" value="수정" onclick="">
-											<input type="button" value="삭제" onclick="">
+											<width="10"><input type="button" value="복귀" onclick="">
+											<width="10"><input type="button" value="삭제" onclick="">
+											</td>
+										</tr>
+										<tr>
+											<td>3</td>
+											<td>현동와 재형이</td>
+											<td>김현동</td>
+											<td>7</td>
+											<td></td>
+											<td>
+											<width="10"><input type="button" value="복귀" onclick="">
+											<width="10"><input type="button" value="삭제" onclick="">
 											</td>
 										</tr>
 									</tbody>
