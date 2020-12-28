@@ -72,7 +72,7 @@ public class JunController {
 	}
 
 	@RequestMapping(value = "/managermypage")
-	public ModelAndView test4(Paging paging, PointVO p_pointVO, P_matchVO p_match, TeammatchVO teammatch,
+	public ModelAndView test4(Paging paging, PointVO p_pointVO, P_matchVO p_matchVO, TeammatchVO teammatch,
 			HttpServletResponse response, Model model, HttpServletRequest request) throws IOException {
 		
 		// 레코드 건수 조회
@@ -82,8 +82,12 @@ public class JunController {
 		p_pointVO.setLast(paging.getLast());
 		paging.setTotalRecord(dao.getCount());
 		model.addAttribute("paging", paging);
+		
 		p_pointVO.setP_id("105");
+		
+		p_matchVO.setM_id("105");
 		model.addAttribute("p_point", dao.pointconselect(p_pointVO));
+		model.addAttribute("p_match" ,dao.pmatchlist(p_matchVO));
 
 		return new ModelAndView("sungjun/managermypage");
 	}

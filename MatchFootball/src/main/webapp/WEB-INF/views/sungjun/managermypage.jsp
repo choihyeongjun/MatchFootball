@@ -138,7 +138,9 @@ body {
 		<div class="mgpage"
 			style="padding: 70px; margin-left: 180px; margin-right: 180px;">
 			<div class="hi" style="margin-bottom: 30px">
-				<h2 style="margin: 0px; font-weight: 300;">안녕하세요<i class="fas fa-futbol fa-2x" style="color:black"></i></h2>
+				<h2 style="margin: 0px; font-weight: 300;">
+					안녕하세요<i class="fas fa-futbol fa-2x" style="color: black"></i>
+				</h2>
 				<br>
 				<h5 style="font-weight: bold; margin: 0px">김현동매니저님</h5>
 			</div>
@@ -162,22 +164,27 @@ body {
 						<a href="#">전체 보기</a>
 					</div>
 				</div>
-				<div class="mamama">
-					<ul>
-						<li>
-							<div class="matchc">
-								<a style="">2020년 12월 22일 대구 북구풋살장 10:00</a> <a class="btn sf"
-									href="#"> 리뷰 작성</a>
-							</div>
-						</li>
-						<li>
-							<div class="matchc">
-								2020년 12월 22일 대구 북구풋살장 10:00 <a class="btn sf" href="#"> 리뷰
-									작성</a>
-							</div>
-						</li>
-					</ul>
-				</div>
+				<c:forEach var="p_match" items="${p_match }">
+					<div class="mamama">
+						<ul>
+							<li>
+								<div class="matchc">
+									<a style="">${p_match.m_date } ${p_match.f_name }
+										${p_match.m_hour }</a> <a class="btn sf" href="#"> 리뷰 작성</a>
+										<input type = "hidden" value="${p_match.m_no }">
+								</div>
+							</li>
+
+						</ul>
+					</div>
+				</c:forEach>
+				<script>
+					function goPage1(p) {
+						location.href = "managermypage?page=" + p;
+					}
+				</script>
+				<my:paging paging="${paging}" jsfunc="goPage1" />
+				
 			</div>
 			<div class="allscedule">
 				<div class="allcha">
@@ -189,7 +196,7 @@ body {
 				<c:forEach var="p_point" items="${p_point }">
 					<div class="maaa">
 						<ul>
-							<li>${p_point.p_date }  ${p_point.npoint }원 입금</li>
+							<li>${p_point.p_date }${p_point.npoint }원입금 </li>
 						</ul>
 					</div>
 				</c:forEach>
