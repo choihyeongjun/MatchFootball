@@ -43,8 +43,9 @@ body {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding-bottom: 20px;
+	padding: 10px;
 	margin-bottom: 20px;
+	background-color: white;
 }
 
 .cachec {
@@ -188,7 +189,7 @@ body {
 				<c:forEach var="p_point" items="${p_point }">
 					<div class="maaa">
 						<ul>
-							<li>${p_point.p_date }${p_point.npoint }원 입금</li>
+							<li>${p_point.p_date }  ${p_point.npoint }원 입금</li>
 						</ul>
 					</div>
 				</c:forEach>
