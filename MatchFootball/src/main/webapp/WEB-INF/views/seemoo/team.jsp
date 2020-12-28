@@ -40,37 +40,39 @@
 						<div class="card-body">
 							<div class="table-responsive">
 								<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-									<thead>
+									<thead align="center">
 										<tr>
 											<th>No.</th>
 											<th>팀이름</th>
 											<th>팀주장</th>
-											<th>팀인원</th>
 											<th>팀승률</th>
 											<th>팀권한</th>
+											<th></th>
 										</tr>
 									</thead>
-									<tfoot>
+									<tfoot align="center">
 										<tr>
 											<th>No.</th>
 											<th>팀이름</th>
 											<th>팀주장</th>
-											<th>팀인원</th>
 											<th>팀승률</th>
 											<th>팀권한</th>
+											<th></th>
 										</tr>
 									</tfoot>
-									<tbody>
+									<tbody align="center">
 										<tr>
 											<td>1</td>
 											<td>형준와 아이들</td>
 											<td>최형준</td>
 											<td>11</td>
 											<td></td>
-											<td></td>
-											<td width="10"><input type="button" value="상세프로필" onclick=""></td>
-											<td width="10"><input type="button" value="수정" onclick=""></td>
-											<td width="10"><input type="button" value="삭제" onclick=""></td>
+											<td>
+											<input type="button" value="상세프로필" onclick="">
+											<input type="button" value="수정" onclick="">
+											<input type="button" value="삭제" onclick="">
+											</td>
+											
 										</tr>
 										<tr>
 											<td>2</td>
@@ -78,10 +80,11 @@
 											<td>허성준</td>
 											<td>2</td>
 											<td></td>
-											<td></td>
-											<td width="10"><input type="button" value="상세프로필" onclick=""></td>
-											<td width="10"><input type="button" value="수정" onclick=""></td>
-											<td width="10"><input type="button" value="삭제" onclick=""></td>
+											<td>
+											<input type="button" value="상세프로필" onclick="">
+											<input type="button" value="수정" onclick="">
+											<input type="button" value="삭제" onclick="">
+											</td>
 										</tr>
 										<tr>
 											<td>3</td>
@@ -89,10 +92,11 @@
 											<td>김현동</td>
 											<td>7</td>
 											<td></td>
-											<td></td>
-											<td width="10"><input type="button" value="상세프로필" onclick=""></td>
-											<td width="10"><input type="button" value="수정" onclick=""></td>
-											<td width="10"><input type="button" value="삭제" onclick=""></td>
+											<td>
+											<input type="button" value="상세프로필" onclick="">
+											<input type="button" value="수정" onclick="">
+											<input type="button" value="삭제" onclick="">
+											</td>
 										</tr>
 									</tbody>
 								</table>

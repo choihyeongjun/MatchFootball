@@ -129,8 +129,7 @@
 									<tr>
 										<th>이름</th>
 										<td>:</td>
-										<td>&nbsp;디디디디
-										</td>
+										<td>&nbsp;디디디디	</td>
 									</tr>
 									<tr>
 										<th>생년월일</th>
