@@ -4,9 +4,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class MemberController {
+public class DoeunController {
 
-	@RequestMapping(value="/doeun/dd")
+	@RequestMapping(value="/doeun/pay")
 	public String dd() {
 		return "doeun/Pay";
 	}
@@ -15,7 +15,7 @@ public class MemberController {
 	public String mypage() {
 		return "doeun/userprofile";
 	}
-	@RequestMapping(value="/doeun/aa")//마이페이지 메인
+	@RequestMapping(value="/doeun/mypage")//마이페이지 메인
 	public String mypag() {
 		return "doeun/aa";
 	}
@@ -30,5 +30,13 @@ public class MemberController {
 	@RequestMapping(value="/doeun/review")//경기참가내역
 	public String review() {
 		return "doeun/review";
+	}
+	@RequestMapping(value="/doeun/usercupon")//쿠폰 사용 처리
+	public String userCp() {
+		return "";
+	}
+	@RequestMapping(value="/doeun/cupon")//쿠폰 생성
+	public String cupon() {
+		return "";
 	}
 }

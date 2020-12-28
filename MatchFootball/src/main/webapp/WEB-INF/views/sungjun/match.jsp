@@ -73,14 +73,15 @@ a {
 .pp {
 	margin-bottom: 100px;
 }
-.m-im-t{
-    font-size: 11px;
-    color: #999;
-    margin-top: 3px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    flex-wrap: wrap;
+
+.m-im-t {
+	font-size: 11px;
+	color: #999;
+	margin-top: 3px;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	flex-wrap: wrap;
 }
 </style>
 </head>
@@ -192,31 +193,33 @@ a {
 			</div>
 
 			<!-- 매치 정보  -->
-			<table class="table " style="margin: 40px;">
-				<tbody>
-					<tr style=" border-bottom: white;">
-						<td scope="col" align="center"  ><div class="button_match">매치 리스트</div></td>
-						<td scope="col"></td>
-						<td scope="col" align="center"><span type="button"
-							class="button_match">모든 매치  <i class="fab fa-sistrix"></i></span></td>
-					</tr>
-					<c:forEach var="p_match" items="${p_matchVO }">
-						<tr>
-							<td scope="row" align="center">
-								<div style="font-weight: bold; margin-top: 12px">
-								 ${p_match.m_hour }
-								</div>
-							</td>
-							<td><div>${p_match.f_name }</div>
-								<div class="m-im-t">⦁ ${p_match.m_type }  매치 · ${p_match.p_max }  레벨${p_match.lv }Lv</div></td>
-							<td align="center"><button type="button"
-									class="btn btn-info">신청 가능</button>
-								</button></td>
+			<div>
+				<table class="table " style="margin: 40px;">
+					<tbody>
+						<tr style="border-bottom: white;">
+							<td scope="col" align="center"><div class="button_match">매치
+									리스트</div></td>
+							<td scope="col"></td>
+							<td scope="col" align="center"><span type="button"
+								class="button_match">모든 매치 <i class="fab fa-sistrix"></i></span></td>
 						</tr>
-					</c:forEach>
-
-				</tbody>
-			</table>
+						<c:forEach var="p_match" items="${p_matchVO }">
+							<tr>
+								<td scope="row" align="center">
+									<div style="font-weight: bold; margin-top: 12px">
+										${p_match.m_hour }</div>
+								</td>
+								<td><div>${p_match.f_name }</div>
+									<div class="m-im-t">⦁ ${p_match.m_type } 매치 ·
+										${p_match.p_max } 레벨${p_match.lv }Lv</div></td>
+								<td align="center"><button type="button"
+										class="btn btn-info">신청 가능</button>
+									</button></td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
 		</div>
 	</div>
 	<script>

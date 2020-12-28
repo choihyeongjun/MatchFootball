@@ -25,38 +25,46 @@
 	href="${pageContext.request.contextPath}/resources/css/dong1/assets/css/style.css">
 </head>
 <body>
-	<ul class="hi">
-		<li><a href="http://localhost/MatchFootball/teamInfo">ÆÀ Á¤º¸</a></li>
-		<li><a href="http://localhost/MatchFootball/teamGallery">ÆÀ
-				°¶·¯¸®</a></li>
-		<li><a href="http://localhost/MatchFootball/teamNotice">ÆÀ °øÁö</a></li>
-		<li><a href="http://localhost/MatchFootball/#">ÆÀ ÃÊ´ë</a></li>
-		<li><a href="http://localhost/MatchFootball/#">ÆÀ ¸®½ºÆ®</a></li>
-	</ul>
-	<div align="center">
-	<br>
-		<h3>ÆÀ ¸®½ºÆ®</h3>
-		<hr>
-	</div>
-	<div class="progress-table" align="center"
-		style="margin-left: 670px; width: 50%">
-		<div class="table-head" style="margin-right: 150px">
-			<div class="country">#</div>
-			<div class="country">ÆÀ¸í</div>
-			<div class="country">°æ±âÀ¯Çü</div>
-			<div class="country">ÆÀÁ¤º¸</div>
+	<div style="padding-bottom: 400px">
+		<ul class="hi">
+			<li><a href="http://localhost/MatchFootball/teamInfo">ÆÀ Á¤º¸</a></li>
+			<li><a href="http://localhost/MatchFootball/teamGallery">ÆÀ
+					°¶·¯¸®</a></li>
+			<li><a href="http://localhost/MatchFootball/teamNotice">ÆÀ °øÁö</a></li>
+			<li><a href="http://localhost/MatchFootball/#">ÆÀ ÃÊ´ë</a></li>
+			<li><a href="http://localhost/MatchFootball/#">ÆÀ ¸®½ºÆ®</a></li>
+		</ul>
+		<div align="center">
+			<br>
+			<h3>ÆÀ ¸®½ºÆ®</h3>
+			<hr>
 		</div>
-
-		<c:forEach items="${teamList }" var="teamList">
-			<div class="table-row" >
-				<div class="serial">${teamList.t_num}</div>
-				<div class="country">
-					<img src="${pageContext.request.contextPath}/resources/css/dong1/assets/images/elements/f1.jpg">${teamList.t_name}
-				</div>
-				<div class="visit">${teamList.t_type}</div>
-				<div class="visit">&nbsp;&nbsp;&nbsp;&nbsp;ÀÎ¿ø&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18 / ${teamList.t_max}<br>Æò±Õ ¿¬·É&nbsp;&nbsp;&nbsp;${teamList.t_age }<br>°æ±â À¯Çü&nbsp;&nbsp;&nbsp;${teamList.t_type }</div>
+		<div class="progress-table" align="center"
+			style="margin-left: 570px; width: 50%">
+			<div class="table-head" style="margin-right: 150px">
+				<div class="serial" align="left">#</div>
+				<div class="serial" align="left" style="margin-left: 30px">ÆÀ¸í</div>
+				<div class="serial" align="left" style="margin-left: 120px">°æ±âÀ¯Çü</div>
+				<div class="serial" align="left" style="margin-left: 140px">ÆÀÁ¤º¸</div>
 			</div>
-		</c:forEach>
+
+			<c:forEach items="${teamList }" var="teamList">
+				<div class="table-row">
+					<div class="serial">${teamList.t_num}</div>
+					<div class="country">
+						<img
+							src="${pageContext.request.contextPath}/resources/css/dong1/assets/images/elements/f1.jpg">${teamList.t_name}
+					</div>
+					<div class="visit">${teamList.t_type}</div>
+					<div class="visit">
+						&nbsp;&nbsp;&nbsp;&nbsp;ÀÎ¿ø&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18
+						/ ${teamList.t_max}<br>Æò±Õ
+						¿¬·É&nbsp;&nbsp;&nbsp;${teamList.t_age }<br>°æ±â
+						À¯Çü&nbsp;&nbsp;&nbsp;${teamList.t_type }
+					</div>
+				</div>
+			</c:forEach>
+		</div>
 	</div>
 	<!-- Javascript -->
 	<script

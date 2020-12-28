@@ -54,6 +54,10 @@ public class JunController {
 		model.addAttribute("p_matchVO", dao.pmatchselect(mvo));
 		return "sungjun/match";
 	}
+	@RequestMapping(value = "/matchDetail")
+	public ModelAndView test6(HttpServletResponse response) throws IOException {
+		return new ModelAndView("sungjun/matchDetail");
+	}
 
 	@RequestMapping(value = "/call")
 	public ModelAndView test2(HttpServletResponse response) throws IOException {
