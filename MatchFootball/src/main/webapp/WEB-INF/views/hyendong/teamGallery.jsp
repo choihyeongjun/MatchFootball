@@ -4,76 +4,105 @@
 <html>
 <head>
 <link rel="stylesheet" href="resources/css/teamMenu.css">
-<style>
-div.gallery:hover {
-	border: 1px solid #777;
-}
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-.responsive {
-	padding: 6px;
-	float: left;
-	width: 14.99999%;
-}
-.active {
-  background-color: #4CAF50;
-}
-footer {
-  position: fixed;
-  left:0px; 
-  bottom:0px; 
-  width:100%; 
-  background:grey; 
-  color: white; 
-}
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,700,900|Oswald:400,700">
+<link rel="stylesheet" href="fonts/icomoon/style.css">
 
-</style>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/teamGallery/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/teamGallery/css/jquery.fancybox.min.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/teamGallery/css/jquery-ui.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/teamGallery/css/owl.carousel.min.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/teamGallery/css/owl.theme.default.min.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/teamGallery/css/animate.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/teamGallery/fonts/flaticon/font/flaticon.css">
+
+
+<link rel="stylesheet" href="css/aos.css">
+
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 	<ul class="hi">
-	  <li><a href="http://localhost/MatchFootball/teamInfo">ÆÀ Á¤º¸</a></li>
-	  <li><a href="http://localhost/MatchFootball/teamGallery">ÆÀ °¶·¯¸®</a></li>
-	  <li><a href="http://localhost/MatchFootball/teamNotice">ÆÀ °øÁö</a></li>
-	  <li><a href="http://localhost/MatchFootball/#">ÆÀ ÃÊ´ë</a></li>
-	  <li><a href="http://localhost/MatchFootball/#">ÆÀ ¸®½ºÆ®</a></li>
+		<li><a href="http://localhost/MatchFootball/teamInfo">ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½</a></li>
+		<li><a href="http://localhost/MatchFootball/teamGallery">ï¿½ï¿½
+				ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</a></li>
+		<li><a href="http://localhost/MatchFootball/teamNotice">ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½</a></li>
+		<li><a href="http://localhost/MatchFootball/#">ï¿½ï¿½ ï¿½Ê´ï¿½</a></li>
+		<li><a href="http://localhost/MatchFootball/#">ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®</a></li>
 	</ul>
 	<div align="center">
 		<div>
-			<h1>ÆÀ °¶·¯¸®</h1>
+			<h1>ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</h1>
 		</div>
 		<hr />
 	</div>
-	<div class="responsive">
-		<div class="gallery">
-			<a target="_blank" href="resources/to.png"> 
-			<img src="resources/to.png"  width="270" height="270" style="border-radius : 80px">
-			</a>
+	<div class="site-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-6 col-sm-6 col-md-4 col-lg-3 mb-4">
+					<a href="${pageContext.request.contextPath}/resources/css/teamGallery/images/img_1.jpg" data-fancybox="gal"><img
+						src="${pageContext.request.contextPath}/resources/css/teamGallery/images/img_1.jpg" alt="Image" class="img-fluid"></a>
+				</div>
+				<div class="col-6 col-sm-6 col-md-4 col-lg-3 mb-4">
+					<a href="${pageContext.request.contextPath}/resources/css/teamGallery/images/img_2.jpg" data-fancybox="gal"><img
+						src="${pageContext.request.contextPath}/resources/css/teamGallery/images/img_2.jpg" alt="Image" class="img-fluid"></a>
+				</div>
+				<div class="col-6 col-sm-6 col-md-4 col-lg-3 mb-4">
+					<a href="${pageContext.request.contextPath}/resources/css/teamGallery/images/img_3.jpg" data-fancybox="gal"><img
+						src="${pageContext.request.contextPath}/resources/css/teamGallery/images/img_3.jpg" alt="Image" class="img-fluid"></a>
+				</div>
+
+				<div class="col-6 col-sm-6 col-md-4 col-lg-3 mb-4">
+					<a href="${pageContext.request.contextPath}/resources/css/teamGallery/images/img_4.jpg" data-fancybox="gal"><img
+						src="${pageContext.request.contextPath}/resources/css/teamGallery/images/img_4.jpg" alt="Image" class="img-fluid"></a>
+				</div>
+				<div class="col-6 col-sm-6 col-md-4 col-lg-3 mb-4">
+					<a href="${pageContext.request.contextPath}/resources/css/teamGallery/images/img_5.jpg" data-fancybox="gal"><img
+						src="${pageContext.request.contextPath}/resources/css/teamGallery/images/img_5.jpg" alt="Image" class="img-fluid"></a>
+				</div>
+				<div class="col-6 col-sm-6 col-md-4 col-lg-3 mb-4">
+					<a href="${pageContext.request.contextPath}/resources/css/teamGallery/images/img_1.jpg" data-fancybox="gal"><img
+						src="${pageContext.request.contextPath}/resources/css/teamGallery/images/img_1.jpg" alt="Image" class="img-fluid"></a>
+				</div>
+				<div class="col-6 col-sm-6 col-md-4 col-lg-3 mb-4">
+					<a href="${pageContext.request.contextPath}/resources/css/teamGallery/images/img_2.jpg" data-fancybox="gal"><img
+						src="${pageContext.request.contextPath}/resources/css/teamGallery/images/img_2.jpg" alt="Image" class="img-fluid"></a>
+				</div>
+				<div class="col-6 col-sm-6 col-md-4 col-lg-3 mb-4">
+					<a href="${pageContext.request.contextPath}/resources/css/teamGallery/images/img_3.jpg" data-fancybox="gal"><img
+						src="${pageContext.request.contextPath}/resources/css/teamGallery/images/img_3.jpg" alt="Image" class="img-fluid"></a>
+				</div>
+				<div class="col-6 col-sm-6 col-md-4 col-lg-3 mb-4">
+					<a href="${pageContext.request.contextPath}/resources/css/teamGallery/images/img_3.jpg" data-fancybox="gal"><img
+						src="${pageContext.request.contextPath}/resources/css/teamGallery/images/img_3.jpg" alt="Image" class="img-fluid"></a>
+				</div>
+				<div class="col-6 col-sm-6 col-md-4 col-lg-3 mb-4">
+					<a href="${pageContext.request.contextPath}/resources/css/teamGallery/images/img_3.jpg" data-fancybox="gal"><img
+						src="${pageContext.request.contextPath}/resources/css/teamGallery/images/img_3.jpg" alt="Image" class="img-fluid"></a>
+				</div>
+			</div>
 		</div>
 	</div>
+	<script src="${pageContext.request.contextPath}/resources/css/teamGallery/js/jquery.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/css/teamGallery/js/jquery-migrate-3.0.1.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/css/teamGallery/js/jquery-ui.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/css/teamGallery/js/popper.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/css/teamGallery/js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/css/teamGallery/js/owl.carousel.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/css/teamGallery/js/jquery.stellar.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/css/teamGallery/js/jquery.fancybox.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/css/teamGallery/js/aos.js"></script>
 
-
-	<div class="responsive">
-		<div class="gallery">
-			<a target="_blank" href="resources/to.png"> <img
-				src="resources/to.png" width="270" height="270" style="border-radius : 80px">
-			</a>
-		</div>
-	</div>
-
-	<div class="responsive">
-		<div class="gallery">
-			<a target="_blank" href="resources/to.png"> <img
-				src="resources/to.png" width="270" height="270" style="border-radius : 80px">
-			</a>
-		</div>
-	</div>
-
-	<div class="responsive">
-		<div class="gallery">
-			<a target="_blank" href="resources/to.png"> <img
-				src="resources/to.png" width="270" height="270" style="border-radius : 80px">
-			</a>
-		</div>
-	</div>
-
+	<script src="${pageContext.request.contextPath}/resources/css/teamGallery/js/main.js"></script>
 </body>
 </html>
