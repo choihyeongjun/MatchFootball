@@ -91,48 +91,13 @@
 											<td>결제금액</td>
 										</tr>
 									</table>
-
+									<br>
 									<div align="right">
 										<button type="submit" class="btn btn-primary">결제</button>
 									</div>
 								</div>
 								<hr>
-								<h4 id="item-2-2">내 쿠폰</h4>
-								<div>
-									<div>
-										<table style="width: 100%">
-											<tr>
-												<td><input type="checkbox"></td>
-												<td>쿠폰명</td>
-												<td>쿠폰기한</td>
-												<td align="right"><input type="button"
-													class="btn btn-primary cpDel" value="삭제"></td>
-											<tr>
-												<td><input type="checkbox"></td>
-												<td>쿠폰명</td>
-												<td>쿠폰기한</td>
-												<td align="right"><input type="button"
-													class="btn btn-primary cpDel" value="삭제"></td>
-											</tr>
-											<tr>
-												<td><input type="checkbox"></td>
-												<td>쿠폰명</td>
-												<td>쿠폰기한</td>
-												<td align="right"><input type="button"
-													class="btn btn-primary cpDel" value="삭제"></td>
-											</tr>
-											<tr>
-												<td><input type="checkbox"></td>
-												<td>쿠폰명</td>
-												<td>쿠폰기한</td>
-												<td align="right"><input type="button"
-													class="btn btn-primary cpDel" value="삭제"></td>
-											</tr>
-										</table>
-									</div>
-
-								</div>
-								<hr>
+								
 								<h4 id="item-2-3">포인트 환전</h4>
 								<br>
 								<div>
