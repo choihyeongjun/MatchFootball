@@ -29,10 +29,11 @@ public class DoeunController {
 	
 	
 	@RequestMapping("/profile")// 프로필 
-	public ModelAndView profile() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("doeun/userprofile");//jsp 경로 지정
-		return mav;
+	public String profile	(MembersVO mb, Model model) {
+	
+		mb.setId("105");
+		model.addAttribute("mb", dao.getUser(mb));
+		return "doeun/userprofile";
 	}
 	
 	@RequestMapping(value="/mypage")// 마이페이지 메인

@@ -17,4 +17,6 @@ public class P_matchVO {//개인매치
 	String m_hour;//매치시간
 	String t_type;//경기상태
 	String f_id;//구장아이디
+	int first;
+	int last;
 }

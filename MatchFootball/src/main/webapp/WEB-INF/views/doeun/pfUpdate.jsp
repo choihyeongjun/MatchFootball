@@ -8,9 +8,7 @@
 <link rel="shortcut icon" href="/heunheuntrip/img/favicon.ico">
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<link
-	href="${pageContext.request.contextPath}/resources/css/animate.css"
-	rel="stylesheet">
+
 <link
 	href="${pageContext.request.contextPath}/resources/css/selectric.css"
 	rel="stylesheet">
