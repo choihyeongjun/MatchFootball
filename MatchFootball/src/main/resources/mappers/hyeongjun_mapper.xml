@@ -4,22 +4,31 @@
 
 <mapper namespace="co.company.MatchFootball.mapper.HyeongjunMapper"> <!-- 패키지.EmpMapper -->
 <!-- 용병리스트 뽑기 -->
-	<select id="getbollowlist" parameterType="membersVO" resultType="membersVO">
-	SELECT 
-		id,name,gender,location1,pnum,manner,lv,pos
-		from members
-		where author2='Y'
-	</select>
-	<select id="bollowsearch" parameterType="membersVO" resultType="membersVO">
-	SELECT id,name
-	from members
-	where id=#{id}
-	</select>
-	
-	<select id="invitelist" parameterType="inviteVO" resultType="inviteVO">
-	SELECT i.c_id,m.name,i.s_date,m.pnum,i.comm,i.check1,m.t_name
-	from members m,invite i
-	where i.r_id=#{r_id}
-	</select>
+   <select id="getbollowlist" parameterType="membersVO" resultType="membersVO">
+   SELECT 
+      id,name,gender,location1,pnum,manner,lv,pos
+      from members
+      where author2='Y'
+   </select>
+   <select id="bollowsearch" parameterType="membersVO" resultType="membersVO">
+   SELECT id,name
+   from members
+   where id=#{id}
+   </select>
+   
+   <select id="invitelist" parameterType="inviteVO" resultType="inviteVO">
+   SELECT i.c_id,m.name,i.s_date,m.pnum,i.comm,i.check1,m.t_name
+   from members m,invite i
+   where i.r_id=#{r_id}
+   </select>
+   <select id="invitestore" parameterType="inviteVO" resultType="inviteVO">
+      insert into invite value(#{id},sysdate,#{comm},#{check1})
+   </select>
+   <select id="login" resultType="membersVO">
+      select id,pw
+      from members
+      where id=#{id} and pw=#{pw}
+   </select>
+   
 
 </mapper>

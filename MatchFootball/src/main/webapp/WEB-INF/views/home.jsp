@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -6,8 +7,22 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Home</title>
+        
     </head>
     <body>
+    <c:choose>
+       <c:when test="${sessionScope.id==null}">
+       <li>
+          <a href="${pageContext.request.contextPath}/login">로그인</a>
+       </li>
+       </c:when>
+       <c:otherwise>
+       ${sessionScope.id} 님이 로그인중입니다
+       <li>
+          <a href="${pageContext.request.contextPath}/logout">로그아웃</a>
+       </li>
+       </c:otherwise>
+    </c:choose>
         <h1>Hello World!</h1>
         <p>This is the homepage!</p>
     </body>
