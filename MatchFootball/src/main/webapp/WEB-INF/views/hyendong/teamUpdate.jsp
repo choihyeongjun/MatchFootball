@@ -29,28 +29,30 @@
 	  <li><a href="http://localhost/MatchFootball/#">팀 초대</a></li>
 	  <li><a href="http://localhost/MatchFootball/#">팀 리스트</a></li>
 	</ul>
+	<form action="teamUpdateUpdate" method="post">
 	<div align="center">
 		<div>
 			<h1>팀 수 정</h1>
 		</div>
 		<hr />
 		<div>
+		<input type="text" name="t_num" value="${teamUpdate.t_num }" style="display:none" />
 			<div class="input-group mb-3" style="width: 30%">
 				<span class="input-group-text" id="basic-addon1" style="width: 16%">팀&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;명</span>
-				<input type="text" class="form-control" placeholder="TeamName"
-					aria-label="Username" aria-describedby="basic-addon1">
+				<input type="text" class="form-control"
+					aria-label="Username" aria-describedby="basic-addon1" name="t_name" value="${teamUpdate.t_name}">
 			</div>
 
 			<div class="input-group mb-3" style="width: 30%">
 				<span class="input-group-text" id="basic-addon1" style="width: 16%">팀
 					&nbsp;원&nbsp;수</span> <input type="text" class="form-control"
-					placeholder="TeamMax" aria-label="Username"
-					aria-describedby="basic-addon1">
+					placeholder="TeamMax" aria-label="Username" name="t_max"
+					aria-describedby="basic-addon1" value="${teamUpdate.t_max}">
 			</div>
 			
 			<div style="width: 30%">
 				<span class="input-group-text" id="basic-addon1" style="width: 16%">지&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;역</span>
-				<select class="form-select" aria-label="Default select example" style="float:left">
+				<select class="form-select" aria-label="Default select example" style="float:left" name="t_address">
 					<option selected>선택</option>
 					<option value="1">중구</option>
 					<option value="2">수성구</option>
@@ -59,7 +61,7 @@
 			
 			<div style="width: 30%">
 				<span class="input-group-text" id="basic-addon1" style="width: 16%">경기 유형</span>
-				<select class="form-select" aria-label="Default select example">
+				<select class="form-select" aria-label="Default select example" name="t_type">
 					<option selected>선택</option>
 					<option value="1">축구</option>
 					<option value="2">풋살</option>
@@ -68,18 +70,19 @@
 			<br>
 			<div class="input-group" style="width: 30%">
 				<input type="file" class="form-control" id="inputGroupFile04"
-					aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+					aria-describedby="inputGroupFileAddon04" aria-label="Upload" name="t_logo" value="${teamUpdate.t_logo }">
 			</div>
 			<br>
 			<div class="input-group" style="width: 30%">
 				<span class="input-group-text" style="width: 16%">팀
 					&nbsp;소&nbsp;개</span>
-				<textarea class="form-control" aria-label="With textarea"></textarea>
+				<textarea class="form-control" aria-label="With textarea" name="t_info">${teamUpdate.t_info }</textarea>
 			</div>
 			<br>
 		</div>
-		<button type="button" class="btn btn-primary">팀 수정</button>
+		<button type="submit" class="btn btn-primary">팀 수정</button>
 		<button type="button" class="btn btn-primary">뒤로</button>
 	</div>
+	</form>
 </body>
 </html>

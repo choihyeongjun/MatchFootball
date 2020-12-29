@@ -13,43 +13,36 @@
 <meta name="author" content="" />
 
 <title>관리자페이지</title>
-
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js" ></script>
 <link href="${pageContext.request.contextPath}/resources/seemoo/css/styles.css" rel="stylesheet" />
 <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous" ></script>
 </head>
 
 <body class="sb-nav-fixed">
 	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-		<a class="navbar-brand" href="${pageContext.request.contextPath}/admin">관리자페이지</a>
-		<button class="btn btn-link btn-sm order-1 order-lg-0"
-			id="sidebarToggle" href="#">
+		<a class="navbar-brand"  href="${pageContext.request.contextPath}/admin">관리자페이지</a>
+		<button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#">
 			<i class="fas fa-bars"></i>
 		</button>
 		
-
 		<!-- Navbar Search-->
 		<form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
 			<div class="input-group">
-				<input class="form-control" type="text" placeholder="Search for..." 
-				aria-label="Search" aria-describedby="basic-addon2" />
 				<div class="input-group-append">
-					<button class="btn btn-primary" type="button">
-						<i class="fas fa-search"></i>
-					</button>
 				</div>
 			</div>
 		</form>
 		
 		<!-- 오른쪽 상단-->
 		<ul class="navbar-nav ml-auto ml-md-0">
-			<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" 
-			id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				<i class="fas fa-user fa-fw"></i></a>
+			<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle"	id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				<i class="fas fa-user fa-fw"></i>
+			</a>
 				<div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
 					<a class="dropdown-item" href="${pageContext.request.contextPath}/match">홈페이지</a> 
-					<a class="dropdown-item" href="#">엑티비티 로그</a>
-					<div class="dropdown-divider"></div>
+				<div class="dropdown-divider"></div>
 					<a class="dropdown-item" href="${pageContext.request.contextPath}/admin">로그아웃</a>
 				</div>
 			</li>
@@ -133,8 +126,6 @@
 								</a>
 								
 								
-								
-								
 								<div class="collapse" id="pagesCollapseAuth"
 									aria-labelledby="headingOne"
 									data-parent="#sidenavAccordionPages">
@@ -163,12 +154,15 @@
 
 							</nav>
 						</div>
+						
 						<div class="sb-sidenav-menu-heading">통계관리</div>
-						<a class="nav-link" href="charts.html">
+						<a class="nav-link" href="${pageContext.request.contextPath}/admin/point">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-chart-area"></i>
 							</div> 통계관리
-						</a> <a class="nav-link" href="${pageContext.request.contextPath}/admin/point">
+						</a>
+						 
+						<a class="nav-link" href="${pageContext.request.contextPath}/admin/point">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-table"></i>
 							</div> 쿠폰관리 및 포인트관리
@@ -176,22 +170,19 @@
 					</div>
 				</div>
 				
-				
 				<div class="sb-sidenav-footer">
-					<div class="small">Logged in as:</div>
-					Start Bootstrap
+
+					<div class="small">고객을 위한 고객에 의한</div>
+					Match Football
 				</div>
 			</nav>
 		</div>
-
 		
 		<tiles:insertAttribute name="body" />
 		
-		
 		</div>
 	</div>
-	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/seemoo/js/scripts.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
 	<script src="${pageContext.request.contextPath}/resources/seemoo/assets/demo/chart-area-demo.js"></script>

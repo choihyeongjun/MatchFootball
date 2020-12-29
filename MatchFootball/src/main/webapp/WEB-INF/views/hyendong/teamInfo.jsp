@@ -23,8 +23,9 @@
 	  <li ><a href="http://localhost/MatchFootball/teamGallery">팀 갤러리</a></li>
 	  <li ><a href="http://localhost/MatchFootball/teamNotice">팀 공지</a></li>
 	  <li ><a href="http://localhost/MatchFootball/#">팀 초대</a></li>
-	  <li ><a href="http://localhost/MatchFootball/#">팀 리스트</a></li>
+	  <li ><a href="http://localhost/MatchFootball/teamList">팀 리스트</a></li>
 	</ul>
+	<form action="teamUpdate" method="get">
 	<div align="center" style="padding-bottom: 606px">
 		<div>
 			<h1>팀 정 보</h1>
@@ -32,6 +33,7 @@
 		<hr />
 		<div style="float:left; margin-left:30%" >
 			<img src="resources/to.png" class="img-thumbnail" width="350px" height="350px">
+			<input type="text" name="t_num" value="${teamInfo.t_num }" style="display:none"/>
 			<table class="table table-bordered">
 					<tr>
 						<th scope="col">팀명</th>
@@ -83,8 +85,9 @@
 			</table>
 		</div>
 		<div style="float:bottom">
-		<button type="button" class="btn btn-primary">팀 정보 변경</button>
+		<button type="submit" class="btn btn-primary">팀 정보 변경</button>
 		</div>
 	</div>
+	</form>
 </body>
 </html>
