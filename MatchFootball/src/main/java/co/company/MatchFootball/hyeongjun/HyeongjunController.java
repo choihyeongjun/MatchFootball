@@ -126,6 +126,10 @@ public class HyeongjunController {
       param.put("check1","초대중..");
       hyeongjunMapper.invitestore(param);
    }
+   @RequestMapping("/fieldlist/fielddetail")
+   public String fielddetail() {
+	   return "hyeongjun/fielddetail";
+   }
 
 
 }
