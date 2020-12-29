@@ -37,13 +37,13 @@
 						<th scope="col">팀명</th>
 						<td>${teamInfo.t_name}</td>
 						<th scope="col">연령대</th>
-						<td>10세</td>
+						<td>${teamInfo.t_age }</td>
 					</tr>
 					<tr>
 						<th scope="row">팀원수</th>
 						<td>${teamInfo.t_max }</td>
 						<th scope="row">실력</th>
-						<td>중상</td>
+						<td>${teamInfo.t_type }</td>
 					</tr>
 					<tr>
 						<th scope="row">지역</th>
@@ -72,13 +72,13 @@
 					</tr>
 				</thead>
 				<tbody>
-				<%-- <c:forEach items="${teamMembers}" var="teamMembers">
+				<c:forEach items="${teamMembers}" var="teamMembers">
 					<tr>
 						<th scope="row">1</th>
 						<td>${teamMembers.id }</td>
 						<td>${teamMembers.t_author }</td>
 					</tr>
-				</c:forEach> --%>
+				</c:forEach>
 				</tbody>
 			</table>
 		</div>

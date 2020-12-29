@@ -10,16 +10,45 @@
 	href="resources/css/dong/tournamentPVP/bracket.css">
 <link rel="stylesheet"
 	href="resources/css/dong/tournamentPVP/easyMaker.css">
-<script type="text/javascript"
-	src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+	crossorigin="anonymous"></script>
 </head>
+<style>
+.hi {
+	background-color: blue;
+}
+.hi2 {
+	background-color: gray;
+}
+</style>
 <script>
-	function Click() {
-		$(".match_list_cont01 l01").attr('class',
-				'match_list_cont01 click_on w01')
-	}
+$(function(){
+	$(".match_list_cont01 l01").on('click', function(){
+		$(this).attr('class', 'match_list_cont01 click_on w01')
+	});
+})
+
+$(function(){
+	$(".match_list_cont01 click_on w01").on('click', function(){
+		$(this).attr('class', 'match_list_cont01 l01')
+	});
+})
+
+$(function(){
+	$(".hi").on('click', function(){
+		$(this).attr('class', 'hi2')
+	});
+	
+	$(".hi2").on('click', function(){
+		$(this).attr('class', 'hi')
+	});
+})
 </script>
 <body>
+	<div class="hi">title0</div>
 	<div class="bracket_overflow" style="overflow: visible;" align="center">
 		<div class="match_list_outer" id="bracket_capture">
 			<div class="round_set_outer">

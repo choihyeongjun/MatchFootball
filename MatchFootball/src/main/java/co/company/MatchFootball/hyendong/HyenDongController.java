@@ -24,11 +24,6 @@ public class HyenDongController {
 	@Autowired
 	HyendongMapper hyendongMapper;
 	
-//	@ModelAttribute("teamMembers")
-//	public List<TeamlistVO> tList(){
-//		return hyendongMapper.getTeamMembers();
-//	}
-	
 	//팀생성
 	@RequestMapping("/teamMake")
 	public String teamMake() {
@@ -62,7 +57,7 @@ public class HyenDongController {
 	@RequestMapping("/teamInfo")
 	public String teamInfo(Model model, TeamVO teamVO) {
 		model.addAttribute("teamInfo", hyendongMapper.getTeam(teamVO));
-//		model.addAttribute("teamMembers", hyendongMapper.getTeamMembers());
+		model.addAttribute("teamMembers", hyendongMapper.getTeamMembers(teamVO));
 		return "hyendong/teamInfo";
 	}
 	//팀수정

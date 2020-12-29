@@ -42,6 +42,7 @@
 	SELECT t_num,
 		   t_name,
 		   t_max,
+		   t_age,
 		   t_address,
 		   t_type,
 		   t_info,
@@ -51,11 +52,7 @@
 </select>
 
 <!-- 팀원 조회 -->
-<select id="getTeamMembers" resultType="TeamlistVO">
-	SELECT t_num,
-		   id,
-		   t_author
-	FROM teamlist
-	where t_num = #{t_num}
+<select id="getTeamMembers" parameterType="TeamlistVO" resultType="TeamlistVO">
+	select * from teamlist where t_num = #{t_num}
 </select>
 </mapper>
