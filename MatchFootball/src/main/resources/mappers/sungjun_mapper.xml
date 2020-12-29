@@ -9,28 +9,33 @@
 	
 	select * from p_match
 	where m_date = #{m_date}
-	
 </select>
 <!--point 내역  -->
 <select id="pointconselect" parameterType="PointVO" resultType="PointVO">
-	select * from( select a.*, rownum rn from (
 	select * from point
-	where p_id =#{p_id}
-	) a  ) b  where rn between #{first} and #{last} order by p_seq desc
+	where p_id =#{p_id} and <![CDATA[rownum <=3]]>
+	order by p_date desc
 </select>
-<!--point 내역 수 페이징  -->
-<select id="getCount" resultType="int">
-	SELECT COUNT(*) FROM point
+<!--point 전체 내역  -->
+<select id="pointallselect" parameterType="PointVO" resultType="PointVO">
+	SELECT * FROM point
+	where p_id = #{p_id}
 </select>
 <!--p_match 내역 수 페이징  -->
 <select id="getCount1" resultType="int">
 	SELECT COUNT(*) FROM p_match
-</select>
-
-<!--경기 일정 조회  -->
-<select id="pmatchlist" parameterType="P_matchVO" resultType="P_matchVO">
-	select * from p_match
 	where m_id = #{m_id}
 </select>
-
+<!--경기 일정 조회  -->
+<select id="pmatchlist" parameterType="P_matchVO" resultType="P_matchVO">
+select * from( select a.*, rownum rn from (
+	select * from p_match
+	where m_id = #{m_id}
+	order by m_no desc
+	) a  ) b  where rn between #{first} and #{last} 
+</select>
+<select id="memberselect" parameterType="MembersVO" resultType="MembersVO">
+select * from members
+where id=#{id}
+</select>
 </mapper>

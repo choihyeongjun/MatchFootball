@@ -132,6 +132,24 @@ body {
 	color: white;
 }
 </style>
+<script>
+$(function() {
+	$(".pointalll").on("click",function(event){
+		var modal = $("#staticBackdrop")
+		var no = $(event.target).data("num");
+		//ajax
+		$.ajax({
+			url : 'managerpage?id=' + num,
+			//dataType : 'html',
+			success : function(result) {
+				modal.find('.modal-body').html(result);
+				modal.modal('show');
+			}
+		});
+
+	})
+})
+</script>
 </head>
 <body style="background-color: #fafafa;">
 	<div class="container">
@@ -142,7 +160,7 @@ body {
 					안녕하세요<i class="fas fa-futbol fa-2x" style="color: black"></i>
 				</h2>
 				<br>
-				<h5 style="font-weight: bold; margin: 0px">김현동매니저님</h5>
+				<h5 style="font-weight: bold; margin: 0px">${member.name} 매니저님</h5>
 			</div>
 			<div class="cache">
 				<div>
@@ -150,7 +168,7 @@ body {
 						나의 캐시 잔액 <i class="fas fa-comment-dollar fa-3x"
 							style="margin-left: 10px; color: #ffc645;"></i>
 					</p>
-					<h3>10000 원</h3>
+					<h3>${member.point }원</h3>
 				</div>
 				<div class="btn-right cachec">
 					<a class="btn sm" href="#">캐시 충전</a>
@@ -179,18 +197,18 @@ body {
 					</div>
 				</c:forEach>
 				<script>
-					function goPage1(p) {
-						location.href = "managermypage?page=" + p;
+					function goPage(q) {
+						location.href = "managermypage?page=" + q;
 					}
 				</script>
-				<my:paging paging="${paging1}" jsfunc="goPage1" />
-				
+				<my:paging paging="${paging}" jsfunc="goPage" />
 			</div>
+			
 			<div class="allscedule">
 				<div class="allcha">
 					<h3>입금내역</h3>
 					<div class="scedulemore">
-						<a href="#">전체 보기</a>
+						<a class="pointalll" data-toggle="modal" data-target="#staticBackdrop">전체 보기</a>
 					</div>
 				</div>
 				<c:forEach var="p_point" items="${p_point }">
@@ -200,15 +218,27 @@ body {
 						</ul>
 					</div>
 				</c:forEach>
-				<script>
-					function goPage(p) {
-						location.href = "managermypage?page=" + p;
-
-					}
-				</script>
-				<my:paging paging="${paging}" jsfunc="goPage" />
 			</div>
 		</div>
 	</div>
+	<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <div align="center"><h1>전체 입금 내역</h1></div>
+      <c:forEach var="p_pointall" items="${p_pointall }">
+					<div class="maaa">
+						<ul>
+							<li>${p_pointall.p_date }  ${p_pointall.npoint }원입금 </li>
+						</ul>
+					</div>
+				</c:forEach>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
