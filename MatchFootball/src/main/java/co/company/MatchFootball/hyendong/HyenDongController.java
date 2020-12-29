@@ -2,14 +2,13 @@ package co.company.MatchFootball.hyendong;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
@@ -17,7 +16,6 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import co.company.MatchFootball.mapper.HyendongMapper;
 import co.company.MatchFootball.vo.TeamVO;
-import co.company.MatchFootball.vo.TeamlistVO;
 
 @Controller
 public class HyenDongController {
@@ -62,8 +60,15 @@ public class HyenDongController {
 	}
 	//팀수정
 	@RequestMapping("/teamUpdate")
-	public String teamUpdate() {
+	public String teamUpdate(Model model, TeamVO teamVO) {
+		model.addAttribute("teamUpdate", hyendongMapper.getTeam(teamVO));
 		return "hyendong/teamUpdate";
+	}
+	//팀수정처리
+	@PostMapping("/teamUpdateUpdate")
+	public String teamUpdateUpdate(TeamVO teamVO) {
+		hyendongMapper.teamUpdate(teamVO);
+		return "hyendong/teamInfo";
 	}
 	//팀갤러리
 	@RequestMapping("/teamGallery")

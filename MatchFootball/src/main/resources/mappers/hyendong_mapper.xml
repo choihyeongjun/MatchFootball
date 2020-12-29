@@ -55,4 +55,16 @@
 <select id="getTeamMembers" parameterType="TeamlistVO" resultType="TeamlistVO">
 	select * from teamlist where t_num = #{t_num}
 </select>
+
+<!-- 팀 정보 변경 -->
+<update id="teamUpdate" >
+	UPDATE TEAM
+	SET t_name = #{t_name},
+		t_max = #{t_max},
+		t_address = #{t_address},
+		t_type = #{t_type},
+		t_logo = #{t_logo},
+		t_info = #{t_info}
+	WHERE t_num = #{t_num}
+</update>
 </mapper>
