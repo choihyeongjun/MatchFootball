@@ -73,7 +73,7 @@ public class JunController {
 	}
 
 	@RequestMapping(value = "/managermypage")
-	public ModelAndView test4(Paging paging, PointVO p_pointVO, P_matchVO p_matchVO, TeammatchVO teammatch,
+	public ModelAndView test4(Paging paging, PointVO p_pointVO, P_matchVO p_matchVO, TeammatchVO team_matchVO,
 			MembersVO membersvo, HttpServletResponse response, Model model, HttpServletRequest request)
 			throws IOException {
 
@@ -94,7 +94,7 @@ public class JunController {
 		paging.setTotalRecord(dao.getCount1(p_matchVO));
 		model.addAttribute("paging", paging);
 		model.addAttribute("p_match", dao.pmatchlist(p_matchVO));
-
+		//model.addAttribute("p_match", dao.pmatchlist(team_matchVO));
 		return new ModelAndView("sungjun/managermypage");
 	}
 

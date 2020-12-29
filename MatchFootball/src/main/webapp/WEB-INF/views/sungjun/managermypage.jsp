@@ -36,7 +36,7 @@ body {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding-bottom: 20px;
+	padding-bottom: 10px;
 }
 
 .cache {
@@ -133,22 +133,7 @@ body {
 }
 </style>
 <script>
-$(function() {
-	$(".pointalll").on("click",function(event){
-		var modal = $("#staticBackdrop")
-		var no = $(event.target).data("num");
-		//ajax
-		$.ajax({
-			url : 'managerpage?id=' + num,
-			//dataType : 'html',
-			success : function(result) {
-				modal.find('.modal-body').html(result);
-				modal.modal('show');
-			}
-		});
 
-	})
-})
 </script>
 </head>
 <body style="background-color: #fafafa;">
@@ -183,16 +168,16 @@ $(function() {
 					</div>
 				</div>
 				<c:forEach var="p_match" items="${p_match }">
-					<div class="mamama">
+					<div class="mamama" >
 						<ul>
 							<li>
 								<div class="matchc">
-									<a style="">${p_match.m_date } ${p_match.f_name }
-										${p_match.m_hour }</a> <a class="btn sf" href="#"> 리뷰 작성</a>
-										<input type = "hidden" value="${p_match.m_no }">
+									<a data-toggle="modal" data-target="#matchdetail"  style="cursor:pointer;">
+									${p_match.m_date } ${p_match.f_name } ${p_match.m_hour }</a> 
+									<a class="btn sf" href="#"> 리뷰 작성</a>
+									<input type = "hidden" value="${p_match.m_no }">
 								</div>
 							</li>
-
 						</ul>
 					</div>
 				</c:forEach>
@@ -203,12 +188,22 @@ $(function() {
 				</script>
 				<my:paging paging="${paging}" jsfunc="goPage" />
 			</div>
-			
+			<!-- Modal -->
+<div class="modal fade" id="matchdetail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        
+      </div>
+    </div>
+  </div>
+</div>
+			<!-- 입금 -->
 			<div class="allscedule">
 				<div class="allcha">
 					<h3>입금내역</h3>
 					<div class="scedulemore">
-						<a class="pointalll" data-toggle="modal" data-target="#staticBackdrop">전체 보기</a>
+						<a class="pointalll" data-toggle="modal" data-target="#staticBackdrop"  style="cursor:pointer;">전체 보기</a>
 					</div>
 				</div>
 				<c:forEach var="p_point" items="${p_point }">
@@ -221,17 +216,13 @@ $(function() {
 			</div>
 		</div>
 	</div>
-	<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-      <div align="center"><h1>전체 입금 내역</h1></div>
+	<div class="modal fade" id="staticBackdrop" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+      <div class="modal-body" style="background-color: white;">
+      <div align="center" style="margin-bottom:10px;"><h1>전체 입금 내역</h1></div>
+      <hr>
       <c:forEach var="p_pointall" items="${p_pointall }">
-					<div class="maaa">
+					<div class="maaa" align="center">
 						<ul>
 							<li>${p_pointall.p_date }  ${p_pointall.npoint }원입금 </li>
 						</ul>
