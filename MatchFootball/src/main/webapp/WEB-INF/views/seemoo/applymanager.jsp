@@ -45,57 +45,53 @@
 									<thead align="center">
 										<tr>
 											<th style="width: 10px;">No.</th>
-											<th>ID</th>
-											<th>Name</th>
+											<th style="width: 80px;">ID</th>
+											<th>이름</th>
 											<th>연락처</th>
-											<th>권한</th>
+											<th style="width: 180px;">권한</th>
+											<th style="width: 180px;">설문지</th>
 											<th>포부</th>
-											<th>설문지</th>
-											<th>이미지</th>
+											<th></th>
 										</tr>
 									</thead>
 									<tfoot align="center">
 										<tr>
 											<th>No.</th>
 											<th>ID</th>
-											<th>Name</th>
+											<th>이름</th>
 											<th>연락처</th>
 											<th>권한</th>
-											<th>포부</th>
 											<th>설문지</th>
-											<th>이미지</th>
+											<th>포부</th>
+											<th></th>
 										</tr>
 									</tfoot>
 									<tbody align="center">
 										<tr>
-											<td>1</td>
-											<td>형준</td>
-											<td>최형준</td>
-											<td>010-1111-1234</td>
 											<td></td>
 											<td></td>
 											<td></td>
 											<td></td>
-										</tr>
-										<tr>
-											<td>2</td>
-											<td>도은</td>
-											<td>김도은</td>
-											<td>010-2222-1234</td>
+											<td>
+												<select name="applymanager">
+													<option value="" selected="selected">선택</option>
+													<option value="일반회원">일반회원</option>
+													<option value="매니저">매니저</option>
+													<option value="매니저대기">매니저대기</option>
+													<option value="매니저정지">매니저정지</option>
+												</select>
+											</td>
+											<td>
+												<select name="test1">
+													<option value="" selected="selected">선택</option>
+													<option value="Y">Y</option>
+													<option value="N">N</option>
+												</select>
+											</td>
 											<td></td>
-											<td></td>
-											<td></td>
-											<td></td>
-										</tr>
-										<tr>
-											<td>3</td>
-											<td>현동</td>
-											<td>김현동</td>
-											<td>010-3333-1234</td>
-											<td></td>
-											<td></td>
-											<td></td>
-											<td></td>
+											<td>
+												<input type="button" value="삭제" onclick="">
+											</td>
 										</tr>
 									</tbody>
 								</table>

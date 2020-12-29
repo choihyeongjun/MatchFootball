@@ -6,8 +6,7 @@
 <head>
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
 <title>관리자페이지</title>
@@ -17,9 +16,8 @@
 </head>
 <body class="sb-nav-fixed">
 	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-		<a class="navbar-brand" href="${pageContext.request.contextPath}/admin">관리자페이지</a>
-		<button class="btn btn-link btn-sm order-1 order-lg-0"
-			id="sidebarToggle" href="#">
+		<a class="navbar-brand" style="text-align: center;" href="${pageContext.request.contextPath}/admin">관리자페이지</a>
+		<button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#">
 			<i class="fas fa-bars"></i>
 		</button>
 		<!-- Navbar Search-->
@@ -193,12 +191,13 @@
 							<div class="card mb-4">
 								<div class="card-header">
 									<i class="fas fa-chart-area mr-1"></i> 이용자현황 
+								</div>
 								<div class="card-body">
 									<canvas id="myAreaChart" width="100%" height="40"></canvas>
 								</div>
 							</div>
 						</div>
-					</div>
+					
 					
 					<!-- 매출현황 -->
 					<div class="col-xl-6">
@@ -211,56 +210,53 @@
 								</div>
 							</div>
 						</div>
-				</div>	
+					</div>	
+				</div>
 				
-					<!-- 유저관리 -->
+					<!-- 팀현황 -->
 					<div class="card mb-4">
 						<div class="card-header">
-							<i class="fas fa-table mr-1"></i> 유저관리
+							<i class="fas fa-table mr-1"></i> 현재 팀 현황
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
 								<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-									<thead>
+									<thead align="center">
 										<tr>
-											<th>No.</th>
-											<th>ID</th>
-											<th>Name</th>
-											<th>연락처</th>
-											<th>권한</th>
-											<th>팀</th>
-											<th>매너점수</th>
-											<th>포인트</th>
+											<th style="width: 10px;">No.</th>
+											<th>팀이름</th>
+											<th>팀평균레벨</th>
+											<th>팀승률</th>
+											<th>팀권한</th>
+											<th>팀매너점수</th>
+											<th></th>
 										</tr>
 									</thead>
-									<tfoot>
+									<tfoot align="center">
 										<tr>
 											<th>No.</th>
-											<th>ID</th>
-											<th>Name</th>
-											<th>연락처</th>
-											<th>권한</th>
-											<th>팀</th>
-											<th>매너점수</th>
-											<th>포인트</th>
+											<th>팀이름</th>
+											<th>팀평균레벨</th>
+											<th>팀승률</th>
+											<th>팀권한</th>
+											<th>팀매너점수</th>
+											<th></th>
 										</tr>
 									</tfoot>
-									<tbody>
-									<c:forEach items="${members}" var="member">
+									<tbody align="center">
 										<tr>
+											<td>1</td>
+											<td>형준와 아이들</td>
+											<td>최형준</td>
+											<td>11</td>
 											<td></td>
-											<td>${member.id}</td>
-											<td>${member.name}</td>
-											<td>${member.pnum}</td>
-											<td><%-- <form:select path="author" items="${members}" itemLabel="author" itemValue="author2" /> --%></td>										
-											<td>${member.t_name}</td>
-											<td>${member.manner}</td>
-											<td>${member.point}</td>
-											<td width="10"><input type="button" value="프로필" onclick=""></td>
-											<td width="10"><input type="button" value="수정" onclick=""></td>
-											<td width="10"><input type="button" value="삭제" onclick=""></td>
+											<td></td>
+											<td>
+											<input type="button" value="상세프로필" onclick="">
+											<input type="button" value="수정" onclick="">
+											<input type="button" value="삭제" onclick="">
+											</td>
 										</tr>
-									</c:forEach>
 									</tbody>
 								</table>
 							</div>
@@ -269,34 +265,37 @@
 		
 				<div class="row">
 				
-				<div class="col-xl-6">
+									<!-- 팀현황 -->
+					<div class="card mb-4">
 						<div class="card-header">
 							<i class="fas fa-table mr-1"></i> 현재 팀 현황
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
 								<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-									<thead>
+									<thead align="center">
 										<tr>
-											<th>No.</th>
+											<th style="width: 10px;">No.</th>
 											<th>팀이름</th>
-											<th>팀주장</th>
-											<th>팀인원</th>
+											<th>팀평균레벨</th>
 											<th>팀승률</th>
 											<th>팀권한</th>
+											<th>팀매너점수</th>
+											<th></th>
 										</tr>
 									</thead>
-									<tfoot>
+									<tfoot align="center">
 										<tr>
 											<th>No.</th>
 											<th>팀이름</th>
-											<th>팀주장</th>
-											<th>팀인원</th>
+											<th>팀평균레벨</th>
 											<th>팀승률</th>
 											<th>팀권한</th>
+											<th>팀매너점수</th>
+											<th></th>
 										</tr>
 									</tfoot>
-									<tbody>
+									<tbody align="center">
 										<tr>
 											<td>1</td>
 											<td>형준와 아이들</td>
@@ -304,22 +303,11 @@
 											<td>11</td>
 											<td></td>
 											<td></td>
-										</tr>
-										<tr>
-											<td>2</td>
-											<td>도은와 성준</td>
-											<td>허성준</td>
-											<td>2</td>
-											<td></td>
-											<td></td>
-										</tr>
-										<tr>
-											<td>3</td>
-											<td>현동와 재형이</td>
-											<td>김현동</td>
-											<td>7</td>
-											<td></td>
-											<td></td>
+											<td>
+											<input type="button" value="상세프로필" onclick="">
+											<input type="button" value="수정" onclick="">
+											<input type="button" value="삭제" onclick="">
+											</td>
 										</tr>
 									</tbody>
 								</table>
@@ -343,18 +331,6 @@
 					
 				</div>
 			</main>
-			<footer class="py-4 bg-light mt-auto">
-				<div class="container-fluid">
-					<div
-						class="d-flex align-items-center justify-content-between small">
-						<div class="text-muted">Copyright &copy; Your Website 2020</div>
-						<div>
-							<a href="#">Privacy Policy</a> &middot; <a href="#">Terms
-								&amp; Conditions</a>
-						</div>
-					</div>
-				</div>
-			</footer>
 		</div>
 	</div>
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
