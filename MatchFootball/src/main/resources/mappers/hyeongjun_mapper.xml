@@ -29,6 +29,13 @@
       from members
       where id=#{id} and pw=#{pw}
    </select>
+   <select id="fieldinsert" parameterType="fieldVO" resultType="fieldVO">
+   	insert into field(f_id,name,ttype,location1,location2,state,price,img,comm) values(#{f_id},#{name},#{ttype},#{location1},#{location2},'사용가능',#{price},#{img},#{comm})
+   </select>
+   <select id="fieldlist" resultType="fieldVO">
+   	select *
+   	from field
+   </select>
    
 
 </mapper>

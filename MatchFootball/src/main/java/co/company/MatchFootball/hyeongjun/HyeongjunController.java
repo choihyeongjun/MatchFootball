@@ -1,5 +1,7 @@
 package co.company.MatchFootball.hyeongjun;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,8 +14,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import co.company.MatchFootball.mapper.HyeongjunMapper;
+import co.company.MatchFootball.vo.FieldVO;
 import co.company.MatchFootball.vo.InviteVO;
 import co.company.MatchFootball.vo.MembersVO;
 
@@ -39,13 +45,29 @@ public class HyeongjunController {
       //model.addAttribute("list",hyeongjunMapper.getbollowlist());
       return "hyeongjun/bollowlist";
    }
-   @RequestMapping("/dd")
-   public String userjoin() {
+   @RequestMapping("/fieldcommit")
+   public String userjoin(HttpServletRequest request, FieldVO vo) throws IllegalStateException, IOException {
+	   MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+		// 이미지 파일
+		MultipartFile multipartFile = multipartRequest.getFile("uploadFile");
+
+		if (!multipartFile.isEmpty() && multipartFile.getSize() > 0) {
+			String path = request.getSession().getServletContext().getRealPath("/images");
+			System.out.println("path=" + path);
+			multipartFile.transferTo(new File(path, multipartFile.getOriginalFilename()));
+			vo.setImg(multipartFile.getOriginalFilename());
+		}
+		hyeongjunMapper.fieldinsert(vo);
+      return "hyeongjun/fieldlist";
+   }
+   @RequestMapping("/fieldinsert")
+   public String fieldinsert() {
       return "hyeongjun/fieldcommit";
    }
 
    @RequestMapping("/fieldlist")
-   public String fieldlist() {
+   public String fieldlist(Model model,FieldVO vo) {
+	   model.addAttribute("list",hyeongjunMapper.fieldlist());
       return "hyeongjun/fieldlist";
    }
    @RequestMapping("/free")
@@ -82,6 +104,10 @@ public class HyeongjunController {
    @RequestMapping("/invitelist")
    public String invitelist() {
       return "hyeongjun/invitelist";
+   }
+   @RequestMapping("/productlist")
+   public String productlist() {
+	   return "hyeongjun/productlist";
    }
    @RequestMapping("/productdetail")
    public String productdetail() {

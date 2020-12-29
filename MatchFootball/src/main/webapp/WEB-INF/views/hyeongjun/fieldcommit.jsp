@@ -24,25 +24,31 @@
                     </div>
                 </div>
             </div>
-            <form action="#">
+            <form action="${pageContext.request.contextPath}/fieldcommit" method="post" encType="multipart/form-data">
                 <div >
                     <div class="col-lg-6 col-md-6">
-                        <input type="text" placeholder="id">
+                        <input type="text" name="f_id" placeholder="id">
                     </div>
                     <div class="col-lg-6 col-md-6">
-                        <input type="text" placeholder="field name">
-                    </div>
-                    <div class="col-lg-6 col-md-6">
-                        <input type="text" placeholder="location1 대분류">
-                    </div>
-                    <div class="col-lg-6 col-md-6">
-                        <input type="text" placeholder="location2 소분류">
+                        <input type="text" name="name" placeholder="구장이름">
                     </div>
                      <div class="col-lg-6 col-md-6">
-                        <input type="text" placeholder="이미지">
+                        <input type="text" name="ttype" placeholder="구장분류">
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <input type="text" name="location1" placeholder=" 대분류">
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <input type="text" name="location2 "placeholder="소분류">
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <input type="text" name="price "placeholder="가격">
+                    </div>
+                     <div class="col-lg-6 col-md-6">
+                        <input type="file" placeholder="이미지" name="uploadFile">
                     </div>
                     <div class="col-lg-12 text-center">
-                        <textarea placeholder="구장 상세 설명 및 가격"></textarea>
+                        <textarea name="comm" placeholder="구장 상세 설명"></textarea>
                         <button type="submit" class="site-btn">구장등록</button>
                     </div>
                 </div>
