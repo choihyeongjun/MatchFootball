@@ -11,7 +11,9 @@ public class FieldVO {
 	String location2;//지역소분류
 	String state;//상태
 	String r_date;//날짜
-	String time1;//에약시작시간
+	String time1;//예약시작시간
 	String time2;//예약종료시간
 	String price;//필드가격
+	String img;//구장이미지
+	String comm;
 }
