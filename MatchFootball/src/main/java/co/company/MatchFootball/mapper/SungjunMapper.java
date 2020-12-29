@@ -11,5 +11,5 @@ public interface SungjunMapper {
 	public List<PointVO> pointconselect(PointVO p_point);
 	public int getCount();
 	public List<P_matchVO> pmatchlist(P_matchVO p_match);
-	
+	public int getCount1();
 }

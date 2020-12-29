@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import co.company.MatchFootball.mapper.SungjunMapper;
@@ -72,26 +73,37 @@ public class JunController {
 	}
 
 	@RequestMapping(value = "/managermypage")
-	public ModelAndView test4(Paging paging, PointVO p_pointVO, P_matchVO p_matchVO, TeammatchVO teammatch,
-			HttpServletResponse response, Model model, HttpServletRequest request) throws IOException {
+	public ModelAndView test4(Paging paging,Paging paging1, PointVO p_pointVO, P_matchVO p_matchVO, TeammatchVO teammatch,
+			HttpServletResponse response, Model model, HttpServletRequest request ,
+			@RequestParam(value="Paging1",defaultValue="1" ,required = false) int page1) throws IOException {
 		
-		// 레코드 건수 조회
+		// 입금내역
 		paging.setPageUnit(3); // (한페이지를 출력 할)레코드 수
 		paging.setPageSize(5); // 페이지 번호 수
 		p_pointVO.setFirst(paging.getFirst());
 		p_pointVO.setLast(paging.getLast());
 		paging.setTotalRecord(dao.getCount());
 		model.addAttribute("paging", paging);
-		
 		p_pointVO.setP_id("105");
-		
-		p_matchVO.setM_id("105");
 		model.addAttribute("p_point", dao.pointconselect(p_pointVO));
+		
+		
+		//경기 내역
+		paging1.setPage(page1);
+		paging1.setPageUnit(3); // (한페이지를 출력 할)레코드 수
+		paging1.setPageSize(5); // 페이지 번호 수
+		p_matchVO.setFirst(paging1.getFirst());
+		p_matchVO.setLast(paging1.getLast());
+		paging1.setTotalRecord(dao.getCount1());
+		model.addAttribute("paging1", paging1);
+		p_matchVO.setM_id("105");
 		model.addAttribute("p_match" ,dao.pmatchlist(p_matchVO));
-
+		
 		return new ModelAndView("sungjun/managermypage");
 	}
-
+	
+	
+	
 	@RequestMapping(value = "/teammatch")
 	public ModelAndView test5(HttpServletResponse response) throws IOException {
 		return new ModelAndView("sungjun/teammatch");
