@@ -43,57 +43,43 @@
 									<thead align="center">
 										<tr>
 											<th style="width: 10px;">No.</th>
-											<th>팀이름</th>
-											<th>팀주장</th>
-											<th>블랙사유</th>
-											<th>남은기간</th>
-											<th></th>
+											<th style="width: 300px;">팀이름</th>
+											<th>팀레벨</th>
+											<th>팀권한</th>
+											<th>팀매너점수</th>
+											<th>정지날짜</th>
+											<th style="width: 500px;">블랙사유</th>
 										</tr>
 									</thead>
 									<tfoot align="center">
 										<tr>
 											<th>No.</th>
 											<th>팀이름</th>
-											<th>팀주장</th>
+											<th>팀레벨</th>
+											<th>팀권한</th>
+											<th>팀매너점수</th>
+											<th>정지날짜</th>
 											<th>블랙사유</th>
-											<th>남은기간</th>
-											<th></th>
 										</tr>
 									</tfoot>
 									<tbody align="center">
+									<c:forEach items="${teams}" var="team">
 										<tr>
 											<td>1</td>
-											<td>형준와 아이들</td>
-											<td>최형준</td>
-											<td>11</td>
-											<td></td>
+											<td>${team.t_name}</td>
+											<td>${team.t_level}</td>
 											<td>
-											<width="10"><input type="button" value="복귀" onclick="">
-											<width="10"><input type="button" value="삭제" onclick="">
+												<select name="job">
+													<option value="" selected="selected">선택</option>
+													<option value="일반">일반</option>
+													<option value="블랙">블랙</option>
+												</select>
 											</td>
-										</tr>
-										<tr>
-											<td>2</td>
-											<td>도은와 성준</td>
-											<td>허성준</td>
-											<td>2</td>
+											<td>${team.t_m}</td>
 											<td></td>
-											<td>
-											<width="10"><input type="button" value="복귀" onclick="">
-											<width="10"><input type="button" value="삭제" onclick="">
-											</td>
-										</tr>
-										<tr>
-											<td>3</td>
-											<td>현동와 재형이</td>
-											<td>김현동</td>
-											<td>7</td>
 											<td></td>
-											<td>
-											<width="10"><input type="button" value="복귀" onclick="">
-											<width="10"><input type="button" value="삭제" onclick="">
-											</td>
 										</tr>
+									</c:forEach>
 									</tbody>
 								</table>
 							</div>

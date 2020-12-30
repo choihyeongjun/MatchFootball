@@ -49,11 +49,17 @@ public class AdminController {
 		model.addAttribute("tvoselect", seemoomapper.teams(tvo));
 		return "no/seemoo/teaminfo";
 	}
-
-	@RequestMapping("/admin/blackteam") // 팀관리 페이지 (블랙리스트 된 팀)
-	public String blackteam() {
+	
+	@RequestMapping(value = "/admin/blackteam", method = RequestMethod.GET) // 팀관리 페이지 (블랙리스트 된 팀)
+	public String blackteam(Model model, TeamVO tvo, HttpServletRequest request, HttpServletResponse reponse) {
+		model.addAttribute("teams", seemoomapper.teamList());
 		return "seemoo/blackteam";
 	}
+
+//	@RequestMapping("/admin/blackteam") // 팀관리 페이지 (블랙리스트 된 팀)
+//	public String blackteam() {
+//		return "seemoo/blackteam";
+//	}
 
 	@RequestMapping(value = "/admin/manager", method = RequestMethod.GET) // 매니저관리 페이지
 	public String manager(Model model, TeamVO tvo, HttpServletRequest request, HttpServletResponse reponse) {
