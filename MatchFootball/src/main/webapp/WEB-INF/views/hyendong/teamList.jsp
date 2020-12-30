@@ -35,7 +35,7 @@ a { text-decoration:none ; color:#000000}
 					°¶·¯¸®</a></li>
 			<li><a href="http://localhost/MatchFootball/teamNotice">ÆÀ °øÁö</a></li>
 			<li><a href="http://localhost/MatchFootball/#">ÆÀ ÃÊ´ë</a></li>
-			<li><a href="http://localhost/MatchFootball/#">ÆÀ ¸®½ºÆ®</a></li>
+			<li><a href="http://localhost/MatchFootball/teamList">ÆÀ ¸®½ºÆ®</a></li>
 		</ul>
 		<div align="center">
 			<br>

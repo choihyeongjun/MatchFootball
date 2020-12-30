@@ -8,9 +8,10 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -65,7 +66,7 @@ public class HyenDongController {
 		return "hyendong/teamUpdate";
 	}
 	//팀수정처리
-	@PostMapping("/teamUpdateUpdate")
+	@RequestMapping(value="/teamUpdateUpdate")
 	public String teamUpdateUpdate(TeamVO teamVO) {
 		hyendongMapper.teamUpdate(teamVO);
 		return "hyendong/teamInfo";
@@ -89,6 +90,11 @@ public class HyenDongController {
 	@RequestMapping("/teamNoticeInsert")
 	public String teamNoticeInsert() {
 		return "hyendong/teamNoticeInsert";
+	}
+	//팀 초대
+	@RequestMapping("/teamInvite")
+	public String teamInvite() {
+		return "hyendong/teamInvite";
 	}
 	//전체 팀 보기
 	@RequestMapping(value="/teamList")

@@ -86,6 +86,7 @@
 		</div>
 		<div style="float:bottom">
 		<button type="submit" class="btn btn-primary">팀 정보 변경</button>
+		<button type="button" class="btn btn-primary">팀 가입 신청</button>
 		</div>
 	</div>
 	</form>
