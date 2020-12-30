@@ -26,11 +26,11 @@
 	  <li><a href="http://localhost/MatchFootball/teamInfo">팀 정보</a></li>
 	  <li><a href="http://localhost/MatchFootball/teamGallery">팀 갤러리</a></li>
 	  <li><a href="http://localhost/MatchFootball/teamNotice">팀 공지</a></li>
-	  <li><a href="http://localhost/MatchFootball/#">팀 초대</a></li>
-	  <li><a href="http://localhost/MatchFootball/#">팀 리스트</a></li>
+	  <li><a href="http://localhost/MatchFootball/teamInvite">팀 초대</a></li>
+	  <li><a href="http://localhost/MatchFootball/teamList">팀 리스트</a></li>
 	</ul>
 	<form action="teamUpdateUpdate" method="post">
-	<div align="center">
+	<div align="center" style="margin-bottom: 206px;">
 		<div>
 			<h1>팀 수 정</h1>
 		</div>
@@ -54,8 +54,14 @@
 				<span class="input-group-text" id="basic-addon1" style="width: 16%">지&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;역</span>
 				<select class="form-select" aria-label="Default select example" style="float:left" name="t_address">
 					<option selected>선택</option>
-					<option value="1">중구</option>
-					<option value="2">수성구</option>
+					<option value="중구">중구</option>
+					<option value="수성구">수성구</option>
+					<option value="북구">북구</option>
+					<option value="동구">동구</option>
+					<option value="남구">남구</option>
+					<option value="서구">서구</option>
+					<option value="달서구">달서구</option>
+					<option value="달성군">달성구</option>
 				</select> 
 			</div>
 			
@@ -63,8 +69,8 @@
 				<span class="input-group-text" id="basic-addon1" style="width: 16%">경기 유형</span>
 				<select class="form-select" aria-label="Default select example" name="t_type">
 					<option selected>선택</option>
-					<option value="1">축구</option>
-					<option value="2">풋살</option>
+					<option value="축구">축구</option>
+					<option value="풋살">풋살</option>
 				</select>
 			</div>
 			<br>
@@ -80,6 +86,7 @@
 			</div>
 			<br>
 		</div>
+		
 		<button type="submit" class="btn btn-primary">팀 수정</button>
 		<button type="button" class="btn btn-primary">뒤로</button>
 	</div>

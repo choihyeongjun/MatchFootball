@@ -4,44 +4,98 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" href="resources/css/teamMenu.css">
+<title>팀 초대</title>
 <link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script
-	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-<script src="https://kit.fontawesome.com/a076d05399.js"></script>
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<style>
+footer {
+	position: fixed;
+	left: 0px;
+	bottom: 0px;
+	width: 100%;
+	background: grey;
+	color: white;
+}
+</style>
+
 </head>
 <body>
-	<ul class="hi">
-	  <li><a href="http://localhost/MatchFootball/teamInfo">팀 정보</a></li>
-	  <li><a href="http://localhost/MatchFootball/teamGallery">팀 갤러리</a></li>
-	  <li><a href="http://localhost/MatchFootball/teamNotice">팀 공지</a></li>
-	  <li><a href="http://localhost/MatchFootball/#">팀 초대</a></li>
-	  <li><a href="http://localhost/MatchFootball/#">팀 리스트</a></li>
-	</ul>
-	<form action="teamUpdateUpdate" method="post">
-	<div align="center">
-		<div>
-			<h1>팀 초 대</h1>
+	<div display="inline-block">
+		<div class="container" style="float: left; width: 50%">
+			<h2 class="table text-center">팀 초대</h2>
+			<input type="text" id="id" value=""/>
+			<button type="button" onclick="memberlist">검색</button>
+			<table class="table text-center">
+				<tr class="tr1">
+					<th class="text-center">아이디</th>
+					<th class="text-center">이 름</th>
+					<th class="text-center">성 별</th>
+					<th class="text-center">주 소</th>
+					<th class="text-center">매 너 도</th>
+					<th class="text-center">실력</th>
+					<th class="text-center">포지션</th>
+					<th class="text-center">초대</th>
+				</tr>
+				<tbody id="search">
+				</tbody>
+			</table>
 		</div>
-		<hr />
-		<div>
-		<input type="text" name="t_num" value="${teamUpdate.t_num }" style="display:none" />
-			<div class="input-group mb-3" style="width: 30%">
-				<span class="input-group-text" id="basic-addon1" style="width: 16%">초&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;대</span>
-				<input type="text" class="form-control"
-					aria-label="Username" aria-describedby="basic-addon1" name="t_name" value="${teamUpdate.t_name}">
-					<button type="button" class="input-group-text">검색</button>
-			</div>
-		</div>
-		<button type="submit" class="btn btn-primary">팀 수정</button>
-		<button type="button" class="btn btn-primary">뒤로</button>
 	</div>
-	</form>
+	
+	<script>
+	$(function() {
+		memberlist();
+	});
+	
+	function memberlist() {
+		var id = document.getElementById("id").value;
+		console.log(id);
+		$.ajax({
+			url : "bollow/ajax",
+			type : 'GET',
+			data : {id:"id"},
+			dataType : 'json',
+			error : function(xhr, status, msg) {
+				alert("상태값 :" + status + "에러" + msg);
+			},
+			success : memberListResult
+		});
+	}//memberlist
+	
+	function memberListResult(data) {
+		$("#search").empty();
+		$
+				.each(
+						data,
+						function(idx, item) {
+						
+							$('<tr>')
+									.append($('<td>').html(item.id))
+									.append($('<td>').html(item.name))
+									.append($('<td>').html(item.gender))
+									.append($('<td>').html(item.location1))
+									.append($('<td>').html(item.manner))
+									.append($('<td>').html(item.lv))
+									.append($('<td>').html(item.pos))
+									.append(
+											$(
+													'<input type=\'hidden\' id=\'hidden_userId\'>')
+													.val(item.id))
+									.append(
+											$('<td>')
+													.html(
+															'<button type="button" id=\'btnSelect\'>팀초대</button>'))
+									.appendTo('#search');
+							
+						});
+
+	};
+</script>
 </body>
 </html>

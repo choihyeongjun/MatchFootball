@@ -30,12 +30,11 @@ a { text-decoration:none ; color:#000000}
 <body>
 	<div style="padding-bottom: 400px">
 		<ul class="hi">
-			<li><a href="http://localhost/MatchFootball/teamInfo">ÆÀ Á¤º¸</a></li>
-			<li><a href="http://localhost/MatchFootball/teamGallery">ÆÀ
-					°¶·¯¸®</a></li>
-			<li><a href="http://localhost/MatchFootball/teamNotice">ÆÀ °øÁö</a></li>
-			<li><a href="http://localhost/MatchFootball/#">ÆÀ ÃÊ´ë</a></li>
-			<li><a href="http://localhost/MatchFootball/teamList">ÆÀ ¸®½ºÆ®</a></li>
+		  <li><a href="http://localhost/MatchFootball/teamInfo">ÆÀ Á¤º¸</a></li>
+		  <li><a href="http://localhost/MatchFootball/teamGallery">ÆÀ °¶·¯¸®</a></li>
+		  <li><a href="http://localhost/MatchFootball/teamNotice">ÆÀ °øÁö</a></li>
+		  <li><a href="http://localhost/MatchFootball/teamInvite">ÆÀ ÃÊ´ë</a></li>
+		  <li><a href="http://localhost/MatchFootball/teamList">ÆÀ ¸®½ºÆ®</a></li>
 		</ul>
 		<div align="center">
 			<br>
