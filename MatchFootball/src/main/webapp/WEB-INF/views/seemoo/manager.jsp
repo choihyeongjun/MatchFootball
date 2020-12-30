@@ -23,7 +23,7 @@
 					<h1 class="mt-4">매니저관리</h1>
 					<ol class="breadcrumb mb-4">
 						<li class="breadcrumb-item">
-						<a href="${pageContext.request.contextPath}/admin/applymanager">매니저신청|승인대기</a>
+						<a href="${pageContext.request.contextPath}/admin/applymanager">매니저신청 | 승인대기</a>
 						<li class="breadcrumb-item active"></li>
 						<a href="${pageContext.request.contextPath}/manageremploy">매니저지원페이지</a></li>
 						</li>
@@ -48,70 +48,48 @@
 									<thead align="center">
 										<tr>
 											<th style="width: 10px;">No.</th>
-											<th>ID</th>
-											<th>Name</th>
+											<th style="width: 80px;">ID</th>
+											<th>이름</th>
+											<th>성별</th>
 											<th>연락처</th>
 											<th>권한</th>
-											<th>??</th>
-											<th>이미지</th>
-											<th></th>
+											<th>심판내역</th>
+											<th>포인트</th>
 										</tr>
 									</thead>
 									<tfoot align="center">
 										<tr>
 											<th>No.</th>
 											<th>ID</th>
-											<th>Name</th>
+											<th>이름</th>
+											<th>성별</th>
 											<th>연락처</th>
 											<th>권한</th>
-											<th>??</th>
-											<th>이미지</th>
-											<th></th>
+											<th>심판내역</th>
+											<th>포인트</th>
 										</tr>
 									</tfoot>
 									<tbody align="center">
+									<c:forEach items="${managers}" var="manager">
 										<tr>
-											<td>1</td>
-											<td>형준</td>
-											<td>최형준</td>
-											<td>010-1111-1234</td>
 											<td></td>
-											<td></td>
-											<td></td>
+											<td>${manager.id}</td>
+											<td>${manager.name}</td>
+											<td>${manager.gender}</td>
+											<td>${manager.pnum}</td>
 											<td>
-											<input type="button" value="프로필" onclick="">
-											<input type="button" value="수정" onclick="">
-											<input type="button" value="삭제" onclick="">
+												<select name="manager">
+													<option value="" selected="selected">선택</option>
+													<option value="일반회원">일반회원</option>
+													<option value="매니저">매니저</option>
+													<option value="매니저대기">매니저대기</option>
+													<option value="매니저정지">매니저정지</option>
+												</select>
 											</td>
+											<td>${manager.comm}</td>
+											<td>${manager.point}</td>
 										</tr>
-										<tr>
-											<td>2</td>
-											<td>도은</td>
-											<td>김도은</td>
-											<td>010-2222-1234</td>
-											<td></td>
-											<td></td>
-											<td></td>
-											<td>
-											<input type="button" value="프로필" onclick="">
-											<input type="button" value="수정" onclick="">
-											<input type="button" value="삭제" onclick="">
-											</td>
-										</tr>
-										<tr>
-											<td>3</td>
-											<td>현동</td>
-											<td>김현동</td>
-											<td>010-3333-1234</td>
-											<td></td>
-											<td></td>
-											<td></td>
-											<td>
-											<input type="button" value="프로필" onclick="">
-											<input type="button" value="수정" onclick="">
-											<input type="button" value="삭제" onclick="">
-											</td>
-										</tr>
+									</c:forEach>
 									</tbody>
 								</table>
 							</div>

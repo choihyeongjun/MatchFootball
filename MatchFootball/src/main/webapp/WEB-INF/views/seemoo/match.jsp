@@ -193,54 +193,6 @@
 							</div>
 						</div>
 					</div>
-					
-					<div class="card mb-4">
-			<div class="card-header">
-				<i class="fas fa-table mr-1"></i> 팀 경기일정
-						</div>
-						<div class="card-body">
-							<div class="table-responsive">
-								<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-									<thead>
-										<tr>
-											<th>경기날짜</th>
-											<th>경기시간</th>
-											<th>경기장</th>
-											<th>진행매니저</th>
-											<th>경기현황</th>
-										</tr>
-									</thead>
-									<tfoot>
-										<tr>
-											<th>경기날짜</th>
-											<th>경기시간</th>
-											<th>경기장</th>
-											<th>진행매니저</th>
-											<th>경기현황</th>
-										</tr>
-									</tfoot>
-									<tbody>
-										<tr>
-											<td>2020.01.01</td>
-											<td>성준배토너먼트 현황</td>
-											<td>최행배</td>
-											<td>2020.01.01</td>
-											<td>10</td>
-										</tr>
-										<tr>
-											<td>2</td>
-											<td>도은이배리그시작</td>
-											<td>김도은</td>
-											<td>2020.01.01</td>
-											<td>10</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</div>
-					
 				</div>
-  
 </body>
 </html>

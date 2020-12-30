@@ -13,6 +13,24 @@
 
 <title>팀관리페이지</title>
 
+<style>
+.userProfileImg {
+	width: 100%;
+	display: inline;
+	border-radius: 10px;
+	float: left;
+}
+
+.userInfoTable {
+	width: 50%;
+	font-size: 25px;
+}
+.userInfoTable {
+    font-size: 25px;
+    width: auto;
+}
+</style>
+
 </head>
 		<body>
 		
@@ -43,12 +61,12 @@
 									<thead align="center">
 										<tr>
 											<th style="width: 10px;">No.</th>
-											<th>팀이름</th>
-											<th>팀평균레벨</th>
-											<th>팀승률</th>
-											<th>팀권한</th>
-											<th>팀매너점수</th>
-											<th></th>
+											<th style="width: 300px;">팀이름</th>
+											<th style="width: 70px;">팀레벨</th>
+											<th style="width: 70px;">팀승률</th>
+											<th style="width: 150px;">팀권한</th>
+											<th style="width: 80px;">팀매너점수</th>
+											<th>팀소개</th>
 										</tr>
 									</thead>
 									<tfoot align="center">
@@ -63,19 +81,23 @@
 										</tr>
 									</tfoot>
 									<tbody align="center">
+									<c:forEach items="${teams}" var="team">
 										<tr>
 											<td>1</td>
-											<td>형준와 아이들</td>
-											<td>최형준</td>
-											<td>11</td>
-											<td></td>
-											<td></td>
+											<td><a class="idnum" data-num="${team.t_name}">${team.t_name}</a></td>
+											<td>${team.t_level}</td>
+											<td>${team.t_wn}</td>
 											<td>
-											<input type="button" value="상세프로필" onclick="">
-											<input type="button" value="수정" onclick="">
-											<input type="button" value="삭제" onclick="">
+												<select name="job">
+													<option value="" selected="selected">선택</option>
+													<option value="일반">일반</option>
+													<option value="블랙">블랙</option>
+												</select>
 											</td>
+											<td>${team.t_m}</td>
+											<td>${team.t_info}</td>
 										</tr>
+									</c:forEach>
 									</tbody>
 								</table>
 							</div>
@@ -83,5 +105,41 @@
 					</div>
 				</div>
 			</main>
+			
+			<!-- The Modal -->
+		<div class="modal fade" id="myModal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<!-- Modal Header -->
+					<div class="modal-header"></div>
+					
+					<!-- Modal body -->
+					<div class="modal-body"></div>
+
+					<!-- Modal footer -->
+					<div class="modal-footer">
+						<button type="button" class="btn btn-danger" data-dismiss="modal">수정</button>
+						<button type="button" class="btn btn-danger" data-dismiss="modal">삭제</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<script>
+		$(".idnum").on("click", function() {
+			var num = $(this).data("num");
+			modal = $('#myModal');
+			$.ajax({
+				url : "teaminfo?t_name=" + num,
+				dataType : "html",
+				success : function(result) {
+					modal.find('.modal-body').html(result)
+					modal.modal('show');
+				}
+			})
+		})
+	</script>
+	
 </body>
 </html>

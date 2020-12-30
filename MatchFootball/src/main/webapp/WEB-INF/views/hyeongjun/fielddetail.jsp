@@ -1,203 +1,219 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="ko">
+
 <head>
 <meta charset="utf-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport"
-   content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-<meta name="description" content="" />
-<meta name="author" content="" />
-<title>관리자페이지</title>
-<link href="${pageContext.request.contextPath}/resources/seemoo/css/styles.css" rel="stylesheet" />
-<link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>FullCalendar Example</title>
+<link rel=" shortcut icon"
+	href="${pageContext.request.contextPath}/resources/hyeongjun/calander/image/favicon.ico">
 
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/hyeongjun/calander/vendor/css/fullcalendar.min.css" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/hyeongjun/calander/vendor/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href='${pageContext.request.contextPath}/resources/hyeongjun/calander/vendor/css/select2.min.css' />
+<link rel="stylesheet"
+	href='${pageContext.request.contextPath}/resources/hyeongjun/calander/vendor/css/bootstrap-datetimepicker.min.css' />
 
-<link href='${pageContext.request.contextPath}/resources/seemoo/packages/core/main.css' rel='stylesheet' />
-<link href='${pageContext.request.contextPath}/resources/seemoo/packages/daygrid/main.css' rel='stylesheet' />
-<link href='${pageContext.request.contextPath}/resources/seemoo/packages/timegrid/main.css' rel='stylesheet' />
-<link href='${pageContext.request.contextPath}/resources/seemoo/packages/list/main.css' rel='stylesheet' />
-<script src='${pageContext.request.contextPath}/resources/seemoo/packages/core/main.js'></script>
-<script src='${pageContext.request.contextPath}/resources/seemoo/packages/interaction/main.js'></script>
-<script src='${pageContext.request.contextPath}/resources/seemoo/packages/daygrid/main.js'></script>
-<script src='${pageContext.request.contextPath}/resources/seemoo/packages/timegrid/main.js'></script>
-<script src='${pageContext.request.contextPath}/resources/seemoo/packages/list/main.js'></script>
-<script>
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Open+Sans:400,500,600">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
-  document.addEventListener('DOMContentLoaded', function() {
-    var Calendar = FullCalendar.Calendar;
-    var Draggable = FullCalendarInteraction.Draggable
-
-    /* initialize the external events
-    -----------------------------------------------------------------*/
-
-    var containerEl = document.getElementById('external-events-list');
-    new Draggable(containerEl, {
-      itemSelector: '.fc-event',
-      eventData: function(eventEl) {
-        return {
-          title: eventEl.innerText.trim()
-        }
-      }
-    });
-
-
-    var calendarEl = document.getElementById('calendar');
-    var calendar = new Calendar(calendarEl, {
-      plugins: [ 'interaction', 'dayGrid', 'timeGrid', 'list' ],
-      header: {
-        left: 'prev,next today',
-        center: 'title',
-        right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
-      },
-      editable: true,
-      droppable: true, // this allows things to be dropped onto the calendar
-      drop: function(arg) {
-        // is the "remove after drop" checkbox checked?
-        if (document.getElementById('drop-remove').checked) {
-          // if so, remove the element from the "Draggable Events" list
-          arg.draggedEl.parentNode.removeChild(arg.draggedEl);
-        }
-      }
-    });
-    calendar.render();
-
-  });
-
-</script>
-<style>
-
-  body {
-    margin-top: 40px;
-    font-size: 14px;
-    font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
-  }
-
-  #wrap {
-    width: 1100px;
-    margin: 0 auto;
-  }
-
-  #external-events {
-    float: right;
-    width: 150px;
-    padding: 0 10px;
-    border: 1px solid #ccc;
-    background: #eee;
-    text-align: left;
-  }
-
-  #external-events h4 {
-    font-size: 16px;
-    margin-top: 0;
-    padding-top: 1em;
-  }
-
-  #external-events .fc-event {
-    margin: 10px 0;
-    cursor: pointer;
-  }
-
-  #external-events p {
-    margin: 1.5em 0;
-    font-size: 11px;
-    color: #666;
-  }
-
-  #external-events p input {
-    margin: 0;
-    vertical-align: middle;
-  }
-
-  #calendar {
-    float: left;
-    width: 900px;
-    
-  }
-
-</style>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/hyeongjun/calander/css/main.css">
 
 </head>
+
 <body>
-<div id="layoutSidenav_content">
-       <div id='wrap'>
+	<div class="container">
 
-          <div id='external-events'>
-               <h4>일정표</h4>
+		<!-- 일자 클릭시 메뉴오픈 -->
+		<div id="contextMenu" class="dropdown clearfix">
+			<ul class="dropdown-menu dropNewEvent" role="menu"
+				aria-labelledby="dropdownMenu"
+				style="display: block; position: static; margin-bottom: 5px;">
+				<li><a tabindex="-1" href="#">카테고리1</a></li>
+				<li><a tabindex="-1" href="#">카테고리2</a></li>
+				<li><a tabindex="-1" href="#">카테고리3</a></li>
+				<li><a tabindex="-1" href="#">카테고리4</a></li>
+				<li class="divider"></li>
+				<li><a tabindex="-1" href="#" data-role="close">Close</a></li>
+			</ul>
+		</div>
 
-            <div id='external-events-list'>
-                 <div class='fc-event'>토너먼트</div>
-                 <div class='fc-event'>풋살시합</div>
-               <div class='fc-event'>축구시합</div>
-            </div>
+		<div id="wrapper">
+			<div id="loading"></div>
+			<div id="calendar"></div>
+		</div>
 
-            <p>
-                 <input type='checkbox' id='drop-remove' />
-                 <label for='drop-remove'>remove after drop</label>
-             </p>
-       </div>
 
-          <div id='calendar'></div>
+		<!-- 일정 추가 MODAL -->
+		<div class="modal fade" tabindex="-1" role="dialog" id="eventModal">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<h4 class="modal-title"></h4>
+					</div>
+					<div class="modal-body">
 
-          <div style='clear:both'></div>
-        
-        
-        <div class="card mb-4">
-         <div class="card-header">
-            <i class="fas fa-table mr-1"></i> 경기일정
-                  </div>
-                  <div class="card-body">
-                     <div class="table-responsive">
-                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                           <thead>
-                              <tr>
-                                 <th>경기날짜</th>
-                                 <th>경기시간</th>
-                                 <th>경기장</th>
-                                 <th>진행매니저</th>
-                                 <th>경기현황</th>
-                              </tr>
-                           </thead>
-                           <tfoot>
-                              <tr>
-                                 <th>경기날짜</th>
-                                 <th>경기시간</th>
-                                 <th>경기장</th>
-                                 <th>진행매니저</th>
-                                 <th>경기현황</th>
-                              </tr>
-                           </tfoot>
-                           <tbody>
-                              <tr>
-                                 <td>2020.01.01</td>
-                                 <td>성준배토너먼트 현황</td>
-                                 <td>최행배</td>
-                                 <td>2020.01.01</td>
-                                 <td>10</td>
-                              </tr>
-                              <tr>
-                                 <td>2</td>
-                                 <td>도은이배리그시작</td>
-                                 <td>김도은</td>
-                                 <td>2020.01.01</td>
-                                 <td>10</td>
-                              </tr>
-                           </tbody>
-                        </table>
-                     </div>
-                  </div>
-               </div>
-            </div>
-   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
-   <script src="${pageContext.request.contextPath}/resources/seemoo/js/scripts.js"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-   <script src="${pageContext.request.contextPath}/resources/seemoo/assets/demo/chart-area-demo.js"></script>
-   <script src="${pageContext.request.contextPath}/resources/seemoo/assets/demo/chart-bar-demo.js"></script>
-   <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
-   <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
-   <script src="${pageContext.request.contextPath}/resources/seemoo/assets/demo/datatables-demo.js"></script>
+						<div class="row">
+							<div class="col-xs-12">
+								<label class="col-xs-4" for="edit-allDay">하루종일</label> <input
+									class='allDayNewEvent' id="edit-allDay" type="checkbox"></label>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-xs-12">
+								<label class="col-xs-4" for="edit-title">일정명</label> <input
+									class="inputModal" type="text" name="edit-title"
+									id="edit-title" required="required" />
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-12">
+								<label class="col-xs-4" for="edit-start">시작</label> <input
+									class="inputModal" type="text" name="edit-start"
+									id="edit-start" />
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-12">
+								<label class="col-xs-4" for="edit-end">끝</label> <input
+									class="inputModal" type="text" name="edit-end" id="edit-end" />
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-12">
+								<label class="col-xs-4" for="edit-type">구분</label> <select
+									class="inputModal" type="text" name="edit-type" id="edit-type">
+									<option value="카테고리1">카테고리1</option>
+									<option value="카테고리2">카테고리2</option>
+									<option value="카테고리3">카테고리3</option>
+									<option value="카테고리4">카테고리4</option>
+								</select>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-12">
+								<label class="col-xs-4" for="edit-color">색상</label> <select
+									class="inputModal" name="color" id="edit-color">
+									<option value="#D25565" style="color: #D25565;">빨간색</option>
+									<option value="#9775fa" style="color: #9775fa;">보라색</option>
+									<option value="#ffa94d" style="color: #ffa94d;">주황색</option>
+									<option value="#74c0fc" style="color: #74c0fc;">파란색</option>
+									<option value="#f06595" style="color: #f06595;">핑크색</option>
+									<option value="#63e6be" style="color: #63e6be;">연두색</option>
+									<option value="#a9e34b" style="color: #a9e34b;">초록색</option>
+									<option value="#4d638c" style="color: #4d638c;">남색</option>
+									<option value="#495057" style="color: #495057;">검정색</option>
+								</select>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-12">
+								<label class="col-xs-4" for="edit-desc">설명</label>
+								<textarea rows="4" cols="50" class="inputModal" name="edit-desc"
+									id="edit-desc"></textarea>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer modalBtnContainer-addEvent">
+						<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+						<button type="button" class="btn btn-primary" id="save-event">저장</button>
+					</div>
+					<div class="modal-footer modalBtnContainer-modifyEvent">
+						<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+						<button type="button" class="btn btn-danger" id="deleteEvent">삭제</button>
+						<button type="button" class="btn btn-primary" id="updateEvent">저장</button>
+					</div>
+				</div>
+				<!-- /.modal-content -->
+			</div>
+			<!-- /.modal-dialog -->
+		</div>
+		<!-- /.modal -->
+		<div class="card mb-4">
+			<div class="card-header">
+				<i class="fas fa-table mr-1"></i> 경기일정
+			</div>
+			<div class="card-body">
+				<div class="table-responsive">
+					<table class="table table-bordered" id="dataTable" width="100%"
+						cellspacing="0">
+						<thead>
+							<tr>
+								<th>경기날짜</th>
+								<th>경기시간</th>
+								<th>경기장</th>
+								<th>진행매니저</th>
+								<th>경기현황</th>
+							</tr>
+						</thead>
+						<tfoot>
+							<tr>
+								<th>경기날짜</th>
+								<th>경기시간</th>
+								<th>경기장</th>
+								<th>진행매니저</th>
+								<th>경기현황</th>
+							</tr>
+						</tfoot>
+						<tbody>
+							<tr>
+								<td>2020.01.01</td>
+								<td>성준배토너먼트 현황</td>
+								<td>최행배</td>
+								<td>2020.01.01</td>
+								<td>10</td>
+							</tr>
+							<tr>
+								<td>2</td>
+								<td>도은이배리그시작</td>
+								<td>김도은</td>
+								<td>2020.01.01</td>
+								<td>10</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+
+		</div>
+		<!-- /.container -->
+
+		<script
+			src="${pageContext.request.contextPath}/resources/hyeongjun/calander/vendor/js/jquery.min.js"></script>
+		<script
+			src="${pageContext.request.contextPath}/resources/hyeongjun/calander/vendor/js/bootstrap.min.js"></script>
+		<script
+			src="${pageContext.request.contextPath}/resources/hyeongjun/calander/vendor/js/moment.min.js"></script>
+		<script
+			src="${pageContext.request.contextPath}/resources/hyeongjun/calander/vendor/js/fullcalendar.min.js"></script>
+		<script
+			src="${pageContext.request.contextPath}/resources/hyeongjun/calander/vendor/js/ko.js"></script>
+		<script
+			src="${pageContext.request.contextPath}/resources/hyeongjun/calander/vendor/js/select2.min.js"></script>
+		<script
+			src="${pageContext.request.contextPath}/resources/hyeongjun/calander/vendor/js/bootstrap-datetimepicker.min.js"></script>
+		<script
+			src="${pageContext.request.contextPath}/resources/hyeongjun/calander/js/main.js"></script>
+		<script
+			src="${pageContext.request.contextPath}/resources/hyeongjun/calander/js/addEvent.js"></script>
+		<script
+			src="${pageContext.request.contextPath}/resources/hyeongjun/calander/js/editEvent.js"></script>
+		<script
+			src="${pageContext.request.contextPath}/resources/hyeongjun/calander/js/etcSetting.js"></script>
 </body>
+
 </html>
