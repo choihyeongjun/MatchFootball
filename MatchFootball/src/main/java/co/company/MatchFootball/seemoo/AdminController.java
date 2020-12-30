@@ -61,8 +61,9 @@ public class AdminController {
 		return "seemoo/manager";
 	}
 
-	@RequestMapping("/admin/applymanager") // 매니저관리 페이지(매니저 신청|승인대기)
-	public String applymanager() {
+	@RequestMapping(value = "/admin/applymanager", method = RequestMethod.GET) // 매니저관리 페이지(매니저 신청|승인대기)
+	public String applymanager(Model model, TeamVO tvo, HttpServletRequest request, HttpServletResponse reponse) {
+		model.addAttribute("managerapplys", seemoomapper.managerapplyList());
 		return "seemoo/applymanager";
 	}
 
