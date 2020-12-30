@@ -37,6 +37,7 @@ body {
 	justify-content: space-between;
 	align-items: center;
 	padding-bottom: 10px;
+	padding-top: 5px;
 }
 
 .cache {
@@ -88,6 +89,10 @@ body {
 	text-decoration: none !important
 }
 
+a {
+	text-decoration: none !important
+}
+
 .allcha {
 	padding: 10px 10px 10px 10px;
 	display: flex;
@@ -133,7 +138,36 @@ body {
 }
 </style>
 <script>
-
+	$(function(){
+		mddd();
+		mppp();
+		});
+		function mddd(){
+		$(".mdetail").on("click",function(){
+			var m_no= $(this).data("num");
+			modal= $("#matchdetail");
+			$.ajax({
+				url:"managermypagem?m_no=" + m_no ,
+				dataType: "json",
+				success: function(result){
+					var pm =result.p_matchVO;
+					var pp =result.matchmember;
+					$(".name").html(pm.f_name)
+					$(".date").html(pm.m_date)
+					$(".hour").html(pm.m_hour)
+					$(".address").html(pm.f_address)
+					$(".type").html(pm.m_type)
+					$(".lv").html(pm.lv+"Lv")
+					for(i=0; i<pp.length i++){
+						$()
+					}
+					modal.modal('show');
+					
+				}
+			});
+		})
+	}
+		
 </script>
 </head>
 <body style="background-color: #fafafa;">
@@ -145,7 +179,7 @@ body {
 					안녕하세요<i class="fas fa-futbol fa-2x" style="color: black"></i>
 				</h2>
 				<br>
-				<h5 style="font-weight: bold; margin: 0px">${member.name} 매니저님</h5>
+				<h5 style="font-weight: bold; margin: 0px">${member.name}매니저님</h5>
 			</div>
 			<div class="cache">
 				<div>
@@ -162,20 +196,19 @@ body {
 
 			<div class="allscedule">
 				<div class="scedule">
-					<h3>경기 일정</h3>
-					<div class="scedulemore">
-						<a href="#">전체 보기</a>
-					</div>
+					<h3>개인 매치 경기 일정</h3>
 				</div>
 				<c:forEach var="p_match" items="${p_match }">
-					<div class="mamama" >
+					<div class="mamama">
 						<ul>
 							<li>
 								<div class="matchc">
-									<a data-toggle="modal" data-target="#matchdetail"  style="cursor:pointer;">
-									${p_match.m_date } ${p_match.f_name } ${p_match.m_hour }</a> 
-									<a class="btn sf" href="#"> 리뷰 작성</a>
-									<input type = "hidden" value="${p_match.m_no }">
+									<a class="mdetail" data-toggle="modal"
+										data-target="#matchdetail" data-num="${p_match.m_no }"
+										style="cursor: pointer;"> ${p_match.m_date }
+										${p_match.f_name } ${p_match.m_hour }</a> <a class="btn sf"
+										href="#"> 리뷰 작성</a> <input type="hidden"
+										value="${p_match.m_no }">
 								</div>
 							</li>
 						</ul>
@@ -189,27 +222,111 @@ body {
 				<my:paging paging="${paging}" jsfunc="goPage" />
 			</div>
 			<!-- Modal -->
-<div class="modal fade" id="matchdetail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-body">
-        
-      </div>
-    </div>
-  </div>
-</div>
+			<div class="modal fade" id="matchdetail" tabindex="-1"
+				aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-body" id="body1">
+							<div class="row">
+								<div class="col">
+									<div>
+										<h3>매치 정보</h3>
+									</div>
+									<form>
+										<div class="form-group">
+											<label for="exampleFormControlInput1"
+												style="font-weight: bold; margin-top: 5px; margin-bottom: 5px;">구장
+											</label>
+											<div class="form-control name"></div>
+										</div>
+										<div class="form-group">
+											<label for="exampleFormControlInput1"
+												style="font-weight: bold; margin-top: 5px; margin-bottom: 5px;">경기
+												일정 </label>
+											<div class="form-control">
+												<a class="date"></a> <a class="hour"></a>
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="exampleFormControlInput1"
+												style="font-weight: bold; margin-top: 5px; margin-bottom: 5px;">주소
+											</label>
+											<div class="form-control address"></div>
+										</div>
+										<div class="form-group">
+											<label for="exampleFormControlInput1"
+												style="font-weight: bold; margin-top: 5px; margin-bottom: 5px;">유형
+											</label>
+											<div class="form-control type"></div>
+										</div>
+										<div class="form-group">
+											<label for="exampleFormControlInput1"
+												style="font-weight: bold; margin-top: 5px; margin-bottom: 5px;">Lv
+											</label>
+											<div class="form-control lv"></div>
+
+										</div>
+									</form>
+								</div>
+								<div class="col">
+									<div>
+										<h3>신청 인원</h3>
+									</div>
+									<form>
+										<div class="form-group">
+											<label for="exampleFormControlInput1"
+												style="font-weight: bold; margin-top: 5px; margin-bottom: 5px;">구장
+											</label>
+											<div class="form-control pid"></div>
+										</div>
+										<div class="form-group">
+											<label for="exampleFormControlInput1"
+												style="font-weight: bold; margin-top: 5px; margin-bottom: 5px;">경기
+												일정 </label>
+											<div class="form-control">
+												<a class="date"></a> <a class="pname"></a>
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="exampleFormControlInput1"
+												style="font-weight: bold; margin-top: 5px; margin-bottom: 5px;">주소
+											</label>
+											<div class="form-control address"></div>
+										</div>
+										<div class="form-group">
+											<label for="exampleFormControlInput1"
+												style="font-weight: bold; margin-top: 5px; margin-bottom: 5px;">유형
+											</label>
+											<div class="form-control type"></div>
+										</div>
+										<div class="form-group">
+											<label for="exampleFormControlInput1"
+												style="font-weight: bold; margin-top: 5px; margin-bottom: 5px;">Lv
+											</label>
+											<div class="form-control lv"></div>
+
+										</div>
+									</form>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 			<!-- 입금 -->
 			<div class="allscedule">
 				<div class="allcha">
 					<h3>입금내역</h3>
 					<div class="scedulemore">
-						<a class="pointalll" data-toggle="modal" data-target="#staticBackdrop"  style="cursor:pointer;">전체 보기</a>
+						<a class="pointalll" data-toggle="modal"
+							data-target="#staticBackdrop" style="cursor: pointer;">전체 보기</a>
 					</div>
 				</div>
 				<c:forEach var="p_point" items="${p_point }">
 					<div class="maaa">
 						<ul>
-							<li>${p_point.p_date }  ${p_point.npoint }원입금 </li>
+							<li>${p_point.p_date }${p_point.npoint }원입금</li>
 						</ul>
 					</div>
 				</c:forEach>
@@ -217,19 +334,21 @@ body {
 		</div>
 	</div>
 	<div class="modal fade" id="staticBackdrop" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
-      <div class="modal-body" style="background-color: white;">
-      <div align="center" style="margin-bottom:10px;"><h1>전체 입금 내역</h1></div>
-      <hr>
-      <c:forEach var="p_pointall" items="${p_pointall }">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-body" style="background-color: white;">
+				<div align="center" style="margin-bottom: 10px;">
+					<h1>전체 입금 내역</h1>
+				</div>
+				<hr>
+				<c:forEach var="p_pointall" items="${p_pointall }">
 					<div class="maaa" align="center">
 						<ul>
-							<li>${p_pointall.p_date }  ${p_pointall.npoint }원입금 </li>
+							<li>${p_pointall.p_date }${p_pointall.npoint }원입금</li>
 						</ul>
 					</div>
 				</c:forEach>
-      </div>
-    </div>
-  </div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

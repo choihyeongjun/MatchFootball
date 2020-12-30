@@ -2,6 +2,7 @@ package co.company.MatchFootball.mapper;
 
 import java.util.List;
 
+import co.company.MatchFootball.vo.MatchMember;
 import co.company.MatchFootball.vo.MembersVO;
 import co.company.MatchFootball.vo.P_matchVO;
 import co.company.MatchFootball.vo.PointVO;
@@ -14,5 +15,8 @@ public interface SungjunMapper {
 	public int getCount1(P_matchVO p_match);
 	public MembersVO memberselect(MembersVO membersvo);
 	public List<PointVO>  pointallselect(PointVO p_point);
+	public P_matchVO pmatchlist1(P_matchVO p_match);
+	public <List>MatchMember matchmember(MatchMember matchmember);
+	
 	
 }
