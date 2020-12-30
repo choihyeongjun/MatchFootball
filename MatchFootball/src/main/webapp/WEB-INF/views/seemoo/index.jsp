@@ -20,6 +20,7 @@
 		<button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#">
 			<i class="fas fa-bars"></i>
 		</button>
+		
 		<!-- Navbar Search-->
 		<form
 			class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
@@ -34,7 +35,7 @@
 			</div>
 		</form>
 		
-		<!-- 사이드메뉴-->
+		<!-- 오른쪽상단메뉴-->
 		<ul class="navbar-nav ml-auto ml-md-0">
 			<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" 
 			id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -190,7 +191,7 @@
 					<div class="col-xl-6">
 							<div class="card mb-4">
 								<div class="card-header">
-									<i class="fas fa-chart-area mr-1"></i> 이용자현황 
+									<i class="fas fa-chart-area mr-1"></i> 주간 이용자현황 
 								</div>
 								<div class="card-body">
 									<canvas id="myAreaChart" width="100%" height="40"></canvas>
@@ -216,7 +217,7 @@
 					<!-- 팀현황 -->
 					<div class="card mb-4">
 						<div class="card-header">
-							<i class="fas fa-table mr-1"></i> 현재 팀 현황
+							<i class="fas fa-table mr-1"></i> 현재 팀 승률 현황
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
@@ -244,76 +245,31 @@
 										</tr>
 									</tfoot>
 									<tbody align="center">
+									<c:forEach items="${teams}" var="team">
 										<tr>
 											<td>1</td>
-											<td>형준와 아이들</td>
-											<td>최형준</td>
-											<td>11</td>
-											<td></td>
-											<td></td>
+											<td><a class="idnum" data-num="${team.t_name}">${team.t_name}</a></td>
+											<td>${team.t_level}</td>
+											<td>${team.t_wn}</td>
 											<td>
-											<input type="button" value="상세프로필" onclick="">
-											<input type="button" value="수정" onclick="">
-											<input type="button" value="삭제" onclick="">
+												<select name="job">
+													<option value="" selected="selected">선택</option>
+													<option value="일반">일반</option>
+													<option value="블랙">블랙</option>
+												</select>
 											</td>
+											<td>${team.t_m}</td>
+											<td>${team.t_info}</td>
 										</tr>
+									</c:forEach>
 									</tbody>
 								</table>
 							</div>
 						</div>
 					</div>
 		
-				<div class="row">
 				
-									<!-- 팀현황 -->
-					<div class="card mb-4">
-						<div class="card-header">
-							<i class="fas fa-table mr-1"></i> 현재 팀 현황
-						</div>
-						<div class="card-body">
-							<div class="table-responsive">
-								<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-									<thead align="center">
-										<tr>
-											<th style="width: 10px;">No.</th>
-											<th>팀이름</th>
-											<th>팀평균레벨</th>
-											<th>팀승률</th>
-											<th>팀권한</th>
-											<th>팀매너점수</th>
-											<th></th>
-										</tr>
-									</thead>
-									<tfoot align="center">
-										<tr>
-											<th>No.</th>
-											<th>팀이름</th>
-											<th>팀평균레벨</th>
-											<th>팀승률</th>
-											<th>팀권한</th>
-											<th>팀매너점수</th>
-											<th></th>
-										</tr>
-									</tfoot>
-									<tbody align="center">
-										<tr>
-											<td>1</td>
-											<td>형준와 아이들</td>
-											<td>최형준</td>
-											<td>11</td>
-											<td></td>
-											<td></td>
-											<td>
-											<input type="button" value="상세프로필" onclick="">
-											<input type="button" value="수정" onclick="">
-											<input type="button" value="삭제" onclick="">
-											</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</div>
+
 					
 				<!-- 토너먼트 우승팀 -->
 				<div class="col-xl-3 col-md-6">
@@ -327,12 +283,11 @@
 								</div>
 							</div>
 						</div>
-					</div>
+					
 					
 				</div>
 			</main>
 		</div>
-	</div>
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 	<script src="${pageContext.request.contextPath}/resources/seemoo/js/scripts.js"></script>

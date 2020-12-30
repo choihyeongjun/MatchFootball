@@ -47,6 +47,8 @@
 											<th style="width: 10px;">No.</th>
 											<th style="width: 80px;">ID</th>
 											<th>이름</th>
+											<th>생년월일</th>
+											<th>성별</th>
 											<th>연락처</th>
 											<th style="width: 180px;">권한</th>
 											<th style="width: 180px;">설문지</th>
@@ -59,6 +61,8 @@
 											<th>No.</th>
 											<th>ID</th>
 											<th>이름</th>
+											<th>생년월일</th>
+											<th>성별</th>
 											<th>연락처</th>
 											<th>권한</th>
 											<th>설문지</th>
@@ -67,11 +71,14 @@
 										</tr>
 									</tfoot>
 									<tbody align="center">
+									<c:forEach items="${managerapplys}" var="managerapply">
 										<tr>
 											<td></td>
-											<td></td>
-											<td></td>
-											<td></td>
+											<td>${managerapply.id}</td>
+											<td>${managerapply.name}</td>
+											<td>${managerapply.birth}</td>
+											<td>${managerapply.gender}</td>
+											<td>${managerapply.pnum}</td>
 											<td>
 												<select name="applymanager">
 													<option value="" selected="selected">선택</option>
@@ -88,11 +95,12 @@
 													<option value="N">N</option>
 												</select>
 											</td>
-											<td></td>
+											<td>${managerapply.conn}</td>
 											<td>
 												<input type="button" value="삭제" onclick="">
 											</td>
 										</tr>
+									</c:forEach>
 									</tbody>
 								</table>
 							</div>

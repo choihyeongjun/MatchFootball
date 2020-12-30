@@ -2,6 +2,7 @@ package co.company.MatchFootball.hyendong;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -12,10 +13,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import co.company.MatchFootball.mapper.HyendongMapper;
+import co.company.MatchFootball.vo.MembersVO;
 import co.company.MatchFootball.vo.TeamVO;
 
 @Controller
@@ -67,9 +70,10 @@ public class HyenDongController {
 	}
 	//팀수정처리
 	@RequestMapping(value="/teamUpdateUpdate")
-	public String teamUpdateUpdate(TeamVO teamVO) {
+	public String teamUpdateUpdate(Model model, TeamVO teamVO) {
+		model.addAttribute("teamParameter", hyendongMapper.getTeam(teamVO));
 		hyendongMapper.teamUpdate(teamVO);
-		return "hyendong/teamInfo";
+		return "redirect:/teamInfo";
 	}
 	//팀갤러리
 	@RequestMapping("/teamGallery")
@@ -96,6 +100,11 @@ public class HyenDongController {
 	public String teamInvite() {
 		return "hyendong/teamInvite";
 	}
+	  @ResponseBody
+	   @RequestMapping(value="/teamInvite/ajax")
+	   public List<MembersVO>ajaxMembers(Model model){
+	      return hyendongMapper.getMembers();
+	   }
 	//전체 팀 보기
 	@RequestMapping(value="/teamList")
 	public String teamList(Model model) {

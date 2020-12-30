@@ -22,6 +22,7 @@ import co.company.MatchFootball.mapper.HyeongjunMapper;
 import co.company.MatchFootball.vo.FieldVO;
 import co.company.MatchFootball.vo.InviteVO;
 import co.company.MatchFootball.vo.MembersVO;
+import co.company.MatchFootball.vo.RfieldVO;
 
 @Controller
 public class HyeongjunController {
@@ -70,6 +71,12 @@ public class HyeongjunController {
 	   model.addAttribute("list",hyeongjunMapper.fieldlist());
       return "hyeongjun/fieldlist";
    }
+   @ResponseBody
+   @RequestMapping("/fieldselect")
+   public List<RfieldVO> fieldselect(Model model) {
+	   return hyeongjunMapper.fieldselect();
+   }
+   
    @RequestMapping("/free")
    public String freeboard() {
       return "hyeongjun/freeboard";

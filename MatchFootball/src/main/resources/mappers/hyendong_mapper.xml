@@ -67,4 +67,12 @@
 		t_info = #{t_info}
 	WHERE t_num = #{t_num}
 </update>
+
+<!-- 멤버리스트 조회 -->
+<select id="getMembers" parameterType="membersVO" resultType="membersVO">
+   SELECT 
+      id,name,gender,location1,pnum,manner,lv,pos
+      from members
+      where author2='Y'
+   </select>
 </mapper>
