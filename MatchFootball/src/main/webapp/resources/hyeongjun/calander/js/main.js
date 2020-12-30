@@ -83,10 +83,11 @@ var calendar = $('#calendar').fullCalendar({
       }),
       content: $('<div />', {
           class: 'popoverInfoCalendar'
-        }).append('<p><strong>등록자:</strong> ' + event.username + '</p>')
+        }).append('<p><strong>제목:</strong> ' + event.title + '</p>')
         .append('<p><strong>구분:</strong> ' + event.type + '</p>')
-        .append('<p><strong>시간:</strong> ' + getDisplayEventDate(event) + '</p>')
-        .append('<div class="popoverDescCalendar"><strong>설명:</strong> ' + event.description + '</div>'),
+        .append('<p><strong>시간:</strong> ' + getDisplayEventDate(event) + '</p>'),
+        //.append('<div class="popoverDescCalendar"><strong>설명:</strong> ' + event.description + '</div>'),
+
       delay: {
         show: "800",
         hide: "50"
@@ -97,7 +98,7 @@ var calendar = $('#calendar').fullCalendar({
       container: 'body'
     });
 
-    return filtering(event);
+    return true;
 
   },
 
@@ -107,7 +108,8 @@ var calendar = $('#calendar').fullCalendar({
   events: function (start, end, timezone, callback) {
     $.ajax({
       type: "get",
-      url: "data.json",
+      url: "../fieldselect",
+		dataType:"json",
       data: {
         // 화면이 바뀌면 Date 객체인 start, end 가 들어옴
         //startDate : moment(start).format('YYYY-MM-DD'),
@@ -120,6 +122,9 @@ var calendar = $('#calendar').fullCalendar({
           }
           return array;
         });
+		console.log(fixedDate);
+		console.log(response);
+		
         callback(fixedDate);
       }
     });

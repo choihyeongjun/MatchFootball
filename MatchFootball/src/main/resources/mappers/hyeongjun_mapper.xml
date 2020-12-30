@@ -36,6 +36,10 @@
    	select *
    	from field
    </select>
+   <select id="fieldselect" resultType="map">
+   select m_id "_id",title "title" ,type "type",starttime "start", endtime "end",comm "description"
+   from rfield
+   </select>
    
    
 
