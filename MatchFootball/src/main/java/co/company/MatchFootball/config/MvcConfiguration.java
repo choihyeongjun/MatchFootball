@@ -35,7 +35,6 @@ public class MvcConfiguration implements WebMvcConfigurer{
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
-		registry.addResourceHandler("/resources/hyendong/**").addResourceLocations("/images/"); //이미지 정적 데이터인거 알려주기
 		registry.addResourceHandler("/images/**").addResourceLocations("/images/");
 	}
 
