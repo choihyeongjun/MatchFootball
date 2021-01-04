@@ -40,7 +40,7 @@
          <div id="calendar"></div>
       </div>
 
-	<form action="">
+
       <!-- 일정 추가 MODAL -->
       <div class="modal fade" tabindex="-1" role="dialog" id="eventModal">
          <div class="modal-dialog" role="document">
@@ -128,7 +128,7 @@
          </div>
          <!-- /.modal-dialog -->
       </div>
-      </form>
+
       <!-- /.modal -->
       
       <div class="card mb-4">

@@ -71,8 +71,14 @@
 <!-- 멤버리스트 조회 -->
 <select id="getMembers" parameterType="membersVO" resultType="membersVO">
    SELECT 
-      id,name,gender,location1,pnum,manner,lv,pos
+      id,name,gender,location1,pnum,manner,lv,pos, t_name
       from members
       where author2='Y'
-   </select>
+</select>
+
+<!-- 토너먼트 리스트 조회 -->
+<select id="tournamentListSelect" resultType="TournamentVO">
+	SELECT *
+	FROM tournament
+</select>
 </mapper>
