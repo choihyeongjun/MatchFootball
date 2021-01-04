@@ -12,9 +12,6 @@
 <meta name="author" content="" />
 
 <title>유저관리페이지</title>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 <script>
 
 $(function(){
@@ -65,12 +62,6 @@ $(function(){
 	});
 
 </script>
-=======
->>>>>>> branch 'master' of https://github.com/tjdwns631/MatchFootball
-=======
->>>>>>> branch 'master' of https://github.com/tjdwns631/MatchFootball
-=======
->>>>>>> branch 'master' of https://github.com/tjdwns631/MatchFootball
 
 <style>
 .userProfileImg {
@@ -139,7 +130,11 @@ $(function(){
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 												<a class="idnum"></a>
+=======
+												<a class="idnum" data-num="${member.id }">${member.id}</a>
+>>>>>>> branch 'master' of https://github.com/tjdwns631/MatchFootball
 =======
 												<a class="idnum" data-num="${member.id }">${member.id}</a>
 >>>>>>> branch 'master' of https://github.com/tjdwns631/MatchFootball
@@ -184,8 +179,13 @@ $(function(){
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 						<button id="btnDelete" type="button" 
 						class="btn btn-danger" data-dismiss="modal">회원삭제</button>
+=======
+						<button type="button" class="btn btn-danger" data-dismiss="modal">수정</button>
+						<button type="button" class="btn btn-danger" data-dismiss="modal">삭제</button>
+>>>>>>> branch 'master' of https://github.com/tjdwns631/MatchFootball
 =======
 						<button type="button" class="btn btn-danger" data-dismiss="modal">수정</button>
 						<button type="button" class="btn btn-danger" data-dismiss="modal">삭제</button>

@@ -17,4 +17,5 @@ public interface SeemooMapper {
 
 	public List<ManagersVO> managerList(); // 매니저 전체조회
 	public List<ManagerapplyVO> managerapplyList(); // 매니저 승인|대기 전체조회
+	public boolean membersdelete(MembersVO vo);
 }

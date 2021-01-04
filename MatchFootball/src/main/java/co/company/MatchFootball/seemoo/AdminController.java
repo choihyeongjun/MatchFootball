@@ -10,19 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-=======
-=======
->>>>>>> branch 'master' of https://github.com/tjdwns631/MatchFootball
-=======
->>>>>>> branch 'master' of https://github.com/tjdwns631/MatchFootball
-import org.springframework.web.servlet.ModelAndView;
->>>>>>> branch 'master' of https://github.com/tjdwns631/MatchFootball
-
 import co.company.MatchFootball.mapper.SeemooMapper;
 import co.company.MatchFootball.vo.MembersVO;
 import co.company.MatchFootball.vo.TeamVO;
@@ -56,10 +45,6 @@ public class AdminController {
 		model.addAttribute("mvoselect", seemoomapper.members(mvo));
 		return "no/seemoo/userinfo";
 	}
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-	
 	@RequestMapping(value = "/admin/userdelete", method = RequestMethod.GET) // 유저관리 페이지 (삭제)
 	@ResponseBody
 	public String userdelete(MembersVO vo) {
@@ -75,13 +60,6 @@ public class AdminController {
 //	      result.put("result", Boolean.TRUE);
 //	      return result;
 //	   }
-
-=======
->>>>>>> branch 'master' of https://github.com/tjdwns631/MatchFootball
-=======
->>>>>>> branch 'master' of https://github.com/tjdwns631/MatchFootball
-=======
->>>>>>> branch 'master' of https://github.com/tjdwns631/MatchFootball
 
 	@RequestMapping(value = "/admin/team", method = RequestMethod.GET) // 팀관리 페이지 (전체조회)
 	public String team(Model model, TeamVO tvo, HttpServletRequest request, HttpServletResponse reponse) {
