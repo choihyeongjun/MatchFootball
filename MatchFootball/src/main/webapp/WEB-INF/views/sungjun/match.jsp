@@ -137,12 +137,12 @@ a {
 						<div class="swiper-slide" style="hover: blue; cursor: point;">
 							<a href="#">
 								<div
-									style="<c:if test="${i ==cal.day }">background-color:purple; color:white;</c:if>; width:130px; border-radius: 10px; ">
+									style="<c:if test="${i == cal.day }">background-color:purple; color:white;</c:if>; width:130px; border-radius: 10px; ">
 									<c:choose>
-										<c:when test="${i % 7 == 6 }">
+										<c:when test="${i % 7 == 3 }">
 											<p style="color: red">${i}
 										</c:when>
-										<c:when test="${i % 7 == 5 }">
+										<c:when test="${i % 7 == 2 }">
 											<p style="color: blue">${i}
 										</c:when>
 										<c:otherwise>

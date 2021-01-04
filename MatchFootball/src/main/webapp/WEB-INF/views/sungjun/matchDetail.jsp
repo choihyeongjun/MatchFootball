@@ -7,7 +7,6 @@
 <title>Insert title here</title>
 <style>
 footer {
-	position: fixed;
 	left: 0px;
 	bottom: 0px;
 	width: 100%;
@@ -17,6 +16,7 @@ footer {
 a{
  text-decoration: none !important;
 }
+
 </style>
 </head>
 <body>
@@ -27,43 +27,43 @@ a{
 		</div>
 		<div style="margin-left: 200px; margin-right: 200px; margin-top: 30px">
 			<div align="center"
-				style="position: -webkit-sticky; position: sticky; top: 0; padding: 15px; font-size: 20px;">
+				style="position: -webkit-sticky; position: sticky; top: 0; padding: 15px; font-size: 20px; background-color: white">
 				<a href="#play"> 진행방식 </a><a href="#playroom"> 구장시설 </a><a
-					href="#playin"> 매치안내</a><a href="#playm"> 환급 규정</a>
+					href="#playin"> 매치안내</a><a href="#playm"> 환급규정</a>
 			</div>
 			<div>
 				<h3 style="text-align: left;">2020년 12월 24일 12:00</h3>
 			</div>
-			<div style="font-weight: bold; align: left;">
-				<h2>성준 풋살장</h2>
+			<div style="align:left;">
+				<h2 style="color:#08088A; font-weight:bold;">성준 풋살장</h2>
 			</div>
 
 			<div>
 				<h5>대구 북구 태전동 333-3</h5>
 			</div>
 			<div>
-				<h6>참가비</h6>
+				<h6 style="color:#999;" >참가비</h6>
 			</div>
-			<div>
-				<h5>10000원</h5>
+			<div id="play">
+				<h5 style="color:#08088A; font-weight:bold;">10000원</h5>
 			</div>
-			<div>
+			<div >
 				<div>
 					<hr>
-					<div >
+					<div id="playroom" >
 						<h4 style="font-weight: bold; margin: 30px;">진행방식</h4>
 					</div>
-					<div id="play">
+					<div >
 						<a>5vs5</a> &nbsp;&nbsp; <a>남성매치</a>&nbsp;&nbsp; <a>Lv 1~2</a>&nbsp;&nbsp;
 						<a>풋살화</a>&nbsp;&nbsp; <a>max 15</a>
 					</div>
 				</div>
 			</div>
 
-			<div>
-				<div>
+			<div >
+				<div id="playin">
 					<hr>
-					<div id="playroom" style="margin: 30px;">
+					<div  style="margin: 30px;">
 						<h4 style="font-weight: bold;">구장시설</h4>
 					</div>
 					<div>
@@ -81,13 +81,13 @@ a{
 			</div>
 
 
-			<div>
+			<div id="playm">
 				<div>
 					<hr>
-					<div  style="margin: 30px;">
+					<div style="margin: 30px;">
 						<h4 style="font-weight: bold;">매치안내</h4>
 					</div>
-					<div id="playin">
+					<div>
 						<pre>
 20x40m 무료주차 풋살화 대여 구장 특이사항 
 *이동간에 마스크 착용 필수 미 착용시 매치 참여 제한
@@ -101,13 +101,13 @@ a{
 				</div>
 			</div>
 
-			<div>
-				<div>
+			<div >
+				<div >
 					<hr>
-					<div  style="margin: 30px;">
+					<div style="margin: 30px;">
 						<h4 style="font-weight: bold;">환급 규정</h4>
 					</div>
-					<div id="playm">
+					<div>
 						<pre>
 20x40m 무료주차 풋살화 대여 구장 특이사항 
 *이동간에 마스크 착용 필수 미 착용시 매치 참여 제한
