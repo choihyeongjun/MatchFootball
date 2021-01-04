@@ -66,6 +66,14 @@ public class HyeongjunController {
       return "hyeongjun/fieldcommit";
    }
 
+
+   @ResponseBody
+   @RequestMapping("/fielddetailinsert")
+   public List<RfieldVO> fielddetailinsert(RfieldVO vo,Model model) {
+	   return hyeongjunMapper.fielddetailinsert(vo);
+   }
+
+
    @RequestMapping("/fieldlist")
    public String fieldlist(Model model,FieldVO vo) {
 	   model.addAttribute("list",hyeongjunMapper.fieldlist());
@@ -136,6 +144,20 @@ public class HyeongjunController {
    @RequestMapping("/fieldlist/fielddetail")
    public String fielddetail() {
 	   return "hyeongjun/fielddetail";
+   }
+   @ResponseBody
+   @RequestMapping("/fielddetailupdate")
+   public List<RfieldVO> fieldupdate(RfieldVO vo) {
+	   return hyeongjunMapper.fielddetailupdate(vo);
+   }
+   @RequestMapping("/fielddetailupdate1")
+   public List<RfieldVO> fieldupdate1(RfieldVO vo) {
+	   return hyeongjunMapper.fielddetailupdate1(vo);
+   }
+   @ResponseBody
+   @RequestMapping("/fielddetaildelete")
+   public RfieldVO fielddetaildelete(RfieldVO vo) {
+	   return hyeongjunMapper.fielddetaildelete(vo);
    }
 
 

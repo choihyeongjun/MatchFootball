@@ -73,20 +73,43 @@ var newEvent = function (start, end, eventType) {
 
             eventData.allDay = true;
         }
-
-        $("#calendar").fullCalendar('renderEvent', eventData, true);
-        eventModal.find('input, textarea').val('');
-        editAllDay.prop('checked', false);
-        eventModal.modal('hide');
+/*//업데이트 저장으로
+        $.ajax({
+      type: "get",
+      url: "../fielddetailupdate",
+		dataType:"json",
+      data: {
+       starttime:editStart.val(),
+		endtime:editEnd.val(),
+		title:editTitle.val()
+		
+      },
+      success: function (response) {
+        alert('수--정: ' + editStart.val() + ' ~ ' + editEnd.val());
+      }
+    });*/
 
         //새로운 일정 저장
         $.ajax({
             type: "get",
-            url: "",
+            url: "../fielddetailinsert",
             data: {
-                //.....
+				starttime:editStart.val(),
+				endtime:editEnd.val(),
+				title:editTitle.val(),
+				type:editType.val(),
+				backgroundcolor:editColor.val(),
+				comm:editDesc.val()
+				
             },
             success: function (response) {
+				alert("입력 성공하였습니다.");
+				
+      		  $("#calendar").fullCalendar('renderEvent', eventData, true);
+     	 	//  eventModal.find('input, textarea').val('');
+       			 editAllDay.prop('checked', false);
+				 eventModal.modal('hide');
+			
                 //DB연동시 중복이벤트 방지를 위한
                 //$('#calendar').fullCalendar('removeEvents');
                 //$('#calendar').fullCalendar('refetchEvents');
