@@ -7,7 +7,7 @@
 		<tr>
 			<th>아이디</th>
 			<td>:</td>
-			<td>&nbsp;${mvoselect.id}</td>
+			<td id="aa">${mvoselect.id}</td>
 		</tr>
 		<tr>
 			<th>이름</th>

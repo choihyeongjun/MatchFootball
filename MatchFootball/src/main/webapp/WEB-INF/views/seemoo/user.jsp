@@ -25,25 +25,41 @@ $(function(){
     //삭제 버튼 클릭
     $('body').on('click','#btnDelete',function(){
     	console.log($(this).parent().prev().children());
-       //var userId = $(this).closest('tr').find('#hidden_userId').val();
-       /* var result = confirm(userId +" 사용자를 정말로 삭제하시겠습니까?");
+       var userId = $('#aa').text();
+       var result = confirm(userId +" 사용자를 정말로 삭제하시겠습니까?");
        if(result) {
           $.ajax({
-             url:'users/'+userId,  
-             type:'DELETE',
-             contentType:'application/json;charset=utf-8',
+             url:'admin/userdelete',
+             data: {id:userId},
              dataType:'json',
              error:function(xhr,status,msg){
                 console.log("상태값 :" + status + " Http에러메시지 :"+msg);
              }, success:function(xhr) {
-                console.log(xhr.result);
-                userList();
+                console.log(xhr);
+                memberList();
              }
-          }); */      
-          //}//if
+          });     
+        }
     }); //삭제 버튼 클릭
- }//userDelete 
+ } //userDelete 
 
+ var table = $('#dataTable').DataTable({
+	    "language": {
+	        "emptyTable": "데이터가 없어요.",
+	        "lengthMenu": "페이지당 _MENU_ 개씩 보기",
+	        "info": "현재 _START_ - _END_ / _TOTAL_건",
+	        "infoEmpty": "데이터 없음",
+	        "infoFiltered": "( _MAX_건의 데이터에서 필터링됨 )",
+	        "search": "에서 검색: ",
+	        "zeroRecords": "일치하는 데이터가 없어요.",
+	        "loadingRecords": "로딩중...",
+	        "processing":     "잠시만 기다려 주세요...",
+	        "paginate": {
+	            "next": "다음",
+	            "previous": "이전"
+	        }
+	    },
+	});
 
 </script>
 
@@ -108,13 +124,12 @@ $(function(){
 									</tr>
 								</tfoot>
 								<tbody align="center">
-									<c:forEach items="${members}" var="member">
 										<tr>
-											<td>1</td>
+											<td></td>
 											<td>
-												<a class="idnum" id="aa" data-num="${member.id}">${member.id}</a>
+												<a class="idnum"></a>
 											</td>
-											<td>${member.name}</td>
+											<td></td>
 											<td>
 												<select name="job">
 													<option value="" selected="selected">선택</option>
@@ -122,10 +137,9 @@ $(function(){
 													<option value="용병">용병</option>
 												</select>
 											</td>
-											<td>${member.manner}</td>
-											<td>${member.point}Point</td>
+											<td></td>
+											<td></td>
 										</tr>
-									</c:forEach>
 								</tbody>
 							</table>
 						</div>
@@ -146,9 +160,8 @@ $(function(){
 
 					<!-- Modal footer -->
 					<div class="modal-footer">
-						<button style="text-align: center;" 
-						 id="btnDelete" 	
-						type="button" class="btn btn-danger" data-dismiss="modal">회원삭제</button>
+						<button id="btnDelete" type="button" 
+						class="btn btn-danger" data-dismiss="modal">회원삭제</button>
 					</div>
 				</div>
 			</div>
