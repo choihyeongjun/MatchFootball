@@ -3,6 +3,8 @@ package co.company.MatchFootball.sungjun;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,10 +13,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import co.company.MatchFootball.mapper.SungjunMapper;
 import co.company.MatchFootball.vo.CalVO;
+import co.company.MatchFootball.vo.MatchMember;
 import co.company.MatchFootball.vo.MembersVO;
 import co.company.MatchFootball.vo.P_matchVO;
 import co.company.MatchFootball.vo.Paging;
@@ -73,10 +77,9 @@ public class JunController {
 	}
 
 	@RequestMapping(value = "/managermypage")
-	public ModelAndView test4(Paging paging, PointVO p_pointVO, P_matchVO p_matchVO, TeammatchVO team_matchVO,
+	public ModelAndView test4( Paging paging, PointVO p_pointVO, P_matchVO p_matchVO, TeammatchVO team_matchVO,
 			MembersVO membersvo, HttpServletResponse response, Model model, HttpServletRequest request)
 			throws IOException {
-
 		// 이름 포인트 불러오기
 		membersvo.setId("105");
 		model.addAttribute("member", dao.memberselect(membersvo));
@@ -95,9 +98,32 @@ public class JunController {
 		model.addAttribute("paging", paging);
 		model.addAttribute("p_match", dao.pmatchlist(p_matchVO));
 		//model.addAttribute("p_match", dao.pmatchlist(team_matchVO));
+		//model.addAttribute("p_match1",dao.pmatchlist1(p_match));
+	
+		
 		return new ModelAndView("sungjun/managermypage");
 	}
-
+	
+	@RequestMapping(value="/managermypagem")   
+	public ModelAndView test7(P_matchVO p_matchVO,MatchMember matchmember) throws IOException {
+		 ModelAndView mv = new ModelAndView();  
+		
+		mv.addObject("p_matchVO", dao.pmatchlist1(p_matchVO));
+		mv.addObject("matchmember", dao.matchmember(matchmember));
+		mv.setViewName("no/sungjun/matchschedule");
+		return mv;
+	}
+	
+//	@RequestMapping(value = "/managermypagem")
+//	@ResponseBody
+//	public Map<String,Object> test7(HttpServletResponse response,P_matchVO p_matchVO,MatchMember matchmember, Model model, HttpServletRequest request) throws IOException {
+//		
+//		Map<String,Object> list = new HashMap<String, Object>();
+//		list.put("p_matchVO", dao.pmatchlist1(p_matchVO));
+//		list.put("matchmember", dao.matchmember(matchmember));
+//		return list;
+//	}
+	
 	@RequestMapping(value = "/teammatch")
 	public ModelAndView test5(HttpServletResponse response) throws IOException {
 		return new ModelAndView("sungjun/teammatch");

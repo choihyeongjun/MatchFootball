@@ -15,11 +15,15 @@
 	<select id="members" parameterType="MembersVO" resultType="MembersVO">
 		SELECT * FROM MEMBERS WHERE ID = #{id}
 	</select>
+<<<<<<< HEAD
 	
 	<!-- 유저삭제 -->
 	<delete id="membersdelete" parameterType="MembersVO">
 		DELETE FROM MEMBERS WHERE ID = #{id}
 	</delete>
+=======
+
+>>>>>>> branch 'master' of https://github.com/tjdwns631/MatchFootball
 
 <!-- 팀관리 -->
 
@@ -32,8 +36,6 @@
 	<select id="teams" parameterType="TeamVO" resultType="TeamVO">
 		SELECT * FROM TEAM WHERE T_NAME = #{t_name}
 	</select>
-	
-	
 
 <!-- 매니저관리 -->
 

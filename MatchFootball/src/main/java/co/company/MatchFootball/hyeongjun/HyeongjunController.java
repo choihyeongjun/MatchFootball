@@ -65,11 +65,7 @@ public class HyeongjunController {
    public String fieldinsert() {
       return "hyeongjun/fieldcommit";
    }
-   @ResponseBody
-   @RequestMapping("/fielddetailinsert")
-   public List<RfieldVO> fielddetailinsert(MembersVO vo,Model model) {
-	   return hyeongjunMapper.fielddetailinsert();
-   }
+
    @RequestMapping("/fieldlist")
    public String fieldlist(Model model,FieldVO vo) {
 	   model.addAttribute("list",hyeongjunMapper.fieldlist());
@@ -82,8 +78,7 @@ public class HyeongjunController {
    }
    
    @RequestMapping("/free")
-   public String freeboard(Model model) {
-	  model.addAttribute("list",hyeongjunMapper.fboardlist());
+   public String freeboard() {
       return "hyeongjun/freeboard";
    }
    @RequestMapping("/login")

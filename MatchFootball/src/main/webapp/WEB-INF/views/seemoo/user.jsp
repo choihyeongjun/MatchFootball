@@ -12,6 +12,7 @@
 <meta name="author" content="" />
 
 <title>유저관리페이지</title>
+<<<<<<< HEAD
 <script>
 
 $(function(){
@@ -62,6 +63,8 @@ $(function(){
 	});
 
 </script>
+=======
+>>>>>>> branch 'master' of https://github.com/tjdwns631/MatchFootball
 
 <style>
 .userProfileImg {
@@ -127,7 +130,11 @@ $(function(){
 										<tr>
 											<td></td>
 											<td>
+<<<<<<< HEAD
 												<a class="idnum"></a>
+=======
+												<a class="idnum" data-num="${member.id }">${member.id}</a>
+>>>>>>> branch 'master' of https://github.com/tjdwns631/MatchFootball
 											</td>
 											<td></td>
 											<td>
@@ -160,8 +167,13 @@ $(function(){
 
 					<!-- Modal footer -->
 					<div class="modal-footer">
+<<<<<<< HEAD
 						<button id="btnDelete" type="button" 
 						class="btn btn-danger" data-dismiss="modal">회원삭제</button>
+=======
+						<button type="button" class="btn btn-danger" data-dismiss="modal">수정</button>
+						<button type="button" class="btn btn-danger" data-dismiss="modal">삭제</button>
+>>>>>>> branch 'master' of https://github.com/tjdwns631/MatchFootball
 					</div>
 				</div>
 			</div>

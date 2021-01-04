@@ -40,7 +40,7 @@ public class HyenDongController {
 		MultipartFile multipartFile = multipartRequest.getFile("file"); // input타입의 name값 : uploadFile
 		if (!multipartFile.isEmpty() && multipartFile.getSize() > 0) {
 			try {
-				String path = request.getSession().getServletContext().getRealPath("/images"); // /images폴더 위치 mvc에 추가
+				String path = request.getSession().getServletContext().getRealPath("/hyendong"); // /images폴더 위치 mvc에 추가
 				System.out.println("pp" + path);
 				multipartFile.transferTo(new File(path, multipartFile.getOriginalFilename()));
 			} catch (IllegalStateException e) {
@@ -60,7 +60,6 @@ public class HyenDongController {
 	public String teamInfo(Model model, TeamVO teamVO) {
 		model.addAttribute("teamInfo", hyendongMapper.getTeam(teamVO));
 		model.addAttribute("teamMembers", hyendongMapper.getTeamMembers(teamVO));
-		model.addAttribute("members", hyendongMapper.getMembers());
 		return "hyendong/teamInfo";
 	}
 	//팀수정
@@ -74,7 +73,7 @@ public class HyenDongController {
 	public String teamUpdateUpdate(Model model, TeamVO teamVO) {
 		model.addAttribute("teamParameter", hyendongMapper.getTeam(teamVO));
 		hyendongMapper.teamUpdate(teamVO);
-		return "hyendong/teamInfo";
+		return "redirect:/teamInfo";
 	}
 	//팀갤러리
 	@RequestMapping("/teamGallery")
@@ -114,14 +113,12 @@ public class HyenDongController {
 	}
 	//토너먼트 리스트
 	@RequestMapping("/tournamentList")
-	public String tournamentList(Model model) {
-		model.addAttribute("tournamentList", hyendongMapper.tournamentListSelect());
+	public String tournamentList() {
 		return "hyendong/tournamentList";
 	}
 	//토너먼트 상세
 	@RequestMapping("/tournamentInfo")
-	public String tournamentInfo(Model model) {
-		model.addAttribute("tournamentList", hyendongMapper.tournamentListSelect());
+	public String tournamentInfo() {
 		return "hyendong/tournamentInfo";
 	}
 	//토너먼트 대진표
