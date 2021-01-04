@@ -40,6 +40,13 @@
    select m_id "_id",title "title" ,type "type",starttime "start", endtime "end",comm "description"
    from rfield
    </select>
+   <select id="fielddetailinsert" parameterType="rfieldVO" resultType="rfieldVO">
+   		insert into rfield(f_id,starttime,endtime,m_id,title,type,backgroundcolor,comm) values('field1',#{editStart},#{end},'100',#{editTitle},#{editType},#{editColor},#{editDesc})
+   </select>
+   <select id="fboardlist" resultType="fboardVO">
+   	select *
+   	from fboard
+   </select>
    
    
 
