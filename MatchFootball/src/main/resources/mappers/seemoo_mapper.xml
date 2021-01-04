@@ -7,6 +7,10 @@
 <!-- 유저관리 -->
 
 	<!-- 유저전체조회 -->
+	<select id="memberListmap" resultType="map">
+		SELECT POS "pos", ID "id", NAME "name", AUTHOR "author", POINT "point", MANNER "manner" FROM MEMBERS
+	</select>
+	
 	<select id="memberList" resultType="MembersVO">
 		SELECT * FROM MEMBERS
 	</select>

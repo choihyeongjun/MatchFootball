@@ -12,6 +12,7 @@
 <meta name="author" content="" />
 
 <title>유저관리페이지</title>
+
 <script>
 
 $(function(){
@@ -42,24 +43,6 @@ $(function(){
         }
     }); //삭제 버튼 클릭
  } //userDelete 
-
- var table = $('#dataTable').DataTable({
-	    "language": {
-	        "emptyTable": "데이터가 없어요.",
-	        "lengthMenu": "페이지당 _MENU_ 개씩 보기",
-	        "info": "현재 _START_ - _END_ / _TOTAL_건",
-	        "infoEmpty": "데이터 없음",
-	        "infoFiltered": "( _MAX_건의 데이터에서 필터링됨 )",
-	        "search": "에서 검색: ",
-	        "zeroRecords": "일치하는 데이터가 없어요.",
-	        "loadingRecords": "로딩중...",
-	        "processing":     "잠시만 기다려 주세요...",
-	        "paginate": {
-	            "next": "다음",
-	            "previous": "이전"
-	        }
-	    },
-	});
 
 </script>
 
@@ -101,8 +84,7 @@ $(function(){
 					</div>
 					<div class="card-body">
 						<div class="table-responsive">
-							<table class="table table-bordered" id="dataTable" width="100%"
-								cellspacing="0">
+							<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 								<thead align="center">
 									<tr>
 										<th style="width: 10px;">No.</th>
@@ -124,28 +106,13 @@ $(function(){
 									</tr>
 								</tfoot>
 								<tbody align="center">
+									<c:forEach items="members" var="member">
 										<tr>
-											<td></td>
+											<td>${member.id}</td>
 											<td>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-												<a class="idnum"></a>
-=======
 												<a class="idnum" data-num="${member.id }">${member.id}</a>
->>>>>>> branch 'master' of https://github.com/tjdwns631/MatchFootball
-=======
-												<a class="idnum" data-num="${member.id }">${member.id}</a>
->>>>>>> branch 'master' of https://github.com/tjdwns631/MatchFootball
-=======
-												<a class="idnum" data-num="${member.id }">${member.id}</a>
->>>>>>> branch 'master' of https://github.com/tjdwns631/MatchFootball
-=======
-												<a class="idnum" data-num="${member.id }">${member.id}</a>
->>>>>>> branch 'master' of https://github.com/tjdwns631/MatchFootball
 											</td>
-											<td></td>
+											<td>${member.id}</td>
 											<td>
 												<select name="job">
 													<option value="" selected="selected">선택</option>
@@ -153,9 +120,10 @@ $(function(){
 													<option value="용병">용병</option>
 												</select>
 											</td>
-											<td></td>
-											<td></td>
+											<td>${member.id}</td>
+											<td>${member.id}</td>
 										</tr>
+									</c:forEach>	
 								</tbody>
 							</table>
 						</div>
@@ -176,28 +144,8 @@ $(function(){
 
 					<!-- Modal footer -->
 					<div class="modal-footer">
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 						<button id="btnDelete" type="button" 
 						class="btn btn-danger" data-dismiss="modal">회원삭제</button>
-=======
-						<button type="button" class="btn btn-danger" data-dismiss="modal">수정</button>
-						<button type="button" class="btn btn-danger" data-dismiss="modal">삭제</button>
->>>>>>> branch 'master' of https://github.com/tjdwns631/MatchFootball
-=======
-						<button type="button" class="btn btn-danger" data-dismiss="modal">수정</button>
-						<button type="button" class="btn btn-danger" data-dismiss="modal">삭제</button>
->>>>>>> branch 'master' of https://github.com/tjdwns631/MatchFootball
-=======
-						<button type="button" class="btn btn-danger" data-dismiss="modal">수정</button>
-						<button type="button" class="btn btn-danger" data-dismiss="modal">삭제</button>
->>>>>>> branch 'master' of https://github.com/tjdwns631/MatchFootball
-=======
-						<button type="button" class="btn btn-danger" data-dismiss="modal">수정</button>
-						<button type="button" class="btn btn-danger" data-dismiss="modal">삭제</button>
->>>>>>> branch 'master' of https://github.com/tjdwns631/MatchFootball
 					</div>
 				</div>
 			</div>

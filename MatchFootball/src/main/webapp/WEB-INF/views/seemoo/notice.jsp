@@ -32,7 +32,7 @@
 					<div class="card mb-4">
 						<div class="card-body">
 							<div align="center">
-								<input type="button" value="글쓰기" onclick="">
+								<input type="button" value="글쓰기" onclick="location.href='notice/noticewrite'">
 							</div>
 						</div>
 					</div>
