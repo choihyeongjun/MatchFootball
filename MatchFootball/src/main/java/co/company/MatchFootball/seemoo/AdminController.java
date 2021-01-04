@@ -11,9 +11,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 =======
+=======
+>>>>>>> branch 'master' of https://github.com/tjdwns631/MatchFootball
 import org.springframework.web.servlet.ModelAndView;
 >>>>>>> branch 'master' of https://github.com/tjdwns631/MatchFootball
 
@@ -51,6 +54,7 @@ public class AdminController {
 		return "no/seemoo/userinfo";
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	
 	@RequestMapping(value = "/admin/userdelete", method = RequestMethod.GET) // 유저관리 페이지 (삭제)
 	@ResponseBody
@@ -68,6 +72,8 @@ public class AdminController {
 //	      return result;
 //	   }
 
+=======
+>>>>>>> branch 'master' of https://github.com/tjdwns631/MatchFootball
 =======
 >>>>>>> branch 'master' of https://github.com/tjdwns631/MatchFootball
 

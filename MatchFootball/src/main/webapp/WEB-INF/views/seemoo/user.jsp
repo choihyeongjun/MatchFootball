@@ -13,6 +13,7 @@
 
 <title>유저관리페이지</title>
 <<<<<<< HEAD
+<<<<<<< HEAD
 <script>
 
 $(function(){
@@ -63,6 +64,8 @@ $(function(){
 	});
 
 </script>
+=======
+>>>>>>> branch 'master' of https://github.com/tjdwns631/MatchFootball
 =======
 >>>>>>> branch 'master' of https://github.com/tjdwns631/MatchFootball
 
@@ -131,7 +134,11 @@ $(function(){
 											<td></td>
 											<td>
 <<<<<<< HEAD
+<<<<<<< HEAD
 												<a class="idnum"></a>
+=======
+												<a class="idnum" data-num="${member.id }">${member.id}</a>
+>>>>>>> branch 'master' of https://github.com/tjdwns631/MatchFootball
 =======
 												<a class="idnum" data-num="${member.id }">${member.id}</a>
 >>>>>>> branch 'master' of https://github.com/tjdwns631/MatchFootball
@@ -168,8 +175,13 @@ $(function(){
 					<!-- Modal footer -->
 					<div class="modal-footer">
 <<<<<<< HEAD
+<<<<<<< HEAD
 						<button id="btnDelete" type="button" 
 						class="btn btn-danger" data-dismiss="modal">회원삭제</button>
+=======
+						<button type="button" class="btn btn-danger" data-dismiss="modal">수정</button>
+						<button type="button" class="btn btn-danger" data-dismiss="modal">삭제</button>
+>>>>>>> branch 'master' of https://github.com/tjdwns631/MatchFootball
 =======
 						<button type="button" class="btn btn-danger" data-dismiss="modal">수정</button>
 						<button type="button" class="btn btn-danger" data-dismiss="modal">삭제</button>

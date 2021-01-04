@@ -16,11 +16,15 @@
 		SELECT * FROM MEMBERS WHERE ID = #{id}
 	</select>
 <<<<<<< HEAD
+<<<<<<< HEAD
 	
 	<!-- 유저삭제 -->
 	<delete id="membersdelete" parameterType="MembersVO">
 		DELETE FROM MEMBERS WHERE ID = #{id}
 	</delete>
+=======
+
+>>>>>>> branch 'master' of https://github.com/tjdwns631/MatchFootball
 =======
 
 >>>>>>> branch 'master' of https://github.com/tjdwns631/MatchFootball
