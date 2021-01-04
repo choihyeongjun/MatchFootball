@@ -103,21 +103,27 @@ public class JunController {
 		
 		return new ModelAndView("sungjun/managermypage");
 	}
-	@RequestMapping(value = "/managermypagem")
-	@ResponseBody
-	public Map<String,Object> test7(HttpServletResponse response,P_matchVO p_matchVO,MatchMember matchmember, Model model, HttpServletRequest request) throws IOException {
+	
+	@RequestMapping(value="/managermypagem")   
+	public ModelAndView test7(P_matchVO p_matchVO,MatchMember matchmember) throws IOException {
+		 ModelAndView mv = new ModelAndView();  
 		
-		Map<String,Object> list = new HashMap<String, Object>();
-		list.put("p_matchVO", dao.pmatchlist1(p_matchVO));
-		list.put("matchmember", dao.matchmember(matchmember));
-		return list;
+		mv.addObject("p_matchVO", dao.pmatchlist1(p_matchVO));
+		mv.addObject("matchmember", dao.matchmember(matchmember));
+		mv.setViewName("no/sungjun/matchschedule");
+		return mv;
 	}
-	@RequestMapping(value = "/managermypagemm")
-	@ResponseBody
-	public MatchMember test(HttpServletResponse response, MatchMember matchmember, HttpServletRequest request) throws IOException {
-		
-		return dao.matchmember(matchmember);
-	}
+	
+//	@RequestMapping(value = "/managermypagem")
+//	@ResponseBody
+//	public Map<String,Object> test7(HttpServletResponse response,P_matchVO p_matchVO,MatchMember matchmember, Model model, HttpServletRequest request) throws IOException {
+//		
+//		Map<String,Object> list = new HashMap<String, Object>();
+//		list.put("p_matchVO", dao.pmatchlist1(p_matchVO));
+//		list.put("matchmember", dao.matchmember(matchmember));
+//		return list;
+//	}
+	
 	@RequestMapping(value = "/teammatch")
 	public ModelAndView test5(HttpServletResponse response) throws IOException {
 		return new ModelAndView("sungjun/teammatch");

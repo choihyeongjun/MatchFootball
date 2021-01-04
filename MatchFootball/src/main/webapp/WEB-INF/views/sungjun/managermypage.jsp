@@ -136,38 +136,22 @@ a {
 	background-color: #3540A5;
 	color: white;
 }
+
 </style>
 <script>
-	$(function(){
-		mddd();
-		mppp();
-		});
-		function mddd(){
-		$(".mdetail").on("click",function(){
-			var m_no= $(this).data("num");
-			modal= $("#matchdetail");
+	$(function() {
+		$(".mdetail").on("click", function() {
+			var m_no = $(this).data("num");
+			modal = $("#matchdetail");
 			$.ajax({
-				url:"managermypagem?m_no=" + m_no ,
-				dataType: "json",
-				success: function(result){
-					var pm =result.p_matchVO;
-					var pp =result.matchmember;
-					$(".name").html(pm.f_name)
-					$(".date").html(pm.m_date)
-					$(".hour").html(pm.m_hour)
-					$(".address").html(pm.f_address)
-					$(".type").html(pm.m_type)
-					$(".lv").html(pm.lv+"Lv")
-					for(i=0; i<pp.length i++){
-						$()
-					}
+				url : "managermypagem?m_no=" + m_no,
+				success : function(result) {
+					modal.find('#body1').html(result);
 					modal.modal('show');
-					
 				}
 			});
 		})
-	}
-		
+	})
 </script>
 </head>
 <body style="background-color: #fafafa;">
@@ -224,92 +208,10 @@ a {
 			<!-- Modal -->
 			<div class="modal fade" id="matchdetail" tabindex="-1"
 				aria-labelledby="exampleModalLabel" aria-hidden="true">
-				<div class="modal-dialog">
+				<div class="modal-dialog modal-lg">
 					<div class="modal-content">
 						<div class="modal-body" id="body1">
-							<div class="row">
-								<div class="col">
-									<div>
-										<h3>매치 정보</h3>
-									</div>
-									<form>
-										<div class="form-group">
-											<label for="exampleFormControlInput1"
-												style="font-weight: bold; margin-top: 5px; margin-bottom: 5px;">구장
-											</label>
-											<div class="form-control name"></div>
-										</div>
-										<div class="form-group">
-											<label for="exampleFormControlInput1"
-												style="font-weight: bold; margin-top: 5px; margin-bottom: 5px;">경기
-												일정 </label>
-											<div class="form-control">
-												<a class="date"></a> <a class="hour"></a>
-											</div>
-										</div>
-										<div class="form-group">
-											<label for="exampleFormControlInput1"
-												style="font-weight: bold; margin-top: 5px; margin-bottom: 5px;">주소
-											</label>
-											<div class="form-control address"></div>
-										</div>
-										<div class="form-group">
-											<label for="exampleFormControlInput1"
-												style="font-weight: bold; margin-top: 5px; margin-bottom: 5px;">유형
-											</label>
-											<div class="form-control type"></div>
-										</div>
-										<div class="form-group">
-											<label for="exampleFormControlInput1"
-												style="font-weight: bold; margin-top: 5px; margin-bottom: 5px;">Lv
-											</label>
-											<div class="form-control lv"></div>
-
-										</div>
-									</form>
-								</div>
-								<div class="col">
-									<div>
-										<h3>신청 인원</h3>
-									</div>
-									<form>
-										<div class="form-group">
-											<label for="exampleFormControlInput1"
-												style="font-weight: bold; margin-top: 5px; margin-bottom: 5px;">구장
-											</label>
-											<div class="form-control pid"></div>
-										</div>
-										<div class="form-group">
-											<label for="exampleFormControlInput1"
-												style="font-weight: bold; margin-top: 5px; margin-bottom: 5px;">경기
-												일정 </label>
-											<div class="form-control">
-												<a class="date"></a> <a class="pname"></a>
-											</div>
-										</div>
-										<div class="form-group">
-											<label for="exampleFormControlInput1"
-												style="font-weight: bold; margin-top: 5px; margin-bottom: 5px;">주소
-											</label>
-											<div class="form-control address"></div>
-										</div>
-										<div class="form-group">
-											<label for="exampleFormControlInput1"
-												style="font-weight: bold; margin-top: 5px; margin-bottom: 5px;">유형
-											</label>
-											<div class="form-control type"></div>
-										</div>
-										<div class="form-group">
-											<label for="exampleFormControlInput1"
-												style="font-weight: bold; margin-top: 5px; margin-bottom: 5px;">Lv
-											</label>
-											<div class="form-control lv"></div>
-
-										</div>
-									</form>
-								</div>
-
-							</div>
+							...
 						</div>
 					</div>
 				</div>

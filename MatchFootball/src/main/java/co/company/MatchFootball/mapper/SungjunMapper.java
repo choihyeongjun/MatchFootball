@@ -16,7 +16,7 @@ public interface SungjunMapper {
 	public MembersVO memberselect(MembersVO membersvo);
 	public List<PointVO>  pointallselect(PointVO p_point);
 	public P_matchVO pmatchlist1(P_matchVO p_match);
-	public <List>MatchMember matchmember(MatchMember matchmember);
+	public List<MatchMember> matchmember(MatchMember matchmember);
 	
 	
 }

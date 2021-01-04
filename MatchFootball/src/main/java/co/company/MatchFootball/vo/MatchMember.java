@@ -4,9 +4,11 @@ import lombok.Data;
 
 @Data
 public class MatchMember {
+	String m_no;
+	String id;
 	String name;
 	String gender;
 	String pnum;
-	int lv;
+	String lv;
 	String pos;
 }
