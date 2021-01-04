@@ -12,6 +12,40 @@
 <meta name="author" content="" />
 
 <title>유저관리페이지</title>
+<script>
+
+$(function(){
+    
+    userDelete();
+    
+ });
+
+
+ function userDelete() {
+    //삭제 버튼 클릭
+    $('body').on('click','#btnDelete',function(){
+    	console.log($(this).parent().prev().children());
+       //var userId = $(this).closest('tr').find('#hidden_userId').val();
+       /* var result = confirm(userId +" 사용자를 정말로 삭제하시겠습니까?");
+       if(result) {
+          $.ajax({
+             url:'users/'+userId,  
+             type:'DELETE',
+             contentType:'application/json;charset=utf-8',
+             dataType:'json',
+             error:function(xhr,status,msg){
+                console.log("상태값 :" + status + " Http에러메시지 :"+msg);
+             }, success:function(xhr) {
+                console.log(xhr.result);
+                userList();
+             }
+          }); */      
+          //}//if
+    }); //삭제 버튼 클릭
+ }//userDelete 
+
+
+</script>
 
 <style>
 .userProfileImg {
@@ -78,7 +112,7 @@
 										<tr>
 											<td>1</td>
 											<td>
-												<a class="idnum" data-num="${member.id }">${member.id}</a>
+												<a class="idnum" id="aa" data-num="${member.id}">${member.id}</a>
 											</td>
 											<td>${member.name}</td>
 											<td>
@@ -112,8 +146,9 @@
 
 					<!-- Modal footer -->
 					<div class="modal-footer">
-						<button type="button" class="btn btn-danger" data-dismiss="modal">수정</button>
-						<button type="button" class="btn btn-danger" data-dismiss="modal">삭제</button>
+						<button style="text-align: center;" 
+						 id="btnDelete" 	
+						type="button" class="btn btn-danger" data-dismiss="modal">회원삭제</button>
 					</div>
 				</div>
 			</div>
