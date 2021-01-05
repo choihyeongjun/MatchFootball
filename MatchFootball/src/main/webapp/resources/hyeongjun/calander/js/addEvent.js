@@ -96,10 +96,10 @@ var newEvent = function (start, end, eventType) {
             data: {
 				starttime:editStart.val(),
 				endtime:editEnd.val(),
-				title:editTitle.val(),
+				comm:editDesc.val(),
 				type:editType.val(),
 				backgroundcolor:editColor.val(),
-				comm:editDesc.val()
+				title:editTitle.val()
 				
             },
             success: function (response) {
@@ -111,8 +111,8 @@ var newEvent = function (start, end, eventType) {
 				 eventModal.modal('hide');
 			
                 //DB연동시 중복이벤트 방지를 위한
-                //$('#calendar').fullCalendar('removeEvents');
-                //$('#calendar').fullCalendar('refetchEvents');
+                $('#calendar').fullCalendar('removeEvents');
+                $('#calendar').fullCalendar('refetchEvents');
             }
         });
     });

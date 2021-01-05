@@ -20,6 +20,13 @@
       <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/hyeongjun/css1/style.css">
       <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/hyeongjun/css1/skins/all.css">
       <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/hyeongjun/css1/demo.css">
+<script>
+function kakaoLogout() {
+	Kakao.Auth.logout(function(response) {
+		alert(response + 'logout');
+	}); 
+}
+</script>
 </head>
 <body>
 <section class="login first grey">
@@ -51,6 +58,7 @@
                            or
                         </div>
                  <a href="#" class="btn btn-social btn-block facebook"><i class="ion-social-facebook"></i> Login with Facebook</a>
+				<a id="custom-login-btn" href="${kakao_url}"><img src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg"width="222"/>
                      </form>
                   </div>
                </div>

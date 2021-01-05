@@ -17,7 +17,7 @@ import oracle.jdbc.pool.OracleDataSource;
 @EnableTransactionManagement
 public class DataSourceSample {
 	  
-	final static String DB_URL="jdbc:oracle:thin:@db202012151659_high?TNS_ADMIN=C://Dev//Wallet";
+	final static String DB_URL="jdbc:oracle:thin:@db202012151659_high?TNS_ADMIN=D://Dev//Wallet";
 	final static String DB_USER = "admin";
 	final static String DB_PASSWORD = "RLAgusehd12!@";
 	

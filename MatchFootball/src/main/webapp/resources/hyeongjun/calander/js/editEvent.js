@@ -1,11 +1,22 @@
+var eventModal = $('#eventModal');
+
+var modalTitle = $('.modal-title');
+var editAllDay = $('#edit-allDay');
+var editTitle = $('#edit-title');
+var editStart = $('#edit-start');
+var editEnd = $('#edit-end');
+var editType = $('#edit-type');
+var editColor = $('#edit-color');
+var editDesc = $('#edit-desc');
+var updateevent;
 /* ****************
  *  일정 편집
  * ************** */
 var editDesc=$('#edit-desc');
 var editEvent = function (event, element, view) {
-
+	updateevent=event;
     $('#deleteEvent').data('id', event._id); //클릭한 이벤트 ID
-
+	$('#updateEvent').data('id', event._id);
     $('.popover.fade.top').remove();
     $(element).popover("hide");
 
@@ -40,7 +51,7 @@ var editEvent = function (event, element, view) {
     
 };
 //업데이트 버튼 클릭시
-   // $('#updateEvent').unbind();
+$('#updateEvent').unbind();
 $('#updateEvent').on('click', function () {
 
         if (editStart.val() > editEnd.val()) {
@@ -77,27 +88,26 @@ $('#updateEvent').on('click', function () {
             url: "../fielddetailupdate1",
 			dataType:"json",
             data: {
-				starttime:$('#edit-start').val(),
-				endtime:$('#edit-end').val(),
-				type:$('#edit-type').val(),
-				backgroundColor:$('#edit-color').val(),
-				comm:$('#edit-desc').val(),
-               title:$('#edit-title').val()
+				starttime:editStart.val(),
+				endtime:editEnd.val(),
+				title:editTitle.val(),
+				type:editType.val(),
+				backgroundcolor:editColor.val(),
+				comm:editDesc.val()
 
             },
             success: function (response) {
-			 	eventModal.modal('hide');
-		
-		        event.allDay = statusAllDay;
-		        event.title = editTitle.val();
-		        event.start = startDate;
-		        event.end = displayDate;
-		        event.type = editType.val();
-		        event.backgroundColor = editColor.val();
-		        event.description = editDesc.val();
-		
-		        $("#calendar").fullCalendar('updateEvent', event);
-		        alert('수정되었습니다.')
+			 	updateevent.starttime=editStart.val();
+				updateevent.endtime=editEnd.val();
+				updateevent.title=editTitle.val();
+				updateevent.type=editType.val();
+				updateevent.backgroundColor=editColor.val();
+				updateevent.comm=editDesc.val();
+				alert('수정되었습니다.');
+				$("#calendar").fullCalendar('updateEvent', updateevent,true);
+				$('#calendar').fullCalendar('refetchEvents',updateevent,true);
+ 				eventModal.modal('hide');
+		        
 		    }
         });
 });

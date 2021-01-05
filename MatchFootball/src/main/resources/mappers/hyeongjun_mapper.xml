@@ -51,10 +51,13 @@
    		update rfield set starttime=#{starttime},endtime=#{endtime} where title=#{title}
    </select>
    <select id="fielddetailupdate1" parameterType="rfieldVO" resultType="rfieldVO">
-   		update rfield set starttime=#{starttime},endtime=#{endtime},comm=#{comm},type=#{type},backgroundcolor=#{backgroundcolor} "backgroundColor" where title=#{title}
+   		update rfield set starttime=#{starttime},endtime=#{endtime},comm=#{comm},type=#{type},backgroundcolor=#{backgroundcolor} where title=#{title}
    </select>
    <select id="fielddetaildelete" resultType="rfieldVO">
    	delete from rfield where comm=#{comm}
+   </select>
+   <select id="freeinsert" parameterType="fboardVO" resultType="fboardVO">
+   	insert into fboard(id,num,title,comm) values(#{id},free_seq,#{nq_title},#{nq_content})
    </select>
    
 
