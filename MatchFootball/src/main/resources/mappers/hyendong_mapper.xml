@@ -2,77 +2,122 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="co.company.MatchFootball.mapper.HyendongMapper"> <!-- 패키지.EmpMapper -->
+<mapper
+	namespace="co.company.MatchFootball.mapper.HyendongMapper"> <!-- 패키지.EmpMapper -->
 
-<!-- 팀리스트 조회 -->
-<select id="teamListSelect" resultType="TeamVO">
-	SELECT *
-	FROM TEAM
-	ORDER BY T_NUM
-</select>
+	<!-- 아이디 소속된 팀 정보 -->
+	<select id="idTeamSelect" parameterType="MembersVO"
+		resultType="TeamVO">
+		select *
+		from members m
+		join team t
+		on m.t_name = t.t_name
+		where m.id=#{id}
+	</select>
 
-<!-- 팀 등록 -->
-<insert id="teamInsert" parameterType="TeamVO">
-<selectKey order="BEFORE"
-				   keyProperty="t_num" 
-				   resultType="string">
-			SELECT MAX(t_num)+1 
+	<!-- 팀리스트 조회 -->
+	<select id="teamListSelect" resultType="TeamVO"
+		parameterType="TeamVO">
+		select * from( select a.*, rownum rn from (
+		SELECT *
+		FROM TEAM
+		ORDER BY t_num
+		) a ) b where rn between #{first} and #{last}
+
+	</select>
+
+	<!-- 팀 등록 -->
+	<insert id="teamInsert" parameterType="TeamVO">
+		<selectKey order="BEFORE" keyProperty="t_num"
+			resultType="string">
+			SELECT MAX(t_num)+1
 			FROM team
 		</selectKey>
-	INSERT INTO TEAM (t_num, 
-					  t_name, 
-					  t_max, 
-					  t_address, 
-					  t_type, 
-					  t_info, 
-					  t_logo
-					  )
-				VALUES(
-					  #{t_num},
-					  #{t_name},
-					  #{t_max},
-					  #{t_address},
-					  #{t_type},
-					  #{t_info},
-					  #{t_logo})
-</insert>
+		INSERT INTO TEAM (t_num,
+		t_name,
+		t_max,
+		t_address,
+		t_type,
+		t_info,
+		t_logo
+		)
+		VALUES(
+		#{t_num},
+		#{t_name},
+		#{t_max},
+		#{t_address},
+		#{t_type},
+		#{t_info},
+		#{t_logo,jdbcType=VARCHAR})
+	</insert>
 
-<!-- 팀 단건 정보 조회 -->
-<select id="getTeam" parameterType="teamVO" resultType="teamVO">
-	SELECT t_num,
-		   t_name,
-		   t_max,
-		   t_age,
-		   t_address,
-		   t_type,
-		   t_info,
-		   t_logo
-	FROM team
-	WHERE t_num = #{t_num}
-</select>
+	<!-- 팀 단건 정보 조회 -->
+	<select id="getTeam" parameterType="teamVO" resultType="teamVO">
+		SELECT t_num,
+		t_name,
+		t_max,
+		t_age,
+		t_address,
+		t_type,
+		t_info,
+		t_logo
+		FROM team
+		WHERE t_num = #{t_num}
+	</select>
 
-<!-- 팀원 조회 -->
-<select id="getTeamMembers" parameterType="TeamlistVO" resultType="TeamlistVO">
-	select * from teamlist where t_num = #{t_num}
-</select>
+	<!-- 팀원 조회 -->
+	<select id="getTeamMembers" parameterType="TeamlistVO"
+		resultType="TeamlistVO">
+		select * from teamlist where t_num = #{t_num}
+	</select>
 
-<!-- 팀 정보 변경 -->
-<update id="teamUpdate" >
-	UPDATE TEAM
-	SET t_name = #{t_name},
+	<!-- 팀 정보 변경 -->
+	<update id="teamUpdate">
+		UPDATE TEAM
+		SET t_name = #{t_name},
 		t_max = #{t_max},
 		t_address = #{t_address},
-		t_type = #{t_type},
-		t_logo = #{t_logo},
+		t_type =
+		#{t_type},
+		t_logo = #{t_logo,jdbcType=VARCHAR},
 		t_info = #{t_info}
-	WHERE t_num = #{t_num}
-</update>
+		WHERE t_num = #{t_num}
+	</update>
 
-<!-- 멤버리스트 조회 -->
-<select id="getMembers" parameterType="membersVO" resultType="membersVO">
-   SELECT 
-      id,name,gender,location1,pnum,manner,lv,pos
-      from members
-      where author2='Y'
-   </select>
+	<!-- 멤버리스트 조회 -->
+	<select id="getMembers" parameterType="membersVO"
+		resultType="membersVO">
+		SELECT
+		id,name,gender,location1,pnum,manner,lv,pos
+		from members
+		where author2='Y'
+	</select>
+
+	<!-- 토너먼트 리스트 조회 -->
+	<select id="tournamentListSelect" resultType="TournamentVO">
+		SELECT *
+		FROM tournament
+		ORDER BY s_date
+	</select>
+
+	<!-- 토너먼트 정보 단건 조회 -->
+	<select id="getTournament" parameterType="TournamentVO"
+		resultType="TournamentVO">
+		SELECT *
+		FROM tournament
+		WHERE t_no = #{t_no}
+	</select>
+
+	<!--p_match 내역 수 페이징 -->
+	<select id="getCount1" resultType="int">
+		SELECT COUNT(*) FROM team
+	</select>
+
+	<!-- 토너먼트 대진표 조회 -->
+	<select id="tournamentPVP" parameterType="TournamentTeamVO"
+		resultType="TournamentTeamVO">
+		select *
+		from tournamentteam
+		where t_no = #{t_no}
+	</select>
 </mapper>
