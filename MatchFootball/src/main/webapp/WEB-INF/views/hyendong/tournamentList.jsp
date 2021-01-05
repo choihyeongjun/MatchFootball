@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -67,11 +68,12 @@
 </style>
 </head>
 <body>
-<div class="contentWrapper">
+<div class="contentWrapper" style="margin-bottom: 200px">
 	<div id="main_contents">
 		<ul class="tournament_wrap">
+			<c:forEach items="${tournamentList}" var="tournamentList">
 			<li><a
-				href="https://baro-match.co.kr/newsite/web/page.php?lang=korean&amp;pcode=31&amp;ggubun=view&amp;ca_code=&amp;or_id=32"
+				href="tournamentInfo?t_no=${tournamentList.t_no }"
 				data-fade="fade" style="text-decoration:none">
 					<div class="wrap">
 						<div class="tournament_img">
@@ -81,101 +83,27 @@
 						</div>
 
 						<div class="tournament_info">
-							<p class="tit">포카리스웨트와 함께하는 FUTSAL HEROES 2018</p>
-							<dl>
-								<dt>신청기간</dt>
-								<dd>2020-11-15 ~ 2020-11-25</dd>
-							</dl>
+							<p class="tit">${tournamentList.title }</p>
 							<dl>
 								<dt>대회기간</dt>
-								<dd>2020-12-01 ~ 2020-12-31</dd>
+								<dd>${tournamentList.s_date } ~ ${tournamentList.e_date }</dd>
 							</dl>
 							<dl>
 								<dt>대회지역</dt>
-								<dd>대구 내당동~~~</dd>
+								<dd>${tournamentList.address }</dd>
 							</dl>
 							<dl>
 								<dt>대회구장</dt>
-								<dd>LFC풋살장</dd>
+								<dd>${tournamentList.location }</dd>
 							</dl>
 							<dl>
 								<dt>상금</dt>
-								<dd>100,000p</dd>
+								<dd>${tournamentList.point }P</dd>
 							</dl>
 						</div>
 					</div>
 			</a></li>
-			<li><a
-				href="https://baro-match.co.kr/newsite/web/page.php?lang=korean&amp;pcode=31&amp;ggubun=view&amp;ca_code=&amp;or_id=32"
-				data-fade="fade" style="text-decoration:none">
-					<div class="wrap">
-						<div class="tournament_img">
-							<img
-								src="https://baro-match.co.kr/newsite/../site/_data/on_reservation/1982540371_b5f8280c_2018_ED8FACECB9B4EBA6ACEC8AA4EC9BA8ED8AB8_ED928BEC82B4ED9E88EC96B4EBA19CECA688_ED8FACEC8AA4ED84B0_ECB59CECA285.jpg"
-								width="100%">
-						</div>
-
-						<div class="tournament_info">
-							<p class="tit">포카리스웨트와 함께하는 FUTSAL HEROES 2018</p>
-							<dl>
-								<dt>신청기간</dt>
-								<dd>2020-11-15 ~ 2020-11-25</dd>
-							</dl>
-							<dl>
-								<dt>대회기간</dt>
-								<dd>2020-12-01 ~ 2020-12-31</dd>
-							</dl>
-							<dl>
-								<dt>대회지역</dt>
-								<dd>대구 내당동~~~</dd>
-							</dl>
-							<dl>
-								<dt>대회구장</dt>
-								<dd>LFC풋살장</dd>
-							</dl>
-							<dl>
-								<dt>상금</dt>
-								<dd>100,000p</dd>
-							</dl>
-						</div>
-					</div>
-			</a></li>
-			<li><a
-				href="https://baro-match.co.kr/newsite/web/page.php?lang=korean&amp;pcode=31&amp;ggubun=view&amp;ca_code=&amp;or_id=32"
-				data-fade="fade" style="text-decoration:none">
-					<div class="wrap">
-						<div class="tournament_img">
-							<img
-								src="https://baro-match.co.kr/newsite/../site/_data/on_reservation/1982540371_b5f8280c_2018_ED8FACECB9B4EBA6ACEC8AA4EC9BA8ED8AB8_ED928BEC82B4ED9E88EC96B4EBA19CECA688_ED8FACEC8AA4ED84B0_ECB59CECA285.jpg"
-								width="100%">
-						</div>
-
-						<div class="tournament_info">
-							<p class="tit">포카리스웨트와 함께하는 FUTSAL HEROES 2018</p>
-							<dl>
-								<dt>신청기간</dt>
-								<dd>2020-11-15 ~ 2020-11-25</dd>
-							</dl>
-							<dl>
-								<dt>대회기간</dt>
-								<dd>2020-12-01 ~ 2020-12-31</dd>
-							</dl>
-							<dl>
-								<dt>대회지역</dt>
-								<dd>대구 내당동~~~</dd>
-							</dl>
-							<dl>
-								<dt>대회구장</dt>
-								<dd>LFC풋살장</dd>
-							</dl>
-							<dl>
-							<dl>
-								<dt>상금</dt>
-								<dd>100,000p</dd>
-							</dl>
-						</div>
-					</div>
-			</a></li>
+			</c:forEach>
 		</ul>
 	</div>
 </div>

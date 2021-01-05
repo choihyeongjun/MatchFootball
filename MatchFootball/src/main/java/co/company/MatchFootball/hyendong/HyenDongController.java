@@ -150,7 +150,8 @@ public class HyenDongController {
 
 	// 토너먼트 리스트
 	@RequestMapping("/tournamentList")
-	public String tournamentList() {
+	public String tournamentList(Model model) {
+		model.addAttribute("tournamentList", hyendongMapper.tournamentListSelect());
 		return "hyendong/tournamentList";
 	}
 
