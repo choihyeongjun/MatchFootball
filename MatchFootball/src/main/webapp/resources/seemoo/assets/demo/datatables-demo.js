@@ -4,7 +4,7 @@ $(document).ready(function() {
 });
 
 // Call the dataTables jQuery plugin
-  $('#dataTable2').DataTable( {
+/*  $('#dataTable1').DataTable( {
  	ajax:{
 	
   url:'user/ajax' ,
@@ -17,4 +17,4 @@ $(document).ready(function() {
         { data: 'manner' },
         { data: 'point' }
     ]
-  });
+  });*/
