@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -82,14 +83,21 @@ public class HyeongjunController {
 		return "hyeongjun/fieldlist";
 	}
 
+	@RequestMapping("/fieldlist/fielddetail/{f_id}")
+	public String fieldselect(@PathVariable String f_id,Model model,RfieldVO vo) {
+		model.addAttribute("f_id",f_id);
+		model.addAttribute("list",hyeongjunMapper.fieldselect(vo));
+		return "hyeongjun/fielddetail";
+	}
 	@ResponseBody
 	@RequestMapping("/fieldselect")
-	public List<RfieldVO> fieldselect(Model model) {
-		return hyeongjunMapper.fieldselect();
+	public List<RfieldVO> fielddetail(RfieldVO vo) {
+		return hyeongjunMapper.fieldselect(vo);
 	}
-
+	
 	@RequestMapping("/free")
-	public String freeboard() {
+	public String freeboard(Model model,FboardVO vo) {
+		model.addAttribute("list",hyeongjunMapper.fboardlist());
 		return "hyeongjun/freeboard";
 	}
 
@@ -154,10 +162,7 @@ public class HyeongjunController {
 		hyeongjunMapper.invitestore(param);
 	}
 
-	@RequestMapping("/fieldlist/fielddetail")
-	public String fielddetail() {
-		return "hyeongjun/fielddetail";
-	}
+
 
 	@ResponseBody
 	@RequestMapping("/fielddetailupdate")
@@ -181,9 +186,14 @@ public class HyeongjunController {
 	public String freewriter() {
 		return "hyeongjun/freeboardwrite";
 	}
+	@RequestMapping("/freeread")
+	public String freeread() {
+		return "hyeongjun/freeread";
+	}
 	@RequestMapping("/freeinsert")
-	public FboardVO freeinsert(FboardVO vo) {
-		return hyeongjunMapper.freeinsert(vo);
+	public String freeinsert(FboardVO vo,Model model) {
+		 hyeongjunMapper.freeinsert(vo);
+		 return "hyeongjun/freeboard";
 	}
 
 }

@@ -31,7 +31,49 @@
 }
 </style>
 
+<script>
+$(function(){
+	userList();
+
+});
+
+//사용자 목록 조회 요청
+function userList() {
+	$.ajax({
+		url:'../team/ajax',
+		type:'GET',
+		//contentType:'application/json;charset=utf-8',
+		dataType:'json',
+		error:function(xhr,status,msg){
+			alert("상태값 :" + status + " Http에러메시지 :"+msg);
+		},
+		success:userListResult
+	});
+}//userList
+
+//사용자 목록 조회 응답
+function userListResult(data) {
+	$("tbody").empty();
+	$.each(data,function(idx,item){
+		$('<tr>')
+		.append($('<td>').html(item.t_no))    	//No.
+		.append($('<td>').html(item.t_name))	//팀이름
+		.append($('<td>').html(item.t_level))   //팀레벨
+		.append($('<td>').html(item.t_wn))      //팀승률
+		.append($('<td>').html(item.t_author))  //팀권한
+		.append($('<td>').html(item.t_m))		//팀매너점수
+		.append($('<td>').html(item.t_info))    //팀소개
+		.append($('<td>').html('<button id=\'btnSelect\'class="btn btn-success">팀수정</button>'))
+		.append($('<td>').html('<button id=\'btnDelete\'class="btn btn-primary">팀삭제</button>'))
+		.append($('<input type=\'hidden\' id=\'hidden_userId\'>').val(item.id))
+		.appendTo('tbody');
+	});//each
+	  $('#dataTable').DataTable();
+}//userListResult
+</script>
+
 </head>
+
 		<body>
 		
 		<!--팀관리 -->
@@ -61,12 +103,14 @@
 									<thead align="center">
 										<tr>
 											<th style="width: 10px;">No.</th>
-											<th style="width: 300px;">팀이름</th>
+											<th>팀이름</th>
 											<th style="width: 70px;">팀레벨</th>
 											<th style="width: 70px;">팀승률</th>
 											<th style="width: 150px;">팀권한</th>
-											<th style="width: 80px;">팀매너점수</th>
+											<th>팀매너점수</th>
 											<th>팀소개</th>
+											<th>수정</th>
+											<th>삭제</th>
 										</tr>
 									</thead>
 									<tfoot align="center">
@@ -78,27 +122,11 @@
 											<th>팀권한</th>
 											<th>팀매너점수</th>
 											<th>팀소개</th>
+											<th></th>
+											<th></th>
 										</tr>
 									</tfoot>
-									<tbody align="center">
-									<c:forEach items="${teams}" var="team">
-										<tr>
-											<td>1</td>
-											<td><a class="idnum" data-num="${team.t_name}">${team.t_name}</a></td>
-											<td>${team.t_level}</td>
-											<td>${team.t_wn}</td>
-											<td>
-												<select name="job">
-													<option value="" selected="selected">선택</option>
-													<option value="일반">일반</option>
-													<option value="블랙">블랙</option>
-												</select>
-											</td>
-											<td>${team.t_m}</td>
-											<td>${team.t_info}</td>
-										</tr>
-									</c:forEach>
-									</tbody>
+									<tbody align="center"></tbody>
 								</table>
 							</div>
 						</div>

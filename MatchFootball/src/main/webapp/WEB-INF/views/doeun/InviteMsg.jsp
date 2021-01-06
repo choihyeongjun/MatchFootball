@@ -51,7 +51,7 @@
 </head>
 
 <body>
-	<div id="main" >
+	<div id="main" style="height:850px">
 		<div class="container">
 		
 		<div class="row">
