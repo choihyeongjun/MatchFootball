@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div id="main">
+	<div id="main" style="height:850px">
 		<div id="content">
 			<div class="container">
 				<div class="row">
@@ -15,7 +15,7 @@
 					<div class="col-md-7 col-lg-8 col-xl-8 col-sidebar">
 						<div class="page-header bordered">
 							<h1 id="item-2">
-								결제 | 쿠폰<small>payment</small>
+								쿠폰<small>COUPON</small>
 							</h1>
 						</div>
 						<div>
@@ -23,7 +23,7 @@
 							<h4 id="item-2-2">내 쿠폰</h4>
 							<div>
 								<div>
-									<table style="width: 100%">
+									<table border="1" style="width: 100%">
 										<tr>
 											<td><input type="checkbox"></td>
 											<td>쿠폰명</td>
@@ -32,21 +32,21 @@
 												class="btn btn-primary cpDel" value="삭제"></td>
 										<tr>
 											<td><input type="checkbox"></td>
-											<td>쿠폰명</td>
-											<td>쿠폰기한</td>
-											<td align="right"><input type="button"
-												class="btn btn-primary cpDel" value="삭제"></td>
-										</tr>
-										<tr>
-											<td><input type="checkbox"></td>
-											<td>쿠폰명</td>
+											<td>쇼핑몰 전용 10% 할인 쿠폰</td>
 											<td>쿠폰기한</td>
 											<td align="right"><input type="button"
 												class="btn btn-primary cpDel" value="삭제"></td>
 										</tr>
 										<tr>
 											<td><input type="checkbox"></td>
-											<td>쿠폰명</td>
+											<td>쇼핑몰 전용 10% 할인 쿠폰</td>
+											<td>쿠폰기한</td>
+											<td align="right"><input type="button"
+												class="btn btn-primary cpDel" value="삭제"></td>
+										</tr>
+										<tr>
+											<td><input type="checkbox"></td>
+											<td>쇼핑몰 전용 10% 할인 쿠폰</td>
 											<td>쿠폰기한</td>
 											<td align="right"><input type="button"
 												class="btn btn-primary cpDel" value="삭제"></td>
@@ -54,7 +54,6 @@
 									</table>
 								</div>
 							</div>
-							<hr>
 						</div>
 					</div>
 				</div>
