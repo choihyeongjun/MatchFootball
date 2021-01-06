@@ -21,6 +21,6 @@ public class MembersVO {
 	String manner;//매너도
 	String lv;//레벨
 	String pos;//포지션
-	String t_name;//팀이름
+	String t_num;//팀번호
 	
 }

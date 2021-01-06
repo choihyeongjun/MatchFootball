@@ -51,16 +51,22 @@
 		#{t_logo,jdbcType=VARCHAR})
 	</insert>
 
+	<!-- 팀 가입 -->
+	<insert id="teamJoin" parameterType="TeamlistVO">
+		INSERT INTO TEAMLIST (
+		t_num,
+		id,
+		T_AUTHOR
+		)
+		VALUES(
+		#{t_num},
+		#{id},
+		#{t_author})
+	</insert>
+
 	<!-- 팀 단건 정보 조회 -->
 	<select id="getTeam" parameterType="teamVO" resultType="teamVO">
-		SELECT t_num,
-		t_name,
-		t_max,
-		t_age,
-		t_address,
-		t_type,
-		t_info,
-		t_logo
+		SELECT *
 		FROM team
 		WHERE t_num = #{t_num}
 	</select>
@@ -84,13 +90,39 @@
 		WHERE t_num = #{t_num}
 	</update>
 
+	<!-- 팀 공지 등록 -->
+	<insert id="NoticeInsert" parameterType="TnoticeVO">
+		INSERT INTO tnotice(
+				t_num,
+				t_content,
+				t_title,
+				t_id,
+				t_date)
+		VALUES (
+			#{t_num},
+			#{_content},
+			#{t_id},
+			#{t_date}
+		)
+	</insert>
+
+	<!-- 팀 공지 조회 -->
+	<select id="NoticeSelect" parameterType="TnoticeVO" resultType="TnoticeVO">
+		SELECT *
+		FROM tnotice
+		WHERE t_num = #{t_num}
+	</select>
 	<!-- 멤버리스트 조회 -->
 	<select id="getMembers" parameterType="membersVO"
 		resultType="membersVO">
-		SELECT
-		id,name,gender,location1,pnum,manner,lv,pos
-		from members
-		where author2='Y'
+		SELECT *
+		FROM members
+	</select>
+	<!-- 멤버 단건 조회 -->
+	<select id="memberSelect" parameterType="membersVO" resultType="membersVO">
+		SELECT *
+		FROM members
+		WHERE id = #{id}
 	</select>
 
 	<!-- 토너먼트 리스트 조회 -->
@@ -108,6 +140,21 @@
 		WHERE t_no = #{t_no}
 	</select>
 
+	<!-- 팀 토너먼트 참가 -->
+	<insert id="tournamentInsert" parameterType="TournamentTeamVO">
+		INSERT INTO tournamentteam(
+			t_num,
+			t_log,
+			t_wn,
+			t_no)
+		VALUES(
+			t_num = #{t_num},
+			t_log = #{t_log},
+			t_wn = #{t_wn},
+			t_no = #{t_no}
+		)
+	</insert>
+
 	<!--p_match 내역 수 페이징 -->
 	<select id="getCount1" resultType="int">
 		SELECT COUNT(*) FROM team
@@ -119,5 +166,6 @@
 		select *
 		from tournamentteam
 		where t_no = #{t_no}
+		order by t_num
 	</select>
 </mapper>

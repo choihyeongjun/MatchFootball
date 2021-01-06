@@ -34,6 +34,7 @@
 	<form action="teamMakeInsert" method="post"
 		encType="multipart/form-data">
 		<!-- encType 이미지 등록시 필수 -->
+		${sessionScope.kemail }
 		${sessionScope.id }
 		<div class="section-top-border" style="margin-left: 670px; width: 50%">
 			<div class="row">

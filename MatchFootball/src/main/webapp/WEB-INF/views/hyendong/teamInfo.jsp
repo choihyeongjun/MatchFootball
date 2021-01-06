@@ -17,30 +17,32 @@
 <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <style>
-.size{
-width: 280px;
-height: 280px;
+.size {
+	width: 280px;
+	height: 280px;
 }
 </style>
 </head>
 <body>
 	<ul class="hi">
-	  <li><a href="teaminfo?id=${sessionScpoe.id }">팀 정보</a></li>
-	  <li><a href="http://localhost/MatchFootball/teamGallery">팀 갤러리</a></li>
-	  <li><a href="http://localhost/MatchFootball/teamNotice">팀 공지</a></li>
-	  <li><a href="http://localhost/MatchFootball/teamInvite">팀 초대</a></li>
-	  <li><a href="http://localhost/MatchFootball/teamList">팀 리스트</a></li>
+		<li><a href="teaminfo?id=${sessionScope.id }">팀 정보</a></li>
+		<li><a href="teamGallery?t_num=${teamInfo.t_num }">팀 갤러리</a></li>
+		<li><a href="teamNotice?t_num=${teamInfo.t_num }">팀 공지</a></li>
+		<li><a href="http://localhost/MatchFootball/teamInvite">팀 초대</a></li>
+		<li><a href="http://localhost/MatchFootball/teamList">팀 리스트</a></li>
 	</ul>
 	<form action="teamUpdate" method="get">
-	<div align="center" style="padding-bottom: 606px">
-		<div>
-			<h1>팀 정 보</h1>
-		</div>
-		<hr />
-		<div style="float:left; margin-left:30%" >
-			<img class="size" src="images/${teamInfo.t_logo }" class="img-thumbnail" width="350px" height="350px">
-			<input type="text" name="t_num" value="${teamInfo.t_num }" style="display:none"/>
-			<table class="table table-bordered">
+		<div align="center" style="padding-bottom: 606px">
+			<div>
+				<h1>팀 정 보</h1>
+			</div>
+			<hr />
+			<div style="float: left; margin-left: 30%">
+				<img class="size" src="images/${teamInfo.t_logo }"
+					class="img-thumbnail" width="350px" height="350px"> <input
+					type="text" name="t_num" value="${teamInfo.t_num }"
+					style="display: none" />
+				<table class="table table-bordered">
 					<tr>
 						<th scope="col">팀명</th>
 						<td>${teamInfo.t_name}</td>
@@ -59,42 +61,51 @@ height: 280px;
 						<th scope="row">승률</th>
 						<td>75%</td>
 					</tr>
-					 <tr>
-				      <th scope="row">경기유형</th>
-				      <td colspan="3">${teamInfo.t_type }</td>
-				    </tr>
-					 <tr>
-				      <th scope="row">팀 소개</th>
-				      <td colspan="3">${teamInfo.t_info }</td>
-				    </tr>
-			</table>
-		</div>
-		
-		<div style="float:left; margin-left:10%">
-			<table class="table table-hover">
-				<thead>
-					<tr class="table-secondary">
-						<th scope="col">#</th>
-						<th scope="col">ID</th>
-						<th scope="col">권한</th>
-					</tr>
-				</thead>
-				<tbody>
-				<c:forEach items="${teamMembers}" var="teamMembers">
 					<tr>
-						<th scope="row">1</th>
-						<td>${teamMembers.id }</td>
-						<td>${teamMembers.t_author }</td>
+						<th scope="row">경기유형</th>
+						<td colspan="3">${teamInfo.t_type }</td>
 					</tr>
-				</c:forEach>
-				</tbody>
-			</table>
+					<tr>
+						<th scope="row">팀 소개</th>
+						<td colspan="3">${teamInfo.t_info }</td>
+					</tr>
+				</table>
+			</div>
+
+			<div style="float: left; margin-left: 10%">
+				<table class="table table-hover">
+					<thead>
+						<tr class="table-secondary">
+							<th scope="col">#</th>
+							<th scope="col">ID</th>
+							<th scope="col">권한</th>
+						</tr>
+					</thead>
+					<c:if test="${teamInfo.t_hidden eq 'Y' }">
+						<tbody>
+							<c:forEach items="${teamMembers}" var="teamMembers">
+								<tr>
+									<th scope="row">1</th>
+									<td>${teamMembers.id }</td>
+									<td>${teamMembers.t_author }</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</c:if>
+					<c:if test="${teamInfo.t_hidden eq 'N' }">
+						<tbody align="center">
+							<tr>
+								<td colspan="3">비공개</td>
+							</tr>
+						</tbody>
+					</c:if>
+				</table>
+			</div>
+			<div style="float: bottom">
+				<button type="submit" class="btn btn-primary">팀 정보 변경</button>
+				<button type="button" class="btn btn-primary">팀 가입 신청</button>
+			</div>
 		</div>
-		<div style="float:bottom">
-		<button type="submit" class="btn btn-primary">팀 정보 변경</button>
-		<button type="button" class="btn btn-primary">팀 가입 신청</button>
-		</div>
-	</div>
 	</form>
 </body>
 </html>

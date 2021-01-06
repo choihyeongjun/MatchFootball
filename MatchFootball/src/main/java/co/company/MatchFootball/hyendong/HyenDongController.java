@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +21,7 @@ import co.company.MatchFootball.mapper.HyendongMapper;
 import co.company.MatchFootball.vo.MembersVO;
 import co.company.MatchFootball.vo.Paging;
 import co.company.MatchFootball.vo.TeamVO;
+import co.company.MatchFootball.vo.TnoticeVO;
 import co.company.MatchFootball.vo.TournamentTeamVO;
 import co.company.MatchFootball.vo.TournamentVO;
 
@@ -36,14 +38,14 @@ public class HyenDongController {
 
 	// 팀생성처리
 	@RequestMapping("/teamMakeInsert")
-	public String insert(HttpServletRequest request, TeamVO teamVO) {
+	public String insert(HttpServletRequest request, TeamVO teamVO, MembersVO membersVO, HttpSession session) {
 		// request miltipart로 캐스팅
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 		// 이미지파일
 		MultipartFile multipartFile = multipartRequest.getFile("file"); // input타입의 name값
 		if (!multipartFile.isEmpty() && multipartFile.getSize() > 0) {
 			try {
-				String path = request.getSession().getServletContext().getRealPath("/hyendong"); // /images폴더 위치 mvc에 추가
+				String path = request.getSession().getServletContext().getRealPath("/images"); // /images폴더 위치 mvc에 추가
 				System.out.println("pp" + path);
 				multipartFile.transferTo(new File(path, multipartFile.getOriginalFilename()));
 			} catch (IllegalStateException e) {
@@ -55,13 +57,20 @@ public class HyenDongController {
 			}
 			teamVO.setT_logo(multipartFile.getOriginalFilename());
 		}
-		hyendongMapper.teamInsert(teamVO);
+		String id = (String) session.getAttribute("id");
+		membersVO.setId(id);
+		if(membersVO.getT_num() == null) {
+			hyendongMapper.teamInsert(teamVO);
+		}
 		return "redirect:/teamInfo?t_num=" + teamVO.getT_num();
 	}
 
 	// 팀정보
 	@RequestMapping("/teamInfo")
-	public String teamInfo(Model model, TeamVO teamVO, MembersVO membersVO) {
+	public String teamInfo(Model model, TeamVO teamVO, MembersVO membersVO, HttpSession session) {
+		String id = (String)session.getAttribute("id");
+		membersVO.setId(id);
+//		model.addAttribute("members", hyendongMapper.memberSelect(membersVO)); //멤버 단건 조회
 		model.addAttribute("teamInfo", hyendongMapper.getTeam(teamVO));
 		model.addAttribute("teamMembers", hyendongMapper.getTeamMembers(teamVO));
 		return "hyendong/teamInfo";
@@ -106,13 +115,15 @@ public class HyenDongController {
 
 	// 팀공지
 	@RequestMapping("/teamNotice")
-	public String teamNotice() {
+	public String teamNotice(Model model, TnoticeVO tNoticeVO) {
+		model.addAttribute("teamNotice", hyendongMapper.NoticeSelect(tNoticeVO));
 		return "hyendong/teamNotice";
 	}
 
 	// 팀 공지 확인
 	@RequestMapping("/teamNoticeInfo")
-	public String teamNoticeInfo() {
+	public String teamNoticeInfo(Model model, TnoticeVO tNoticeVO) {
+		model.addAttribute("teamNoticeInfo", hyendongMapper.NoticeSelect(tNoticeVO));
 		return "hyendong/teamNoticeInfo";
 	}
 
