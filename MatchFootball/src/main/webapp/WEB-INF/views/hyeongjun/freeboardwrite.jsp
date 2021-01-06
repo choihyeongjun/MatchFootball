@@ -43,14 +43,16 @@
 		</div>
 		
 		<div align="center">
-			<textarea id="summernote" name="comm"></textarea><br> 
+			<textarea id="summernote" name="comm"></textarea><br>
+			<button type="button" class="btn btn-primary"id="btnInsert">등록</button>
 			<button type="button" class="btn btn-primary"id="btnUpdate">수정</button> 
 			<button type="reset" class="btn btn-primary" id="btnInit" >취소</button>
 			<c:if test="${id eq sessionScope.id}">
-			<button type="reset" class="btn btn-primary" id="btnInit" >취소</button>
+			<button type="reset" class="btn btn-primary" id="btnInit" >삭제</button>
 			</c:if>
 		</div>
 		
 	</form>
+	
 </body>
 </html>

@@ -94,7 +94,12 @@ public class HyeongjunController {
 	public List<RfieldVO> fielddetail(RfieldVO vo) {
 		return hyeongjunMapper.fieldselect(vo);
 	}
-	
+	@RequestMapping("/free/freedetail/{num}")
+	public String freeselect(@PathVariable String num,Model model,FboardVO vo) {
+		vo.setNum(num);
+		model.addAttribute("select",hyeongjunMapper.freeselect(vo));
+		return "hyeongjun/freeread";
+	}
 	@RequestMapping("/free")
 	public String freeboard(Model model,FboardVO vo) {
 		model.addAttribute("list",hyeongjunMapper.fboardlist());
@@ -185,10 +190,6 @@ public class HyeongjunController {
 	@RequestMapping("/freewriter")
 	public String freewriter() {
 		return "hyeongjun/freeboardwrite";
-	}
-	@RequestMapping("/freeread")
-	public String freeread() {
-		return "hyeongjun/freeread";
 	}
 	@RequestMapping("/freeinsert")
 	public String freeinsert(FboardVO vo,Model model) {

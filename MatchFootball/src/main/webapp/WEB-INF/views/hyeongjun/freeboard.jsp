@@ -193,7 +193,7 @@
                   <c:forEach var="f" items="${list}">
                      <tr>
                         <td>${f.num}</td>
-                        <td>${f.title}</td>
+                        <td><a href="${pageContext.request.contextPath}/free/freedetail/${f.num}">${f.title}</a></td>
                         <td>${f.id}</td>
                         <td>${f.likeit}</td>
                         <td>${f.cnt}</td> 

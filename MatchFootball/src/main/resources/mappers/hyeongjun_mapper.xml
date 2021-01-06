@@ -63,6 +63,10 @@
    <select id="freeinsert" parameterType="fboardVO" resultType="fboardVO">
    	insert into fboard(id,num,title,b_date,comm) values(#{id},free_seq.nextval,#{title},sysdate,#{comm})
    </select>
-   
+   <select id="freeselect" parameterType="fboardVO" resultType="fboardVO">
+   	select * 
+   	from fboard
+   	where num=#{num}
+   </select>
 
 </mapper>
