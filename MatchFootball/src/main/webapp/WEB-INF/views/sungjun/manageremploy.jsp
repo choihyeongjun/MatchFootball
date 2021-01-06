@@ -45,8 +45,24 @@
 	margin: 0;
 	padding: 0;
 	word-break: break-all;
+	font-size: 20px
 }
 </style>
+<script>
+	$(function() {
+		$(".p1").on("click", function() {
+			var id = $(this).data("num");
+			modal = $("#maplly");
+			$.ajax({
+				url : "managerapply?id=" + id,
+				success : function(result) {
+					modal.find('#body2').html(result);
+					modal.modal('show');
+				}
+			});
+		})
+	})
+</script>
 </head>
 <body>
 	<div class="container-fluid">
@@ -112,8 +128,19 @@
 			<img src="resources/img/77.jpg" width="1400px" height="600px">
 		</div>
 		<div class="employ">
-			<p class="p1">매니저 지원</p>
+			<p class="p1" data-num="${sessionScope.id }">매니저 지원</p>
 		</div>
 	</div>
+	<!--매니저 신청 모달  -->
+	<div class="modal fade" id="maplly" tabindex="-1"
+				aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content">
+						<div class="modal-body" id="body2">
+							...
+						</div>
+					</div>
+				</div>
+			</div>
 </body>
 </html>

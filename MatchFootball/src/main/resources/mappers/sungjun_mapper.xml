@@ -66,4 +66,8 @@
  			 select id from pplayers 
 			 where  pplayers.m_no =#{m_no})
 	</select>
+	<!--매니저 신청-->
+	<insert id="mapply" parameterType="manageraplyVO">
+		insert into manageraply(id,name,gender,pnum,birth,comm) values(#{id},#{name},#{gender},#{pnum},#{birth},#{comm})
+	</insert>
 </mapper>
