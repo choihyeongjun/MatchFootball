@@ -22,7 +22,7 @@
 
 <body>
    <div class="container">
-
+		
       <!-- 일자 클릭시 메뉴오픈 -->
       <div id="contextMenu" class="dropdown clearfix">
          <ul class="dropdown-menu dropNewEvent" role="menu"
@@ -130,10 +130,13 @@
       </div>
       </form>
       <!-- /.modal -->
-      
+      <script>
+		f_id="${f_id}"
+		</script>
+      ${f_id}
       <div class="card mb-4">
          <div class="card-header">
-            <i class="fas fa-table mr-1"></i> 경기일정
+            <i class="fas fa-table mr-1"></i> 경기예약일정
          </div>
          
          <div class="card-body">
@@ -141,44 +144,39 @@
                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                      <tr>
-                        <th>경기날짜</th>
+                     	<th>제목</th>
                         <th>경기시간</th>
-                        <th>경기장</th>
+                        <th>경기예약자</th>
+                        <th>내용</th>
                         <th>진행매니저</th>
-                        <th>경기현황</th>
                      </tr>
                   </thead>
                   <tfoot>
                      <tr>
-                        <th>경기날짜</th>
+                     	<th>제목</th>
                         <th>경기시간</th>
-                        <th>경기장</th>
+                        <th>경기예약자</th>
+                        <th>내용</th>
                         <th>진행매니저</th>
-                        <th>경기현황</th>
                      </tr>
                   </tfoot>
                   <tbody>
+                  <c:forEach var="f" items="${list}">
                      <tr>
-                        <td>2020.01.01</td>
-                        <td>성준배토너먼트 현황</td>
-                        <td>최행배</td>
-                        <td>2020.01.01</td>
-                        <td>10</td>
+                        <td>${f.title}</td>
+                        <td>${f.start}~${f.end}</td>
+                        <td>아직</td>
+                        <td>${f.description}</td>
+                        <td>${f._id}</td> 
                      </tr>
-                     <tr>
-                        <td>2</td>
-                        <td>도은이배리그시작</td>
-                        <td>김도은</td>
-                        <td>2020.01.01</td>
-                        <td>10</td>
-                     </tr>
+                    </c:forEach>
                   </tbody>
                </table>
             </div>
          </div>
       </div>
       <!-- /.container -->
-
+		
       <script src="${pageContext.request.contextPath}/resources/hyeongjun/calander/vendor/js/jquery.min.js"></script>
       <script src="${pageContext.request.contextPath}/resources/hyeongjun/calander/vendor/js/bootstrap.min.js"></script>
       <script src="${pageContext.request.contextPath}/resources/hyeongjun/calander/vendor/js/moment.min.js"></script>

@@ -39,6 +39,7 @@
    <select id="fieldselect" resultType="map">
    select m_id "_id",title "title" ,type "type",starttime "start", endtime "end",comm "description",backgroundcolor "backgroundColor"
    from rfield
+   where f_id=#{f_id}
    </select>
    <select id="fielddetailinsert" parameterType="rfieldVO" resultType="rfieldVO">
    		insert into rfield(f_id,starttime,endtime,m_id,title,type,backgroundcolor,comm) values('field1',#{starttime},#{endtime},'100',#{title},#{type},#{backgroundcolor},#{comm})
@@ -56,8 +57,11 @@
    <select id="fielddetaildelete" resultType="rfieldVO">
    	delete from rfield where comm=#{comm}
    </select>
+   <select id="freelist" resultType="fboardVO">
+   select * from fboard
+   </select>
    <select id="freeinsert" parameterType="fboardVO" resultType="fboardVO">
-   	insert into fboard(id,num,title,comm) values(#{id},free_seq,#{nq_title},#{nq_content})
+   	insert into fboard(id,num,title,b_date,comm) values(#{id},free_seq.nextval,#{title},sysdate,#{comm})
    </select>
    
 

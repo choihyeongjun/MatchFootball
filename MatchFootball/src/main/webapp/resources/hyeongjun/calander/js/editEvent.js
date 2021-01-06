@@ -85,7 +85,7 @@ $('#updateEvent').on('click', function () {
         //일정 업데이트
         $.ajax({
             type: "get",
-            url: "../fielddetailupdate1",
+            url: "../../fielddetailupdate1",
 			dataType:"json",
             data: {
 				starttime:editStart.val(),
@@ -122,7 +122,7 @@ $('#deleteEvent').on('click', function () {
     //삭제시
     $.ajax({
         type: "get",
-        url: "../fielddetaildelete",
+        url: "../../fielddetaildelete",
 		dataType:"json",
         data: {
            comm:$('#edit-desc').val()
