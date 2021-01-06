@@ -2,11 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="co.company.MatchFootball.mapper.SeemooMapper"> <!-- 패키지.EmpMapper -->
+<mapper namespace="co.company.MatchFootball.mapper.SeemooMapper">
 
 <!-- 유저관리 -->
 
-	<!-- 유저조회 -->
+	<!-- 유저전체조회 -->
 	<select id="memberList" resultType="MembersVO">
 		SELECT * FROM MEMBERS
 	</select>
@@ -15,7 +15,11 @@
 	<select id="members" parameterType="MembersVO" resultType="MembersVO">
 		SELECT * FROM MEMBERS WHERE ID = #{id}
 	</select>
-
+	
+	<!-- 유저삭제 -->
+	<delete id="membersdelete" parameterType="MembersVO">
+		DELETE FROM MEMBERS WHERE ID = #{id}
+	</delete>
 
 <!-- 팀관리 -->
 
@@ -30,6 +34,7 @@
 	</select>
 
 <!-- 매니저관리 -->
+
 	<!-- 매니저조회 -->
 	<select id="managerList" resultType="ManagersVO">
 		SELECT MEMBERS.ID, NAME, GENDER, PNUM, AUTHOR, POINT , COMM FROM MEMBERS, MANAGER WHERE MEMBERS.ID=MANAGER.ID
@@ -39,5 +44,7 @@
 	<select id="managerapplyList" resultType="ManagerapplyVO">
 		SELECT MEMBERS.ID, NAME, BIRTH, GENDER, PNUM, AUTHOR, BIRTH, APPLY, COMM FROM MEMBERS, MANAGERAPLY WHERE MEMBERS.ID=MANAGERAPLY.ID
 	</select>
+	
+	<!-- 공지사항 -->
 	
 </mapper>

@@ -16,10 +16,16 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>
+.size{
+width: 280px;
+height: 280px;
+}
+</style>
 </head>
 <body>
 	<ul class="hi">
-	  <li><a href="http://localhost/MatchFootball/teamInfo">팀 정보</a></li>
+	  <li><a href="teaminfo?id=${sessionScpoe.id }">팀 정보</a></li>
 	  <li><a href="http://localhost/MatchFootball/teamGallery">팀 갤러리</a></li>
 	  <li><a href="http://localhost/MatchFootball/teamNotice">팀 공지</a></li>
 	  <li><a href="http://localhost/MatchFootball/teamInvite">팀 초대</a></li>
@@ -32,7 +38,7 @@
 		</div>
 		<hr />
 		<div style="float:left; margin-left:30%" >
-			<img src="resources/to.png" class="img-thumbnail" width="350px" height="350px">
+			<img class="size" src="images/${teamInfo.t_logo }" class="img-thumbnail" width="350px" height="350px">
 			<input type="text" name="t_num" value="${teamInfo.t_num }" style="display:none"/>
 			<table class="table table-bordered">
 					<tr>

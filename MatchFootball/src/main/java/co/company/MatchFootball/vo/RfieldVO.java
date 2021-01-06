@@ -8,4 +8,8 @@ public class RfieldVO {
 	String starttime;//시작시간
 	String endtime;//종료시간
 	String m_id;//구장예약자
+	String title;
+	String type;
+	String backgroundcolor;
+	String comm;
 }

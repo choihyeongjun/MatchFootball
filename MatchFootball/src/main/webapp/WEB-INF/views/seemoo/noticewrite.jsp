@@ -7,11 +7,167 @@
 <meta charset="utf-8" />
 
 <title>공지사항 페이지</title>
-<script src="${pageContext.request.contextPath}/resources/seemoo/summernote/json.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/seemoo/summernote/js/summernote/summernote-lite.js"></script>
-<script src="${pageContext.request.contextPath}/resources/seemoo/summernote/js/summernote/lang/summernote-ko-KR.js"></script>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/seemoo/summernote/css/summernote/summernote-lite.css">
+<script src="${pageContext.request.contextPath}/resources/seemoo/notice/summernote/json.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/seemoo/notice/summernote/js/summernote/summernote-lite.js"></script>
+<script src="${pageContext.request.contextPath}/resources/seemoo/notice/summernote/js/summernote/lang/summernote-ko-KR.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/seemoo/notice/summernote/css/summernote/summernote-lite.css">
+
 <script>
+$(function(){
+	userList();
+
+	userSelect();
+	
+	userDelete();
+	
+	userInsert();
+
+	userUpdate();
+	
+	init();
+});
+
+//초기화
+function init() {
+	//초기화 버튼 클릭
+	$('#btnInit').on('click',function(){
+		$('#form1').each(function(){
+			this.reset();
+		});
+	});
+}//init
+
+//사용자 삭제 요청
+function userDelete() {
+	//삭제 버튼 클릭
+	$('body').on('click','#btnDelete',function(){
+		var userId = $(this).closest('tr').find('#hidden_userId').val();
+		var result = confirm(userId +" 사용자를 정말로 삭제하시겠습니까?");
+		if(result) {
+			$.ajax({
+				url:'users/'+userId,  
+				type:'DELETE',
+				contentType:'application/json;charset=utf-8',
+				dataType:'json',
+				error:function(xhr,status,msg){
+					console.log("상태값 :" + status + " Http에러메시지 :"+msg);
+				}, success:function(xhr) {
+					console.log(xhr.result);
+					userList();
+				}
+			});      }//if
+	}); //삭제 버튼 클릭
+}//userDelete
+
+//사용자 조회 요청
+function userSelect() {
+	//조회 버튼 클릭
+	$('body').on('click','#btnSelect',function(){
+		var userId = $(this).closest('tr').find('#hidden_userId').val();
+		//특정 사용자 조회
+		$.ajax({
+			url:'users/'+userId,
+			type:'GET',
+			contentType:'application/json;charset=utf-8',
+			dataType:'json',
+			error:function(xhr,status,msg){
+				alert("상태값 :" + status + " Http에러메시지 :"+msg);
+			},
+			success:userSelectResult
+		});
+	}); //조회 버튼 클릭
+}//userSelect
+
+//사용자 조회 응답
+function userSelectResult(user) {
+	$('input:text[name="id"]').val(user.id);
+	$('input:text[name="name"]').val(user.name);
+	$('input:text[name="password"]').val(user.password);
+	$('select[name="role"]').val(user.role).attr("selected", "selected");
+}//userSelectResult
+
+//사용자 수정 요청
+function userUpdate() {
+	//수정 버튼 클릭
+	$('#btnUpdate').on('click',function(){
+		var id = $('input:text[name="id"]').val();
+		var name = $('input:text[name="name"]').val();
+		var password = $('input:text[name="password"]').val();
+		var role = $('select[name="role"]').val();		
+		$.ajax({ 
+		    url: "users", 
+		    type: 'PUT', 
+		    dataType: 'json', 
+		    data: JSON.stringify({ id: id, name:name,password: password, role: role }),
+		    contentType: 'application/json',
+		    success: function(data) { 
+		        userList();
+		    },
+		    error:function(xhr, status, message) { 
+		        alert(" status: "+status+" er:"+message);
+		    }
+		});
+	});//수정 버튼 클릭
+}//userUpdate
+
+//사용자 등록 요청
+function userInsert(){
+	//등록 버튼 클릭
+	$('#btnInsert').on('click',function(){
+		$("#form1")
+		$.ajax({ 
+		    url: "users",  
+		    type: 'POST',  
+		    dataType: 'json', 
+		    //data: JSON.stringify({ id: id, name:name,password: password, role: role }),
+		    data : JSON.stringify($("#form1").serializeObject()),
+		    contentType: 'application/json', 
+		    success: function(response) {
+		    	if(response.result == true) {
+		    		userList();
+		    	}
+		    }, 
+		    error:function(xhr, status, message) { 
+		        alert(" status: "+status+" er:"+message);
+		    } 
+		 });  
+	});//등록 버튼 클릭
+}//userInsert
+
+//사용자 목록 조회 요청
+function userList() {
+	$.ajax({
+		url:'users',
+		type:'GET',
+		//contentType:'application/json;charset=utf-8',
+		dataType:'json',
+		error:function(xhr,status,msg){
+			alert("상태값 :" + status + " Http에러메시지 :"+msg);
+		},
+		success:userListResult
+	});
+}//userList
+
+//사용자 목록 조회 응답
+function userListResult(data) {
+	$("tbody").empty();
+	$.each(data,function(idx,item){
+		$('<tr>')
+		.append($('<td>').html(item.id))
+		.append($('<td>').html(item.name))
+		.append($('<td>').html(item.password))
+		.append($('<td>').html(item.role))
+		.append($('<td>').html('<button id=\'btnSelect\'>조회</button>'))
+		.append($('<td>').html('<button id=\'btnDelete\'>삭제</button>'))
+		.append($('<input type=\'hidden\' id=\'hidden_userId\'>').val(item.id))
+		.appendTo('tbody');
+	});//each
+}//userListResult
+
+
+
+
+
 	$(document).ready(function() {
 		//여기 아래 부분
 		$('#summernote').summernote({
@@ -22,13 +178,13 @@
 			lang : "ko-KR", // 한글 설정
 		});
 	});
-	
 </script>
+
 </head>
 
+<body style="padding-left: 250px; padding-top: 100px">
 	<form id="form1" class="form-horizontal">
 		<div align="center" id="mdiv" style="width: 100%">
-
 
 			<table class="table" style="width: 100%">
 				<tbody>
@@ -40,29 +196,68 @@
 						</select></td>
 					</tr>
 					<tr>
-						<td align="center" style="width: 10%">제목</td>
+						<td align="center" style="width: 20%">제목</td>
 						<td><input name="nq_title" type="text" style="width: 100%"></td>
 					</tr>
 					<tr>
-						<td align="center" style="width: 10%">첨부파일</td>
+						<td align="center" style="width: 20%">첨부파일</td>
 						<td><input type="file" name="uploadFile" id="uf" />
 							<div style="display: inline-block; position: relative; width: 300px; left: -210px; background: white;">
 								<label id="la">선택한 파일 없음</label>
-							</div> 
-							<input type="hidden" id="nq_no" name="nq_no"></td>
+							</div> <input type="hidden" id="nq_no" name="nq_no"></td>
 					</tr>
 				</tbody>
 			</table>
-
 		</div>
+
 		<div align="center">
 			<textarea id="summernote" name="nq_content"></textarea>
-			<br> <input type="button" class="btn btn-primary" value="등록"
-				id="btnInsert" /> <input type="button" class="btn btn-primary"
-				value="수정" id="btnUpdate" /> <input type="button"
-				class="btn btn-primary" value="초기화" id="btnInit" />
+			<br> 
+			<input type="button" class="btn btn-primary" value="등록" id="btnInsert" /> 
+			<input type="button" class="btn btn-primary" value="수정" id="btnUpdate" /> 
+			<input type="button" class="btn btn-primary" value="초기화" id="btnInit" />
 		</div>
 
 	</form>
-
+	<br>
+	<div class="card-body">
+		<div class="table-responsive">
+			<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+				<thead>
+					<tr>
+						<th>No.</th>
+						<th>제목</th>
+						<th>작성자</th>
+						<th>날짜</th>
+						<th>조회수</th>
+						<th>조회</th>
+						<th>삭제</th>
+					</tr>
+				</thead>
+				<tfoot>
+					<tr>
+						<th>No.</th>
+						<th>제목</th>
+						<th>작성자</th>
+						<th>날짜</th>
+						<th>조회수</th>
+						<th>조회</th>
+						<th>삭제</th>
+					</tr>
+				</tfoot>
+				<tbody>
+					<tr>
+						<td>3</td>
+						<td>현동이축구는체력빨?</td>
+						<td>김현동</td>
+						<td>2020.01.01</td>
+						<td>10</td>
+						<td></td>
+						<td></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</body>
 </html>

@@ -1,6 +1,8 @@
 var draggedEventIsAllDay;
 var activeInactiveWeekends = true;
-
+var editTitle=$('#edit-title');
+var editStart=$('#edit-start');
+var editEnd=$('#edit-end');
 var calendar = $('#calendar').fullCalendar({
 
  /** ******************
@@ -143,17 +145,7 @@ var calendar = $('#calendar').fullCalendar({
     var newDates = calDateWhenResize(event);
 
     //리사이즈한 일정 업데이트
-    $.ajax({
-      type: "get",
-      url: "",
-      data: {
-        //id: event._id,
-        //....
-      },
-      success: function (response) {
-        alert('수정: ' + newDates.startDate + ' ~ ' + newDates.endDate);
-      }
-    });
+   
 
   },
 
@@ -180,12 +172,15 @@ var calendar = $('#calendar').fullCalendar({
     //드롭한 일정 업데이트
     $.ajax({
       type: "get",
-      url: "",
+      url: "../fielddetailupdate",
+	dataType:"json",
       data: {
-        //...
+		starttime:newDates.startDate,
+		endtime:newDates.endDate,
+		title:event.title
       },
       success: function (response) {
-        alert('수정: ' + newDates.startDate + ' ~ ' + newDates.endDate);
+        alert('수-----정: ' + newDates.startDate + ' ~ ' + newDates.endDate);
       }
     });
 

@@ -10,7 +10,11 @@ import co.company.MatchFootball.vo.TeamVO;
 public interface SeemooMapper {
 
 	public List<MembersVO> memberList(); // 유저 전체조회
+	//public List<MembersVO> memberListmap(); // 유저(ajax) 전체조회
+
+	
 	public MembersVO members(MembersVO mvo); // 유저 단건조회
+	public boolean membersdelete(MembersVO vo); // 유저삭제
 
 	public List<TeamVO> teamList(); // 팀 전체조회
 	public TeamVO teams(TeamVO mvo); // 팀 단건조회

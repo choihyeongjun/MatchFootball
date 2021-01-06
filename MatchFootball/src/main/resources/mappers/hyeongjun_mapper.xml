@@ -37,10 +37,28 @@
    	from field
    </select>
    <select id="fieldselect" resultType="map">
-   select m_id "_id",title "title" ,type "type",starttime "start", endtime "end",comm "description"
+   select m_id "_id",title "title" ,type "type",starttime "start", endtime "end",comm "description",backgroundcolor "backgroundColor"
    from rfield
    </select>
-   
+   <select id="fielddetailinsert" parameterType="rfieldVO" resultType="rfieldVO">
+   		insert into rfield(f_id,starttime,endtime,m_id,title,type,backgroundcolor,comm) values('field1',#{starttime},#{endtime},'100',#{title},#{type},#{backgroundcolor},#{comm})
+   </select>
+   <select id="fboardlist" resultType="fboardVO">
+   	select *
+   	from fboard
+   </select>
+   <select id="fielddetailupdate" parameterType="rfieldVO" resultType="rfieldVO">
+   		update rfield set starttime=#{starttime},endtime=#{endtime} where title=#{title}
+   </select>
+   <select id="fielddetailupdate1" parameterType="rfieldVO" resultType="rfieldVO">
+   		update rfield set starttime=#{starttime},endtime=#{endtime},comm=#{comm},type=#{type},backgroundcolor=#{backgroundcolor} where title=#{title}
+   </select>
+   <select id="fielddetaildelete" resultType="rfieldVO">
+   	delete from rfield where comm=#{comm}
+   </select>
+   <select id="freeinsert" parameterType="fboardVO" resultType="fboardVO">
+   	insert into fboard(id,num,title,comm) values(#{id},free_seq,#{nq_title},#{nq_content})
+   </select>
    
 
 </mapper>
