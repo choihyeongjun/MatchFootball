@@ -38,6 +38,13 @@
 		order by m_no desc
 		) a ) b where rn between #{first} and #{last}
 	</select>
+	<!-- 선택개인매치 조회 -->
+	<select id="pmatchlist1" parameterType="P_matchVO"
+		resultType="P_matchVO">
+		select * from p_match
+		where m_no = #{m_no}
+	</select>
+	<!-- 팀 매치 내역 조회 -->
 	<select id="tmatchlist" parameterType="TeammatchVO"
 		resultType="TeammatchVO">
 		select * from( select a.*, rownum rn from (
@@ -46,16 +53,21 @@
 		order by m_no desc
 		) a ) b where rn between #{first} and #{last}
 	</select>
-	<!--이름 등등 조회 -->
+	<!--멤버 조회 -->
 	<select id="memberselect" parameterType="MembersVO"
 		resultType="MembersVO">
 		select * from members
 		where id=#{id}
 	</select>
 	<!--개인매치 선수목록 조회 -->
-	<select id="">
-		select * from p_match,pplayers 
-		where p_match.m_no = pplayers.m_no 
-		and	p_match.m_no = #{m_no}
+	<select id="matchmember" parameterType="MatchMember" resultType="MatchMember">
+		 select * from members
+  		 where id in(
+ 			 select id from pplayers 
+			 where  pplayers.m_no =#{m_no})
 	</select>
+	<!--매니저 신청-->
+	<insert id="mapply" parameterType="manageraplyVO">
+		insert into manageraply(id,name,gender,pnum,birth,comm) values(#{id},#{name},#{gender},#{pnum},#{birth},#{comm})
+	</insert>
 </mapper>

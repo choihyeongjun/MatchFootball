@@ -77,7 +77,7 @@
 											<th>팀승률</th>
 											<th>팀권한</th>
 											<th>팀매너점수</th>
-											<th></th>
+											<th>팀소개</th>
 										</tr>
 									</tfoot>
 									<tbody align="center">

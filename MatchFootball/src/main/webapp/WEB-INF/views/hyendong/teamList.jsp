@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="my"%>
 <!-- cÅÂÅ© »ç¿ëÇÒ¶ó²¿ -->
 <!DOCTYPE html>
 <html>
@@ -24,22 +25,36 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/dong1/assets/css/style.css">
 <style>
-a { text-decoration:none ; color:#000000}
+a {
+	text-decoration: none;
+	color: #000000
+}
+
+.size {
+	width: 50px;
+	height: 50px
+}
 </style>
 </head>
 <body>
-	<div style="padding-bottom: 400px">
+
+	<div style="padding-bottom: 70px; height: 91%">
 		<ul class="hi">
-			<li><a href="http://localhost/MatchFootball/teamInfo">ÆÀ Á¤º¸</a></li>
+			<c:if test="${sessionScope.id eq null }">
+			<li><a href="teaminfo?id=${sessionScope.id }">ÆÀ Á¤º¸</a></li>
+			</c:if>
+			<c:if test="${sessionScope.id ne null }">
+			<li><a href="teamMake">ÆÀ »ý¼º</a></li>
+			</c:if>
 			<li><a href="http://localhost/MatchFootball/teamGallery">ÆÀ
 					°¶·¯¸®</a></li>
 			<li><a href="http://localhost/MatchFootball/teamNotice">ÆÀ °øÁö</a></li>
-			<li><a href="http://localhost/MatchFootball/#">ÆÀ ÃÊ´ë</a></li>
-			<li><a href="http://localhost/MatchFootball/#">ÆÀ ¸®½ºÆ®</a></li>
+			<li><a href="http://localhost/MatchFootball/teamInvite">ÆÀ ÃÊ´ë</a></li>
+			<li><a href="http://localhost/MatchFootball/teamList">ÆÀ ¸®½ºÆ®</a></li>
 		</ul>
 		<div align="center">
 			<br>
-			<h3>ÆÀ ¸®½ºÆ®</h3>
+			<h3>${sessionScope.id }</h3>
 			<hr>
 		</div>
 		<div class="progress-table" align="center"
@@ -56,8 +71,7 @@ a { text-decoration:none ; color:#000000}
 					<div class="table-row">
 						<div class="serial">${teamList.t_num}</div>
 						<div class="country">
-							<img
-								src="${pageContext.request.contextPath}/resources/css/dong1/assets/images/elements/f1.jpg">${teamList.t_name}
+							<img class="size" src="images/${teamList.t_logo}">${teamList.t_name}
 						</div>
 						<div class="visit">${teamList.t_type}</div>
 						<div class="visit">
@@ -69,6 +83,14 @@ a { text-decoration:none ; color:#000000}
 					</div>
 				</a>
 			</c:forEach>
+			<script>
+				function goPage(q) {
+					location.href = "teamList?page=" + q;
+				}
+			</script>
+			<div align="">
+				<my:paging paging="${paging}" jsfunc="goPage" />
+			</div>
 		</div>
 	</div>
 	<!-- Javascript -->

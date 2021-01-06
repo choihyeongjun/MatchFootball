@@ -74,7 +74,7 @@ $(function(){
 								<div class="match_list_cont01 click_on w01">
 									<span>01</span>
 									<div>
-										<p>팀1&nbsp;</p>
+										<p>&nbsp;</p>
 									</div>
 									<em></em>
 								</div>
