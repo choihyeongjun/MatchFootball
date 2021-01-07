@@ -202,5 +202,11 @@ public class HyeongjunController {
 		 model.addAttribute("list",hyeongjunMapper.fboardlist());
 		 return "hyeongjun/freeboard";
 	}
+	@RequestMapping("/freeupdate")
+	public String freeupdate(FboardVO vo,Model model) {
+		hyeongjunMapper.freeupdate(vo);
+		 model.addAttribute("list",hyeongjunMapper.fboardlist());
+		 return "hyeongjun/freeboard";
+	}
 
 }

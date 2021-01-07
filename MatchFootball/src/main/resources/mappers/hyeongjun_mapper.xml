@@ -71,6 +71,9 @@
    <select id="freedelete" parameterType="fboardVO">
    delete fboard where num=#{num}
    </select>
+   <select id="freeupdate" parameterType="fboardVO" resultType="fboardVO">
+   	update fboard set title=#{title},comm=#{comm} where num=#{num}
+   </select>
    
 
 </mapper>

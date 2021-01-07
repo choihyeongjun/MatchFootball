@@ -12,7 +12,7 @@
     <body>
     카카오:${kemail}  ${kname} ${kimage} ${kgender} ${kbirthday } ${kage}
     <c:choose>
-       <c:when test="${sessionScope.kname==null}">
+       <c:when test="${sessionScope.id==null}">
        <li>
           <a href="${pageContext.request.contextPath}/loginform">카카오로그인</a>
           <a href="${pageContext.request.contextPath}/login">일반로그인</a>

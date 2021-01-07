@@ -26,4 +26,5 @@ public FboardVO freeinsert(FboardVO vo);
 public List<FboardVO> freelist();
 public FboardVO freeselect(FboardVO vo);
 public FboardVO freedelete(FboardVO vo);
+public FboardVO freeupdate(FboardVO vo);
 }
