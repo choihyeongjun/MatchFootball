@@ -13,6 +13,7 @@ public interface HyendongMapper {
 	public List<TeamVO> teamListSelect(TeamVO teamVO); //전체 팀 조회
 	public int getCount1(TeamVO teamVO); //페이징 count와 list는 매개 같아야함
 	public List<MembersVO>getMembers(); //멤버 리스트 조회
+	public TeamlistVO getTeamMemberss(TeamlistVO teamlistVO);
 	public MembersVO memberSelect(MembersVO membersVO); //멤버 단건 조회
 	
 	public List<TeamlistVO> getTeamMembers(TeamVO teamVO); //팀원 조회

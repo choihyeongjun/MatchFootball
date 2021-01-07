@@ -53,12 +53,17 @@ li {
 </head>
 <body>
 	<ul class="hi">
-		<li><a href="http://localhost/MatchFootball/teamInfo">팀 정보</a></li>
-		<li><a href="http://localhost/MatchFootball/teamGallery">팀
-				갤러리</a></li>
-		<li><a href="teamNotice">팀 공지</a></li>
-		<li><a href="http://localhost/MatchFootball/teamInvite">팀 초대</a></li>
-		<li><a href="http://localhost/MatchFootball/teamList">팀 리스트</a></li>
+		<c:if test="${sessionScope.id ne null }">
+			<li><a href="myTeamInfo?t_num=${member.t_num }">팀 정보</a></li>
+			</c:if>
+			<c:if test="${sessionScope.id eq null }">
+			<li><a href="teamMake">팀 생성</a></li>
+			</c:if>
+			<li><a href="http://localhost/MatchFootball/teamGallery">팀
+					갤러리</a></li>
+			<li><a href="teamNotice?t_num=${teamInfo.t_num }">팀 공지</a></li>
+			<li><a href="http://localhost/MatchFootball/teamInvite">팀 초대</a></li>
+			<li><a href="http://localhost/MatchFootball/teamList">팀 리스트</a></li>
 	</ul>
 	<div align="center">
 		<h1>팀 공 지</h1>
