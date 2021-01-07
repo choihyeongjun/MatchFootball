@@ -24,7 +24,7 @@
 <!-- Custom style -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/hyeongjun/css1/style.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="/js/owl.carousel.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/hyeongjun/js/owl.carousel.min.js"></script>
 
 </head>
 <body>

@@ -25,4 +25,5 @@ public RfieldVO fielddetaildelete(RfieldVO vo);
 public FboardVO freeinsert(FboardVO vo);
 public List<FboardVO> freelist();
 public FboardVO freeselect(FboardVO vo);
+public FboardVO freedelete(FboardVO vo);
 }

@@ -114,7 +114,6 @@ public class HyeongjunController {
 	@RequestMapping(value = "/logincheck")
 	public String login(MembersVO vo, HttpServletRequest req, HttpSession session) {
 		vo = hyeongjunMapper.login(vo);
-
 		if (vo != null) {
 			session.setAttribute("id", vo.getId());
 			session.setAttribute("name", vo.getName());
@@ -192,8 +191,15 @@ public class HyeongjunController {
 		return "hyeongjun/freeboardwrite";
 	}
 	@RequestMapping("/freeinsert")
-	public String freeinsert(FboardVO vo,Model model) {
+	public String freeinsert(FboardVO vo,Model model)  {
 		 hyeongjunMapper.freeinsert(vo);
+		 model.addAttribute("list",hyeongjunMapper.fboardlist());
+		 return "hyeongjun/freeboard";
+	}
+	@RequestMapping("/freedelete")
+	public String freedelete(FboardVO vo,Model model) {
+		hyeongjunMapper.freedelete(vo);
+		 model.addAttribute("list",hyeongjunMapper.fboardlist());
 		 return "hyeongjun/freeboard";
 	}
 
