@@ -40,7 +40,7 @@ a {
 	<div style="padding-bottom: 70px; height: 91%">
 		<ul class="hi">
 			<c:if test="${sessionScope.id ne null }">
-			<li><a href="teamInfo?id=${sessionScope.id }">ÆÀ Á¤º¸</a></li>
+			<li><a href="myTeamInfo?t_num=${member.t_num }">ÆÀ Á¤º¸</a></li>
 			</c:if>
 			<c:if test="${sessionScope.id eq null }">
 			<li><a href="teamMake">ÆÀ »ý¼º</a></li>
