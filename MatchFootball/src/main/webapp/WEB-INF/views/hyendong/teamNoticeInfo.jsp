@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
 <!DOCTYPE html>
 <html>
 <head>
@@ -81,11 +82,17 @@
 </head>
 <body>
 	<ul class="hi">
-	  <li><a href="http://localhost/MatchFootball/teamInfo">ÆÀ Á¤º¸</a></li>
-	  <li><a href="http://localhost/MatchFootball/teamGallery">ÆÀ °¶·¯¸®</a></li>
-	  <li><a href="http://localhost/MatchFootball/teamNotice">ÆÀ °øÁö</a></li>
-	  <li><a href="http://localhost/MatchFootball/teamInvite">ÆÀ ÃÊ´ë</a></li>
-	  <li><a href="http://localhost/MatchFootball/teamList">ÆÀ ¸®½ºÆ®</a></li>
+	  <c:if test="${sessionScope.id ne null }">
+			<li><a href="myTeamInfo?t_num=${member.t_num }">ÆÀ Á¤º¸</a></li>
+			</c:if>
+			<c:if test="${sessionScope.id eq null }">
+			<li><a href="teamMake">ÆÀ »ý¼º</a></li>
+			</c:if>
+			<li><a href="http://localhost/MatchFootball/teamGallery">ÆÀ
+					°¶·¯¸®</a></li>
+			<li><a href="teamNotice?t_num=${teamInfo.t_num }">ÆÀ °øÁö</a></li>
+			<li><a href="http://localhost/MatchFootball/teamInvite">ÆÀ ÃÊ´ë</a></li>
+			<li><a href="http://localhost/MatchFootball/teamList">ÆÀ ¸®½ºÆ®</a></li>
 	</ul>
 	<div align="center">
 		<h1>ÆÀ °ø Áö</h1>

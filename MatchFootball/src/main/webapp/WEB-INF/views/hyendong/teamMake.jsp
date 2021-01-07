@@ -30,13 +30,19 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/dong1/assets/css/style.css">
 </head>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+	if ($("#t_hidden").prop("checked")) {
+		$("#t_hidden").val('Y');
+	} else {
+		$("#t_hidden").val('N');
+	}
+</script>
 <body>
 	<form action="teamMakeInsert" method="post"
 		encType="multipart/form-data">
 		<!-- encType 이미지 등록시 필수 -->
-		${sessionScope.kemail }
-		${sessionScope.id }
-		${member.t_num }
+		${sessionScope.kemail } ${sessionScope.id } ${member.t_num }
 		${member.pos }
 		<div class="section-top-border" style="margin-left: 670px; width: 50%">
 			<div class="row">
@@ -84,24 +90,25 @@
 							placeholder="팀소개"></textarea>
 					</div>
 					<hr>
-					팀로고 <input type="file" id="files" name=file /><br><br>
-						  <img id="image" style="height: 200px; width: 200px; border: none"/>
+					팀로고 <input type="file" id="files" name=file /><br>
+					<br> <img id="image"
+						style="height: 200px; width: 200px; border: none" />
 					<script>
-					document.getElementById("files").onchange = function () {
-					    var reader = new FileReader();
+						document.getElementById("files").onchange = function() {
+							var reader = new FileReader();
 
-					    reader.onload = function (e) {
-					    document.getElementById("image").src = e.target.result;
-					    };
-					    reader.readAsDataURL(this.files[0]);
-					};
+							reader.onload = function(e) {
+								document.getElementById("image").src = e.target.result;
+							};
+							reader.readAsDataURL(this.files[0]);
+						};
 					</script>
 					<hr>
 					<p>팀원 공개 여부</p>
 					<div class="switch-wrap d-flex justify-content-between">
 						<div class="primary-switch">
-							<input type="checkbox" id="default-switch" name="teamYN" checked>
-							<label for="default-switch"></label>
+							<input type="checkbox" id="t_hidden" name="t_hidden" value="Y" checked> 
+							<label for="t_hidden"></label>
 						</div>
 					</div>
 				</div>

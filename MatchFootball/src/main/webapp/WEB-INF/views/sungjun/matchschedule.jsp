@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
-<div class="row">
+<div class="row" style="padding: 20px;">
 	<div class="col-4">
 		<div>
 			<h3>매치 정보</h3>
@@ -74,5 +74,4 @@
 			</tbody>
 		</table>
 	</div>
-
 </div>

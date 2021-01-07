@@ -29,9 +29,9 @@ public class AdminController {
 		return "no/seemoo/index";
 	}
 	
-	@RequestMapping(value = "/admin/ajax", method = RequestMethod.GET) // 유저관리 페이지 (ajax로 전체조회)
+	@RequestMapping(value = "/user/ajax", method = RequestMethod.GET) // 유저관리 페이지 (ajax로 전체조회)
 	@ResponseBody	
-	public List<MembersVO> userlist(Model model, MembersVO mvo, HttpServletRequest request, HttpServletResponse reponse) {
+	public List<MembersVO> userlist(Model model, HttpServletRequest request, HttpServletResponse reponse) {
 		return seemoomapper.memberList();
 	}
 
@@ -42,9 +42,10 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value = "/admin/userinfo", method = RequestMethod.GET) // 유저관리 페이지 (단건조회)
-	public String users(Model model, MembersVO mvo, HttpServletRequest request, HttpServletResponse reponse) {
-		model.addAttribute("mvoselect", seemoomapper.members(mvo));
-		return "no/seemoo/userinfo";
+	@ResponseBody
+	public MembersVO users(Model model, MembersVO mvo, HttpServletRequest request, HttpServletResponse reponse) {
+		System.out.println(">> "+mvo.getId());
+		return  seemoomapper.members(mvo);
 	}
 	
 	@ResponseBody
@@ -56,19 +57,8 @@ public class AdminController {
 	@ResponseBody
 	@RequestMapping(value = "/userdelete", method = RequestMethod.GET) // 유저관리 페이지 (삭제)
 	public MembersVO usersdelete(MembersVO vo) {
-		int r = seemoomapper.membersdelete(vo);
-		return vo;
+		return seemoomapper.membersdelete(vo);
 	}
-	
-//	@RequestMapping(value="/users/{id}", method=RequestMethod.DELETE)
-//	   public Map  getUserList( @PathVariable String id, UserVO vo, Model model) {
-//	      vo.setId(id);
-//	      userService.deleteUser(vo);
-//	      Map result = new HashMap<String, Object>();
-//	      result.put("result", Boolean.TRUE);
-//	      return result;
-//	   }
-
 
 	@RequestMapping(value = "/admin/team", method = RequestMethod.GET) // 팀관리 페이지 (전체조회)
 	public String team(Model model, TeamVO tvo, HttpServletRequest request, HttpServletResponse reponse) {
@@ -87,6 +77,18 @@ public class AdminController {
 	public String teams(Model model, TeamVO tvo, HttpServletRequest request, HttpServletResponse reponse) {
 		model.addAttribute("tvoselect", seemoomapper.teams(tvo));
 		return "no/seemoo/teaminfo";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/teamupdate", method = RequestMethod.GET) // 팀관리 페이지 (수정)
+	public TeamVO teamsupdate(TeamVO vo) {
+		return seemoomapper.teamsupdate(vo);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/teamdelete", method = RequestMethod.GET) // 팀관리 페이지 (삭제)
+	public TeamVO teamsdelete(TeamVO vo) {
+		return seemoomapper.teamsdelete(vo);
 	}
 	
 	@RequestMapping(value = "/admin/blackteam", method = RequestMethod.GET) // 팀관리 페이지 (블랙리스트 된 팀)
