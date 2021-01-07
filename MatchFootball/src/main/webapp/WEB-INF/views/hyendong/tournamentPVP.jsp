@@ -146,7 +146,14 @@
 			for(i=0; i<link[s].length; i++){
 				$(this).parent().find(".line_sty"+link[s][i]).toggleClass('on')
 			}
-			
+			// AJAX
+			$.ajax({
+				url : '/tournamentPVP?t_no=2',
+				data : '${tournamentPVP[0].t_num}',
+				success : function(result){
+					
+				}
+			});
 		});
 
 		$(".noClickdown").on('click', function() {
@@ -175,7 +182,6 @@
 		});
 	})
 	
-	/* AJAX */
 
 </script>
 <body>

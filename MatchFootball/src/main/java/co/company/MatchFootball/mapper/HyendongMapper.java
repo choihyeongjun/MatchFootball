@@ -18,6 +18,7 @@ public interface HyendongMapper {
 	public List<TeamlistVO> getTeamMembers(TeamVO teamVO); //팀원 조회
 	public int teamInsert(TeamVO teamVO); //팀 생성
 	public TeamVO getTeam(TeamVO teamVO); //팀 단건 정보 조회
+	public MembersVO myTeam(MembersVO membersVO); //마이 팀 정보 조회
 	public int teamUpdate(TeamVO teamVO); //팀 수정
 	public int teamJoin(TeamlistVO teamlistVO); //팀 가입
 	

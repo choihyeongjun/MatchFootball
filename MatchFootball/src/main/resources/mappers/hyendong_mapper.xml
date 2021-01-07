@@ -71,6 +71,14 @@
 		WHERE t_num = #{t_num}
 	</select>
 
+	<!-- 자기 팀 정보 조회 -->
+	<select id="myTeam" parameterType="membersVO" resultType="membersVO">
+		select * 
+		from members m 
+		join team t 
+		on m.t_num = t.t_num 
+		where m.id=#{id}
+	</select>
 	<!-- 팀원 조회 -->
 	<select id="getTeamMembers" parameterType="TeamlistVO"
 		resultType="TeamlistVO">

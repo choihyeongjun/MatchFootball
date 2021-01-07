@@ -19,7 +19,7 @@
        </li>
        </c:when>
        <c:otherwise>
-       ${sessionScope.id} 님이 로그인중입니다
+       ${sessionScope.id} 님이 로그인중입니다	
        <li>
           <a href="${pageContext.request.contextPath}/kakaologout">카카오로그아웃</a>
           <a href="${pageContext.request.contextPath}/logout">로그아웃</a>
