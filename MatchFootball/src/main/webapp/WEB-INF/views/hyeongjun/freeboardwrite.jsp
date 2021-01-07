@@ -22,14 +22,33 @@
 			maxHeight : null, // 최대 높이
 			focus : false, // 에디터 로딩후 포커스를 맞출지 여부
 			lang : "ko-KR", // 한글 설정
+			
 		});
 	});
+	 function sendFile(file, el) {
+	      var form_data = new FormData();
+	      form_data.append('file', file);
+	      $.ajax({
+	        data: form_data,
+	        type: "POST",
+	        url: 'freeinsert',
+	        cache: false,
+	        contentType: false,
+	        enctype: 'multipart/form-data',
+	        processData: false,
+	        success: function(url) {
+	          $(el).summernote('editor.insertImage', url);
+	          $('#imageBoard > ul').append('<li><img src="'+url+'" width="480" height="auto"/></li>');
+	        }
+	      });
+	    }
+
 </script>
 
 </head>
 
 <body style="padding-left: 650px; padding-top: 100px">
-	<form id="form1" class="form-horizontal" action="${pageContext.request.contextPath}/freeinsert">
+	<form id="form1" method="post" class="form-horizontal"  action="${pageContext.request.contextPath}/freeinsert">
 		<div align="center" id="mdiv" style="width: 100%">
 			<table class="table" style="width: 100%">
 				<tbody>
@@ -44,14 +63,10 @@
 		
 		<div align="center">
 			<textarea id="summernote" name="comm"></textarea><br>
-			<button type="button" class="btn btn-primary"id="btnInsert">등록</button>
-			<button type="button" class="btn btn-primary"id="btnUpdate">수정</button> 
+			<button type="submit" class="btn btn-primary"id="btnInsert">등록</button>
 			<button type="reset" class="btn btn-primary" id="btnInit" >취소</button>
-			<c:if test="${id eq sessionScope.id}">
-			<button type="reset" class="btn btn-primary" id="btnInit" >삭제</button>
-			</c:if>
+			
 		</div>
-		
 	</form>
 	
 </body>

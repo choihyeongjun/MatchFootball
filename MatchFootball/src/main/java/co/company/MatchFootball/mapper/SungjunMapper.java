@@ -7,6 +7,7 @@ import co.company.MatchFootball.vo.MatchMember;
 import co.company.MatchFootball.vo.MembersVO;
 import co.company.MatchFootball.vo.P_matchVO;
 import co.company.MatchFootball.vo.PointVO;
+import co.company.MatchFootball.vo.TeammatchVO;
 
 public interface SungjunMapper {
 
@@ -19,5 +20,7 @@ public interface SungjunMapper {
 	public P_matchVO pmatchlist1(P_matchVO p_match);
 	public List<MatchMember> matchmember(MatchMember matchmember);
 	public int mapply(ManageraplyVO manageraply);
+	public List<TeammatchVO> tmatchlist(TeammatchVO t_match);
+	public P_matchVO pmatchlist3(P_matchVO p_match);
 	
 }

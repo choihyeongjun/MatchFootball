@@ -24,28 +24,33 @@
 </script>
 </head>
 <body style="padding-left: 650px; padding-top: 100px">
-	<form id="form1" class="form-horizontal" action="${pageContext.request.contextPath}/free">
+	<form id="form1" class="form-horizontal" method="post">
 		<div align="center" id="mdiv" style="width: 100%">
 			<table class="table" style="width: 100%">
 				<tbody>
 					<td>id:${select.id}</td>
 					<tr>
+						
 						<td align="center" style="width: 20%">제목</td>
 						<td><input name="title" type="text" style="width: 100%"
-							value="${select.title}"></td>
+							<c:if test="${sessionScope.id ne select.id }">readonly="readonly"</c:if> value="${select.title}"></td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
 		<div align="center">
-			<textarea id="summernote" name="comm" value="${select.comm}"></textarea>
-			
-			<br>
-			<button type="submit" class="btn btn-primary" id="btnUpdate">수정</button>
-			<c:if test="${select.id eq sessionScope.id}">
-				<button type="reset" class="btn btn-primary" id="btnInit">삭제</button>
+		<c:if test="${sessionScope.id eq select.id }">
+			<textarea id="summernote" name="comm" >${select.comm}</textarea>
+		</c:if>
+		<c:if test="${sessionScope.id ne select.id }">
+			<textarea  name="comm" readonly>${select.comm}</textarea>
+		</c:if>
+		<br>
+			<c:if test="${sessionScope.id eq select.id}">
+			<button type="submit" class="btn btn-primary" id="btnUpdate" onclick="javascript: form.action='${pageContext.request.contextPath}/freeupdate'">수정</button>
+			<button type="reset" class="btn btn-primary" id="btnInit" onclick="javascript: form.action='${pageContext.request.contextPath}/freedelete'">삭제</button>
 			</c:if>
-			<button type="button" class="btn btn-primary" id="btngoback">돌아가기</button>
+			<button type="submit" class="btn btn-primary" id="btngoback" onclick="javascript: form.action='${pageContext.request.contextPath}/free'">돌아가기</button>
 		</div>
 	</form>
 </body>

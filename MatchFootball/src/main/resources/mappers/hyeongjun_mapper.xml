@@ -68,5 +68,9 @@
    	from fboard
    	where num=#{num}
    </select>
+   <select id="freedelete" parameterType="fboardVO">
+   delete fboard where num=#{num}
+   </select>
+   
 
 </mapper>

@@ -36,7 +36,7 @@
 						<div class="row gutters-sm">
 						<br>
 							<div class="col-md-5 mb-3">
-								<div class="card" style="height:500px;">
+								<div class="card" style="height:525px;">
 									<div class="card-body">
 										<div class="d-flex flex-column align-items-center text-center">
 											<br> <img
@@ -47,7 +47,7 @@
 												<h4 style="font-family: 'NanumSquareRound';">${mb.name }</h4>
 											<br>	<p class="text-secondary mb-1">${mb.location2}</p>
 											<br>	<p class="text-muted font-size-sm">${mb.pos}</p>
-											<br>	<a href="userinfoup"><button class="btn btn-primary">수정</button>
+											<br>	<a href="userupdate"><button class="btn btn-primary">수정</button>
 												</a>
 												<button class="btn btn-outline-primary" onclick="location.href='message'">Message</button>
 												<br>
@@ -87,32 +87,39 @@
 											<div class="col-sm-9 text-secondary">${mb.pnum}</div>
 										</div>
 										<hr>
+										<div class="row">
+											<div class="col-sm-3">
+												<a class="mb-0">Helper</a>
+											</div>
+											<div class="col-sm-9 text-secondary">${mb.author2}</div>
+										</div>
 									</div>
 								</div>
 								<div class="row gutters-sm">
 									<div>
-										<div class="card mb-3">
+										<div class="card char mb-3">
 											<div class="card-body">
 												<a class="d-flex align-items-center mb-3"> <i
 													class="material-icons text-info mr-2">assignment</i>경기 승률
-												</a> <small>매너점수</small>
+												</a> 
+												<small>매너점수</small>
 												<div class="progress mb-3" style="height: 5px">
-													<div class="progress-bar bg-primary" role="progressbar"
-														style="width: 80%" aria-valuenow="80" aria-valuemin="0"
+													<div class="progress-bar bg-primary" role="progressbar" id="manner"
+														style="width: 50%" aria-valuenow="80" aria-valuemin="0"
 														aria-valuemax="100"></div>
 												</div>
-												<small></small>
+												<small>실력</small>
 												<div class="progress mb-3" style="height: 5px">
-													<div class="progress-bar bg-primary" role="progressbar"
+													<div class="progress-bar bg-primary" role="progressbar" id="lv"
 														style="width: 72%" aria-valuenow="72" aria-valuemin="0"
 														aria-valuemax="100"></div>
 												</div>
 												<small></small>
-												<div class="progress mb-3" style="height: 5px">
+												<!-- <div class="progress mb-3" style="height: 5px">
 													<div class="progress-bar bg-primary" role="progressbar"
 														style="width: 89%" aria-valuenow="89" aria-valuemin="0"
 														aria-valuemax="100"></div>
-												</div>
+												</div> -->
 												
 											</div>
 										</div>

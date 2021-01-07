@@ -34,7 +34,10 @@
 </head>
 <body>
 <div class="col-md-5 col-lg-4 col-xl-4 col-sidebar">
+
 						<div id="sidebar" class="sidebar-left">
+						
+							<input value="${point.id}" type="text" style="display:none;">
 							<div class="sidebar_inner">
 								<div class="agent-detail">
 									<div class="text-center">
@@ -44,7 +47,7 @@
 								</div>
 								<br>
 								<div class="list-group no-border list-unstyled">
-									<a class="list-group-item active" href="#">내 포인트 : ${po.sum(p.npoint)}</a><br>
+									<a class="list-group-item active" href="#">내 포인트 : ${point.point}</a><br>
 									<a href="profile" class="list-group-item profile">
 										<i class="far fa-id-card"></i> 내 프로필
 									</a> 									 
