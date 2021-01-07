@@ -43,26 +43,39 @@
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d91f3d18bd10e8cd72b2f2827dea9f7c&libraries=services"></script>
+	<%
+	 String id = (String)session.getAttribute("id"); 
+
+	 String tel = (String)session.getAttribute("point.pnum");
+
+
+	%>
 <script type="text/javascript">
-        var IMP = window.IMP;
-        IMP.init('imp22665146');
 	function goTop() {
 		$(document).animate({
 			scrollTop : 0
 		})
 	}
+	$(function() {	   
+        var IMP = window.IMP;
+        IMP.init('imp22665146');
+        pay();
+});	
 	
+	function pay(){
     $('#charge_kakao').click(function () {
         // getter
         var money = $('input[name="cp_item"]:checked').val();
+        
         console.log(money);
 
         IMP.request_pay({
             pg: 'kakao',
             merchant_uid: 'merchant_' + new Date().getTime(),
-            name: '주문명 : 주문명 설정',
-            amount: money,
-            buyer_tel: "${mb.pnum}"
+            name: '매치풋볼 : 포인트 충전',
+            amount: money,           
+            buyer_name : 'aaa',<%-- '<%=id%>' --%>
+            buyer_tel : '0010'<%-- '<%=tel%>' --%>
            
         }, function (rsp) {
             console.log(rsp);
@@ -72,9 +85,15 @@
                 msg += '상점 거래ID : ' + rsp.merchant_uid;
                 msg += '결제 금액 : ' + rsp.paid_amount;
                 msg += '카드 승인번호 : ' + rsp.apply_num;
+                //포인트 충전
+                //var id = $();   		//회원 아이디
+                //var pday = $(); 		//결제 일자
+                //var addpo = $();		//구매한 포인트
+                //var popr =$();	// 결제 금액
                 $.ajax({
-                    type: "GET", 
-                    url: "/user/mypage/pointcharge", //충전 금액값을 보낼 url 설정
+                    url: "user/mypage/pointcharge", //충전 금액값을 보낼 url 설정
+                    type: "POST", 
+                    dataType : "JSON",
                     data: {
                         "amount" : money
                     },
@@ -84,10 +103,10 @@
                 msg += '에러내용 : ' + rsp.error_msg;
             }
             alert(msg);
-            document.location.href="/profile"; //alert창 확인 후 이동할 url 설정
+            document.location.href="${pageContext.request.contextPath}/mypage/profile"; //alert창 확인 후 이동할 url 설정
         });
     });
-
+}
 </script>
 </head>
 <body>

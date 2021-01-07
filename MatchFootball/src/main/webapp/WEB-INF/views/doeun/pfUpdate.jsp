@@ -42,7 +42,77 @@
 			}
 		}).open();
 	}
+$(function() {
+    $("#uf").on(
+            'change',
+            function(e) {
+             
+               var files = e.target.files;
+               var arr = Array.prototype.slice.call(files);
+               for (var i = 0; i < files.length; i++) {
+                  if (!checkExtension(files[i].name, files[i].size)) {
+                     return false;
+                  }
+               }
 
+               preview(arr);
+
+            });
+
+      function checkExtension(fileName, fileSize) {
+
+         var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
+         var maxSize = 20971520; //20MB
+
+         if (fileSize >= maxSize) {
+            alert('파일 사이즈 초과');
+            $("input[type='file']").val(""); //파일 초기화
+            return false;
+         }
+
+         if (regex.test(fileName)) {
+            alert('업로드 불가능한 파일이 있습니다.');
+            $("input[type='file']").val(""); //파일 초기화
+            return false;
+         }
+         return true;
+      }
+
+      function preview(arr) {
+         arr
+               .forEach(function(f) {
+
+                  //파일명이 길면 파일명...으로 처리
+                  var fileName = f.name;
+                  if (fileName.length > 10) {
+                     fileName = fileName.substring(0, 7) + "...";
+                  }
+
+                  //div에 이미지 추가
+                  var str = '<div style="display: inline-flex; padding: 10px;"><li>';
+                  str += '<span>' + fileName + '</span><br>';
+
+                  //이미지 파일 미리보기
+                  if (f.type.match('image.*')) {
+                     var reader = new FileReader(); //파일을 읽기 위한 FileReader객체 생성
+                     reader.onload = function(e) { //파일 읽어들이기를 성공했을때 호출되는 이벤트 핸들러
+                        //str += '<button type="button" class="delBtn" value="'+f.name+'" style="background: red">x</button><br>';
+
+                        $('#img').attr('src', e.target.result);
+                        $('#img').attr('style',
+                              "width:300px; height: 350px");
+                     }
+                     reader.readAsDataURL(f);
+                  } else {
+                     $('#img').attr('src', e.target.result);
+                     $('#img').attr('style',
+                           "width:300px; height: 350px");
+                  }
+               });//arr.forEach
+      }
+   });
+
+})
 </script>
 </head>
 <body>
@@ -69,13 +139,14 @@
 								<label class="control-label" for="photo">프로필 사진</label>
 								<div class="input-group mb-3">
 									<div class="custom-file">
+									
 										<input type="file" class="custom-file-input" id="fileupload"
 											src='images/default.jpg' name="file" autocomplete=off aria-describedby="inputGroupFileAddon01">
 										<label class="custom-file-label photo" for="inputGroupFile01">파일을
 											선택하세요</label>
 									</div>
 								</div>
-								<div id='images-div'></div>
+								<div id='images-div'><img id="img"></div>
 								<p style="color: red">이미지을 삭제하시려면 이미지를 클릭해주세요</p>
 								<span class="glyphicon glyphicon-ok form-control-feedback"></span>
 							</div>
@@ -159,15 +230,20 @@
 								<div class="form-group">
 									<label>실력</label> <br> 
 									<input type="radio" name="lv" id="lv" value="1"										
-										<c:if test="${mb.gender eq '1'}" >checked="checked"</c:if>>상
+										<c:if test="${mb.lv eq '1'}" >checked="checked"</c:if>>상
 										<input type="radio" name="lv" value="2"										
-										<c:if test="${mb.gender eq '2'}" >checked="checked"</c:if>>중상
+										<c:if test="${mb.lv eq '2'}" >checked="checked"</c:if>>중상
 									<input type="radio" name="lv" value="3"
-										<c:if test="${mb.gender eq '3'}" >checked="checked"</c:if>>중
+										<c:if test="${mb.lv eq '3'}" >checked="checked"</c:if>>중
 										<input type="radio" name="lv" value="4"										
-										<c:if test="${mb.gender eq '4'}" >checked="checked"</c:if>>중하
+										<c:if test="${mb.lv eq '4'}" >checked="checked"</c:if>>중하
 									<input type="radio" name="lv" value="5"
-										<c:if test="${mb.gender eq '5'}" >checked="checked"</c:if>>하
+										<c:if test="${mb.lv eq '5'}" >checked="checked"</c:if>>하
+								</div>
+								<div class="form-group helper">
+								<label>용병</label><br>
+								<input type="radio" name="author2" value="Y" <c:if test="${mb.author2 eq 'Y'}" >checked="checked"</c:if>>신청
+								<input type="radio" name="author2" value="N"  <c:if test="${mb.author2 eq 'N'}" >checked="checked"</c:if>>안 함
 								</div>
 							</div>
 
@@ -175,7 +251,8 @@
 							<div class="form-group action update">
 								<input type="submit" class="btn btn-primary" id='btn1'
 									style="height: 48px" value="프로필 변경">
-								
+								<!-- <input type="submit" class="btn btn-primary" id='uf'
+									style="height: 48px" value="이미지 변경"> -->
 							</div>
 						</div>
 					</div>
