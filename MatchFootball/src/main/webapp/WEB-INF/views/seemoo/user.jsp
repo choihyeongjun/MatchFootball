@@ -10,39 +10,70 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
-
+<script src="https://code.jquery.com/jquery-3.5.1.min.js" ></script>
 <title>유저관리페이지</title>
 
 <script>
 $(function(){
+	userUpdate();
 	userDelete();
 	
-	init();
+	//init();
 });
 
-//사용자 삭제 요청
+//사용자 수정 요청
+function userUpdate() {
+	//수정 버튼 클릭
+	$('body').on('click','#btnUpdate',function(){
+		var userId = $(this).closest('tr').find('#aa').text();//val();
+		var author = $(this).closest('tr').find('[name=author]').val();
+		var author2 = $(this).closest('tr').find('[name=author2]').val();
+		var result = confirm(userId + " 사용자를 정말로 수정하시겠습니까?");
+		if(result) {
+		$.ajax({  
+		    url: "../userupdate", 
+		    dataType: 'json', 
+		    data:{ id : userId, author : author, author2 : author2 },
+		    success: function(data) { 
+		        userList();
+		    },
+		    error:function(xhr, status, message) { 
+		        alert(" status: "+status+" er:"+message);
+		    }
+		});
+	 }//if
+  });//수정 버튼 클릭
+}//userUpdate
+function userList(){
+	
+}
+
 function userDelete() {
 	//삭제 버튼 클릭
 	$('body').on('click','#btnDelete',function(){
-		var userId = $(this).closest('tr').find('#hidden_userId').val();
+		var userId = $(this).closest('tr').find('#aa').text();//val();
 		var result = confirm(userId +" 사용자를 정말로 삭제하시겠습니까?");
 		if(result) {
+			console.log("아이디값: "+userId)
 			$.ajax({
-				url:'users/'+userId,  
-				type:'DELETE',
+				url:'../userdelete',  
 				contentType:'application/json;charset=utf-8',
 				dataType:'json',
+				type : 'GET',
+				data :{id : userId},
 				error:function(xhr,status,msg){
 					console.log("상태값 :" + status + " Http에러메시지 :"+msg);
-				}, success:function(xhr) {
-					console.log(xhr.result);
-					userList();
-				}
+				}, success:
+					deleteResult
 			});      
 		}//if
 	}); //삭제 버튼 클릭
 }//userDelete
 
+function deleteResult(data){
+	console.log("deleteResult아이디값 : "+data);
+	
+}
 </script>
 
 <style>
@@ -94,7 +125,7 @@ function userDelete() {
 										<th>용병권한</th>
 										<th>매너점수</th>
 										<th>포인트</th>
-										<th style="width: 80px;"></th>
+										<th style="width: 180px;"></th>
 									</tr>
 								</thead>
 								<tfoot align="center">
@@ -119,22 +150,22 @@ function userDelete() {
 											<td>${member.gender}</td>
 											<td>
 												<select name="author">
-													<option value="" selected="selected">선택</option>
-													<option value="일반회원">일반회원</option>
-													<option value="일반회원">매니저</option>
-													<option value="용병">용병</option>
+													<option selected value="${member.author}">${member.author}</option>
+													<option value="user">일반회원</option>
+													<option value="manager">매니저</option>
 												</select>
 											</td>
 											<td>
 												<select name="author2">
-													<option value="" selected="selected">선택</option>
-													<option value="용병신청">Y</option>
-													<option value="미신청">N</option>
+													<option selected value="${member.author2}">${member.author2}</option>
+													<option value="Y">Y</option>
+													<option value="N">N</option>
 												</select>
 											</td>
 											<td>${member.manner}</td>
 											<td>${member.point}Point</td>
 											<td>
+												<button type="button" class="btn btn-success" value="수정" id="btnUpdate">정보수정</button>
 												<button type="submit" class="btn btn-primary" value="삭제" id="btnDelete">회원삭제</button>
 											</td>
 										</tr>

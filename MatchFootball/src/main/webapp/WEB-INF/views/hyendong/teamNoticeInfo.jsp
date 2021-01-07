@@ -93,10 +93,10 @@
 	</div>
 		<div class="contentWrapper">
 			<div class="articleTitle">
-				<h1>눈 내리는 날 경기 진행 여부</h1>
+				<h1>${teamNoticeInfo.t_title }</h1>
 			</div>
 			<div class="articleBody">
-				<pre>인원이 모인 매치는 진행하나 구장 제설 상황에 따라 변동 될 수 있으며 매치가 불가능할 시 1시간 30분 전까지는 안내 드리고 있습니다.</pre>
+				<pre>${teamNoticeInfo.t_content }</pre>
 				<ul class="helpTagWrap">
 					<li><a href="/cs/search/%EB%88%88/">눈</a></li>
 					<li><a href="/cs/search/%20%EA%B8%B0%EC%83%81%EC%95%85%ED%99%94/">기상악화</a></li>

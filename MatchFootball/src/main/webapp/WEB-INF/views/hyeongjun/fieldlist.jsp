@@ -100,13 +100,12 @@ footer {
 			<c:forEach var="field" items="${list}">
 			<div class="col-lg-4 col-md-6 col-sm-6">
 				<div class="product__item">
-					<div class="product__item__pic set-bg"
-						data-setbg=${field.img}>
-						
+					<div class="product__item__pic set-bg">
+					<img src="${pageContext.request.contextPath}/images/${field.img}">
 					</div>
 					<div class="product__item__text">
 						<h6>
-							<a href="#">${field.name}</a>
+							<a href="${pageContext.request.contextPath}/fieldlist/fielddetail/${field.f_id}">${field.name}</a>
 						</h6>
 						<h5>${field.price}</h5>
 					</div>

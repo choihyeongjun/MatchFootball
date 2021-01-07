@@ -42,8 +42,10 @@
 										<h4 class="main-name" style="color: #869E9E; font-weight: bold;"></h4>
 									</div>
 								</div>
+								<br>
 								<div class="list-group no-border list-unstyled">
-									<a href="profile" class="list-group-item active">
+									<a class="list-group-item active" href="#">내 포인트 : ${po.sum(p.npoint)}</a><br>
+									<a href="profile" class="list-group-item profile">
 										<i class="far fa-id-card"></i> 내 프로필
 									</a> 									 
 									<a href="#" class="list-group-item payment"><i class="fas fa-money-check"></i> 결제 | 쿠폰

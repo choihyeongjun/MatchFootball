@@ -16,6 +16,7 @@ public class TeamVO {
 	String t_hidden;//팀원정보 공개여부
 	String t_m;//팀매너점수
 	String t_wn;//팀승패여부
+	String t_author; 
 	int first;
 	int last;
 }

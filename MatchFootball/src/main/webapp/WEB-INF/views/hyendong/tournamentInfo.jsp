@@ -37,7 +37,7 @@ li {
 		</div>
 		<div align="center">
 			<input type="submit" class="genric-btn info circle" value="참가신청" />
-			<input type="submit" class="genric-btn info circle" value="대진표" />
+			<input type="submit" class="genric-btn info circle" value="대진표" onclick="location.href='tournamentPVP?t_no=${tournamentTeam.t_no}'"/>
 		</div>
 		<br>
 		<div class="tournament_view_cont">

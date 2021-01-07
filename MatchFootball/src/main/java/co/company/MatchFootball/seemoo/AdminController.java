@@ -1,5 +1,7 @@
 package co.company.MatchFootball.seemoo;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -8,12 +10,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import co.company.MatchFootball.mapper.SeemooMapper;
 import co.company.MatchFootball.vo.MembersVO;
+import co.company.MatchFootball.vo.NoticeVO;
 import co.company.MatchFootball.vo.TeamVO;
 
 @Controller
@@ -28,11 +29,11 @@ public class AdminController {
 		return "no/seemoo/index";
 	}
 	
-//	@RequestMapping(value = "/admin/ajax", method = RequestMethod.GET) // 유저관리 페이지 (ajax로 전체조회)
-//	@ResponseBody	
-//	public List<MembersVO> userlist(Model model, MembersVO mvo, HttpServletRequest request, HttpServletResponse reponse) {
-//		return seemoomapper.memberList();
-//	}
+	@RequestMapping(value = "/admin/ajax", method = RequestMethod.GET) // 유저관리 페이지 (ajax로 전체조회)
+	@ResponseBody	
+	public List<MembersVO> userlist(Model model, MembersVO mvo, HttpServletRequest request, HttpServletResponse reponse) {
+		return seemoomapper.memberList();
+	}
 
 	@RequestMapping(value = "/admin/user", method = RequestMethod.GET) // 유저관리 페이지 (전체조회)
 	public String user(Model model, MembersVO mvo, HttpServletRequest request, HttpServletResponse reponse) {
@@ -46,10 +47,17 @@ public class AdminController {
 		return "no/seemoo/userinfo";
 	}
 	
-	@RequestMapping(value = "/admin/userdelete", method = RequestMethod.GET) // 유저관리 페이지 (삭제)
-	public String usersdelete(@RequestParam("delete")MembersVO vo) {
-		seemoomapper.membersdelete(vo);
-		return "redirect:/user";
+	@ResponseBody
+	@RequestMapping(value = "/userupdate", method = RequestMethod.GET) // 유저관리 페이지 (수정)
+	public MembersVO usersupdate(MembersVO vo) {
+		return seemoomapper.membersupdate(vo);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/userdelete", method = RequestMethod.GET) // 유저관리 페이지 (삭제)
+	public MembersVO usersdelete(MembersVO vo) {
+		int r = seemoomapper.membersdelete(vo);
+		return vo;
 	}
 	
 //	@RequestMapping(value="/users/{id}", method=RequestMethod.DELETE)
@@ -67,6 +75,13 @@ public class AdminController {
 		model.addAttribute("teams", seemoomapper.teamList());
 		return "seemoo/team";
 	}
+	
+	@RequestMapping(value = "/team/ajax", method = RequestMethod.GET) // 팀관리 페이지 (ajax로 전체조회)
+	@ResponseBody	
+	public List<TeamVO> teamlist(Model model, HttpServletRequest request, HttpServletResponse reponse) {
+		return seemoomapper.teamList();
+	}
+
 	
 	@RequestMapping(value = "/admin/teaminfo", method = RequestMethod.GET) // 팀관리 페이지 (단건조회)
 	public String teams(Model model, TeamVO tvo, HttpServletRequest request, HttpServletResponse reponse) {
@@ -122,6 +137,11 @@ public class AdminController {
 		return "seemoo/noticewrite";
 	}
 
+	@RequestMapping(value = "/admin/noticewrite/ajax", method = RequestMethod.GET) // 공지사항 조회 페이지 (ajax로 전체조회)
+	@ResponseBody	
+	public List<NoticeVO> noticeselect(Model model, NoticeVO vo, HttpServletRequest request, HttpServletResponse reponse) {
+		return seemoomapper.noticeselect();
+	}
 	@RequestMapping("/admin/match") // 매치 페이지
 	public String match() {
 		return "seemoo/match";

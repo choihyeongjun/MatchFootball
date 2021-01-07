@@ -33,7 +33,7 @@
 				<div class="mb-3">
 
 					<label for="reg_id">작성자</label> <input type="text"
-						class="form-control" name="reg_id" id="reg_id"
+						class="form-control" name="" id="reg_id"
 						placeholder="이름을 입력해 주세요">
 				</div>
 				<div class="mb-3">

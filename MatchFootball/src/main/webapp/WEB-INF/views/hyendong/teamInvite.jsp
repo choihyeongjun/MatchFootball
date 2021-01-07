@@ -29,8 +29,8 @@ footer {
 	<div display="inline-block">
 		<div class="container" style="float: left; width: 50%">
 			<h2 class="table text-center">팀 초대</h2>
-			<input type="text" id="id" value=""/>
-			<button type="button" onclick="memberlist">검색</button>
+			<input type="text" id="id"/>
+			<button type="button" onclick="memberlist()">검색</button>
 			<table class="table text-center">
 				<tr class="tr1">
 					<th class="text-center">아이디</th>
@@ -70,32 +70,25 @@ footer {
 	
 	function memberListResult(data) {
 		$("#search").empty();
-		$
-				.each(
-						data,
-						function(idx, item) {
-						
-							$('<tr>')
-									.append($('<td>').html(item.id))
-									.append($('<td>').html(item.name))
-									.append($('<td>').html(item.gender))
-									.append($('<td>').html(item.location1))
-									.append($('<td>').html(item.manner))
-									.append($('<td>').html(item.lv))
-									.append($('<td>').html(item.pos))
-									.append(
-											$(
-													'<input type=\'hidden\' id=\'hidden_userId\'>')
-													.val(item.id))
-									.append(
-											$('<td>')
-													.html(
-															'<button type="button" id=\'btnSelect\'>팀초대</button>'))
-									.appendTo('#search');
+		$.each(
+				data,
+				function(idx, item) {
+				
+					$('<tr>')
+							.append($('<td>').html(item.id))
+							.append($('<td>').html(item.name))
+							.append($('<td>').html(item.gender))
+							.append($('<td>').html(item.location1))
+							.append($('<td>').html(item.manner))
+							.append($('<td>').html(item.lv))
+							.append($('<td>').html(item.pos))
 							
-						});
+							.append($('<input type=\'hidden\' id=\'hidden_userId\'>').val(item.id))
+							.append($('<td>').html('<button type="button" id=\'btnSelect\'>팀초대</button>'))
+							.appendTo('#search');
+			  });
 
-	};
+		};
 </script>
 </body>
 </html>

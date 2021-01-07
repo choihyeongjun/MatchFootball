@@ -29,7 +29,9 @@
 					<jsp:include page="Mybar.jsp"></jsp:include>
 					<div class="col-md-7 col-lg-8 col-xl-8">
 					<div class="page-header bordered">
-							<h1>내 프로필<small>My Profile</small></h1>
+							<h1 id="item-2">
+								내 프로필<small>my profile</small>
+							</h1>
 						</div>
 						<div class="row gutters-sm">
 						<br>
@@ -47,7 +49,7 @@
 											<br>	<p class="text-muted font-size-sm">${mb.pos}</p>
 											<br>	<a href="userinfoup"><button class="btn btn-primary">수정</button>
 												</a>
-												<button class="btn btn-outline-primary">Message</button>
+												<button class="btn btn-outline-primary" onclick="location.href='message'">Message</button>
 												<br>
 											</div>
 										</div>

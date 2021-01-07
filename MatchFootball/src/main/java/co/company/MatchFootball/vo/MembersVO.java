@@ -8,8 +8,9 @@ public class MembersVO {
 	String pw;//비밀번호
 	String name;//이름
 	String gender;//성별
+	String postCode; // 우편번호
 	String location1;//주소 대분류
-	String location2;//주소 소분류
+	String location2;//주소 소분류(상세주소)
 	String pnum;//핸드폰번호
 	String email;//이메일
 	String point;//포인트
@@ -21,6 +22,6 @@ public class MembersVO {
 	String manner;//매너도
 	String lv;//레벨
 	String pos;//포지션
-	String t_name;//팀이름
+	String t_num;//팀번호
 	
 }

@@ -43,7 +43,7 @@
 </style>
 </head>
 <body>
-<div id="main" style="padding-bottom: 320px">
+<div id="main" style="height:850px">
 	<div id="content">
 		<div class="container">
 		
@@ -52,11 +52,11 @@
 
 			<div class="col-md-7 col-lg-8 col-xl-8"
 						style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;">
-				<div class="page-header bordered mt0">
-					<h1>
-						USED POINT <small>포인트 사용내역.</small>
-					</h1>
-				</div>
+				<div class="page-header bordered">
+							<h1 id="item-2">
+								포인트 내역<small>POINT</small>
+							</h1>
+						</div>
 				<div class="row" style="width: auto">
 					<div style="margin-top: 15px;" >
 						<table border="1" style="width: 100%">

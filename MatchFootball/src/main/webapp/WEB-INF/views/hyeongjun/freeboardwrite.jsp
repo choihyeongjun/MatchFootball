@@ -7,8 +7,8 @@
 <head>
 <meta charset="utf-8" />
 
-<title>공지사항 페이지</title>
-<script src="${pageContext.request.contextPath}/resources/seemoo/notice/summernote/json.min.js"></script>
+<title>자유게시판 작성페이지</title>
+
 <script src="${pageContext.request.contextPath}/resources/seemoo/notice/summernote/js/summernote/summernote-lite.js"></script>
 <script src="${pageContext.request.contextPath}/resources/seemoo/notice/summernote/js/summernote/lang/summernote-ko-KR.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/seemoo/notice/summernote/css/summernote/summernote-lite.css">
@@ -22,42 +22,52 @@
 			maxHeight : null, // 최대 높이
 			focus : false, // 에디터 로딩후 포커스를 맞출지 여부
 			lang : "ko-KR", // 한글 설정
+			
 		});
 	});
+	 function sendFile(file, el) {
+	      var form_data = new FormData();
+	      form_data.append('file', file);
+	      $.ajax({
+	        data: form_data,
+	        type: "POST",
+	        url: 'freeinsert',
+	        cache: false,
+	        contentType: false,
+	        enctype: 'multipart/form-data',
+	        processData: false,
+	        success: function(url) {
+	          $(el).summernote('editor.insertImage', url);
+	          $('#imageBoard > ul').append('<li><img src="'+url+'" width="480" height="auto"/></li>');
+	        }
+	      });
+	    }
+
 </script>
 
 </head>
 
 <body style="padding-left: 650px; padding-top: 100px">
-	<form id="form1" class="form-horizontal" action="${pageContext.request.contextPath}/freeinsert">
+	<form id="form1" method="post" class="form-horizontal"  action="${pageContext.request.contextPath}/freeinsert">
 		<div align="center" id="mdiv" style="width: 100%">
-
 			<table class="table" style="width: 100%">
 				<tbody>
-					<td><input name="id" type="text" readonly>${sessionScope.id}</td>
+				<td><input name="id" type="text" value="${id}"></td>
 					<tr>
 						<td align="center" style="width: 20%">제목</td>
-						<td><input name="nq_title" type="text" style="width: 100%"></td>
-					</tr>
-					<tr>
-						<td align="center" style="width: 20%">첨부파일</td>
-						<td><input type="file" name="uploadFile" id="uf" />
-							<div
-								style="display: inline-block; position: relative; width: 300px; left: -210px; background: white;">
-								<label id="la">선택한 파일 없음</label>
-							</div> <input type="hidden" id="nq_no" name="nq_no"></td>
+						<td><input name="title" type="text" style="width: 100%"></td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
 		
 		<div align="center">
-			<textarea id="summernote" name="nq_content"></textarea><br> 
-			<input type="button" class="btn btn-primary" value="등록" id="btnInsert" /> 
-			<input type="button" class="btn btn-primary" value="수정" id="btnUpdate" /> 
-			<input type="reset" class="btn btn-primary" value="초기화" id="btnInit" />
+			<textarea id="summernote" name="comm"></textarea><br>
+			<button type="submit" class="btn btn-primary"id="btnInsert">등록</button>
+			<button type="reset" class="btn btn-primary" id="btnInit" >취소</button>
+			
 		</div>
-		
 	</form>
+	
 </body>
 </html>

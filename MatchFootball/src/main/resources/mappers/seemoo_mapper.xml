@@ -17,10 +17,15 @@
 	</select>
 	
 	<!-- 유저삭제 -->
-	<delete id="membersdelete" parameterType="MembersVO">
+	<select id="membersdelete" parameterType="MembersVO">
 		DELETE FROM MEMBERS WHERE ID = #{id}
-	</delete>
-
+	</select>
+	
+	<!-- 유저수정 -->
+	<select id="membersupdate" parameterType="MembersVO" resultType="MembersVO">
+		UPDATE MEMBERS SET AUTHOR = #{author}, AUTHOR2 = #{author2} WHERE ID = #{id}     
+	</select>
+	
 <!-- 팀관리 -->
 
 	<!-- 팀조회 -->
