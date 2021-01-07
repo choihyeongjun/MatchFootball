@@ -83,7 +83,7 @@ body {
 	<nav class="navbar navbar-expand-lg navbar-light bg-light"
 		style="box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)">
 		<div class="container-md">
-			<a class="navbar-brand" href="/MatchFootball" style="color: #04519b"><img
+			<a class="navbar-brand" href="${pageContext.request.contextPath}/MatchFootball" style="color: #04519b"><img
 				src="resources/img/99.png" width="100px" height="50px" /></a>
 			<div>
 				<button type="button" class="btn abc" data-toggle="modal"
@@ -283,7 +283,7 @@ body {
 							<ul class="menul">
 								<li class="lili">마이페이지</li>
 								<li class="lili">마이페이지</li>
-								<li class="lili">마이페이지</li>
+								<li class="lili"><a href="tournamentList">토너먼트</a></li>
 								<li class="lili">마이페이지</li>
 							</ul>
 						</div>

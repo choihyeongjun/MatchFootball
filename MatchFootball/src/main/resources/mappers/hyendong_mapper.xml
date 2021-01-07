@@ -50,35 +50,27 @@
 		#{t_info},
 		#{t_logo,jdbcType=VARCHAR})
 	</insert>
-
-	<!-- 팀 가입 -->
-	<insert id="teamJoin" parameterType="TeamlistVO">
-		INSERT INTO TEAMLIST (
-		t_num,
-		id,
-		T_AUTHOR
-		)
+	
+	<!-- 팀 생성 시 팀 리스트 추가 -->
+	<insert id="teamListInsert" parameterType="TeamlistVO">
+		INSERT INTO teamList(
+			t_num,
+			id,
+			t_author)
 		VALUES(
-		#{t_num},
-		#{id},
-		#{t_author})
+			#{t_num},
+			#{id},
+			#{t_author}
+		)
 	</insert>
 
 	<!-- 팀 단건 정보 조회 -->
-	<select id="getTeam" parameterType="teamVO" resultType="teamVO">
+	<select id="getTeam" parameterType="TeamVO" resultType="TeamVO">
 		SELECT *
 		FROM team
 		WHERE t_num = #{t_num}
 	</select>
 
-	<!-- 자기 팀 정보 조회 -->
-	<select id="myTeam" parameterType="membersVO" resultType="membersVO">
-		select * 
-		from members m 
-		join team t 
-		on m.t_num = t.t_num 
-		where m.id=#{id}
-	</select>
 	<!-- 팀원 조회 -->
 	<select id="getTeamMembers" parameterType="TeamlistVO"
 		resultType="TeamlistVO">
@@ -121,13 +113,13 @@
 		WHERE t_num = #{t_num}
 	</select>
 	<!-- 멤버리스트 조회 -->
-	<select id="getMembers" parameterType="membersVO"
-		resultType="membersVO">
+	<select id="getMembers" parameterType="MembersVO"
+		resultType="MembersVO">
 		SELECT *
 		FROM members
 	</select>
 	<!-- 멤버 단건 조회 -->
-	<select id="memberSelect" parameterType="membersVO" resultType="membersVO">
+	<select id="memberSelect" parameterType="MembersVO" resultType="MembersVO">
 		SELECT *
 		FROM members
 		WHERE id = #{id}
@@ -176,4 +168,12 @@
 		where t_no = #{t_no}
 		order by t_num
 	</select>
+	
+	<!-- 멤버 팀 번호 변경 -->
+	<update id="tNumUpdate">
+	update members 
+	set t_num = #{t_num} 
+	where id=#{id}
+	</update>
+
 </mapper>
