@@ -18,4 +18,5 @@ public class TeammatchVO {
 	String m_date;//매치날짜
 	String m_hour;//경기시간
 	String m_type;//매치상태
+	String m_id;
 }

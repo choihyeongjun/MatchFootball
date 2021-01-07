@@ -11,11 +11,11 @@
 		select * from p_match
 		where m_date = #{m_date}
 	</select>
-	<!--point 내역 -->
+	<!--point 입금 내역 -->
 	<select id="pointconselect" parameterType="PointVO"
 		resultType="PointVO">
 		select * from point
-		where p_id =#{p_id} and <![CDATA[rownum <=3]]>
+		where p_id =#{p_id} and <![CDATA[rownum <=4]]>
 		order by p_date desc
 	</select>
 	<!--point 전체 내역 -->
@@ -29,29 +29,32 @@
 		SELECT COUNT(*) FROM p_match
 		where m_id = #{m_id}
 	</select>
-	<!--경기 일정 조회 -->
+	<!--개인매치 일정 조회 -->
 	<select id="pmatchlist" parameterType="P_matchVO"
 		resultType="P_matchVO">
-		select * from( select a.*, rownum rn from (
+		
 		select * from p_match
-		where m_id = #{m_id}
+		where m_id = #{m_id} and <![CDATA[rownum <=4]]>
 		order by m_no desc
-		) a ) b where rn between #{first} and #{last}
 	</select>
 	<!-- 선택개인매치 조회 -->
 	<select id="pmatchlist1" parameterType="P_matchVO"
 		resultType="P_matchVO">
 		select * from p_match
-		where m_no = #{m_no}
+		where m_no = #{m_no} 
+	</select>
+	<!--해당 날 개인매치 검색  -->
+	<select id="pmatchlist3" parameterType="P_matchVO"
+		resultType="P_matchVO">
+		select * from p_match
+		where m_date = #{m_date} 
 	</select>
 	<!-- 팀 매치 내역 조회 -->
 	<select id="tmatchlist" parameterType="TeammatchVO"
 		resultType="TeammatchVO">
-		select * from( select a.*, rownum rn from (
 		select * from teammatch
-		where m_id = #{m_id}
-		order by m_no desc
-		) a ) b where rn between #{first} and #{last}
+		where m_id = #{m_id} and <![CDATA[rownum <=4]]>
+		order by m_date desc ,m_hour desc 
 	</select>
 	<!--멤버 조회 -->
 	<select id="memberselect" parameterType="MembersVO"
@@ -68,6 +71,6 @@
 	</select>
 	<!--매니저 신청-->
 	<insert id="mapply" parameterType="manageraplyVO">
-		insert into manageraply(id,name,gender,pnum,birth,comm) values(#{id},#{name},#{gender},#{pnum},#{birth},#{comm})
+		insert into manageraply(id,name,gender,pnum,birth,comm,loc) values(#{id},#{name},#{gender},#{pnum},#{birth},#{comm},#{loc})
 	</insert>
 </mapper>

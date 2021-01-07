@@ -1,8 +1,14 @@
 package co.company.MatchFootball.sungjun;
 
 import java.io.IOException;
+import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.FieldPosition;
+import java.text.ParseException;
+import java.text.ParsePosition;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -42,7 +48,22 @@ public class JunController {
 			throws IOException {
 		// 달력
 		DecimalFormat df = new DecimalFormat("00");
-		Calendar calendar = Calendar.getInstance();
+		Calendar calendar;
+		if(mvo.getM_date() ==null) {
+			calendar = Calendar.getInstance();
+			
+		}else {
+			calendar = Calendar.getInstance();
+			DateFormat dft = new SimpleDateFormat("yyyy-mm-dd") ;
+			try {
+				calendar.setTime(dft.parse(mvo.getM_date()));
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
+		}
 		String year = Integer.toString(calendar.get(Calendar.YEAR)); // 년도를 구한다
 		String month = df.format(calendar.get(Calendar.MONTH) + 1); // 달을 구한다
 		String day = df.format(calendar.get(Calendar.DATE)); // 날짜를 구한다
@@ -55,9 +76,10 @@ public class JunController {
 		vo.setLastDate(lastDate);
 		vo.setIDayOfWeek(iDayOfWeek);
 		model.addAttribute("cal", vo);
-
+		
 		mvo.setM_date(year + "-" + month + "-" + day);
 		model.addAttribute("p_matchVO", dao.pmatchselect(mvo));
+		model.addAttribute("date",year +"-" + month );
 		return "sungjun/match";
 	}
 
@@ -83,16 +105,18 @@ public class JunController {
 		model.addAttribute("p_point", dao.pointconselect(p_pointVO));
 		// 입금전체 내역
 		model.addAttribute("p_pointall", dao.pointallselect(p_pointVO));
-		// 경기 내역
-		paging.setPageUnit(3); // (한페이지를 출력 할)레코드 수
-		paging.setPageSize(5); // 페이지 번호 수
-		p_matchVO.setFirst(paging.getFirst());
-		p_matchVO.setLast(paging.getLast());
+		// 개인매치 내역
+//		paging.setPageUnit(3); // (한페이지를 출력 할)레코드 수
+//		paging.setPageSize(5); // 페이지 번호 수
+//		p_matchVO.setFirst(paging.getFirst());
+//		p_matchVO.setLast(paging.getLast());
+//		paging.setTotalRecord(dao.getCount1(p_matchVO));
+//		model.addAttribute("paging", paging);
 		p_matchVO.setM_id((String) session.getAttribute("id"));
-		paging.setTotalRecord(dao.getCount1(p_matchVO));
-		model.addAttribute("paging", paging);
 		model.addAttribute("p_match", dao.pmatchlist(p_matchVO));
-		// model.addAttribute("p_match", dao.pmatchlist(team_matchVO));
+		//팀매치 내역
+		team_matchVO.setM_id((String) session.getAttribute("id"));
+		 model.addAttribute("t_match", dao.tmatchlist(team_matchVO));
 		// model.addAttribute("p_match1",dao.pmatchlist1(p_match));
 
 		return new ModelAndView("sungjun/managermypage");
@@ -140,6 +164,14 @@ public class JunController {
 	public ModelAndView test8(HttpServletResponse response) throws IOException {
 
 		return new ModelAndView("sungjun/teammatch");
+	}
+	@RequestMapping(value = "/allmatchlist")
+	public ModelAndView test10(HttpServletResponse response,HttpSession session,Model model, P_matchVO p_matchVO,TeammatchVO team_matchVO) throws IOException {
+		p_matchVO.setM_id((String) session.getAttribute("id"));
+		team_matchVO.setM_id((String) session.getAttribute("id"));
+		model.addAttribute("p_match", dao.pmatchlist(p_matchVO));
+		 model.addAttribute("t_match", dao.tmatchlist(team_matchVO));
+		return new ModelAndView("sungjun/allmatchlist");
 	}
 
 }

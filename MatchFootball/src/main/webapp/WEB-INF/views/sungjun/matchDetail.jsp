@@ -27,17 +27,10 @@ a {
 	background-color: white;
 	border-bottom: 1px solid #ddd;
 }
-
-.qqqq a {
-	/* 	border-bottom : 3px solid #08088A; */
-	padding: 30px;
-	line-height: 50px;
-}
-
 .employ {
 	bottom: 0;
 	width: 320px;
-	background-color: #08298A;
+	background-color: #314d9f;
 	padding: 20px 20px;
 	color: white;
 	text-align: center;
@@ -64,10 +57,27 @@ a {
  margin : 5px;
  font-size: 20px;
 }
+.qqqq a{
+padding-left : 20px;
+padding-right:20px; 
+padding-top: 20px;
+font-size: 20px;
+}
+ .ss {
+ border-bottom: 3px solid #FFC645;
+ font-weight: 800;
+ padding-bottom: 15px;
+ line-height: 50px;
+ color : #314d9f
+}
+
 </style>
 <script>
 	$(function() {
-
+	$(".qqqq").on("click","a",function(){
+		$(".qqqq a").removeClass("ss");
+		$(event.target).addClass("ss");
+	})
 	})
 </script>
 </head>
@@ -78,9 +88,11 @@ a {
 				width="929" height="520">
 		</div>
 		<div style="margin-left: 200px; margin-right: 200px; margin-top: 30px">
-			<div class="qqqq" align="center" style="">
-				<a href="#play"> 진행방식 </a><a href="#playroom"> 구장시설 </a><a
-					href="#playin"> 매치안내</a><a href="#playm"> 환급규정</a>
+			<div class="qqqq" align="center" >
+				<a href="#play"> 진행방식 </a>
+				<a href="#playroom"> 구장시설 </a>
+				<a href="#playin"> 매치안내</a>
+				<a href="#playm"> 환급규정</a>
 			</div>
 			<div>
 				<h3 style="text-align: left;">2020년 12월 24일 12:00</h3>
