@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -70,20 +71,45 @@ a {
 	text-decoration: none !important;
 }
 
+li {
+	list-style: none;
+}
+
 .pp {
 	margin-bottom: 100px;
+}
+
+.lista {
+	display: flex;
+	align-items: center;
+}
+
+.listl {
+	border-bottom: 1px solid #ddd;
 }
 
 .m-im-t {
 	font-size: 11px;
 	color: #999;
 	margin-top: 3px;
-	display: flex;
 	align-items: center;
 	justify-content: flex-start;
 	flex-wrap: wrap;
 }
+
+p {
+	margin: 0;
+}
 </style>
+<script>
+$(function(){
+
+	$(.)
+	
+	
+})
+
+</script>
 </head>
 <body>
 	<div class="container"
@@ -126,101 +152,114 @@ a {
 					class="sr-only">Next</span>
 				</a>
 			</div>
-			<!--날 짜 선 택  -->
-
-			<!-- 클래스명은 변경하면 안 됨 -->
-			<hr>
-			<div class="swiper-container" style="margin: 40px">
-				<div class="swiper-wrapper" style="cursor: point;">
-					<c:set var="week" value="${cal.getIDayOfWeek()}" />
-					<c:forEach begin="1" end="${cal.lastDate }" var="i">
-						<div class="swiper-slide" style="hover: blue; cursor: point;">
-							<a href="#">
-								<div
-									style="<c:if test="${i == cal.day }">background-color:purple; color:white;</c:if>; width:130px; border-radius: 10px; ">
-									<c:choose>
-										<c:when test="${i % 7 == 3 }">
-											<p style="color: red">${i}
-										</c:when>
-										<c:when test="${i % 7 == 2 }">
-											<p style="color: blue">${i}
-										</c:when>
-										<c:otherwise>
-											<p>${i}
-										</c:otherwise>
-									</c:choose>
-									<br>
-									<div style="font-size: 14px;">
-										<c:choose>
-											<c:when test="${ week == 1}">
-												<p style="color: red;">일</p>
-											</c:when>
-											<c:when test="${ week == 2}">
-												<p>월</p>
-											</c:when>
-											<c:when test="${ week == 3}">
-												<p>화</p>
-											</c:when>
-											<c:when test="${ week == 4}">
-												<p>수</p>
-											</c:when>
-											<c:when test="${ week == 5}">
-												<p>목</p>
-											</c:when>
-											<c:when test="${ week == 6}">
-												<p>금</p>
-											</c:when>
-											<c:when test="${ week == 7}">
-												<p style="color: blue;">토</p>
-											</c:when>
-										</c:choose>
-										<c:set var="week" value="${(week+1) == 7 ? 7 : (week+1)% 7 }" />
-									</div>
-								</div>
-							</a>
-						</div>
-					</c:forEach>
-
-				</div>
-
-				<!-- 네비게이션 -->
-				<div class="swiper-button-next"></div>
-				<!-- 다음 버튼 (오른쪽에 있는 버튼) -->
-				<div class="swiper-button-prev"></div>
-				<!-- 이전 버튼 -->
-				<!-- 페이징 -->
-				<div class="swiper-pagination"></div>
-			</div>
-
-			<!-- 매치 정보  -->
-			<div>
-				<table class="table " style="margin: 40px;">
-					<tbody>
-						<tr style="border-bottom: white;">
-							<td scope="col" align="center"><div class="button_match">매치
-									리스트</div></td>
-							<td scope="col"></td>
-							<td scope="col" align="center"><span type="button"
-								class="button_match">모든 매치 <i class="fab fa-sistrix"></i></span></td>
-						</tr>
-						<c:forEach var="p_match" items="${p_matchVO }">
-							<tr>
-								<td scope="row" align="center">
-									<div style="font-weight: bold; margin-top: 12px">
-										${p_match.m_hour }</div>
-								</td>
-								<td><div>${p_match.f_name }</div>
-									<div class="m-im-t">⦁ ${p_match.m_type } 매치 ·
-										${p_match.p_max } 레벨${p_match.lv }Lv</div></td>
-								<td align="center"><button type="button"
-										class="btn btn-info">신청 가능</button>
-									</button></td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
-			</div>
 		</div>
+		<!--날 짜 선 택  -->
+
+		<!-- 클래스명은 변경하면 안 됨 -->
+		<hr>
+		<div class="swiper-container" style="margin: 40px">
+			<div class="swiper-wrapper" style="cursor: point;">
+				<c:set var="week" value="${cal.getIDayOfWeek()}" />
+				<c:forEach begin="1" end="${cal.lastDate }" var="i">
+					<div class="swiper-slide" style="hover: blue; cursor: point;">
+					<fmt:formatNumber var="no" minIntegerDigits="2" value="${i}" />
+						<a href="match?m_date=${date}-${no}">
+							<div
+								style="<c:if test="${i == cal.day }">background-color:#314d9f; color:white;</c:if>; width:130px; border-radius: 50px; padding-top:7px; padding-bottom:7px; ">
+								<c:choose>
+									<c:when test="${i % 7 == 3 }">
+										<p style="color: red">${i}
+									</c:when>
+									<c:when test="${i % 7 == 2 }">
+										<p style="color: blue">${i}
+									</c:when>
+									<c:otherwise>
+										<p>${i}
+									</c:otherwise>
+								</c:choose>
+								<br>
+								<div style="font-size: 14px;">
+									<c:choose>
+										<c:when test="${ week == 1}">
+											<p style="color: red;">일</p>
+										</c:when>
+										<c:when test="${ week == 2}">
+											<p>월</p>
+										</c:when>
+										<c:when test="${ week == 3}">
+											<p>화</p>
+										</c:when>
+										<c:when test="${ week == 4}">
+											<p>수</p>
+										</c:when>
+										<c:when test="${ week == 5}">
+											<p>목</p>
+										</c:when>
+										<c:when test="${ week == 6}">
+											<p>금</p>
+										</c:when>
+										<c:when test="${ week == 7}">
+											<p style="color: blue;">토</p>
+										</c:when>
+									</c:choose>
+									<c:set var="week" value="${(week+1) == 7 ? 7 : (week+1)% 7 }" />
+								</div>
+							</div>
+						</a>
+					</div>
+				</c:forEach>
+
+			</div>
+
+			<!-- 네비게이션 -->
+			<div class="swiper-button-next"></div>
+			<!-- 다음 버튼 (오른쪽에 있는 버튼) -->
+			<div class="swiper-button-prev"></div>
+			<!-- 이전 버튼 -->
+			<!-- 페이징 -->
+			<div class="swiper-pagination"></div>
+		</div>
+
+
+		<!-- 매치 정보  -->
+		<div>
+			<div style="display: flex; justify-content: space-between;">
+				<div class="button_match">
+					<p>매치 리스트</p>
+				</div>
+				<div>
+					<span type="button" class="button_match">모든 매치 <i
+						class="fab fa-sistrix"></i></span>
+				</div>
+			</div>
+
+			<ul>
+				<c:forEach var="p_match" items="${p_matchVO }">
+					<li class="listl"><a class="lista" style="cursor: pointer;"
+						href="matchDetail?m_no=${p_match.m_no }">
+							<div style="text-align: center; width: 10%;">
+								<p>${p_match.m_hour }</p>
+							</div>
+							<div class="nameli" style="font-size: 16px;">
+								<div>
+									<h3>${p_match.f_name }</h3>
+								</div>
+								<div class="m-im-t">
+									<span>⦁ ${p_match.mtype } 매치</span><span>·
+										${p_match.p_max }</span> <span>레벨${p_match.lv }Lv</span>
+										<input type="hidden" value="${p_match.m_no }">
+								</div>
+							</div>
+							<div style="width: 20%;">
+								<p type="button" class="btn btn-info"
+									style="background-color: #314d9f; border-radius: 6px; font-size: 12px; color: white; text-align: center; padding: 5px;">신청
+									가능</p>
+							</div>
+					</a></li>
+				</c:forEach>
+			</ul>
+		</div>
+
 	</div>
 	<script>
 		new Swiper('.swiper-container', {

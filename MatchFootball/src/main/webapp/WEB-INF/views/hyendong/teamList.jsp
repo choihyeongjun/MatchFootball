@@ -37,18 +37,17 @@ a {
 </style>
 </head>
 <body>
-
 	<div style="padding-bottom: 70px; height: 91%">
 		<ul class="hi">
-			<c:if test="${sessionScope.id eq null }">
-			<li><a href="teaminfo?id=${sessionScope.id }">ÆÀ Á¤º¸</a></li>
-			</c:if>
 			<c:if test="${sessionScope.id ne null }">
+			<li><a href="myTeamInfo?t_num=${member.t_num }">ÆÀ Á¤º¸</a></li>
+			</c:if>
+			<c:if test="${sessionScope.id eq null }">
 			<li><a href="teamMake">ÆÀ »ý¼º</a></li>
 			</c:if>
 			<li><a href="http://localhost/MatchFootball/teamGallery">ÆÀ
 					°¶·¯¸®</a></li>
-			<li><a href="http://localhost/MatchFootball/teamNotice">ÆÀ °øÁö</a></li>
+			<li><a href="teamNotice">ÆÀ °øÁö</a></li>
 			<li><a href="http://localhost/MatchFootball/teamInvite">ÆÀ ÃÊ´ë</a></li>
 			<li><a href="http://localhost/MatchFootball/teamList">ÆÀ ¸®½ºÆ®</a></li>
 		</ul>

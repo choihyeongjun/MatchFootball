@@ -16,11 +16,14 @@ public MembersVO bollowsearch(MembersVO vo);
 public FieldVO fieldinsert(FieldVO vo);
 public MembersVO login(MembersVO vo);
 public List<FieldVO> fieldlist();
-public List<RfieldVO> fieldselect();
+public List<RfieldVO> fieldselect(RfieldVO vo);
 public List<RfieldVO> fielddetailinsert(RfieldVO vo);
 public List<FboardVO> fboardlist();
 public List<RfieldVO> fielddetailupdate(RfieldVO vo);
 public List<RfieldVO> fielddetailupdate1(RfieldVO vo);
 public RfieldVO fielddetaildelete(RfieldVO vo);
 public FboardVO freeinsert(FboardVO vo);
+public List<FboardVO> freelist();
+public FboardVO freeselect(FboardVO vo);
+public FboardVO freedelete(FboardVO vo);
 }

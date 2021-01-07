@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,39 +18,174 @@
 	crossorigin="anonymous"></script>
 </head>
 <style>
-.hi {
-	background-color: blue;
+.noClick {
+	display: block;
+	width: 188px;
+	border: 1px solid #002541;
+	border-radius: 5px 5px 0 0;
+	font-size: 12px;
+	background: #f5f5f5;
+	color: #000;
+	font-size: 20px;
 }
-.hi2 {
-	background-color: gray;
+
+.click {
+	display: block;
+	width: 188px;
+	border: 1px solid #002541;
+	border-radius: 5px 5px 0 0;
+	font-size: 12px;
+	background: #4bb8e6;
+	z-index: 10;
+	font-size: 20px;
 }
+
+.noClickdown {
+	display: block;
+	width: 188px;
+	border: 1px solid #002541;
+	border-top: 0 none;
+	border-radius: 0 0 5px 5px;
+	font-size: 12px;
+	background: #f5f5f5;
+	font-size: 20px;
+}
+
+.clickdown {
+	display: block;
+	width: 188px;
+	border: 1px solid #002541;
+	border-top: 0 none;
+	border-radius: 0 0 5px 5px;
+	font-size: 12px;
+	background: #4bb8e6;
+	z-index: 10;
+	font-size: 20px;
+}
+.noClick2 {
+	display: block;
+	width: 188px;
+	border: 1px solid #002541;
+	border-radius: 5px 5px 0 0;
+	font-size: 12px;
+	background: #f5f5f5;
+	color: #000;
+	font-size: 20px;
+}
+
+.click2 {
+	display: block;
+	width: 188px;
+	border: 1px solid #002541;
+	border-radius: 5px 5px 0 0;
+	font-size: 12px;
+	background: #4bb8e6;
+	z-index: 10;
+	font-size: 20px;
+}
+
+.noClickdown2 {
+	display: block;
+	width: 188px;
+	border: 1px solid #002541;
+	border-top: 0 none;
+	border-radius: 0 0 5px 5px;
+	font-size: 12px;
+	background: #f5f5f5;
+	font-size: 20px;
+}
+
+.clickdown2 {
+	display: block;
+	width: 188px;
+	border: 1px solid #002541;
+	border-top: 0 none;
+	border-radius: 0 0 5px 5px;
+	font-size: 12px;
+	background: #4bb8e6;
+	z-index: 10;
+	font-size: 20px;
+}
+.match_g01 .match_list.win .line_sty01.on {
+	border-color: #137eaa;
+}
+
+.match_g01 .match_list.win .line_sty02_01.on {
+	border-color:  #137eaa;
+}
+
+.match_g01 .match_list.win .line_sty02_02.on {
+	border-color:  #137eaa;
+}
+
+.match_g01 .match_list.win .line_sty03.on {
+	border-color: #137eaa;
+}
+
+.match_g01 .match_list.win .line_sty04.on {
+	border-color:  #137eaa;
+}
+
+.match_g01 .match_list.win .line_sty05.on {
+	border-color:  #137eaa;
+}
+
+.match_g01 .match_list.win .line_sty_L.on {
+	border-color:  #137eaa;
+}
+
 </style>
 <script>
-$(function(){
-	$(".match_list_cont01 l01").on('click', function(){
-		$(this).attr('class', 'match_list_cont01 click_on w01')
-	});
-})
-
-$(function(){
-	$(".match_list_cont01 click_on w01").on('click', function(){
-		$(this).attr('class', 'match_list_cont01 l01')
-	});
-})
-
-$(function(){
-	$(".hi").on('click', function(){
-		$(this).attr('class', 'hi2')
-	});
+	var link = [[],['01','04','02_01'],['05','01', '02_01']]
+	var link2 = [[],['04','03','02_02'],['05','03', '02_02']]
 	
-	$(".hi2").on('click', function(){
-		$(this).attr('class', 'hi')
-	});
-})
+	$(function() {
+		$(".noClick").on('click', function() {
+			$(this).toggleClass('click')
+			var s =parseInt( $(this).data('id'))
+			for(i=0; i<link[s].length; i++){
+				$(this).parent().find(".line_sty"+link[s][i]).toggleClass('on')
+			}
+			// AJAX
+			$.ajax({
+				url : '/tournamentPVP?t_no=2',
+				data : '${tournamentPVP[0].t_num}',
+				success : function(result){
+					
+				}
+			});
+		});
+
+		$(".noClickdown").on('click', function() {
+			$(this).toggleClass('clickdown')
+			var s =parseInt( $(this).data('id'))
+			for(i=0; i<link[s].length; i++){
+				$(this).parent().find(".line_sty"+link[s][i]).toggleClass('on')
+			}
+		});
+		
+		$(".noClick2").on('click', function() {
+			$(this).toggleClass('click2')
+			var s =parseInt( $(this).data('id'))
+			for(i=0; i<link2[s].length; i++){
+				$(this).parent().find(".line_sty"+link2[s][i]).toggleClass('on')
+			}
+			
+		});
+		
+		$(".noClickdown2").on('click', function() {
+			$(this).toggleClass('clickdown2')
+			var s =parseInt( $(this).data('id'))
+			for(i=0; i<link2[s].length; i++){
+				$(this).parent().find(".line_sty"+link2[s][i]).toggleClass('on')
+			}
+		});
+	})
+	
+
 </script>
 <body>
-	<div class="hi">title0</div>
-	<div class="bracket_overflow" style="overflow: visible;" align="center">
+	<div class="bracket_overflow" style="overflow: visible; margin-bottom: 270px" align="center">
 		<div class="match_list_outer" id="bracket_capture">
 			<div class="round_set_outer">
 				<div class="round_set">
@@ -71,23 +207,21 @@ $(function(){
 								#<em>01</em> <span>&gt;</span>
 							</p>
 							<div class="box_s">
-								<div class="match_list_cont01 click_on w01">
-									<span>01</span>
-									<div>
-										<p>&nbsp;</p>
+								<div class="noClick" data-id="1">
+									<div style="height: 25px">
+										<p>${tournamentPVP[0].t_num }</p>
 									</div>
 									<em></em>
 								</div>
-								<div class="match_list_cont02 l01">
-									<span>02</span>
-									<div>
-										<p>팀8&nbsp;</p>
+								<div class="noClickdown" data-id="2">
+									<div style="height: 25px">
+										<p>${tournamentPVP[1].t_num }</p>
 									</div>
 									<em></em>
 								</div>
-								<span class="line_sty01 on"></span><span
-									class="line_sty02_01 on"></span><span class="line_sty04 on"></span><span
-									class="line_sty05"></span>
+								<span class="line_sty01"></span> <span
+									class="line_sty02_01"></span> <span class="line_sty04"></span>
+								<span class="line_sty05"></span>
 							</div>
 						</div>
 						<div class="match_list botton01">
@@ -95,22 +229,20 @@ $(function(){
 								#<em>02</em> <span>&gt;</span>
 							</p>
 							<div class="box_s">
-								<div class="match_list_cont01 click_on w01">
-									<span>03</span>
-									<div>
-										<p>팀4&nbsp;</p>
+								<div class="noClick2" data-id="1">
+									<div style="height: 25px" >
+										<p>${tournamentPVP[2].t_num }</p>
 									</div>
 									<em></em>
 								</div>
-								<div class="match_list_cont02 l01">
-									<span>04</span>
-									<div>
-										<p>팀3&nbsp;</p>
+								<div class="noClickdown2" data-id="2">
+									<div style="height: 25px" >
+										<p>${tournamentPVP[3].t_num }</p>
 									</div>
 									<em></em>
 								</div>
-								<span class="line_sty02_02 on"></span><span
-									class="line_sty03 on"></span><span class="line_sty04 on"></span><span
+								<span class="line_sty02_02"></span><span
+									class="line_sty03"></span><span class="line_sty04"></span><span
 									class="line_sty05"></span>
 							</div>
 						</div>
@@ -121,22 +253,20 @@ $(function(){
 								#<em>03</em> <span>&gt;</span>
 							</p>
 							<div class="box_s">
-								<div class="match_list_cont01 click_on w01">
-									<span>05</span>
-									<div>
-										<p>팀5&nbsp;</p>
+								<div class="noClick" data-id="1">
+									<div style="height: 25px" >
+										<p>${tournamentPVP[4].t_num }</p>
 									</div>
 									<em></em>
 								</div>
-								<div class="match_list_cont02 l01">
-									<span>06</span>
-									<div>
-										<p>팀6&nbsp;</p>
+								<div class="noClickdown" data-id="2">
+									<div style="height: 25px" >
+										<p>${tournamentPVP[5].t_num }</p>
 									</div>
 									<em></em>
 								</div>
-								<span class="line_sty01 on"></span><span
-									class="line_sty02_01 on"></span><span class="line_sty04 on"></span><span
+								<span class="line_sty01"></span><span
+									class="line_sty02_01"></span><span class="line_sty04"></span><span
 									class="line_sty05"></span>
 							</div>
 						</div>
@@ -145,22 +275,20 @@ $(function(){
 								#<em>04</em> <span>&gt;</span>
 							</p>
 							<div class="box_s">
-								<div class="match_list_cont01 click_on w01 w02">
-									<span>07</span>
-									<div>
-										<p>팀7&nbsp;</p>
+								<div class="noClick2" data-id="1">
+									<div style="height: 25px" >
+										<p>${tournamentPVP[6].t_num }</p>
 									</div>
 									<em></em>
 								</div>
-								<div class="match_list_cont02 l01">
-									<span>08</span>
-									<div>
-										<p>팀2&nbsp;</p>
+								<div class="noClickdown2" data-id="2">
+									<div style="height: 25px" >
+										<p>${tournamentPVP[7].t_num }</p>
 									</div>
 									<em></em>
 								</div>
-								<span class="line_sty02_02 on"></span><span
-									class="line_sty03 on"></span><span class="line_sty04 on"></span><span
+								<span class="line_sty02_02"></span><span
+									class="line_sty03"></span><span class="line_sty04"></span><span
 									class="line_sty05"></span>
 							</div>
 						</div>
@@ -173,22 +301,20 @@ $(function(){
 								#<em>05</em> <span>&gt;</span>
 							</p>
 							<div class="box_s">
-								<div class="match_list_cont01 click_on w01">
-									<span>01</span>
-									<div>
-										<p>팀1&nbsp;</p>
+								<div class="noClick" data-id="1">
+									<div style="height: 25px">
+										<p>${tournamentPVP[7].t_num }</p>
 									</div>
 									<em></em>
 								</div>
-								<div class="match_list_cont02 l01">
-									<span>03</span>
-									<div>
-										<p>팀4&nbsp;</p>
+								<div class="noClickdown" data-id="2">
+									<div style="height: 25px">
+										<p>${tournamentPVP[7].t_num }</p>
 									</div>
 									<em></em>
 								</div>
-								<span class="line_sty01 on"></span><span
-									class="line_sty02_01 on"></span><span class="line_sty04 on"></span><span
+								<span class="line_sty01"></span><span
+									class="line_sty02_01"></span><span class="line_sty04"></span><span
 									class="line_sty05"></span>
 							</div>
 						</div>
@@ -197,23 +323,21 @@ $(function(){
 								#<em>06</em> <span>&gt;</span>
 							</p>
 							<div class="box_s">
-								<div class="match_list_cont01 l01">
-									<span>05</span>
-									<div>
-										<p>팀5&nbsp;</p>
+								<div class="noClick2" data-id="1">
+									<div style="height: 25px">
+										<p>${tournamentPVP[7].t_num }</p>
 									</div>
 									<em></em>
 								</div>
-								<div class="match_list_cont02 click_on w01 w02">
-									<span>07</span>
-									<div>
-										<p>팀7&nbsp;</p>
+								<div class="noClickdown2" data-id="2">
+									<div style="height: 25px">
+										<p>${tournamentPVP[7].t_num }</p>
 									</div>
 									<em></em>
 								</div>
-								<span class="line_sty02_02 on"></span><span
-									class="line_sty03 on"></span><span class="line_sty04"></span><span
-									class="line_sty05 on"></span>
+								<span class="line_sty02_02"></span><span
+									class="line_sty03"></span><span class="line_sty04"></span><span
+									class="line_sty05"></span>
 							</div>
 						</div>
 					</div>
@@ -225,49 +349,25 @@ $(function(){
 								#<em>07</em> <span>&gt;</span>
 							</p>
 							<div class="box_s">
-								<div class="match_list_cont01 l01">
-									<span>01</span>
-									<div>
-										<p>팀1&nbsp;</p>
+								<div class="noClick" data-id="1">
+									<div style="height: 25px">
+										<p>${tournamentPVP[7].t_num }</p>
 									</div>
 									<em></em>
 								</div>
-								<div class="match_list_cont02 click_on w02">
-									<span>07</span>
-									<div>
-										<p>팀7&nbsp;</p>
-									</div>
-									<em></em>
-								</div>
-							</div>
-						</div>
-						<div class="match_list match_list_third" style="display: none;">
-							<p class="bracket_num">
-								#<em>08</em> <span>&gt;</span>
-							</p>
-							<div class="box_s">
-								<div class="match_list_cont01 l01">
-									<span></span>
-									<div>
-										<p></p>
-									</div>
-									<em></em>
-								</div>
-								<div class="match_list_cont02 l01">
-									<span>05</span>
-									<div>
-										<p>팀5&nbsp;</p>
+								<div class="noClickdown" data-id="2">
+									<div style="height: 25px">
+										<p>${tournamentPVP[7].t_num }</p>
 									</div>
 									<em></em>
 								</div>
 							</div>
-							<p class="third_txt">3,4위전</p>
 						</div>
 						<div class="champion_box" style="margin-top: -70px;">
 							<p class="txt">WINNER</p>
 							<div class="player">
 								<div class="winner">
-									<p>팀7&nbsp;</p>
+									<p>${tournamentPVP[7].t_num }</p>
 								</div>
 							</div>
 						</div>

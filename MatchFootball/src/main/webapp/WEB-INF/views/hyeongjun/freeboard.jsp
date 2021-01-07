@@ -24,7 +24,7 @@
 <!-- Custom style -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/hyeongjun/css1/style.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="/js/owl.carousel.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/hyeongjun/js/owl.carousel.min.js"></script>
 
 </head>
 <body>
@@ -51,7 +51,7 @@
 										<div class="detail">
 											<div class="time">December 10, 2016</div>
 											<div class="category">
-												<a href="category.html">Healthy</a>
+												
 											</div>
 										</div>
 										<h2>
@@ -91,7 +91,7 @@
 										<div class="detail">
 											<div class="time">December 22, 2016</div>
 											<div class="category">
-												<a href="category.html">Healthy</a>
+											
 											</div>
 										</div>
 										<h2>
@@ -130,9 +130,7 @@
 									<div class="padding">
 										<div class="detail">
 											<div class="time">December 09, 2016</div>
-											<div class="category">
-												<a href="category.html">Lifestyle</a>
-											</div>
+											
 										</div>
 										<h2>
 											<a href="single.html">Mauris elementum libero at pharetra
@@ -163,7 +161,50 @@
 				</div>
 					<div class="line" >
 						<div>인기글</div>
+						<br/>
 					</div>
+					<div class="card mb-4">
+         <div class="card-header">
+            <i class="fas fa-table mr-1"></i> 자유게시판
+         </div>
+         
+         <div class="card-body">
+            <div class="table-responsive">
+               <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                     <tr>
+                     	<th>번호</th>
+                        <th>제목</th>
+                        <th>작성자</th>
+                        <th>좋아요수</th>
+                        <th>조회수</th>
+                     </tr>
+                  </thead>
+                  <tfoot>
+                     <tr>
+                     	<th>번호</th>
+                        <th>제목</th>
+                        <th>작성자</th>
+                        <th>좋아요수</th>
+                        <th>조회수</th>
+                     </tr>
+                  </tfoot>
+                  <tbody>
+                  <c:forEach var="f" items="${list}">
+                     <tr>
+                        <td>${f.num}</td>
+                        <td><a href="${pageContext.request.contextPath}/free/freedetail/${f.num}">${f.title}</a></td>
+                        <td>${f.id}</td>
+                        <td>${f.likeit}</td>
+                        <td>${f.cnt}</td> 
+                     </tr>
+                    </c:forEach>
+                  </tbody>
+               </table>
+            </div>
+         </div>
+      </div>
+      <!-- /.container -->
 			</div>
 			
 	</section>

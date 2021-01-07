@@ -110,9 +110,10 @@ var calendar = $('#calendar').fullCalendar({
   events: function (start, end, timezone, callback) {
     $.ajax({
       type: "get",
-      url: "../fieldselect",
+      url: "../../fieldselect",
 		dataType:"json",
       data: {
+		f_id:f_id
         // 화면이 바뀌면 Date 객체인 start, end 가 들어옴
         //startDate : moment(start).format('YYYY-MM-DD'),
         //endDate   : moment(end).format('YYYY-MM-DD')
@@ -172,7 +173,7 @@ var calendar = $('#calendar').fullCalendar({
     //드롭한 일정 업데이트
     $.ajax({
       type: "get",
-      url: "../fielddetailupdate",
+      url: "../../fielddetailupdate",
 	dataType:"json",
       data: {
 		starttime:newDates.startDate,
