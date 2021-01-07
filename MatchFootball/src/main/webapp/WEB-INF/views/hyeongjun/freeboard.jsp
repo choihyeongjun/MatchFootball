@@ -37,7 +37,11 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script
 	src="${pageContext.request.contextPath}/resources/hyeongjun/js/owl.carousel.min.js"></script>
+<style>
+.ion-android-favorite:before { content: "\f388"; }
 
+.ion-android-favorite-outline111:before { content: "\f387"; }
+</style>
 </head>
 <body>
 	<section class="home">
@@ -73,8 +77,8 @@
 											<footer>
 												<a href="#" class="love"><i
 													class="ion-android-favorite-outline"></i>
-													<div>${f.likeit}</div></a> <a class="btn btn-primary more"
-													href="${pageContext.request.contextPath}/free/freedetail/${f.num}">
+													<div>${f.likeit}</div></a><div>조회수:${f.cnt}</div> <a class="btn btn-primary more"
+													href="${pageContext.request.contextPath}/free/freedetail/${f.num}/${f.cnt}">
 													<div>More</div>
 													<div>
 														<i class="ion-ios-arrow-thin-right"></i>
@@ -138,7 +142,7 @@
 											<tr>
 												<td>${f.num}</td>
 												<td><a
-													href="${pageContext.request.contextPath}/free/freedetail/${f.num}">${f.title}</a></td>
+													href="${pageContext.request.contextPath}/free/freedetail/${f.num}/${f.cnt}">${f.title}</a></td>
 												<td>${f.id}</td>
 												<td>${f.b_date}</td>
 												<td>${f.likeit}</td>
@@ -178,7 +182,7 @@
 		src="${pageContext.request.contextPath}/resources/hyeongjun/scripts/sweetalert/dist/sweetalert.min.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/resources/hyeongjun/scripts/toast/jquery.toast.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/hyeongjun/js1/e-magz.js"></script>
+ 	<script
+		src="${pageContext.request.contextPath}/resources/hyeongjun/js1/e-magz.js"></script> 
 </body>
 </html>

@@ -74,6 +74,9 @@
    <select id="freeupdate" parameterType="fboardVO" resultType="fboardVO">
    	update fboard set title=#{title},comm=#{comm} where num=#{num}
    </select>
+   <select id="freecntupdate"  parameterType="fboardVO" resultType="fboardVO">
+   	update fboard set cnt=#{cnt}+1 where num=#{num}
+   </select>
    
 
 </mapper>
