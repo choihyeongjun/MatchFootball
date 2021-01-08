@@ -53,14 +53,13 @@ li {
 </head>
 <body>
 	<ul class="hi">
-		<c:if test="${sessionScope.id ne null }">
+	  <c:if test="${sessionScope.id ne null }">
 			<li><a href="myTeamInfo?t_num=${member.t_num }">ÆÀ Á¤º¸</a></li>
 			</c:if>
 			<c:if test="${sessionScope.id eq null }">
 			<li><a href="teamMake">ÆÀ »ý¼º</a></li>
 			</c:if>
-			<li><a href="http://localhost/MatchFootball/teamGallery">ÆÀ
-					°¶·¯¸®</a></li>
+			<li><a href="teamGallery?t_num=${member.t_num }">ÆÀ°¶·¯¸®</a></li>
 			<li><a href="teamNotice?t_num=${teamInfo.t_num }">ÆÀ °øÁö</a></li>
 			<li><a href="http://localhost/MatchFootball/teamInvite">ÆÀ ÃÊ´ë</a></li>
 			<li><a href="http://localhost/MatchFootball/teamList">ÆÀ ¸®½ºÆ®</a></li>
@@ -68,10 +67,10 @@ li {
 	<div align="center">
 		<h1>ÆÀ °ø Áö</h1>
 	</div>
-	<div class="topicList">
+	<div class="topicList" style="height: 643px">
 		<c:forEach items="${teamNotice }" var="teamNotice">
 			<ul>
-				<li><a href="teamNoticeInfo?n_no=${teamNotice.n_no }">
+				<li><a href="teamNoticeInfo?n_no=${teamNotice.n_no }&t_num=${teamNotice.t_num}">
 						<h2>${teamNotice.t_title}</h2>
 				</a></li>
 			</ul>

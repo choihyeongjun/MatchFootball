@@ -25,14 +25,13 @@
 </head>
 <body>
 	<ul class="hi">
-		<c:if test="${sessionScope.id ne null }">
+	  <c:if test="${sessionScope.id ne null }">
 			<li><a href="myTeamInfo?t_num=${member.t_num }">팀 정보</a></li>
 			</c:if>
 			<c:if test="${sessionScope.id eq null }">
 			<li><a href="teamMake">팀 생성</a></li>
 			</c:if>
-			<li><a href="http://localhost/MatchFootball/teamGallery">팀
-					갤러리</a></li>
+			<li><a href="teamGallery?t_num=${member.t_num }">팀갤러리</a></li>
 			<li><a href="teamNotice?t_num=${teamInfo.t_num }">팀 공지</a></li>
 			<li><a href="http://localhost/MatchFootball/teamInvite">팀 초대</a></li>
 			<li><a href="http://localhost/MatchFootball/teamList">팀 리스트</a></li>
@@ -82,7 +81,6 @@
 				<table class="table table-hover">
 					<thead>
 						<tr class="table-secondary">
-							<th scope="col">#</th>
 							<th scope="col">ID</th>
 							<th scope="col">권한</th>
 						</tr>
@@ -91,7 +89,6 @@
 						<tbody>
 							<c:forEach items="${teamMembers}" var="teamMembers">
 								<tr>
-									<th scope="row">1</th>
 									<td>${teamMembers.id }</td>
 									<td>${teamMembers.t_author }</td>
 								</tr>
@@ -111,11 +108,11 @@
 				<c:if test="${updateButton.t_author eq '팀장' }">
 				<button type="submit" class="btn btn-primary">팀 정보 변경</button>
 				</c:if>
-				<c:if test="${teamInfo.t_num eq null }">
-				<button type="button" class="btn btn-primary">팀 가입 신청</button>
-				</c:if>
 			</div>
 		</div>
+	</form>
+	<form action="teamlistInsert?t_num=${teamInfo.t_num}" method="post">
+			<button type="submit" class="btn btn-primary">팀 가입 신청</button>
 	</form>
 </body>
 </html>

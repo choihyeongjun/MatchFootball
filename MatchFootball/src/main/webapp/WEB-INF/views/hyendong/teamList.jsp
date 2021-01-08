@@ -45,15 +45,14 @@ a {
 			<c:if test="${sessionScope.id eq null }">
 			<li><a href="teamMake">ÆÀ »ý¼º</a></li>
 			</c:if>
-			<li><a href="http://localhost/MatchFootball/teamGallery">ÆÀ
-					°¶·¯¸®</a></li>
+			<li><a href="teamGallery?t_num=${member.t_num }">ÆÀ°¶·¯¸®</a></li>
 			<li><a href="teamNotice?t_num=${teamInfo.t_num }">ÆÀ °øÁö</a></li>
 			<li><a href="http://localhost/MatchFootball/teamInvite">ÆÀ ÃÊ´ë</a></li>
 			<li><a href="http://localhost/MatchFootball/teamList">ÆÀ ¸®½ºÆ®</a></li>
 		</ul>
 		<div align="center">
 			<br>
-			<h3>${sessionScope.id }</h3>
+			<h3>ÆÀ ¸®½ºÆ®</h3>
 			<hr>
 		</div>
 		<div class="progress-table" align="center"
@@ -74,7 +73,7 @@ a {
 						</div>
 						<div class="visit">${teamList.t_type}</div>
 						<div class="visit">
-							&nbsp;&nbsp;&nbsp;&nbsp;ÀÎ¿ø&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18
+							&nbsp;&nbsp;&nbsp;&nbsp;ÀÎ¿ø&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${count.team}
 							/ ${teamList.t_max}<br>Æò±Õ
 							¿¬·É&nbsp;&nbsp;&nbsp;${teamList.t_age }<br>°æ±â
 							À¯Çü&nbsp;&nbsp;&nbsp;${teamList.t_type }

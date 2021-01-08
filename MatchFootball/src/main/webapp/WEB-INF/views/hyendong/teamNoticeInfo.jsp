@@ -88,8 +88,7 @@
 			<c:if test="${sessionScope.id eq null }">
 			<li><a href="teamMake">ÆÀ »ý¼º</a></li>
 			</c:if>
-			<li><a href="http://localhost/MatchFootball/teamGallery">ÆÀ
-					°¶·¯¸®</a></li>
+			<li><a href="teamGallery?t_num=${member.t_num }">ÆÀ°¶·¯¸®</a></li>
 			<li><a href="teamNotice?t_num=${teamInfo.t_num }">ÆÀ °øÁö</a></li>
 			<li><a href="http://localhost/MatchFootball/teamInvite">ÆÀ ÃÊ´ë</a></li>
 			<li><a href="http://localhost/MatchFootball/teamList">ÆÀ ¸®½ºÆ®</a></li>
@@ -98,7 +97,7 @@
 		<h1>ÆÀ °ø Áö</h1>
 		<hr>
 	</div>
-		<div class="contentWrapper">
+		<div class="contentWrapper" style="height: 643px">
 			<div class="articleTitle">
 				<h1>${teamNoticeInfo.t_title }</h1>
 			</div>
@@ -110,7 +109,7 @@
 				</ul>
 			</div>
 			<br>
-			<button type="button" class="btn btn-primary">¸ñ·Ï</button>
+			<input type="button" class="btn btn-primary" value="¸ñ·Ï" onclick="history.back(-1);">
 			<button type="button" class="btn btn-primary">¼öÁ¤</button>
 			<button type="button" class="btn btn-primary">»èÁ¦</button>
 		</div>
