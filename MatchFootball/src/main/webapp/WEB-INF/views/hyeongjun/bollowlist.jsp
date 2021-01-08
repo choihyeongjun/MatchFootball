@@ -73,7 +73,9 @@ footer {
 				url : "bollowsearch/ajax",
 				type : 'GET',
 				data : {
-					id : userId
+					id : userId,
+					title:$('#title').val(),
+					
 				},
 				dataType : 'json',
 				error : function(xhr, status, msg) {
@@ -200,7 +202,7 @@ footer {
 
 				<!-- Modal footer -->
 				<div class="modal-footer">
-					<button type="button" class="btn btn-danger" data-dismiss="modal">저장</button>
+					<button type="submit" class="btn btn-danger" data-dismiss="modal">저장</button>
 					<button type="button" class="btn btn-danger" data-dismiss="modal">닫기</button>
 				</div>
 			</div>
