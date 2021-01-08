@@ -134,7 +134,7 @@
 											<td><input type="checkbox" name="cp_item" value="5000"></td>
 											<td>5000</td>
 											<td>보너스 쿠폰</td>
-											<td>\5,000</td>
+											<td>\ &nbsp;5,000</td>
 										</tr>
 										<tr>
 											<td><input type="checkbox" name="cp_item" value="10000"></td>

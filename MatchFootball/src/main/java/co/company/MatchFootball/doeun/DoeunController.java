@@ -3,6 +3,7 @@ package co.company.MatchFootball.doeun;
 import java.io.File;
 import java.io.IOException;
 import java.net.http.HttpRequest;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 import co.company.MatchFootball.mapper.DoeunMapper;
 import co.company.MatchFootball.vo.MembersVO;
 import co.company.MatchFootball.vo.MessageVO;
+import co.company.MatchFootball.vo.Paging;
 
 @Controller
 public class DoeunController {
@@ -89,15 +91,39 @@ public class DoeunController {
 	}
 
 	@RequestMapping(value = "mypage/msg") // 메인메세지함(default 받은 메시지함)
-	public ModelAndView MyMsg(MembersVO mem, MessageVO msg, Model model, HttpSession session) {
-		ModelAndView mav = new ModelAndView();
-		mem.setId((String)session.getAttribute("id"));
-		msg.setTo_id(mem.getId());
-		model.addAttribute("msg", dao.tomsgList(msg));
-		mav.setViewName("doeun/Message");// jsp 경로 지정
-		return mav;
+	public String MyMsg() {
+		//model.addAttribute(msg);
+		return "doeun/Message";
 	}
-
+	@ResponseBody
+	@RequestMapping(value = "mypage/msg/ajax")
+	public List<MessageVO> tomsgList(MembersVO mem, MessageVO msg, Model model, HttpSession session, Paging paging) {
+		mem.setId((String)session.getAttribute("id"));
+		msg.setTo_id(mem.getId());		
+		paging.setPageUnit(16);
+		paging.setPageSize(10);
+		msg.setFirst(paging.getFirst());
+		msg.setLast(paging.getLast());
+		paging.setTotalRecord(dao.getCount1(msg));
+		model.addAttribute("paging", paging);
+		return dao.tomsgList(msg);
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping(value = "mypage/sendmsg/ajax")
+	public List<MessageVO> sendmsgList(MembersVO mem, MessageVO msg, Model model, HttpSession session, Paging paging) {
+		mem.setId((String)session.getAttribute("id"));
+		msg.setSend_id(mem.getId());		
+		paging.setPageUnit(16);
+		paging.setPageSize(10);
+		msg.setFirst(paging.getFirst());
+		msg.setLast(paging.getLast());
+		paging.setTotalRecord(dao.getCount2(msg));
+		model.addAttribute("paging", paging);
+		return dao.sendmsgList(msg);
+	}
+	
 	@RequestMapping(value = "mypage/outmsg") // 보낸 메세지함
 	public String OpMsg() {
 		return "doeun/OutMessage";
@@ -111,7 +137,7 @@ public class DoeunController {
 		mem.setId((String)session.getAttribute("id"));		
 		msg.setSend_id(mem.getId());
 		dao.sendMsg(msg);
-		return "doeun/Message";
+		return "redirect:/mypage/msg";
 	}
 
 	@RequestMapping(value = "mypage/invitemsg") // 초대 메세지함

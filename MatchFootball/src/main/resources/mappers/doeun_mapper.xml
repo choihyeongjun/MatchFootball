@@ -3,90 +3,111 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="co.company.MatchFootball.mapper.DoeunMapper"> <!-- 패키지.EmpMapper -->
-<!-- <insert id="payMent" parameterType="paymentVO" >
-insert into payment values(id=#{id},p_no=#{p_no},#{p_price},#{p_date})
-</insert> -->
-<!-- 프로필 조회  -->
-<select id="getUser" parameterType="MembersVO" resultType="MembersVO">
-select * from members
-where id = #{id}
+	<!-- <insert id="payMent" parameterType="paymentVO" > insert into payment 
+		values(id=#{id},p_no=#{p_no},#{p_price},#{p_date}) </insert> -->
+	<!-- 프로필 조회 -->
+	<select id="getUser" parameterType="MembersVO"
+		resultType="MembersVO">
+		select * from members
+		where id = #{id}
+	</select>
+
+	<!-- 프로필 입력 -->
+
+
+	<!-- 포인트 조회 -->
+	<select id="myPoint" parameterType="MembersVO"
+		resultType="MembersVO">
+		select point from members
+		where id = #{id}
+	</select>
+
+	<insert id="insertMem" parameterType="MembersVO">
+		insert into members(
+		email,
+		name,
+		gender,
+		img,
+		pos,
+		pnum,
+		lv,
+		postCode,
+		location1,
+		location2,
+		birth
+		)
+
+		values(
+		#{email},
+		#{name},
+		#{gender},
+		#{img},
+		#{pos},
+		#{pnum},
+		#{level},
+		#{postCode},
+		#{address},
+		#{location2},
+		#{birth})
+	</insert>
+
+	<update id="upMem" parameterType="MembersVO">
+
+		update members
+		set
+		name=#{name},
+		gender=#{gender},
+		postcode=#{postCode},
+		location1=#{location1},
+		location2=#{location2},
+		pnum=#{pnum},
+		email=#{email},
+		birth=#{birth},
+		img=#{img},
+		lv= #{lv},
+		pos=#{pos},
+		author2 = #{author2}
+		where id = #{id}
+
+	</update>
+
+	<!-- 총 포인트 확인 -->
+	<select id="selTpo" parameterType="PointVO" resultType="PointVO">
+		select sum(p.npoint) as sum from point p where p.p_id = #{p_id}
+	</select>
+
+	<!-- 메세지 보내기 -->
+	<insert id="sendMsg" parameterType="MessageVO">
+		insert into message (m_no, to_id, send_id, m_title, m_con)
+		values(mno_seq.nextval, #{to_id}, #{send_id}, #{m_title}, #{m_con})
+	</insert>
+	<!-- 수신 메세지 확인 -->
+	<select id="tomsgList" parameterType="MessageVO"
+		resultType="MessageVO">
+<!-- 	select m_no, to_id, send_id, m_title, m_con, o_date,
+		TO_CHAR(s_date,'yyyy-mm-dd HH24:MI:SS'), m_check from message where to_id = #{to_id} order by m_no desc -->
+		 select * from( select a.*, rownum rn from (
+		 select * from message where to_id = #{to_id} order by m_no desc 
+	) a ) b where rn between #{first} and #{last}
+	</select>
+	<!--쪽지 내역 수 페이징 -->
+	<select id="getCount1" resultType="int">
+		SELECT COUNT(*) FROM message
+	</select>
+	<select id="getCount2" resultType="int">
+		SELECT COUNT(*) FROM message
+		where send_id=#{send_id}
+	</select>
+	<!-- 발신 메세지 확인 -->
+	<select id="sendmsgList" parameterType="MessageVO"
+		resultType="MessageVO">
+	    select * from( select a.*, rownum rn from (
+		select * from message where send_id = #{send_id} order by m_no desc
+		) a ) b where rn between #{first} and #{last}
+	</select>
+<!-- 포인트 내역조회 -->	
+<select id="pointList" parameterType="PointVO" resultType="PointVO">
+select * from point where id = #{p_id}
 </select>
 
-<!-- 프로필 입력 -->
-
-
-<!-- 포인트 조회  -->
- <select id="myPoint" parameterType="MembersVO" resultType="MembersVO">
-select point from members
-where id = #{id}
-</select>
-
-<insert id="insertMem" parameterType="MembersVO">
-    insert into members(
-      email,
-      name,
-      gender,
-      img,
-      pos,
-      pnum,
-      lv,
-      postCode,
-      location1,
-      location2,
-      birth
-      )
-      
-    values(
-      #{email},
-      #{name},
-      #{gender},
-      #{img},
-      #{pos},
-      #{pnum},
-      #{level},
-      #{postCode},
-      #{address},
-      #{location2},
-      #{birth})
-  </insert>
-
-<update id="upMem" parameterType="MembersVO" >
-		
-	update members 
-	set 
-	name=#{name}, 
-	gender=#{gender}, 
-	postcode=#{postCode},
-	location1=#{location1}, 
-	location2=#{location2}, 
-	pnum=#{pnum}, 
-	email=#{email}, 
-	birth=#{birth}, 
-	img=#{img}, 
-	lv= #{lv}, 
-	pos=#{pos},
-	author2 = #{author2}
-  where id = #{id}
-
-</update>
-
-<!-- 총 포인트 확인 -->
-<select id="selTpo" parameterType="PointVO" resultType="PointVO">
-select sum(p.npoint) as sum from point p where p.p_id = #{p_id}
-</select>
-
-<!-- 메세지 보내기 -->
-<insert id="sendMsg" parameterType="MessageVO">
-<selectKey order="BEFORE" keyProperty="m_no"
-         resultType="string">
-         SELECT MAX(m_no)+1
-         FROM message
-      </selectKey>
-      insert into message  values(m_no, to_id, send_id,m_title, m_con) 
-values(#{m_no}, #{to_id}, #{send_id}, #{m_title}, #{m_con})
-</insert>
-<!-- 수신 메세지 확인 -->
-<select id="tomsgList" parameterType="MessageVO" resultType="MessageVO">
-select * from message where to_id = #{to_id}
-</select>
 </mapper>
