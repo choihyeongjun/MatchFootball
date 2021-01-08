@@ -91,24 +91,58 @@ li {
 .m-im-t {
 	font-size: 11px;
 	color: #999;
-	margin-top: 3px;
+	margin-bottom: 4px;
 	align-items: center;
 	justify-content: flex-start;
 	flex-wrap: wrap;
+	
 }
 
 p {
 	margin: 0;
 }
+
+.aa {
+	width: 130px;
+	border-radius: 50px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.rr {
+	color: red;
+}
+
+.bb {
+	color: blue;
+}
+
+.ww {
+	color: white;
+}
+
+.blackk {
+	color: black;
+}
+
+.ss {
+	background-color: #314d9f;
+	color: white;
+	c: if>;
+	width: 130px;
+	border-radius: 50px;
+	padding-top: 7px;
+	padding-bottom: 7px;
+}
 </style>
 <script>
-$(function(){
-
-	$(.)
-	
-	
+$(function() {
+	/*클릭시 css  */
+	$(".aa").on("click", "a", function() {
+		$(".qqqq a").removeClass("ss");
+		$(event.target).addClass("ss");
+	})
 })
-
 </script>
 </head>
 <body>
@@ -158,55 +192,47 @@ $(function(){
 		<!-- 클래스명은 변경하면 안 됨 -->
 		<hr>
 		<div class="swiper-container" style="margin: 40px">
+
 			<div class="swiper-wrapper" style="cursor: point;">
 				<c:set var="week" value="${cal.getIDayOfWeek()}" />
+
 				<c:forEach begin="1" end="${cal.lastDate }" var="i">
-					<div class="swiper-slide" style="hover: blue; cursor: point;">
-					<fmt:formatNumber var="no" minIntegerDigits="2" value="${i}" />
+
+					<div class="swiper-slide" style="hover: #314d9f; cursor: point;">
+						<fmt:formatNumber var="no" minIntegerDigits="2" value="${i}" />
+
 						<a href="match?m_date=${date}-${no}">
-							<div
-								style="<c:if test="${i == cal.day }">background-color:#314d9f; color:white;</c:if>; width:130px; border-radius: 50px; padding-top:7px; padding-bottom:7px; ">
+							<div class="aa"
+								style="<c:if test="${i == m_dat }">background-color:#314d9f; color:white;</c:if>;">
+
+								<c:set var="weeklist"
+									value='<%=new String[]{"일", "월", "화", "수", "목", "금", "토"}%>' />
+
 								<c:choose>
-									<c:when test="${i % 7 == 3 }">
-										<p style="color: red">${i}
+									<c:when test="${i == m_dat }">
+										<c:set var="selcol" value="ww" />
 									</c:when>
-									<c:when test="${i % 7 == 2 }">
-										<p style="color: blue">${i}
+									<c:when test="${week % 7 == 1 }">
+										<c:set var="selcol" value="rr" />
+									</c:when>
+									<c:when test="${week % 7 == 0 }">
+										<c:set var="selcol" value="bb" />
 									</c:when>
 									<c:otherwise>
-										<p>${i}
+										<c:set var="selcol" value="blackk" />
 									</c:otherwise>
 								</c:choose>
-								<br>
+								<p class="${selcol}">${i}</p>
 								<div style="font-size: 14px;">
-									<c:choose>
-										<c:when test="${ week == 1}">
-											<p style="color: red;">일</p>
-										</c:when>
-										<c:when test="${ week == 2}">
-											<p>월</p>
-										</c:when>
-										<c:when test="${ week == 3}">
-											<p>화</p>
-										</c:when>
-										<c:when test="${ week == 4}">
-											<p>수</p>
-										</c:when>
-										<c:when test="${ week == 5}">
-											<p>목</p>
-										</c:when>
-										<c:when test="${ week == 6}">
-											<p>금</p>
-										</c:when>
-										<c:when test="${ week == 7}">
-											<p style="color: blue;">토</p>
-										</c:when>
-									</c:choose>
+									<p class="${selcol}">
+										<c:out value="${weeklist[week-1] }" />
+									</p>
 									<c:set var="week" value="${(week+1) == 7 ? 7 : (week+1)% 7 }" />
 								</div>
 							</div>
 						</a>
 					</div>
+
 				</c:forEach>
 
 			</div>
@@ -233,26 +259,26 @@ $(function(){
 				</div>
 			</div>
 
-			<ul>
+			<ul style="margin-bottom: 50px;">
 				<c:forEach var="p_match" items="${p_matchVO }">
 					<li class="listl"><a class="lista" style="cursor: pointer;"
 						href="matchDetail?m_no=${p_match.m_no }">
 							<div style="text-align: center; width: 10%;">
 								<p>${p_match.m_hour }</p>
 							</div>
-							<div class="nameli" style="font-size: 16px;">
+							<div class="nameli" style="font-size: 16px; width: 80%;">
 								<div>
 									<h3>${p_match.f_name }</h3>
 								</div>
 								<div class="m-im-t">
 									<span>⦁ ${p_match.mtype } 매치</span><span>·
-										${p_match.p_max }</span> <span>레벨${p_match.lv }Lv</span>
-										<input type="hidden" value="${p_match.m_no }">
+										${p_match.p_max }</span> <span>레벨${p_match.lv }Lv</span> <input
+										type="hidden" value="${p_match.m_no }">
 								</div>
 							</div>
 							<div style="width: 20%;">
-								<p type="button" class="btn btn-info"
-									style="background-color: #314d9f; border-radius: 6px; font-size: 12px; color: white; text-align: center; padding: 5px;">신청
+								<p class="ap-info"
+									style="background-color: #314d9f; border-radius: 10px; font-size: 17px; color: white; text-align: center; padding: 10px;">신청
 									가능</p>
 							</div>
 					</a></li>
@@ -271,7 +297,7 @@ $(function(){
 			// 그룹수가 맞지 않을 경우 빈칸으로 메우기
 			// 3개가 나와야 되는데 1개만 있다면 2개는 빈칸으로 채워서 3개를 만듬
 			loopFillGroupWithBlank : true,
-			initialSlide:${cal.day-3},
+			initialSlide:${cal.day-3} ,
 			loop : false, //  반복
 
 			navigation : { // 네비게이션

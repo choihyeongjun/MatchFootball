@@ -7,9 +7,10 @@
 	<!--해당 날의 개인 매치 조회 -->
 	<select id="pmatchselect" parameterType="P_matchVO"
 		resultType="P_matchVO">
-
 		select * from p_match
-		where m_date = #{m_date}
+		where m_date= #{m_date} and
+		to_date(concat(m_date,m_hour),'yyyy-mm-ddhh24:mi')<![CDATA[ >= sysdate]]>
+		order by m_hour asc
 	</select>
 	<!--point 입금 내역 -->
 	<select id="pointconselect" parameterType="PointVO"
@@ -24,6 +25,11 @@
 		SELECT * FROM point
 		where p_id = #{p_id}
 	</select>
+	<!--point 차감 -->
+	<update id="pointminus" parameterType="MembersVO">
+		update members set point =
+		#{point} where id= #{id}
+	</update>
 	<!--p_match 내역 수 페이징 -->
 	<select id="getCount1" resultType="int">
 		SELECT COUNT(*) FROM p_match
@@ -32,29 +38,29 @@
 	<!--개인매치 일정 조회 -->
 	<select id="pmatchlist" parameterType="P_matchVO"
 		resultType="P_matchVO">
-		
+
 		select * from p_match
 		where m_id = #{m_id} and <![CDATA[rownum <=4]]>
-		order by m_no desc
+		order by m_date asc, m_hour asc
 	</select>
 	<!-- 선택개인매치 조회 -->
 	<select id="pmatchlist1" parameterType="P_matchVO"
 		resultType="P_matchVO">
 		select * from p_match
-		where m_no = #{m_no} 
+		where m_no = #{m_no}
 	</select>
-	<!--해당 날 개인매치 검색  -->
+	<!--해당 날 개인매치 검색 -->
 	<select id="pmatchlist3" parameterType="P_matchVO"
 		resultType="P_matchVO">
 		select * from p_match
-		where m_date = #{m_date} 
+		where m_date = #{m_date}
 	</select>
 	<!-- 팀 매치 내역 조회 -->
 	<select id="tmatchlist" parameterType="TeammatchVO"
 		resultType="TeammatchVO">
 		select * from teammatch
 		where m_id = #{m_id} and <![CDATA[rownum <=4]]>
-		order by m_date desc ,m_hour desc 
+		order by m_date asc ,m_hour asc
 	</select>
 	<!--멤버 조회 -->
 	<select id="memberselect" parameterType="MembersVO"
@@ -63,14 +69,17 @@
 		where id=#{id}
 	</select>
 	<!--개인매치 선수목록 조회 -->
-	<select id="matchmember" parameterType="MatchMember" resultType="MatchMember">
-		 select * from members
-  		 where id in(
- 			 select id from pplayers 
-			 where  pplayers.m_no =#{m_no})
+	<select id="matchmember" parameterType="MatchMember"
+		resultType="MatchMember">
+		select * from members
+		where id in(
+		select id from pplayers
+		where pplayers.m_no =#{m_no})
 	</select>
-	<!--매니저 신청-->
+	<!--매니저 신청 -->
 	<insert id="mapply" parameterType="manageraplyVO">
-		insert into manageraply(id,name,gender,pnum,birth,comm,loc) values(#{id},#{name},#{gender},#{pnum},#{birth},#{comm},#{loc})
+		insert into
+		manageraply(id,name,gender,pnum,birth,comm,loc)
+		values(#{id},#{name},#{gender},#{pnum},#{birth},#{comm},#{loc})
 	</insert>
 </mapper>

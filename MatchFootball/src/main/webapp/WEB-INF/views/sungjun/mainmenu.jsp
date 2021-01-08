@@ -8,7 +8,8 @@
 <meta charset="UTF-8">
 <title>matchfootball</title>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/footter.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/footter.css">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
 <script
@@ -21,6 +22,10 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/css/swiper.min.css">
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+<script type="text/javascript"
+	src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <style>
 a:link {
 	text-decoration: none;
@@ -37,6 +42,7 @@ a:hover {
 li {
 	list-style: none;
 }
+
 body, html {
 	height: 100%;
 }
@@ -83,8 +89,10 @@ body {
 	<nav class="navbar navbar-expand-lg navbar-light bg-light"
 		style="box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)">
 		<div class="container-md">
-			<a class="navbar-brand" href="${pageContext.request.contextPath}/MatchFootball" style="color: #04519b"><img
-				src="resources/img/99.png" width="100px" height="50px" /></a>
+			<a class="navbar-brand"
+				href="${pageContext.request.contextPath}/MatchFootball"
+				style="color: #04519b"><img src="resources/img/99.png"
+				width="100px" height="50px" /></a>
 			<div>
 				<button type="button" class="btn abc" data-toggle="modal"
 					data-target="#id01">
@@ -98,9 +106,9 @@ body {
 			</div>
 		</div>
 	</nav>
-	
+
 	<tiles:insertAttribute name="body" />
-	
+
 	<!-- 	footer -->
 	<footer>
 		<div class="site-links">
@@ -126,7 +134,7 @@ body {
 		<div class="social-links">
 			<div class="social-links__wrapper" align="center">
 				<ul>
-					<li style="width: 80px; float: left; margin-left:37%;"><a
+					<li style="width: 80px; float: left; margin-left: 37%;"><a
 						href="https://www.facebook.com/TottenhamHotspur/" target="_blank"><img
 							src="https://tot-tmp.azureedge.net/media/11676/facebook.png?anchor=center&amp;mode=crop&amp;width=750"
 							data-src="https://tot-tmp.azureedge.net/media/11676/facebook.png?anchor=center&amp;mode=crop&amp;width=750"
@@ -160,7 +168,7 @@ body {
 			</div>
 		</div>
 	</footer>
-	
+
 	<!--로그인  -->
 	<div class="modal fade bd-example-modal-xl" id="id01" tabindex="-1"
 		role="dialog" aria-labelledby="myExtraLargeModalLabel"
