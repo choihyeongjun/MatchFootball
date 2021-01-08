@@ -179,19 +179,19 @@ footer {
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;초대장</h3>
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 				</div>
-				<form action="">
+				<form method="get" action="${pageContext.request.contextPath}/bollowsearch/ajax">
 					<!-- Modal body -->
 					<div class="modal-body">
 						<table style="margin: 0% 4% 0% 4%">
 							<tr>
 								<td>제목:</td>
-								<td style="width: 300px"><input id="title" type="text"
+								<td style="width: 300px"><input id="title" name="title" type="text"
 									style="width: 372px; margin: 1%"></td>
 								<br>
 							</tr>
 							<tr>
 								<td>내용:</td>
-								<td><textarea id="comm" type="text" rows="4" cols="50"
+								<td><textarea id="comm" name="comm" type="text" rows="4" cols="50"
 										style="margin: 1%; resize: none;"></textarea></td>
 							</tr>
 						</table>
