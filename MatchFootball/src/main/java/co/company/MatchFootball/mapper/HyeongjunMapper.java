@@ -6,6 +6,7 @@ import java.util.Map;
 import co.company.MatchFootball.vo.FboardVO;
 import co.company.MatchFootball.vo.FieldVO;
 import co.company.MatchFootball.vo.InviteVO;
+import co.company.MatchFootball.vo.LikeitVO;
 import co.company.MatchFootball.vo.MembersVO;
 import co.company.MatchFootball.vo.RfieldVO;
 
@@ -26,4 +27,9 @@ public FboardVO freeinsert(FboardVO vo);
 public List<FboardVO> freelist();
 public FboardVO freeselect(FboardVO vo);
 public FboardVO freedelete(FboardVO vo);
+public FboardVO freeupdate(FboardVO vo);
+public FboardVO freecntupdate(FboardVO vo);
+public LikeitVO heartinsert(LikeitVO vo);
+public LikeitVO heartdelete(LikeitVO vo);
+public InviteVO bollowinsert(InviteVO vo);
 }

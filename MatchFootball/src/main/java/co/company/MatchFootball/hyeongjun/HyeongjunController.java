@@ -17,12 +17,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.servlet.ModelAndView;
 
 import co.company.MatchFootball.mapper.HyeongjunMapper;
 import co.company.MatchFootball.vo.FboardVO;
 import co.company.MatchFootball.vo.FieldVO;
 import co.company.MatchFootball.vo.InviteVO;
+import co.company.MatchFootball.vo.LikeitVO;
 import co.company.MatchFootball.vo.MembersVO;
 import co.company.MatchFootball.vo.RfieldVO;
 
@@ -40,7 +40,10 @@ public class HyeongjunController {
 
 	@ResponseBody
 	@RequestMapping(value = "/bollowsearch/ajax")
-	public MembersVO ajaxbollowseach(Model model, MembersVO vo) {
+	public MembersVO ajaxbollowseach(Model model, MembersVO vo,InviteVO vo1,HttpSession session) {
+		vo1.setR_id(vo.getId());
+		vo1.setC_id((String) session.getAttribute("id"));
+		hyeongjunMapper.bollowinsert(vo1);
 		return hyeongjunMapper.bollowsearch(vo);
 	}
 
@@ -49,6 +52,13 @@ public class HyeongjunController {
 		// model.addAttribute("list",hyeongjunMapper.getbollowlist());
 		return "hyeongjun/bollowlist";
 	}
+	/*
+	 * @RequestMapping("/bollowinvite") public String bollowinvite(Model
+	 * model,InviteVO vo,HttpSession session) { vo.setC_id((String)
+	 * session.getAttribute("id"));
+	 * 
+	 * return hyeongjunMapper.; }
+	 */
 
 	@RequestMapping("/fieldcommit")
 	public String userjoin(HttpServletRequest request, FieldVO vo) throws IllegalStateException, IOException {
@@ -94,9 +104,11 @@ public class HyeongjunController {
 	public List<RfieldVO> fielddetail(RfieldVO vo) {
 		return hyeongjunMapper.fieldselect(vo);
 	}
-	@RequestMapping("/free/freedetail/{num}")
-	public String freeselect(@PathVariable String num,Model model,FboardVO vo) {
+	@RequestMapping("/free/freedetail/{num}/{cnt}")
+	public String freeselect(@PathVariable String num,@PathVariable String cnt,Model model,FboardVO vo) {
 		vo.setNum(num);
+		vo.setCnt(cnt);
+		hyeongjunMapper.freecntupdate(vo);
 		model.addAttribute("select",hyeongjunMapper.freeselect(vo));
 		return "hyeongjun/freeread";
 	}
@@ -201,6 +213,22 @@ public class HyeongjunController {
 		hyeongjunMapper.freedelete(vo);
 		 model.addAttribute("list",hyeongjunMapper.fboardlist());
 		 return "hyeongjun/freeboard";
+	}
+	@RequestMapping("/freeupdate")
+	public String freeupdate(FboardVO vo,Model model) {
+		hyeongjunMapper.freeupdate(vo);
+		 model.addAttribute("list",hyeongjunMapper.fboardlist());
+		 return "hyeongjun/freeboard";
+	}
+	@ResponseBody
+	@RequestMapping("insertheart")
+	public LikeitVO heartinsert(LikeitVO vo,Model model) {
+		return hyeongjunMapper.heartinsert(vo);
+	}
+	@ResponseBody
+	@RequestMapping("deleteheart")
+	public LikeitVO deleteinsert(LikeitVO vo,Model model) {
+		return hyeongjunMapper.heartdelete(vo);
 	}
 
 }

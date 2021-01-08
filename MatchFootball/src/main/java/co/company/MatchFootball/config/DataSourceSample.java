@@ -1,3 +1,4 @@
+
 package co.company.MatchFootball.config;
 
 import java.sql.SQLException;
@@ -13,8 +14,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import oracle.jdbc.OracleConnection;
 import oracle.jdbc.pool.OracleDataSource;
 
-//@Configuration
-//@EnableTransactionManagement
+@Configuration
+@EnableTransactionManagement
+
 public class DataSourceSample {
 	  
 	final static String DB_URL="jdbc:oracle:thin:@db202012151659_high?TNS_ADMIN=D://Dev//Wallet";
@@ -49,4 +51,5 @@ public class DataSourceSample {
         return new DataSourceTransactionManager(dataSource());
     }
 }
+
 

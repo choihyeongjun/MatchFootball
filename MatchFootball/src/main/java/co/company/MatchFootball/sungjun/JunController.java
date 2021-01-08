@@ -49,20 +49,16 @@ public class JunController {
 		// 달력
 		DecimalFormat df = new DecimalFormat("00");
 		Calendar calendar;
-		if(mvo.getM_date() ==null) {
+		if(mvo.getM_date() == null) {
 			calendar = Calendar.getInstance();
-			
 		}else {
 			calendar = Calendar.getInstance();
 			DateFormat dft = new SimpleDateFormat("yyyy-mm-dd") ;
 			try {
 				calendar.setTime(dft.parse(mvo.getM_date()));
 			} catch (ParseException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
-			
 		}
 		String year = Integer.toString(calendar.get(Calendar.YEAR)); // 년도를 구한다
 		String month = df.format(calendar.get(Calendar.MONTH) + 1); // 달을 구한다
@@ -78,14 +74,22 @@ public class JunController {
 		model.addAttribute("cal", vo);
 		
 		mvo.setM_date(year + "-" + month + "-" + day);
+		model.addAttribute("m_dat",day);
 		model.addAttribute("p_matchVO", dao.pmatchselect(mvo));
 		model.addAttribute("date",year +"-" + month );
+		System.out.println(mvo.getM_date());
 		return "sungjun/match";
 	}
 
 	@RequestMapping(value = "/matchDetail")
 	public ModelAndView test6(HttpServletResponse response) throws IOException {
 		return new ModelAndView("sungjun/matchDetail");
+	}
+	@RequestMapping(value = "/matchDetailm")
+	public ModelAndView test11(HttpServletResponse response, MembersVO membersvo,Model model,HttpSession session) throws IOException {
+		membersvo.setId((String)session.getAttribute("id"));
+		model.addAttribute("pointminus",dao.pointminus(membersvo));
+		return new ModelAndView("no/sungjun/matchapply");
 	}
 
 	@RequestMapping(value = "/call")

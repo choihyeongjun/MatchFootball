@@ -12,9 +12,105 @@
 <meta name="author" content="" />
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" ></script>
 <title>유저관리페이지</title>
-
 <script>
 $(function(){
+	userList();
+	userUpdate();
+	userDelete();
+});
+
+function userUpdate() {
+	//업데이트 버튼 클릭
+	$('main').on('click','#btnUpdate',function(){
+		var userId = $(event.target).closest('tr').find('#hidden_userId').val();
+		var author = $(event.target).closest('tr').find("#author").val();
+		var author2 = $(event.target).closest('tr').find("#author2").val();
+		var result = confirm(userId +" 사용자를 업데이트 하시겠습니까?");
+		if(result) {
+			$.ajax({
+				url:'../userupdate',
+				data : {id : userId, author: author, author2: author2},
+				dataType:'json',
+				error:function(xhr,status,msg){
+					//console.log("상태값 :" + status + " Http에러메시지 :"+msg);
+					console.log("dddd");
+				}, success: location.reload() 
+			});
+		}//if
+	}); //업데이트 버튼 클릭
+}//userupdate
+
+//사용자 목록 조회 요청
+function userList() {
+	$.ajax({
+		url:'../user/ajax',
+		//contentType:'application/json;charset=utf-8',
+		dataType:'json',
+		error:function(xhr,status,msg){
+			alert("상태값 :" + status + " Http에러메시지 :"+msg);
+		},
+		success:userListResult
+	});
+}//userList
+
+//사용자 목록 조회 응답
+function userListResult(data) {
+	$("#main").empty();
+	$.each(data,function(idx,item){
+		$('<tr>')
+		.append($('<td class="idnum">').html(item.id))    	//유저아이디
+		.append($('<td>').html(item.name))	    //유저이름
+		.append($('<td>').html(item.gender))    //유저성별
+		.append($('<td>').html(item.manner))    //유저매너도
+		.append($('<td>').html(item.point))  	//유저포인트
+		.append($('<td>').html(					//유저권한
+				$('<select id="author" class=\'author\'> '+
+				'<option selected value="">선택</option>'+
+				'<option value="user">일반회원</option>'+
+				'<option value="manager">매니저</option>'+
+				'</select>').val(item.author)))
+		.append($('<td>').html(					//유저권한2
+				$('<select id="author2" class=\'author2\'> '+
+				'<option selected value="">선택</option>'+
+				'<option value="Y">Y</option>'+
+				'<option value="N">N</option>'+
+				'</select>').val(item.author2)))
+		.append($('<td>').html('<button id=\'btnSelect\'class="btn btn-primary">상세프로필</button>'))
+		.append($('<td>').html('<button id=\'btnUpdate\'class="btn btn-success">정보수정</button>'))
+		.append($('<td>').html('<button id=\'btnDelete\'class="btn btn-danger">회원삭제</button>'))
+		.append($('<input type=\'hidden\' id=\'hidden_userId\'>').val(item.id))
+		.appendTo('#main');
+		console.log(">> "+item.author);
+		
+
+	});//each
+	$('#dataTable').DataTable();
+}//userListResult
+
+function userDelete() {
+	//삭제 버튼 클릭
+	$('main').on('click','#btnDelete',function(){
+		var userId = $(event.target).closest('tr').find('#hidden_userId').val();
+		var result = confirm(userId +" 사용자를 정말로 삭제하시겠습니까?");
+		if(result) {
+			console.log("아이디값: "+userId)
+			$.ajax({
+				url:'../userdelete',  
+				contentType:'application/json;charset=utf-8',
+				dataType:'json',
+				type : 'GET',
+				data :{id : userId},
+				error:function(xhr,status,msg){
+					console.log("상태값 :" + status + " Http에러메시지 :"+msg);
+				}, success: location.reload()
+			});      
+		}//if
+	}); //삭제 버튼 클릭
+}//userDelete
+</script>
+
+<script>
+/* $(function(){
 	userUpdate();
 	userDelete();
 	
@@ -65,6 +161,7 @@ function userDelete() {
 					console.log("상태값 :" + status + " Http에러메시지 :"+msg);
 				}, success:
 					deleteResult
+					.remove
 			});      
 		}//if
 	}); //삭제 버튼 클릭
@@ -73,7 +170,7 @@ function userDelete() {
 function deleteResult(data){
 	console.log("deleteResult아이디값 : "+data);
 	
-}
+} */
 </script>
 
 <style>
@@ -114,62 +211,37 @@ function deleteResult(data){
 					</div>
 					<div class="card-body">
 						<div class="table-responsive">
-							<table class="table table-bordered" id="dataTable" width="100%"
-								cellspacing="0">
+							<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 								<thead align="center">
 									<tr>
 										<th>ID</th>
 										<th>Name</th>
 										<th style="width: 40px;">성별</th>
-										<th>회원권한</th>
-										<th>용병권한</th>
 										<th>매너점수</th>
 										<th>포인트</th>
-										<th style="width: 180px;"></th>
+										<th>회원권한</th>
+										<th>용병권한</th>
+										<th style="width: 90px;"></th>
+										<th style="width: 80px;"></th>
+										<th style="width: 80px;"></th>
 									</tr>
 								</thead>
+								
 								<tfoot align="center">
 									<tr>
 										<th>ID</th>
 										<th>Name</th>
 										<th>성별</th>
-										<th>회원권한</th>
-										<th>용병권한</th>
 										<th>매너점수</th>
 										<th>포인트</th>
+										<th>회원권한</th>
+										<th>용병권한</th>
+										<th></th>
+										<th></th>
 										<th></th>
 									</tr>
 								</tfoot>
-								<tbody align="center">
-									<c:forEach items="${members}" var="member">
-										<tr>
-											<td>
-												<a class="idnum" id="aa" data-num="${member.id}">${member.id}</a>
-											</td>
-											<td>${member.name}</td>
-											<td>${member.gender}</td>
-											<td>
-												<select name="author">
-													<option selected value="${member.author}">${member.author}</option>
-													<option value="user">일반회원</option>
-													<option value="manager">매니저</option>
-												</select>
-											</td>
-											<td>
-												<select name="author2">
-													<option selected value="${member.author2}">${member.author2}</option>
-													<option value="Y">Y</option>
-													<option value="N">N</option>
-												</select>
-											</td>
-											<td>${member.manner}</td>
-											<td>${member.point}Point</td>
-											<td>
-												<button type="button" class="btn btn-success" value="수정" id="btnUpdate">정보수정</button>
-												<button type="submit" class="btn btn-primary" value="삭제" id="btnDelete">회원삭제</button>
-											</td>
-										</tr>
-									</c:forEach>
+								<tbody align="center" id="main">
 								</tbody>
 							</table>
 						</div>
@@ -183,11 +255,23 @@ function deleteResult(data){
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<!-- Modal Header -->
-					<div class="modal-header"></div>
+					<div class="modal-header"><h2 id="u_id">의 프로필 정보</h2></div>
 					
 					<!-- Modal body -->
-					<div class="modal-body"></div>
-
+					<div class="modal-body">
+						<table  align="center">
+						<img class="userProfileImg" alt="유저이미지" src="${pageContext.request.contextPath}/resources/seemoo/img/1.jpg">
+							<tr><th>아이디</th><td>:</td><td style="padding-left: 10px" id="id"></td></tr>
+							<tr><th>이름</th>	<td>:</td><td style="padding-left: 10px" id="name"></td></tr>
+							<tr><th>생년월일</th><td>:</td><td style="padding-left: 10px" id="birth"></td></tr>
+							<tr><th>성별</th><td>:</td><td style="padding-left: 10px" id="gender"></td></tr>
+							<tr><th>연락처</th><td>:</td><td style="padding-left: 10px" id="pnum"></td></tr>
+							<tr><th>권한</th>	<td>:</td><td style="padding-left: 10px" id="author1"></td></tr>
+							<tr><th>팀이름</th><td>:</td><td style="padding-left: 10px" id="t_name1"></td></tr>
+							<tr><th>포인트</th><td>:</td><td style="padding-left: 10px" id="point"></td></tr>
+						</table>
+					</div>
+	
 					<!-- Modal footer -->
 					<div class="modal-footer">
 						<button style="text-align: center;" type="button" class="btn btn-danger" data-dismiss="modal">종료</button>
@@ -198,14 +282,23 @@ function deleteResult(data){
 	</div>
 	
 	<script>
-		$(".idnum").on("click", function() {
-			var num = $(this).data("num");
+		$("#dataTable").on("click", "#btnSelect", function() {
+			//event.stopPropagation();
+  			var num = $(event.target).parent().parent().find('.idnum').text();
 			modal = $('#myModal');
 			$.ajax({
 				url : "userinfo?id=" + num,
-				dataType : "html",
+				dataType : "json",
 				success : function(result) {
-					modal.find('.modal-body').html(result)
+					$('#u_id').text(result.id);
+					$('#id').text(result.id);
+					$('#name').text(result.name);
+					$('#birth').text(result.birth);
+					$('#gender').text(result.gender);
+					$('#pnum').text(result.pnum);
+					$('#author1').text(result.author);
+					$('#t_name1').text(result.t_name);
+					$('#point').text(result.point);
 					modal.modal('show');
 				}
 			})

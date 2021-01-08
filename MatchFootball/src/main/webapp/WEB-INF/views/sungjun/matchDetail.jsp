@@ -27,6 +27,7 @@ a {
 	background-color: white;
 	border-bottom: 1px solid #ddd;
 }
+
 .employ {
 	bottom: 0;
 	width: 320px;
@@ -52,33 +53,51 @@ a {
 	bottom: 0;
 	width: 100%;
 }
-.p1{
- text-align: center;
- margin : 5px;
- font-size: 20px;
-}
-.qqqq a{
-padding-left : 20px;
-padding-right:20px; 
-padding-top: 20px;
-font-size: 20px;
-}
- .ss {
- border-bottom: 3px solid #FFC645;
- font-weight: 800;
- padding-bottom: 15px;
- line-height: 50px;
- color : #314d9f
+
+.p1 {
+	text-align: center;
+	margin: 5px;
+	font-size: 20px;
 }
 
+.qqqq a {
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-top: 20px;
+	font-size: 20px;
+}
+
+.ss {
+	border-bottom: 3px solid #FFC645;
+	font-weight: 800;
+	padding-bottom: 15px;
+	line-height: 50px;
+	color: #314d9f
+}
 </style>
 <script>
 	$(function() {
-	$(".qqqq").on("click","a",function(){
-		$(".qqqq a").removeClass("ss");
-		$(event.target).addClass("ss");
+		/*클릭시 css  */
+		$(".qqqq").on("click", "a", function() {
+			$(".qqqq a").removeClass("ss");
+			$(event.target).addClass("ss");
+		})
+		
+		/* 신청 모달  */
+		$(".p1").on("click", function() {
+			var m_no = $(this).data("num");
+			modal = $("#matchaplly");
+			$.ajax({
+				url : "managerapply?m_no=" + m_no,
+				success : function(result) {
+					modal.find('#body3').html(result);
+					modal.modal('show');
+				}
+			});
+		})
 	})
-	})
+	
+		
 </script>
 </head>
 <body>
@@ -88,11 +107,9 @@ font-size: 20px;
 				width="929" height="520">
 		</div>
 		<div style="margin-left: 200px; margin-right: 200px; margin-top: 30px">
-			<div class="qqqq" align="center" >
-				<a href="#play"> 진행방식 </a>
-				<a href="#playroom"> 구장시설 </a>
-				<a href="#playin"> 매치안내</a>
-				<a href="#playm"> 환급규정</a>
+			<div class="qqqq" align="center">
+				<a href="#play"> 진행방식 </a> <a href="#playroom"> 구장시설 </a> <a
+					href="#playin"> 매치안내</a> <a href="#playm"> 환급규정</a>
 			</div>
 			<div>
 				<h3 style="text-align: left;">2020년 12월 24일 12:00</h3>
@@ -194,6 +211,15 @@ font-size: 20px;
 	<div class="lets">
 		<div class="employ">
 			<p class="p1" data-num="${sessionScope.id }">매치 신청</p>
+		</div>
+	</div>
+	<!--개인매치 신청 모달  -->
+	<div class="modal fade" id="matchaplly" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-body" id="body3">...</div>
+			</div>
 		</div>
 	</div>
 </body>

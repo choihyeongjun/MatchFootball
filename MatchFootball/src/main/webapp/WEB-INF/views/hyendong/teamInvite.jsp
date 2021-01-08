@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +8,7 @@
 <title>팀 초대</title>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="resources/css/teamMenu.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script
@@ -26,6 +28,18 @@ footer {
 
 </head>
 <body>
+<ul class="hi">
+	  <c:if test="${sessionScope.id ne null }">
+			<li><a href="myTeamInfo?t_num=${member.t_num }">팀 정보</a></li>
+			</c:if>
+			<c:if test="${sessionScope.id eq null }">
+			<li><a href="teamMake">팀 생성</a></li>
+			</c:if>
+			<li><a href="teamGallery?t_num=${member.t_num }">팀갤러리</a></li>
+			<li><a href="teamNotice?t_num=${teamInfo.t_num }">팀 공지</a></li>
+			<li><a href="http://localhost/MatchFootball/teamInvite">팀 초대</a></li>
+			<li><a href="http://localhost/MatchFootball/teamList">팀 리스트</a></li>
+	</ul>
 	<div display="inline-block">
 		<div class="container" style="float: left; width: 50%">
 			<h2 class="table text-center">팀 초대</h2>

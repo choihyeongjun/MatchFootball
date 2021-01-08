@@ -39,7 +39,8 @@
 		t_address,
 		t_type,
 		t_info,
-		t_logo
+		t_logo,
+		t_hidden
 		)
 		VALUES(
 		#{t_num},
@@ -48,7 +49,8 @@
 		#{t_address},
 		#{t_type},
 		#{t_info},
-		#{t_logo,jdbcType=VARCHAR})
+		#{t_logo,jdbcType=VARCHAR},
+		#{t_hidden})
 	</insert>
 	
 	<!-- 팀 생성 시 팀 리스트 추가 -->
@@ -74,7 +76,12 @@
 	<!-- 팀원 조회 -->
 	<select id="getTeamMembers" parameterType="TeamlistVO"
 		resultType="TeamlistVO">
-		select * from teamlist where t_num = #{t_num}
+		select * from teamlist where t_num = #{t_num} order by 3 desc
+	</select>
+
+	<select id="getTeamMemberss" parameterType="TeamlistVO"
+		resultType="TeamlistVO">
+		select * from teamlist where id = #{id}	and t_num = #{t_num}
 	</select>
 
 	<!-- 팀 정보 변경 -->
@@ -83,10 +90,10 @@
 		SET t_name = #{t_name},
 		t_max = #{t_max},
 		t_address = #{t_address},
-		t_type =
-		#{t_type},
+		t_type = #{t_type},
 		t_logo = #{t_logo,jdbcType=VARCHAR},
-		t_info = #{t_info}
+		t_info = #{t_info},
+		t_hidden = #{t_hidden}
 		WHERE t_num = #{t_num}
 	</update>
 
@@ -106,12 +113,27 @@
 		)
 	</insert>
 
+	<!-- 팀원 수 -->
+	<select id="countSelect" resultType="TeamlistVO">
+		SELECT COUNT(*) AS TEAM
+		FROM teamlist
+		WHERE t_num = #{t_num}
+	</select>
+
 	<!-- 팀 공지 조회 -->
 	<select id="NoticeSelect" parameterType="TnoticeVO" resultType="TnoticeVO">
 		SELECT *
 		FROM tnotice
 		WHERE t_num = #{t_num}
 	</select>
+	
+	<!-- 팀 공지 조회 -->
+	<select id="NoticeSelectInfo" parameterType="TnoticeVO" resultType="TnoticeVO">
+		SELECT *
+		FROM tnotice
+		WHERE t_num = #{t_num} AND n_no = #{n_no}
+	</select>
+	
 	<!-- 멤버리스트 조회 -->
 	<select id="getMembers" parameterType="MembersVO"
 		resultType="MembersVO">
@@ -148,10 +170,10 @@
 			t_wn,
 			t_no)
 		VALUES(
-			t_num = #{t_num},
-			t_log = #{t_log},
-			t_wn = #{t_wn},
-			t_no = #{t_no}
+			#{t_num},
+			#{t_log},
+			#{t_wn},
+			#{t_no}
 		)
 	</insert>
 
@@ -175,5 +197,29 @@
 	set t_num = #{t_num} 
 	where id=#{id}
 	</update>
-
+	
+	<!-- 사진 조회 -->
+	<select id="picSelect" resultType="TgalleryVO">
+		select img
+		from tgallery
+		where t_num = #{t_num}
+	</select>
+	
+	<!-- 사진 삽입 -->
+	<insert id="picInsert" parameterType="TgalleryVO">
+		<selectKey order="BEFORE" keyProperty="g_no"
+			resultType="int">
+			SELECT MAX(g_no)+1
+			FROM tgallery
+		</selectKey>
+		INSERT INTO tgallery (
+			g_no,
+		    t_num,
+			img)
+		VALUES(
+			#{g_no},
+			#{t_num},
+			#{img}
+		)
+	</insert>
 </mapper>

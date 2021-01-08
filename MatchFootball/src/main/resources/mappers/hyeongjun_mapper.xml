@@ -15,6 +15,9 @@
    from members
    where id=#{id}
    </select>
+   <select id="bollowinsert" parameterType="inviteVO" resultType="inviteVO">
+   insert into invite(c_id,title,comm,s_date,r_id) values(#{c_id},#{title},#{comm},sysdate,#{r_id})
+   </select>
    
    <select id="invitelist" parameterType="inviteVO" resultType="inviteVO">
    SELECT i.c_id,m.name,i.s_date,m.pnum,i.comm,i.check1,m.t_name
@@ -71,6 +74,22 @@
    <select id="freedelete" parameterType="fboardVO">
    delete fboard where num=#{num}
    </select>
+   <select id="freeupdate" parameterType="fboardVO" resultType="fboardVO">
+   	update fboard set title=#{title},comm=#{comm} where num=#{num}
+   </select>
+   <select id="freecntupdate"  parameterType="fboardVO" resultType="fboardVO">
+   	update fboard set cnt=#{cnt}+1 where num=#{num}
+   </select>
+   <select id="heartinsert" parameterType="likeitVO" resultType="likeitVO">
+   	insert into likeit(seq,num,id,likeit) values(like_seq.nextval,#{num},#{id},1)
+   </select>
+   <select id="heartdelete" parameterType="likeitVO" resultType="likeitVO">
+   	update likeit set likeit=0 where num=#{num}
+   </select>
+   <!-- <select id="heartselect" result="likeitVO">
+   	select likeit
+   	from likeit
+   </select> -->
    
 
 </mapper>

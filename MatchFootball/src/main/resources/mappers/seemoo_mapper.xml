@@ -16,14 +16,14 @@
 		SELECT * FROM MEMBERS WHERE ID = #{id}
 	</select>
 	
+	<!-- 유저 권한, 권한2 수정 -->
+	<select id="membersupdate" parameterType="MembersVO" resultType="MembersVO">
+		UPDATE MEMBERS SET AUTHOR = #{author}, AUTHOR2 = #{author2} WHERE ID = #{id}     
+	</select>
+	
 	<!-- 유저삭제 -->
 	<select id="membersdelete" parameterType="MembersVO">
 		DELETE FROM MEMBERS WHERE ID = #{id}
-	</select>
-	
-	<!-- 유저수정 -->
-	<select id="membersupdate" parameterType="MembersVO" resultType="MembersVO">
-		UPDATE MEMBERS SET AUTHOR = #{author}, AUTHOR2 = #{author2} WHERE ID = #{id}     
 	</select>
 	
 <!-- 팀관리 -->
@@ -35,9 +35,24 @@
 
 	<!-- 팀단건조회 -->
 	<select id="teams" parameterType="TeamVO" resultType="TeamVO">
-		SELECT * FROM TEAM WHERE T_NAME = #{t_name}
+		SELECT * FROM TEAM WHERE T_NUM = #{t_num}
 	</select>
-
+	
+	<!-- 팀 권한 수정 -->
+	<select id="teamsupdate" parameterType="TeamVO" resultType="TeamVO">
+		UPDATE TEAM SET T_AUTHOR = #{t_author} WHERE T_NUM = #{t_num}     
+	</select>
+	
+	<!-- 팀 삭제 -->
+	<select id="teamsdelete" parameterType="TeamVO">
+		DELETE FROM TEAM WHERE T_NUM = #{t_num}
+	</select>
+	
+	<!-- 블랙팀 조회 -->
+	<select id="blackteamList" resultType="BlackTeamListVO">
+		SELECT T.T_NUM, T.T_NAME, T.T_LEVEL, T.T_AUTHOR, T.T_M, B.STOPDATE, B.STOPREASON FROM TEAM T JOIN BLACKTEAM B ON T.T_NUM = B.T_NUM
+	</select>
+	
 <!-- 매니저관리 -->
 
 	<!-- 매니저조회 -->

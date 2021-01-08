@@ -22,5 +22,5 @@ public interface SungjunMapper {
 	public int mapply(ManageraplyVO manageraply);
 	public List<TeammatchVO> tmatchlist(TeammatchVO t_match);
 	public P_matchVO pmatchlist3(P_matchVO p_match);
-	
+	public int pointminus(MembersVO membersvo);
 }

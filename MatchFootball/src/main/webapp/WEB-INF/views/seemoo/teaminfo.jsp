@@ -8,37 +8,37 @@
 		<tr>
 			<th>팀명</th>
 			<td>:</td>
-			<td>&nbsp;${tvoselect.t_name}</td>
+			<td style="padding-left: 10px">${tvoselect.t_name}</td>
 		</tr>
 		<tr>
 			<th>팀인원</th>
 			<td>:</td>
-			<td>&nbsp;${tvoselect.t_max}</td>
+			<td style="padding-left: 10px">${tvoselect.t_max}</td>
 		</tr>
 		<tr>
 			<th>지역</th>
 			<td>:</td>
-			<td>&nbsp;${tvoselect.t_address}</td>
+			<td style="padding-left: 10px">${tvoselect.t_address}</td>
 		</tr>
 		<tr>
 			<th>팀레벨</th>
 			<td>:</td>
-			<td>&nbsp;${tvoselect.t_level}</td>
+			<td style="padding-left: 10px">${tvoselect.t_level}</td>
 		</tr>
 		<tr>
 			<th>팀승률</th>
 			<td>:</td>
-			<td>&nbsp;${tvoselect.t_wn}</td>
+			<td style="padding-left: 10px">${tvoselect.t_wn}</td>
 		</tr>
 		<tr>
 			<th>매너점수</th>
 			<td>:</td>
-			<td>&nbsp;${tvoselect.t_m}</td>
+			<td style="padding-left: 10px">${tvoselect.t_m}</td>
 		</tr>
 		<tr>
 			<th>소개</th>
 			<td>:</td>
-			<td>&nbsp;${tvoselect.t_info}</td>
+			<td style="padding-left: 10px">${tvoselect.t_info}</td>
 		</tr>
 	</table>
 </div>

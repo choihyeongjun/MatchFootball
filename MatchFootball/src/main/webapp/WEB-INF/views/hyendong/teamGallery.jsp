@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,12 +33,18 @@
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+	<form action="teamGalleryInsert" method="post" encType="multipart/form-data">
 	<ul class="hi">
-	  <li><a href="http://localhost/MatchFootball/teamInfo">팀 정보</a></li>
-	  <li><a href="http://localhost/MatchFootball/teamGallery">팀 갤러리</a></li>
-	  <li><a href="http://localhost/MatchFootball/teamNotice">팀 공지</a></li>
-	  <li><a href="http://localhost/MatchFootball/teamInvite">팀 초대</a></li>
-	  <li><a href="http://localhost/MatchFootball/teamList">팀 리스트</a></li>
+	  <c:if test="${sessionScope.id ne null }">
+			<li><a href="myTeamInfo?t_num=${member.t_num }">팀 정보</a></li>
+			</c:if>
+			<c:if test="${sessionScope.id eq null }">
+			<li><a href="teamMake">팀 생성</a></li>
+			</c:if>
+			<li><a href="teamGallery?t_num=${member.t_num }">팀갤러리</a></li>
+			<li><a href="teamNotice?t_num=${teamInfo.t_num }">팀 공지</a></li>
+			<li><a href="http://localhost/MatchFootball/teamInvite">팀 초대</a></li>
+			<li><a href="http://localhost/MatchFootball/teamList">팀 리스트</a></li>
 	</ul>
 	<div align="center">
 		<div>
@@ -45,53 +52,22 @@
 		</div>
 		<hr />
 	</div>
+	<input type="text" name="t_num" value="${teamInfo.t_num }">
+	<input type="submit" value="등록">
+	<input type="file" name="file">
 	<div class="site-section">
 		<div class="container">
 			<div class="row">
+			<c:forEach items="${teamGallery }" var="teamGallery">
 				<div class="col-6 col-sm-6 col-md-4 col-lg-3 mb-4">
-					<a href="${pageContext.request.contextPath}/resources/css/teamGallery/images/img_1.jpg" data-fancybox="gal"><img
-						src="${pageContext.request.contextPath}/resources/css/teamGallery/images/img_1.jpg" alt="Image" class="img-fluid"></a>
+					<a href="${pageContext.request.contextPath}/images/${teamGallery.img }" data-fancybox="gal"><img
+						src="${pageContext.request.contextPath}/images/${teamGallery.img }" alt="Image" class="img-fluid" style="height: 270px; width: 300px"></a>
 				</div>
-				<div class="col-6 col-sm-6 col-md-4 col-lg-3 mb-4">
-					<a href="${pageContext.request.contextPath}/resources/css/teamGallery/images/img_2.jpg" data-fancybox="gal"><img
-						src="${pageContext.request.contextPath}/resources/css/teamGallery/images/img_2.jpg" alt="Image" class="img-fluid"></a>
-				</div>
-				<div class="col-6 col-sm-6 col-md-4 col-lg-3 mb-4">
-					<a href="${pageContext.request.contextPath}/resources/css/teamGallery/images/img_3.jpg" data-fancybox="gal"><img
-						src="${pageContext.request.contextPath}/resources/css/teamGallery/images/img_3.jpg" alt="Image" class="img-fluid"></a>
-				</div>
-
-				<div class="col-6 col-sm-6 col-md-4 col-lg-3 mb-4">
-					<a href="${pageContext.request.contextPath}/resources/css/teamGallery/images/img_4.jpg" data-fancybox="gal"><img
-						src="${pageContext.request.contextPath}/resources/css/teamGallery/images/img_4.jpg" alt="Image" class="img-fluid"></a>
-				</div>
-				<div class="col-6 col-sm-6 col-md-4 col-lg-3 mb-4">
-					<a href="${pageContext.request.contextPath}/resources/css/teamGallery/images/img_5.jpg" data-fancybox="gal"><img
-						src="${pageContext.request.contextPath}/resources/css/teamGallery/images/img_5.jpg" alt="Image" class="img-fluid"></a>
-				</div>
-				<div class="col-6 col-sm-6 col-md-4 col-lg-3 mb-4">
-					<a href="${pageContext.request.contextPath}/resources/css/teamGallery/images/img_1.jpg" data-fancybox="gal"><img
-						src="${pageContext.request.contextPath}/resources/css/teamGallery/images/img_1.jpg" alt="Image" class="img-fluid"></a>
-				</div>
-				<div class="col-6 col-sm-6 col-md-4 col-lg-3 mb-4">
-					<a href="${pageContext.request.contextPath}/resources/css/teamGallery/images/img_2.jpg" data-fancybox="gal"><img
-						src="${pageContext.request.contextPath}/resources/css/teamGallery/images/img_2.jpg" alt="Image" class="img-fluid"></a>
-				</div>
-				<div class="col-6 col-sm-6 col-md-4 col-lg-3 mb-4">
-					<a href="${pageContext.request.contextPath}/resources/css/teamGallery/images/img_3.jpg" data-fancybox="gal"><img
-						src="${pageContext.request.contextPath}/resources/css/teamGallery/images/img_3.jpg" alt="Image" class="img-fluid"></a>
-				</div>
-				<div class="col-6 col-sm-6 col-md-4 col-lg-3 mb-4">
-					<a href="${pageContext.request.contextPath}/resources/css/teamGallery/images/img_3.jpg" data-fancybox="gal"><img
-						src="${pageContext.request.contextPath}/resources/css/teamGallery/images/img_3.jpg" alt="Image" class="img-fluid"></a>
-				</div>
-				<div class="col-6 col-sm-6 col-md-4 col-lg-3 mb-4">
-					<a href="${pageContext.request.contextPath}/resources/css/teamGallery/images/img_3.jpg" data-fancybox="gal"><img
-						src="${pageContext.request.contextPath}/resources/css/teamGallery/images/img_3.jpg" alt="Image" class="img-fluid"></a>
-				</div>
+			</c:forEach>
 			</div>
 		</div>
 	</div>
+	</form>
 	<script src="${pageContext.request.contextPath}/resources/css/teamGallery/js/jquery.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/css/teamGallery/js/jquery-migrate-3.0.1.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/css/teamGallery/js/jquery-ui.js"></script>
