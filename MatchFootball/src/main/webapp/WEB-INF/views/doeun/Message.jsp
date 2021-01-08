@@ -74,7 +74,6 @@
 							<tr>
 								<td><input type="checkbox"></td>
 								<th>날짜</th>
-								<th>시간</th>
 								<th>제목</th>
 								<th>보낸 사람</th>
 								<td colspan="2" align="right">
@@ -83,7 +82,7 @@
 							</tr>
 							<tr>
 								<td><input type="checkbox"></td>
-								<td>오늘</td>
+								<td></td>
 								<td>sysdate</td>
 								<td>고고</td>
 								<td>나</td>

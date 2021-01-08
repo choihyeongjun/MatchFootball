@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,12 +30,14 @@
 		}
 	</script>
 	<ul class="hi">
-		<li><a href="http://localhost/MatchFootball/teamInfo">팀 정보</a></li>
-		<li><a href="http://localhost/MatchFootball/teamGallery">팀
-				갤러리</a></li>
-		<li><a href="http://localhost/MatchFootball/teamNotice">팀 공지</a></li>
-		<li><a href="http://localhost/MatchFootball/teamInvite">팀 초대</a></li>
-		<li><a href="http://localhost/MatchFootball/teamList">팀 리스트</a></li>
+		<c:if test="${sessionScope.id eq null }">
+			<li><a href="teamMake">팀 생성</a></li>
+			</c:if>
+			<li><a href="http://localhost/MatchFootball/teamGallery">팀
+					갤러리</a></li>
+			<li><a href="teamNotice?t_num=${member.t_num }">팀 공지</a></li>
+			<li><a href="http://localhost/MatchFootball/teamInvite">팀 초대</a></li>
+			<li><a href="http://localhost/MatchFootball/teamList">팀 리스트</a></li>
 	</ul>
 	<form action="teamUpdateUpdate" method="post" encType="multipart/form-data">
 		<div class="section-top-border" style="margin-left: 670px; width: 50%">
@@ -102,8 +105,8 @@
 					<p>팀원 공개 여부</p>
 					<div class="switch-wrap d-flex justify-content-between">
 						<div class="primary-switch">
-							<input type="checkbox" id="default-switch" name="teamYN" checked>
-							<label for="default-switch"></label>
+							<input type="checkbox" id="t_hidden" name="t_hidden" value="Y" checked>
+							<label for="t_hidden"></label>
 						</div>
 					</div>
 				</div>

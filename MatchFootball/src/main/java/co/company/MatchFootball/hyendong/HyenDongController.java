@@ -63,36 +63,40 @@ public class HyenDongController {
 		String id = (String) session.getAttribute("id"); //세션 id 들고와서
 		membersVO.setId(id); //아이디 vo에 담고
 		model.addAttribute("member", hyendongMapper.memberSelect(membersVO)); //전체멤버 조회하는거 member 객체 생성
-		hyendongMapper.teamInsert(teamVO); //팀 생성 처리하면 팀vo에 팀 정보 담음
-		membersVO.setT_num(teamVO.getT_num()); //팀 번호를 멤버vo의 팀 num에 넣음
-		hyendongMapper.tNumUpdate(membersVO); //팀 번호 변경 처리하고 멤버vo에 담음
-		teamlistVO.setId(id);
-		teamlistVO.setT_num(teamVO.getT_num());
-		teamlistVO.setT_author("팀장");
-		hyendongMapper.teamListInsert(teamlistVO); //팀 만든 사람 정보 팀 리스트에 추가
+			hyendongMapper.teamInsert(teamVO); //팀 생성 처리하면 팀vo에 팀 정보 담음
+			membersVO.setT_num(teamVO.getT_num()); //팀 번호를 멤버vo의 팀 num에 넣음
+			hyendongMapper.tNumUpdate(membersVO); //팀 번호 변경 처리하고 멤버vo에 담음
+			teamlistVO.setId(id);
+			teamlistVO.setT_num(teamVO.getT_num());
+			teamlistVO.setT_author("팀장");
+			hyendongMapper.teamListInsert(teamlistVO); //팀 만든 사람 정보 팀 리스트에 추가	
 		return "redirect:/teamInfo?t_num=" + teamVO.getT_num(); 
 	}
 
 	// 팀정보
 	@RequestMapping("/teamInfo")
-	public String teamInfo(Model model, TeamVO teamVO, MembersVO membersVO, HttpSession session) {
+	public String teamInfo(Model model, TeamVO teamVO, MembersVO membersVO, HttpSession session, TeamlistVO teamlistVO) {
 		String id = (String)session.getAttribute("id");
 		membersVO.setId(id);
 		model.addAttribute("members", hyendongMapper.memberSelect(membersVO)); //멤버 단건 조회
 		model.addAttribute("teamInfo", hyendongMapper.getTeam(teamVO));
 		model.addAttribute("teamMembers", hyendongMapper.getTeamMembers(teamVO));
+		teamlistVO.setId(id);
+		model.addAttribute("updateButton", hyendongMapper.getTeamMemberss(teamlistVO));
 		return "hyendong/teamInfo";
 	}
 	
 	// 마이팀정보
 	@RequestMapping("/myTeamInfo")
-	public String myTeamInfo(Model model, HttpSession session, MembersVO membersVO, TeamVO teamVO, TeamlistVO teamListVO) {
+	public String myTeamInfo(Model model, HttpSession session, MembersVO membersVO, TeamVO teamVO, TeamlistVO teamlistVO) {
 		String id = (String) session.getAttribute("id");
 		membersVO.setId(id);
 		model.addAttribute("member", hyendongMapper.memberSelect(membersVO));
 		System.out.println("팀넘버"+membersVO.getPos());
 		model.addAttribute("teamInfo", hyendongMapper.getTeam(teamVO));
 		model.addAttribute("teamMembers", hyendongMapper.getTeamMembers(teamVO));
+		teamlistVO.setId(id);
+		model.addAttribute("updateButton", hyendongMapper.getTeamMemberss(teamlistVO));
 		return "hyendong/myTeam";
 	}
 	// 팀수정

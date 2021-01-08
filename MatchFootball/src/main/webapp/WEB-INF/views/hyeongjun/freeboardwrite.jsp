@@ -64,7 +64,7 @@
 		<div align="center">
 			<textarea id="summernote" name="comm"></textarea><br>
 			<button type="submit" class="btn btn-primary"id="btnInsert">등록</button>
-			<button type="reset" class="btn btn-primary" id="btnInit" >취소</button>
+			<button type="submit" class="btn btn-primary" id="btnReset" onclick="javascript: form.action='${pageContext.request.contextPath}/free'" >돌아가기</button>
 			
 		</div>
 	</form>
