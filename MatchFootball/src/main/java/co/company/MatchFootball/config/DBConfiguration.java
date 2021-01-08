@@ -8,9 +8,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-@Configuration
-@EnableTransactionManagement
-@ComponentScan(basePackages="co.company") //자동 스캔
+//@Configuration
+//@EnableTransactionManagement
+//@ComponentScan(basePackages="co.company") //자동 스캔
 public class DBConfiguration {
 	  
 	//데이터소스 등록
