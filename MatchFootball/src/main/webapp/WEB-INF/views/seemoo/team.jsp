@@ -60,18 +60,19 @@ function teamListResult(data) {
 	$("#tmain").empty();
 	$.each(data,function(idx,item){
 		$('<tr>')
-		.append($('<td>').html(item.t_num))    	//No.
-		.append($('<td>').html(item.t_name))	//팀이름
-		.append($('<td>').html(item.t_level))   //팀레벨
-		.append($('<td>').html(item.t_wn))      //팀승률
-		.append($('<td>').html(					//팀권한
+		.append($('<td class="tnum">').html(item.t_num))    	//No.
+		.append($('<td>').html(item.t_name))					//팀이름
+		.append($('<td>').html(item.t_level))   				//팀레벨
+		.append($('<td>').html(item.t_wn))      				//팀승률
+		.append($('<td>').html(									//팀권한
 				$('<select id="t_author" class=\'t_author\'> '+
 				'<option selected value="">선택</option>'+
 				'<option value="team">팀</option>'+
 				'<option value="black">블랙</option>'+
 				'</select>').val(item.t_author)))
-		.append($('<td>').html(item.t_m))		//팀매너점수
-		.append($('<td>').html(item.t_info))    //팀소개
+		.append($('<td>').html(item.t_m))						//팀매너점수
+		.append($('<td>').html(item.t_info))    				//팀소개
+		.append($('<td>').html('<button id=\'btnSelect\'class="btn btn-primary">팀프로필</button>'))
 		.append($('<td>').html('<button id=\'btnUpdate\'class="btn btn-success">팀수정</button>'))
 		.append($('<td>').html('<button id=\'btnDelete\'class="btn btn-primary">팀삭제</button>'))
 		.append($('<input type=\'hidden\' id=\'hidden_t_num\'>').val(item.t_num))
@@ -164,6 +165,7 @@ function deleteResult(data){
 											<th style="width: 150px;">팀권한</th>
 											<th>팀매너점수</th>
 											<th>팀소개</th>
+											<th>프로필</th>
 											<th>수정</th>
 											<th>삭제</th>
 										</tr>
@@ -177,6 +179,7 @@ function deleteResult(data){
 											<th>팀권한</th>
 											<th>팀매너점수</th>
 											<th>팀소개</th>
+											<th></th>
 											<th></th>
 											<th></th>
 										</tr>
@@ -197,32 +200,49 @@ function deleteResult(data){
 					<div class="modal-header"></div>
 					
 					<!-- Modal body -->
-					<div class="modal-body"></div>
+					<div class="modal-body">
+						<table  align="center">
+						<img class="userProfileImg" alt="유저이미지" src="${pageContext.request.contextPath}/resources/seemoo/img/1.jpg">
+							<tr><th>No.</th><td>:</td><td style="padding-left: 10px" id="t_num"></td></tr>
+							<tr><th>팀명</th>	<td>:</td><td style="padding-left: 10px" id="t_name"></td></tr>
+							<tr><th>팀인원</th><td>:</td><td style="padding-left: 10px" id="t_max"></td></tr>
+							<tr><th>지역</th><td>:</td><td style="padding-left: 10px" id="t_address"></td></tr>
+							<tr><th>팀레벨</th><td>:</td><td style="padding-left: 10px" id="t_level"></td></tr>
+							<tr><th>팀승률</th><td>:</td><td style="padding-left: 10px" id="t_wn"></td></tr>
+							<tr><th>팀매너</th><td>:</td><td style="padding-left: 10px" id="t_m"></td></tr>
+							<tr><th>팀소개</th><td>:</td><td style="padding-left: 10px" id="t_info"></td></tr>
+						</table>
+					</div>
 
 					<!-- Modal footer -->
 					<div class="modal-footer">
-						<button type="button" class="btn btn-danger" data-dismiss="modal">수정</button>
-						<button type="button" class="btn btn-danger" data-dismiss="modal">삭제</button>
+						<button type="button" class="btn btn-danger" data-dismiss="modal">종료</button>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	
-	<script>
-		$(".idnum").on("click", function() {
-			var num = $(this).data("num");
+		<script>
+		$("#dataTable").on("click", "#btnSelect", function() {
+			//event.stopPropagation();
+  			var num = $(event.target).parent().parent().find('.tnum').text();
 			modal = $('#myModal');
 			$.ajax({
-				url : "teaminfo?t_name=" + num,
-				dataType : "html",
+				url : "teaminfo?t_num=" + num,
+				dataType : "json",
 				success : function(result) {
-					modal.find('.modal-body').html(result)
+					$('#t_num').text(result.t_num);
+					$('#t_name').text(result.t_name);
+					$('#t_max').text(result.t_max);
+					$('#t_address').text(result.t_address);
+					$('#t_level').text(result.t_level);
+					$('#t_wn').text(result.t_wn);
+					$('#t_m').text(result.t_m);
+					$('#t_info').text(result.t_info);
 					modal.modal('show');
 				}
 			})
 		})
 	</script>
-	
 </body>
 </html>

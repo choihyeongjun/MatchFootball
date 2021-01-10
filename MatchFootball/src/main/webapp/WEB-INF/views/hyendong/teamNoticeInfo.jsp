@@ -88,8 +88,7 @@
 			<c:if test="${sessionScope.id eq null }">
 			<li><a href="teamMake">ÆÀ »ý¼º</a></li>
 			</c:if>
-			<li><a href="http://localhost/MatchFootball/teamGallery">ÆÀ
-					°¶·¯¸®</a></li>
+			<li><a href="teamGallery?t_num=${member.t_num }">ÆÀ°¶·¯¸®</a></li>
 			<li><a href="teamNotice?t_num=${teamInfo.t_num }">ÆÀ °øÁö</a></li>
 			<li><a href="http://localhost/MatchFootball/teamInvite">ÆÀ ÃÊ´ë</a></li>
 			<li><a href="http://localhost/MatchFootball/teamList">ÆÀ ¸®½ºÆ®</a></li>
@@ -98,21 +97,32 @@
 		<h1>ÆÀ °ø Áö</h1>
 		<hr>
 	</div>
-		<div class="contentWrapper">
+		<div class="contentWrapper" style="height: 643px">
 			<div class="articleTitle">
 				<h1>${teamNoticeInfo.t_title }</h1>
 			</div>
 			<div class="articleBody">
 				<pre>${teamNoticeInfo.t_content }</pre>
-				<ul class="helpTagWrap">
-					<li><a href="/cs/search/%EB%88%88/">´«</a></li>
-					<li><a href="/cs/search/%20%EA%B8%B0%EC%83%81%EC%95%85%ED%99%94/">±â»ó¾ÇÈ­</a></li>
-				</ul>
+			</div>
+			<div class="articleBody">
+				<pre>${teamNoticeInfo.t_date }</pre>
 			</div>
 			<br>
-			<button type="button" class="btn btn-primary">¸ñ·Ï</button>
-			<button type="button" class="btn btn-primary">¼öÁ¤</button>
-			<button type="button" class="btn btn-primary">»èÁ¦</button>
+			<input type="button" class="btn btn-primary" value="¸ñ·Ï" onclick="history.back(-1);">
+			
+			<c:if test="${updateButton.t_author eq 'ÆÀÀå' }">
+			<form action="teamNoticeUpdate">
+			<input type="text" value="${teamInfo.t_num }" name="t_num" style="display: none">
+				<input type="text" value="${teamNoticeInfo.n_no }" name="n_no" style="display: none">
+			<button type="submit" class="btn btn-primary">¼öÁ¤</button>
+			</form>
+			
+			<form action="teamNoticeDelete" method="post">
+				<input type="text" value="${teamInfo.t_num }" name="t_num" style="display: none">
+				<input type="text" value="${teamNoticeInfo.n_no }" name="n_no" style="display: none">
+				<button type="submit" class="btn btn-primary">»èÁ¦</button>
+			</form>
+			</c:if>
 		</div>
 </body>
 </html>

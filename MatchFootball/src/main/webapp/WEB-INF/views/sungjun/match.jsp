@@ -89,9 +89,9 @@ li {
 }
 
 .m-im-t {
-	font-size: 14px;
+	font-size: 11px;
 	color: #999;
-	margin-bottom: 10px;
+	margin-bottom: 4px;
 	align-items: center;
 	justify-content: flex-start;
 	flex-wrap: wrap;
@@ -271,7 +271,11 @@ $(function() {
 				<c:forEach var="p_match" items="${p_matchVO }">
 					<li class="listl"><a class="lista" style="cursor: pointer;"
 						href="matchDetail?m_no=${p_match.m_no }">
+<<<<<<< HEAD
 							<div style="text-align: center; width: 10%; font-weight: bold;">
+=======
+							<div style="text-align: center; width: 10%;">
+>>>>>>> branch 'master' of https://github.com/tjdwns631/MatchFootball.git
 								<p>${p_match.m_hour }</p>
 							</div>
 							<div class="nameli" style="font-size: 16px; width: 80%;">
@@ -303,9 +307,9 @@ $(function() {
 			// 그룹수가 맞지 않을 경우 빈칸으로 메우기
 			// 3개가 나와야 되는데 1개만 있다면 2개는 빈칸으로 채워서 3개를 만듬
 			loopFillGroupWithBlank : true,
-			initialSlide:${cal.day-4} ,
+			initialSlide:${cal.day-3} ,
 			loop : false, //  반복
-			resistance : false,
+
 			navigation : { // 네비게이션
 				nextEl : '.swiper-button-next', // 다음 버튼 클래스명
 				prevEl : '.swiper-button-prev', // 이번 버튼 클래스명

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +10,6 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap"
 	rel="stylesheet">
-
 <!-- Css Styles -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/hyeongjun/css/bootstrap.min.css"
@@ -37,8 +37,7 @@
 	type="text/css">
 </head>
 <style>
-footer {
-    position: fixed;
+footer{
     left: 0px;
     bottom: 0px;
     width: 100%;
@@ -113,10 +112,12 @@ footer {
 			</div>
 		</c:forEach>
 		</div>
+		
 		<div class="product__pagination">
 			<a href="#">1</a> <a href="#">2</a> <a href="#">3</a> <a href="#"><i
 				class="fa fa-long-arrow-right"></i></a>
 		</div>
+		<button type="submit"  class="btn btn-primary" id="submitBtn" onclick="location.href='${pageContext.request.contextPath}/fieldinsert'">등록</button>
 	</div>
 </body>
 <!-- Js Plugins -->

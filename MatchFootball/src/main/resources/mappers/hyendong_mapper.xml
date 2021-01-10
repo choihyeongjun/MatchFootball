@@ -76,7 +76,7 @@
 	<!-- 팀원 조회 -->
 	<select id="getTeamMembers" parameterType="TeamlistVO"
 		resultType="TeamlistVO">
-		select * from teamlist where t_num = #{t_num}
+		select * from teamlist where t_num = #{t_num} order by 3 desc
 	</select>
 
 	<select id="getTeamMemberss" parameterType="TeamlistVO"
@@ -99,19 +99,48 @@
 
 	<!-- 팀 공지 등록 -->
 	<insert id="NoticeInsert" parameterType="TnoticeVO">
+		<selectKey order="BEFORE" keyProperty="n_no"
+			resultType="int">
+			SELECT NVL(MAX(n_no),0)+1
+			FROM tnotice
+		</selectKey>
 		INSERT INTO tnotice(
+				n_no,
 				t_num,
 				t_content,
 				t_title,
 				t_id,
 				t_date)
 		VALUES (
+			#{n_no},
 			#{t_num},
-			#{_content},
+			#{t_content},
+			#{t_title},
 			#{t_id},
-			#{t_date}
+			sysdate
 		)
 	</insert>
+	
+	<update id="NoticeUpdate">
+		UPDATE tnotice
+		SET t_title = #{t_title},
+			t_content = #{t_content},
+			t_date = sysdate
+		WHERE n_no = #{n_no}
+		
+	</update>
+	<!-- 팀 공지 삭제 -->
+	<delete id="NoticeDelete" parameterType="TnoticeVO">
+		DELETE FROM tnotice
+		WHERE n_no = #{n_no}
+	</delete>
+
+	<!-- 팀원 수 -->
+	<select id="countSelect" resultType="TeamlistVO">
+		SELECT COUNT(*) AS TEAM
+		FROM teamlist
+		WHERE t_num = #{t_num}
+	</select>
 
 	<!-- 팀 공지 조회 -->
 	<select id="NoticeSelect" parameterType="TnoticeVO" resultType="TnoticeVO">
@@ -119,6 +148,14 @@
 		FROM tnotice
 		WHERE t_num = #{t_num}
 	</select>
+	
+	<!-- 팀 공지 상세 조회 -->
+	<select id="NoticeSelectInfo" parameterType="TnoticeVO" resultType="TnoticeVO">
+		SELECT *
+		FROM tnotice
+		WHERE t_num = #{t_num} AND n_no = #{n_no}
+	</select>
+	
 	<!-- 멤버리스트 조회 -->
 	<select id="getMembers" parameterType="MembersVO"
 		resultType="MembersVO">
@@ -155,10 +192,10 @@
 			t_wn,
 			t_no)
 		VALUES(
-			t_num = #{t_num},
-			t_log = #{t_log},
-			t_wn = #{t_wn},
-			t_no = #{t_no}
+			#{t_num},
+			#{t_log},
+			#{t_wn},
+			#{t_no}
 		)
 	</insert>
 
@@ -182,4 +219,29 @@
 	set t_num = #{t_num} 
 	where id=#{id}
 	</update>
+	
+	<!-- 사진 조회 -->
+	<select id="picSelect" resultType="TgalleryVO">
+		select img
+		from tgallery
+		where t_num = #{t_num}
+	</select>
+	
+	<!-- 사진 삽입 -->
+	<insert id="picInsert" parameterType="TgalleryVO">
+		<selectKey order="BEFORE" keyProperty="g_no"
+			resultType="int">
+			SELECT MAX(g_no)+1
+			FROM tgallery
+		</selectKey>
+		INSERT INTO tgallery (
+			g_no,
+		    t_num,
+			img)
+		VALUES(
+			#{g_no},
+			#{t_num},
+			#{img}
+		)
+	</insert>
 </mapper>

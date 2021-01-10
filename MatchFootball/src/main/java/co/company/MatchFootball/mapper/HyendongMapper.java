@@ -5,6 +5,7 @@ import java.util.List;
 import co.company.MatchFootball.vo.MembersVO;
 import co.company.MatchFootball.vo.TeamVO;
 import co.company.MatchFootball.vo.TeamlistVO;
+import co.company.MatchFootball.vo.TgalleryVO;
 import co.company.MatchFootball.vo.TnoticeVO;
 import co.company.MatchFootball.vo.TournamentTeamVO;
 import co.company.MatchFootball.vo.TournamentVO;
@@ -23,6 +24,7 @@ public interface HyendongMapper {
 	public int teamUpdate(TeamVO teamVO); //팀 수정
 	public int teamListInsert(TeamlistVO teamlistVO); //팀 가입
 	public int tNumUpdate(MembersVO membersVO); //팀번호 변경
+	public int countSelect(TeamlistVO teamlistVO);
 	
 	public List<TournamentVO> tournamentListSelect(); //토너먼트 리스트 조회
 	public TournamentVO getTournament(TournamentVO tournamentVO); //토너먼트 정보 단건 조회
@@ -32,4 +34,10 @@ public interface HyendongMapper {
 	
 	public int NoticeInsert(TnoticeVO tNoticeVO); //팀 공지 등록
 	public List<TnoticeVO> NoticeSelect(TnoticeVO tNoticeVO); //팀 공지 조회
+	public TnoticeVO NoticeSelectInfo(TnoticeVO tNoticeVO); //팀 공지 상세 조회
+	public int NoticeUpdate(TnoticeVO tNoticeVO); //팀 공지 수정
+	public int NoticeDelete(TnoticeVO tNoticeVO); //팀 공지 삭제
+	
+	public List<TgalleryVO> picSelect(TgalleryVO tgalleryVO); //팀 사진 조회
+	public int picInsert(TgalleryVO tgalleryVO); //팀 사진 등록
 }

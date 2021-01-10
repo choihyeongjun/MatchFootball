@@ -7,12 +7,133 @@
 
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
 
 <title>매니저관리페이지</title>
+
+<script>
+$(function(){
+	managerList();
+	managerSelect();
+	//managerUpdate();
+	//managerDelete();
+});
+
+//사용자 조회 요청
+function managerSelect() {
+	//조회 버튼 클릭
+	$('body').on('click','#btnSelect',function(){
+		var userId = $(this).closest('tr').find('#hidden_userId').val();
+		//특정 사용자 조회
+		$.ajax({
+			url:'users/'+userId,
+			type:'GET',
+			contentType:'application/json;charset=utf-8',
+			dataType:'json',
+			error:function(xhr,status,msg){
+				alert("상태값 :" + status + " Http에러메시지 :"+msg);
+			},
+			success:userSelectResult
+		});
+	}); //조회 버튼 클릭
+}//userSelect
+
+//사용자 조회 응답
+function userSelectResult(user) {
+	$('input:text[name="id"]').val(user.id);
+	$('input:text[name="name"]').val(user.name);
+	$('input:text[name="password"]').val(user.password);
+	$('select[name="role"]').val(user.role).attr("selected", "selected");
+}//userSelectResult
+
+
+
+//사용자 목록 조회 요청
+function managerList() {
+	$.ajax({
+		url:'../manager/ajax',
+		//contentType:'application/json;charset=utf-8',
+		dataType:'json',
+		error:function(xhr,status,msg){
+			alert("상태값 :" + status + " Http에러메시지 :"+msg);
+		},
+		success:managerListResult
+	});
+}//userList
+
+//사용자 목록 조회 응답
+function managerListResult(data) {
+	$("#manager_main").empty();
+	$.each(data,function(idx,item){
+		$('<tr>')
+		.append($('<td>').html(item.id))    	//매니저아이디
+		.append($('<td>').html(item.name))	    //매니저이름
+		.append($('<td>').html(item.gender))    //매니저성별
+		.append($('<td>').html(item.pnum))    	//매니저연락처
+		.append($('<td>').html(					//매니저권한
+				$('<select id="author" class=\'author\'> '+
+				'<option selected value="">선택</option>'+
+				'<option value="manager">매니저</option>'+
+				'<option value="managerwait">매니저대기</option>'+
+				'<option value="managerstop">매니저정지</option>'+
+				'</select>').val(item.author)))
+		.append($('<td>').html(item.comm))    	//매니저심판내역
+		.append($('<td>').html(item.point))    	//매니저포인트
+		.append($('<td>').html('<button id=\'btnSelect\'class="btn btn-success">상세조회</button>'))
+		.append($('<td>').html('<button id=\'btnDelete\'class="btn btn-danger">매니저삭제</button>'))
+		.append($('<input type=\'hidden\' id=\'hidden_userId\'>').val(item.id))
+		.appendTo('#manager_main');
+		console.log(">> "+item.author);
+	});//each
+	$('#dataTable').DataTable();
+}//userListResult
+
+/* function userUpdate() {
+	//업데이트 버튼 클릭
+	$('main').on('click','#btnUpdate',function(){
+		var userId = $(event.target).closest('tr').find('#hidden_userId').val();
+		var author = $(event.target).closest('tr').find("#author").val();
+		var author2 = $(event.target).closest('tr').find("#author2").val();
+		var result = confirm(userId +" 사용자를 업데이트 하시겠습니까?");
+		if(result) {
+			$.ajax({
+				url:'../userupdate',
+				data : {id : userId, author: author, author2: author2},
+				dataType:'json',
+				error:function(xhr,status,msg){
+					//console.log("상태값 :" + status + " Http에러메시지 :"+msg);
+					console.log("dddd");
+				}, success: location.reload() 
+			});
+		}//if
+	}); //업데이트 버튼 클릭
+}//userupdate */
+
+/* function userDelete() {
+	//삭제 버튼 클릭
+	$('main').on('click','#btnDelete',function(){
+		var userId = $(event.target).closest('tr').find('#hidden_userId').val();
+		var result = confirm(userId +" 사용자를 정말로 삭제하시겠습니까?");
+		if(result) {
+			console.log("아이디값: "+userId)
+			$.ajax({
+				url:'../userdelete',  
+				contentType:'application/json;charset=utf-8',
+				dataType:'json',
+				type : 'GET',
+				data :{id : userId},
+				error:function(xhr,status,msg){
+					console.log("상태값 :" + status + " Http에러메시지 :"+msg);
+				}, success: location.reload()
+			});      
+		}//if
+	}); //삭제 버튼 클릭
+}//userDelete */
+</script>
+
+
 
 </head>
 <body>
@@ -37,6 +158,62 @@
 						</div>
 					</div>
 					
+	<div class="col-md-7 col-lg-8 col-xl-8">
+		<div class="page-header bordered">
+			<h1 id="item-2"><small>매니저 상세프로필</small></h1>
+		</div>
+		<div class="row gutters-sm"> <br>
+			<div class="col-md-5 mb-3">
+				<div class="card" style="height:525px;">
+					<div class="card-body">
+						<div class="d-flex flex-column align-items-center text-center"> <br> 
+						<img src="" alt="Admin" class="rounded-circle" width="150">
+							<div class="mt-3"> <br>
+								<h4 style="font-family: 'NanumSquareRound';">${mb.name }</h4> <br>	
+								<p class="text-secondary mb-1">${mb.location2}</p> <br>	
+								<p class="text-muted font-size-sm">${mb.pos}</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-7">
+				<div class="card mb-3">
+					<div class="card-body">
+						<div class="row">
+							<div class="col-sm-3"><a class="mb-0">이름</a></div>
+							<div class="col-sm-9 text-secondary">${mb.gender}</div>
+						</div>
+							<hr>
+						<div class="row">
+							<div class="col-sm-3"><a class="mb-0">생년월일</a></div>
+							<div class="col-sm-9 text-secondary">${mb.location1}</div></div>
+							<hr>
+						<div class="row">
+							<div class="col-sm-3"><a class="mb-0">성별</a></div>
+							<div class="col-sm-9 text-secondary">${mb.email}</div></div>
+							<hr>
+						<div class="row">
+							<div class="col-sm-3"><a class="mb-0">연락처</a></div>
+							<div class="col-sm-9 text-secondary">${mb.pnum}</div></div>
+							<hr>
+						<div class="row">
+							<div class="col-sm-3"><a class="mb-0">권한</a></div>
+							<div class="col-sm-9 text-secondary">${mb.pnum}</div></div>
+							<hr>
+						<div class="row">
+							<div class="col-sm-3"><a class="mb-0">심판내역</a></div>
+							<div class="col-sm-9 text-secondary">${mb.pnum}</div></div>
+							<hr>		
+						<div class="row">
+							<div class="col-sm-3"><a class="mb-0">포인트</a></div>
+							<div class="col-sm-9 text-secondary">${mb.author2}</div></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+					
 					<!-- 매니저현황 -->
 					<div class="card mb-4">
 						<div class="card-header">
@@ -47,7 +224,6 @@
 								<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 									<thead align="center">
 										<tr>
-											<th style="width: 10px;">No.</th>
 											<th style="width: 80px;">ID</th>
 											<th>이름</th>
 											<th>성별</th>
@@ -55,11 +231,13 @@
 											<th>권한</th>
 											<th>심판내역</th>
 											<th>포인트</th>
+											<th></th>
+											<th></th>
+											
 										</tr>
 									</thead>
 									<tfoot align="center">
 										<tr>
-											<th>No.</th>
 											<th>ID</th>
 											<th>이름</th>
 											<th>성별</th>
@@ -67,35 +245,17 @@
 											<th>권한</th>
 											<th>심판내역</th>
 											<th>포인트</th>
+											<th></th>
+											<th></th>
 										</tr>
 									</tfoot>
-									<tbody align="center">
-									<c:forEach items="${managers}" var="manager">
-										<tr>
-											<td></td>
-											<td>${manager.id}</td>
-											<td>${manager.name}</td>
-											<td>${manager.gender}</td>
-											<td>${manager.pnum}</td>
-											<td>
-												<select name="manager">
-													<option value="" selected="selected">선택</option>
-													<option value="일반회원">일반회원</option>
-													<option value="매니저">매니저</option>
-													<option value="매니저대기">매니저대기</option>
-													<option value="매니저정지">매니저정지</option>
-												</select>
-											</td>
-											<td>${manager.comm}</td>
-											<td>${manager.point}</td>
-										</tr>
-									</c:forEach>
-									</tbody>
+									<tbody style="text-align: center;" id="manager_main"></tbody>
 								</table>
 							</div>
 						</div>
 					</div>
 				</div>
 			</main>
+		</div>
 </body>
 </html>

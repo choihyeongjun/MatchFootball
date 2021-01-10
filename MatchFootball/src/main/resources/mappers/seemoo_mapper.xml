@@ -35,7 +35,7 @@
 
 	<!-- 팀단건조회 -->
 	<select id="teams" parameterType="TeamVO" resultType="TeamVO">
-		SELECT * FROM TEAM WHERE T_NAME = #{t_name}
+		SELECT * FROM TEAM WHERE T_NUM = #{t_num}
 	</select>
 	
 	<!-- 팀 권한 수정 -->
@@ -47,12 +47,17 @@
 	<select id="teamsdelete" parameterType="TeamVO">
 		DELETE FROM TEAM WHERE T_NUM = #{t_num}
 	</select>
-
+	
+	<!-- 블랙팀 조회 -->
+	<select id="blackteamList" resultType="BlackTeamListVO">
+		SELECT T.T_NUM, T.T_NAME, T.T_LEVEL, T.T_AUTHOR, T.T_M, B.STOPDATE, B.STOPREASON FROM TEAM T JOIN BLACKTEAM B ON T.T_NUM = B.T_NUM
+	</select>
+	
 <!-- 매니저관리 -->
 
 	<!-- 매니저조회 -->
 	<select id="managerList" resultType="ManagersVO">
-		SELECT MEMBERS.ID, NAME, GENDER, PNUM, AUTHOR, POINT , COMM FROM MEMBERS, MANAGER WHERE MEMBERS.ID=MANAGER.ID
+		SELECT MEMBERS.ID, NAME, GENDER, PNUM, AUTHOR, POINT, COMM FROM MEMBERS, MANAGER WHERE MEMBERS.ID=MANAGER.ID
 	</select>
 	
 	<!-- 매니저 승인|대기조회 -->

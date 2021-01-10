@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +14,7 @@
 <!-- Favicon -->
 <link rel="shortcut icon" href="assets/images/logo/favicon.png"
 	type="image/x-icon">
-
+<link rel="stylesheet" href="resources/css/teamMenu.css">
 <!-- CSS Files -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/dong1/assets/css/animate-3.7.0.css">
@@ -39,6 +40,18 @@
 	}
 </script>
 <body>
+	<ul class="hi">
+		<c:if test="${sessionScope.id ne null }">
+			<li><a href="myTeamInfo?t_num=${member.t_num }">팀 정보</a></li>
+		</c:if>
+		<c:if test="${sessionScope.id eq null }">
+			<li><a href="teamMake">팀 생성</a></li>
+		</c:if>
+		<li><a href="teamGallery?t_num=${member.t_num }">팀갤러리</a></li>
+		<li><a href="teamNotice?t_num=${teamInfo.t_num }">팀 공지</a></li>
+		<li><a href="http://localhost/MatchFootball/teamInvite">팀 초대</a></li>
+		<li><a href="http://localhost/MatchFootball/teamList">팀 리스트</a></li>
+	</ul>
 	<form action="teamMakeInsert" method="post"
 		encType="multipart/form-data">
 		<!-- encType 이미지 등록시 필수 -->
@@ -90,9 +103,8 @@
 							placeholder="팀소개"></textarea>
 					</div>
 					<hr>
-					팀로고 <input type="file" id="files" name=file /><br>
-					<br> <img id="image"
-						style="height: 200px; width: 200px; border: none" />
+					팀로고 <input type="file" id="files" name=file /><br> <br>
+					<img id="image" style="height: 200px; width: 200px; border: none" />
 					<script>
 						document.getElementById("files").onchange = function() {
 							var reader = new FileReader();
@@ -107,8 +119,8 @@
 					<p>팀원 공개 여부</p>
 					<div class="switch-wrap d-flex justify-content-between">
 						<div class="primary-switch">
-							<input type="checkbox" id="t_hidden" name="t_hidden" value="Y" checked> 
-							<label for="t_hidden"></label>
+							<input type="checkbox" id="t_hidden" name="t_hidden" value="Y"
+								checked> <label for="t_hidden"></label>
 						</div>
 					</div>
 				</div>
