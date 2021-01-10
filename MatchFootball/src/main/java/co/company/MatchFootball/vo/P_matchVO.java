@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class P_matchVO {//개인매치
 	String m_no;//매치시퀀스
-	String mtype;//경기타입
+	String m_type;//경기타입
 	String f_name;//경기장이름
 	String f_address;//구장주소
 	String price;//가격

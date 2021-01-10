@@ -31,9 +31,8 @@
 			<c:if test="${sessionScope.id eq null }">
 			<li><a href="teamMake">팀 생성</a></li>
 			</c:if>
-			<li><a href="http://localhost/MatchFootball/teamGallery">팀
-					갤러리</a></li>
-			<li><a href="teamNotice?t_num=${teamInfo.t_num }">팀 공지</a></li>
+			<li><a href="teamGallery?t_num=${member.t_num }">팀갤러리</a></li>
+			<li><a href="teamNotice?t_num=${member.t_num }">팀 공지</a></li>
 			<li><a href="http://localhost/MatchFootball/teamInvite">팀 초대</a></li>
 			<li><a href="http://localhost/MatchFootball/teamList">팀 리스트</a></li>
 	</ul>

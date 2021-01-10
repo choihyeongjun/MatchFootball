@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+w<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -112,7 +112,9 @@
 		</div>
 	</form>
 	<form action="teamlistInsert?t_num=${teamInfo.t_num}" method="post">
+			<c:if test="${members.t_num eq null}">
 			<button type="submit" class="btn btn-primary">팀 가입 신청</button>
+			</c:if>
 	</form>
 </body>
 </html>

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import co.company.MatchFootball.mapper.SeemooMapper;
 import co.company.MatchFootball.vo.BlackTeamListVO;
 import co.company.MatchFootball.vo.BlackTeamVO;
+import co.company.MatchFootball.vo.ManagersVO;
 import co.company.MatchFootball.vo.MembersVO;
 import co.company.MatchFootball.vo.NoticeVO;
 import co.company.MatchFootball.vo.TeamVO;
@@ -99,7 +100,7 @@ public class AdminController {
 		return "seemoo/blackteam";
 	}
 	
-	@RequestMapping(value = "/blackteam/ajax", method = RequestMethod.GET) // 블랙팀관리 페이지 (ajax로 전체조회)
+	@RequestMapping(value = "/blackteam/ajax", method = RequestMethod.GET) // 블랙팀관리 조회페이지 (ajax로 전체조회)
 	@ResponseBody	
 	public List<BlackTeamListVO> blackteamlist(Model model, HttpServletRequest request, HttpServletResponse reponse) {
 		return seemoomapper.blackteamList();
@@ -114,6 +115,12 @@ public class AdminController {
 	public String manager(Model model, TeamVO tvo, HttpServletRequest request, HttpServletResponse reponse) {
 		model.addAttribute("managers", seemoomapper.managerList());
 		return "seemoo/manager";
+	}
+	
+	@RequestMapping(value = "/manager/ajax", method = RequestMethod.GET) // 매니저관리 조회페이지 (ajax로 전체조회)
+	@ResponseBody	
+	public List<ManagersVO> managerlist(Model model, HttpServletRequest request, HttpServletResponse reponse) {
+		return seemoomapper.managerList();
 	}
 
 	@RequestMapping(value = "/admin/applymanager", method = RequestMethod.GET) // 매니저관리 페이지(매니저 신청|승인대기)

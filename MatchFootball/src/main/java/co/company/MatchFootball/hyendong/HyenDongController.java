@@ -41,7 +41,7 @@ public class HyenDongController {
 	}
 
 	// 팀생성처리
-	@RequestMapping("/teamlistInsert?t_num=${teamInfo.t_num}")
+	@RequestMapping("/teamMakeInsert")
 	public String insert(HttpServletRequest request, TeamVO teamVO, MembersVO membersVO, HttpSession session, Model model, TeamlistVO teamlistVO) {
 		// request miltipart로 캐스팅
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
@@ -187,24 +187,65 @@ public class HyenDongController {
 	}
 	// 팀공지
 	@RequestMapping("/teamNotice")
-	public String teamNotice(Model model, TnoticeVO tNoticeVO) {
+	public String teamNotice(Model model, TnoticeVO tNoticeVO, HttpSession session, TeamlistVO teamlistVO, TeamVO teamVO) {
 		model.addAttribute("teamNotice", hyendongMapper.NoticeSelect(tNoticeVO));
+		String id = (String)session.getAttribute("id");
+		teamlistVO.setId(id);
+		model.addAttribute("teamInfo", hyendongMapper.getTeam(teamVO));
+		model.addAttribute("updateButton", hyendongMapper.getTeamMemberss(teamlistVO));
 		return "hyendong/teamNotice";
 	}
 
 	// 팀 공지 확인
 	@RequestMapping("/teamNoticeInfo")
-	public String teamNoticeInfo(Model model, TnoticeVO tNoticeVO) {
+	public String teamNoticeInfo(Model model, TnoticeVO tNoticeVO, HttpSession session, TeamlistVO teamlistVO, TeamVO teamVO) {
 		model.addAttribute("teamNoticeInfo", hyendongMapper.NoticeSelectInfo(tNoticeVO));
+		String id = (String)session.getAttribute("id");
+		teamlistVO.setId(id);
+		model.addAttribute("teamInfo", hyendongMapper.getTeam(teamVO));
+		model.addAttribute("updateButton", hyendongMapper.getTeamMemberss(teamlistVO));
 		return "hyendong/teamNoticeInfo";
 	}
 
 	// 팀 공지 등록
 	@RequestMapping("/teamNoticeInsert")
-	public String teamNoticeInsert() {
+	public String teamNoticeInsert(HttpSession session, TeamVO teamVO, Model model) {
+		model.addAttribute("teamInfo", hyendongMapper.getTeam(teamVO));
 		return "hyendong/teamNoticeInsert";
 	}
+	
+	// 팀 공지 등록 처리
+	@RequestMapping("/teamNoticeInsertt")
+	public String tNoticeInsert(TnoticeVO tNoticeVO) {
+		hyendongMapper.NoticeInsert(tNoticeVO);
+		return "redirect:/teamNoticeInfo?t_num=" + tNoticeVO.getT_num() + "&n_no=" + tNoticeVO.getN_no();
+	}
 
+	// 팀 공지 수정
+	@RequestMapping("/teamNoticeUpdate")
+	public String tNoticeUpdate(Model model, TnoticeVO tNoticeVO, HttpSession session, TeamlistVO teamlistVO, TeamVO teamVO) {
+		model.addAttribute("teamNoticeInfo", hyendongMapper.NoticeSelectInfo(tNoticeVO));
+		String id = (String)session.getAttribute("id");
+		teamlistVO.setId(id);
+		model.addAttribute("teamInfo", hyendongMapper.getTeam(teamVO));
+		model.addAttribute("updateButton", hyendongMapper.getTeamMemberss(teamlistVO));
+		return "hyendong/teamNoticeUpdate";
+	}
+	
+	// 팀 공지 수정 처리
+		@RequestMapping("/teamNoticeUpdatee")
+		public String tNoticeUpdatee(TnoticeVO tNoticeVO) {
+			hyendongMapper.NoticeUpdate(tNoticeVO);
+			return "redirect:/teamNoticeInfo?t_num=" + tNoticeVO.getT_num() + "&n_no=" + tNoticeVO.getN_no();
+		}
+	
+	// 팀 공지 삭제 처리
+	@RequestMapping("/teamNoticeDelete")
+	public String tNoticeDelete(TnoticeVO tNoticeVO) {
+		hyendongMapper.NoticeDelete(tNoticeVO);
+		return "redirect:/teamNotice?t_num=" + tNoticeVO.getT_num();
+	}
+	
 	// 팀 초대
 	@RequestMapping("/teamInvite")
 	public String teamInvite() {

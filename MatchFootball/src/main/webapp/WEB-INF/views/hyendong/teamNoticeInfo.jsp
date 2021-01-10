@@ -103,15 +103,26 @@
 			</div>
 			<div class="articleBody">
 				<pre>${teamNoticeInfo.t_content }</pre>
-				<ul class="helpTagWrap">
-					<li><a href="/cs/search/%EB%88%88/">눈</a></li>
-					<li><a href="/cs/search/%20%EA%B8%B0%EC%83%81%EC%95%85%ED%99%94/">기상악화</a></li>
-				</ul>
+			</div>
+			<div class="articleBody">
+				<pre>${teamNoticeInfo.t_date }</pre>
 			</div>
 			<br>
 			<input type="button" class="btn btn-primary" value="목록" onclick="history.back(-1);">
-			<button type="button" class="btn btn-primary">수정</button>
-			<button type="button" class="btn btn-primary">삭제</button>
+			
+			<c:if test="${updateButton.t_author eq '팀장' }">
+			<form action="teamNoticeUpdate">
+			<input type="text" value="${teamInfo.t_num }" name="t_num" style="display: none">
+				<input type="text" value="${teamNoticeInfo.n_no }" name="n_no" style="display: none">
+			<button type="submit" class="btn btn-primary">수정</button>
+			</form>
+			
+			<form action="teamNoticeDelete" method="post">
+				<input type="text" value="${teamInfo.t_num }" name="t_num" style="display: none">
+				<input type="text" value="${teamNoticeInfo.n_no }" name="n_no" style="display: none">
+				<button type="submit" class="btn btn-primary">삭제</button>
+			</form>
+			</c:if>
 		</div>
 </body>
 </html>

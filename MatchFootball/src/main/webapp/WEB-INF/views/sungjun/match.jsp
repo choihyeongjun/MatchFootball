@@ -95,7 +95,6 @@ li {
 	align-items: center;
 	justify-content: flex-start;
 	flex-wrap: wrap;
-	
 }
 
 p {
@@ -133,6 +132,15 @@ p {
 	border-radius: 50px;
 	padding-top: 7px;
 	padding-bottom: 7px;
+}
+
+.ap-info {
+	background-color: #314d9f;
+	border-radius: 10px;
+	font-size: 17px;
+	color: white;
+	text-align: center;
+	padding: 10px;
 }
 </style>
 <script>
@@ -263,7 +271,11 @@ $(function() {
 				<c:forEach var="p_match" items="${p_matchVO }">
 					<li class="listl"><a class="lista" style="cursor: pointer;"
 						href="matchDetail?m_no=${p_match.m_no }">
+<<<<<<< HEAD
+							<div style="text-align: center; width: 10%; font-weight: bold;">
+=======
 							<div style="text-align: center; width: 10%;">
+>>>>>>> branch 'master' of https://github.com/tjdwns631/MatchFootball.git
 								<p>${p_match.m_hour }</p>
 							</div>
 							<div class="nameli" style="font-size: 16px; width: 80%;">
@@ -271,15 +283,13 @@ $(function() {
 									<h3>${p_match.f_name }</h3>
 								</div>
 								<div class="m-im-t">
-									<span>⦁ ${p_match.mtype } 매치</span><span>·
+									<span>⦁ ${p_match.m_type } 매치</span><span>·
 										${p_match.p_max }</span> <span>레벨${p_match.lv }Lv</span> <input
 										type="hidden" value="${p_match.m_no }">
 								</div>
 							</div>
 							<div style="width: 20%;">
-								<p class="ap-info"
-									style="background-color: #314d9f; border-radius: 10px; font-size: 17px; color: white; text-align: center; padding: 10px;">신청
-									가능</p>
+								<p class="ap-info" style="">신청 가능</p>
 							</div>
 					</a></li>
 				</c:forEach>
