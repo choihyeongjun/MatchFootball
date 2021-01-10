@@ -35,6 +35,8 @@ public interface HyendongMapper {
 	public int NoticeInsert(TnoticeVO tNoticeVO); //팀 공지 등록
 	public List<TnoticeVO> NoticeSelect(TnoticeVO tNoticeVO); //팀 공지 조회
 	public TnoticeVO NoticeSelectInfo(TnoticeVO tNoticeVO); //팀 공지 상세 조회
+	public int NoticeUpdate(TnoticeVO tNoticeVO); //팀 공지 수정
+	public int NoticeDelete(TnoticeVO tNoticeVO); //팀 공지 삭제
 	
 	public List<TgalleryVO> picSelect(TgalleryVO tgalleryVO); //팀 사진 조회
 	public int picInsert(TgalleryVO tgalleryVO); //팀 사진 등록

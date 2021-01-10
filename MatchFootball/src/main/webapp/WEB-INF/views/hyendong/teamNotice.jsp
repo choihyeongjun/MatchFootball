@@ -77,7 +77,9 @@ li {
 		</c:forEach>
 	</div>
 	<div align="center">
-		<button type="button" class="btn btn-primary">공지 등록</button>
+		<c:if test="${updateButton.t_author eq '팀장' }">
+		<button type="button" class="btn btn-primary" onclick="location.href='teamNoticeInsert?t_num=${teamInfo.t_num}'" >공지 등록</button>
+		</c:if>
 	</div>
 </body>
 </html>

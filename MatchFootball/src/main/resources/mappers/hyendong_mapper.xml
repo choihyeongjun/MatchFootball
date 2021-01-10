@@ -99,19 +99,41 @@
 
 	<!-- 팀 공지 등록 -->
 	<insert id="NoticeInsert" parameterType="TnoticeVO">
+		<selectKey order="BEFORE" keyProperty="n_no"
+			resultType="int">
+			SELECT NVL(MAX(n_no),0)+1
+			FROM tnotice
+		</selectKey>
 		INSERT INTO tnotice(
+				n_no,
 				t_num,
 				t_content,
 				t_title,
 				t_id,
 				t_date)
 		VALUES (
+			#{n_no},
 			#{t_num},
-			#{_content},
+			#{t_content},
+			#{t_title},
 			#{t_id},
-			#{t_date}
+			sysdate
 		)
 	</insert>
+	
+	<update id="NoticeUpdate">
+		UPDATE tnotice
+		SET t_title = #{t_title},
+			t_content = #{t_content},
+			t_date = sysdate
+		WHERE n_no = #{n_no}
+		
+	</update>
+	<!-- 팀 공지 삭제 -->
+	<delete id="NoticeDelete" parameterType="TnoticeVO">
+		DELETE FROM tnotice
+		WHERE n_no = #{n_no}
+	</delete>
 
 	<!-- 팀원 수 -->
 	<select id="countSelect" resultType="TeamlistVO">
@@ -127,7 +149,7 @@
 		WHERE t_num = #{t_num}
 	</select>
 	
-	<!-- 팀 공지 조회 -->
+	<!-- 팀 공지 상세 조회 -->
 	<select id="NoticeSelectInfo" parameterType="TnoticeVO" resultType="TnoticeVO">
 		SELECT *
 		FROM tnotice

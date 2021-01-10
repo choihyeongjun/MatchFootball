@@ -14,7 +14,7 @@
 <!-- Favicon -->
 <link rel="shortcut icon" href="assets/images/logo/favicon.png"
 	type="image/x-icon">
-
+<link rel="stylesheet" href="resources/css/teamMenu.css">
 <!-- CSS Files -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/dong1/assets/css/animate-3.7.0.css">
