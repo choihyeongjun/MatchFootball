@@ -68,29 +68,43 @@ footer {
 	function inviteSelect() {
 		$('body').on('click', '#btnSelect', function() {
 			var userId = $(this).closest('tr').find('#hidden_userId').val();
+			var c_id='<%=(String)session.getAttribute("id")%>';
+			console.log(c_id);
 			console.log(userId);
 			$.ajax({
 				url : "bollowsearch/ajax",
 				type : 'GET',
 				data : {
-					id : userId,
+					c_id:c_id,
 					title:$('#title').val(),
+					comm:$('#comm').val(),
+					r_id : userId,
+					id:userId
 					
 				},
 				dataType : 'json',
 				error : function(xhr, status, msg) {
 					alert("상태값 :" + status + " Http에러메시지 :" + msg);
 				},
-				success : invitelist
+				success : function(data){
+					for(var i=0;i<data.length;i++){
+						var tag="<tr>"+
+						"<td>"+data[i].r_id+"</td>"
+						+"<td>"+data[i].s_date+"</td>"
+						+"<td>"+data[i].title+"</td>"
+						+"<td>"+data[i].comm+"</td>"
+						+"<td>"+data[i].check1+"</td>"
+						+"</tr>"
+						$("#dd").append(tag);
+					}
+				}
 			});
 		});
 	}//inviteselect
 	//document.querySelector('#dd > tr > td').innerHTML = 111
 
 	function invitelist(data) {
-		$('<tr>').append($('<td>').html(data.id)).append(
-				$('<td>').html(data.name)).append(
-				$('<td id="state">').html("초대중")).appendTo('#dd')
+		
 	};
 	function memberlist() {
 		$.ajax({
@@ -158,7 +172,9 @@ footer {
 			<table class="table text-center">
 				<tr class="tr1">
 					<th class="text-center">아이디</th>
-					<th class="text-center">이 름</th>
+					<th class="text-center">초대날짜</th>
+					<th class="text-center">제목</th>
+					<th class="text-center">내용</th>
 					<th class="text-center">초대 여부</th>
 				</tr>
 				<tbody id="dd">
@@ -203,7 +219,7 @@ footer {
 				<!-- Modal footer -->
 				<div class="modal-footer">
 					<button type="submit" class="btn btn-danger" data-dismiss="modal">저장</button>
-					<button type="button" class="btn btn-danger" data-dismiss="modal">닫기</button>
+					<input type="reset" class="btn btn-danger" data-dismiss="modal" value="닫기"></button>
 				</div>
 			</div>
 		</div>

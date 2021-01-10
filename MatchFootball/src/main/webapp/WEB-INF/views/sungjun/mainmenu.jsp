@@ -85,6 +85,7 @@ body {
 	<nav class="navbar navbar-expand-lg navbar-light bg-light"
 		style="box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)">
 		<div class="container-md">
+			${sessionScope.id}
 			<a class="navbar-brand"
 				href="${pageContext.request.contextPath}/MatchFootball"
 				style="color: #04519b"><img src="resources/img/99.png"
