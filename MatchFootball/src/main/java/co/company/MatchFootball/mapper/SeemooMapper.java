@@ -29,6 +29,7 @@ public interface SeemooMapper {
 	public List<ManagerapplyVO> managerapplyList(); // 매니저 승인|대기 전체조회
 	
 	public List<NoticeVO> noticeList(); 			//조회
+	public List<NoticeVO> noticeselect();			//단건조회
 	public NoticeVO noticeinsert(NoticeVO vo);		//입력
 	public NoticeVO noticedelete(NoticeVO vo); 		//삭제
 }

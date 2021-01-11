@@ -73,9 +73,14 @@
 		SELECT * FROM NOTICE
 	</select>
 	
+	<!-- 공지 단건조회 -->
+	<select id="noticeselect" parameterType="NoticeVO" resultType="NoticeVO">
+		SELECT * FROM NOTICE WHERE N_NO = #{n_no}
+	</select>
+	
 	<!-- 등록 -->
 	<insert id="noticeinsert">
-		<selectKey order="BEFORE" keyProperty="n_no" resultType="int">
+		<selectKey order="BEFORE" keyProperty="n_no" resultType="string">
 			SELECT MAX(N_NO)+1
 			FROM NOTICE
 		</selectKey>

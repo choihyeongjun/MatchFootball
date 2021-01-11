@@ -57,7 +57,7 @@ function noticeDelete() {
 	}); //삭제 버튼 클릭
 }//noticeDelete
 
-/* //사용자 조회 요청
+//사용자 조회 요청
 function noticeSelect() {
 	//조회 버튼 클릭
 	$('body').on('click','#btnSelect',function(){
@@ -84,7 +84,7 @@ function noticeSelectResult(notice) {
 	$('select[name="role"]').val(user.role).attr("selected", "selected");
 }//userSelectResult
 
-//사용자 수정 요청
+/* //사용자 수정 요청
 function noticeUpdate() {
 	//수정 버튼 클릭
 	$('#btnUpdate').on('click',function(){
@@ -106,8 +106,8 @@ function noticeUpdate() {
 		    }
 		});
 	});//수정 버튼 클릭
-}//userUpdate
- */
+}//userUpdate */
+
 //사용자 등록 요청
 function noticeInsert(){
 	//등록 버튼 클릭

@@ -177,7 +177,13 @@ public class AdminController {
 		return seemoomapper.noticeList();
 	}
 	
-	@RequestMapping(value = "/noticeinsert", method = RequestMethod.POST)
+	@RequestMapping(value = "/noticeselect", method = RequestMethod.GET) //(단건조회)
+	@ResponseBody
+	public String noticeselect(Model model, NoticeVO vo, HttpServletRequest request, HttpServletResponse reponse) {
+		return "seemoo/noticeselect";	
+	}
+	
+	@RequestMapping(value = "/noticeinsert", method = RequestMethod.POST) //입력
 	public String noticeinsert(NoticeVO vo,Model model)  {
 		 seemoomapper.noticeinsert(vo);
 		 model.addAttribute("list",seemoomapper.noticeList());
