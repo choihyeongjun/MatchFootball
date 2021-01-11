@@ -9,14 +9,16 @@ import co.company.MatchFootball.vo.TeamVO;
 
 public interface DoeunMapper {
 	public MembersVO getUser(MembersVO members); // 멤버 정보 조회
-	public int insertMem (MembersVO members);
-	public int upMem(MembersVO mem);
-	public PointVO selTpo(PointVO po);
-	public MembersVO myPoint(MembersVO members);
-	public int sendMsg(MessageVO msg);
-	public List<MessageVO> tomsgList(MessageVO msg);
+	public int insertMem (MembersVO members); //메세지 발송
+	public int upMem(MembersVO mem); //회원 수정
+	public List<PointVO> pointList(PointVO po); //포인트 사용 내역 조회
+	public int getPoCnt(PointVO po); // 포인트 페이징
+	public MembersVO myPoint(MembersVO members); //
+	public int sendMsg(MessageVO msg); // 보낸 메세지 조회
+	public List<MessageVO> tomsgList(MessageVO msg); //메세지함
 	public int getCount1(MessageVO msg);
 	public List<MessageVO> sendmsgList(MessageVO msg);
 	public int getCount2(MessageVO msg);
+	public MessageVO reviewMsg(MessageVO msg);
 
 }

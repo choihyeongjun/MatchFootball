@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="my"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,64 +43,67 @@
 	clear: both;
 }
 </style>
+<script>
+	function goPage(q) {
+		location.href = "usedPoint?page=" + q;
+	}
+</script>
 </head>
 <body>
-<div id="main" style="height:850px">
-	<div id="content">
-		<div class="container">
-		
-		<div class="row has-sidebar">
-						<jsp:include page="Mybar.jsp"></jsp:include>
+	<div id="main" style="height: 850px">
+		<div id="content">
+			<div class="container">
 
-			<div class="col-md-7 col-lg-8 col-xl-8"
+				<div class="row has-sidebar">
+					<jsp:include page="Mybar.jsp"></jsp:include>
+
+					<div class="col-md-7 col-lg-8 col-xl-8"
 						style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;">
-				<div class="page-header bordered">
+						<div class="page-header bordered">
 							<h1 id="item-2">
 								포인트 내역<small>POINT</small>
 							</h1>
 						</div>
-				<div class="row" style="width: auto">
-					<div style="margin-top: 15px;" >
-						<table border="1" style="width: 100%">
-							<tr>
-								
-								<th>날짜</th>
-								<th>사용내역</th>
-								<th>포인트</th>
-								
-							</tr>
-							<tr>						
-								<td>오늘</td>								
-								<td>포인트 충전</td>
-								<td>30000</td>								
-							</tr>
-								<tr>
-								<td>오늘</td>								
-								<td>매칭사용</td>
-								<td>-10000</td>		
-							</tr>
-							<tr>
-								<td>오늘</td>								
-								<td>매니저 급여</td>
-								<td>10000</td>		
-							</tr>
-							<tr>
-								<td>오늘</td>								
-								<td>물품구매</td>
-								<td>-110000</td>		
-							</tr>
-						</table>
+						<div class="row" style="width: auto">
+							<div style="margin-top: 15px;">
+								<table border="1" style="width: 100%">
+									<tr>
+
+										<th>날짜</th>
+										<th>사용내역</th>
+										<th>포인트</th>
+									</tr>
+									<tbody>
+
+										<c:forEach items="${pointed}" var="pointed">
+											<input type="hidden" name="p_id" value="${pointed.p_id}">
+											<tr>
+												<td><input type="text" name="p_date"
+													value="${pointed.p_date}"></td>
+												<td><input type="text" name="p_con"
+													value="${pointed.p_con}"></td>
+												<td><input type="text" name="npoint"
+													value="${pointed.npoint}"></td>
+											</tr>
+
+										</c:forEach>
+									</tbody>
+								</table>
+								<div style="">
+									<my:paging paging="${paging}" jsfunc="goPage" />
+								</div>
+							</div>
+						</div>
 					</div>
+					<div class="clearfix"></div>
+					<div class="item-listing list"></div>
 				</div>
-				<div class="clearfix"></div>
-				<div class="item-listing list"></div>
-			</div>
 			</div>
 		</div>
 	</div>
-	</div>
-	<button class="btn btn-primary btn-circle" id="to-top" 
-				style="visibility: visible; opacity: 0.5;"><!-- 위로가기버튼 -->
+	<button class="btn btn-primary btn-circle" id="to-top"
+		style="visibility: visible; opacity: 0.5;">
+		<!-- 위로가기버튼 -->
 		<i class="fa fa-angle-up"></i>
 	</button>
 </body>

@@ -24,6 +24,7 @@ import co.company.MatchFootball.mapper.DoeunMapper;
 import co.company.MatchFootball.vo.MembersVO;
 import co.company.MatchFootball.vo.MessageVO;
 import co.company.MatchFootball.vo.Paging;
+import co.company.MatchFootball.vo.PointVO;
 
 @Controller
 public class DoeunController {
@@ -91,13 +92,7 @@ public class DoeunController {
 	}
 
 	@RequestMapping(value = "mypage/msg") // 메인메세지함(default 받은 메시지함)
-	public String MyMsg() {
-		//model.addAttribute(msg);
-		return "doeun/Message";
-	}
-	@ResponseBody
-	@RequestMapping(value = "mypage/msg/ajax")
-	public List<MessageVO> tomsgList(MembersVO mem, MessageVO msg, Model model, HttpSession session, Paging paging) {
+	public String sendmsgList(MembersVO mem, MessageVO msg, Model model, HttpSession session, Paging paging) {
 		mem.setId((String)session.getAttribute("id"));
 		msg.setTo_id(mem.getId());		
 		paging.setPageUnit(16);
@@ -106,24 +101,35 @@ public class DoeunController {
 		msg.setLast(paging.getLast());
 		paging.setTotalRecord(dao.getCount1(msg));
 		model.addAttribute("paging", paging);
-		return dao.tomsgList(msg);
+		model.addAttribute("msg",dao.tomsgList(msg));
+		return "doeun/Message";
 	}
+//	@ResponseBody
+//	@RequestMapping(value = "mypage/msg/ajax")
+//	public List<MessageVO> tomsgList(MembersVO mem, MessageVO msg, Model model, HttpSession session, Paging paging) {
+//		mem.setId((String)session.getAttribute("id"));
+//		msg.setTo_id(mem.getId());		
+//		paging.setPageUnit(16);
+//		paging.setPageSize(10);
+//		msg.setFirst(paging.getFirst());
+//		msg.setLast(paging.getLast());
+//		paging.setTotalRecord(dao.getCount1(msg));
+//		model.addAttribute("paging", paging);
+//		return dao.tomsgList(msg);
+//	}
 	
 	
-	@ResponseBody
-	@RequestMapping(value = "mypage/sendmsg/ajax")
-	public List<MessageVO> sendmsgList(MembersVO mem, MessageVO msg, Model model, HttpSession session, Paging paging) {
-		mem.setId((String)session.getAttribute("id"));
-		msg.setSend_id(mem.getId());		
-		paging.setPageUnit(16);
-		paging.setPageSize(10);
-		msg.setFirst(paging.getFirst());
-		msg.setLast(paging.getLast());
-		paging.setTotalRecord(dao.getCount2(msg));
-		model.addAttribute("paging", paging);
-		return dao.sendmsgList(msg);
-	}
-	
+	/*
+	 * @ResponseBody
+	 * 
+	 * @RequestMapping(value = "mypage/sendmsg/ajax") public List<MessageVO>
+	 * sendmsgList(MembersVO mem, MessageVO msg, Model model, HttpSession session,
+	 * Paging paging) { mem.setId((String)session.getAttribute("id"));
+	 * msg.setSend_id(mem.getId()); paging.setPageUnit(16); paging.setPageSize(10);
+	 * msg.setFirst(paging.getFirst()); msg.setLast(paging.getLast());
+	 * paging.setTotalRecord(dao.getCount2(msg)); model.addAttribute("paging",
+	 * paging); model.addAttribute("msg",dao.sendmsgList(msg)); return ; }
+	 */
 	@RequestMapping(value = "mypage/outmsg") // 보낸 메세지함
 	public String OpMsg() {
 		return "doeun/OutMessage";
@@ -134,6 +140,21 @@ public class DoeunController {
 	}
 	@PostMapping(value = "sendmsg") // 메세지 발송 처리
 	public String inputmsg(MembersVO mem, MessageVO msg, Model model, HttpSession session) {
+		mem.setId((String)session.getAttribute("id"));		
+		msg.setSend_id(mem.getId());
+		dao.sendMsg(msg);
+		return "redirect:/mypage/msg";
+	}
+//	@RequestMapping(value ="reviewMsg") // 받은메세지 확인폼
+//	public String reviewMsg(MembersVO mem, MessageVO msg, Model model, HttpSession session, HttpServletRequest request) {
+//		msg.setTo_id((String)session.getAttribute("id"));
+//		int m_no = reqe
+//		msg.setM_no(request.getParameter(m_no));
+//		dao.reviewMsg(msg);
+//		return "redirect:/doeun/msg";
+//	}
+	@PostMapping(value = "replymsg/ajax") // 메세지 답장처리
+	public String replymsg(MembersVO mem, MessageVO msg, Model model, HttpSession session) {
 		mem.setId((String)session.getAttribute("id"));		
 		msg.setSend_id(mem.getId());
 		dao.sendMsg(msg);
@@ -153,10 +174,18 @@ public class DoeunController {
 	}
 
 	@RequestMapping(value = "mypage/usedPoint") // 포인트 사용내역
-	public ModelAndView point() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("doeun/point");// jsp 경로 지정
-		return mav;
+	public String pointed(MembersVO mem, PointVO po, Model model, HttpSession session, Paging paging) {
+	//	mem.setId((String)session.getAttribute("id"));
+		po.setP_id((String)session.getAttribute("id"));		
+		paging.setPageUnit(21);
+		paging.setPageSize(10);
+		po.setFirst(paging.getFirst());
+		po.setLast(paging.getLast());
+		paging.setTotalRecord(dao.getPoCnt(po));
+		model.addAttribute("pointed", dao.pointList(po)); 
+		model.addAttribute("paging", paging);
+		
+		return "doeun/point";
 	}
 
 	@RequestMapping(value = "mypage/cupon") // 쿠폰함
