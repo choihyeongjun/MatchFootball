@@ -11,7 +11,10 @@ public class MessageVO {
 	String to_id;//받는사람
 	String m_title;//쪽지 제목
 	String m_con;//쪽지내용
-	Date s_date;//보낸날짜
+	String s_date;//보낸날짜
 	Date o_date;//열람 날짜
-	String check1;//수신여부
+	String m_check;//수신여부
+	int first;
+	int last;
+
 }

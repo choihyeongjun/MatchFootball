@@ -54,12 +54,12 @@ li {
 <body>
 	<ul class="hi">
 	  <c:if test="${sessionScope.id ne null }">
-			<li><a href="myTeamInfo?t_num=${member.t_num }">ÆÀ Á¤º¸</a></li>
+			<li><a href="myTeamInfo?t_num=${teamInfo.t_num }">ÆÀ Á¤º¸</a></li>
 			</c:if>
 			<c:if test="${sessionScope.id eq null }">
 			<li><a href="teamMake">ÆÀ »ý¼º</a></li>
 			</c:if>
-			<li><a href="teamGallery?t_num=${member.t_num }">ÆÀ°¶·¯¸®</a></li>
+			<li><a href="teamGallery?t_num=${teamInfo.t_num }">ÆÀ°¶·¯¸®</a></li>
 			<li><a href="teamNotice?t_num=${teamInfo.t_num }">ÆÀ °øÁö</a></li>
 			<li><a href="http://localhost/MatchFootball/teamInvite">ÆÀ ÃÊ´ë</a></li>
 			<li><a href="http://localhost/MatchFootball/teamList">ÆÀ ¸®½ºÆ®</a></li>

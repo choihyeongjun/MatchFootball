@@ -47,113 +47,104 @@
 	display: table;
 	clear: both;
 }
+
 </style>
 <script>
-	$(function() {
-		memberlist();
+$(function() {
+	memberlist();
+});
+
+function goPage(q) {
+	location.href = "outmsg?page=" + q;
+}
+
+
+function memberlist() {
+	$.ajax({
+		url : "sendmsg/ajax",
+		type : 'post',
+		dataType : 'json',
+		error : function(xhr, status, msg) {
+			alert("상태값 :" + status + "에러" + msg);
+		},
+		success : memberListResult
 	});
-	
+}//memberlist
+function memberListResult(data) {
+	$("#sendMsg").empty();
+	$
+			.each(data,	function(idx, msg) {
+						$('<tr>')
+								.append($('<input type=\'hidden\' id=\'hidden_mno\'>')
+													.val(msg.mno))
+								.append($('<td style=\'height:38px\'>').html('<input type=\'checkbox\'>'))
+								.append($('<td>').html(msg.s_date))
+								.append($('<td target=\'msg\'>').html(msg.m_title))
+								.append($('<td>').html(msg.to_id))
+								.append($('<input type=\'hidden\' id=\'hidden_userId\'>')
+												.val(msg.send_id))
+								.append($('<td align=\'center\'>').html(msg.m_check))
+								.append($('<td>').html(msg.o_date))				
+								.appendTo($('#sendMsg'));
 
-	function memberlist() {
-		$.ajax({
-			url : "msg/ajax",
-			type : 'post',
-			dataType : 'json',
-			error : function(xhr, status, msg) {
-				alert("상태값 :" + status + "에러" + msg);
-			},
-			success : memberListResult
-		});
-	}//memberlist
-	function memberListResult(data) {
-		$("#toMsg").empty();
-		$
-				.each(
-						data,
-						function(idx, mag) {
-							$('<tr>')
-									.append(
-											$(
-													'<input type=\'hidden\' id=\'hidden_mno\'>')
-													.val(mag.mno))
-									.append($('<td>').html('<input type=\'checkbox\'>'))
-									.append($('<td>').html(mag.s_date))
-									.append($('<td>').html(mag.m_title))
-									.append($('<td>').html(mag.send_id))
-									.append(
-											$(
-													'<input type=\'hidden\' id=\'hidden_userId\'>')
-													.val(mag.to_id))
-									.append(
-											$('<td>')
-													.html(
-															'<button type="button" class="btn btn-primary float-right send-message" id=\'resendMsg\'>답장하기</button>'))
-									.appendTo($('#toMsg'));
+					});
 
-						});
-
-	};
+};
 </script>
 </head>
 
 <body>
-	<div id="main" style="height: 850px">
-		<div id="content">
-			<div class="container">
-
-				<div class="row has-sidebar">
-					<jsp:include page="Mybar.jsp"></jsp:include>
-					<div class="col-md-7 col-lg-8 col-xl-8"
+	<div id="main" style="height:850px">
+	<div id="content">
+		<div class="container">
+		
+		<div class="row has-sidebar">
+						<jsp:include page="Mybar.jsp"></jsp:include>
+			<div class="col-md-7 col-lg-8 col-xl-8"
 						style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;">
-						<div class="page-header bordered">
-							<input name="to_id" value="${msg.to_id}" type="text"
-								style="display: none;">
+				<div class="page-header bordered">
+				<input name="send_id" value="${msg.send_id}" type="text" style="display:none;">
 
 							<h1 id="item-2">
 								메세지<small>MESSAGE</small>
 							</h1>
-						</div>
-						<div align="right">
-							<a href="msg" id="받은 메일함"> 수신 쪽지함 |</a><a href="outmsg"
-								id="보낸 메일함"> 발신 쪽지함 |</a><a href="#" id="용병초대"> 용병요청 </a>
-						</div>
-						<div class="row" style="width: auto">
-							<div style="margin-top: 15px;">
-								<a href="../message"
-									class="btn btn-primary float-right send-message">메세지 보내기</a>
-							</div>
-							<div style="margin-top: 15px;">
-								<table border="1" style="width: 100%">
-									<tr>
-										<td><input type="checkbox"></td>
-										<th>날짜</th>
-										<th>제목</th>
-										<th>보낸 사람</th>
-										<td colspan="2" align="right">답장하기
-											&nbsp;&nbsp;&nbsp;&nbsp;</td>
-									</tr>
-									<tbody id=toMsg>
-									</tbody>
-								</table>
-								<div align="center">
-									<my:paging paging="${paging}" jsfunc="goPage" />
-								</div>
-							</div>
-						</div>
-						<div class="clearfix"></div>
-						<div class="item-listing list"></div>
+				</div>
+<div align="right"><a href="msg" id="받은 메일함"> 수신 쪽지함 |</a><a href="outmsg" id="보낸 메일함"> 발신 쪽지함 |</a><a href="#" id="용병초대"> 용병요청  </a></div>
+				<div class="row" style="width: auto">
+					<div  style="margin-top: 15px;">
+						<a href="../message" class="btn btn-primary float-right send-message" >메세지 보내기</a>
+					</div>
+					<div style="margin-top: 15px;" >
+						<table border="1" style="width: 100%">
+							<tr>
+								<td><input type="checkbox"></td>
+								<th>날짜</th>
+								<th>제목</th>
+								<th>받은 사람</th>
+								<td colspan="2" align="center">
+								수신확인 &nbsp;&nbsp;&nbsp;&nbsp;
+								</td>
+							</tr>
+							<tbody id=sendMsg>	</tbody>
+						</table>
+						<div>
+<my:paging paging="${paging}" jsfunc="goPage" />
+</div>
 					</div>
 				</div>
+				<div class="clearfix"></div>
+				<div class="item-listing list"></div>
+			</div>
 			</div>
 		</div>
 	</div>
-	<button class="btn btn-primary btn-circle" id="to-top"
-		style="visibility: visible; opacity: 0.5;">
-		<!-- 위로가기버튼 -->
+	</div>
+	<button class="btn btn-primary btn-circle" id="to-top" 
+				style="visibility: visible; opacity: 0.5;"><!-- 위로가기버튼 -->
 		<i class="fa fa-angle-up"></i>
 	</button>
 
-	<!-- 	<div id="index-template" type="text/x-handlebars-template">
+<!-- 	<div id="index-template" type="text/x-handlebars-template">
 		<div class="item">
 
 			{{else}}
@@ -182,11 +173,7 @@
 		</div>
 		{{/each}}
 	</div> -->
-	<script>
-	function goPage(q) {
-		location.href = "msg?page=" + q;
-	}
-	</script>
+	
 </body>
 
 </html>

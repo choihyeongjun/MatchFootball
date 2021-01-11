@@ -61,7 +61,22 @@ footer {
 			</table>
 		</div>
 	</div>
-	
+	<div display="inline-block">
+		<div class="container" style="float: left; width: 50%">
+			<table class="table text-center">
+				<tr class="tr1">
+					<th class="text-center">아이디</th>
+					<th class="text-center">나이</th>
+					<th class="text-center">포지션</th>
+					<th class="text-center">실력</th>
+					<th class="text-center">매 너 도</th>
+					<th class="text-center">초대</th>
+				</tr>
+				<tbody>
+				</tbody>
+			</table>
+		</div>
+	</div>
 	<script>
 	$(function() {
 		memberlist();

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,25 +21,26 @@
 								<thead>
 									<tr>
 										<th>초대한 ID</th>
-										<th>이름</th>
 										<th>초대한 날짜</th>
 										<th>연락처</th>
+										<th>제목</th>
 										<th>내용</th>
-										<th>수락여부</th>
 										<th>팀이름</th>
+										<th>수락여부</th>
 									</tr>
 								</thead>
 
 								<tbody>
-									<c:forEach items="${invite}" var="member">
+									<c:forEach items="${invite}" var="i">
 										<tr>
-											<td>${member.t_name}</td>
-											<td>${member.manner}</td>
-											<td>${member.point}</td>
-											<td>${member.t_name}</td>
-											<td>${member.t_name}</td>
-											<td>${member.t_name}</td>
-											<td>${member.t_name}</td>
+											<td>${i.c_id}</td>
+											<td>${i.s_date}</td>
+											<td>${i.pnum}</td>
+											<td>${i.title}</td>
+											<td>${i.comm}</td>
+											<td>${i.t_num}</td>
+											
+											
 											<td width="10"><input type="button" value="프로필"
 												onclick=""></td>
 											<td width="10"><input type="button" value="수정"
