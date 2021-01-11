@@ -87,7 +87,7 @@ body {
 		<div class="container-md">
 			${sessionScope.id}
 			<a class="navbar-brand"
-				href="${pageContext.request.contextPath}/MatchFootball"
+				href="${pageContext.request.contextPath}/match"
 				style="color: #04519b"><img src="${pageContext.request.contextPath}/resources/img/99.png"
 				width="100px" height="50px" /></a>
 			<div>
