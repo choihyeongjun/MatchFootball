@@ -84,7 +84,7 @@
 		<div class="inserm">
 			<input name="id" type="hidden" value="${membervo.id }"> 
 			<input name="m_no" type="hidden" value="${p_matchVO.m_no }"> 
-			<input name="p_com" type="hidden" value="개인 매치비">
+			<input name="p_con" type="hidden" value="개인 매치비">
 			<input name="point" type="hidden" value="${p_matchVO.price }">
 			<input name="npoint" type="hidden" value="-${p_matchVO.price }">
 		</div>
