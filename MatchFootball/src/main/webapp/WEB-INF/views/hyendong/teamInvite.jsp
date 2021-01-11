@@ -6,15 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>팀 초대</title>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="resources/css/teamMenu.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 <style>
 footer {
 	position: fixed;
@@ -26,6 +23,48 @@ footer {
 }
 </style>
 
+<script>
+	$(function() {
+		memberlist();
+	});
+	
+	function memberlist() {
+		var id = document.getElementById("id").value;
+		console.log(id);
+		$.ajax({
+			url : "bollow/ajax",
+			type : 'GET',
+			data : {id:"id"},
+			dataType : 'json',
+			error : function(xhr, status, msg) {
+				alert("상태값 :" + status + "에러" + msg);
+			},
+			success : memberListResult
+		});
+	}//memberlist
+	
+	function memberListResult(data) {
+		$("#tmain").empty();
+		$.each(
+				data,
+				function(idx, item) {
+				
+					$('<tr>')
+							.append($('<td>').html(item.id))
+							.append($('<td>').html(item.name))
+							.append($('<td>').html(item.gender))
+							.append($('<td>').html(item.location1))
+							.append($('<td>').html(item.manner))
+							.append($('<td>').html(item.lv))
+							.append($('<td>').html(item.pos))
+							.append($('<input type=\'hidden\' id=\'hidden_userId\'>').val(item.id))
+							.append($('<td>').html('<button type="button" id=\'btnSelect\'>팀초대</button>'))
+							.appendTo('#tmain');
+			  });
+		$('#dataTable').DataTable();
+	
+		};
+</script>
 </head>
 <body>
 <ul class="hi">
@@ -40,6 +79,41 @@ footer {
 			<li><a href="http://localhost/MatchFootball/teamInvite">팀 초대</a></li>
 			<li><a href="http://localhost/MatchFootball/teamList">팀 리스트</a></li>
 	</ul>
+	
+							<div class="card-body" >
+						<div class="table-responsive" style="float: left; width: 50%">
+							<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+								<thead align="center">
+									<tr>
+										<th>ID</th>
+										<th>Name</th>
+										<th style="width: 40px;">성별</th>
+										<th>주소</th>
+										<th>매너</th>
+										<th>실력</th>
+										<th>포지션</th>
+										<th style="width: 90px;">초대</th>
+									</tr>
+								</thead>
+								
+								<tfoot align="center">
+									<tr>
+										<th>ID</th>
+										<th style="width: 90px;">Name</th>
+										<th style="width: 60px;">성별</th>
+										<th>주소</th>
+										<th style="width: 90px;">매너</th>
+										<th style="width: 90px;">실력</th>
+										<th style="width: 90px;">포지션</th>
+										<th style="width: 90px;">초대</th>
+									</tr>
+								</tfoot>
+								<tbody align="center" id="tmain">
+								</tbody>
+							</table>
+						</div>
+					</div>
+	
 	<div display="inline-block">
 		<div class="container" style="float: left; width: 50%">
 			<h2 class="table text-center">팀 초대</h2>
@@ -61,63 +135,10 @@ footer {
 			</table>
 		</div>
 	</div>
-	<div display="inline-block">
-		<div class="container" style="float: left; width: 50%">
-			<table class="table text-center">
-				<tr class="tr1">
-					<th class="text-center">아이디</th>
-					<th class="text-center">나이</th>
-					<th class="text-center">포지션</th>
-					<th class="text-center">실력</th>
-					<th class="text-center">매 너 도</th>
-					<th class="text-center">초대</th>
-				</tr>
-				<tbody>
-				</tbody>
-			</table>
-		</div>
-	</div>
-	<script>
-	$(function() {
-		memberlist();
-	});
-	
-	function memberlist() {
-		var id = document.getElementById("id").value;
-		console.log(id);
-		$.ajax({
-			url : "bollow/ajax",
-			type : 'GET',
-			data : {id:"id"},
-			dataType : 'json',
-			error : function(xhr, status, msg) {
-				alert("상태값 :" + status + "에러" + msg);
-			},
-			success : memberListResult
-		});
-	}//memberlist
-	
-	function memberListResult(data) {
-		$("#search").empty();
-		$.each(
-				data,
-				function(idx, item) {
-				
-					$('<tr>')
-							.append($('<td>').html(item.id))
-							.append($('<td>').html(item.name))
-							.append($('<td>').html(item.gender))
-							.append($('<td>').html(item.location1))
-							.append($('<td>').html(item.manner))
-							.append($('<td>').html(item.lv))
-							.append($('<td>').html(item.pos))
-							
-							.append($('<input type=\'hidden\' id=\'hidden_userId\'>').val(item.id))
-							.append($('<td>').html('<button type="button" id=\'btnSelect\'>팀초대</button>'))
-							.appendTo('#search');
-			  });
 
-		};
-</script>
+
+	  <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+      <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+      <script src="${pageContext.request.contextPath}/resources/seemoo/assets/demo/datatables-demo.js"></script>
 </body>
 </html>

@@ -76,7 +76,7 @@ w<%@ page language="java" contentType="text/html; charset=UTF-8"
 					</tr>
 				</table>
 			</div>
-
+			
 			<div style="float: left; margin-left: 10%">
 				<table class="table table-hover">
 					<thead>
@@ -111,10 +111,6 @@ w<%@ page language="java" contentType="text/html; charset=UTF-8"
 			</div>
 		</div>
 	</form>
-	<form action="teamlistInsert?t_num=${teamInfo.t_num}" method="post">
-			<c:if test="${members.t_num eq null}">
-			<button type="submit" class="btn btn-primary">팀 가입 신청</button>
-			</c:if>
-	</form>
+	
 </body>
 </html>

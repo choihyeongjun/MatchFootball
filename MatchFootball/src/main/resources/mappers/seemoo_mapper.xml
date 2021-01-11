@@ -50,14 +50,10 @@
 	
 	<!-- 블랙팀 조회 -->
 	<select id="blackteamList" resultType="BlackTeamListVO">
-		SELECT T.T_NUM, T.T_NAME, T.T_LEVEL, T.T_AUTHOR, T.T_M, B.STOPDATE, 
-		B.STOPREASON FROM TEAM T JOIN BLACKTEAM B ON T.T_NUM = B.T_NUM WHERE t_author = #{t_author}
+		SELECT T.T_NUM, T.T_NAME, T.T_LEVEL, T.T_M, B.STOPDATE, 
+		B.STOPREASON, B.T_AUTHOR FROM TEAM T JOIN BLACKTEAM B ON T.T_NUM = B.T_NUM WHERE T_AUTHOR = #{t_author}
 	</select>
 	
-	<!-- 블랙팀 삭제 -->
-	<select id="blackteamdelete" resultType="BlackTeamListVO">
-		DELETE FROM BLACKTEAM WHERE T_NUM = #{t_num}
-	</select>
 <!-- 매니저관리 -->
 
 	<!-- 매니저조회 -->
@@ -72,4 +68,23 @@
 	
 <!-- 공지사항 -->
 	
+	<!-- 공지사항 조회 -->
+	<select id="noticeList" resultType="NoticeVO">
+		SELECT * FROM NOTICE
+	</select>
+	
+	<!-- 등록 -->
+	<insert id="noticeinsert">
+		<selectKey order="BEFORE" keyProperty="n_no" resultType="int">
+			SELECT MAX(N_NO)+1
+			FROM NOTICE
+		</selectKey>
+		INSERT INTO NOTICE(N_NO, ID, N_TITLE, N_DATE, N_IMG, N_COMM) 
+		VALUES(FREE_SEQ.NEXTVAL, #{ID}, #{N_TITLE}, SYSDATE, #{N_IMG}, #{N_COMM})
+	</insert>
+	
+	<!-- 삭제 -->
+	<select id="noticedelete" resultType="NoticeVO">
+		DELETE NOTICE WHERE N_NO = #{n_no}
+	</select>
 </mapper>
