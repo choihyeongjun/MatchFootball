@@ -228,6 +228,9 @@ body {
 								<li class="lili"><a href="${pageContext.request.contextPath}/mypage/pay">결제 | 쿠폰</a></li>
 								<li class="lili"><a href="${pageContext.request.contextPath}/mypage/usedPoint">사용 내역</a></li>
 								<li class="lili"><a href="${pageContext.request.contextPath}/mypage/msg">쪽지 | 게시글</a></li>
+								<c:if test="${sessionScope.author eq 'user'} ">
+								<li class="lili"><a href="${pageContext.request.contextPath}/manageremploy">신청페이지</a></li>
+								</c:if>
 							</ul>
 						</div>
 						<div class="col-md-3 col-sm-6">
@@ -238,7 +241,6 @@ body {
 								<li class="lili"><a href="${pageContext.request.contextPath}/managermypage">매니저 마이페이지</a></li>
 								<li class="lili"><a href="${pageContext.request.contextPath}/allmatchlist">전체 경기 일정</a></li>
 								<li class="lili"><a href="${pageContext.request.contextPath}/reviewmodal">리뷰 내역 페이지</a></li>
-								<li class="lili"><a href="${pageContext.request.contextPath}/manageremploy">신청페이지</a></li>
 							</ul>
 						</div>
 						<div class="col-md-3 col-sm-6">
