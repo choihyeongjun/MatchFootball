@@ -270,4 +270,11 @@
 			#{i_manner}
 		)
 	</insert>
+	
+	<!-- 팀 가입 신청 조회 -->
+	<select id="teamInviteSelect" resultType="TinviteVO">
+		SELECT * 
+		FROM tinvite
+		WHERE t_num = #{t_num}
+	</select>
 </mapper>
