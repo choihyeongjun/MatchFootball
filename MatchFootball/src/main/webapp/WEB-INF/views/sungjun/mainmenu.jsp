@@ -249,10 +249,14 @@ body {
 								<h3 style="text-align: center">팀페이지</h3>
 							</div>
 							<ul class="menul">
+								<c:if test="${sessionScope.t_num eq null }">
 								<li class="lili"><a href="${pageContext.request.contextPath}/teamMake">팀 생성</a></li>
+								</c:if>
+								<c:if test="${sessionScope.t_num ne null }">
 								<li class="lili"><a href="${pageContext.request.contextPath}/teamInfo?t_num=${sessionScope.t_num}">팀 정보</a></li>
 								<li class="lili"><a href="${pageContext.request.contextPath}/teamNotice?t_num=${sessionScope.t_num}">팀 공지</a></li>
 								<li class="lili"><a href="${pageContext.request.contextPath}/teamInvite?t_num=${sessionScope.t_num}">팀 초대</a></li>
+								</c:if>
 								<li class="lili"><a href="${pageContext.request.contextPath}/teamList">팀 리스트</a></li>
 							</ul>
 						</div>
