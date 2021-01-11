@@ -88,7 +88,7 @@ a {
 			var m_no = $(this).data("num");
 			modal = $("#matchaplly");
 			$.ajax({
-				url : "managerapply?m_no=" + m_no,
+				url : "matchDetailm?m_no=" + m_no,
 				success : function(result) {
 					modal.find('#body3').html(result);
 					modal.modal('show');
@@ -109,7 +109,7 @@ a {
 		<div style="margin-left: 200px; margin-right: 200px; margin-top: 30px">
 			<div class="qqqq" align="center">
 				<a href="#play"> 진행방식 </a> <a href="#playroom"> 구장시설 </a> <a
-					href="#playin"> 매치안내</a> <a href="#playm"> 환급규정</a>
+					href="#playin"> 주의사항</a> <a href="#playm"> 매치 안내</a>
 			</div>
 			<div>
 				<h3 style="text-align: left;">2020년 12월 24일 12:00</h3>
@@ -190,17 +190,21 @@ a {
 			<div style="border-bottom: 1px solid #ddd; padding-bottom: 30px;">
 				<div>
 					<div style="margin: 30px;">
-						<h4 style="font-weight: bold;">환급 규정</h4>
+						<h4 style="font-weight: bold;">매치 안내</h4>
 					</div>
 					<div>
 						<pre>
-20x40m 무료주차 풋살화 대여 구장 특이사항 
-*이동간에 마스크 착용 필수 미 착용시 매치 참여 제한
-*주차 : 무료 
-*흡연 구역 외 절대 금연 (적발시 이후 서비스 이용제한) 
-*화장실 : O 
-*풋살화 대여 : O(3000원) 
-*기타 -물 1.5L 3병 제공 -물 , 음료 판매
+일반
+*매치 시작 1시간 30분 전까지 최소 인원(10명) 미달 시 매치가 취소 됩니다.
+  캐시는 전액 환급됩니다.
+특수 (우천)
+*전날 기준 기상청 날씨누리 기준 해당 지역 1mm 이상의 예보가 있는 경우 
+  매치 당일 00시 부터 환급 기준이 변경 됩니다.
+*인원이 모집되는 경우 우천 시에도 진행됩니다.
+*진행이 확정되었지만 매치 진행에 변동이 있을 경우 매치 시작 1시간 전까지 안내드립니다.
+*매치 시작 1시간 30분 전까지 취소하지 않고 불참하면 페어플레이 포인트가 차감되어 향후 이용에 제한이 있습니다.
+*매치 중 플레이가 어려울 정도로 비가 오는 경우에는 현장에서 매니저 판단하에 종료 될 수 있으며,
+  진행되지 않은 시간만큼 부분 환급 처리됩니다.
 		</pre>
 					</div>
 				</div>
@@ -210,7 +214,7 @@ a {
 	</div>
 	<div class="lets">
 		<div class="employ">
-			<p class="p1" data-num="${sessionScope.id }">매치 신청</p>
+			<p class="p1" data-num="${p_matchVO.m_no }">매치 신청</p>
 		</div>
 	</div>
 	<!--개인매치 신청 모달  -->

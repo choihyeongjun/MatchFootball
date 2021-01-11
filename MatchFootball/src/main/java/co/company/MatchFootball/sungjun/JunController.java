@@ -29,6 +29,7 @@ import co.company.MatchFootball.vo.MembersVO;
 import co.company.MatchFootball.vo.P_matchVO;
 import co.company.MatchFootball.vo.Paging;
 import co.company.MatchFootball.vo.PointVO;
+import co.company.MatchFootball.vo.PplayersVO;
 import co.company.MatchFootball.vo.TeammatchVO;
 
 @Controller
@@ -42,7 +43,43 @@ public class JunController {
 //	 * test(HttpServletResponse response) throws IOException{ return new
 //	 * ModelAndView("/sungjun/mainmenu"); }
 //	 */
+	@RequestMapping(value = "/teammatch")
+	public String test12(HttpServletResponse response, Model model, CalVO vo, P_matchVO mvo, HttpServletRequest request)
+			throws IOException {
+		// 달력
+		DecimalFormat df = new DecimalFormat("00");
+		Calendar calendar;
+		if(mvo.getM_date() == null) {
+			calendar = Calendar.getInstance();
+		}else {
+			calendar = Calendar.getInstance();
+			DateFormat dft = new SimpleDateFormat("yyyy-mm-dd") ;
+			try {
+				calendar.setTime(dft.parse(mvo.getM_date()));
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+		}
+		String year = Integer.toString(calendar.get(Calendar.YEAR)); // 년도를 구한다
+		String month = df.format(calendar.get(Calendar.MONTH) + 1); // 달을 구한다
+		String day = df.format(calendar.get(Calendar.DATE)); // 날짜를 구한다
 
+		int lastDate = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);// 달 마지막 날
+		calendar.set(calendar.DAY_OF_MONTH, 1);
+		int iDayOfWeek = calendar.get(Calendar.DAY_OF_WEEK); // 요일을 구한다
+
+		vo.setDay(day);
+		vo.setLastDate(lastDate);
+		vo.setIDayOfWeek(iDayOfWeek);
+		model.addAttribute("cal", vo);
+		
+		mvo.setM_date(year + "-" + month + "-" + day);
+		model.addAttribute("m_dat",day);
+		model.addAttribute("p_matchVO", dao.pmatchselect(mvo));
+		model.addAttribute("date",year +"-" + month );
+		return "sungjun/teammatch";
+	}
+	
 	@RequestMapping(value = "/match")
 	public String test1(HttpServletResponse response, Model model, CalVO vo, P_matchVO mvo, HttpServletRequest request)
 			throws IOException {
@@ -82,33 +119,43 @@ public class JunController {
 	}
 
 	@RequestMapping(value = "/matchDetail")
-	public ModelAndView test6(HttpServletResponse response) throws IOException {
+	public ModelAndView test6(HttpServletResponse response,Model model,P_matchVO p_matchVO) throws IOException {
 		return new ModelAndView("sungjun/matchDetail");
 	}
 	@RequestMapping(value = "/matchDetailm")
-	public ModelAndView test11(HttpServletResponse response, MembersVO membersvo,Model model,HttpSession session) throws IOException {
+	public ModelAndView test11(HttpServletResponse response, MembersVO membersvo,Model model,P_matchVO p_matchVO,HttpSession session) throws IOException {
 		membersvo.setId((String)session.getAttribute("id"));
-		model.addAttribute("pointminus",dao.pointminus(membersvo));
+		
+		model.addAttribute("p_matchVO",dao.pmatchlist1(p_matchVO));
+		model.addAttribute("membervo", dao.memberselect(membersvo));
 		return new ModelAndView("no/sungjun/matchapply");
 	}
-
+	@PostMapping(value = "/sendmatchapply")
+	public ModelAndView test12(HttpServletResponse response, Model model, MembersVO membersvo,PplayersVO pplayers,HttpSession session,PointVO pointvo) throws IOException {
+		membersvo.setId((String)session.getAttribute("id"));
+		pplayers.setId((String)session.getAttribute("id"));
+		//pointvo.setP_id((String)session.getAttribute("id"));
+		dao.pointminus(membersvo);
+		dao.matchapply(pplayers);
+		return new ModelAndView("sungjun/match");
+	}
 	@RequestMapping(value = "/call")
 	public ModelAndView test2(HttpServletResponse response) throws IOException {
 		return new ModelAndView("sungjun/call");
 	}
 
 	@RequestMapping(value = "/managermypage")
-	public ModelAndView test4(Paging paging, PointVO p_pointVO, P_matchVO p_matchVO, TeammatchVO team_matchVO,
+	public ModelAndView test4(Paging paging, PointVO pointvo, P_matchVO p_matchVO, TeammatchVO team_matchVO,
 			MembersVO membersvo, HttpServletResponse response, Model model, HttpServletRequest request,HttpSession session)
 			throws IOException {
 		// 이름 포인트 불러오기
 		membersvo.setId((String)session.getAttribute("id"));
 		model.addAttribute("member", dao.memberselect(membersvo));
 		// 입금내역
-		p_pointVO.setP_id((String) session.getAttribute("id"));
-		model.addAttribute("p_point", dao.pointconselect(p_pointVO));
+		pointvo.setP_id((String) session.getAttribute("id"));
+		model.addAttribute("p_point", dao.pointconselect(pointvo));
 		// 입금전체 내역
-		model.addAttribute("p_pointall", dao.pointallselect(p_pointVO));
+		model.addAttribute("p_pointall", dao.pointallselect(pointvo));
 		// 개인매치 내역
 //		paging.setPageUnit(3); // (한페이지를 출력 할)레코드 수
 //		paging.setPageSize(5); // 페이지 번호 수
@@ -119,7 +166,7 @@ public class JunController {
 		p_matchVO.setM_id((String) session.getAttribute("id"));
 		model.addAttribute("p_match", dao.pmatchlist(p_matchVO));
 		//팀매치 내역
-		team_matchVO.setM_id((String) session.getAttribute("id"));
+		team_matchVO.setId((String) session.getAttribute("id"));
 		 model.addAttribute("t_match", dao.tmatchlist(team_matchVO));
 		// model.addAttribute("p_match1",dao.pmatchlist1(p_match));
 
@@ -151,31 +198,25 @@ public class JunController {
 
 		return new ModelAndView("sungjun/manageremploy");
 	}
-
 	@RequestMapping(value = "/managerapply")
 	public ModelAndView test5(HttpServletResponse response, Model model, MembersVO member) throws IOException {
 		model.addAttribute("member", dao.memberselect(member));
 		return new ModelAndView("no/sungjun/managerapply");
-	}
-
+	} 
 	@PostMapping(value = "/sendapply")
 	public ModelAndView test9(HttpServletResponse response, Model model, ManageraplyVO manageraply) throws IOException {
 		dao.mapply(manageraply);
 		return new ModelAndView("sungjun/manageremploy");
 	}
 
-	@RequestMapping(value = "/teammatch")
-	public ModelAndView test8(HttpServletResponse response) throws IOException {
-
-		return new ModelAndView("sungjun/teammatch");
-	}
 	@RequestMapping(value = "/allmatchlist")
-	public ModelAndView test10(HttpServletResponse response,HttpSession session,Model model, P_matchVO p_matchVO,TeammatchVO team_matchVO) throws IOException {
+	public ModelAndView test10(HttpServletResponse response,HttpSession session,Model model, P_matchVO p_matchVO,TeammatchVO team_matchVO, PointVO pointvo) throws IOException {
 		p_matchVO.setM_id((String) session.getAttribute("id"));
-		team_matchVO.setM_id((String) session.getAttribute("id"));
+		team_matchVO.setId((String) session.getAttribute("id"));
+		pointvo.setP_id((String) session.getAttribute("id"));
 		model.addAttribute("p_match", dao.pmatchlist(p_matchVO));
 		 model.addAttribute("t_match", dao.tmatchlist(team_matchVO));
 		return new ModelAndView("sungjun/allmatchlist");
 	}
-
+  
 }

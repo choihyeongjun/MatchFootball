@@ -6,11 +6,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-.inserm {
+/* .inserm {
 	padding-left: 20px;
 	padding-right: 20px;
 }
-
+ */
 .abtn {
 	width: 100%;
 	height: 70px;
@@ -53,46 +53,40 @@
 				style="width: 250px; height: 250px; float: right;">
 		</div>
 	</div>
-	<form class="inser" action="sendapply" method="post"
+
+	<div class="form-floating">
+		<input class="form-control" placeholder="Leave" id="floatingTextarea"
+			readonly value="${membervo.name }"> <label
+			for="floatingTextarea">이름</label>
+	</div>
+	<div class="form-floating">
+		<input class="form-control" placeholder="Leave" id="floatingTextarea"
+			readonly value="${membervo.gender }"> <label
+			for="floatingTextarea">성별</label>
+	</div>
+	<div class="form-floating">
+		<input class="form-control" placeholder="Leave" id="floatingTextarea"
+			readonly value="${membervo.birth }"> <label
+			for="floatingTextarea">생일</label>
+	</div>
+	<div class="form-floating">
+		<input class="form-control" placeholder="Leave" id="floatingTextarea"
+			value="${membervo.pnum }" required="required"> <label
+			for="floatingTextarea">휴대폰 번호</label>
+	</div>
+	<div class="form-floating">
+		<input class="form-control" placeholder="Leave" id="floatingTextarea"
+			value="${p_matchVO.price } 원" required="required" readonly><label
+			for="floatingTextarea">참가비</label>
+	</div>
+	<form class="inser" action="sendmatchapply" method="post"
 		onsubmit="return submitCheck();">
 		<div class="inserm">
-			<input class="form-control" name="id" placeholder="Leave"
-				id="floatingTextarea" type="hidden" value="${sessionScope.id }">
-			<div class="form-floating">
-				<input class="form-control" name="name" placeholder="Leave"
-					id="floatingTextarea" readonly value="${member.name }"> <label
-					for="floatingTextarea">이름</label>
-			</div>
-			<div class="form-floating">
-				<input class="form-control" name="gender" placeholder="Leave"
-					id="floatingTextarea" readonly value="${member.gender }"> <label
-					for="floatingTextarea">성별</label>
-			</div>
-			<div class="form-floating">
-				<input class="form-control" name="birth" placeholder="Leave"
-					id="floatingTextarea" readonly value="${member.birth }"> <label
-					for="floatingTextarea">생일</label>
-			</div>
-			<div class="form-floating">
-				<input class="form-control" name="pnum" placeholder="Leave"
-					id="floatingTextarea" value="${member.pnum }" required="required"> <label
-					for="floatingTextarea">휴대폰 번호</label>
-			</div>
-			<select required class="form-select" name="loc" 
-				 style="margin-bottom: 5px">
-				<option disabled selected >활동 구 선택</option>
-				<option value="1">달서구</option>
-				<option value="2">북구</option>
-				<option value="3">중구</option>
-				<option value="4">서구</option>
-				<option value="5">수성구</option>
-				<option value="6">동구</option>
-			</select>
-			<div class="form-floating" style="padding-bottom: 30px;">
-				<textarea class="form-control" name="comm" placeholder="Leave"
-					id="floatingTextarea2" style="height: 100px;" required="required"></textarea>
-				<label for="floatingTextarea">한마디 남기기</label>
-			</div>
+			<input name="id" type="hidden" value="${membervo.id }"> 
+			<input name="m_no" type="hidden" value="${p_matchVO.m_no }"> 
+			<input name="p_com" type="hidden" value="개인 매치비">
+			<input name="point" type="hidden" value="${p_matchVO.price }">
+			<input name="npoint" type="hidden" value="-${p_matchVO.price }">
 		</div>
 		<div align="center">
 			<button type="submit" class="abtn">신청하기</button>
