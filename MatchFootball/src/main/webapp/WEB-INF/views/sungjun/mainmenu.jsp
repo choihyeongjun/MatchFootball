@@ -88,7 +88,7 @@ body {
 			${sessionScope.id}
 			<a class="navbar-brand"
 				href="${pageContext.request.contextPath}/MatchFootball"
-				style="color: #04519b"><img src="resources/img/99.png"
+				style="color: #04519b"><img src="${pageContext.request.contextPath}/resources/img/99.png"
 				width="100px" height="50px" /></a>
 			<div>
 				<button type="button" class="btn abc" data-toggle="modal"

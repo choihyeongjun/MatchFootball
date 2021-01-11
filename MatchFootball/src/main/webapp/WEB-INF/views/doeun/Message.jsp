@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="my"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html style="transform: none;">
 
@@ -49,50 +50,36 @@
 }
 </style>
 <script>
-	$(function() {
-		memberlist();
-	});
-	
 
-	function memberlist() {
+
+$("#reviewMsg").on("click", function(event) {
+   var modal = $('#exampleModal')
+   var no = $(event.target).data("no");
+
+   $.ajax({
+      url : 'reviewMsg?no=' + no,//no 값 같이 넘김
+//      dataType : 'html',//html은 기본으로 dataType안해줘도 됨
+      success : function(result) {
+         modal.find('.modal-body').html(result) //title값
+         modal.modal('show');
+      }
+   });
+})
+
+	function replyMsg() {
 		$.ajax({
-			url : "msg/ajax",
+			url : "replymsg/ajax",
 			type : 'post',
 			dataType : 'json',
 			error : function(xhr, status, msg) {
 				alert("상태값 :" + status + "에러" + msg);
 			},
-			success : memberListResult
+			success : function(result){
+				alert("성공적으로 발송 되었습니다.")
+			}
 		});
-	}//memberlist
-	function memberListResult(data) {
-		$("#toMsg").empty();
-		$
-				.each(
-						data,
-						function(idx, mag) {
-							$('<tr>')
-									.append(
-											$(
-													'<input type=\'hidden\' id=\'hidden_mno\'>')
-													.val(mag.mno))
-									.append($('<td>').html('<input type=\'checkbox\'>'))
-									.append($('<td>').html(mag.s_date))
-									.append($('<td>').html(mag.m_title))
-									.append($('<td>').html(mag.send_id))
-									.append(
-											$(
-													'<input type=\'hidden\' id=\'hidden_userId\'>')
-													.val(mag.to_id))
-									.append(
-											$('<td>')
-													.html(
-															'<button type="button" class="btn btn-primary float-right send-message" id=\'resendMsg\'>답장하기</button>'))
-									.appendTo($('#toMsg'));
-
-						});
-
-	};
+	}//replyMsg
+	
 </script>
 </head>
 
@@ -106,8 +93,7 @@
 					<div class="col-md-7 col-lg-8 col-xl-8"
 						style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;">
 						<div class="page-header bordered">
-							<input name="to_id" value="${msg.to_id}" type="text"
-								style="display: none;">
+							
 
 							<h1 id="item-2">
 								메세지<small>MESSAGE</small>
@@ -129,10 +115,25 @@
 										<th>날짜</th>
 										<th>제목</th>
 										<th>보낸 사람</th>
-										<td colspan="2" align="right">답장하기
+										<td colspan="2" align="right">삭제하기
 											&nbsp;&nbsp;&nbsp;&nbsp;</td>
 									</tr>
 									<tbody id=toMsg>
+										<c:forEach items="${msg}" var="msg">
+											<tr>
+												<td><input type='hidden' id='hidden_mno' value="${msg.m_no}"><input name="to_id" value="${msg.to_id}" type="text"
+								style="display: none;"></td>
+												<td><input type='checkbox' id="mchk"></td>
+												<td><input type="text" name="s_date"
+													value="${msg.s_date}"></td>
+												<td id="reviewMsg"><input type="text" name="m_title"
+													value="${msg.m_title}" id="m_title" onclick="#exampleModal" readonly></td>
+												<td><input type="text" name="send_id"
+													value="${msg.send_id}"></td>
+												<td><button type="button" class="btn btn-primary float-right send-message" id='delMsg' onclick="delMsg()">삭제하기</button></td>
+											</tr>
+
+										</c:forEach>
 									</tbody>
 								</table>
 								<div align="center">
@@ -152,36 +153,30 @@
 		<!-- 위로가기버튼 -->
 		<i class="fa fa-angle-up"></i>
 	</button>
-
-	<!-- 	<div id="index-template" type="text/x-handlebars-template">
-		<div class="item">
-
-			{{else}}
-			<div class="row" style="width: auto">
-				<div class="col-md-3"></div>
-				<div class="col-md-9" style="margin-top: 15px;">
-					<a href="#" class="btn btn-primary float-right send-message"
-						data-no={{revNo}}>메세지 보내기</a>
-					<h3 class="item-title room-title" data-no={{roomNo}}>
-						<a href="#"></a>
-					</h3>
-					<div class="item-location" style="margin-bottom: 0px">
-						<i class="far fa-calendar-alt" style="color: #3b8ced;"></i>
-						{{checkIn}} - {{checkOut}}
-					</div>
-					<div class="item-userName">: {{userName}}</div>
-					<div class="item-description"
-						style="margin-top: 10px; font-size: 17px">
-						<i class="fas fa-arrow-right" style="color: #3b8ced;"></i> "
-						{{content}} "
-					</div>
-					<div class="item-actions">{{createdDate}}</div>
-				</div>
-			</div>
-			{{/if}}
-		</div>
-		{{/each}}
-	</div> -->
+<!-- Modal -->
+   <div class="modal fade" id="exampleModal" tabindex="-1"
+      aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+               <button type="button" class="close" data-dismiss="modal"
+                  aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+               </button>
+            </div>
+            <div class="modal-body">
+            ...               
+            </div>
+            <div class="modal-footer">
+               <button type="button" class="btn btn-secondary"
+                  data-dismiss="modal">Close</button>
+               <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+         </div>
+      </div>
+   </div>
+ 
 	<script>
 	function goPage(q) {
 		location.href = "msg?page=" + q;
