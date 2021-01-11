@@ -6,6 +6,7 @@ import co.company.MatchFootball.vo.MembersVO;
 import co.company.MatchFootball.vo.TeamVO;
 import co.company.MatchFootball.vo.TeamlistVO;
 import co.company.MatchFootball.vo.TgalleryVO;
+import co.company.MatchFootball.vo.TinviteVO;
 import co.company.MatchFootball.vo.TnoticeVO;
 import co.company.MatchFootball.vo.TournamentTeamVO;
 import co.company.MatchFootball.vo.TournamentVO;
@@ -22,7 +23,8 @@ public interface HyendongMapper {
 	public TeamVO getTeam(TeamVO teamVO); //팀 단건 정보 조회
 	public MembersVO myTeam(MembersVO membersVO); //마이 팀 정보 조회
 	public int teamUpdate(TeamVO teamVO); //팀 수정
-	public int teamListInsert(TeamlistVO teamlistVO); //팀 가입
+	public int teamInvite(TinviteVO tinviteVO); //팀 가입 신청
+	public int teamListInsert(TeamlistVO teamlistVO); //팀 가입 승인
 	public int tNumUpdate(MembersVO membersVO); //팀번호 변경
 	public int countSelect(TeamlistVO teamlistVO);
 	

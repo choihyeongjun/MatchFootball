@@ -4,20 +4,35 @@
 
 <mapper namespace="co.company.MatchFootball.mapper.SungjunMapper"> <!-- 패키지.EmpMapper -->
 
-	<!--해당 날의 개인 매치 조회 -->
+	<!--해당 날의 개인 매치 조회 및 신청 인원 -->
 	<select id="pmatchselect" parameterType="P_matchVO"
 		resultType="P_matchVO">
-		select d.* ,f
-
+		select d.* ,f,to_char(to_date(concat(m_date,m_hour),'yyyy-mm-ddhh24:mi'),'yyyy-mm-ddhh24:mi') ,to_char(sysdate + 9/24,'yyyy-mm-ddhh24:mi')
 		from p_match d, ( select a.m_no ,count(*) f
 						from p_match a,pplayers b
 						where a.m_no = b.m_no
 						group by a.m_no )c
 		where d.m_no = c.m_no(+)
-		 and m_date= #{m_date} 
-		 and to_date(concat(m_date,m_hour),'yyyy-mm-ddhh24:mi')<![CDATA[ >= sysdate]]>
+		 and to_date(concat(m_date,m_hour),'yyyy-mm-ddhh24:mi')<![CDATA[ >= sysdate +9/24]]>
 		order by m_hour asc
 	</select>
+	<!--개인 매치 신청   -->
+	<insert id="matchapply" parameterType="PplayersVO">
+		insert into pplayers 
+		values(#{m_no},#{id})
+	</insert>
+	<!--point 차감 -->
+	<update id="pointminus" parameterType="MembersVO">
+		update members set 
+		point = point -#{point} 
+		where id= #{id}
+	</update>
+	<!--point 내역 추가 -->
+	<insert id="pointcomm" parameterType="MembersVO">
+		insert into point (p_seq,p_id,npoint,p_date,p_con)
+		values(point_seq.nextval ,#{p_id},#{npoint},sysdate,#{p_con})
+	</insert>
+	
 	<!--point 입금 내역 -->
 	<select id="pointconselect" parameterType="PointVO"
 		resultType="PointVO">
@@ -31,11 +46,7 @@
 		SELECT * FROM point
 		where p_id = #{p_id}
 	</select>
-	<!--point 차감 -->
-	<update id="pointminus" parameterType="MembersVO">
-		update members set point =
-		#{point} where id= #{id}
-	</update>
+	
 	<!--p_match 내역 수 페이징 -->
 	<select id="getCount1" resultType="int">
 		SELECT COUNT(*) FROM p_match
@@ -65,7 +76,7 @@
 	<select id="tmatchlist" parameterType="TeammatchVO"
 		resultType="TeammatchVO">
 		select * from teammatch
-		where m_id = #{m_id} and <![CDATA[rownum <=4]]>
+		where id = #{id} and <![CDATA[rownum <=4]]>
 		order by m_date asc ,m_hour asc
 	</select>
 	<!--멤버 조회 -->

@@ -14,15 +14,15 @@
 
 <script>
 $(function(){
-	userList();
+	noticeList();
 
-	userSelect();
+	noticeSelect();
 	
-	userDelete();
+	noticeDelete();
 	
-	userInsert();
+	noticeInsert();
 
-	userUpdate();
+	noticeUpdate();
 	
 	init();
 });
@@ -38,7 +38,7 @@ function init() {
 }//init
 
 //사용자 삭제 요청
-function userDelete() {
+function noticeDelete() {
 	//삭제 버튼 클릭
 	$('body').on('click','#btnDelete',function(){
 		var userId = $(this).closest('tr').find('#hidden_userId').val();
@@ -60,7 +60,7 @@ function userDelete() {
 }//userDelete
 
 //사용자 조회 요청
-function userSelect() {
+function noticeSelect() {
 	//조회 버튼 클릭
 	$('body').on('click','#btnSelect',function(){
 		var userId = $(this).closest('tr').find('#hidden_userId').val();
@@ -79,7 +79,7 @@ function userSelect() {
 }//userSelect
 
 //사용자 조회 응답
-function userSelectResult(user) {
+function noticeSelectResult(notice) {
 	$('input:text[name="id"]').val(user.id);
 	$('input:text[name="name"]').val(user.name);
 	$('input:text[name="password"]').val(user.password);
@@ -87,7 +87,7 @@ function userSelectResult(user) {
 }//userSelectResult
 
 //사용자 수정 요청
-function userUpdate() {
+function noticeUpdate() {
 	//수정 버튼 클릭
 	$('#btnUpdate').on('click',function(){
 		var id = $('input:text[name="id"]').val();
@@ -111,7 +111,7 @@ function userUpdate() {
 }//userUpdate
 
 //사용자 등록 요청
-function userInsert(){
+function noticeInsert(){
 	//등록 버튼 클릭
 	$('#btnInsert').on('click',function(){
 		$("#form1")
@@ -135,7 +135,7 @@ function userInsert(){
 }//userInsert
 
 //사용자 목록 조회 요청
-function userList() {
+function noticeList() {
 	$.ajax({
 		url:'users',
 		type:'GET',
@@ -149,19 +149,20 @@ function userList() {
 }//userList
 
 //사용자 목록 조회 응답
-function userListResult(data) {
-	$("tbody").empty();
+function noticeListResult(data) {
+	$("noti").empty();
 	$.each(data,function(idx,item){
 		$('<tr>')
-		.append($('<td>').html(item.id))
-		.append($('<td>').html(item.name))
-		.append($('<td>').html(item.password))
-		.append($('<td>').html(item.role))
+		.append($('<td>').html(item.))
+		.append($('<td>').html(item.))
+		.append($('<td>').html(item.))
+		.append($('<td>').html(item.))
 		.append($('<td>').html('<button id=\'btnSelect\'>조회</button>'))
 		.append($('<td>').html('<button id=\'btnDelete\'>삭제</button>'))
 		.append($('<input type=\'hidden\' id=\'hidden_userId\'>').val(item.id))
-		.appendTo('tbody');
+		.appendTo('noti');
 	});//each
+	$('#dataTable').DataTable()
 }//userListResult
 
 
@@ -245,16 +246,7 @@ function userListResult(data) {
 						<th>삭제</th>
 					</tr>
 				</tfoot>
-				<tbody>
-					<tr>
-						<td>3</td>
-						<td>현동이축구는체력빨?</td>
-						<td>김현동</td>
-						<td>2020.01.01</td>
-						<td>10</td>
-						<td></td>
-						<td></td>
-					</tr>
+				<tbody id="noti">
 				</tbody>
 			</table>
 		</div>

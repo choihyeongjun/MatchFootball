@@ -160,7 +160,7 @@ function deleteResult(data){
 											<th></th>
 										</tr>
 									</tfoot>
-									<tbody id="blackTeam"></tbody>
+									<tbody align="center" id="blackTeam"></tbody>
 								</table>
 							</div>
 						</div>

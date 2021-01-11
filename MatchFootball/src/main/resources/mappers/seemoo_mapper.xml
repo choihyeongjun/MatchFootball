@@ -38,21 +38,26 @@
 		SELECT * FROM TEAM WHERE T_NUM = #{t_num}
 	</select>
 	
-	<!-- 팀 권한 수정 -->
+	<!-- 팀권한 수정 -->
 	<select id="teamsupdate" parameterType="TeamVO" resultType="TeamVO">
 		UPDATE TEAM SET T_AUTHOR = #{t_author} WHERE T_NUM = #{t_num}     
 	</select>
 	
-	<!-- 팀 삭제 -->
+	<!-- 팀삭제 -->
 	<select id="teamsdelete" parameterType="TeamVO">
 		DELETE FROM TEAM WHERE T_NUM = #{t_num}
 	</select>
 	
 	<!-- 블랙팀 조회 -->
 	<select id="blackteamList" resultType="BlackTeamListVO">
-		SELECT T.T_NUM, T.T_NAME, T.T_LEVEL, T.T_AUTHOR, T.T_M, B.STOPDATE, B.STOPREASON FROM TEAM T JOIN BLACKTEAM B ON T.T_NUM = B.T_NUM
+		SELECT T.T_NUM, T.T_NAME, T.T_LEVEL, T.T_AUTHOR, T.T_M, B.STOPDATE, 
+		B.STOPREASON FROM TEAM T JOIN BLACKTEAM B ON T.T_NUM = B.T_NUM WHERE t_author = #{t_author}
 	</select>
 	
+	<!-- 블랙팀 삭제 -->
+	<select id="blackteamdelete" resultType="BlackTeamListVO">
+		DELETE FROM BLACKTEAM WHERE T_NUM = #{t_num}
+	</select>
 <!-- 매니저관리 -->
 
 	<!-- 매니저조회 -->
@@ -65,6 +70,6 @@
 		SELECT MEMBERS.ID, NAME, BIRTH, GENDER, PNUM, AUTHOR, BIRTH, APPLY, COMM FROM MEMBERS, MANAGERAPLY WHERE MEMBERS.ID=MANAGERAPLY.ID
 	</select>
 	
-	<!-- 공지사항 -->
+<!-- 공지사항 -->
 	
 </mapper>

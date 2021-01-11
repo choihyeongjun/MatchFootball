@@ -40,11 +40,11 @@ public class HyeongjunController {
 
 	@ResponseBody
 	@RequestMapping(value = "/bollowsearch/ajax")
-	public MembersVO ajaxbollowseach(Model model, MembersVO vo,InviteVO vo1,HttpSession session) {
-		vo1.setR_id(vo.getId());
-		vo1.setC_id((String) session.getAttribute("id"));
+	public List<InviteVO> ajaxbollowseach(Model model, MembersVO vo,InviteVO vo1,HttpSession session) {
+	//	vo1.setR_id(vo.getId());
+		//vo1.setC_id((String) session.getAttribute("id"));
 		hyeongjunMapper.bollowinsert(vo1);
-		return hyeongjunMapper.bollowsearch(vo);
+		return hyeongjunMapper.invitelist(vo1);
 	}
 
 	@RequestMapping("/bollow")
@@ -52,13 +52,13 @@ public class HyeongjunController {
 		// model.addAttribute("list",hyeongjunMapper.getbollowlist());
 		return "hyeongjun/bollowlist";
 	}
-	/*
-	 * @RequestMapping("/bollowinvite") public String bollowinvite(Model
-	 * model,InviteVO vo,HttpSession session) { vo.setC_id((String)
-	 * session.getAttribute("id"));
-	 * 
-	 * return hyeongjunMapper.; }
-	 */
+	@RequestMapping("/inviteselect")
+	public String inviteselect(Model model,MembersVO vo,HttpSession session) {
+		
+		vo.setId((String)session.getAttribute("id"));
+		model.addAttribute("invite",hyeongjunMapper.inviteselect(vo));
+		return "hyeongjun/invitelist";
+	}
 
 	@RequestMapping("/fieldcommit")
 	public String userjoin(HttpServletRequest request, FieldVO vo) throws IllegalStateException, IOException {
@@ -122,7 +122,7 @@ public class HyeongjunController {
 	public String loginpage() {
 		return "hyeongjun/login";
 	}
-
+	
 	@RequestMapping(value = "/logincheck")
 	public String login(MembersVO vo, HttpServletRequest req, HttpSession session) {
 		vo = hyeongjunMapper.login(vo);
@@ -143,10 +143,6 @@ public class HyeongjunController {
 		return "home";
 	}
 
-	@RequestMapping("/invite")
-	public String invitepage() {
-		return "hyeongjun/invite";
-	}
 
 	@RequestMapping("/invitelist")
 	public String invitelist() {

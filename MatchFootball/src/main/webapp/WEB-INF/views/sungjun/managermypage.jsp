@@ -238,10 +238,10 @@ a {
 								<div class="matchc">
 									<a class="mdetail" data-toggle="modal"
 										data-target="#matchdetail" data-num="${t_match.m_no }"
-										style="cursor: pointer;"> ${t_match.m_date }
-										${t_match.m_hour }</a> <a>${t_match.t_name }</a> <a class="btn sf"
-										href="#"> 리뷰 작성</a> <input type="hidden"
-										value="${t_match.m_no }">
+										style="cursor: pointer; font-size: 18px;"> ${t_match.m_date }
+										${t_match.m_hour }  ${t_match.t_name }</a>
+								    <a class="btn sf" href="#"> 리뷰 작성</a>
+								    <input type="hidden" value="${t_match.m_no }">
 								</div>
 							</li>
 						</ul>

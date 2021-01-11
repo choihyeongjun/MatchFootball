@@ -248,7 +248,10 @@ public class HyenDongController {
 	
 	// 팀 초대
 	@RequestMapping("/teamInvite")
-	public String teamInvite() {
+	public String teamInvite(Model model, TeamVO teamVO, MembersVO membersVO, HttpSession session, TeamlistVO teamlistVO) {
+		String id = (String)session.getAttribute("id");
+		membersVO.setId(id);
+		model.addAttribute("members", hyendongMapper.memberSelect(membersVO)); //멤버 단건 조회
 		return "hyendong/teamInvite";
 	}
 
