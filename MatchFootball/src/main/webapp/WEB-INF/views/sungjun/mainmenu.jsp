@@ -228,6 +228,9 @@ body {
 								<li class="lili"><a href="${pageContext.request.contextPath}/mypage/pay">결제 | 쿠폰</a></li>
 								<li class="lili"><a href="${pageContext.request.contextPath}/mypage/usedPoint">사용 내역</a></li>
 								<li class="lili"><a href="${pageContext.request.contextPath}/mypage/msg">쪽지 | 게시글</a></li>
+								<c:if test="${sessionScope.author eq 'user'}">
+								<li class="lili"><a href="${pageContext.request.contextPath}/manageremploy">신청페이지</a></li>
+								</c:if>
 							</ul>
 						</div>
 						<div class="col-md-3 col-sm-6">
@@ -238,7 +241,6 @@ body {
 								<li class="lili"><a href="${pageContext.request.contextPath}/managermypage">매니저 마이페이지</a></li>
 								<li class="lili"><a href="${pageContext.request.contextPath}/allmatchlist">전체 경기 일정</a></li>
 								<li class="lili"><a href="${pageContext.request.contextPath}/reviewmodal">리뷰 내역 페이지</a></li>
-								<li class="lili"><a href="${pageContext.request.contextPath}/manageremploy">신청페이지</a></li>
 							</ul>
 						</div>
 						<div class="col-md-3 col-sm-6">
@@ -246,10 +248,14 @@ body {
 								<h3 style="text-align: center">팀페이지</h3>
 							</div>
 							<ul class="menul">
+								<c:if test="${sessionScope.t_num eq null }">
 								<li class="lili"><a href="${pageContext.request.contextPath}/teamMake">팀 생성</a></li>
+								</c:if>
+								<c:if test="${sessionScope.t_num ne null }">
 								<li class="lili"><a href="${pageContext.request.contextPath}/teamInfo?t_num=${sessionScope.t_num}">팀 정보</a></li>
 								<li class="lili"><a href="${pageContext.request.contextPath}/teamNotice?t_num=${sessionScope.t_num}">팀 공지</a></li>
 								<li class="lili"><a href="${pageContext.request.contextPath}/teamInvite?t_num=${sessionScope.t_num}">팀 초대</a></li>
+								</c:if>
 								<li class="lili"><a href="${pageContext.request.contextPath}/teamList">팀 리스트</a></li>
 							</ul>
 						</div>

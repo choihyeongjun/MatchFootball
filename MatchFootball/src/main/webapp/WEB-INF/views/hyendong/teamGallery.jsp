@@ -52,7 +52,7 @@
 		</div>
 		<hr />
 	</div>
-	<input type="text" name="t_num" value="${teamInfo.t_num }">
+	<input type="text" name="t_num" value="${teamInfo.t_num }" style="display:none">
 	<input type="submit" value="등록">
 	<input type="file" name="file">
 	<div class="site-section">

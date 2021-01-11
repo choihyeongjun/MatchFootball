@@ -16,7 +16,7 @@
    where id=#{id}
    </select>
    <select id="bollowinsert" parameterType="inviteVO" resultType="inviteVO">
-   insert into invite(c_id,title,comm,s_date,r_id) values(#{c_id},#{title},#{comm},sysdate,#{r_id})
+   insert into invite(c_id,title,comm,s_date,r_id) values(#{c_id},#{title},#{comm},sysdate+9/24,#{r_id})
    </select>
    
    <select id="invitestore" parameterType="inviteVO" resultType="inviteVO">
@@ -59,7 +59,7 @@
    select * from fboard
    </select>
    <select id="freeinsert" parameterType="fboardVO" resultType="fboardVO">
-   	insert into fboard(id,num,title,b_date,comm) values(#{id},free_seq.nextval,#{title},sysdate,#{comm})
+   	insert into fboard(id,num,title,b_date,comm) values(#{id},free_seq.nextval,#{title},sysdate+9/24,#{comm})
    </select>
    <select id="freeselect" parameterType="fboardVO" resultType="fboardVO">
    	select * 
@@ -89,9 +89,10 @@
    select i.c_id,i.s_date,m.pnum,m.t_num,i.check1 from members m,invite i
    where m.id=i.c_id and i.r_id=#{id}
    </select>
-   <select id="deleteinvite" parameterType="inviteVO">
-   		delete from invite where ((TRUNC(SYSDATE,'MI')-to_date(s_date,'YYYY-MM-DD HH24:MI:SS'))*1440)>=10;
+   <select id="deleteinvite" >
+   		delete from invite where ((TRUNC(SYSDATE,'MI')-to_date(s_date,'YYYY-MM-DD HH24:MI:SS'))*1440)>=10
    </select>
+
 
    <!-- <select id="heartselect" result="likeitVO">
    	select likeit

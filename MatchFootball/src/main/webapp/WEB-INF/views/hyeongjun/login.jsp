@@ -35,7 +35,7 @@ function kakaoLogout() {
                <div class="box box-border">
                   <div class="box-body">
                      <h4>Login</h4>
-                     <form action="${pageContext.request.contextPath}/logincheck">
+                     <form action="${pageContext.request.contextPath}/logincheck" method="post">
                         <div class="form-group">
                            <label>Username</label>
                            <input type="text" name="id" class="form-control">

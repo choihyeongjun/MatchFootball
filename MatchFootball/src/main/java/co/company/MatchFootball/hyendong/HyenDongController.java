@@ -258,11 +258,12 @@ public class HyenDongController {
 	
 	// 팀 초대 처리
 		@RequestMapping("/teamInviteInsert")
-		public String teamInviteInsert(Model model, TeamVO teamVO, MembersVO membersVO, HttpSession session, TeamlistVO teamlistVO) {
+		public String teamInviteInsert(Model model, TeamVO teamVO, MembersVO membersVO, HttpSession session, TinviteVO tinviteVO) {
 			String id = (String)session.getAttribute("id");
 			membersVO.setId(id);
 			model.addAttribute("members", hyendongMapper.memberSelect(membersVO)); //멤버 단건 조회
-			return "hyendong/teamInvite";
+			hyendongMapper.teamInvite(tinviteVO);
+			return "redirect:/teamInfo?t_num=" + teamVO.getT_num(); 
 		}
 
 	@ResponseBody
