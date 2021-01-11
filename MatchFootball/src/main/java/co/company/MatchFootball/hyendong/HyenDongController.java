@@ -22,6 +22,7 @@ import co.company.MatchFootball.vo.Paging;
 import co.company.MatchFootball.vo.TeamVO;
 import co.company.MatchFootball.vo.TeamlistVO;
 import co.company.MatchFootball.vo.TgalleryVO;
+import co.company.MatchFootball.vo.TinviteVO;
 import co.company.MatchFootball.vo.TnoticeVO;
 import co.company.MatchFootball.vo.TournamentTeamVO;
 import co.company.MatchFootball.vo.TournamentVO;
@@ -248,12 +249,21 @@ public class HyenDongController {
 	
 	// 팀 초대
 	@RequestMapping("/teamInvite")
-	public String teamInvite(Model model, TeamVO teamVO, MembersVO membersVO, HttpSession session, TeamlistVO teamlistVO) {
+	public String teamInvite(Model model, HttpSession session, TinviteVO tinviteVO) {
 		String id = (String)session.getAttribute("id");
-		membersVO.setId(id);
-		model.addAttribute("members", hyendongMapper.memberSelect(membersVO)); //멤버 단건 조회
+		tinviteVO.setId(id);
+		model.addAttribute("tinvite", hyendongMapper.teamInviteSelect(tinviteVO));
 		return "hyendong/teamInvite";
 	}
+	
+	// 팀 초대 처리
+		@RequestMapping("/teamInviteInsert")
+		public String teamInviteInsert(Model model, TeamVO teamVO, MembersVO membersVO, HttpSession session, TeamlistVO teamlistVO) {
+			String id = (String)session.getAttribute("id");
+			membersVO.setId(id);
+			model.addAttribute("members", hyendongMapper.memberSelect(membersVO)); //멤버 단건 조회
+			return "hyendong/teamInvite";
+		}
 
 	@ResponseBody
 	@RequestMapping(value = "/teamInvite/ajax")
