@@ -294,11 +294,11 @@ $(function() {
 							</div>
 							<div style="width: 20%;">
 							<c:if test="${p_match.p_max > p_match.f}">
-								<p class="ap-info" style="">신청 가능</p>
-								</c:if>
-							<c:if test="${p_match.p_max = p_match.f}">
-								<p class="p" style="">마감</p>
-								</c:if>
+								<p class="ap-info" >신청 가능</p>
+							</c:if>
+							<c:if test="${p_match.p_max <= p_match.f}">
+								<p class="app-info">마감</p>
+							</c:if>
 									
 							</div>
 					</a></li>

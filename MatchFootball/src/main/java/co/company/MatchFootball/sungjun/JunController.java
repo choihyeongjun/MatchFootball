@@ -120,6 +120,7 @@ public class JunController {
 
 	@RequestMapping(value = "/matchDetail")
 	public ModelAndView test6(HttpServletResponse response,Model model,P_matchVO p_matchVO) throws IOException {
+		model.addAttribute("p_match",dao.pmatchlist1(p_matchVO));
 		return new ModelAndView("sungjun/matchDetail");
 	}
 	@RequestMapping(value = "/matchDetailm")
