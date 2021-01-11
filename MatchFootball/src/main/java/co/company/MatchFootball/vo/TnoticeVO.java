@@ -3,7 +3,7 @@ package co.company.MatchFootball.vo;
 import lombok.Data;
 
 @Data
-public class TnoticeVO {//팀갤러리게시판 이미지리스트
+public class TnoticeVO {
 	int n_no;//공지번호
 	int t_num;//팀번호
 	String t_content;//내용
