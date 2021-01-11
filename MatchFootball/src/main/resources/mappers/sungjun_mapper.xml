@@ -7,7 +7,7 @@
 	<!--해당 날의 개인 매치 조회 및 신청 인원 -->
 	<select id="pmatchselect" parameterType="P_matchVO"
 		resultType="P_matchVO">
-		select d.* ,f,to_char(to_date(concat(m_date,m_hour),'yyyy-mm-ddhh24:mi'),'yyyy-mm-ddhh24:mi') ,to_char(sysdate + 9/24,'yyyy-mm-ddhh24:mi')
+		select d.* ,f
 		from p_match d, ( select a.m_no ,count(*) f
 						from p_match a,pplayers b
 						where a.m_no = b.m_no

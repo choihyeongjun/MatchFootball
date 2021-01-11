@@ -286,6 +286,7 @@ $(function() {
 							</div>
 							<div style="width: 20%;">
 								<p class="ap-info" style="">신청 가능</p>
+								<!-- <p class="ap-info" style="">마감</p> -->
 							</div>
 					</a></li>
 				</c:forEach>

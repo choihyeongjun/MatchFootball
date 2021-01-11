@@ -131,6 +131,7 @@ public class HyeongjunController {
 			session.setAttribute("pw",vo.getPw());
 			session.setAttribute("name", vo.getName());
 			session.setAttribute("t_num",vo.getT_num());
+			session.setAttribute("author",vo.getAuthor());
 			System.out.println(vo.getT_num());
 		} else {
 			session.setAttribute("login", "아이디 또는 비밀번호가 맞지않습니다");
