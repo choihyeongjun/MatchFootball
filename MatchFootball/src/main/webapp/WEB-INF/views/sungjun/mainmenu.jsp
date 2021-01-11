@@ -172,35 +172,41 @@ body {
 		aria-hidden="true">
 		<div class="modal-dialog modal-xl" role="document">
 			<div class="modal-content" style="background-color: none;">
-				<div class="w3-center">
-					<br> <span
-						onclick="document.getElementById('id01').style.display='none'"
-						class="w3-button w3-xlarge w3-hover-red w3-display-topright"
-						title="Close Modal">&times;</span> <img src="img_avatar4.png"
-						alt="Avatar" style="width: 30%" class="w3-circle w3-margin-top">
-				</div>
-
-				<form class="w3-container" action="/action_page.php">
-					<div class="w3-section">
-						<label><b>Username</b></label> <input
-							class="w3-input w3-border w3-margin-bottom" type="text"
-							placeholder="Enter Username" name="usrname" required> <label><b>Password</b></label>
-						<input class="w3-input w3-border" type="password"
-							placeholder="Enter Password" name="psw" required>
-						<button class="w3-button w3-block w3-green w3-section w3-padding"
-							type="submit">Login</button>
-						<input class="w3-check w3-margin-top" type="checkbox"
-							checked="checked"> Remember me
-					</div>
-				</form>
-
-				<div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
-					<button
-						onclick="document.getElementById('id01').style.display='none'"
-						type="button" class="w3-button w3-red">Cancel</button>
-					<span class="w3-right w3-padding w3-hide-small">Forgot <a
-						href="#">password?</a></span>
-				</div>
+			  <div class="container">
+            <div class="box-wrapper">            
+               <div class="box box-border">
+                  <div class="box-body">
+                     <h4>Login</h4>
+                     <form action="${pageContext.request.contextPath}/logincheck">
+                        <div class="form-group">
+                           <label>Username</label>
+                           <input type="text" name="id" class="form-control">
+                        </div>
+                        <div class="form-group">
+                           <label class="fw">Password
+                              <a href="forgot.html" class="pull-right">Forgot Password?</a>
+                           </label>
+                           <input type="password" name="pw" class="form-control">
+                        </div>
+                        <div class="form-group text-right">
+                           <button class="btn btn-primary btn-block">Login</button>
+                              <td>${sessionScope.login}</td>
+                        </div>
+                        <div class="form-group text-center">
+                           <span class="text-muted">Don't have an account?</span> <a href="register.html">Create one</a>
+                        </div>
+                     
+                        <div class="title-line">
+                           or
+                        </div>
+                 <a href="#" class="btn btn-social btn-block facebook"><i class="ion-social-facebook"></i> Login with Facebook</a>
+				<a id="custom-login-btn" href="${kakao_url}"><img src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg"width="222"/>
+                     </form>
+                  </div>
+               </div>
+            </div>
+         </div>
+			
 
 			</div>
 		</div>
@@ -218,21 +224,21 @@ body {
 								<h3 style="text-align: center">마이페이지</h3>
 							</div>
 							<ul class="menul">
-								<li class="lili">내 정보</li>
-								<li class="lili">결제 | 쿠폰</li>
-								<li class="lili">사용 내역</li>
-								<li class="lili">쪽지 | 게시글</li>
+								<li class="lili"><a href="${pageContext.request.contextPath}/mypage/profile">내 정보</a></li>
+								<li class="lili"><a href="${pageContext.request.contextPath}/mypage/pay">결제 | 쿠폰</a></li>
+								<li class="lili"><a href="${pageContext.request.contextPath}/mypage/usedPoint">사용 내역</a></li>
+								<li class="lili"><a href="${pageContext.request.contextPath}/mypage/msg">쪽지 | 게시글</a></li>
 							</ul>
 						</div>
 						<div class="col-md-3 col-sm-6">
 							<div>
-								<h3 style="text-align: center">매니저 마이페이지</h3>
+								<h3 style="text-align: center">매니저</h3>
 							</div>
 							<ul class="menul">
-								<li class="lili">마이페이지</li>
-								<li class="lili">마이페이지</li>
-								<li class="lili">마이페이지</li>
-								<li class="lili">마이페이지</li>
+								<li class="lili"><a href="${pageContext.request.contextPath}/managermypage">매니저 마이페이지</a></li>
+								<li class="lili"><a href="${pageContext.request.contextPath}/allmatchlist">전체 경기 일정</a></li>
+								<li class="lili"><a href="${pageContext.request.contextPath}/reviewmodal">리뷰 내역 페이지</a></li>
+								<li class="lili"><a href="${pageContext.request.contextPath}/manageremploy">신청페이지</a></li>
 							</ul>
 						</div>
 						<div class="col-md-3 col-sm-6">
@@ -240,11 +246,11 @@ body {
 								<h3 style="text-align: center">팀페이지</h3>
 							</div>
 							<ul class="menul">
-								<li class="lili"><a href="teamMake">팀 생성</a></li>
-								<li class="lili"><a href="teamInfo">팀 정보</a></li>
-								<li class="lili"><a href="teamNotice">팀 공지</a></li>
-								<li class="lili"><a href="teamInvite">팀 초대</a></li>
-								<li class="lili"><a href="teamList">팀 리스트</a></li>
+								<li class="lili"><a href="${pageContext.request.contextPath}/teamMake">팀 생성</a></li>
+								<li class="lili"><a href="${pageContext.request.contextPath}/teamInfo?t_num=${sessionScope.t_num}">팀 정보</a></li>
+								<li class="lili"><a href="${pageContext.request.contextPath}/teamNotice?t_num=${sessionScope.t_num}">팀 공지</a></li>
+								<li class="lili"><a href="${pageContext.request.contextPath}/teamInvite?t_num=${sessionScope.t_num}">팀 초대</a></li>
+								<li class="lili"><a href="${pageContext.request.contextPath}/teamList">팀 리스트</a></li>
 							</ul>
 						</div>
 						<div class="col-md-3 col-sm-6">
@@ -252,10 +258,10 @@ body {
 								<h3 style="text-align: center">매치</h3>
 							</div>
 							<ul class="menul">
-								<li class="lili">마이페이지</li>
-								<li class="lili">마이페이지</li>
-								<li class="lili">마이페이지</li>
-								<li class="lili">마이페이지</li>
+								<li class="lili"><a href="${pageContext.request.contextPath}/match">개인 매치</a></li>
+								<li class="lili"><a href="${pageContext.request.contextPath}/teammatch">팀 매치</a></li>
+								<li class="lili"><a href="${pageContext.request.contextPath}/bollow">용병 초대</a></li>
+								
 							</ul>
 						</div>
 						<div class="col-md-3 col-sm-6">
@@ -263,22 +269,8 @@ body {
 								<h3 style="text-align: center">경기장</h3>
 							</div>
 							<ul class="menul">
-								<li class="lili">마이페이지</li>
-								<li class="lili">마이페이지</li>
-								<li class="lili">마이페이지</li>
-								<li class="lili">마이페이지</li>
-							</ul>
-						</div>
-
-						<div class="col-md-3 col-sm-6">
-							<div>
-								<h3 style="text-align: center">용병</h3>
-							</div>
-							<ul class="menul">
-								<li class="lili">마이페이지</li>
-								<li class="lili">마이페이지</li>
-								<li class="lili">마이페이지</li>
-								<li class="lili">마이페이지</li>
+								<li class="lili"><a href="${pageContext.request.contextPath}/fieldlist">구장 정보</a></li>
+								<li class="lili"><a href="${pageContext.request.contextPath}/fieldinsert">구장 등록</a></li>
 							</ul>
 						</div>
 						<div class="col-md-3 col-sm-6">
@@ -286,10 +278,10 @@ body {
 								<h3 style="text-align: center">커뮤니티</h3>
 							</div>
 							<ul class="menul">
-								<li class="lili">마이페이지</li>
-								<li class="lili">마이페이지</li>
-								<li class="lili"><a href="tournamentList">토너먼트</a></li>
-								<li class="lili">마이페이지</li>
+								<li class="lili"><a href="${pageContext.request.contextPath}/allnotice">공지사항</a></li>
+								<li class="lili"><a href="${pageContext.request.contextPath}/free">자유게시판</a></li>
+								<li class="lili"><a href="${pageContext.request.contextPath}/productlist">중고장터</a></li>
+								<li class="lili"><a href="${pageContext.request.contextPath}/tournamentList">토너먼트</a></li>
 							</ul>
 						</div>
 					</div>

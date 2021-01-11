@@ -23,7 +23,7 @@
       insert into invite value(#{id},sysdate,#{comm},#{check1})
    </select>
    <select id="login" resultType="membersVO">
-      select id,pw
+      select *
       from members
       where id=#{id} and pw=#{pw}
    </select>
@@ -89,6 +89,10 @@
    select i.c_id,i.s_date,m.pnum,m.t_num,i.check1 from members m,invite i
    where m.id=i.c_id and i.r_id=#{id}
    </select>
+   <select id="deleteinvite" parameterType="inviteVO">
+   		delete from invite where ((TRUNC(SYSDATE,'MI')-to_date(s_date,'YYYY-MM-DD HH24:MI:SS'))*1440)>=10;
+   </select>
+
    <!-- <select id="heartselect" result="likeitVO">
    	select likeit
    	from likeit

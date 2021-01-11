@@ -128,12 +128,15 @@ public class HyeongjunController {
 		vo = hyeongjunMapper.login(vo);
 		if (vo != null) {
 			session.setAttribute("id", vo.getId());
+			session.setAttribute("pw",vo.getPw());
 			session.setAttribute("name", vo.getName());
+			session.setAttribute("t_num",vo.getT_num());
+			System.out.println(vo.getT_num());
 		} else {
 			session.setAttribute("login", "아이디 또는 비밀번호가 맞지않습니다");
-			return "hyeongjun/login";
+			return "";
 		}
-		return "home";
+		return "sungjun/match";
 	}
 
 	@RequestMapping("/logout")
