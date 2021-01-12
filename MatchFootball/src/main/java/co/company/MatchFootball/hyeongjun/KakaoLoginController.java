@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,9 +13,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
+import co.company.MatchFootball.mapper.DoeunMapper;
+import co.company.MatchFootball.vo.MembersVO;
+
 @Controller
 public class KakaoLoginController {
 
+	@Autowired DoeunMapper dao; 
    @RequestMapping(value = "/loginform", method = RequestMethod.GET)
    public ModelAndView memberLoginForm(HttpSession session) {
       ModelAndView mav = new ModelAndView(); /* 네아로 인증 URL을 생성하기 위하여 getAuthorizationUrl을 호출 */
@@ -27,7 +32,7 @@ public class KakaoLoginController {
 
    @RequestMapping(value = "/kakaologin", produces = "application/json")
    public ModelAndView kakaoLogin(@RequestParam("code") String code, HttpServletRequest request,
-         HttpServletResponse response, HttpSession session) throws Exception {
+         HttpServletResponse response, HttpSession session, MembersVO mem) throws Exception {
       ModelAndView mav = new ModelAndView(); // 결과값을 node에 담아줌
       JsonNode node = KakaoAPI.getAccessToken(code); // accessToken에 사용자의 로그인한 모든 정보가 들어있음
       JsonNode accessToken = node.get("access_token"); // 사용자의 정보
@@ -53,7 +58,14 @@ public class KakaoLoginController {
       session.setAttribute("kgender", kgender);
       session.setAttribute("kbirthday", kbirthday);
       session.setAttribute("kage", kage);
-      mav.setViewName("redirect:/match");
+      mem.setId((String)session.getAttribute("kemail"));
+      if(dao.getUser(mem)!=null) {
+    	  mav.setViewName("redirect:/match");    	  
+      }else {
+    	 mav.setViewName("doeun/pfUpdate");    	  
+      }
+    	  
+      
       return mav;
    }
    @RequestMapping(value = "/kakaologout", produces = "application/json")

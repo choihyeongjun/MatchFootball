@@ -12,22 +12,31 @@
 		where id = #{id}
 	</select>
 
-	<!-- 프로필 입력 -->
-
-
 	<!-- 포인트 조회 -->
 	<select id="myPoint" parameterType="MembersVO"
 		resultType="MembersVO">
 		select point from members
 		where id = #{id}
 	</select>
-
+	<!-- 프로필 등록 -->
 	<insert id="insertMem" parameterType="MembersVO">
 		insert into members(
-		id, email, img
+		id,
+		name,
+		gender,
+		postcode,
+		location1,
+		location2,
+		pnum,
+		email,
+		birth,
+		img,
+		lv,
+		pos,
+		author2,point
 		)
 		values(
-		#{kemail}, #{kemail}, #{kimage}
+		#{id},#{name},#{gender},#{postCode},#{location1},#{location2},#{pnum},#{email},#{birth},#{img},#{lv},#{pos}, #{author2},0
 		)
 	</insert>
 
@@ -84,6 +93,10 @@
 		select * from message where send_id = #{send_id} order by m_no desc
 		) a ) b where rn between #{first} and #{last}
 	</select>
+	<!-- 포인트 충전 결제 등록 -->
+	<insert id="Pcharge" parameterType="PointVO">
+	insert into point(p_seq,p_id,p_pay,npoint,p_date,p_con) values(point_seq.nextval,#{p_id},#{p_pay},#{npoint},sysdate,#{p_con})
+	</insert>
 <!-- 포인트 내역조회 -->	
 <select id="pointList" parameterType="PointVO" resultType="PointVO">
  select * from( select a.*, rownum rn from (

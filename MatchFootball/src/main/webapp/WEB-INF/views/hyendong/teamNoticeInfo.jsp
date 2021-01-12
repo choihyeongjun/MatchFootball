@@ -108,7 +108,7 @@
 				<pre>${teamNoticeInfo.t_date }</pre>
 			</div>
 			<br>
-			<input type="button" class="btn btn-primary" value="목록" onclick="history.back(-1);">
+			<input type="button" class="btn btn-primary" value="목록" onclick="location.href='teamNotice?t_num=${teamInfo.t_num}'">
 			
 			<c:if test="${updateButton.t_author eq '팀장' }">
 			<form action="teamNoticeUpdate">

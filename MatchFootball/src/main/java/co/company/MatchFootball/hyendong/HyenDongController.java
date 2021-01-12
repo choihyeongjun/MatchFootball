@@ -83,6 +83,8 @@ public class HyenDongController {
 		model.addAttribute("members", hyendongMapper.memberSelect(membersVO)); //멤버 단건 조회
 		model.addAttribute("teamInfo", hyendongMapper.getTeam(teamVO));
 		model.addAttribute("teamMembers", hyendongMapper.getTeamMembers(teamVO));
+		membersVO.setT_num(teamVO.getT_num());
+		model.addAttribute("memberss", hyendongMapper.memberSelect(membersVO));
 		teamlistVO.setId(id);
 		model.addAttribute("updateButton", hyendongMapper.getTeamMemberss(teamlistVO));
 		return "hyendong/teamInfo";
@@ -93,8 +95,9 @@ public class HyenDongController {
 	public String memberOut(Model model, TeamVO teamVO, MembersVO membersVO, HttpSession session, TeamlistVO teamlistVO) {
 		hyendongMapper.teamMemberOut(teamlistVO);
 		membersVO.setId(teamlistVO.getId());
+		model.addAttribute("members", hyendongMapper.memberSelect(membersVO)); //멤버 단건 조회
 		hyendongMapper.tNumNullUpdate(membersVO);
-		return "redirect:/teamInfo?t_num=" + teamVO.getT_num();
+		return "redirect:/teamInfo?t_num=" + membersVO.getT_num();
 	}
 	
 	// 팀 가입하기
@@ -256,14 +259,14 @@ public class HyenDongController {
 	}
 	
 	// 팀 초대 처리 인바이트로
-		@RequestMapping("/teamInviteInsert")
-		public String teamInviteInsert(Model model, TeamVO teamVO, MembersVO membersVO, HttpSession session, TinviteVO tinviteVO) {
-			String id = (String)session.getAttribute("id");
-			membersVO.setId(id);
-			model.addAttribute("members", hyendongMapper.memberSelect(membersVO)); //멤버 단건 조회
-			hyendongMapper.teamInvite(tinviteVO);
-			return "redirect:/teamInfo?t_num=" + teamVO.getT_num(); 
-		}
+	@RequestMapping("/teamInviteInsert")
+	public String teamInviteInsert(Model model, TeamVO teamVO, MembersVO membersVO, HttpSession session, TinviteVO tinviteVO) {
+		String id = (String)session.getAttribute("id");
+		membersVO.setId(id);
+		model.addAttribute("members", hyendongMapper.memberSelect(membersVO)); //멤버 단건 조회
+		hyendongMapper.teamInvite(tinviteVO);
+		return "redirect:/teamInfo?t_num=" + teamVO.getT_num(); 
+	}
 		
 	// 팀 초대 승락
 	@RequestMapping("/teamListInsert")
@@ -281,6 +284,19 @@ public class HyenDongController {
 	public String teamInviteDelete(TinviteVO tinviteVO, TeamVO teamVO) {
 		hyendongMapper.teamInviteDelete(tinviteVO);
 		return "redirect:/teamInvite?t_num=" + teamVO.getT_num();
+	}
+	
+	// 팀 탈퇴
+	@RequestMapping("/teamListOut")
+	public String teamListOut(TeamlistVO teamlistVO, MembersVO membersVO, HttpSession session) {
+		String id = (String)session.getAttribute("id");
+		membersVO.setId(id);
+		hyendongMapper.memberSelect(membersVO); //멤버 단건 조회
+		teamlistVO.setId(membersVO.getId());
+		hyendongMapper.teamListOut(teamlistVO);
+		hyendongMapper.tNumNullUpdate(membersVO);
+		
+		return "redirect:/teamInfo?t_num=" + membersVO.getT_num();
 	}
 	
 	@ResponseBody
@@ -315,15 +331,31 @@ public class HyenDongController {
 
 	// 토너먼트 상세
 	@RequestMapping("/tournamentInfo")
-	public String tournamentInfo(Model model, TournamentVO tournamentVO) {
+	public String tournamentInfo(TournamentVO tournamentVO, MembersVO membersVO, HttpSession session, TeamlistVO teamlistVO, Model model, TournamentTeamVO tt) {
 		model.addAttribute("tournamentTeam", hyendongMapper.getTournament(tournamentVO));
+		String id = (String)session.getAttribute("id");
+		String t_num = (String)session.getAttribute("t_num");
+		membersVO.setId(id);
+		hyendongMapper.memberSelect(membersVO); //멤버 단건 조회
+		teamlistVO.setId(id);
+		teamlistVO.setT_num(t_num);
+		model.addAttribute("updateButton", hyendongMapper.getTeamMemberss(teamlistVO));
 		return "hyendong/tournamentInfo";
 	}
 
 	// 토너먼트 대진표
 	@RequestMapping("/tournamentPVP")
-	public String tournamentPVP(Model model, TournamentTeamVO tournamentTeamVO) {
+	public String tournamentPVP(Model model, TournamentTeamVO tournamentTeamVO, TeamVO teamVO) {
 		model.addAttribute("tournamentPVP", hyendongMapper.tournamentPVP(tournamentTeamVO));
+		
 		return "hyendong/tournamentPVP";
+	}
+	
+	//토너먼트 참가 처리
+	@RequestMapping("/teamTournaInsert")
+	public String teamTournaInsert(TournamentTeamVO tournamentTeamVO, MembersVO membersVO, HttpSession session, TournamentVO tournamentVO) {
+		hyendongMapper.teamTournaInsert(tournamentTeamVO);
+		hyendongMapper.getTournament(tournamentVO);
+		return "redirect:/tournamentInfo?t_no=" + tournamentVO.getT_no();
 	}
 }

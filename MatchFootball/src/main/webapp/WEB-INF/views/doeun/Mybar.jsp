@@ -47,17 +47,17 @@
 								</div>
 								<br>
 								<div class="list-group no-border list-unstyled">
-									<a class="list-group-item active" href="#">내 포인트 : ${point.point}</a><br>
+									<a class="list-group-item active" href="#">내 포인트 : ${session.point}</a><br>
 									<a href="profile" class="list-group-item profile">
 										<i class="far fa-id-card"></i> 내 프로필
 									</a> 									 
 									<a href="#" class="list-group-item payment"><i class="fas fa-money-check"></i> 결제 | 쿠폰
 									</a>  
-									<a href="pay" class="list-group-item point">&nbsp;&nbsp;&nbsp;&nbsp;- 포인트 </a> 
-									<a href="cupon" class="list-group-item coupon">&nbsp;&nbsp;&nbsp;&nbsp;- 쿠폰 </a> 
+									<a href="pay" class="list-group-item point">&nbsp;&nbsp;&nbsp;&nbsp;- 포인트 충전 </a> 
+									<a href="cupon" class="list-group-item coupon">&nbsp;&nbsp;&nbsp;&nbsp;- 내 쿠폰 </a> 
 									<a href="#" class="list-group-item management"><i class="fas fa-archive"></i> 포인트 사용관리
 									</a>
-									<a href="usedPoint" class="list-group-item usedpoint">&nbsp;&nbsp;&nbsp;&nbsp;- 포인트 내역 </a> 
+									<a href="usedPoint" class="list-group-item usedpoint">&nbsp;&nbsp;&nbsp;&nbsp;- 포인트 거래 내역 </a> 
 									<a href="matched" class="list-group-item match">&nbsp;&nbsp;&nbsp;&nbsp;- 매칭참여 내역 </a> 
 									<a href="#" class="list-group-item msg"><i class="fas fa-envelope-square"></i> 메세지 | 게시글
 									</a>
