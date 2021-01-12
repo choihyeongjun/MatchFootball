@@ -24,8 +24,12 @@ public interface HyendongMapper {
 	public MembersVO myTeam(MembersVO membersVO); //마이 팀 정보 조회
 	public int teamUpdate(TeamVO teamVO); //팀 수정
 	public int teamInvite(TinviteVO tinviteVO); //팀 가입 신청
-	public int teamListInsert(TeamlistVO teamlistVO); //팀 가입 승인
+	public int teamListInsert(TeamlistVO teamlistVO); //팀 초대 승인
+	public List<TinviteVO> teamInviteSelect (TinviteVO tinviteVO); //팀 초대 조회
+	public int teamInviteDelete(TinviteVO tinviteVO); //팀 초대 거절
 	public int tNumUpdate(MembersVO membersVO); //팀번호 변경
+	public int tNumNullUpdate(MembersVO membersVO); //팀번호 널로 변경
+	public int teamMemberOut(TeamlistVO teamlistVO); //팀원 추방
 	public int countSelect(TeamlistVO teamlistVO);
 	
 	public List<TournamentVO> tournamentListSelect(); //토너먼트 리스트 조회

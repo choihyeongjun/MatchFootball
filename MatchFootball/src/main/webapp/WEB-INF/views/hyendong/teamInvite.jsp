@@ -6,15 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>팀 초대</title>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="resources/css/teamMenu.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 <style>
 footer {
 	position: fixed;
@@ -26,20 +23,63 @@ footer {
 }
 </style>
 
+<script>
+	$(function() {
+		memberlist();
+	});
+	
+	function memberlist() {
+		var id = document.getElementById("id").value;
+		console.log(id);
+		$.ajax({	
+			url : "bollow/ajax",
+			type : 'GET',
+			data : {id:"id"},
+			dataType : 'json',
+			error : function(xhr, status, msg) {
+				alert("상태값 :" + status + "에러" + msg);
+			},
+			success : memberListResult
+		});
+	}//memberlist
+	
+	function memberListResult(data) {
+		$("#tmain").empty();
+		$.each(
+				data,
+				function(idx, item) {
+				
+					$('<tr>')
+							.append($('<td>').html(item.id))
+							.append($('<td>').html(item.name))
+							.append($('<td>').html(item.gender))
+							.append($('<td>').html(item.location1))
+							.append($('<td>').html(item.manner))
+							.append($('<td>').html(item.lv))
+							.append($('<td>').html(item.pos))
+							.append($('<input type=\'hidden\' id=\'hidden_userId\'>').val(item.id))
+							.append($('<td>').html('<button type="button" id=\'btnSelect\'>팀초대</button>'))
+							.appendTo('#tmain');
+			  });
+		$('#dataTable').DataTable();
+	
+		};
+</script>
 </head>
 <body>
 <ul class="hi">
 	  <c:if test="${sessionScope.id ne null }">
-			<li><a href="myTeamInfo?t_num=${member.t_num }">팀 정보</a></li>
+			<li><a href="teamInfo?t_num=${sessionScope.t_num }">팀 정보</a></li>
 			</c:if>
 			<c:if test="${sessionScope.id eq null }">
 			<li><a href="teamMake">팀 생성</a></li>
 			</c:if>
-			<li><a href="teamGallery?t_num=${member.t_num }">팀갤러리</a></li>
-			<li><a href="teamNotice?t_num=${teamInfo.t_num }">팀 공지</a></li>
-			<li><a href="http://localhost/MatchFootball/teamInvite">팀 초대</a></li>
+			<li><a href="teamGallery?t_num=${sessionScope.t_num }">팀갤러리</a></li>
+			<li><a href="teamNotice?t_num=${sessionScope.t_num }">팀 공지</a></li>
+			<li><a href="teamInvite?t_num=${sessionScope.t_num }">팀 초대</a></li>
 			<li><a href="http://localhost/MatchFootball/teamList">팀 리스트</a></li>
 	</ul>
+	
 	<div display="inline-block">
 		<div class="container" style="float: left; width: 50%">
 			<h2 class="table text-center">팀 초대</h2>
@@ -56,12 +96,12 @@ footer {
 					<th class="text-center">포지션</th>
 					<th class="text-center">초대</th>
 				</tr>
-				<tbody id="search">
+				<tbody id="tmain">
 				</tbody>
 			</table>
 		</div>
 	</div>
-	<div display="inline-block">
+	<h2 class="table text-center">팀 가입 현황</h2><br>
 		<div class="container" style="float: left; width: 50%">
 			<table class="table text-center">
 				<tr class="tr1">
@@ -73,51 +113,26 @@ footer {
 					<th class="text-center">초대</th>
 				</tr>
 				<tbody>
+				<c:forEach items="${tinvite }" var="tinvite">
+				<tr>
+					<td class="text-center">${tinvite.id}</td>
+					<td class="text-center">${tinvite.i_age}</td>
+					<td class="text-center">${tinvite.i_pos}</td>
+					<td class="text-center">${tinvite.i_lv}</td>
+					<td class="text-center">${tinvite.i_manner}</td>
+					<c:if test="${updateButton.t_author eq '팀장' }">
+					<td>
+					<form method="post">
+					<input type="text" value="${sessionScope.t_num }" name="t_num" style="display:none">
+					<input type="text" value="${tinvite.id }" name="id" style="display:none">
+					<input type="text" value="팀원" name="t_author" style="display:none">
+					<button type="submit" id="btnSelect" onclick="javascript: form.action='${pageContext.request.contextPath}/teamListInsert'">승낙</button>
+					<button type="submit" id="btnSelect" onclick="javascript: form.action='${pageContext.request.contextPath}/teamInviteDelete'">거절</button>
+					</form>
+					</td>
+					</c:if>
+				</tr>
+				</c:forEach>
 				</tbody>
 			</table>
 		</div>
-	</div>
-	<script>
-	$(function() {
-		memberlist();
-	});
-	
-	function memberlist() {
-		var id = document.getElementById("id").value;
-		console.log(id);
-		$.ajax({
-			url : "bollow/ajax",
-			type : 'GET',
-			data : {id:"id"},
-			dataType : 'json',
-			error : function(xhr, status, msg) {
-				alert("상태값 :" + status + "에러" + msg);
-			},
-			success : memberListResult
-		});
-	}//memberlist
-	
-	function memberListResult(data) {
-		$("#search").empty();
-		$.each(
-				data,
-				function(idx, item) {
-				
-					$('<tr>')
-							.append($('<td>').html(item.id))
-							.append($('<td>').html(item.name))
-							.append($('<td>').html(item.gender))
-							.append($('<td>').html(item.location1))
-							.append($('<td>').html(item.manner))
-							.append($('<td>').html(item.lv))
-							.append($('<td>').html(item.pos))
-							
-							.append($('<input type=\'hidden\' id=\'hidden_userId\'>').val(item.id))
-							.append($('<td>').html('<button type="button" id=\'btnSelect\'>팀초대</button>'))
-							.appendTo('#search');
-			  });
-
-		};
-</script>
-</body>
-</html>

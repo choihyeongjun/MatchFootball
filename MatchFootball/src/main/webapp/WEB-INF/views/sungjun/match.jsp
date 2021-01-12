@@ -142,6 +142,15 @@ p {
 	text-align: center;
 	padding: 10px;
 }
+.app-info{
+	background-color: #ddd;
+	border-radius: 10px;
+	font-size: 17px;
+	color: #999;
+	text-align: center;
+	padding: 10px;
+
+}
 </style>
 <script>
 $(function() {
@@ -215,7 +224,6 @@ $(function() {
 
 								<c:set var="weeklist"
 									value='<%=new String[]{"일", "월", "화", "수", "목", "금", "토"}%>' />
-
 								<c:choose>
 									<c:when test="${i == m_dat }">
 										<c:set var="selcol" value="ww" />
@@ -285,7 +293,13 @@ $(function() {
 								</div>
 							</div>
 							<div style="width: 20%;">
+							<c:if test="${p_match.p_max > p_match.f}">
 								<p class="ap-info" style="">신청 가능</p>
+								</c:if>
+							<c:if test="${p_match.p_max = p_match.f}">
+								<p class="p" style="">마감</p>
+								</c:if>
+									
 							</div>
 					</a></li>
 				</c:forEach>

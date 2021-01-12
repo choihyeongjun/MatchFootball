@@ -134,9 +134,10 @@ public class JunController {
 	public ModelAndView test12(HttpServletResponse response, Model model, MembersVO membersvo,PplayersVO pplayers,HttpSession session,PointVO pointvo) throws IOException {
 		membersvo.setId((String)session.getAttribute("id"));
 		pplayers.setId((String)session.getAttribute("id"));
-		//pointvo.setP_id((String)session.getAttribute("id"));
+		pointvo.setP_id((String)session.getAttribute("id"));
 		dao.pointminus(membersvo);
 		dao.matchapply(pplayers);
+		dao.pointcomm(pointvo);
 		return new ModelAndView("sungjun/match");
 	}
 	@RequestMapping(value = "/call")
@@ -213,7 +214,6 @@ public class JunController {
 	public ModelAndView test10(HttpServletResponse response,HttpSession session,Model model, P_matchVO p_matchVO,TeammatchVO team_matchVO, PointVO pointvo) throws IOException {
 		p_matchVO.setM_id((String) session.getAttribute("id"));
 		team_matchVO.setId((String) session.getAttribute("id"));
-		pointvo.setP_id((String) session.getAttribute("id"));
 		model.addAttribute("p_match", dao.pmatchlist(p_matchVO));
 		 model.addAttribute("t_match", dao.tmatchlist(team_matchVO));
 		return new ModelAndView("sungjun/allmatchlist");

@@ -220,6 +220,13 @@
 	where id=#{id}
 	</update>
 	
+	<!-- 멤버 팀 널 변경 -->
+	<update id="tNumNullUpdate">
+	update members 
+	set t_num = null 
+	where id=#{id}
+	</update>
+	
 	<!-- 사진 조회 -->
 	<select id="picSelect" resultType="TgalleryVO">
 		select img
@@ -249,7 +256,7 @@
 	<insert id="teamInvite" parameterType="TinviteVO">
 		<selectKey order="BEFORE" keyProperty="i_no"
 			resultType="int">
-			SELECT MAX(i_no)+1
+			SELECT NVL(MAX(i_no),0)+1
 			FROM tinvite
 		</selectKey>
 		INSERT INTO tinvite (
@@ -270,4 +277,24 @@
 			#{i_manner}
 		)
 	</insert>
+	
+	<!-- 팀 가입 신청 조회 -->
+	<select id="teamInviteSelect" resultType="TinviteVO">
+		SELECT * 
+		FROM tinvite
+		WHERE t_num = #{t_num}
+	</select>
+	
+	<!-- 팀 초대에서 삭제 -->
+	<delete id="teamInviteDelete" parameterType="TinviteVO">
+		DELETE FROM tinvite
+		WHERE t_num = #{t_num}
+		AND id = #{id}
+	</delete>
+	
+	<!-- 팀원 추방 -->
+	<delete id="teamMemberOut" parameterType="TeamlistVO">
+		DELETE FROM teamList
+		WHERE id = #{id}
+	</delete>
 </mapper>

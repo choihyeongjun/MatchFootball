@@ -36,14 +36,14 @@
 	<form action="teamGalleryInsert" method="post" encType="multipart/form-data">
 	<ul class="hi">
 	  <c:if test="${sessionScope.id ne null }">
-			<li><a href="myTeamInfo?t_num=${member.t_num }">팀 정보</a></li>
+			<li><a href="teamInfo?t_num=${sessionScope.t_num }">팀 정보</a></li>
 			</c:if>
 			<c:if test="${sessionScope.id eq null }">
 			<li><a href="teamMake">팀 생성</a></li>
 			</c:if>
-			<li><a href="teamGallery?t_num=${member.t_num }">팀갤러리</a></li>
-			<li><a href="teamNotice?t_num=${member.t_num }">팀 공지</a></li>
-			<li><a href="http://localhost/MatchFootball/teamInvite">팀 초대</a></li>
+			<li><a href="teamGallery?t_num=${sessionScope.t_num }">팀갤러리</a></li>
+			<li><a href="teamNotice?t_num=${sessionScope.t_num }">팀 공지</a></li>
+			<li><a href="teamInvite?t_num=${sessionScope.t_num }">팀 초대</a></li>
 			<li><a href="http://localhost/MatchFootball/teamList">팀 리스트</a></li>
 	</ul>
 	<div align="center">
@@ -52,7 +52,7 @@
 		</div>
 		<hr />
 	</div>
-	<input type="text" name="t_num" value="${teamInfo.t_num }">
+	<input type="text" name="t_num" value="${teamInfo.t_num }" style="display:none">
 	<input type="submit" value="등록">
 	<input type="file" name="file">
 	<div class="site-section">
