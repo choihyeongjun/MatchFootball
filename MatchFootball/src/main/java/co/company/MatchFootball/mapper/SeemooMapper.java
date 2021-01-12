@@ -24,18 +24,14 @@ public interface SeemooMapper {
 	public int teamsupdate(TeamVO vo); 				// 팀 수정
 	public int teamsdelete(TeamVO vo);				// 팀 삭제
 	
-<<<<<<< HEAD
 	public List<TeamVO> blackteamList();	// 블랙팀 전체조회
 	
-=======
 	public List<BlackTeamListVO> blackteamList(BlackTeamListVO vo);	// 블랙팀 전체조회
 
->>>>>>> branch 'master' of https://github.com/tjdwns631/MatchFootball.git
 	public List<ManagersVO> managerList(); 			// 매니저(ajax) 전체조회
 	public int managerupdate(MembersVO vo);			// 매니저 수정
 	public List<ManagerapplyVO> managerapplyList(); // 매니저 승인|대기 전체조회
 	
-<<<<<<< HEAD
 	public List<NoticeVO> noticeList(); 			// 공지사항조회
 	public NoticeVO noticeselect(NoticeVO vo);		// 공지사항단건조회
 	public int noticeinsert(NoticeVO vo);			// 공지사항입력
@@ -43,7 +39,5 @@ public interface SeemooMapper {
 	
 	public List<ReviewVO> reviewList();	// 리뷰조회
 	public List<ReviewVO> review();
-=======
 	public List<NoticeVO> noticeselect(); 
->>>>>>> branch 'master' of https://github.com/tjdwns631/MatchFootball.git
 }
