@@ -13,4 +13,5 @@ public class InviteVO {
 	String comm;//내용
 	String check1;//확인여부
 	String r_id;//용병아이디
+	String m_no;
 }

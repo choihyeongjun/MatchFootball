@@ -23,8 +23,10 @@ import co.company.MatchFootball.vo.FboardVO;
 import co.company.MatchFootball.vo.FieldVO;
 import co.company.MatchFootball.vo.InviteVO;
 import co.company.MatchFootball.vo.LikeitVO;
+import co.company.MatchFootball.vo.MembernInvite;
 import co.company.MatchFootball.vo.MembersVO;
 import co.company.MatchFootball.vo.RfieldVO;
+import co.company.MatchFootball.vo.TeammatchVO;
 
 @Controller
 public class HyeongjunController {
@@ -48,16 +50,37 @@ public class HyeongjunController {
 	}
 
 	@RequestMapping("/bollow")
-	public String bollow(Model model) {
+	public String bollow(Model model,TeammatchVO vo,HttpSession session) {
 		// model.addAttribute("list",hyeongjunMapper.getbollowlist());
+		vo.setId((String)session.getAttribute("id"));
+		model.addAttribute("matchlist",hyeongjunMapper.selectmatch(vo));
 		return "hyeongjun/bollowlist";
 	}
-	@RequestMapping("/inviteselect")
+	@RequestMapping("/inviteselect")//초대리스트
 	public String inviteselect(Model model,MembersVO vo,HttpSession session) {
 		
 		vo.setId((String)session.getAttribute("id"));
 		model.addAttribute("invite",hyeongjunMapper.inviteselect(vo));
 		return "hyeongjun/invitelist";
+	}
+	@RequestMapping("/updateinvite/{c_id}/{t_num}/{m_no}")//수락
+	public String updateinvite(InviteVO vo,MembernInvite vo1,HttpSession session,@PathVariable String c_id,@PathVariable String t_num,@PathVariable String m_no) {
+		vo.setR_id((String)session.getAttribute("id"));
+		vo.setC_id(c_id);
+		vo1.setT_num(t_num);
+		vo1.setM_no(m_no);
+		vo1.setId((String)session.getAttribute("id"));
+		hyeongjunMapper.playerinsert(vo1);
+		hyeongjunMapper.updateinvite(vo);
+		return "redirect:/inviteselect";
+	}
+	@RequestMapping("/updateinvite1/{c_id}")//거절
+	public String updateinvite1(InviteVO vo,HttpSession session,@PathVariable String c_id) {
+		vo.setR_id((String)session.getAttribute("id"));
+		vo.setC_id(c_id);
+		hyeongjunMapper.updateinvite(vo);
+		hyeongjunMapper.updateinvite1(vo);
+		return "redirect:/inviteselect";
 	}
 
 	@RequestMapping("/fieldcommit")
@@ -75,7 +98,7 @@ public class HyeongjunController {
 		hyeongjunMapper.fieldinsert(vo);
 		return "hyeongjun/fieldlist";
 	}
-
+	
 	@RequestMapping("/fieldinsert")
 	public String fieldinsert() {
 		return "hyeongjun/fieldcommit";
@@ -94,7 +117,8 @@ public class HyeongjunController {
 	}
 
 	@RequestMapping("/fieldlist/fielddetail/{f_id}")
-	public String fieldselect(@PathVariable String f_id,Model model,RfieldVO vo) {
+	public String fieldselect(@PathVariable String f_id,Model model,RfieldVO vo,HttpSession session) {
+		session.setAttribute("field",f_id);
 		model.addAttribute("f_id",f_id);
 		model.addAttribute("list",hyeongjunMapper.fieldselect(vo));
 		return "hyeongjun/fielddetail";

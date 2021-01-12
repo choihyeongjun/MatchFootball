@@ -6,13 +6,13 @@ import org.springframework.stereotype.Component;
 
 import co.company.MatchFootball.mapper.HyeongjunMapper;
 
-@Component
+//@Component
 public class Scheduling {
    @Autowired HyeongjunMapper hyeongjunmapper;
-   @Scheduled(fixedRate=50000)
+   //@Scheduled(fixedRate=50000)
    public void doSomething() {
       
-       hyeongjunmapper.deleteinvite();
+  //     hyeongjunmapper.deleteinvite();
        System.out.println("안녕하세요");
    }
 }
