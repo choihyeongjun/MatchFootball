@@ -86,7 +86,9 @@ body {
 		style="box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)">
 		<div class="container-md">
 			${sessionScope.id} ${kemail}
+			<c:if test="${sessionScope.id!=null}">
 			   <a href="${pageContext.request.contextPath}/logout">로그아웃</a>
+			   </c:if>
 			 <a class="navbar-brand"
 				href="${pageContext.request.contextPath}/match"
 				style="color: #04519b"><img
