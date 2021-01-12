@@ -123,7 +123,7 @@ $(function() {
 				<div class="container">
 					<div class="row has-sidebar">
 						<jsp:include page="Mybar.jsp"></jsp:include>
-						<input value="${mb.id}" type="text" style="display:none;">
+						<input value="${kemail}" name="id" type="text" style="display:none;">
 						<div class="col-md-7 col-lg-8 col-xl-8">
 							<div class="page-header bordered">
 								<h1>
@@ -153,7 +153,7 @@ $(function() {
 							</div>
 							<div class="form-group">
 								<label>이메일</label> <input type="text" name="email" id="email"
-									class="form-control form-control-lg email" value="${kemail}"
+									class="form-control form-control-lg email" value="${mb_email}"
 									>
 							</div>
 							<div class="form-group">
@@ -250,8 +250,10 @@ $(function() {
 
 
 							<div class="form-group action update">
-								<input type="submit" class="btn btn-primary" id='btn1'
-									style="height: 48px" value="프로필 변경">
+									<c:if test="${mb.id eq null}"><input type="submit" class="btn btn-primary" id='btn1'
+									style="height: 48px" value="프로필 등록"></c:if>
+								<c:if test="${mb.id ne null}"><input type="submit" class="btn btn-primary" id='btn1'
+									style="height: 48px" value="프로필 변경"></c:if>
 								<!-- <input type="submit" class="btn btn-primary" id='uf'
 									style="height: 48px" value="이미지 변경"> -->
 							</div>

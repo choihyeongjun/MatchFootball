@@ -21,4 +21,5 @@ public interface DoeunMapper {
 	public int getCount2(MessageVO msg);
 	public MessageVO reviewMsg(MessageVO msg);
 	public List<P_matchVO> p_matchedList(P_matchVO pmat);
+	public int Pcharge(PointVO pay);
 }

@@ -53,7 +53,7 @@
 	$(function() {
 		$(".reviewMsg").on("click", function(event) {
 			var modal = $('#MsgModal')
-			var m_no = $(this).data("num");
+			var m_no = $(this).data("no");
 			$.ajax({
 				url : 'reviewMsg?m_no=' + m_no,
 				//      dataType : 'html',//html은 기본으로 dataType안해줘도 됨
@@ -103,7 +103,7 @@
 						</div>
 						<div class="row" style="width: auto">
 							<div style="margin-top: 15px;">
-								<a href="../message"
+								<a href="../message" data-toggle="modal" data-target="#leadform"
 									class="btn btn-primary float-right send-message">메세지 보내기</a>
 							</div>
 							<div style="margin-top: 15px;">
@@ -127,8 +127,8 @@
 													value="${msg.s_date}"></td>
 												<td><a class="reviewMsg" data-toggle="modal"
 													data-target="#MsgModal" data-num="${msg.m_no}">${msg.m_title}</a></td>
-												<td><input type="text" name="send_id"
-													value="${msg.send_id}"></td>
+												<td><a class="reviewMsg" data-toggle="modal"
+													data-target="#MsgModal" data-num="${msg.m_no}">${msg.send_id}</a></td>
 												<td><button type="button"
 														class="btn btn-primary float-right send-message"
 														id='delMsg' onclick="delMsg()">삭제하기</button></td>
