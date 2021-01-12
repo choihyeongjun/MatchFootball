@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %><!DOCTYPE html>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<!DOCTYPE html>
 <html lang="ko">
 
 <head>
@@ -53,7 +54,7 @@
                   <h4 class="modal-title"></h4>
                </div>
                <div class="modal-body">
-
+					<label hidden=""></label>
                   <div class="row">
                      <div class="col-xs-12">
                         <label class="col-xs-4" for="edit-allDay">하루종일</label> <input
@@ -119,9 +120,9 @@
                   <button type="button" class="btn btn-primary" id="save-event">저장</button>
                </div>
                <div class="modal-footer modalBtnContainer-modifyEvent">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-                  <button type="button" class="btn btn-danger" id="deleteEvent">삭제</button>
+                	<button type="button" class="btn btn-danger" id="deleteEvent">삭제</button>
                   <button type="button" class="btn btn-primary" id="updateEvent">저장</button>
+                  <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
                </div>
             </div>
             <!-- /.modal-content -->
@@ -131,9 +132,12 @@
       </form>
       <!-- /.modal -->
       <script>
-		f_id="${f_id}"
+		f_id="${f_id}" 
+		id="${sessionScope.id}"
 		</script>
+		 ${sessionScope.id}
       ${f_id}
+     
       <div class="card mb-4">
          <div class="card-header">
             <i class="fas fa-table mr-1"></i> 경기예약일정
@@ -165,10 +169,11 @@
                      <tr>
                         <td>${f.title}</td>
                         <td>${f.start}~${f.end}</td>
-                        <td>아직</td>
+                        <td>${f.id}</td>
                         <td>${f.description}</td>
                         <td>${f._id}</td> 
                      </tr>
+                     
                     </c:forEach>
                   </tbody>
                </table>

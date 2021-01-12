@@ -188,10 +188,9 @@ var calendar = $('#calendar').fullCalendar({
   },
 
   select: function (startDate, endDate, jsEvent, view) {
-
     $(".fc-body").unbind('click');
+	
     $(".fc-body").on('click', 'td', function (e) {
-
       $("#contextMenu")
         .addClass("contextOpened")
         .css({

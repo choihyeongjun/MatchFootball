@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+		<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -63,10 +64,12 @@ footer {
 	$(function() {
 		memberlist();
 		inviteSelect();
+		
 	});
 
 	function inviteSelect() {
 		$('body').on('click', '#btnSelect', function() {
+			$('#dd').empty();
 			var userId = $(this).closest('tr').find('#hidden_userId').val();
 			var c_id='<%=(String)session.getAttribute("id")%>';
 			console.log(c_id);
@@ -78,6 +81,7 @@ footer {
 					c_id:c_id,
 					title:$('#title').val(),
 					comm:$('#comm').val(),
+					m_no:$('#select').val(),
 					r_id : userId,
 					id:userId
 					
@@ -199,7 +203,7 @@ footer {
 				</div>
 				<form method="get" action="${pageContext.request.contextPath}/bollowsearch/ajax">
 					<!-- Modal body -->
-					<div class="modal-body">
+					<div class="modal-body" style="height: 300px">
 						<table style="margin: 0% 4% 0% 4%">
 							<tr>
 								<td>제목:</td>
@@ -211,6 +215,16 @@ footer {
 								<td>내용:</td>
 								<td><textarea id="comm" name="comm" type="text" rows="4" cols="50"
 										style="margin: 1%; resize: none;"></textarea></td>
+							</tr>
+							<tr>
+								<td>매치선택:</td>
+								<td>
+								<select id="select" title="경기를선택하세요">
+								<c:forEach items="${matchlist}" var="m">
+								<option value="${m.m_no}">${m.m_date},${m.f_name}</option>
+								</c:forEach>
+								</select>
+								</td>
 							</tr>
 						</table>
 					</div>

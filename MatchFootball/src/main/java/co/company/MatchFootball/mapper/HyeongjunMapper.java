@@ -7,8 +7,11 @@ import co.company.MatchFootball.vo.FboardVO;
 import co.company.MatchFootball.vo.FieldVO;
 import co.company.MatchFootball.vo.InviteVO;
 import co.company.MatchFootball.vo.LikeitVO;
+import co.company.MatchFootball.vo.MembernInvite;
 import co.company.MatchFootball.vo.MembersVO;
+import co.company.MatchFootball.vo.PlayersVO;
 import co.company.MatchFootball.vo.RfieldVO;
+import co.company.MatchFootball.vo.TeammatchVO;
 
 public interface HyeongjunMapper {
 public List<MembersVO>getbollowlist();
@@ -34,5 +37,9 @@ public LikeitVO heartdelete(LikeitVO vo);
 public InviteVO bollowinsert(InviteVO vo);
 public List<InviteVO>invitelist(InviteVO vo);
 public List<InviteVO>inviteselect(MembersVO vo);
-public InviteVO deleteinvite(InviteVO vo);
+public InviteVO deleteinvite();
+public InviteVO updateinvite(InviteVO vo);
+public InviteVO updateinvite1(InviteVO vo);
+public List<TeammatchVO>selectmatch(TeammatchVO vo);
+public MembernInvite playerinsert(MembernInvite vo);
 }
