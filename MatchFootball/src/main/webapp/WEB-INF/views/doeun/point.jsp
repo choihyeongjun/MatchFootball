@@ -73,17 +73,14 @@
 										<th>사용내역</th>
 										<th>포인트</th>
 									</tr>
-									<tbody>
+									<tbody style="border:none;">
 
 										<c:forEach items="${pointed}" var="pointed">
 											<input type="hidden" name="p_id" value="${pointed.p_id}">
 											<tr>
-												<td><input type="text" name="p_date"
-													value="${pointed.p_date}"></td>
-												<td><input type="text" name="p_con"
-													value="${pointed.p_con}"></td>
-												<td><input type="text" name="npoint"
-													value="${pointed.npoint}"></td>
+												<td>${pointed.p_date}</td>
+												<td>${pointed.p_con}</td>
+												<td>${pointed.npoint}</td>
 											</tr>
 
 										</c:forEach>

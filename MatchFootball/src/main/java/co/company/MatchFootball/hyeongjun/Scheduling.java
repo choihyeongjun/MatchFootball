@@ -8,11 +8,11 @@ import co.company.MatchFootball.mapper.HyeongjunMapper;
 
 //@Component
 public class Scheduling {
-	@Autowired HyeongjunMapper hyeongjunmapper;
-	@Scheduled(fixedRate=50000)
-	public void doSomething() {
-		
-	    hyeongjunmapper.deleteinvite();
-	    System.out.println("안녕하세요");
-	}
+   @Autowired HyeongjunMapper hyeongjunmapper;
+   //@Scheduled(fixedRate=50000)
+   public void doSomething() {
+      
+  //     hyeongjunmapper.deleteinvite();
+       System.out.println("안녕하세요");
+   }
 }

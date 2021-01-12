@@ -11,4 +11,6 @@ public class MembernInvite {
 	String title;
 	String comm;
 	String c_id;
+	String check1;
+	String m_no;
 }

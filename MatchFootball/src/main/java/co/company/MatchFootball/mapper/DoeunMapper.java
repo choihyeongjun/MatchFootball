@@ -4,12 +4,12 @@ import java.util.List;
 
 import co.company.MatchFootball.vo.MembersVO;
 import co.company.MatchFootball.vo.MessageVO;
+import co.company.MatchFootball.vo.P_matchVO;
 import co.company.MatchFootball.vo.PointVO;
-import co.company.MatchFootball.vo.TeamVO;
 
 public interface DoeunMapper {
 	public MembersVO getUser(MembersVO members); // 멤버 정보 조회
-	public int insertMem (MembersVO members); //메세지 발송
+	public int insertMem (MembersVO members); //메세지 
 	public int upMem(MembersVO mem); //회원 수정
 	public List<PointVO> pointList(PointVO po); //포인트 사용 내역 조회
 	public int getPoCnt(PointVO po); // 포인트 페이징
@@ -20,5 +20,6 @@ public interface DoeunMapper {
 	public List<MessageVO> sendmsgList(MessageVO msg);
 	public int getCount2(MessageVO msg);
 	public MessageVO reviewMsg(MessageVO msg);
-
+	public List<P_matchVO> p_matchedList(P_matchVO pmat);
+	public int Pcharge(PointVO pay);
 }

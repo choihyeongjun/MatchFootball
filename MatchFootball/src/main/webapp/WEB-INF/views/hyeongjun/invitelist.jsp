@@ -1,11 +1,32 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script>
+	function messageupdate(s){
+		var r_id='<%=(String)session.getAttribute("id")%>';
+		
+		$.ajax({
+			url:"updateinvite",
+			dataType:'json',
+			data:{
+				r_id:r_id,
+				c_id:s
+			},
+			error : function(xhr, status, msg) {
+				alert("상태값 :" + status + " Http에러메시지 :" + msg);
+			},
+			success : function(data){
+				console.log('성공');
+			}
+		})
+	}
+</script>
 </head>
 <body>
 	<div id="layoutSidenav_content">
@@ -32,22 +53,33 @@
 
 								<tbody>
 									<c:forEach items="${invite}" var="i">
+									<form id="dd">
 										<tr>
-											<td>${i.c_id}</td>
+											<td name="c_id">${i.c_id}</td>
 											<td>${i.s_date}</td>
 											<td>${i.pnum}</td>
 											<td>${i.title}</td>
 											<td>${i.comm}</td>
 											<td>${i.t_num}</td>
+											<td>${i.check1}</td>
+											<td>${i.m_no}</td>
+											<c:if test="${i.check1=='초대중..'}">
+											<td><button type="submit" class="btn btn-primary" id="btnupdate1" 
+											onclick="javascript: form.action='${pageContext.request.contextPath}/updateinvite/${i.c_id}/${i.t_num}/${i.m_no}'" >수락</button>
+											</td>
+											<td><button type="submit" class="btn btn-primary" id="btnupdate2" 
+											onclick="javascript: form.action='${pageContext.request.contextPath}/updateinvite1/${i.c_id}'" >거절</button>
+											</td>
+											</c:if>
+											<c:if test="${i.check1=='거절됨' || i.check1=='수락완료'}">
+											<td><button type="submit" class="btn btn-primary" id="btnupdate1" disabled>수락</button>
+											</td>
+											<td><button type="submit" class="btn btn-primary" id="btnupdate2" disabled>거절</button>
+											</td>
+											</c:if>
 											
-											
-											<td width="10"><input type="button" value="프로필"
-												onclick=""></td>
-											<td width="10"><input type="button" value="수정"
-												onclick=""></td>
-											<td width="10"><input type="button" value="삭제"
-												onclick=""></td>
 										</tr>
+										</form>
 									</c:forEach>
 								</tbody>
 							</table>
