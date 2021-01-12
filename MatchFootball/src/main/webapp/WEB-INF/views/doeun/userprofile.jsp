@@ -44,7 +44,7 @@
 												alt="Admin" class="rounded-circle" width="150">
 											<div class="mt-3">
 											<br>
-												<h4 style="font-family: 'NanumSquareRound';">${mb.name }</h4>
+												<h4 style="font-family: 'NanumSquareRound';">${mb.name}</h4>
 											<br>	<p class="text-secondary mb-1">${mb.location2}</p>
 											<br>	<p class="text-muted font-size-sm">${mb.pos}</p>
 											<br>	<a href="userupdate"><button class="btn btn-primary">수정</button>

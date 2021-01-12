@@ -7,24 +7,27 @@
 <meta charset="utf-8" />
 
 <title>공지사항 페이지</title>
-<script src="${pageContext.request.contextPath}/resources/seemoo/notice/json.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/seemoo/notice/summernote/json.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/seemoo/notice/summernote/js/summernote/summernote-lite.js"></script>
+<script src="${pageContext.request.contextPath}/resources/seemoo/notice/summernote/js/summernote/lang/summernote-ko-KR.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/seemoo/notice/summernote/css/summernote/summernote-lite.css">
 
 <script>
 $(function(){
 	noticeList();
 
-	//noticeSelect();
+	noticeSelect();
 	
 	noticeDelete();
 	
 	noticeInsert();
 
-	//noticeUpdate();
+	noticeUpdate();
 	
-	//init();
+	init();
 });
 
-/* //초기화
+//초기화
 function init() {
 	//초기화 버튼 클릭
 	$('#btnInit').on('click',function(){
@@ -32,17 +35,17 @@ function init() {
 			this.reset();
 		});
 	});
-}//init */
+}//init
 
 //사용자 삭제 요청
 function noticeDelete() {
 	//삭제 버튼 클릭
 	$('body').on('click','#btnDelete',function(){
-		var n_no = $(this).closest('tr').find('#hidden_userId').val();
-		var result = confirm("글번호 " + n_no +" 사용자를 정말로 삭제하시겠습니까?");
+		var userId = $(this).closest('tr').find('#hidden_userId').val();
+		var result = confirm(userId +" 사용자를 정말로 삭제하시겠습니까?");
 		if(result) {
 			$.ajax({
-				url:'${pageContext.request.contextPath}/noticedelete/'+n_no,  
+				url:'users/'+userId,  
 				type:'DELETE',
 				contentType:'application/json;charset=utf-8',
 				dataType:'json',
@@ -50,12 +53,11 @@ function noticeDelete() {
 					console.log("상태값 :" + status + " Http에러메시지 :"+msg);
 				}, success:function(xhr) {
 					console.log(xhr.result);
-					noticeList();
+					userList();
 				}
-			});     
-		}//if
+			});      }//if
 	}); //삭제 버튼 클릭
-}//noticeDelete
+}//userDelete
 
 //사용자 조회 요청
 function noticeSelect() {
@@ -84,7 +86,7 @@ function noticeSelectResult(notice) {
 	$('select[name="role"]').val(user.role).attr("selected", "selected");
 }//userSelectResult
 
-/* //사용자 수정 요청
+//사용자 수정 요청
 function noticeUpdate() {
 	//수정 버튼 클릭
 	$('#btnUpdate').on('click',function(){
@@ -106,7 +108,7 @@ function noticeUpdate() {
 		    }
 		});
 	});//수정 버튼 클릭
-}//userUpdate */
+}//userUpdate
 
 //사용자 등록 요청
 function noticeInsert(){
@@ -114,7 +116,7 @@ function noticeInsert(){
 	$('#btnInsert').on('click',function(){
 		$("#form1")
 		$.ajax({ 
-		    url: "${pageContext.request.contextPath}/noticeinsert",  
+		    url: "users",  
 		    type: 'POST',  
 		    dataType: 'json', 
 		    //data: JSON.stringify({ id: id, name:name,password: password, role: role }),
@@ -135,42 +137,38 @@ function noticeInsert(){
 //사용자 목록 조회 요청
 function noticeList() {
 	$.ajax({
-		url:'../../noticewrite/ajax',
+		url:'users',
 		type:'GET',
 		//contentType:'application/json;charset=utf-8',
 		dataType:'json',
 		error:function(xhr,status,msg){
 			alert("상태값 :" + status + " Http에러메시지 :"+msg);
 		},
-		success:noticeListResult
+		success:userListResult
 	});
-}//noticeList
+}//userList
 
 //사용자 목록 조회 응답
 function noticeListResult(data) {
-	$('#noti').empty();
+	$("noti").empty();
 	$.each(data,function(idx,item){
 		$('<tr>')
-		.append($('<td>').html(item.n_no))
-		.append($('<td>').html(item.n_title))
-		.append($('<td>').html(item.id))
-		.append($('<td>').html(item.n_date))
-		.append($('<td>').html(item.n_check))
-		.append($('<td>').html('<button id=\'btnSelect\' class="btn btn-primary">조회</button>'))
-		.append($('<td>').html('<button id=\'btnDelete\' class="btn btn-danger">삭제</button>'))
-		.append($('<input type=\'hidden\' id=\'hidden_userId\'>').val(item.n_no))
-		.appendTo($('#noti'));
+		.append($('<td>').html(item.))
+		.append($('<td>').html(item.))
+		.append($('<td>').html(item.))
+		.append($('<td>').html(item.))
+		.append($('<td>').html('<button id=\'btnSelect\'>조회</button>'))
+		.append($('<td>').html('<button id=\'btnDelete\'>삭제</button>'))
+		.append($('<input type=\'hidden\' id=\'hidden_userId\'>').val(item.id))
+		.appendTo('noti');
 	});//each
 	$('#dataTable').DataTable()
-}//noticeListResult
-</script>
+}//userListResult
 
 
-<script src="${pageContext.request.contextPath}/resources/seemoo/notice/summernote/js/summernote/summernote-lite.js"></script>
-<script src="${pageContext.request.contextPath}/resources/seemoo/notice/summernote/js/summernote/lang/summernote-ko-KR.js"></script>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/seemoo/notice/summernote/css/summernote/summernote-lite.css">
 
-<script>
+
+
 	$(document).ready(function() {
 		//여기 아래 부분
 		$('#summernote').summernote({
@@ -218,7 +216,7 @@ function noticeListResult(data) {
 			<br> 
 			<input type="button" class="btn btn-primary" value="등록" id="btnInsert" /> 
 			<input type="button" class="btn btn-primary" value="수정" id="btnUpdate" /> 
-			<input type="button" class="btn btn btn-danger" value="초기화" id="btnInit" />
+			<input type="button" class="btn btn-primary" value="초기화" id="btnInit" />
 		</div>
 
 	</form>
@@ -226,7 +224,7 @@ function noticeListResult(data) {
 	<div class="card-body">
 		<div class="table-responsive">
 			<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-				<thead style="text-align: center;">
+				<thead>
 					<tr>
 						<th>No.</th>
 						<th>제목</th>
@@ -237,7 +235,18 @@ function noticeListResult(data) {
 						<th>삭제</th>
 					</tr>
 				</thead>
-				<tbody id="noti" style="text-align: center;">
+				<tfoot>
+					<tr>
+						<th>No.</th>
+						<th>제목</th>
+						<th>작성자</th>
+						<th>날짜</th>
+						<th>조회수</th>
+						<th>조회</th>
+						<th>삭제</th>
+					</tr>
+				</tfoot>
+				<tbody id="noti">
 				</tbody>
 			</table>
 		</div>

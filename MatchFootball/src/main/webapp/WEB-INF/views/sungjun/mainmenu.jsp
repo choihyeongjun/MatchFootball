@@ -227,6 +227,7 @@ body {
 							<div>
 								<h3 style="text-align: center">마이페이지</h3>
 							</div>
+							${sessionScope.author} ddd
 							<ul class="menul">
 								<li class="lili"><a
 									href="${pageContext.request.contextPath}/mypage/profile">내

@@ -1,11 +1,6 @@
 package co.company.MatchFootball.seemoo;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,17 +8,13 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import co.company.MatchFootball.mapper.SeemooMapper;
 import co.company.MatchFootball.vo.BlackTeamListVO;
 import co.company.MatchFootball.vo.BlackTeamVO;
-import co.company.MatchFootball.vo.FboardVO;
 import co.company.MatchFootball.vo.ManagersVO;
 import co.company.MatchFootball.vo.MembersVO;
 import co.company.MatchFootball.vo.NoticeVO;
@@ -117,10 +108,10 @@ public class AdminController {
 		vo.setT_author("black");
 		return seemoomapper.blackteamList(vo);
 	}
-	
-//	@RequestMapping("/admin/blackteam") // 블랙팀관리 페이지 (삭제)
-//	public String blackteamdelete(BlackTeamVO vo) {
-//		return seemoomapper.blackteamsdelete(vo);
+
+//	@RequestMapping("/admin/blackteam") // 팀관리 페이지 (블랙리스트 된 팀)
+//	public String blackteam() {
+//		return "seemoo/blackteam";
 //	}
 	
 //	---------------------------------------------------------------------------------------------------------------------
@@ -158,9 +149,6 @@ public class AdminController {
 		return "seemoo/community";
 	}
 
-//	---------------------------------------------------------------------------------------------------------------------
-
-	
 	@RequestMapping("/admin/notice") // 공지사항 페이지
 	public String notice() {
 		return "seemoo/notice";
@@ -171,31 +159,11 @@ public class AdminController {
 		return "seemoo/noticewrite";
 	}
 
+	@RequestMapping(value = "/admin/noticewrite/ajax", method = RequestMethod.GET) // 공지사항 조회 페이지 (ajax로 전체조회)
 	@ResponseBody	
-	@RequestMapping(value = "/noticewrite/ajax", method = RequestMethod.GET) // 공지사항 조회 페이지 (ajax로 전체조회)
-	public List<NoticeVO> noticelist(Model model, HttpServletRequest request, HttpServletResponse reponse) {
-		return seemoomapper.noticeList();
+	public List<NoticeVO> noticeselect(Model model, NoticeVO vo, HttpServletRequest request, HttpServletResponse reponse) {
+		return seemoomapper.noticeselect();
 	}
-	
-	@RequestMapping(value = "/noticeselect", method = RequestMethod.GET) //(단건조회)
-	@ResponseBody
-	public String noticeselect(Model model, NoticeVO vo, HttpServletRequest request, HttpServletResponse reponse) {
-		return "seemoo/noticeselect";	
-	}
-	
-	@RequestMapping(value = "/noticeinsert", method = RequestMethod.POST) //입력
-	public String noticeinsert(NoticeVO vo,Model model)  {
-		 seemoomapper.noticeinsert(vo);
-		 model.addAttribute("list",seemoomapper.noticeList());
-		 return "seemoo/noticewrite";
-	}
-	
-	@ResponseBody
-	@RequestMapping(value = "/noticedelete/{n_no}", method = RequestMethod.DELETE) // 공지사항 페이지 (삭제)
-	public NoticeVO noticedelete(@PathVariable String n_no,NoticeVO vo, Model model) {
-		return seemoomapper.noticedelete(vo);
-	}
-	
 	@RequestMapping("/admin/match") // 매치 페이지
 	public String match() {
 		return "seemoo/match";

@@ -34,14 +34,6 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 <script src="https://kit.fontawesome.com/e15da187be.js"></script>
 <script>
-	function openDaumZipAddress() {
-		new daum.Postcode({
-			oncomplete : function(data) {
-				$('#postCode').val(data.zonecode); //우편번호
-				$('#location1').val(data.address); // 주소
-			}
-		}).open();
-	}
 $(function() {
     $("#uf").on(
             'change',
@@ -112,7 +104,15 @@ $(function() {
       }
    });
 
-})
+	function openDaumZipAddress() {
+		new daum.Postcode({
+			oncomplete : function(data) {
+				$('#postCode').val(data.zonecode); //우편번호
+				$('#location1').val(data.address); // 주소
+			}
+		}).open();
+	}
+
 </script>
 </head>
 <body>
@@ -133,7 +133,7 @@ $(function() {
 							<div class="form-group">
 								<label>이름</label> <input type="text"
 									class="form-control form-control-lg name" placeholder="" name="name"
-									value="${mb.name}">
+									value="${kname}">
 							</div>
 							<div class="form-group has-feedback">
 								<label class="control-label" for="photo">프로필 사진</label>
@@ -141,19 +141,20 @@ $(function() {
 									<div class="custom-file">
 									
 										<input type="file" class="custom-file-input" id="fileupload"
-											src='images/default.jpg' name="file" autocomplete=off aria-describedby="inputGroupFileAddon01">
+											src="https://bootdey.com/img/Content/avatar/avatar7.png" name="file" autocomplete=off aria-describedby="inputGroupFileAddon01">
 										<label class="custom-file-label photo" for="inputGroupFile01">파일을
 											선택하세요</label>
 									</div>
 								</div>
-								<div id='images-div'><img id="img"></div>
+								<div id='images-div'><img id="img" name="img" src="https://bootdey.com/img/Content/avatar/avatar7.png"
+												alt="Admin" class="rounded-circle" width="150"></div>
 								<p style="color: red">이미지을 삭제하시려면 이미지를 클릭해주세요</p>
 								<span class="glyphicon glyphicon-ok form-control-feedback"></span>
 							</div>
 							<div class="form-group">
 								<label>이메일</label> <input type="text" name="email" id="email"
-									class="form-control form-control-lg email" value="${mb.email}"
-									readonly>
+									class="form-control form-control-lg email" value="${kemail}"
+									>
 							</div>
 							<div class="form-group">
 								<label class="control-label" for="tel">전화번호</label>

@@ -7,14 +7,13 @@
 	<!--해당 날의 개인 매치 조회 및 신청 인원 -->
 	<select id="pmatchselect" parameterType="P_matchVO"
 		resultType="P_matchVO">
-		select d.* ,nvl(f,0)f
+		select d.* ,f
 		from p_match d, ( select a.m_no ,count(*) f
 						from p_match a,pplayers b
 						where a.m_no = b.m_no
 						group by a.m_no )c
 		where d.m_no = c.m_no(+)
-		and m_date = #{m_date}
-		 and to_date(concat(#{m_date},m_hour),'yyyy-mm-ddhh24:mi')<![CDATA[ >= sysdate +9/24]]>
+		 and to_date(concat(m_date,m_hour),'yyyy-mm-ddhh24:mi')<![CDATA[ >= sysdate +9/24]]>
 		order by m_hour asc
 	</select>
 	<!--개인 매치 신청   -->
@@ -64,13 +63,8 @@
 	<!-- 선택개인매치 조회 -->
 	<select id="pmatchlist1" parameterType="P_matchVO"
 		resultType="P_matchVO">
-		select d.* ,nvl(f,0)f
-		from p_match d, ( select a.m_no ,count(*) f
-						from p_match a,pplayers b
-						where a.m_no = b.m_no
-						group by a.m_no )c
-		where d.m_no = c.m_no(+)
-		and d.m_no = #{m_no}
+		select * from p_match
+		where m_no = #{m_no}
 	</select>
 	<!--해당 날 개인매치 검색 -->
 	<select id="pmatchlist3" parameterType="P_matchVO"

@@ -34,5 +34,5 @@ public LikeitVO heartdelete(LikeitVO vo);
 public InviteVO bollowinsert(InviteVO vo);
 public List<InviteVO>invitelist(InviteVO vo);
 public List<InviteVO>inviteselect(MembersVO vo);
-public InviteVO deleteinvite();
+public InviteVO deleteinvite(InviteVO vo);
 }
