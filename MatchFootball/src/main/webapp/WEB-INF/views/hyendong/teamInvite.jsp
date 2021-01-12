@@ -31,7 +31,7 @@ footer {
 	function memberlist() {
 		var id = document.getElementById("id").value;
 		console.log(id);
-		$.ajax({
+		$.ajax({	
 			url : "bollow/ajax",
 			type : 'GET',
 			data : {id:"id"},
@@ -69,50 +69,16 @@ footer {
 <body>
 <ul class="hi">
 	  <c:if test="${sessionScope.id ne null }">
-			<li><a href="myTeamInfo?t_num=${member.t_num }">팀 정보</a></li>
+			<li><a href="teamInfo?t_num=${sessionScope.t_num }">팀 정보</a></li>
 			</c:if>
 			<c:if test="${sessionScope.id eq null }">
 			<li><a href="teamMake">팀 생성</a></li>
 			</c:if>
-			<li><a href="teamGallery?t_num=${member.t_num }">팀갤러리</a></li>
-			<li><a href="teamNotice?t_num=${teamInfo.t_num }">팀 공지</a></li>
-			<li><a href="http://localhost/MatchFootball/teamInvite">팀 초대</a></li>
+			<li><a href="teamGallery?t_num=${sessionScope.t_num }">팀갤러리</a></li>
+			<li><a href="teamNotice?t_num=${sessionScope.t_num }">팀 공지</a></li>
+			<li><a href="teamInvite?t_num=${sessionScope.t_num }">팀 초대</a></li>
 			<li><a href="http://localhost/MatchFootball/teamList">팀 리스트</a></li>
 	</ul>
-	
-							<div class="card-body" >
-						<div class="table-responsive" style="float: left; width: 50%">
-							<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-								<thead align="center">
-									<tr>
-										<th>ID</th>
-										<th>Name</th>
-										<th style="width: 40px;">성별</th>
-										<th>주소</th>
-										<th>매너</th>
-										<th>실력</th>
-										<th>포지션</th>
-										<th style="width: 90px;">초대</th>
-									</tr>
-								</thead>
-								
-								<tfoot align="center">
-									<tr>
-										<th>ID</th>
-										<th style="width: 90px;">Name</th>
-										<th style="width: 60px;">성별</th>
-										<th>주소</th>
-										<th style="width: 90px;">매너</th>
-										<th style="width: 90px;">실력</th>
-										<th style="width: 90px;">포지션</th>
-										<th style="width: 90px;">초대</th>
-									</tr>
-								</tfoot>
-								<tbody align="center" id="tmain">
-								</tbody>
-							</table>
-						</div>
-					</div>
 	
 	<div display="inline-block">
 		<div class="container" style="float: left; width: 50%">
@@ -130,15 +96,43 @@ footer {
 					<th class="text-center">포지션</th>
 					<th class="text-center">초대</th>
 				</tr>
-				<tbody id="search">
+				<tbody id="tmain">
 				</tbody>
 			</table>
 		</div>
 	</div>
-
-
-	  <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
-      <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
-      <script src="${pageContext.request.contextPath}/resources/seemoo/assets/demo/datatables-demo.js"></script>
-</body>
-</html>
+	<h2 class="table text-center">팀 가입 현황</h2><br>
+		<div class="container" style="float: left; width: 50%">
+			<table class="table text-center">
+				<tr class="tr1">
+					<th class="text-center">아이디</th>
+					<th class="text-center">나이</th>
+					<th class="text-center">포지션</th>
+					<th class="text-center">실력</th>
+					<th class="text-center">매 너 도</th>
+					<th class="text-center">초대</th>
+				</tr>
+				<tbody>
+				<c:forEach items="${tinvite }" var="tinvite">
+				<tr>
+					<td class="text-center">${tinvite.id}</td>
+					<td class="text-center">${tinvite.i_age}</td>
+					<td class="text-center">${tinvite.i_pos}</td>
+					<td class="text-center">${tinvite.i_lv}</td>
+					<td class="text-center">${tinvite.i_manner}</td>
+					<c:if test="${updateButton.t_author eq '팀장' }">
+					<td>
+					<form method="post">
+					<input type="text" value="${sessionScope.t_num }" name="t_num" style="display:none">
+					<input type="text" value="${tinvite.id }" name="id" style="display:none">
+					<input type="text" value="팀원" name="t_author" style="display:none">
+					<button type="submit" id="btnSelect" onclick="javascript: form.action='${pageContext.request.contextPath}/teamListInsert'">승낙</button>
+					<button type="submit" id="btnSelect" onclick="javascript: form.action='${pageContext.request.contextPath}/teamInviteDelete'">거절</button>
+					</form>
+					</td>
+					</c:if>
+				</tr>
+				</c:forEach>
+				</tbody>
+			</table>
+		</div>

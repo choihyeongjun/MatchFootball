@@ -54,14 +54,14 @@ li {
 <body>
 	<ul class="hi">
 	  <c:if test="${sessionScope.id ne null }">
-			<li><a href="myTeamInfo?t_num=${teamInfo.t_num }">ÆÀ Á¤º¸</a></li>
+			<li><a href="teamInfo?t_num=${sessionScope.t_num }">ÆÀ Á¤º¸</a></li>
 			</c:if>
 			<c:if test="${sessionScope.id eq null }">
 			<li><a href="teamMake">ÆÀ »ý¼º</a></li>
 			</c:if>
-			<li><a href="teamGallery?t_num=${teamInfo.t_num }">ÆÀ°¶·¯¸®</a></li>
-			<li><a href="teamNotice?t_num=${teamInfo.t_num }">ÆÀ °øÁö</a></li>
-			<li><a href="http://localhost/MatchFootball/teamInvite">ÆÀ ÃÊ´ë</a></li>
+			<li><a href="teamGallery?t_num=${sessionScope.t_num }">ÆÀ°¶·¯¸®</a></li>
+			<li><a href="teamNotice?t_num=${sessionScope.t_num }">ÆÀ °øÁö</a></li>
+			<li><a href="teamInvite?t_num=${sessionScope.t_num }">ÆÀ ÃÊ´ë</a></li>
 			<li><a href="http://localhost/MatchFootball/teamList">ÆÀ ¸®½ºÆ®</a></li>
 	</ul>
 	<div align="center">
@@ -71,7 +71,7 @@ li {
 		<c:forEach items="${teamNotice }" var="teamNotice">
 			<ul>
 				<li><a href="teamNoticeInfo?n_no=${teamNotice.n_no }&t_num=${teamNotice.t_num}">
-						<h2>${teamNotice.t_title}</h2>
+						${teamNotice.n_no }. ${teamNotice.t_title}
 				</a></li>
 			</ul>
 		</c:forEach>

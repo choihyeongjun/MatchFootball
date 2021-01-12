@@ -23,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 import co.company.MatchFootball.mapper.DoeunMapper;
 import co.company.MatchFootball.vo.MembersVO;
 import co.company.MatchFootball.vo.MessageVO;
+import co.company.MatchFootball.vo.P_matchVO;
 import co.company.MatchFootball.vo.Paging;
 import co.company.MatchFootball.vo.PointVO;
 
@@ -39,6 +40,7 @@ public class DoeunController {
 	@RequestMapping("mypage/profile") // 프로필(메인마이페이지)
 	public String profile(MembersVO mb, Model model, HttpSession session, HttpServletResponse response) {
 		mb.setId((String)session.getAttribute("id"));
+		mb.setName((String)session.getAttribute("kname"));
 		model.addAttribute("mb", dao.getUser(mb));
 		return "doeun/userprofile";
 	}
@@ -46,29 +48,55 @@ public class DoeunController {
 	@RequestMapping(value = "mypage/userupdate") // 정보수정폼
 	public String upuserinfo(MembersVO mb, Model model, HttpServletResponse response, HttpServletRequest request,HttpSession session) throws IOException {
 		mb.setId((String)session.getAttribute("id"));
+		mb.setEmail((String)session.getAttribute("kemail"));
+		mb.setName((String)session.getAttribute("kname"));
 		model.addAttribute("mb", dao.getUser(mb));
 		return "doeun/pfUpdate";
 	}
 	
+	
+	@SuppressWarnings("null")
 	@PostMapping(value="mypage/updateMem")
 	public String upMem(MembersVO vo, HttpServletRequest request, HttpSession session) {
-		vo.setId((String)session.getAttribute("id"));
-		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request ;
-		// 이미지파일
-		MultipartFile multipartFile = multipartRequest.getFile("file"); // input타입의 name값 : uploadFile
-		if (!multipartFile.isEmpty() && multipartFile.getSize() > 0) {
-			try {
-				String path = request.getSession().getServletContext().getRealPath("/images"); // /images폴더 위치 mvc에 추가
-				System.out.println("pp" + path); // 저장 경로 위치 확인
-				multipartFile.transferTo(new File(path, multipartFile.getOriginalFilename()));
-			} catch (IllegalStateException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
+	
+		if(vo == null) {
+			MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request ;
+			// 이미지파일
+			MultipartFile multipartFile = multipartRequest.getFile("file"); // input타입의 name값 : uploadFile
+			if (!multipartFile.isEmpty() && multipartFile.getSize() > 0) {
+				try {
+					String path = request.getSession().getServletContext().getRealPath("/images"); // /images폴더 위치 mvc에 추가
+					System.out.println("pp" + path); // 저장 경로 위치 확인
+					multipartFile.transferTo(new File(path, multipartFile.getOriginalFilename()));
+				} catch (IllegalStateException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				vo.setImg(multipartFile.getOriginalFilename());
 			}
-			vo.setImg(multipartFile.getOriginalFilename());
+			dao.insertMem(vo);
+		} else {
+			vo.setId((String)session.getAttribute("kemail"));
+			vo.setEmail((String)session.getAttribute("kemail"));
+
+			MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request ;
+			// 이미지파일
+			MultipartFile multipartFile = multipartRequest.getFile("file"); // input타입의 name값 : uploadFile
+			if (!multipartFile.isEmpty() && multipartFile.getSize() > 0) {
+				try {
+					String path = request.getSession().getServletContext().getRealPath("/images"); // /images폴더 위치 mvc에 추가
+					System.out.println("pp" + path); // 저장 경로 위치 확인
+					multipartFile.transferTo(new File(path, multipartFile.getOriginalFilename()));
+				} catch (IllegalStateException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				vo.setImg(multipartFile.getOriginalFilename());
+			}
+			dao.upMem(vo);
 		}
-		dao.upMem(vo);
 		return "redirect:/mypage/profile";
 	}
 	@ResponseBody
@@ -92,7 +120,7 @@ public class DoeunController {
 	}
 
 	@RequestMapping(value = "mypage/msg") // 메인메세지함(default 받은 메시지함)
-	public String sendmsgList(MembersVO mem, MessageVO msg, Model model, HttpSession session, Paging paging) {
+	public String tomsgList(MembersVO mem, MessageVO msg, Model model, HttpSession session, Paging paging,HttpServletRequest request) {
 		mem.setId((String)session.getAttribute("id"));
 		msg.setTo_id(mem.getId());		
 		paging.setPageUnit(16);
@@ -101,8 +129,18 @@ public class DoeunController {
 		msg.setLast(paging.getLast());
 		paging.setTotalRecord(dao.getCount1(msg));
 		model.addAttribute("paging", paging);
+		
 		model.addAttribute("msg",dao.tomsgList(msg));
 		return "doeun/Message";
+	}
+	@RequestMapping(value ="reviewMsg") // 받은메세지 확인폼
+	public ModelAndView reviewMsg(MembersVO mem, MessageVO msg, Model model, HttpSession session, HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		msg.setTo_id((String)session.getAttribute("id"));
+		mav.addObject("msg", dao.reviewMsg(msg));
+		mav.setViewName("no/doeun/msg");
+		
+		return mav;
 	}
 //	@ResponseBody
 //	@RequestMapping(value = "mypage/msg/ajax")
@@ -119,17 +157,22 @@ public class DoeunController {
 //	}
 	
 	
-	/*
-	 * @ResponseBody
-	 * 
-	 * @RequestMapping(value = "mypage/sendmsg/ajax") public List<MessageVO>
-	 * sendmsgList(MembersVO mem, MessageVO msg, Model model, HttpSession session,
-	 * Paging paging) { mem.setId((String)session.getAttribute("id"));
-	 * msg.setSend_id(mem.getId()); paging.setPageUnit(16); paging.setPageSize(10);
-	 * msg.setFirst(paging.getFirst()); msg.setLast(paging.getLast());
-	 * paging.setTotalRecord(dao.getCount2(msg)); model.addAttribute("paging",
-	 * paging); model.addAttribute("msg",dao.sendmsgList(msg)); return ; }
-	 */
+	
+	@ResponseBody
+	@RequestMapping(value = "mypage/sendmsg/ajax") //보낸 메세지 함
+	public List<MessageVO> sendmsgList(MembersVO mem, MessageVO msg, Model model, HttpSession session, Paging paging) {
+		mem.setId((String) session.getAttribute("id"));
+		msg.setSend_id(mem.getId());
+		paging.setPageUnit(16);
+		paging.setPageSize(10);
+		msg.setFirst(paging.getFirst());
+		msg.setLast(paging.getLast());
+		paging.setTotalRecord(dao.getCount2(msg));
+		model.addAttribute("paging", paging);
+		model.addAttribute("msg", dao.sendmsgList(msg));
+		return dao.sendmsgList(msg);
+	}
+
 	@RequestMapping(value = "mypage/outmsg") // 보낸 메세지함
 	public String OpMsg() {
 		return "doeun/OutMessage";
@@ -145,14 +188,8 @@ public class DoeunController {
 		dao.sendMsg(msg);
 		return "redirect:/mypage/msg";
 	}
-//	@RequestMapping(value ="reviewMsg") // 받은메세지 확인폼
-//	public String reviewMsg(MembersVO mem, MessageVO msg, Model model, HttpSession session, HttpServletRequest request) {
-//		msg.setTo_id((String)session.getAttribute("id"));
-//		int m_no = reqe
-//		msg.setM_no(request.getParameter(m_no));
-//		dao.reviewMsg(msg);
-//		return "redirect:/doeun/msg";
-//	}
+	
+	
 	@PostMapping(value = "replymsg/ajax") // 메세지 답장처리
 	public String replymsg(MembersVO mem, MessageVO msg, Model model, HttpSession session) {
 		mem.setId((String)session.getAttribute("id"));		
@@ -166,11 +203,11 @@ public class DoeunController {
 		return "doeun/InviteMsg";
 	}
 
-	@RequestMapping(value = "mypage/matched") // 경기참가내역
-	public ModelAndView review() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("doeun/review");// jsp 경로 지정
-		return mav;
+	@RequestMapping(value = "mypage/matched") // 개인경기참가내역
+	public String p_matchedList(P_matchVO pmc, Model model, HttpSession session, Paging paging) {
+		pmc.setM_id((String)session.getAttribute("id"));
+		model.addAttribute("p_mat", dao.p_matchedList(pmc));
+		return "doeun/review";
 	}
 
 	@RequestMapping(value = "mypage/usedPoint") // 포인트 사용내역

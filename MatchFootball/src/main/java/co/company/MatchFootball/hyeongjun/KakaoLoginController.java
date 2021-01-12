@@ -53,7 +53,7 @@ public class KakaoLoginController {
       session.setAttribute("kgender", kgender);
       session.setAttribute("kbirthday", kbirthday);
       session.setAttribute("kage", kage);
-      mav.setViewName("home");
+      mav.setViewName("redirect:/match");
       return mav;
    }
    @RequestMapping(value = "/kakaologout", produces = "application/json")
@@ -61,7 +61,7 @@ public class KakaoLoginController {
          HttpServletResponse response, HttpSession session) throws Exception {
       JsonNode userInfo = KakaoAPI.logoutKakaoUserlogout((JsonNode) session.getAttribute("accesstoken"));
       ModelAndView mav = new ModelAndView();
-      mav.setViewName("home");
+      mav.setViewName("redirect:/match");
       return mav;
       
    }

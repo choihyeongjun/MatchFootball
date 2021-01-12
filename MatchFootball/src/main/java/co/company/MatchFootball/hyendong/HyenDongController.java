@@ -88,6 +88,15 @@ public class HyenDongController {
 		return "hyendong/teamInfo";
 	}
 	
+	// 팀원 추방
+	@RequestMapping("/memberOut")
+	public String memberOut(Model model, TeamVO teamVO, MembersVO membersVO, HttpSession session, TeamlistVO teamlistVO) {
+		hyendongMapper.teamMemberOut(teamlistVO);
+		membersVO.setId(teamlistVO.getId());
+		hyendongMapper.tNumNullUpdate(membersVO);
+		return "redirect:/teamInfo?t_num=" + teamVO.getT_num();
+	}
+	
 	// 팀 가입하기
 		@RequestMapping("/teamlistInsert")
 		public String teamlistInsert(Model model, TeamVO teamVO, MembersVO membersVO, HttpSession session, TeamlistVO teamlistVO) {
@@ -104,18 +113,6 @@ public class HyenDongController {
 			return "redirect:/teamInfo?t_num=" + teamVO.getT_num(); 
 		}
 	
-	// 마이팀정보
-	@RequestMapping("/myTeamInfo")
-	public String myTeamInfo(Model model, HttpSession session, MembersVO membersVO, TeamVO teamVO, TeamlistVO teamlistVO) {
-		String id = (String) session.getAttribute("id");
-		membersVO.setId(id);
-		model.addAttribute("member", hyendongMapper.memberSelect(membersVO));
-		model.addAttribute("teamInfo", hyendongMapper.getTeam(teamVO));
-		model.addAttribute("teamMembers", hyendongMapper.getTeamMembers(teamVO));
-		teamlistVO.setId(id);
-		model.addAttribute("updateButton", hyendongMapper.getTeamMemberss(teamlistVO));
-		return "hyendong/myTeam";
-	}
 	// 팀수정
 	@RequestMapping("/teamUpdate")
 	public String teamUpdate(Model model, TeamVO teamVO) {
@@ -249,14 +246,16 @@ public class HyenDongController {
 	
 	// 팀 초대
 	@RequestMapping("/teamInvite")
-	public String teamInvite(Model model, HttpSession session, TinviteVO tinviteVO) {
+	public String teamInvite(Model model, HttpSession session, TinviteVO tinviteVO, TeamlistVO teamlistVO) {
 		String id = (String)session.getAttribute("id");
 		tinviteVO.setId(id);
 		model.addAttribute("tinvite", hyendongMapper.teamInviteSelect(tinviteVO));
+		teamlistVO.setId(id);
+		model.addAttribute("updateButton", hyendongMapper.getTeamMemberss(teamlistVO));
 		return "hyendong/teamInvite";
 	}
 	
-	// 팀 초대 처리
+	// 팀 초대 처리 인바이트로
 		@RequestMapping("/teamInviteInsert")
 		public String teamInviteInsert(Model model, TeamVO teamVO, MembersVO membersVO, HttpSession session, TinviteVO tinviteVO) {
 			String id = (String)session.getAttribute("id");
@@ -265,7 +264,25 @@ public class HyenDongController {
 			hyendongMapper.teamInvite(tinviteVO);
 			return "redirect:/teamInfo?t_num=" + teamVO.getT_num(); 
 		}
-
+		
+	// 팀 초대 승락
+	@RequestMapping("/teamListInsert")
+	public String teamListInsert(TeamlistVO teamlistVO, TeamVO teamVO, Model model, MembersVO membersVO, HttpSession session, TinviteVO tinviteVO) {
+		model.addAttribute("member", hyendongMapper.memberSelect(membersVO)); //전체멤버 조회하는거 member 객체 생성
+		hyendongMapper.teamListInsert(teamlistVO);
+		membersVO.setId(teamlistVO.getId());
+		hyendongMapper.tNumUpdate(membersVO);
+		hyendongMapper.teamInviteDelete(tinviteVO);
+		return "redirect:/teamInvite?t_num=" + teamVO.getT_num();
+	}
+	
+	// 팀 초대 거절
+	@RequestMapping("/teamInviteDelete")
+	public String teamInviteDelete(TinviteVO tinviteVO, TeamVO teamVO) {
+		hyendongMapper.teamInviteDelete(tinviteVO);
+		return "redirect:/teamInvite?t_num=" + teamVO.getT_num();
+	}
+	
 	@ResponseBody
 	@RequestMapping(value = "/teamInvite/ajax")
 	public List<MembersVO> ajaxMembers(Model model) {

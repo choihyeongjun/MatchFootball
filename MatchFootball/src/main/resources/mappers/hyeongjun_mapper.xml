@@ -16,7 +16,7 @@
    where id=#{id}
    </select>
    <select id="bollowinsert" parameterType="inviteVO" resultType="inviteVO">
-   insert into invite(c_id,title,comm,s_date,r_id) values(#{c_id},#{title},#{comm},sysdate+9/24,#{r_id})
+   insert into invite(c_id,title,comm,s_date,r_id,m_no) values(#{c_id},#{title},#{comm},sysdate+9/24,#{r_id},#{m_no})
    </select>
    
    <select id="invitestore" parameterType="inviteVO" resultType="inviteVO">
@@ -35,12 +35,12 @@
    	from field
    </select>
    <select id="fieldselect" resultType="map">
-   select m_id "_id",title "title" ,type "type",starttime "start", endtime "end",comm "description",backgroundcolor "backgroundColor"
+   select m_id "_id",title "title" ,type "type",starttime "start", endtime "end",comm "description",backgroundcolor "backgroundColor",id "id"
    from rfield
    where f_id=#{f_id}
    </select>
    <select id="fielddetailinsert" parameterType="rfieldVO" resultType="rfieldVO">
-   		insert into rfield(f_id,starttime,endtime,m_id,title,type,backgroundcolor,comm) values('field1',#{starttime},#{endtime},'100',#{title},#{type},#{backgroundcolor},#{comm})
+   		insert into rfield(f_id,starttime,endtime,m_id,title,type,backgroundcolor,comm,id) values(#{f_id},#{starttime},#{endtime},{_id},#{title},#{type},#{backgroundcolor},#{comm},#{id})
    </select>
    <select id="fboardlist" resultType="fboardVO">
    	select *
@@ -86,13 +86,25 @@
    where c_id=#{c_id}
    </select>
    <select id="inviteselect" parameterType="membersVO" resultType="membernInvite">
-   select i.c_id,i.s_date,m.pnum,m.t_num,i.check1 from members m,invite i
-   where m.id=i.c_id and i.r_id=#{id}
+   select i.c_id,i.s_date,m.pnum,m.t_num,i.check1,i.comm,i.title,i.check1,i.m_no from members m,invite i
+   where m.id=i.c_id and i.r_id=#{id}  
    </select>
-   <select id="deleteinvite" >
-   		delete from invite where ((TRUNC(SYSDATE,'MI')-to_date(s_date,'YYYY-MM-DD HH24:MI:SS'))*1440)>=10
+   <select id="updateinvite" parameterType="inviteVO" resultType="inviteVO">
+   update invite set check1='수락완료' where r_id=#{r_id} and c_id=#{c_id}
    </select>
-
+   <select id="updateinvite1" parameterType="inviteVO" resultType="inviteVO">
+   update invite set check1='거절됨' where r_id=#{r_id} and c_id=#{c_id}
+   </select>
+   <select id="selectmatch" parameterType="teammatchVO" resultType="teammatchVO">
+   	select * from teammatch where id=#{id}
+   </select>
+ <select id="deleteinvite" >
+   		delete from invite where ((TRUNC(SYSDATE+9/24,'MI')-to_date(s_date,'YYYY-MM-DD HH24:MI:SS'))*1440)>=100
+   </select>
+   <select id="playerinsert" parameterType="membernInvite">
+   	insert into players(m_no,t_num,id) values(#{m_no},#{t_num},#{id})
+   </select>
+ 
 
    <!-- <select id="heartselect" result="likeitVO">
    	select likeit

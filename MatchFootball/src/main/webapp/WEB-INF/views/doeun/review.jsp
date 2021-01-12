@@ -83,6 +83,7 @@
 								<div id="tr-template">
 									<div class="card">
 										<div class="media mt-0">
+										<input type="hidden" value="${p_mat.m_id}" name="m_id">
 											<div class="media-left">
 												<img class="media-object rounded-circle" src="#" width="100"
 													height="100" alt="">
@@ -92,11 +93,11 @@
 													data-photo={{userPhoto}} data-hostphoto={{hostphoto}}>
 													<h6 class="media-heading riw-cont" id="aaa-{{no}}"
 														data-reply="{{reply}}" data-hostname={{hostname}}
-														data-name={{name}}>{{contents}}</h6>
+														data-name={{name}}></h6>
 													<p class="text-muted">
 														<i class="fas fa-map-marker-alt"></i>
 													</p>
-													<p class="text-muted">작성일 : {{createdDate}}</p>
+													<p class="text-muted">경기일 : </p>
 												</div>
 												<div class="riw-btn col-6 col-md-4" data-no={{no}}
 													data-grd={{grd}}>

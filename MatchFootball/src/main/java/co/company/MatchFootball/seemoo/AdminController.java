@@ -8,12 +8,16 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import co.company.MatchFootball.mapper.SeemooMapper;
+<<<<<<< HEAD
+=======
+import co.company.MatchFootball.vo.BlackTeamListVO;
+import co.company.MatchFootball.vo.BlackTeamVO;
+>>>>>>> branch 'master' of https://github.com/tjdwns631/MatchFootball.git
 import co.company.MatchFootball.vo.ManagersVO;
 import co.company.MatchFootball.vo.MembersVO;
 import co.company.MatchFootball.vo.NoticeVO;
@@ -110,10 +114,10 @@ public class AdminController {
 	public List<TeamVO> blackteamlist(Model model, TeamVO vo, HttpServletRequest request, HttpServletResponse reponse) {
 		return seemoomapper.blackteamList();
 	}
-	
-//	@RequestMapping("/admin/blackteam") // 블랙팀관리 페이지 (삭제)
-//	public String blackteamdelete(BlackTeamVO vo) {
-//		return seemoomapper.blackteamsdelete(vo);
+
+//	@RequestMapping("/admin/blackteam") // 팀관리 페이지 (블랙리스트 된 팀)
+//	public String blackteam() {
+//		return "seemoo/blackteam";
 //	}
 	
 //	---------------------------------------------------------------------------------------------------------------------
@@ -160,18 +164,28 @@ public class AdminController {
 		return "seemoo/community";
 	}
 
+<<<<<<< HEAD
 //	---------------------------------------------------------------------------------------------------------------------
 
 	@RequestMapping("/admin/notice/noticewrite") // 공지사항
+=======
+	@RequestMapping("/admin/notice") // 공지사항 페이지
+	public String notice() {
+		return "seemoo/notice";
+	}
+
+	@RequestMapping("/admin/notice/noticewrite") // 공지사항 글쓰기 페이지
+>>>>>>> branch 'master' of https://github.com/tjdwns631/MatchFootball.git
 	public String noticewrite() {
 		return "seemoo/noticewrite";
 	}
 
+	@RequestMapping(value = "/admin/noticewrite/ajax", method = RequestMethod.GET) // 공지사항 조회 페이지 (ajax로 전체조회)
 	@ResponseBody	
-	@RequestMapping(value = "/noticewrite/ajax", method = RequestMethod.GET) // 공지사항 조회 페이지 (ajax로 전체조회)
-	public List<NoticeVO> noticelist(Model model, HttpServletRequest request, HttpServletResponse reponse) {
-		return seemoomapper.noticeList();
+	public List<NoticeVO> noticeselect(Model model, NoticeVO vo, HttpServletRequest request, HttpServletResponse reponse) {
+		return seemoomapper.noticeselect();
 	}
+<<<<<<< HEAD
 	
 	@RequestMapping(value = "/noticeselect/{n_no}", method = RequestMethod.GET) //(단건조회)
 	@ResponseBody
@@ -210,6 +224,8 @@ public class AdminController {
 	
 //	---------------------------------------------------------------------------------------------------------------------
 
+=======
+>>>>>>> branch 'master' of https://github.com/tjdwns631/MatchFootball.git
 	@RequestMapping("/admin/match") // 매치 페이지
 	public String match() {
 		return "seemoo/match";
