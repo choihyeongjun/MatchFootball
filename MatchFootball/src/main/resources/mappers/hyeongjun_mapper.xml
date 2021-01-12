@@ -90,7 +90,7 @@
    where m.id=i.c_id and i.r_id=#{id}
    </select>
    <select id="deleteinvite" >
-   		delete from invite where ((TRUNC(SYSDATE,'MI')-to_date(s_date,'YYYY-MM-DD HH24:MI:SS'))*1440)>=10
+   		delete from invite where ((TRUNC(SYSDATE,'MI')-to_date(s_date,'YYYY-MM-DD HH24:MI:SS'))*1440)>=1000
    </select>
 
 

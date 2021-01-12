@@ -85,10 +85,12 @@ body {
 	<nav class="navbar navbar-expand-lg navbar-light bg-light"
 		style="box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)">
 		<div class="container-md">
-			${sessionScope.id}
-			<a class="navbar-brand"
+			${sessionScope.id} ${kemail}
+			   <a href="${pageContext.request.contextPath}/logout">로그아웃</a>
+			 <a class="navbar-brand"
 				href="${pageContext.request.contextPath}/match"
-				style="color: #04519b"><img src="${pageContext.request.contextPath}/resources/img/99.png"
+				style="color: #04519b"><img
+				src="${pageContext.request.contextPath}/resources/img/99.png"
 				width="100px" height="50px" /></a>
 			<div>
 				<button type="button" class="btn abc" data-toggle="modal"
@@ -172,12 +174,14 @@ body {
 		aria-hidden="true">
 		<div class="modal-dialog modal-xl" role="document">
 			<div class="modal-content" style="background-color: none;">
-			  <div class="container">
+				<div class="container">
+				<section class="login first grey">
+         <div class="container">
             <div class="box-wrapper">            
                <div class="box box-border">
                   <div class="box-body">
                      <h4>Login</h4>
-                     <form action="${pageContext.request.contextPath}/logincheck">
+                     <form action="${pageContext.request.contextPath}/logincheck" method="post">
                         <div class="form-group">
                            <label>Username</label>
                            <input type="text" name="id" class="form-control">
@@ -199,15 +203,15 @@ body {
                         <div class="title-line">
                            or
                         </div>
-                 <a href="#" class="btn btn-social btn-block facebook"><i class="ion-social-facebook"></i> Login with Facebook</a>
-				<a id="custom-login-btn" href="${kakao_url}"><img src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg"width="222"/>
+            
+				<a id="custom-login-btn" href="https://kauth.kakao.com/oauth/authorize?client_id=7e3b7c35576002f01608bd949ca669da&redirect_uri=http://localhost/MatchFootball/kakaologin&response_type=code"><img src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg"width="222"/>
                      </form>
                   </div>
                </div>
             </div>
          </div>
-			
-
+      </section>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -224,12 +228,21 @@ body {
 								<h3 style="text-align: center">마이페이지</h3>
 							</div>
 							<ul class="menul">
-								<li class="lili"><a href="${pageContext.request.contextPath}/mypage/profile">내 정보</a></li>
-								<li class="lili"><a href="${pageContext.request.contextPath}/mypage/pay">결제 | 쿠폰</a></li>
-								<li class="lili"><a href="${pageContext.request.contextPath}/mypage/usedPoint">사용 내역</a></li>
-								<li class="lili"><a href="${pageContext.request.contextPath}/mypage/msg">쪽지 | 게시글</a></li>
+								<li class="lili"><a
+									href="${pageContext.request.contextPath}/mypage/profile">내
+										정보</a></li>
+								<li class="lili"><a
+									href="${pageContext.request.contextPath}/mypage/pay">결제 |
+										쿠폰</a></li>
+								<li class="lili"><a
+									href="${pageContext.request.contextPath}/mypage/usedPoint">사용
+										내역</a></li>
+								<li class="lili"><a
+									href="${pageContext.request.contextPath}/mypage/msg">쪽지 |
+										게시글</a></li>
 								<c:if test="${sessionScope.author eq 'user'}">
-								<li class="lili"><a href="${pageContext.request.contextPath}/manageremploy">신청페이지</a></li>
+									<li class="lili"><a
+										href="${pageContext.request.contextPath}/manageremploy">신청페이지</a></li>
 								</c:if>
 							</ul>
 						</div>
@@ -238,9 +251,15 @@ body {
 								<h3 style="text-align: center">매니저</h3>
 							</div>
 							<ul class="menul">
-								<li class="lili"><a href="${pageContext.request.contextPath}/managermypage">매니저 마이페이지</a></li>
-								<li class="lili"><a href="${pageContext.request.contextPath}/allmatchlist">전체 경기 일정</a></li>
-								<li class="lili"><a href="${pageContext.request.contextPath}/reviewmodal">리뷰 내역 페이지</a></li>
+								<li class="lili"><a
+									href="${pageContext.request.contextPath}/managermypage">매니저
+										마이페이지</a></li>
+								<li class="lili"><a
+									href="${pageContext.request.contextPath}/allmatchlist">전체
+										경기 일정</a></li>
+								<li class="lili"><a
+									href="${pageContext.request.contextPath}/reviewmodal">리뷰 내역
+										페이지</a></li>
 							</ul>
 						</div>
 						<div class="col-md-3 col-sm-6">
@@ -249,14 +268,22 @@ body {
 							</div>
 							<ul class="menul">
 								<c:if test="${sessionScope.t_num eq null }">
-								<li class="lili"><a href="${pageContext.request.contextPath}/teamMake">팀 생성</a></li>
+									<li class="lili"><a
+										href="${pageContext.request.contextPath}/teamMake">팀 생성</a></li>
 								</c:if>
 								<c:if test="${sessionScope.t_num ne null }">
-								<li class="lili"><a href="${pageContext.request.contextPath}/teamInfo?t_num=${sessionScope.t_num}">팀 정보</a></li>
-								<li class="lili"><a href="${pageContext.request.contextPath}/teamNotice?t_num=${sessionScope.t_num}">팀 공지</a></li>
-								<li class="lili"><a href="${pageContext.request.contextPath}/teamInvite?t_num=${sessionScope.t_num}">팀 초대</a></li>
+									<li class="lili"><a
+										href="${pageContext.request.contextPath}/teamInfo?t_num=${sessionScope.t_num}">팀
+											정보</a></li>
+									<li class="lili"><a
+										href="${pageContext.request.contextPath}/teamNotice?t_num=${sessionScope.t_num}">팀
+											공지</a></li>
+									<li class="lili"><a
+										href="${pageContext.request.contextPath}/teamInvite?t_num=${sessionScope.t_num}">팀
+											초대</a></li>
 								</c:if>
-								<li class="lili"><a href="${pageContext.request.contextPath}/teamList">팀 리스트</a></li>
+								<li class="lili"><a
+									href="${pageContext.request.contextPath}/teamList">팀 리스트</a></li>
 							</ul>
 						</div>
 						<div class="col-md-3 col-sm-6">
@@ -264,10 +291,13 @@ body {
 								<h3 style="text-align: center">매치</h3>
 							</div>
 							<ul class="menul">
-								<li class="lili"><a href="${pageContext.request.contextPath}/match">개인 매치</a></li>
-								<li class="lili"><a href="${pageContext.request.contextPath}/teammatch">팀 매치</a></li>
-								<li class="lili"><a href="${pageContext.request.contextPath}/bollow">용병 초대</a></li>
-								
+								<li class="lili"><a
+									href="${pageContext.request.contextPath}/match">개인 매치</a></li>
+								<li class="lili"><a
+									href="${pageContext.request.contextPath}/teammatch">팀 매치</a></li>
+								<li class="lili"><a
+									href="${pageContext.request.contextPath}/bollow">용병 초대</a></li>
+
 							</ul>
 						</div>
 						<div class="col-md-3 col-sm-6">
@@ -275,8 +305,10 @@ body {
 								<h3 style="text-align: center">경기장</h3>
 							</div>
 							<ul class="menul">
-								<li class="lili"><a href="${pageContext.request.contextPath}/fieldlist">구장 정보</a></li>
-								<li class="lili"><a href="${pageContext.request.contextPath}/fieldinsert">구장 등록</a></li>
+								<li class="lili"><a
+									href="${pageContext.request.contextPath}/fieldlist">구장 정보</a></li>
+								<li class="lili"><a
+									href="${pageContext.request.contextPath}/fieldinsert">구장 등록</a></li>
 							</ul>
 						</div>
 						<div class="col-md-3 col-sm-6">
@@ -284,10 +316,14 @@ body {
 								<h3 style="text-align: center">커뮤니티</h3>
 							</div>
 							<ul class="menul">
-								<li class="lili"><a href="${pageContext.request.contextPath}/allnotice">공지사항</a></li>
-								<li class="lili"><a href="${pageContext.request.contextPath}/free">자유게시판</a></li>
-								<li class="lili"><a href="${pageContext.request.contextPath}/productlist">중고장터</a></li>
-								<li class="lili"><a href="${pageContext.request.contextPath}/tournamentList">토너먼트</a></li>
+								<li class="lili"><a
+									href="${pageContext.request.contextPath}/allnotice">공지사항</a></li>
+								<li class="lili"><a
+									href="${pageContext.request.contextPath}/free">자유게시판</a></li>
+								<li class="lili"><a
+									href="${pageContext.request.contextPath}/productlist">중고장터</a></li>
+								<li class="lili"><a
+									href="${pageContext.request.contextPath}/tournamentList">토너먼트</a></li>
 							</ul>
 						</div>
 					</div>

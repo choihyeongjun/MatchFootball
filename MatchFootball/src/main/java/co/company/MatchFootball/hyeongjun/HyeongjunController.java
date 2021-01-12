@@ -117,7 +117,10 @@ public class HyeongjunController {
 		model.addAttribute("list",hyeongjunMapper.fboardlist());
 		return "hyeongjun/freeboard";
 	}
-
+	@RequestMapping("/home")
+	public String home() {
+		return "home";
+	}
 	@RequestMapping("/login")
 	public String loginpage() {
 		return "hyeongjun/login";
