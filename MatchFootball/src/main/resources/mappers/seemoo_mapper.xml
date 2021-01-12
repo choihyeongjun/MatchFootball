@@ -30,7 +30,8 @@
 
 	<!-- 팀조회 -->
 	<select id="teamList" resultType="TeamVO">
-		SELECT * FROM TEAM
+		SELECT * FROM TEAM WHERE AUTHOR = 'team'
+		<!-- select * from team -->
 	</select>
 
 	<!-- 팀단건조회 -->
@@ -40,7 +41,7 @@
 	
 	<!-- 팀권한 수정 -->
 	<select id="teamsupdate" parameterType="TeamVO" resultType="TeamVO">
-		UPDATE TEAM SET T_AUTHOR = #{t_author} WHERE T_NUM = #{t_num}     
+		UPDATE TEAM SET AUTHOR = #{author} WHERE T_NUM = #{t_num}     
 	</select>
 	
 	<!-- 팀삭제 -->
@@ -49,9 +50,8 @@
 	</select>
 	
 	<!-- 블랙팀 조회 -->
-	<select id="blackteamList" resultType="BlackTeamListVO">
-		SELECT T.T_NUM, T.T_NAME, T.T_LEVEL, T.T_M, B.STOPDATE, 
-		B.STOPREASON, B.T_AUTHOR FROM TEAM T JOIN BLACKTEAM B ON T.T_NUM = B.T_NUM WHERE T_AUTHOR = #{t_author}
+	<select id="blackteamList" resultType="TeamVO">
+		SELECT * FROM TEAM WHERE AUTHOR = 'black'
 	</select>
 	
 <!-- 매니저관리 -->
@@ -59,6 +59,11 @@
 	<!-- 매니저조회 -->
 	<select id="managerList" resultType="ManagersVO">
 		SELECT MEMBERS.ID, NAME, GENDER, PNUM, AUTHOR, POINT, COMM FROM MEMBERS, MANAGER WHERE MEMBERS.ID=MANAGER.ID
+	</select>
+	
+	<!-- 유저 권한, 권한2 수정 -->
+	<select id="managers" parameterType="MembersVO" resultType="MembersVO">
+		UPDATE MEMBERS SET AUTHOR = #{author} WHERE ID = #{id}     
 	</select>
 	
 	<!-- 매니저 승인|대기조회 -->
@@ -79,17 +84,28 @@
 	</select>
 	
 	<!-- 등록 -->
-	<insert id="noticeinsert">
+	<insert id="noticeinsert" parameterType="NoticeVO">
 		<selectKey order="BEFORE" keyProperty="n_no" resultType="string">
 			SELECT MAX(N_NO)+1
 			FROM NOTICE
 		</selectKey>
-		INSERT INTO NOTICE(N_NO, ID, N_TITLE, N_DATE, N_IMG, N_COMM) 
-		VALUES(FREE_SEQ.NEXTVAL, #{ID}, #{N_TITLE}, SYSDATE, #{N_IMG}, #{N_COMM})
+		INSERT INTO NOTICE(N_NO, ID, N_TITLE, N_DATE,
+		 <if test="n_img != null and n_img != ''">N_IMG,</if>
+		  N_COMM) 
+		VALUES(#{n_no}, 'pueen0616', #{n_title}, SYSDATE, 
+		 <if test="n_img != null and n_img != ''">#{n_img},</if> 
+		 #{n_comm})
 	</insert>
 	
 	<!-- 삭제 -->
 	<select id="noticedelete" resultType="NoticeVO">
 		DELETE NOTICE WHERE N_NO = #{n_no}
 	</select>
+	
+<!-- 리뷰관리 -->
+
+	<!-- 리뷰조회 -->
+		<select id="reviewList" resultType="ReviewVO">
+			SELECT * FROM REVIEW
+		</select>	
 </mapper>

@@ -58,18 +58,18 @@ function userListResult(data) {
 	$("#main").empty();
 	$.each(data,function(idx,item){
 		$('<tr>')
-		.append($('<td class="idnum">').html(item.id))    	//유저아이디
-		.append($('<td>').html(item.name))	    //유저이름
-		.append($('<td>').html(item.gender))    //유저성별
-		.append($('<td>').html(item.manner))    //유저매너도
-		.append($('<td>').html(item.point))  	//유저포인트
-		.append($('<td>').html(					//유저권한
+		.append($('<td class="idnum">').html(item.id))   //유저아이디
+		.append($('<td>').html(item.name))	   			 //유저이름
+		.append($('<td>').html(item.gender))  			 //유저성별
+		.append($('<td>').html(item.manner))   			 //유저매너도
+		.append($('<td>').html(item.point))  			 //유저포인트
+		.append($('<td>').html(							 //유저권한
 				$('<select id="author" class=\'author\'> '+
 				'<option selected value="">선택</option>'+
 				'<option value="user">일반회원</option>'+
 				'<option value="manager">매니저</option>'+
 				'</select>').val(item.author)))
-		.append($('<td>').html(					//유저권한2
+		.append($('<td>').html(							 //유저권한2
 				$('<select id="author2" class=\'author2\'> '+
 				'<option selected value="">선택</option>'+
 				'<option value="Y">Y</option>'+

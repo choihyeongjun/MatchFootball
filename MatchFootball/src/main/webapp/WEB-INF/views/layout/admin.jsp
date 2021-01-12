@@ -108,7 +108,7 @@
 							aria-controls="collapsePages">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-book-open"></i>
-							</div> 게시판
+							</div> 게시판관리
 							<div class="sb-sidenav-collapse-arrow">
 								<i class="fas fa-angle-down"></i>
 							</div>
@@ -119,20 +119,19 @@
 								id="sidenavAccordionPages">
 								<a class="nav-link collapsed" href="#" data-toggle="collapse"
 									data-target="#pagesCollapseAuth" aria-expanded="false"
-									aria-controls="pagesCollapseAuth"> 커뮤니티
+									aria-controls="pagesCollapseAuth"> 커뮤니티관리
 									<div class="sb-sidenav-collapse-arrow">
 										<i class="fas fa-angle-down"></i>
 									</div>
 								</a>
 								
-								
 								<div class="collapse" id="pagesCollapseAuth"
 									aria-labelledby="headingOne"
 									data-parent="#sidenavAccordionPages">
 									<nav class="sb-sidenav-menu-nested nav">
-										<a class="nav-link" href="${pageContext.request.contextPath}/admin/notice">공지사항</a> 
+										<a class="nav-link" href="${pageContext.request.contextPath}/admin/notice/noticewrite">공지사항</a> 
 										<a class="nav-link" href="#">커뮤니티</a> 
-										<a class="nav-link" href="#">리뷰관리</a>
+										<a class="nav-link" href="${pageContext.request.contextPath}/admin/review">리뷰관리</a>
 									</nav>
 								</div>
 								<a class="nav-link collapsed" href="#" data-toggle="collapse"

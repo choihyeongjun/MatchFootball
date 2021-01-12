@@ -17,35 +17,12 @@
 $(function(){
 	teamList();
 	teamUpdate();
-	teamDelete();
 });
-
-function teamUpdate() {
-	//업데이트 버튼 클릭
-	$('#tmain').on('click','#btnUpdate',function(){
-		var t_num = $(event.target).closest('tr').find('#hidden_t_num').val();
-		var t_author = $(event.target).closest('tr').find("#t_author").val();
-		var t_name = $(event.target).closest('tr').find("#hidden_t_name").val();
-		console.log(t_num);
-		var result = confirm(t_name +" 팀를 업데이트 하시겠습니까?");
-		if(result) {
-			$.ajax({
-				url:'../teamupdate',
-				data : {t_num : t_num, t_author: t_author},
-				dataType:'json',
-				error:function(xhr,status,msg){
-					console.log("상태값 :" + status + " Http에러메시지 :"+msg);
-				}, success: location.reload() 
-			});
-		}//if
-	}); //업데이트 버튼 클릭
-}//userupdate
 
 //팀 목록 조회 요청
 function teamList() {
 	$.ajax({
 		url:'../team/ajax',
-		type:'GET',
 		//contentType:'application/json;charset=utf-8',
 		dataType:'json',
 		error:function(xhr,status,msg){
@@ -65,44 +42,43 @@ function teamListResult(data) {
 		.append($('<td>').html(item.t_level))   				//팀레벨
 		.append($('<td>').html(item.t_wn))      				//팀승률
 		.append($('<td>').html(									//팀권한
-				$('<select id="t_author" class=\'t_author\'> '+
+				$('<select id="author" class=\'author\'> '+
 				'<option selected value="">선택</option>'+
 				'<option value="team">팀</option>'+
 				'<option value="black">블랙</option>'+
-				'</select>').val(item.t_author)))
+				'</select>').val(item.author)))
 		.append($('<td>').html(item.t_m))						//팀매너점수
 		.append($('<td>').html(item.t_info))    				//팀소개
 		.append($('<td>').html('<button id=\'btnSelect\'class="btn btn-primary">팀프로필</button>'))
 		.append($('<td>').html('<button id=\'btnUpdate\'class="btn btn-success">팀수정</button>'))
-		.append($('<td>').html('<button id=\'btnDelete\'class="btn btn-primary">팀삭제</button>'))
 		.append($('<input type=\'hidden\' id=\'hidden_t_num\'>').val(item.t_num))
 		.append($('<input type=\'hidden\' id=\'hidden_t_name\'>').val(item.t_name))
-		.appendTo("#tmain");
+		.append($('<input type=\'hidden\' id=\'hidden_author\'>').val(item.author))
+		.appendTo("#t_main");
 	});//each
 	  $('#dataTable').DataTable();
 }//teamListResult
 
-function teamDelete() {
-	//삭제 버튼 클릭
-	$('#tmain').on('click','#btnDelete',function(){
+function teamUpdate() {
+	//업데이트 버튼 클릭
+	$('body').on('click','#btnUpdate',function(){
 		var t_num = $(event.target).closest('tr').find('#hidden_t_num').val();
+		var author = $(event.target).closest('tr').find("#author").val();
 		var t_name = $(event.target).closest('tr').find("#hidden_t_name").val();
-		var result = confirm(t_name +" 팀을 정말로 삭제하시겠습니까?");
+		console.log(t_num);
+		var result = confirm(t_name+"팀을 "+author+" 로 변경 하시겠습니까?");
 		if(result) {
-			console.log("아이디값: "+t_num)
 			$.ajax({
-				url:'../teamdelete',  
-				contentType:'application/json;charset=utf-8',
+				url:'../teamupdate',
+				data : {t_num : t_num, author: author},
 				dataType:'json',
-				type : 'GET',
-				data :{t_num : t_num},
 				error:function(xhr,status,msg){
 					console.log("상태값 :" + status + " Http에러메시지 :"+msg);
-				}, success: location.reload()
-			});      
+				}, success: location.reload() 
+			});
 		}//if
-	}); //삭제 버튼 클릭
-}//teamDelete
+	}); //업데이트 버튼 클릭
+}//userupdate
 
 function deleteResult(data){
 	console.log("deleteResult아이디값 : "+data);
@@ -160,14 +136,13 @@ function deleteResult(data){
 										<tr>
 											<th style="width: 10px;">No.</th>
 											<th>팀이름</th>
-											<th style="width: 70px;">팀레벨</th>
-											<th style="width: 70px;">팀승률</th>
+											<th>팀레벨</th>
+											<th>팀승률</th>
 											<th style="width: 150px;">팀권한</th>
 											<th>팀매너점수</th>
 											<th>팀소개</th>
-											<th>프로필</th>
-											<th>수정</th>
-											<th>삭제</th>
+											<th style="width: 90px;">프로필</th>
+											<th style="width: 90px;">수정</th>
 										</tr>
 									</thead>
 									<tfoot align="center">
@@ -181,10 +156,9 @@ function deleteResult(data){
 											<th>팀소개</th>
 											<th></th>
 											<th></th>
-											<th></th>
 										</tr>
 									</tfoot>
-									<tbody align="center" id="tmain"></tbody>
+									<tbody align="center" id="t_main"></tbody>
 								</table>
 							</div>
 						</div>
