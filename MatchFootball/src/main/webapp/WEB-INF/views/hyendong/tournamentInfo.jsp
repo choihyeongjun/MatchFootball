@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,6 +19,7 @@ li {
 </style>
 </head>
 <body>
+	
 	<div id="main_contents"
 		style="margin-left: 470px; width: 50%; margin-top: 30px; margin-bottom: 110px">
 		<div class="tournament_view_top">
@@ -36,7 +38,13 @@ li {
 			</div>
 		</div>
 		<div align="center">
-			<input type="submit" class="genric-btn info circle" value="참가신청" />
+		<form action="teamTournaInsert" method="post">
+			<input type="text" value="${tournamentTeam.t_no }" name="t_no" style="display:none">
+			<input type="text" value="${sessionScope.t_num }" name="t_num" style="display:none">
+			<c:if test="${updateButton.t_author eq '팀장'}">
+			<button type="submit" class="genric-btn info circle" onclick="javascript: form.action='${pageContext.request.contextPath}/teamTournaInsert'" style="float: right;">참가하기</button>
+			</c:if>
+		</form>
 			<input type="submit" class="genric-btn info circle" value="대진표" onclick="location.href='tournamentPVP?t_no=${tournamentTeam.t_no}'"/>
 		</div>
 		<br>
@@ -88,5 +96,6 @@ li {
 			</p>
 		</div>
 	</div>
+	
 </body>
 </html>

@@ -146,14 +146,8 @@
 			for(i=0; i<link[s].length; i++){
 				$(this).parent().find(".line_sty"+link[s][i]).toggleClass('on')
 			}
-			// AJAX
-			$.ajax({
-				url : '/tournamentPVP?t_no=2',
-				data : '${tournamentPVP[0].t_num}',
-				success : function(result){
-					
-				}
-			});
+			
+			
 		});
 
 		$(".noClickdown").on('click', function() {
@@ -184,20 +178,9 @@
 	
 
 </script>
-<body>
+<body style="background: white;">
 	<div class="bracket_overflow" style="overflow: visible; margin-bottom: 270px" align="center">
 		<div class="match_list_outer" id="bracket_capture">
-			<div class="round_set_outer">
-				<div class="round_set">
-					<p class="screen">8강</p>
-				</div>
-				<div class="round_set">
-					<p class="screen">4강</p>
-				</div>
-				<div class="round_set">
-					<p class="screen">FINAL</p>
-				</div>
-			</div>
 			<div id="loser_players" class="team_player_1"></div>
 			<div id="team_players" class="team_player_1">
 				<div class="match01 round_group">
@@ -209,13 +192,13 @@
 							<div class="box_s">
 								<div class="noClick" data-id="1">
 									<div style="height: 25px">
-										<p>${tournamentPVP[0].t_num }</p>
+										<p>${tournamentPVP[0].t_name }</p>
 									</div>
 									<em></em>
 								</div>
 								<div class="noClickdown" data-id="2">
 									<div style="height: 25px">
-										<p>${tournamentPVP[1].t_num }</p>
+										<p>${tournamentPVP[1].t_name }</p>
 									</div>
 									<em></em>
 								</div>
@@ -231,13 +214,13 @@
 							<div class="box_s">
 								<div class="noClick2" data-id="1">
 									<div style="height: 25px" >
-										<p>${tournamentPVP[2].t_num }</p>
+										<p>${tournamentPVP[2].t_name }</p>
 									</div>
 									<em></em>
 								</div>
 								<div class="noClickdown2" data-id="2">
 									<div style="height: 25px" >
-										<p>${tournamentPVP[3].t_num }</p>
+										<p>${tournamentPVP[3].t_name }</p>
 									</div>
 									<em></em>
 								</div>
@@ -255,13 +238,13 @@
 							<div class="box_s">
 								<div class="noClick" data-id="1">
 									<div style="height: 25px" >
-										<p>${tournamentPVP[4].t_num }</p>
+										<p>${tournamentPVP[4].t_name }</p>
 									</div>
 									<em></em>
 								</div>
 								<div class="noClickdown" data-id="2">
 									<div style="height: 25px" >
-										<p>${tournamentPVP[5].t_num }</p>
+										<p>${tournamentPVP[5].t_name }</p>
 									</div>
 									<em></em>
 								</div>
@@ -277,13 +260,13 @@
 							<div class="box_s">
 								<div class="noClick2" data-id="1">
 									<div style="height: 25px" >
-										<p>${tournamentPVP[6].t_num }</p>
+										<p>${tournamentPVP[6].t_name }</p>
 									</div>
 									<em></em>
 								</div>
 								<div class="noClickdown2" data-id="2">
 									<div style="height: 25px" >
-										<p>${tournamentPVP[7].t_num }</p>
+										<p>${tournamentPVP[7].t_name }</p>
 									</div>
 									<em></em>
 								</div>
@@ -303,13 +286,13 @@
 							<div class="box_s">
 								<div class="noClick" data-id="1">
 									<div style="height: 25px">
-										<p>${tournamentPVP[7].t_num }</p>
+										<p></p>
 									</div>
 									<em></em>
 								</div>
 								<div class="noClickdown" data-id="2">
 									<div style="height: 25px">
-										<p>${tournamentPVP[7].t_num }</p>
+										<p></p>
 									</div>
 									<em></em>
 								</div>
@@ -325,13 +308,13 @@
 							<div class="box_s">
 								<div class="noClick2" data-id="1">
 									<div style="height: 25px">
-										<p>${tournamentPVP[7].t_num }</p>
+										<p></p>
 									</div>
 									<em></em>
 								</div>
 								<div class="noClickdown2" data-id="2">
 									<div style="height: 25px">
-										<p>${tournamentPVP[7].t_num }</p>
+										<p></p>
 									</div>
 									<em></em>
 								</div>
@@ -351,23 +334,23 @@
 							<div class="box_s">
 								<div class="noClick" data-id="1">
 									<div style="height: 25px">
-										<p>${tournamentPVP[7].t_num }</p>
+										<p></p>
 									</div>
 									<em></em>
 								</div>
 								<div class="noClickdown" data-id="2">
 									<div style="height: 25px">
-										<p>${tournamentPVP[7].t_num }</p>
+										<p></p>
 									</div>
 									<em></em>
 								</div>
 							</div>
 						</div>
-						<div class="champion_box" style="margin-top: -70px;">
+						<div class="champion_box" style="margin-top: -70px;" >
 							<p class="txt">WINNER</p>
 							<div class="player">
 								<div class="winner">
-									<p>${tournamentPVP[7].t_num }</p>
+									<p></p>
 								</div>
 							</div>
 						</div>
@@ -375,6 +358,8 @@
 				</div>
 			</div>
 		</div>
+	<button type="button">결과 저장</button>
+	<button type="button">상금 전달</button>
 	</div>
 </body>
 </html>
