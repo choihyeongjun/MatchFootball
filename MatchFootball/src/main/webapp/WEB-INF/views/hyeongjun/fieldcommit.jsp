@@ -13,6 +13,18 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/hyeongjun/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/hyeongjun/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/hyeongjun/css/style.css" type="text/css">
+    <script
+	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+function openDaumZipAddress() {
+	new daum.Postcode({
+		oncomplete : function(data) {
+			$('#postCode').val(data.zonecode); //우편번호
+			$('#location1').val(data.address); // 주소
+		}
+	}).open();
+}
+</script>
 </head>
 <body>
 <div class="contact-form spad">
@@ -35,12 +47,27 @@
                      <div class="col-lg-6 col-md-6">
                         <input type="text" name="ttype" placeholder="구장분류">
                     </div>
-                    <div class="col-lg-6 col-md-6">
-                        <input type="text" name="location1" placeholder=" 대분류">
-                    </div>
-                    <div class="col-lg-6 col-md-6">
-                        <input type="text" name="location2 "placeholder="소분류">
-                    </div>
+                   <div class="form-group">
+								<div class="row form-group has-feedback in-line">
+									<label class="control-label" for="address">주소</label>
+									<div class="col col-lg-5">
+										<input class="form-control form-control-lg required"
+											type="text" data-name='우편번호' name="postCode" id="postCode"
+											width="30%" placeholder="우편번호" readonly />
+									</div>
+									<div class="col col-lg-7">
+										<input type="button" class='btn btn-primary' onclick ='openDaumZipAddress()'
+											style="height: 48px" value="우편번호 찾기">
+									</div>
+								</div>
+								<input type="text" class="form-control form-control-lg address" name="location1"
+									id="location1" readonly>
+							</div>
+							<div class="form-group">
+								<label>상세주소</label> <input type="text" name="location2"
+									class="form-control form-control-lg mian" id="location2"
+									>
+							</div>
                     <div class="col-lg-6 col-md-6">
                         <input type="text" name="price "placeholder="가격">
                     </div>

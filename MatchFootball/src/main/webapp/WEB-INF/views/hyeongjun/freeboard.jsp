@@ -204,7 +204,7 @@ var love = function() {
 				
 			</div>
 		</div>
-		<button type="submit" class="btn btn-primary" id="btnwriter" onclick="javascript: form.action='${pageContext.request.contextPath}/freewriter'">글쓰기</button>
+		<button type="submit" class="btn btn-primary" id="btnwriter" onclick="location.href='${pageContext.request.contextPath}/freewriter'">글쓰기</button>
 	</section>
 	
 	<script
