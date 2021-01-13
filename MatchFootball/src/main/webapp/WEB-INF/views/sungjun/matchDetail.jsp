@@ -38,7 +38,7 @@ a {
 	text-align: center;
 	z-index: 2;
 	cursor: pointer;
-	idth: 320px;
+	width: 320px;
 	left: 0;
 	right: 0;
 	margin: auto;
@@ -51,7 +51,7 @@ a {
 	padding: 20px 20px;
 	text-align: center;
 	z-index: 2;
-	idth: 320px;
+	width: 320px;
 	left: 0;
 	right: 0;
 	margin: auto;

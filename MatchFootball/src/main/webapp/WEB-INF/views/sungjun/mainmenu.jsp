@@ -55,9 +55,7 @@ body, html {
 
 /* extra stetting for fixed navbar, see bs3 doc
 */
-body {
-	padding-bottom: 50px;
-}
+
 
 .menul {
 	list-style: none;
@@ -82,8 +80,8 @@ body {
 </head>
 <body>
 	<!-- header -->
-	<nav class="navbar navbar-expand-lg navbar-light bg-light"
-		style="box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)">
+	<nav class="navbar navbar-expand-lg navbar-light "
+	style="box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)">
 		<div class="container-md">
 			${sessionScope.id}
 			<a class="navbar-brand"
@@ -103,7 +101,6 @@ body {
 			</div>
 		</div>
 	</nav>
-
 	<tiles:insertAttribute name="body" />
 
 	<!-- 	footer -->

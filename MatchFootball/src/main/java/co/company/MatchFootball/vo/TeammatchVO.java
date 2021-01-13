@@ -5,6 +5,7 @@ import lombok.Data;
 @Data
 public class TeammatchVO {
 	String m_no;//매치시퀀스
+	String matchnum;
 	String t_num;//팀번호
 	String mtype;//경기타입
 	String f_name;//경기장이름
@@ -19,4 +20,7 @@ public class TeammatchVO {
 	String m_hour;//경기시간
 	String m_type;//매치상태
 	String id;
+	String f;
+	String t_logo;
+	
 }
