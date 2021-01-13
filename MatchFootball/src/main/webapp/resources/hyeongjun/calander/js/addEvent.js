@@ -73,21 +73,7 @@ var newEvent = function (start, end, eventType) {
 
             eventData.allDay = true;
         }
-/*//업데이트 저장으로
-        $.ajax({
-      type: "get",
-      url: "../fielddetailupdate",
-		dataType:"json",
-      data: {
-       starttime:editStart.val(),
-		endtime:editEnd.val(),
-		title:editTitle.val()
-		
-      },
-      success: function (response) {
-        alert('수--정: ' + editStart.val() + ' ~ ' + editEnd.val());
-      }
-    });*/
+
 
         //새로운 일정 저장
         $.ajax({

@@ -19,6 +19,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import co.company.MatchFootball.mapper.DoeunMapper;
+import co.company.MatchFootball.vo.CuponVO;
 import co.company.MatchFootball.vo.MembersVO;
 import co.company.MatchFootball.vo.MessageVO;
 import co.company.MatchFootball.vo.P_matchVO;
@@ -42,14 +43,15 @@ public class DoeunController {
 		//mb.setId((String)session.getAttribute("id")); //test용
 		mb.setName((String)session.getAttribute("kname"));
 		model.addAttribute("mb", dao.getUser(mb));
-
+		session.setAttribute("point", mb.getPoint());
+		
 		return "doeun/userprofile";
 	}
 
 	@RequestMapping(value = "mypage/userupdate") // 정보수정폼
 	public String upuserinfo(MembersVO mb, Model model, HttpServletResponse response, HttpServletRequest request,HttpSession session) throws IOException {
 		mb.setId((String)session.getAttribute("kemail"));
-
+//		mb.setId((String)session.getAttribute("id"));//test 용
 		model.addAttribute("mb", dao.getUser(mb));
 		
 		return "doeun/pfUpdate";
@@ -98,16 +100,17 @@ public class DoeunController {
 			}
 			dao.upMem(vo);
 		}
+
 		session.setAttribute("point", vo.getPoint());
 		return "redirect:/mypage/profile";
 	}
 	
 	@RequestMapping(value="mypage/pointcharge")// 포인트 충전 url...
 	@ResponseBody
-	public int chargePo(PointVO pay) {//결제 db에 insert
+	public int chargePo(PointVO pay,CuponVO cp) {//결제 db에 insert
+		//쿠폰 등록 dao
 		
-		return dao.Pcharge(pay);
-	
+		return dao.Pcharge(pay); //point 충전 dao	
 	}
 	
 //	@RequestMapping("mypage/Mybar") // 총 포인트 조회 
@@ -119,7 +122,7 @@ public class DoeunController {
 //	}
 	@RequestMapping(value = "mypage/pay") // 결제
 	public ModelAndView payment(HttpServletResponse response, HttpSession session, HttpServletRequest request, MembersVO mvo) throws IOException {
-		//mvo.setId((String)session.getAttribute("id")); // 테스트용
+	//	mvo.setId((String)session.getAttribute("id")); // 테스트용
 		mvo.setId((String)session.getAttribute("kemail"));//카카오
 		request.setAttribute("point", dao.getUser(mvo));
 		return new ModelAndView("doeun/Pay");
@@ -127,8 +130,8 @@ public class DoeunController {
 
 	@RequestMapping(value = "mypage/msg") // 메인메세지함(default 받은 메시지함)
 	public String tomsgList(MembersVO mem, MessageVO msg, Model model, HttpSession session, Paging paging,HttpServletRequest request) {
-		//mem.setId((String)session.getAttribute("id"));//테스트용
-		mem.setId((String) session.getAttribute("kemail"));//카카오
+	//	mem.setId((String)session.getAttribute("id"));//테스트용
+	    mem.setId((String) session.getAttribute("kemail"));//카카오
 		msg.setTo_id(mem.getId());		
 		paging.setPageUnit(16);
 		paging.setPageSize(10);
@@ -140,14 +143,13 @@ public class DoeunController {
 		model.addAttribute("msg",dao.tomsgList(msg));
 		return "doeun/Message";
 	}
-	@RequestMapping(value ="reviewMsg") // 받은메세지 확인폼
+	@RequestMapping(value ="/mypage/reviewMsg") // 받은메세지 확인폼
 	public ModelAndView reviewMsg(MembersVO mem, MessageVO msg, Model model, HttpSession session, HttpServletRequest request) {
-		ModelAndView mav = new ModelAndView();
 		msg.setTo_id((String)session.getAttribute("kemail")); //카카오
-		mav.addObject("msg", dao.reviewMsg(msg));
-		mav.setViewName("no/doeun/msg");
+		//msg.setTo_id((String)session.getAttribute("id")); //카카오
 		
-		return mav;
+		model.addAttribute("msg",dao.reviewMsg(msg));
+		return new ModelAndView("no/doeun/viewmsg");
 	}
 //	@ResponseBody
 //	@RequestMapping(value = "mypage/msg/ajax")
@@ -168,7 +170,7 @@ public class DoeunController {
 	@ResponseBody
 	@RequestMapping(value = "mypage/sendmsg/ajax") //보낸 메세지 함
 	public List<MessageVO> sendmsgList(MembersVO mem, MessageVO msg, Model model, HttpSession session, Paging paging) {
-		//mem.setId((String) session.getAttribute("id"));
+	//	mem.setId((String) session.getAttribute("id"));
 		mem.setId((String) session.getAttribute("kemail"));//카카오
 		msg.setSend_id(mem.getId());
 		paging.setPageUnit(16);
@@ -187,7 +189,8 @@ public class DoeunController {
 	}
 	@RequestMapping(value ="message") // 발송메세지 폼
 	public String msg(MembersVO mem, MessageVO msg, Model model, HttpSession session) {
-		return "doeun/msg";
+		dao.reviewMsg(msg);
+		return "doeun/sendmsg";
 	}
 	@PostMapping(value = "sendmsg") // 메세지 발송 처리
 	public String inputmsg(MembersVO mem, MessageVO msg, Model model, HttpSession session) {
@@ -217,15 +220,21 @@ public class DoeunController {
 	public String p_matchedList(P_matchVO pmc, Model model, HttpSession session, Paging paging) {
 		//pmc.setM_id((String) session.getAttribute("id"));	
 		pmc.setM_id((String) session.getAttribute("kemail"));
-
 		model.addAttribute("p_mat", dao.p_matchedList(pmc));
 		return "doeun/review";
 	}
-
+//	@RequestMapping(value = "mypage/matched") // 팀경기참가내역
+//	public String t_matchedList(P_matchVO pmc, Model model, HttpSession session, Paging paging) {
+//		//pmc.setM_id((String) session.getAttribute("id"));	
+//		pmc.setM_id((String) session.getAttribute("kemail"));
+//
+//		model.addAttribute("p_mat", dao.p_matchedList(pmc));
+//		return "doeun/review";
+//	}
 	@RequestMapping(value = "mypage/usedPoint") // 포인트 사용내역
 	public String pointed(MembersVO mem, PointVO po, Model model, HttpSession session, Paging paging) {
-	//	mem.setId((String)session.getAttribute("id"));
-		po.setP_id((String)session.getAttribute("email"));		
+	//	po.setP_id((String)session.getAttribute("id"));	
+		po.setP_id((String)session.getAttribute("kemail"));		
 		paging.setPageUnit(21);
 		paging.setPageSize(10);
 		po.setFirst(paging.getFirst());

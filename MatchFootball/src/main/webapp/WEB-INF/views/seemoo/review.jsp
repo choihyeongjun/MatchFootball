@@ -48,7 +48,7 @@ function reviewListResult(data) {
 		.append($('<td>').html(item.score))  	//스코어
 		.append($('<td>').html(item.match_info))//매치정보
 		.append($('<td>').html(item.comm))		//상세내용
-		.append($('<td>').html('<button id=\'btnDelete\'class="btn btn-danger">회원삭제</button>'))
+		.append($('<td>').html('<button id=\'btnDelete\'class="btn btn-danger">리뷰삭제</button>'))
 		.append($('<input type=\'hidden\' id=\'hidden_userId\'>').val(item.manager_id))
 		.appendTo('#reviewMain');
 	});//each

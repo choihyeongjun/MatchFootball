@@ -40,7 +40,6 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 <script src="https://kit.fontawesome.com/e15da187be.js"></script>
 
-<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <%
 	String id = (String) session.getAttribute("id");
 
@@ -64,9 +63,8 @@ String tel = (String) session.getAttribute("point.pnum");
         // getter
         var money = $('input[name="cp_item"]:checked').val();
                 //포인트 충전
-                var p_id = "${sessionScope.id }";		//회원 아이디
-                var npoint = 100;		//구매한 포인트
-                var p_pay =100;	// 결제 금액
+                var p_id = "${sessionScope.id}";		//회원 아이디
+                
         		var p_con = "포인트 충전";
         console.log(money);
 
@@ -75,7 +73,7 @@ String tel = (String) session.getAttribute("point.pnum");
             pay_method : 'card',	// 결제 수단
             merchant_uid: 'merchant_' + new Date().getTime(),
             name: '매치풋볼 : 포인트 충전',
-            amount: 100,//.money,           
+            amount: money, //.money,           
             buyer_name : 'aaa',<%-- '<%=id%>' --%>
             buyer_tel : '010-0000-0000'<%-- '<%=tel%>' --%>
            
@@ -87,7 +85,10 @@ String tel = (String) session.getAttribute("point.pnum");
                 msg += '상점 거래ID : ' + rsp.merchant_uid;
                 msg += '결제 금액 : ' + rsp.paid_amount;
                 msg += '카드 승인번호 : ' + rsp.apply_num;
-           
+           		
+                //쿠폰
+           		var npoint = money;	//구매한 포인트
+           		var p_pay = money;		// 결제 금액
                 alert("ajax실행전");
                 console.log("=====id"+p_id+"point"+npoint+"pay"+p_pay)
                 $.ajax({
@@ -99,7 +100,8 @@ String tel = (String) session.getAttribute("point.pnum");
                         p_id : p_id,
                         p_pay : p_pay,
                         npoint : npoint,  
-                        p_con : p_con
+                        p_con : p_con,
+                        
                     },
                     success : function(response){
                     	alert("ajax성공");
@@ -113,7 +115,6 @@ String tel = (String) session.getAttribute("point.pnum");
                 msg += '에러내용 : ' + rsp.error_msg;
             }
             alert(msg);
-            //document.location.href="${pageContext.request.contextPath}/mypage/pay"; //alert창 확인 후 이동할 url 설정
         });
     });
 }

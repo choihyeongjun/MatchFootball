@@ -22,4 +22,5 @@ public interface DoeunMapper {
 	public MessageVO reviewMsg(MessageVO msg);
 	public List<P_matchVO> p_matchedList(P_matchVO pmat);
 	public int Pcharge(PointVO pay);
+	public int Mchg(MessageVO msg);// 받은 메세지 확인 시 수신여부 변경
 }

@@ -31,16 +31,12 @@
 <link
 	href="${pageContext.request.contextPath}/resources/css/colors/blue.css"
 	rel="stylesheet">
-<link href="index.css" rel="stylesheet">
 <link
 	href="https://fonts.googleapis.com/css?family=Pacifico|ZCOOL+XiaoWei&display=swap&subset=cyrillic"
 	rel="stylesheet">
 <link href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
 	rel="stylesheet">
 
-<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-<script type="text/javascript"
-	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d91f3d18bd10e8cd72b2f2827dea9f7c&libraries=services"></script>
 
 <style id="theia-sticky-sidebar-stylesheet-TSS">
 .theiaStickySidebar:after {
@@ -52,13 +48,15 @@
 <script>
 	$(function() {
 		$(".reviewMsg").on("click", function(event) {
-			var modal = $('#MsgModal')
-			var m_no = $(this).data("no");
+			var modal = $('#MsgModal');
+			var m_no = $(this).data("num");
 			$.ajax({
-				url : 'reviewMsg?m_no=' + m_no,
+				url :'reviewMsg?m_no=' + m_no,
+				type : 'post',
+				//dataType : 'json',
 				//      dataType : 'html',//html은 기본으로 dataType안해줘도 됨
 				success : function(result) {
-					modal.find('#viewMsg').html(result)
+					$('#viewMsg').html(result)
 					modal.modal('show');
 				}
 			});
@@ -66,6 +64,9 @@
 	})
 
 	function replyMsg() {
+		$(".replyMsg").on("click", function(event) {
+			var modal = $('#replyMsg');
+			var m_no = $(this).data("num");
 		$.ajax({
 			url : "replymsg/ajax",
 			type : 'post',
@@ -77,6 +78,7 @@
 				alert("성공적으로 발송 되었습니다.")
 			}
 		});
+	})
 	}//replyMsg
 </script>
 </head>
@@ -103,7 +105,7 @@
 						</div>
 						<div class="row" style="width: auto">
 							<div style="margin-top: 15px;">
-								<a href="../message" data-toggle="modal" data-target="#leadform"
+								<a href="../message"
 									class="btn btn-primary float-right send-message">메세지 보내기</a>
 							</div>
 							<div style="margin-top: 15px;">
@@ -122,13 +124,14 @@
 											<tr>
 												<td><input name="to_id" value="${msg.to_id}"
 													type="text" style="display: none;"></td>
-												<td><input type='checkbox' id="mchk"></td>
+												<td><input type='checkbox' id="mchk"><input type="hidden" id="m_no" value="${msg.m_no}"></td>
 												<td><input type="text" name="s_date"
 													value="${msg.s_date}"></td>
+													
 												<td><a class="reviewMsg" data-toggle="modal"
 													data-target="#MsgModal" data-num="${msg.m_no}">${msg.m_title}</a></td>
-												<td><a class="reviewMsg" data-toggle="modal"
-													data-target="#MsgModal" data-num="${msg.m_no}">${msg.send_id}</a></td>
+												
+												<td>${msg.send_id}</a></td>
 												<td><button type="button"
 														class="btn btn-primary float-right send-message"
 														id='delMsg' onclick="delMsg()">삭제하기</button></td>
@@ -158,9 +161,9 @@
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
-
-				<div class="modal-body" id="viewMsg">..</div>
-
+				<div class="modal-body" id="viewMsg">
+				
+				</div>
 			</div>
 		</div>
 	</div>

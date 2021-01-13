@@ -133,7 +133,7 @@ $(function() {
 							<div class="form-group">
 								<label>이름</label> <input type="text"
 									class="form-control form-control-lg name" placeholder="" name="name"
-									value="${kname}">
+									value="${kname}" required="required">
 							</div>
 							<div class="form-group has-feedback">
 								<label class="control-label" for="photo">프로필 사진</label>
@@ -141,32 +141,32 @@ $(function() {
 									<div class="custom-file">
 									
 										<input type="file" class="custom-file-input" id="fileupload"
-											src="https://bootdey.com/img/Content/avatar/avatar7.png" name="file" autocomplete=off aria-describedby="inputGroupFileAddon01">
+											src="https://bootdey.com/img/Content/avatar/avatar7.png" name="file" required="required" autocomplete=off aria-describedby="inputGroupFileAddon01">
 										<label class="custom-file-label photo" for="inputGroupFile01">파일을
 											선택하세요</label>
 									</div>
 								</div>
 								<div id='images-div'><img id="img" name="img" src="https://bootdey.com/img/Content/avatar/avatar7.png"
-												alt="Admin" class="rounded-circle" width="150"></div>
+												alt="Admin" class="rounded-circle" width="150" ></div>
 								<p style="color: red">이미지을 삭제하시려면 이미지를 클릭해주세요</p>
 								<span class="glyphicon glyphicon-ok form-control-feedback"></span>
 							</div>
 							<div class="form-group">
 								<label>이메일</label> <input type="text" name="email" id="email"
-									class="form-control form-control-lg email" value="${mb_email}"
+									class="form-control form-control-lg email" value="${mb_email}" required="required"
 									>
 							</div>
 							<div class="form-group">
 								<label class="control-label" for="tel">전화번호</label>
 								<div class="row form-group has-feedback in-line">
 									<div class="col col-lg-8">
-										<input class="form-control form-control-lg required"
+										<input class="form-control form-control-lg required" required="required"
 											type="text" data-name='전화번호' name="pnum" id="pnum" width="100%" />
 									</div>
-									<div class="col col-lg-4 tel-div" align="right">
+									<!-- <div class="col col-lg-4 tel-div" align="right">
 										<button type='button' class='btn btn-primary' id='tel-btn'
 											style="height: 48px">인증번호 받기</button>
-									</div>
+									</div> -->
 								</div>
 								<div id="sms-tag"></div>
 							</div>
@@ -194,7 +194,7 @@ $(function() {
 
 							<span class="glyphicon glyphicon-ok form-control-feedback"></span>
 							<div class="form-group">
-								<div class="row form-group has-feedback in-line" id='checktel'>
+								<!-- <div class="row form-group has-feedback in-line" id='checktel'>
 									<div class="col col-lg-8">
 										<input class="form-control form-control-lg required"
 											id='playtel' type="text" placeholder='인증번호를 입력해주세요'
@@ -206,7 +206,7 @@ $(function() {
 											확인</button>
 									</div>
 									<span class="glyphicon glyphicon-ok form-control-feedback"></span>
-								</div>
+								</div> -->
 								<div class="form-group">
 									<label>성별</label> <br> <input type="radio" name="gender" id="gender"
 										value="남"
@@ -217,7 +217,7 @@ $(function() {
 								</div>
 								<div class="form-group">
 									<label>생년월일</label> <input type="text" id="birth" name="birth"
-										class="form-control form-control-lg birth" value="${mb.birth}">
+										class="form-control form-control-lg birth" value="${mb.birth}" required="required">
 								</div>
 								<div class="form-group">
 									<label>포지션</label><br> <select id="inputState pos"
@@ -250,8 +250,8 @@ $(function() {
 
 
 							<div class="form-group action update">
-									<c:if test="${mb.id eq null}"><input type="submit" class="btn btn-primary" id='btn1'
-									style="height: 48px" value="프로필 등록"></c:if>
+									<c:if test="${mb.id eq null}"><input type="button" class="btn btn-primary" id='btn1'
+									style="height: 48px" value="프로필 등록" onclick="location.href='mypage/updateMem'"></c:if>
 								<c:if test="${mb.id ne null}"><input type="submit" class="btn btn-primary" id='btn1'
 									style="height: 48px" value="프로필 변경"></c:if>
 								<!-- <input type="submit" class="btn btn-primary" id='uf'
