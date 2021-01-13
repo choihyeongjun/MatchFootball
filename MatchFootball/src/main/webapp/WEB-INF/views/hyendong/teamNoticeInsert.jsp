@@ -10,15 +10,21 @@
 </head>
 <body>
 	<ul class="hi">
-	  <c:if test="${sessionScope.id ne null }">
+	  		<c:if test="${sessionScope.t_num ne null }">
 			<li><a href="teamInfo?t_num=${sessionScope.t_num }">ÆÀ Á¤º¸</a></li>
 			</c:if>
-			<c:if test="${sessionScope.id eq null }">
+			<c:if test="${sessionScope.t_num eq null }">
 			<li><a href="teamMake">ÆÀ »ý¼º</a></li>
 			</c:if>
+			<c:if test="${sessionScope.t_num ne null }">
 			<li><a href="teamGallery?t_num=${sessionScope.t_num }">ÆÀ°¶·¯¸®</a></li>
+			</c:if>
+			<c:if test="${sessionScope.t_num ne null }">
 			<li><a href="teamNotice?t_num=${sessionScope.t_num }">ÆÀ °øÁö</a></li>
+			</c:if>
+			<c:if test="${sessionScope.t_num ne null }">
 			<li><a href="teamInvite?t_num=${sessionScope.t_num }">ÆÀ ÃÊ´ë</a></li>
+			</c:if>
 			<li><a href="http://localhost/MatchFootball/teamList">ÆÀ ¸®½ºÆ®</a></li>
 	</ul>
 	<div align="center">

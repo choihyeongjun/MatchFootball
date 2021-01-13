@@ -133,9 +133,9 @@
       <!-- /.modal -->
       <script>
 		f_id="${f_id}" 
-		id="${sessionScope.id}"
+		id=${sessionScope.id}
 		</script>
-		 ${sessionScope.id}
+		 id
       ${f_id}
      
       <div class="card mb-4">
