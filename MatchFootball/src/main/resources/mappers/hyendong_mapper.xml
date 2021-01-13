@@ -146,9 +146,10 @@
 
 	<!-- 팀 공지 조회 -->
 	<select id="NoticeSelect" parameterType="TnoticeVO" resultType="TnoticeVO">
-		SELECT *
+		SELECT n_no, t_title, to_date(t_date, 'yyyy-mm-dd HH24:MI:SS'), t_no
 		FROM tnotice
 		WHERE t_num = #{t_num}
+		
 	</select>
 	
 	<!-- 팀 공지 상세 조회 -->
@@ -163,6 +164,7 @@
 		resultType="MembersVO">
 		SELECT *
 		FROM members
+		WHERE t_num is null
 	</select>
 	<!-- 멤버 단건 조회 -->
 	<select id="memberSelect" parameterType="MembersVO" resultType="MembersVO">
@@ -282,6 +284,12 @@
 		SELECT * 
 		FROM tinvite
 		WHERE t_num = #{t_num}
+	</select>
+	
+	<select id="teamInviteSelectt" resultType="TinviteVO">
+		SELECT * 
+		FROM tinvite
+		WHERE id = #{id}
 	</select>
 	
 	<!-- 팀 초대에서 삭제 -->

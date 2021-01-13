@@ -71,7 +71,7 @@ li {
 		<c:forEach items="${teamNotice }" var="teamNotice">
 			<ul>
 				<li><a href="teamNoticeInfo?n_no=${teamNotice.n_no }&t_num=${teamNotice.t_num}">
-						${teamNotice.n_no }. ${teamNotice.t_title}
+						${teamNotice.n_no }. ${teamNotice.t_title} ${teamNotice.t_date }
 				</a></li>
 			</ul>
 		</c:forEach>

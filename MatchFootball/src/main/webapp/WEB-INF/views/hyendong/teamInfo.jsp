@@ -100,7 +100,29 @@
 								<input type="text" value="${teamMembers.id }" name="id" style="display:none">
 								<input type="text" value="${members.t_num }" name="t_num" style="display:none">
 								<c:if test="${teamMembers.t_author eq '팀원' && updateButton.t_author eq '팀장'}">
-								<button type="submit" onclick="javascript: form.action='${pageContext.request.contextPath}/memberOut'">추방</button>
+								<button type="button" data-toggle="modal" data-target="#modal">추방</button>
+								
+								<!-- modal -->
+								<div class="modal" tabindex="-1" role="dialog" id="modal">
+								  <div class="modal-dialog" role="document">
+								    <div class="modal-content">
+								      <div class="modal-header">
+								        <h5 class="modal-title">Modal title</h5>
+								        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								          <span aria-hidden="true">&times;</span>
+								        </button>
+								      </div>
+								      <div class="modal-body">
+								        <p>Modal body text goes here.</p>
+								      </div>
+								      <div class="modal-footer">
+								        <button type="submit" class="btn btn-primary" onclick="javascript: form.action='${pageContext.request.contextPath}/memberOut'">Save changes</button>
+								        <button type="button" class="btn btn-secondary" data-dismiss="modal" >Close</button>
+								      </div>
+								    </div>
+								  </div>
+								</div>
+								
 								</c:if>
 								</form>
 								</td>
@@ -131,18 +153,15 @@
 			</div>
 		</div>
 
-	<form action="teamInviteInsert?t_num=${teamInfo.t_num}" method="post">
+	<form method="post">
 		<c:if test="${members.t_num eq null}">
-			<input type="text" value=${sessionScope.id } name="id"
-				style="display: none">
-			<input type="text" value=${members.pos } name="i_pos"
-				style="display: none">
-			<input type="text" value=${members.lv } name="i_lv"
-				style="display: none">
-			<input type="text" value=${members.manner } name="i_manner"
-				style="display: none">
-			<button type="submit" class="btn btn-primary">팀 가입 신청</button>
+			<input type="text" value="${sessionScope.id }" name="id" style="display:none">
+			<input type="text" value="${members.pos }" name="i_pos" style="display:none">
+			<input type="text" value="${members.lv }" name="i_lv" style="display:none">
+			<input type="text" value="${members.manner }" name="i_manner" style="display:none">
+			<button type="submit" class="btn btn-primary" onclick="javascript: form.action='${pageContext.request.contextPath}/teamInviteInsert?t_num=${teamInfo.t_num}'">팀 가입 신청</button>
 		</c:if>
+		<button type="submit" class="btn btn-primary" onclick="javascript: form.action='${pageContext.request.contextPath}/teamInviteCancle?t_num=${teamInfo.t_num}'">팀 가입 취소</button>
 	</form>
 </body>
 </html>

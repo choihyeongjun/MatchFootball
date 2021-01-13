@@ -30,6 +30,14 @@
 	href="${pageContext.request.contextPath}/resources/css/dong1/assets/css/nice-select.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/dong1/assets/css/style.css">
+<style>
+ {
+  position:fixed;
+  top:50%; 
+  left:50%;
+  transform: translate(-50%,-50%);
+ }
+</style>
 </head>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script>
@@ -38,6 +46,7 @@
 	} else {
 		$("#t_hidden").val('N');
 	}
+	
 </script>
 <body>
 	<ul class="hi">
@@ -125,8 +134,7 @@
 					</div>
 				</div>
 			</div>
-			<br> <input type="submit" class="genric-btn info circle"
-				value="팀가입" />
+			<br> <input type="submit" class="genric-btn info circle" value="팀가입" />
 		</div>
 	</form>
 	<!-- End Align Area -->
