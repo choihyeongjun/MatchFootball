@@ -12,4 +12,5 @@ public class FboardVO {//자유게시판
 	String b_date;//작성날짜
 	String likeit;
 	String cnt;//조회수
+	String heartstate;
 }
