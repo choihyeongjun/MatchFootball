@@ -36,27 +36,25 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script
-	src="${pageContext.request.contextPath}/resources/hyeongjun/js/owl.carousel.min.js"></script>
+		src="${pageContext.request.contextPath}/resources/hyeongjun/js1/e-magz.js"></script> 
 <style>
 .ion-android-favorite:before { content: "\f388"; }
 
 .ion-android-favorite-outline111:before { content: "\f387"; }
 </style>
 <script>
+var likecnt;
+var clickstate;
 var love = function() {	
-	$(".love").each(function(){
-		$(this).find("div").html($.number($(this).find("div").html()));
-		$(this).click(function(){
-			var countNow = $(this).find("div").html().replace(',', '');
-			var clickstate;
+	$(".love").click(function(){
+			var $this =$(this)
+			
 			if(!$(this).hasClass("active")) {
 				clickstate=1;
-				
 				$(this).find(".animated").remove();
 				$(this).addClass("active");
 				$(this).find("i").removeClass("ion-android-favorite-outline");
 				$(this).find("i").addClass("ion-android-favorite");
-				$(this).find("div").html(parseInt(countNow) + 1);
 				$(this).find("div").html($.number($(this).find("div").html()));
 				$(this).append($(this).find("i").clone().addClass("animated"));
 				$(this).find("i.animated").on("animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd", function(e){
@@ -71,19 +69,76 @@ var love = function() {
 				$(this).removeClass("active");
 				$(this).find("i").addClass("ion-android-favorite-outline");
 				$(this).find("i").removeClass("ion-android-favorite");
-				$(this).find("div").html(parseInt(countNow) - 1);
-				$(this).find("div").html($.number($(this).find("div").html()));
-				
+				$(this).find("div").html($.number($(this).find("div").html()));	
 				// add some code ("unlove")
 			}
+			$.ajax({
+				url:"likecheck/"+clickstate,
+				method:"post",
+				data:{
+					id:'<%=(String)session.getAttribute("id")%>',
+					num:$this.find('#num').val()
+					
+				},error : function(xhr, status, msg) {
+					alert("상태값 :" + status + " Http에러메시지 :" + msg);
+				},
+				success : function(data){
+					console.log("성공");
+				}
+			})  //ajax
 			
-		}
-		
-		);
-		
-	});
 	
-}
+		
+	});  //clich
+	
+};
+/* var bbsidx = ${bbsidx};
+var useridx = ${useridx};
+ 
+var btn_like = document.getElementById("love");
+ btn_like.onclick = function(){ changeHeart(); }
+ 
+
+ function changeHeart(){ 
+     $.ajax({
+            type : "POST",  
+            url : "/free",       
+            dataType : "json",   
+            data : {
+            	id:sessionScope.id,
+            	num:$('#no').attr('value'),
+            	likeit:('like').attr('value')
+   				  }
+            error : function(){
+                Rnd.alert("통신 에러","error","확인",function(){});
+            },
+            success : function(jdata) {
+                if(jdata.resultCode == -1){
+                    Rnd.alert("좋아요 오류","error","확인",function(){});
+                }
+                else{
+                    if(jdata.likecheck == 1){
+                    	
+                        $("#likecnt").empty();
+                        $("#likecnt").append(jdata.likecnt);
+                    }
+                    else if (jdata.likecheck == 0){
+                    	$(this).find(".animated").remove();
+        				$(this).addClass("active");
+        				$(this).find("i").removeClass("ion-android-favorite-outline");
+        				$(this).find("i").addClass("ion-android-favorite");
+        				$(this).append($(this).find("i").clone().addClass("animated"));
+        				$(this).find("i.animated").on("animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd", function(e){
+        					$(this).remove();
+        				  $(this).off(e);
+                        $("#likecnt").empty();
+                        $("#likecnt").append(jdata.likecnt);
+                        
+                    }
+                }
+            }
+        });
+ } */
 </script>
 </head>
 <body>
@@ -110,6 +165,10 @@ var love = function() {
 											
 										</figure>
 										<div class="padding">
+											<div>
+											<input id="no" type="text" value="${f.num}" hidden=""/>
+											<td>게시글번호:${f.num}</td>
+											</div>
 											<div class="detail">
 												<div class="time">${f.b_date}</div>
 											</div>
@@ -118,10 +177,20 @@ var love = function() {
 											</h2>
 											
 											<footer>
-												
+												<c:if test="${f.heartstate eq '0'}">
 												<a href="#" class="love"><i
 													class="ion-android-favorite-outline"></i>
-													<div data-num='${f.num}'>${f.likeit}</div></a>
+													<input id="num" name="num" type="text" value="${f.num}" hidden=""/>
+													<div>${f.likeit}</div></a>
+												</c:if>
+												
+												 <c:if test="${f.heartstate eq '1'}">
+												<a href="#" class="love active"><i
+													class="ion-android-favorite"></i>
+													<input id="num" type="text" name="num" value="${f.num}" hidden=""/>
+													<div>${f.likeit}</div></a>
+												</c:if> 
+													
 													
 													<div>조회수:${f.cnt}</div> <a class="btn btn-primary more"
 													href="${pageContext.request.contextPath}/free/freedetail/${f.num}/${f.cnt}">
@@ -207,8 +276,7 @@ var love = function() {
 		<button type="submit" class="btn btn-primary" id="btnwriter" onclick="location.href='${pageContext.request.contextPath}/freewriter'">글쓰기</button>
 	</section>
 	
-	<script
-		src="${pageContext.request.contextPath}/resources/hyeongjun/js1/jquery.js"></script>
+	
 	<script
 		src="${pageContext.request.contextPath}/resources/hyeongjun/js1/jquery.migrate.js"></script>
 	<script
@@ -228,7 +296,6 @@ var love = function() {
 		src="${pageContext.request.contextPath}/resources/hyeongjun/scripts/sweetalert/dist/sweetalert.min.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/resources/hyeongjun/scripts/toast/jquery.toast.min.js"></script>
- 	<script
-		src="${pageContext.request.contextPath}/resources/hyeongjun/js1/e-magz.js"></script> 
+ 	
 </body>
 </html>
