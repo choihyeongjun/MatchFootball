@@ -36,7 +36,8 @@
 		author2,point
 		)
 		values(
-		#{id},#{name},#{gender},#{postCode},#{location1},#{location2},#{pnum},#{email},#{birth},#{img},#{lv},#{pos}, #{author2},0
+		#{id},#{name},#{gender},#{postCode},#{location1},#{location2},#{pnum},#{email},#{birth},#{img},#{lv},#{pos},
+		#{author2},0
 		)
 	</insert>
 
@@ -60,24 +61,28 @@
 
 	<!-- 총 포인트 확인 -->
 	<select id="selTpo" parameterType="PointVO" resultType="PointVO">
-		select sum(p.npoint) as sum from point p where p.p_id = #{p_id}
+	 select sum(npoint) point from point p join members m on p_id=id where p_id='test';
 	</select>
-
+<!-- 총 포인트 등록 ??-->
+<!-- update members m set m.point = (select sum(npoint) point from point p join members m on p_id=id where p_id='pueen0616@naver.com')
+    where id = ''; -->
 	<!-- 메세지 보내기 -->
 	<insert id="sendMsg" parameterType="MessageVO">
-		insert into message (m_no, to_id, send_id, m_title, m_con)
-		values(mno_seq.nextval, #{to_id}, #{send_id}, #{m_title}, #{m_con})
+		insert into message (m_no,
+		to_id, send_id, m_title, m_con)
+		values(mno_seq.nextval, #{to_id},
+		#{send_id}, #{m_title}, #{m_con})
 	</insert>
 	<!-- 수신 메세지함 확인 -->
 	<select id="tomsgList" parameterType="MessageVO"
 		resultType="MessageVO">
-<!-- 	select m_no, to_id, send_id, m_title, m_con, o_date,
-		TO_CHAR(s_date,'yyyy-mm-dd HH24:MI:SS'), m_check from message where to_id = #{to_id} order by m_no desc -->
-		 select * from( select a.*, rownum rn from (
-		 select * from message where to_id = #{to_id} order by m_no desc 
-	) a ) b where rn between #{first} and #{last}
+
+		select * from( select a.*, rownum rn from (
+		select * from message
+		where to_id = #{to_id} order by m_no desc
+		) a ) b where rn between #{first} and #{last}
 	</select>
-	
+
 	<!--쪽지 내역 수 페이징 -->
 	<select id="getCount1" resultType="int">
 		SELECT COUNT(*) FROM message
@@ -89,29 +94,46 @@
 	<!-- 발신 메세지함 확인 -->
 	<select id="sendmsgList" parameterType="MessageVO"
 		resultType="MessageVO">
-	    select * from( select a.*, rownum rn from (
-		select * from message where send_id = #{send_id} order by m_no desc
-		) a ) b where rn between #{first} and #{last}
+		select * from( select a.*, rownum rn from (
+		select m_no, to_id, send_id, m_title, m_con, o_date,
+		TO_CHAR(s_date,'mm-dd HH24:MI:SS'),m_check from message
+    where send_id = #{send_id} order by m_no desc
+		) a ) b where rn between
+		#{first} and #{last}
 	</select>
 	<!-- 포인트 충전 결제 등록 -->
 	<insert id="Pcharge" parameterType="PointVO">
-	insert into point(p_seq,p_id,p_pay,npoint,p_date,p_con) values(point_seq.nextval,#{p_id},#{p_pay},#{npoint},sysdate,#{p_con})
+		insert into point(p_seq,p_id,p_pay,npoint,p_date,p_con)
+		values(point_seq.nextval,#{p_id},#{p_pay},#{npoint},sysdate,#{p_con})
 	</insert>
-<!-- 포인트 내역조회 -->	
-<select id="pointList" parameterType="PointVO" resultType="PointVO">
- select * from( select a.*, rownum rn from (
-select * from point where p_id = #{p_id}
-) a ) b where rn between #{first} and #{last}
-</select>
-<select id="getPoCnt" resultType="int">
+	<!-- 포인트 내역조회 -->
+	<select id="pointList" parameterType="PointVO"
+		resultType="PointVO">
+		select * from( select a.*, rownum rn from (
+		select * from point where p_id = #{p_id}
+		) a ) b where rn between #{first} and #{last}
+	</select>
+	<select id="getPoCnt" resultType="int">
 		SELECT COUNT(*) FROM point
 		where p_id=#{p_id}
 	</select>
 	<!--수신 메세지 내용확인 -->
-	<select id="reviewMsg" parameterType="MessageVO" resultType="MessageVO">
-	select * from message where to_id = #{to_id} and m_no= #{m_no} </select>
+	<select id="reviewMsg" parameterType="MessageVO"
+		resultType="MessageVO">
+		select * from message where m_no=#{m_no}
+	</select>
+	<!-- 메세지 조회시 수신 확인으로 변경 -->
+	<update id="Mchg" parameterType="MessageVO">
+		update message set m_check = 'Y', o_date = sysdate where to_id =#{to_id} and m_no=#{m_no}
+	</update>
+	
 	<!-- 개인매칭 내역조회 -->
-	<select id="p_matchedList" parameterType="P_matchVO" resultType="P_matchVO">
-	select * from p_match where m_id=#{m_id}
+	<select id="p_matchedList" parameterType="P_matchVO"
+		resultType="P_matchVO">
+		select * from p_match where m_id=#{m_id}
+	</select>
+	<!-- 팀매칭 내역 조회 -->
+	<select id="t_matList" parameterType="teammatchVO" resultType="teammatchVO">
+	selct 
 	</select>
 </mapper>
