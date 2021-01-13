@@ -1,5 +1,6 @@
 package co.company.MatchFootball.seemoo;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import co.company.MatchFootball.mapper.SeemooMapper;
-import co.company.MatchFootball.vo.ManagersVO;
+import co.company.MatchFootball.vo.ManagerapplyVO;
 import co.company.MatchFootball.vo.MembersVO;
 import co.company.MatchFootball.vo.NoticeVO;
 import co.company.MatchFootball.vo.ReviewVO;
@@ -39,16 +40,15 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "/admin/user", method = RequestMethod.GET) // 유저관리 페이지 (전체조회)
-	public String user(Model model, MembersVO mvo, HttpServletRequest request, HttpServletResponse reponse) {
+	public String user(Model model, MembersVO vo, HttpServletRequest request, HttpServletResponse reponse) {
 		model.addAttribute("members", seemoomapper.memberList());
 		return "seemoo/user";
 	}
 	
 	@RequestMapping(value = "/admin/userinfo", method = RequestMethod.GET) // 유저관리 페이지 (단건조회)
 	@ResponseBody
-	public MembersVO users(Model model, MembersVO mvo, HttpServletRequest request, HttpServletResponse reponse) {
-		System.out.println(">> "+mvo.getId());
-		return  seemoomapper.members(mvo);
+	public MembersVO userselect(Model model, MembersVO vo, HttpServletRequest request, HttpServletResponse reponse) {
+		return  seemoomapper.memberselect(vo);
 	}
 	
 	@ResponseBody
@@ -68,7 +68,7 @@ public class AdminController {
 //	---------------------------------------------------------------------------------------------------------------------
 
 	@RequestMapping(value = "/admin/team", method = RequestMethod.GET) // 팀관리 페이지 (전체조회)
-	public String team(Model model, TeamVO tvo, HttpServletRequest request, HttpServletResponse reponse) {
+	public String team(Model model, TeamVO vo, HttpServletRequest request, HttpServletResponse reponse) {
 		model.addAttribute("teams", seemoomapper.teamList());
 		return "seemoo/team";
 	}
@@ -81,8 +81,8 @@ public class AdminController {
 
 	@RequestMapping(value = "/admin/teaminfo", method = RequestMethod.GET) // 팀관리 페이지 (단건조회)
 	@ResponseBody
-	public TeamVO teams(Model model, TeamVO vo, HttpServletRequest request, HttpServletResponse reponse) {
-		return  seemoomapper.teams(vo);
+	public TeamVO teamselect(Model model, TeamVO vo, HttpServletRequest request, HttpServletResponse reponse) {
+		return  seemoomapper.teamselect(vo);
 	}
 	
 	@ResponseBody
@@ -100,7 +100,7 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value = "/admin/blackteam", method = RequestMethod.GET) // 블랙팀관리 페이지
-	public String blackteam(Model model, TeamVO tvo, HttpServletRequest request, HttpServletResponse reponse) {
+	public String blackteam(Model model, TeamVO vo, HttpServletRequest request, HttpServletResponse reponse) {
 		model.addAttribute("teams", seemoomapper.teamList());
 		return "seemoo/blackteam";
 	}
@@ -119,26 +119,31 @@ public class AdminController {
 //	---------------------------------------------------------------------------------------------------------------------
 	
 	@RequestMapping(value = "/admin/manager", method = RequestMethod.GET) // 매니저관리 페이지
-	public String manager(Model model, TeamVO tvo, HttpServletRequest request, HttpServletResponse reponse) {
+	public String manager(Model model, TeamVO vo, HttpServletRequest request, HttpServletResponse reponse) {
 		model.addAttribute("managers", seemoomapper.managerList());
 		return "seemoo/manager";
 	}
 	
 	@RequestMapping(value = "/manager/ajax", method = RequestMethod.GET) // 매니저관리 조회페이지 (ajax로 전체조회)
 	@ResponseBody	
-	public List<ManagersVO> managerlist(Model model, HttpServletRequest request, HttpServletResponse reponse) {
+	public List<MembersVO> managerlist(Model model, HttpServletRequest request, HttpServletResponse reponse) {
 		return seemoomapper.managerList();
 	}
 	
+	@RequestMapping(value = "/admin/managerinfo", method = RequestMethod.GET) // 매니저관리 페이지 (단건조회)
 	@ResponseBody
-	@RequestMapping(value = "/managerupdate", method = RequestMethod.GET) //매니저관리 페이지 (수정)
-	public MembersVO managerupdate(MembersVO vo) {
-		 seemoomapper.managerupdate(vo);
-		 return vo;
+	public MembersVO teamselect(Model model, MembersVO vo, HttpServletRequest request, HttpServletResponse reponse) {
+		return  seemoomapper.managerselect(vo);
 	}
-
-	@RequestMapping(value = "/admin/applymanager", method = RequestMethod.GET) // 매니저관리 페이지(매니저 신청|승인대기)
-	public String applymanager(Model model, TeamVO tvo, HttpServletRequest request, HttpServletResponse reponse) {
+	
+	@RequestMapping(value = "/applymanager/ajax", method = RequestMethod.GET) // 매니저(매니저 신청|승인대기)관리 페이지 (ajax로 전체조회)
+	@ResponseBody	
+	public List<ManagerapplyVO> applymanagerlist(Model model, HttpServletRequest request, HttpServletResponse reponse) {
+		return seemoomapper.managerapplyList();
+	}
+	
+	@RequestMapping(value = "/admin/applymanager", method = RequestMethod.GET) // 매니저(매니저 신청|승인대기)관리 페이지
+	public String applymanager(Model model, ManagerapplyVO vo, HttpServletRequest request, HttpServletResponse reponse) {
 		model.addAttribute("managerapplys", seemoomapper.managerapplyList());
 		return "seemoo/applymanager";
 	}
@@ -182,7 +187,7 @@ public class AdminController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/noticeinsert", method = RequestMethod.POST) //입력
-	public NoticeVO noticeinsert(NoticeVO vo, Model model)  {
+	public NoticeVO noticeinsert(NoticeVO vo, Model model, HttpServletRequest request) throws IllegalStateException, IOException  {
 		 seemoomapper.noticeinsert(vo);
 		 vo = seemoomapper.noticeselect(vo);
 		 return vo;

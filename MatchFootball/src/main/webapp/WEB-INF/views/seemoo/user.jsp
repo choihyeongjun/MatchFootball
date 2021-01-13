@@ -66,8 +66,10 @@ function userListResult(data) {
 		.append($('<td>').html(							 //유저권한
 				$('<select id="author" class=\'author\'> '+
 				'<option selected value="">선택</option>'+
-				'<option value="user">일반회원</option>'+
-				'<option value="manager">매니저</option>'+
+				'<option value="user" name="user">일반회원</option>'+
+				'<option value="manager" name="manager">매니저</option>'+
+				'<option value="wait" name="wait">매니저대기</option>'+
+				'<option value="stop" name="stop">매니저정지</option>'+
 				'</select>').val(item.author)))
 		.append($('<td>').html(							 //유저권한2
 				$('<select id="author2" class=\'author2\'> '+

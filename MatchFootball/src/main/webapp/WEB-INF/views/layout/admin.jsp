@@ -155,7 +155,7 @@
 						</div>
 						
 						<div class="sb-sidenav-menu-heading">통계관리</div>
-						<a class="nav-link" href="${pageContext.request.contextPath}/admin/point">
+						<a class="nav-link" href="${pageContext.request.contextPath}/admin/sales">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-chart-area"></i>
 							</div> 통계관리

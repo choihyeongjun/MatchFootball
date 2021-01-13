@@ -48,10 +48,7 @@ function noticeDelete() {
 				dataType:'json',
 				error:function(xhr,status,msg){
 					console.log("상태값 :" + status + " Http에러메시지 :"+msg);
-				}, success:function(xhr) {
-					console.log(xhr.result);
-					noticeList();
-				}
+				}, success:location.reload()
 			});     
 		}//if
 	}); //삭제 버튼 클릭
@@ -206,10 +203,6 @@ var table;
 								<td><input name="n_title" type="text" style="width: 100%"></td>
 							</tr>
 							<tr>
-								<td align="center" style="width: 20%">첨부파일</td>
-								<td><input type="file" name="uploadFile" id="uf" />
-									<div style="display: inline-block; position: relative; width: 300px; left: -210px; background: white;">
-										<label id="la">선택한 파일 없음</label>
 									</div> <input type="hidden" id="n_no" name="n_no"></td>
 							</tr>
 						</tbody>
