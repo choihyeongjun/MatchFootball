@@ -25,17 +25,23 @@
 </head>
 <body>
 		<ul class="hi">
-			<c:if test="${sessionScope.id ne null }">
-				<li><a href="teamInfo?t_num=${sessionScope.t_num }">팀 정보</a></li>
+	  		<c:if test="${sessionScope.t_num ne null }">
+			<li><a href="teamInfo?t_num=${sessionScope.t_num }">팀 정보</a></li>
 			</c:if>
-			<c:if test="${sessionScope.id eq null }">
-				<li><a href="teamMake">팀 생성</a></li>
+			<c:if test="${sessionScope.t_num eq null }">
+			<li><a href="teamMake">팀 생성</a></li>
 			</c:if>
+			<c:if test="${sessionScope.t_num ne null }">
 			<li><a href="teamGallery?t_num=${sessionScope.t_num }">팀갤러리</a></li>
+			</c:if>
+			<c:if test="${sessionScope.t_num ne null }">
 			<li><a href="teamNotice?t_num=${sessionScope.t_num }">팀 공지</a></li>
+			</c:if>
+			<c:if test="${sessionScope.t_num ne null }">
 			<li><a href="teamInvite?t_num=${sessionScope.t_num }">팀 초대</a></li>
+			</c:if>
 			<li><a href="http://localhost/MatchFootball/teamList">팀 리스트</a></li>
-		</ul>
+	</ul>
 		<div align="center" style="padding-bottom: 606px">
 			<div>
 				<h1>팀 정 보</h1>

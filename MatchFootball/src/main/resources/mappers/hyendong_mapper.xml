@@ -32,7 +32,7 @@
 	<insert id="teamInsert" parameterType="TeamVO">
 		<selectKey order="BEFORE" keyProperty="t_num"
 			resultType="string">
-			SELECT MAX(t_num)+1
+			SELECT NVL(MAX(t_num),0)+1
 			FROM team
 		</selectKey>
 		INSERT INTO TEAM (t_num,
@@ -239,7 +239,7 @@
 	<insert id="picInsert" parameterType="TgalleryVO">
 		<selectKey order="BEFORE" keyProperty="g_no"
 			resultType="int">
-			SELECT MAX(g_no)+1
+			SELECT NVL(MAX(g_no),0)+1
 			FROM tgallery
 		</selectKey>
 		INSERT INTO tgallery (
