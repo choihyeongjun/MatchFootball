@@ -53,6 +53,7 @@ public class KakaoLoginController {
       kage = kakao_account.path("age_range").asText();
       session.setAttribute("accesstoken",accessToken);
       session.setAttribute("kemail", kemail);
+      session.setAttribute("id", kemail);
       session.setAttribute("kname", kname);
       session.setAttribute("kimage", kimage);
       session.setAttribute("kgender", kgender);
