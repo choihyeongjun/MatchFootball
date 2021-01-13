@@ -43,8 +43,14 @@
    		insert into rfield(f_id,starttime,endtime,m_id,title,type,backgroundcolor,comm,id) values(#{f_id},#{starttime},#{endtime},{_id},#{title},#{type},#{backgroundcolor},#{comm},#{id})
    </select>
    <select id="fboardlist" resultType="fboardVO">
-   	select *
-   	from fboard
+   	 select f.* 
+   <if test="id !=null"> 
+          ,nvl((select likeit
+	 		from likeit  
+	 		where num=f.num
+	 		and id=#{id}),0) as heartstate
+ 		</if>
+ 		 from fboard f
    </select>
    <select id="fielddetailupdate" parameterType="rfieldVO" resultType="rfieldVO">
    		update rfield set starttime=#{starttime},endtime=#{endtime} where title=#{title}
@@ -55,15 +61,28 @@
    <select id="fielddetaildelete" resultType="rfieldVO">
    	delete from rfield where comm=#{comm}
    </select>
-   <select id="freelist" resultType="fboardVO">
-   select * from fboard
-   </select>
+  <!--  <select id="freelist" resultType="fboardVO">
+   select f.* 
+   <if test="id !=null"> 
+          nvl((select likeit
+	 		from likeit  
+	 		where num=f.num
+	 		and id=#{id}),0) as heartstate
+ 		</if>
+     from fboard f
+   </select> -->
    <select id="freeinsert" parameterType="fboardVO" resultType="fboardVO">
    	insert into fboard(id,num,title,b_date,comm) values(#{id},free_seq.nextval,#{title},sysdate+9/24,#{comm})
    </select>
    <select id="freeselect" parameterType="fboardVO" resultType="fboardVO">
-   	select * 
-   	from fboard
+   	select f.* 
+   	 <if test="id !=null"> 
+          ,nvl((select likeit
+	 		from likeit  
+	 		where num=f.num
+	 		and id=#{id}),0) as heartstate
+ 		</if>
+   	from fboard f
    	where num=#{num}
    </select>
    <select id="freedelete" parameterType="fboardVO">
@@ -76,10 +95,19 @@
    	update fboard set cnt=#{cnt}+1 where num=#{num}
    </select>
    <select id="heartinsert" parameterType="likeitVO" resultType="likeitVO">
-   	insert into likeit(seq,num,id,likeit) values(like_seq.nextval,#{num},#{id},1)
+   	insert into likeit(seq,num,id,likeit) values(like_seq.nextval,#{num},#{id},#{likeit})
    </select>
-   <select id="heartdelete" parameterType="likeitVO" resultType="likeitVO">
-   	update likeit set likeit=0 where num=#{num}
+   <select id="heartdelete" parameterType="likeitVO">
+   delete from likeit where num=#{num} and id=#{id}
+   </select>
+   <select id="heartcntin" parameterType="likeitVO">
+   update fboard set likeit=likeit+1 where num=#{num}
+   </select>
+   <select id="heartcntdn" parameterType="likeitVO">
+   update fboard set likeit=likeit-1 where num=#{num}
+   </select>
+   <select id="heartupdate" parameterType="likeitVO" resultType="likeitVO">
+   	update likeit set likeit=#{likeit} where num=#{num} and id=#{id}
    </select>
    <select id="invitelist" parameterType="inviteVO" resultType="inviteVO">
    select * from invite
@@ -104,8 +132,13 @@
    <select id="playerinsert" parameterType="membernInvite">
    	insert into players(m_no,t_num,id) values(#{m_no},#{t_num},#{id})
    </select>
- 
-
+ 	<select id="likecheck" resultType="map">
+ 		select likeit
+ 		from likeit
+ 		where num=#{num}
+ 		and id=#{id}
+ 	</select>
+	
    <!-- <select id="heartselect" result="likeitVO">
    	select likeit
    	from likeit

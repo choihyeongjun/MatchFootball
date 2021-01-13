@@ -28,6 +28,7 @@ public interface HyendongMapper {
 	public int teamListInsert(TeamlistVO teamlistVO); //팀 초대 승인
 	public List<TinviteVO> teamInviteSelect (TinviteVO tinviteVO); //팀 초대 조회
 	public int teamInviteDelete(TinviteVO tinviteVO); //팀 초대 거절
+	public TinviteVO teamInviteSelectt(TinviteVO tinviteVO); //tinvite id 셀렉트
 	public int tNumUpdate(MembersVO membersVO); //팀번호 변경
 	public int tNumNullUpdate(MembersVO membersVO); //팀번호 널로 변경
 	public int teamMemberOut(TeamlistVO teamlistVO); //팀원 추방

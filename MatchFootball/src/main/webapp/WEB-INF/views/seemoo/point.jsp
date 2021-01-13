@@ -7,35 +7,37 @@
 
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
 
-<title>쿠폰&포인트관리</title>
+<title>매니저관리페이지</title>
 
 </head>
-		<body>
-		
-		<!--팀관리 -->
+<body>
+	<!-- 매니저대기관리 -->
 		<div id="layoutSidenav_content">
 			<main>
 				<div class="container-fluid">
-					<h1 class="mt-4">포인트관리</h1>
+					<h1 class="mt-4">매니저 신청 승인대기</h1>
 					<ol class="breadcrumb mb-4">
 						<li class="breadcrumb-item">
-						<a href="#">포인트관리</a></li>
-						<li class="breadcrumb-item active">포인트관리</li>
+						<a href="${pageContext.request.contextPath}/admin/manager">매니저관리</a></li>
+						<li class="breadcrumb-item active">매니저 신청관리 및 현재 매니저현황</li>
 					</ol>
 					<div class="card mb-4">
 						<div class="card-body">
-							무엇을 적을까? <a target="_blank" href="#">포인트관리</a> .
+							 <a target="_blank" href="https://www.youtube.com/watch?v=hSEcM3McYyM">매니저 지원 영상</a>
+							 <a>/</a>
+							 <a target="_blank" href="https://www.kfa.or.kr/img_src/data_rule/2016futsal_laws.pdf">공식 경기규칙</a>
 						</div>
 					</div>
 					
-					<!-- 팀현황 -->
-					<div class="card mb-4">
+					<!-- 매니저 승인대기 현황 -->
+						<div class="card mb-4">
 						<div class="card-header">
-							<i class="fas fa-table mr-1"></i> 포인트관리
+							<i class="fas fa-table mr-1"></i> 매니저 승인대기 현황
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
@@ -43,39 +45,37 @@
 									<thead align="center">
 										<tr>
 											<th style="width: 10px;">No.</th>
-											<th>팀이름</th>
-											<th>팀평균레벨</th>
-											<th>팀승률</th>
-											<th>팀권한</th>
-											<th>팀매너점수</th>
+											<th style="width: 80px;">ID</th>
+											<th>이름</th>
+											<th>생년월일</th>
+											<th>성별</th>
+											<th>연락처</th>
+											<th style="width: 180px;">권한</th>
+											<th style="width: 180px;">설문지</th>
+											<th>포부</th>
+											<th></th>
+											<th></th>
 											<th></th>
 										</tr>
 									</thead>
 									<tfoot align="center">
 										<tr>
 											<th>No.</th>
-											<th>팀이름</th>
-											<th>팀평균레벨</th>
-											<th>팀승률</th>
-											<th>팀권한</th>
-											<th>팀매너점수</th>
+											<th>ID</th>
+											<th>이름</th>
+											<th>생년월일</th>
+											<th>성별</th>
+											<th>연락처</th>
+											<th>권한</th>
+											<th>설문지</th>
+											<th>포부</th>
+											<th></th>
+											<th></th>
 											<th></th>
 										</tr>
 									</tfoot>
 									<tbody align="center">
-										<tr>
-											<td>1</td>
-											<td>형준와 아이들</td>
-											<td>최형준</td>
-											<td>11</td>
-											<td></td>
-											<td></td>
-											<td>
-											<input type="button" value="상세프로필" onclick="">
-											<input type="button" value="수정" onclick="">
-											<input type="button" value="삭제" onclick="">
-											</td>
-										</tr>
+
 									</tbody>
 								</table>
 							</div>

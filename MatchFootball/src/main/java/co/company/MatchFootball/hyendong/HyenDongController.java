@@ -77,7 +77,7 @@ public class HyenDongController {
 
 	// 팀정보
 	@RequestMapping("/teamInfo")
-	public String teamInfo(Model model, TeamVO teamVO, MembersVO membersVO, HttpSession session, TeamlistVO teamlistVO) {
+	public String teamInfo(Model model, TeamVO teamVO, MembersVO membersVO, HttpSession session, TeamlistVO teamlistVO, TinviteVO tinviteVO) {
 		String id = (String)session.getAttribute("id");
 		membersVO.setId(id);
 		model.addAttribute("members", hyendongMapper.memberSelect(membersVO)); //멤버 단건 조회
@@ -249,12 +249,14 @@ public class HyenDongController {
 	
 	// 팀 초대
 	@RequestMapping("/teamInvite")
-	public String teamInvite(Model model, HttpSession session, TinviteVO tinviteVO, TeamlistVO teamlistVO) {
+	public String teamInvite(Model model, HttpSession session, TinviteVO tinviteVO, TeamlistVO teamlistVO, MembersVO membersVO) {
 		String id = (String)session.getAttribute("id");
 		tinviteVO.setId(id);
 		model.addAttribute("tinvite", hyendongMapper.teamInviteSelect(tinviteVO));
 		teamlistVO.setId(id);
 		model.addAttribute("updateButton", hyendongMapper.getTeamMemberss(teamlistVO));
+		model.addAttribute("members", hyendongMapper.getMembers());
+		
 		return "hyendong/teamInvite";
 	}
 	
@@ -285,6 +287,13 @@ public class HyenDongController {
 		hyendongMapper.teamInviteDelete(tinviteVO);
 		return "redirect:/teamInvite?t_num=" + teamVO.getT_num();
 	}
+	
+	// 팀 초대 거절
+		@RequestMapping("/teamInviteCancle")
+		public String teamInviteCancle(TinviteVO tinviteVO, TeamVO teamVO) {
+			hyendongMapper.teamInviteDelete(tinviteVO);
+			return "redirect:/teamInfo?t_num=" + teamVO.getT_num();
+		}
 	
 	// 팀 탈퇴
 	@RequestMapping("/teamListOut")
