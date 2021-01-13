@@ -22,5 +22,6 @@ public class TeammatchVO {
 	String id;
 	String f;
 	String t_logo;
+	String so_num;
 	
 }

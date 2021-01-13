@@ -99,10 +99,32 @@ public class JunController {
 			TeamlistVO teamlist, TeammatchVO teammatch, TeamVO teamvo, PlayersVO playervo) throws IOException {
 		membersvo.setId((String) session.getAttribute("id"));
 		membersvo.setT_num((String) session.getAttribute("t_num"));
+		teammatch.setT_num(dao.memberselect(membersvo).getT_num());
 		model.addAttribute("member",dao.memberselect(membersvo));
 		model.addAttribute("teamlist", dao.teamlist(membersvo));
-
+		model.addAttribute("teamname", dao.teamname(membersvo));
+		
 		return new ModelAndView("no/sungjun/teammatchapply");
+	}
+	@PostMapping(value = "/startmember")
+	public ModelAndView test14(HttpServletResponse response, Model model, MembersVO membersvo, PlayersVO players,
+			HttpSession session,TeammatchVO teammatch, PointVO pointvo) throws IOException {
+		membersvo.setId((String) session.getAttribute("id"));
+		membersvo.setT_num((String) session.getAttribute("t_num"));
+		pointvo.setP_id((String) session.getAttribute("id"));
+		dao.teammatchin(players);
+		dao.teammatchup(teammatch);
+		dao.pointminus(membersvo);
+		dao.pointcomm(pointvo);
+		return new ModelAndView("sungjun/teammatch");
+	}
+	@RequestMapping(value = "/teammatchRegister")
+	public ModelAndView test15(HttpSession session,TeamVO team,MembersVO membersvo , Model model,TeammatchVO teammatch) throws IOException {
+		membersvo.setId((String) session.getAttribute("id"));
+		membersvo.setT_num((String) session.getAttribute("t_num"));
+		model.addAttribute("teamlist", dao.teamlist(membersvo));
+
+		return new ModelAndView("sungjun/teammatchRegister");
 	}
 	@RequestMapping(value = "/match")
 	public String test1(HttpServletResponse response, Model model, CalVO vo, P_matchVO mvo, HttpServletRequest request)

@@ -24,5 +24,10 @@ public class MembersVO {
 	String pos;//포지션
 	String t_name;
 	String t_num;//팀번호
-	
+	String t_logo;
+	String t_info;
+	String t_address;
+	String t_age;
+	String t_wn;
+	String t_level;
 }

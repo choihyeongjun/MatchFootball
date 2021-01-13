@@ -134,6 +134,10 @@ a {
 				url : "teammatchDetailm?m_no=" + m_no,
 				success : function(result) {
 					modal.find('#body4').html(result);
+					startmember.m_no.value = $("#m_no").val()
+					startmember.point.value = $("#price").val()
+					startmember.npoint.value = $("#minusprice").val()
+					$("#floatingTextarea11").val($("#price").val())
 					modal.modal('show');
 				}
 			});
@@ -158,7 +162,7 @@ a {
 				<div class="m-im-t">
 					<p style="font-weight: bold; font-size: 80px; text-align:;">${teammatch.t_name }</p>
 					<p class="wnwnwn" style="font-size: 20px;">2전 1승 1무 1패</p>
-					<input type="hidden" value="${teammatch.m_no }" />
+					<input type="hidden" id="m_no" value="${teammatch.m_no }" />
 				</div>
 			</div>
 
@@ -176,6 +180,8 @@ a {
 			<div id="play"
 				style="border-bottom: 1px solid #ddd; padding-bottom: 30px;">
 				<h5 style="font-weight: bold;">${teammatch.price}원</h5>
+				<input type="hidden" id="price" value="${teammatch.price }" />
+				<input type="hidden" id="minusprice" value="-${teammatch.price }" />
 			</div>
 			<div style="border-bottom: 1px solid #ddd;">
 				<div>
@@ -184,30 +190,31 @@ a {
 							정보</h4>
 					</div>
 					<div>
-						<p style="margin:3px;">주장 : ${member.name }</p>
-						<p style="margin:3px;">평균 연령대 : ${team.t_age }</p>
-						<p style="margin:3px;">팀 Lv : ${team.t_level }</p>
-						<p style="margin:3px;">팀소개</p>
-						<p style="background-color: #999;margin:3px;">${team.t_info }</p>
+						<p style="margin: 3px;">주장 : ${member.name }</p>
+						<p style="margin: 3px;">평균 연령대 : ${team.t_age }</p>
+						<p style="margin: 3px;">팀 Lv : ${team.t_level }</p>
+						<p style="margin: 3px;">팀소개</p>
+						<p style="background-color: #999; margin: 3px;">${team.t_info }</p>
 					</div>
 				</div>
-				<p style="font-weight: bold; font-size: 50px; margin: 30px;">남기는 한마디</p>
-				<p style="margin: 3px;background-color: #999;">${teammatch.m_info}</p>
+				<p style="font-weight: bold; font-size: 50px; margin: 30px;">남기는
+					한마디</p>
+				<p style="margin: 3px; background-color: #999;">${teammatch.m_info}</p>
 			</div>
 		</div>
 	</div>
 	<div class="lets">
-		<%-- <c:if test="${p_match.p_max > p_match.f}"> --%>
+		 <c:if test="${empty teammatch.so_num}"> 
 		<div class="employ">
-			<p class="p1" data-num="${teammatch.matchnum }">매치 신청</p>
+			<p class="p1" data-num="${teammatch.m_no }">매치 신청</p>
 		</div>
-		<%-- </c:if> --%>
+		 </c:if> 
 
-		<%-- <c:if test="${p_match.p_max <= p_match.f}"> --%>
+		 <c:if test="${!empty teammatch.so_num }"> 
 		<div class="employ1">
 			<p class="p1">마감</p>
 		</div>
-		<%-- </c:if> --%>
+		 </c:if> 
 	</div>
 	<!--개인매치 신청 모달  -->
 	<div class="modal fade" id="tmatchaplly" tabindex="-1"

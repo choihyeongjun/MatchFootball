@@ -3,7 +3,19 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="co.company.MatchFootball.mapper.SungjunMapper"> <!-- 패키지.EmpMapper -->
-
+	<!--팀 매치 등록 -->
+	<insert id="teammatchRegi">
+		insert into
+		teammatch(m_no,t_num,mtype,f_name,f_address,price,t_name,t_cap,t_level,m_info,m_date,m_hour)
+		valuse(
+		#{m_no},#{t_num},
+		#{mtype},#{f_name},
+		#{f_address},#{price},
+		#{t_name},#{t_cap},
+		#{t_level},#{m_info},
+		#{m_date},#{m_hour}
+		)
+	</insert>
 	<!--해당 날의 개인 매치 조회 및 신청 인원 -->
 	<select id="pmatchselect" parameterType="P_matchVO"
 		resultType="P_matchVO">
@@ -22,26 +34,23 @@
 		to_date(concat(m_date,m_hour),'yyyy-mm-ddhh24:mi')<![CDATA[ >= sysdate +9/24]]>
 		order by m_hour asc
 	</select>
-	<!--개인 매치 신청 -->
+	<!--개인 매치 신청 하고 포인트 차감 하고 내역 입력 -->
 	<insert id="matchapply" parameterType="PplayersVO">
 		insert into pplayers
 		values(#{m_no},#{id})
 	</insert>
-	<!--point 차감 -->
 	<update id="pointminus" parameterType="MembersVO">
 		update members set
 		point =
 		point -#{point}
 		where id= #{id}
 	</update>
-	<!--point 내역 추가 -->
 	<insert id="pointcomm" parameterType="MembersVO">
 		insert into point
 		(p_seq,p_id,npoint,p_date,p_con)
 		values(point_seq.nextval
 		,#{p_id},#{npoint},sysdate,#{p_con})
 	</insert>
-
 	<!--point 입금 내역 -->
 	<select id="pointconselect" parameterType="PointVO"
 		resultType="PointVO">
@@ -121,7 +130,16 @@
 		select * from team
 		where t_num =#{t_num}
 	</select>
-	<!--등록 선수 선발 명단조회 -->
+	<!-- 매칭 신청자 팀 이름 조회 -->
+	<select id="teamname" parameterType="MembersVO"
+		resultType="MembersVO">
+		select a.*,b.t_name,b.t_logo,b.t_info,b.t_address,b.t_age,b.t_wn,b.t_level
+		from members a , team b
+		where a.t_num =
+		b.t_num and a.id = #{id}
+	</select>
+
+	<!--신청팀 등록 선수 선발 명단조회 -->
 	<select id="playerselect" parameterType="PlayersVO"
 		resultType="PlayersVO">
 		select * from players
@@ -145,11 +163,11 @@
 	<!--자기 팀 선수 조회 -->
 	<select id="teamlist" parameterType="MembersVO"
 		resultType="MembersVO">
-		select a.id,b.name,b.pos
+		select a.*,b.name,b.pos
 		from teamlist a , members b
 		where
 		a.id = b.id
-		and b.t_num = #{t_num}
+		and a.t_num = #{t_num}
 	</select>
 	<!--멤버 조회 -->
 	<select id="memberselect" parameterType="MembersVO"
@@ -165,6 +183,24 @@
 		select id from pplayers
 		where pplayers.m_no =#{m_no})
 	</select>
+	<!--팀 매치 신청 하고 포인트 차감 하고 내역 입력 -->
+	<update id="teammatchup">
+		update teammatch set so_num = #{t_num}
+		where m_no =
+		#{m_no}
+	</update>
+	<insert id="teammatchin">
+		<foreach collection="id" item="dd" open="INSERT ALL "
+			separator=" " close="SELECT * FROM DUAL">
+			into players values
+			(#{m_no},#{t_num},#{dd})
+		</foreach>
+	</insert>
+	<!-- <update id="pointminus" parameterType="MembersVO"> update members set 
+		point = point -#{point} where id= #{id} </update> -->
+	<!-- <insert id="pointcomm" parameterType="MembersVO"> insert into point 
+		(p_seq,p_id,npoint,p_date,p_con) values(point_seq.nextval ,#{p_id},#{npoint},sysdate,#{p_con}) 
+		</insert> -->
 	<!--매니저 신청 -->
 	<insert id="mapply" parameterType="manageraplyVO">
 		insert into

@@ -29,6 +29,9 @@ public interface SungjunMapper {
 	public int pointminus(MembersVO membersvo);
 	public int matchapply(PplayersVO pplayers);
 	public int pointcomm(PointVO pointvo);
+	// 팀 매치 신청 쿼리//
+	public int teammatchin(PlayersVO players);
+	public int teammatchup(TeammatchVO teammatch);
 	//해당 매니저  팀 경기 내역  //
 	public List<TeammatchVO> tmatchlist(TeammatchVO t_match);
 	// 해당 날 팀 매치 리스트 뽑기//
@@ -37,12 +40,18 @@ public interface SungjunMapper {
 	public TeamVO teamselect(TeamVO teamvo);
 	//해당 팀 매치 정보 
 	public TeammatchVO teammatchinfo(TeammatchVO teammatch);
-	//해당 팀 등록 선수 조회//
+	//신청 팀 등록 선수 조회//
 	public List<PlayersVO> playerselect(PlayersVO players);
 	//팀장 조회
 	public TeamlistVO capselect(TeamlistVO cap);
 	//자기 팀 선수 조회
 	public List<MembersVO> teamlist(MembersVO membersvo);
+	//팀 매칭 신청자 팀 이름 조회
+	public MembersVO teamname(MembersVO membersvo);
+	//팀매치 등록
+	public int teammatchRegi(TeammatchVO teammatch);
+	//팀매치 등록 시 선발 명단 조회
+
 	
 	
 }

@@ -24,7 +24,7 @@
 }
 
 .form-floating {
-	padding-bottom: 5px;
+	padding-bottom: 15px;
 }
 
 .form-control {
@@ -47,60 +47,63 @@
 <body>
 	<div class="row">
 		<div class="col-6">
-			<div class="form-floating">
-				<input class="form-control" placeholder="Leave"
-					id="floatingTextarea" readonly value="${membervo.name }"> <label
-					for="floatingTextarea">이름</label>
+			<div>
+				<div class="tlwn" style="padding: 10px;">
+					<div style="margin: 10px;">
+						<img alt="npe"
+							src="${pageContext.request.contextPath}/resources/img/${teamname.t_logo}"
+							style="width: 150px; height: 150px; border-radius: 20%; marging: 5px;" />
+					</div>
+					<div class="m-im-t">
+						<p style="font-weight: bold; font-size: 30px; text-align:;">${teamname.t_name }</p>
+						<p class="wnwnwn" style="font-size: 15px;">2전 1승 1무 1패</p>
+					</div>
+				</div>
 			</div>
 			<div class="form-floating">
 				<input class="form-control" placeholder="Leave"
-					id="floatingTextarea" readonly value="${membervo.gender }">
-				<label for="floatingTextarea">성별</label>
+					id="floatingTextarea" readonly value="${teamname.t_level }LV">
+				<label for="floatingTextarea">팀레벨</label>
 			</div>
 			<div class="form-floating">
 				<input class="form-control" placeholder="Leave"
-					id="floatingTextarea" readonly value="${membervo.birth }">
-				<label for="floatingTextarea">생일</label>
+					id="floatingTextarea" readonly value="${teamname.t_address }">
+				<label for="floatingTextarea">활동구역</label>
 			</div>
 			<div class="form-floating">
 				<input class="form-control" placeholder="Leave"
-					id="floatingTextarea" value="${membervo.pnum }" required="required">
-				<label for="floatingTextarea">휴대폰 번호</label>
+					id="floatingTextarea" value="평균 ${teamname.t_age}살" required="required">
+				<label for="floatingTextarea">연령대</label>
 			</div>
 			<div class="form-floating">
 				<input class="form-control" placeholder="Leave"
-					id="floatingTextarea" value="${p_matchVO.price } 원"
+					id="floatingTextarea11" value=""
 					required="required" readonly><label for="floatingTextarea">참가비</label>
 			</div>
-			<form class="inser" action="sendmatchapply" method="post"
-				onsubmit="return submitCheck();">
-				<div class="inserm">
-					<input name="id" type="hidden" value="${membervo.id }"> <input
-						name="m_no" type="hidden" value="${p_matchVO.m_no }"> <input
-						name="p_con" type="hidden" value="개인 매치비"> <input
-						name="point" type="hidden" value="${p_matchVO.price }"> <input
-						name="npoint" type="hidden" value="-${p_matchVO.price }">
-				</div>
-
-			</form>
 		</div>
 		<div class="col-6">
 			<div>
-				<h2>${member.team }</h2>
-				<h4>선수 목록</h4>
+				<h3 style="text-align: center;">선수 목록</h3>
 			</div>
-			<form id="startmember" action="startmember" method="post" onsubmit="return submitCheck();">
+			<form id="startmember" name="startmember" action="startmember"
+				method="post" onsubmit="return submitCheck();">
 				<c:forEach var="teamlist" items="${teamlist }">
-					<div style="padding: 10px;">
-					<input type="checkbox" id="ex_chk">
-					<label for="ex_chk">${teamlist.pos} ${teamlist.name }</label>
+					<div style="padding: 10px; text-align: center;">
+						<input type="checkbox" id="chk" name="id" value="${teamlist.id }">
+						<label for="chk">${teamlist.pos} ${teamlist.name } </label>
 					</div>
 				</c:forEach>
+				<input type="hidden" name="t_num" value="${teamlist[0].t_num }">
+				<input type="hidden" name="m_no" value=""> <input
+					type="hidden" name="p_con" value="팀 매치 비"> <input
+					type="hidden" name="point" value=""> 
+					<input type="hidden" name="npoint" value="">
+
+				<div align="center" style="padding:3px;">
+					<button type="submit" class="abtn">신청하기</button>
+				</div>
 			</form>
 		</div>
-	</div>
-	<div align="center">
-		<button type="submit" class="abtn">신청하기</button>
 	</div>
 </body>
 </html>
