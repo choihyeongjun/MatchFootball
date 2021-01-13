@@ -297,6 +297,8 @@ body, html {
 									href="${pageContext.request.contextPath}/teammatch">팀 매치</a></li>
 								<li class="lili"><a
 									href="${pageContext.request.contextPath}/bollow">용병 초대</a></li>
+									<li class="lili"><a
+									href="${pageContext.request.contextPath}/inviteselect">용병 초대장 관리</a></li>
 
 							</ul>
 						</div>
