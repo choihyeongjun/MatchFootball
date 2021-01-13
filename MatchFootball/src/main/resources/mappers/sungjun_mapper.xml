@@ -7,14 +7,19 @@
 	<!--해당 날의 개인 매치 조회 및 신청 인원 -->
 	<select id="pmatchselect" parameterType="P_matchVO"
 		resultType="P_matchVO">
-		select d.* ,nvl(f,0)f
+		select d.* ,f
 		from p_match d, ( select a.m_no ,count(*) f
-		from p_match a,pplayers b
+		from
+		p_match
+		a,pplayers b
 		where a.m_no = b.m_no
 		group by a.m_no )c
-		where d.m_no = c.m_no(+)
+		where
+		d.m_no =
+		c.m_no(+)
 		and m_date = #{m_date}
-		and to_date(concat(m_date,m_hour),'yyyy-mm-ddhh24:mi')<![CDATA[ >= sysdate +9/24]]>
+		and
+		to_date(concat(m_date,m_hour),'yyyy-mm-ddhh24:mi')<![CDATA[ >= sysdate +9/24]]>
 		order by m_hour asc
 	</select>
 	<!--개인 매치 신청 -->
@@ -25,7 +30,8 @@
 	<!--point 차감 -->
 	<update id="pointminus" parameterType="MembersVO">
 		update members set
-		point = point -#{point}
+		point =
+		point -#{point}
 		where id= #{id}
 	</update>
 	<!--point 내역 추가 -->
@@ -71,8 +77,10 @@
 		,count(*) f
 		from p_match a,pplayers b
 		where a.m_no = b.m_no
-		group by a.m_no )c
-		where d.m_no = c.m_no(+)
+		group by
+		a.m_no )c
+		where
+		d.m_no = c.m_no(+)
 		and d.m_no = #{m_no}
 	</select>
 	<!--해당 날 개인매치 검색 -->
@@ -86,17 +94,20 @@
 		resultType="TeammatchVO">
 		select a.* ,b.*
 		from teammatch a,team b
-		where a.t_num = b.t_num
+		where a.t_num =
+		b.t_num
 		and m_date =
 		#{m_date}
-		and to_date(concat(m_date,m_hour),'yyyy-mm-ddhh24:mi')>= sysdate +9/24
+		and
+		to_date(concat(m_date,m_hour),'yyyy-mm-ddhh24:mi')>= sysdate +9/24
 		order by m_hour asc
 	</select>
 	<!--해당 팀 매치 정보 조회 -->
 	<select id="teammatchinfo" parameterType="TeammatchVO"
 		resultType="TeammatchVO">
 		select * from teammatch
-		where m_no = #{m_no} and t_num=#{t_num}
+		where m_no = #{m_no} and
+		t_num=#{t_num}
 	</select>
 	<!--팀 매치 정보 조회 -->
 	<select id="teammatchinfo1" parameterType="TeammatchVO"
@@ -114,7 +125,8 @@
 	<select id="playerselect" parameterType="PlayersVO"
 		resultType="PlayersVO">
 		select * from players
-		where t_num = #{t_num} and m_no= #{m_no}
+		where t_num = #{t_num} and m_no=
+		#{m_no}
 	</select>
 	<!-- 팀 매치 내역 조회 -->
 	<select id="tmatchlist" parameterType="TeammatchVO"
@@ -133,9 +145,10 @@
 	<!--자기 팀 선수 조회 -->
 	<select id="teamlist" parameterType="MembersVO"
 		resultType="MembersVO">
-		select a.*,b.*
+		select a.id,b.name,b.pos
 		from teamlist a , members b
-		where a.id = b.id
+		where
+		a.id = b.id
 		and b.t_num = #{t_num}
 	</select>
 	<!--멤버 조회 -->
