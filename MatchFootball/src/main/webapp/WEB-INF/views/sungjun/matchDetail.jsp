@@ -37,7 +37,7 @@ a {
 	text-align: center;
 	z-index: 2;
 	cursor: pointer;
-	idth: 320px;
+	width: 320px;
 	left: 0;
 	right: 0;
 	margin: auto;
