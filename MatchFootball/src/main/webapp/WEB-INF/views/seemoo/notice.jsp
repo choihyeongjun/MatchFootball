@@ -16,6 +16,46 @@
 <link href="${pageContext.request.contextPath}/resources/seemoo/css/styles.css" rel="stylesheet" />
 <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
+
+<script>
+$(function(){
+	noticeList();
+});
+
+//사용자 목록 조회 요청
+function noticeList() {
+	$.ajax({
+		url:'../../noticewrite/ajax',
+		type:'GET',
+		//contentType:'application/json;charset=utf-8',
+		dataType:'json',
+		error:function(xhr,status,msg){
+			alert("상태값 :" + status + " Http에러메시지 :"+msg);
+		},
+		success:noticeListResult
+	});
+}//noticeList
+
+//사용자 목록 조회 응답
+function noticeListResult(data) {
+	$('#notice').empty();
+	$.each(data,function(idx,item){
+		$('<tr>')
+		.append($('<td>').html(item.n_no))
+		.append($('<td>').html(item.n_title))
+		.append($('<td>').html(item.id))
+		.append($('<td>').html(item.n_date))
+		.append($('<td>').html(item.n_check))
+		.append($('<td>').html('<button id=\'btnSelect\' class="btn btn-primary">조회</button>'))
+		.append($('<td>').html('<button id=\'btnDelete\' class="btn btn-danger">삭제</button>'))
+		.append($('<input type=\'hidden\' id=\'hidden_userId\'>').val(item.n_no))
+		.appendTo($('#notice'));
+	});//each
+	$('#dataTable').DataTable()
+}//noticeListResult
+
+</script>
+
 </head>
 
 <body class="sb-nav-fixed">
@@ -61,14 +101,7 @@
 											<th>조회수</th>
 										</tr>
 									</tfoot>
-									<tbody>
-										<tr>
-											<td>3</td>
-											<td>현동이축구는체력빨?</td>
-											<td>김현동</td>
-											<td>2020.01.01</td>
-											<td>10</td>
-										</tr>
+									<tbody id="notice" style="text-align: center;">
 									</tbody>
 								</table>
 							</div>

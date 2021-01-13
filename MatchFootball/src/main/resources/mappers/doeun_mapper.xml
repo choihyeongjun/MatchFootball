@@ -12,47 +12,35 @@
 		where id = #{id}
 	</select>
 
-	<!-- 프로필 입력 -->
-
-
 	<!-- 포인트 조회 -->
 	<select id="myPoint" parameterType="MembersVO"
 		resultType="MembersVO">
 		select point from members
 		where id = #{id}
 	</select>
-
+	<!-- 프로필 등록 -->
 	<insert id="insertMem" parameterType="MembersVO">
 		insert into members(
-		email,
+		id,
 		name,
 		gender,
-		img,
-		pos,
-		pnum,
-		lv,
-		postCode,
+		postcode,
 		location1,
 		location2,
-		birth
+		pnum,
+		email,
+		birth,
+		img,
+		lv,
+		pos,
+		author2,point
 		)
-
 		values(
-		#{email},
-		#{name},
-		#{gender},
-		#{img},
-		#{pos},
-		#{pnum},
-		#{level},
-		#{postCode},
-		#{address},
-		#{location2},
-		#{birth})
+		#{id},#{name},#{gender},#{postCode},#{location1},#{location2},#{pnum},#{email},#{birth},#{img},#{lv},#{pos}, #{author2},0
+		)
 	</insert>
 
 	<update id="upMem" parameterType="MembersVO">
-
 		update members
 		set
 		name=#{name},
@@ -68,7 +56,6 @@
 		pos=#{pos},
 		author2 = #{author2}
 		where id = #{id}
-
 	</update>
 
 	<!-- 총 포인트 확인 -->
@@ -90,6 +77,7 @@
 		 select * from message where to_id = #{to_id} order by m_no desc 
 	) a ) b where rn between #{first} and #{last}
 	</select>
+	
 	<!--쪽지 내역 수 페이징 -->
 	<select id="getCount1" resultType="int">
 		SELECT COUNT(*) FROM message
@@ -105,6 +93,10 @@
 		select * from message where send_id = #{send_id} order by m_no desc
 		) a ) b where rn between #{first} and #{last}
 	</select>
+	<!-- 포인트 충전 결제 등록 -->
+	<insert id="Pcharge" parameterType="PointVO">
+	insert into point(p_seq,p_id,p_pay,npoint,p_date,p_con) values(point_seq.nextval,#{p_id},#{p_pay},#{npoint},sysdate,#{p_con})
+	</insert>
 <!-- 포인트 내역조회 -->	
 <select id="pointList" parameterType="PointVO" resultType="PointVO">
  select * from( select a.*, rownum rn from (
@@ -115,8 +107,11 @@ select * from point where p_id = #{p_id}
 		SELECT COUNT(*) FROM point
 		where p_id=#{p_id}
 	</select>
-	<!-- 받은 메세지 내용확인 -->
+	<!--수신 메세지 내용확인 -->
 	<select id="reviewMsg" parameterType="MessageVO" resultType="MessageVO">
-	select * from message where to_id = #{to_id} </select>
-	
+	select * from message where to_id = #{to_id} and m_no= #{m_no} </select>
+	<!-- 개인매칭 내역조회 -->
+	<select id="p_matchedList" parameterType="P_matchVO" resultType="P_matchVO">
+	select * from p_match where m_id=#{m_id}
+	</select>
 </mapper>

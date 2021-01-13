@@ -31,8 +31,8 @@
 <link href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
 	rel="stylesheet">
 
-<script type="text/javascript"
-	src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<!-- <script type="text/javascript"
+	src="https://code.jquery.com/jquery-1.12.4.min.js"></script> -->
 <!-- 결제api -->
 <script type="text/javascript"
 	src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
@@ -41,41 +41,43 @@
 <script src="https://kit.fontawesome.com/e15da187be.js"></script>
 
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-<script type="text/javascript"
-	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d91f3d18bd10e8cd72b2f2827dea9f7c&libraries=services"></script>
-	<%
-	 String id = (String)session.getAttribute("id"); 
+<%
+	String id = (String) session.getAttribute("id");
 
-	 String tel = (String)session.getAttribute("point.pnum");
-
-
-	%>
+String tel = (String) session.getAttribute("point.pnum");
+%>
 <script type="text/javascript">
 	function goTop() {
 		$(document).animate({
 			scrollTop : 0
 		})
 	}
+	
+    var IMP = window.IMP;
 	$(function() {	   
-        var IMP = window.IMP;
         IMP.init('imp22665146');
         pay();
-});	
+	});	
 	
 	function pay(){
     $('#charge_kakao').click(function () {
         // getter
         var money = $('input[name="cp_item"]:checked').val();
-        
+                //포인트 충전
+                var p_id = "${sessionScope.id }";		//회원 아이디
+                var npoint = 100;		//구매한 포인트
+                var p_pay =100;	// 결제 금액
+        		var p_con = "포인트 충전";
         console.log(money);
 
         IMP.request_pay({
-            pg: 'kakao',
+            pg: 'html5_inicis',
+            pay_method : 'card',	// 결제 수단
             merchant_uid: 'merchant_' + new Date().getTime(),
             name: '매치풋볼 : 포인트 충전',
-            amount: money,           
+            amount: 100,//.money,           
             buyer_name : 'aaa',<%-- '<%=id%>' --%>
-            buyer_tel : '0010'<%-- '<%=tel%>' --%>
+            buyer_tel : '010-0000-0000'<%-- '<%=tel%>' --%>
            
         }, function (rsp) {
             console.log(rsp);
@@ -85,25 +87,33 @@
                 msg += '상점 거래ID : ' + rsp.merchant_uid;
                 msg += '결제 금액 : ' + rsp.paid_amount;
                 msg += '카드 승인번호 : ' + rsp.apply_num;
-                //포인트 충전
-                //var id = $();   		//회원 아이디
-                //var pday = $(); 		//결제 일자
-                //var addpo = $();		//구매한 포인트
-                //var popr =$();	// 결제 금액
+           
+                alert("ajax실행전");
+                console.log("=====id"+p_id+"point"+npoint+"pay"+p_pay)
                 $.ajax({
-                    url: "user/mypage/pointcharge", //충전 금액값을 보낼 url 설정
+                    url: "pointcharge", //충전 금액값을 보낼 url 설정
                     type: "POST", 
                     dataType : "JSON",
                     data: {
-                        "amount" : money
+                        //db에 담을 값을 넣음
+                        p_id : p_id,
+                        p_pay : p_pay,
+                        npoint : npoint,  
+                        p_con : p_con
                     },
+                    success : function(response){
+                    	alert("ajax성공");
+                    },
+                    error:function(response){
+                    	alert("ajax에러");
+                    }
                 });
             } else {
                 var msg = '결제에 실패하였습니다.';
                 msg += '에러내용 : ' + rsp.error_msg;
             }
             alert(msg);
-            document.location.href="${pageContext.request.contextPath}/mypage/profile"; //alert창 확인 후 이동할 url 설정
+            //document.location.href="${pageContext.request.contextPath}/mypage/pay"; //alert창 확인 후 이동할 url 설정
         });
     });
 }
@@ -131,44 +141,53 @@
 									<p>
 									<table style="width: 100%">
 										<tr>
-											<td><input type="checkbox" name="cp_item" value="5000"></td>
-											<td>5000</td>
-											<td>보너스 쿠폰</td>
-											<td>\ &nbsp;5,000</td>
-										</tr>
-										<tr>
-											<td><input type="checkbox" name="cp_item" value="10000"></td>
-											<td>10000</td>
-											<td>보너스 쿠폰</td>
-											<td>\10,000</td>
-										</tr>
-										<tr>
-											<td><input type="checkbox" name="cp_item" value="15000"></td>
-											<td>15000</td>
-											<td>보너스 쿠폰</td>
-											<td>\15,000</td>
+											<th></th>
+											<th>point</th>
+											<th>coupon</th>
+											<th>결제 금액</th>
 										</tr>
 
-										<tr>
-											<td><input type="checkbox" name="cp_item" value="25000"></td>
-											<td>25000</td>
-											<td>보너스 쿠폰</td>
-											<td>\25,000</td>
-										</tr>
+										<tbody>
+											<tr>
+												<td><input type="checkbox" name="cp_item" value="5000"></td>
+												<td>5000</td>
+												<td>보너스 쿠폰</td>
+												<td>\ &nbsp;5,000</td>
+											</tr>
+											<tr>
+												<td><input type="checkbox" name="cp_item" value="10000"></td>
+												<td>10000</td>
+												<td>보너스 쿠폰</td>
+												<td>\10,000</td>
+											</tr>
+											<tr>
+												<td><input type="checkbox" name="cp_item" value="15000"></td>
+												<td>15000</td>
+												<td>보너스 쿠폰</td>
+												<td>\15,000</td>
+											</tr>
+
+											<tr>
+												<td><input type="checkbox" name="cp_item" value="25000"></td>
+												<td>25000</td>
+												<td>보너스 쿠폰</td>
+												<td>\25,000</td>
+											</tr>
 
 
-										<tr>
-											<td><input type="checkbox" name="cp_item" value="50000"></td>
-											<td>50000</td>
-											<td>보너스 쿠폰</td>
-											<td>\50,000</td>
-										</tr>
+											<tr>
+												<td><input type="checkbox" name="cp_item" value="50000"></td>
+												<td>50000</td>
+												<td>보너스 쿠폰</td>
+												<td>\50,000</td>
+											</tr>
+										</tbody>
 									</table>
 									<br>
-									<p style="color: #ac2925; ">최소 충전금액은
-										5,000원이며 최대 충전금액은 50,000원 입니다.</p>
-									<div align="right" style="margin-top: ">
-										<button type="submit" class="btn btn-primary"
+									<p style="color: #ac2925;">최소 충전금액은 5,000원이며 최대 충전금액은
+										50,000원 입니다.</p>
+									<div align="right" style="margin-top:">
+										<button type="button" class="btn btn-primary"
 											id="charge_kakao">충 전 하 기</button>
 									</div>
 								</div>

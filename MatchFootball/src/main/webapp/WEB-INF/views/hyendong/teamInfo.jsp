@@ -1,4 +1,4 @@
-w<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -24,33 +24,37 @@ w<%@ page language="java" contentType="text/html; charset=UTF-8"
 </style>
 </head>
 <body>
-	<ul class="hi">
-	  <c:if test="${sessionScope.id ne null }">
-			<li><a href="myTeamInfo?t_num=${member.t_num }">팀 정보</a></li>
+		<ul class="hi">
+			<c:if test="${sessionScope.id ne null }">
+				<li><a href="teamInfo?t_num=${sessionScope.t_num }">팀 정보</a></li>
 			</c:if>
 			<c:if test="${sessionScope.id eq null }">
-			<li><a href="teamMake">팀 생성</a></li>
+				<li><a href="teamMake">팀 생성</a></li>
 			</c:if>
-			<li><a href="teamGallery?t_num=${teamInfo.t_num }">팀갤러리</a></li>
-			<li><a href="teamNotice?t_num=${teamInfo.t_num }">팀 공지</a></li>
-			<li><a href="http://localhost/MatchFootball/teamInvite">팀 초대</a></li>
+			<li><a href="teamGallery?t_num=${sessionScope.t_num }">팀갤러리</a></li>
+			<li><a href="teamNotice?t_num=${sessionScope.t_num }">팀 공지</a></li>
+			<li><a href="teamInvite?t_num=${sessionScope.t_num }">팀 초대</a></li>
 			<li><a href="http://localhost/MatchFootball/teamList">팀 리스트</a></li>
-	</ul>
-	<form action="teamUpdate" method="get">
+		</ul>
 		<div align="center" style="padding-bottom: 606px">
 			<div>
 				<h1>팀 정 보</h1>
 			</div>
 			<hr />
 			<div style="float: left; margin-left: 30%">
+				<table class="table table-bordered">
+					<tr>
+						<th>${teamInfo.t_name}</th>
+					</tr>
+				</table>
 				<img class="size" src="images/${teamInfo.t_logo }"
 					class="img-thumbnail" width="350px" height="350px"> <input
 					type="text" name="t_num" value="${teamInfo.t_num }"
 					style="display: none" />
 				<table class="table table-bordered">
 					<tr>
-						<th scope="col">팀명</th>
-						<td>${teamInfo.t_name}</td>
+						<th scope="row">경기유형</th>
+						<td>${teamInfo.t_type }</td>
 						<th scope="col">연령대</th>
 						<td>${teamInfo.t_age }</td>
 					</tr>
@@ -67,10 +71,6 @@ w<%@ page language="java" contentType="text/html; charset=UTF-8"
 						<td>75%</td>
 					</tr>
 					<tr>
-						<th scope="row">경기유형</th>
-						<td colspan="3">${teamInfo.t_type }</td>
-					</tr>
-					<tr>
 						<th scope="row">팀 소개</th>
 						<td colspan="3">${teamInfo.t_info }</td>
 					</tr>
@@ -82,18 +82,31 @@ w<%@ page language="java" contentType="text/html; charset=UTF-8"
 					<thead>
 						<tr class="table-secondary">
 							<th scope="col">ID</th>
+							<th scope="col">이름</th>
+							<th scope="col">포지션</th>
 							<th scope="col">권한</th>
 						</tr>
 					</thead>
 					<c:if test="${teamInfo.t_hidden eq 'Y' }">
-						<tbody>
-							<c:forEach items="${teamMembers}" var="teamMembers">
-								<tr>
-									<td>${teamMembers.id }</td>
-									<td>${teamMembers.t_author }</td>
-								</tr>
-							</c:forEach>
-						</tbody>
+
+						<c:forEach items="${teamMembers}" var="teamMembers">
+							<tr>
+								<td>${teamMembers.id }</td>
+								<td>${memberss.name }
+								<td>${memberss.pos }
+								<td>${teamMembers.t_author }</td>
+								<td>
+								<form method="post">
+								<input type="text" value="${teamMembers.id }" name="id" style="display:none">
+								<input type="text" value="${members.t_num }" name="t_num" style="display:none">
+								<c:if test="${teamMembers.t_author eq '팀원' && updateButton.t_author eq '팀장'}">
+								<button type="submit" onclick="javascript: form.action='${pageContext.request.contextPath}/memberOut'">추방</button>
+								</c:if>
+								</form>
+								</td>
+							</tr>
+						</c:forEach>
+
 					</c:if>
 					<c:if test="${teamInfo.t_hidden ne 'Y' }">
 						<tbody align="center">
@@ -106,15 +119,30 @@ w<%@ page language="java" contentType="text/html; charset=UTF-8"
 			</div>
 			<div style="float: bottom">
 				<c:if test="${updateButton.t_author eq '팀장' }">
-				<button type="submit" class="btn btn-primary">팀 정보 변경</button>
+					<button type="submit" class="btn btn-primary"
+						onclick="location.href='teamUpdate?t_num=${teamInfo.t_num}'">팀 정보 변경</button>
 				</c:if>
+					<form action="teamListOut?t_num=${teamInfo.t_num }">
+					<input type="text" value="${teamInfo.t_num }" name="t_num" style="display:none">
+					<c:if test="${members.t_num ne null && updateButton.t_author ne '팀장'}">
+					<button type="submit">팀 탈퇴</button>
+					</c:if>
+					</form>
 			</div>
 		</div>
-	</form>
+
 	<form action="teamInviteInsert?t_num=${teamInfo.t_num}" method="post">
-			<c:if test="${members.t_num eq null}">
+		<c:if test="${members.t_num eq null}">
+			<input type="text" value=${sessionScope.id } name="id"
+				style="display: none">
+			<input type="text" value=${members.pos } name="i_pos"
+				style="display: none">
+			<input type="text" value=${members.lv } name="i_lv"
+				style="display: none">
+			<input type="text" value=${members.manner } name="i_manner"
+				style="display: none">
 			<button type="submit" class="btn btn-primary">팀 가입 신청</button>
-			</c:if>
+		</c:if>
 	</form>
 </body>
 </html>

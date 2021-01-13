@@ -83,14 +83,14 @@
 <body>
 	<ul class="hi">
 	  <c:if test="${sessionScope.id ne null }">
-			<li><a href="myTeamInfo?t_num=${teamInfo.t_num }">ÆÀ Á¤º¸</a></li>
+			<li><a href="teamInfo?t_num=${sessionScope.t_num }">ÆÀ Á¤º¸</a></li>
 			</c:if>
 			<c:if test="${sessionScope.id eq null }">
 			<li><a href="teamMake">ÆÀ »ý¼º</a></li>
 			</c:if>
-			<li><a href="teamGallery?t_num=${teamInfo.t_num }">ÆÀ°¶·¯¸®</a></li>
-			<li><a href="teamNotice?t_num=${teamInfo.t_num }">ÆÀ °øÁö</a></li>
-			<li><a href="http://localhost/MatchFootball/teamInvite">ÆÀ ÃÊ´ë</a></li>
+			<li><a href="teamGallery?t_num=${sessionScope.t_num }">ÆÀ°¶·¯¸®</a></li>
+			<li><a href="teamNotice?t_num=${sessionScope.t_num }">ÆÀ °øÁö</a></li>
+			<li><a href="teamInvite?t_num=${sessionScope.t_num }">ÆÀ ÃÊ´ë</a></li>
 			<li><a href="http://localhost/MatchFootball/teamList">ÆÀ ¸®½ºÆ®</a></li>
 	</ul>
 	<div align="center">
@@ -108,7 +108,7 @@
 				<pre>${teamNoticeInfo.t_date }</pre>
 			</div>
 			<br>
-			<input type="button" class="btn btn-primary" value="¸ñ·Ï" onclick="history.back(-1);">
+			<input type="button" class="btn btn-primary" value="¸ñ·Ï" onclick="location.href='teamNotice?t_num=${teamInfo.t_num}'">
 			
 			<c:if test="${updateButton.t_author eq 'ÆÀÀå' }">
 			<form action="teamNoticeUpdate">

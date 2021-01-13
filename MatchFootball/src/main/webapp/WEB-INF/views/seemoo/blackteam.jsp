@@ -16,22 +16,21 @@
 <script>
 $(function(){
 	blackteamList();
-	//teamUpdate();
+	blackUpdate();
 	//blackteamDelete();
 });
 
-/* function teamUpdate() {
+function blackUpdate() {
 	//업데이트 버튼 클릭
-	$('#tmain').on('click','#btnUpdate',function(){
+	$('#body').on('click','#btnUpdate',function(){
 		var t_num = $(event.target).closest('tr').find('#hidden_t_num').val();
-		var t_author = $(event.target).closest('tr').find("#t_author").val();
 		var t_name = $(event.target).closest('tr').find("#hidden_t_name").val();
-		console.log(t_num);
-		var result = confirm(t_name +" 팀를 업데이트 하시겠습니까?");
+		var author = $(event.target).closest('tr').find("#author").val();
+		var result = confirm(t_name +" 을 복귀 하시겠습니까?");
 		if(result) {
 			$.ajax({
 				url:'../teamupdate',
-				data : {t_num : t_num, t_author: t_author},
+				data : {t_num : t_num, author: author},
 				dataType:'json',
 				error:function(xhr,status,msg){
 					console.log("상태값 :" + status + " Http에러메시지 :"+msg);
@@ -39,8 +38,8 @@ $(function(){
 			});
 		}//if
 	}); //업데이트 버튼 클릭
-}//userupdate
- */
+}//blackupdate
+
 //블랙팀 목록 조회 요청
 function blackteamList() {
 	$.ajax({
@@ -60,21 +59,24 @@ function blackteamListResult(data) {
 	$("#blackTeam").empty();
 	$.each(data,function(idx,item){
 		$('<tr>')
-		.append($('<td>').html(item.t_num))    					//No.
+		.append($('<td class="tnum">').html(item.t_num))    	//No.
 		.append($('<td>').html(item.t_name))					//팀이름
 		.append($('<td>').html(item.t_level))   				//팀레벨
+		.append($('<td>').html(item.t_wn))      				//팀승률
 		.append($('<td>').html(									//팀권한
-				$('<select id="t_author" class=\'t_author\'> '+
+				$('<select id="author" class=\'author\'> '+
 				'<option selected value="">선택</option>'+
 				'<option value="team">팀</option>'+
 				'<option value="black">블랙</option>'+
-				'</select>').val(item.t_author)))
-		.append($('<td>').html(item.t_m))		  				//팀매너
+				'</select>').val(item.author)))
+		.append($('<td>').html(item.t_m))						//팀매너점수
+		.append($('<td>').html(item.t_info))    				//팀소개
 		.append($('<td>').html(item.stopdate))					//정지날짜
-		.append($('<td>').html(item.stopreason))    			//블랙사유
 		.append($('<td>').html('<button id=\'btnUpdate\'class="btn btn-success">팀복귀</button>'))
 		.append($('<td>').html('<button id=\'btnDelete\'class="btn btn-primary">팀삭제</button>'))
 		.append($('<input type=\'hidden\' id=\'hidden_t_num\'>').val(item.t_num))
+		.append($('<input type=\'hidden\' id=\'hidden_t_name\'>').val(item.t_name))
+		.append($('<input type=\'hidden\' id=\'hidden_author\'>').val(item.author))
 		.appendTo("#blackTeam");
 	});//each
 	  $('#dataTable').DataTable();
@@ -137,14 +139,15 @@ function deleteResult(data){
 									<thead align="center">
 										<tr>
 											<th style="width: 10px;">No.</th>
-											<th style="width: 300px;">팀이름</th>
+											<th>팀이름</th>
 											<th>팀레벨</th>
+											<th>팀승률</th>
 											<th>팀권한</th>
 											<th>팀매너점수</th>
-											<th>정지날짜</th>
-											<th style="width: 500px;">블랙사유</th>
-											<th></th>
-											<th></th>
+											<th>팀소개</th>
+											<th>정지기간</th>
+											<th style="width: 90px;"></th>
+											<th style="width: 90px;"></th>
 										</tr>
 									</thead>
 									<tfoot align="center">
@@ -152,10 +155,11 @@ function deleteResult(data){
 											<th>No.</th>
 											<th>팀이름</th>
 											<th>팀레벨</th>
+											<th>팀승률</th>
 											<th>팀권한</th>
 											<th>팀매너점수</th>
-											<th>정지날짜</th>
-											<th>블랙사유</th>
+											<th>팀소개</th>
+											<th>정지기간</th>
 											<th></th>
 											<th></th>
 										</tr>

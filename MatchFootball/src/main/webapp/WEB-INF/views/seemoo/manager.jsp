@@ -16,12 +16,11 @@
 <script>
 $(function(){
 	managerList();
-	managerSelect();
-	//managerUpdate();
-	//managerDelete();
+	//managerSelect();
+	managerUpdate();
 });
 
-//사용자 조회 요청
+/* //사용자 조회 요청
 function managerSelect() {
 	//조회 버튼 클릭
 	$('body').on('click','#btnSelect',function(){
@@ -38,17 +37,15 @@ function managerSelect() {
 			success:userSelectResult
 		});
 	}); //조회 버튼 클릭
-}//userSelect
+}//managerSelect */
 
-//사용자 조회 응답
+/* //사용자 조회 응답
 function userSelectResult(user) {
 	$('input:text[name="id"]').val(user.id);
 	$('input:text[name="name"]').val(user.name);
 	$('input:text[name="password"]').val(user.password);
 	$('select[name="role"]').val(user.role).attr("selected", "selected");
-}//userSelectResult
-
-
+}//managerSelectResult */
 
 //사용자 목록 조회 요청
 function managerList() {
@@ -76,61 +73,41 @@ function managerListResult(data) {
 				$('<select id="author" class=\'author\'> '+
 				'<option selected value="">선택</option>'+
 				'<option value="manager">매니저</option>'+
+				'<option value="user">회원</option>'+
 				'<option value="managerwait">매니저대기</option>'+
 				'<option value="managerstop">매니저정지</option>'+
 				'</select>').val(item.author)))
 		.append($('<td>').html(item.comm))    	//매니저심판내역
 		.append($('<td>').html(item.point))    	//매니저포인트
 		.append($('<td>').html('<button id=\'btnSelect\'class="btn btn-success">상세조회</button>'))
-		.append($('<td>').html('<button id=\'btnDelete\'class="btn btn-danger">매니저삭제</button>'))
+		.append($('<td>').html('<button id=\'btnUpdate\'class="btn btn-danger">권한수정</button>'))
 		.append($('<input type=\'hidden\' id=\'hidden_userId\'>').val(item.id))
+		.append($('<input type=\'hidden\' id=\'hidden_userId\'>').val(item.author))
 		.appendTo('#manager_main');
 		console.log(">> "+item.author);
 	});//each
 	$('#dataTable').DataTable();
-}//userListResult
+}//managerListResult
 
-/* function userUpdate() {
+function managerUpdate() {
 	//업데이트 버튼 클릭
 	$('main').on('click','#btnUpdate',function(){
 		var userId = $(event.target).closest('tr').find('#hidden_userId').val();
 		var author = $(event.target).closest('tr').find("#author").val();
-		var author2 = $(event.target).closest('tr').find("#author2").val();
-		var result = confirm(userId +" 사용자를 업데이트 하시겠습니까?");
+		var result = confirm(userId +"를 "+ author +"로 수정 하시겠습니까?");
 		if(result) {
 			$.ajax({
-				url:'../userupdate',
-				data : {id : userId, author: author, author2: author2},
+				url:'../managerupdate',
+				data : {id : userId, author: author},
 				dataType:'json',
 				error:function(xhr,status,msg){
-					//console.log("상태값 :" + status + " Http에러메시지 :"+msg);
-					console.log("dddd");
+					console.log("상태값 :" + status + " Http에러메시지 :"+msg);
 				}, success: location.reload() 
 			});
 		}//if
 	}); //업데이트 버튼 클릭
-}//userupdate */
+}//managerupdate
 
-/* function userDelete() {
-	//삭제 버튼 클릭
-	$('main').on('click','#btnDelete',function(){
-		var userId = $(event.target).closest('tr').find('#hidden_userId').val();
-		var result = confirm(userId +" 사용자를 정말로 삭제하시겠습니까?");
-		if(result) {
-			console.log("아이디값: "+userId)
-			$.ajax({
-				url:'../userdelete',  
-				contentType:'application/json;charset=utf-8',
-				dataType:'json',
-				type : 'GET',
-				data :{id : userId},
-				error:function(xhr,status,msg){
-					console.log("상태값 :" + status + " Http에러메시지 :"+msg);
-				}, success: location.reload()
-			});      
-		}//if
-	}); //삭제 버튼 클릭
-}//userDelete */
 </script>
 
 
@@ -157,14 +134,14 @@ function managerListResult(data) {
 							 <a target="_blank" href="https://www.kfa.or.kr/img_src/data_rule/2016futsal_laws.pdf">공식 경기규칙</a>
 						</div>
 					</div>
-					
+<div style="text-align: center;">					
 	<div class="col-md-7 col-lg-8 col-xl-8">
 		<div class="page-header bordered">
 			<h1 id="item-2"><small>매니저 상세프로필</small></h1>
 		</div>
 		<div class="row gutters-sm"> <br>
 			<div class="col-md-5 mb-3">
-				<div class="card" style="height:525px;">
+				<div class="card" style="height:409px;">
 					<div class="card-body">
 						<div class="d-flex flex-column align-items-center text-center"> <br> 
 						<img src="" alt="Admin" class="rounded-circle" width="150">
@@ -213,7 +190,7 @@ function managerListResult(data) {
 			</div>
 		</div>
 	</div>
-					
+</div>					
 					<!-- 매니저현황 -->
 					<div class="card mb-4">
 						<div class="card-header">

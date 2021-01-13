@@ -39,15 +39,15 @@ a {
 <body>
 	<div style="padding-bottom: 70px; height: 91%">
 		<ul class="hi">
-			<c:if test="${sessionScope.id ne null }">
-			<li><a href="myTeamInfo?t_num=${member.t_num }">ÆÀ Á¤º¸</a></li>
+	  <c:if test="${sessionScope.id ne null }">
+			<li><a href="teamInfo?t_num=${sessionScope.t_num }">ÆÀ Á¤º¸</a></li>
 			</c:if>
 			<c:if test="${sessionScope.id eq null }">
 			<li><a href="teamMake">ÆÀ »ý¼º</a></li>
 			</c:if>
-			<li><a href="teamGallery?t_num=${member.t_num }">ÆÀ°¶·¯¸®</a></li>
-			<li><a href="teamNotice?t_num=${teamInfo.t_num }">ÆÀ °øÁö</a></li>
-			<li><a href="http://localhost/MatchFootball/teamInvite">ÆÀ ÃÊ´ë</a></li>
+			<li><a href="teamGallery?t_num=${sessionScope.t_num }">ÆÀ°¶·¯¸®</a></li>
+			<li><a href="teamNotice?t_num=${sessionScope.t_num }">ÆÀ °øÁö</a></li>
+			<li><a href="teamInvite?t_num=${sessionScope.t_num }">ÆÀ ÃÊ´ë</a></li>
 			<li><a href="http://localhost/MatchFootball/teamList">ÆÀ ¸®½ºÆ®</a></li>
 		</ul>
 		<div align="center">
@@ -73,7 +73,7 @@ a {
 						</div>
 						<div class="visit">${teamList.t_type}</div>
 						<div class="visit">
-							&nbsp;&nbsp;&nbsp;&nbsp;ÀÎ¿ø&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${count.team}
+							&nbsp;&nbsp;&nbsp;&nbsp;ÀÎ¿ø&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							/ ${teamList.t_max}<br>Æò±Õ
 							¿¬·É&nbsp;&nbsp;&nbsp;${teamList.t_age }<br>°æ±â
 							À¯Çü&nbsp;&nbsp;&nbsp;${teamList.t_type }

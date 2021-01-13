@@ -94,10 +94,12 @@ var newEvent = function (start, end, eventType) {
             type: "get",
             url: "../../fielddetailinsert",
             data: {
+				f_id:f_id,
 				starttime:editStart.val(),
 				endtime:editEnd.val(),
 				comm:editDesc.val(),
 				type:editType.val(),
+				id:"${sessionScope.id}",
 				backgroundcolor:editColor.val(),
 				title:editTitle.val()
 				

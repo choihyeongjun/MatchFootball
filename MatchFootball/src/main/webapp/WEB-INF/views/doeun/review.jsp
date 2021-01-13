@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -82,61 +83,35 @@
 
 								<div id="tr-template">
 									<div class="card">
+									<c:forEach items="${p_mat}" var="mat">
 										<div class="media mt-0">
 											<div class="media-left">
 												<img class="media-object rounded-circle" src="#" width="100"
 													height="100" alt="">
 											</div>
+										<input type="hidden" value="${mat.m_id}" name="m_id"><br>
 											<div class="media-body row" style="position: relative">
 												<div class="main-riw col-12 col-sm-6 col-md-8"
 													data-photo={{userPhoto}} data-hostphoto={{hostphoto}}>
-													<h6 class="media-heading riw-cont" id="aaa-{{no}}"
-														data-reply="{{reply}}" data-hostname={{hostname}}
-														data-name={{name}}>{{contents}}</h6>
+													
 													<p class="text-muted">
-														<i class="fas fa-map-marker-alt"></i>
+														<i class="fas fa-map-marker-alt"> ${mat.f_address}</i>
 													</p>
-													<p class="text-muted">작성일 : {{createdDate}}</p>
+													<p class="text-muted" >경기일 : ${mat.m_date} </p>
+													
 												</div>
 												<div class="riw-btn col-6 col-md-4" data-no={{no}}
 													data-grd={{grd}}>
-													<a href="#" data-toggle="modal" data-target="#leadform"
-														class="reply-complete"></a> <a
-														class="btn btn-link riw-delete" href="#"
+													 <a	class="btn btn-link riw-delete" href="#"
 														style="position: absolute; bottom: 0">삭제</a>
 												</div>
 											</div>
 										</div>
+										</c:forEach>
 									</div>
 
 								</div>
 
-								<div id="page-template">
-									<nav>
-										<ul class="pagination pagination-centered">
-											<li class="page-item {{#if disabled}}disabled{{/if}}"><a
-												class="page-link" href="#" onclick="loadList({{n}})">&laquo;&laquo;</a></li>
-
-											<li id="prevPage"
-												class="page-item {{#if disabled}}disabled{{/if}}"><a
-												class="page-link" href="#" onclick="loadList({{n}})">&laquo;</a></li>
-
-											<li class="page-item {{#if active}}active{{/if}}"><a
-												class="page-link" data-no='{{n}}' href="#"
-												onclick="loadList({{n}})">{{n}}</a></li>
-
-											<li id="nextPage"
-												class="page-item {{#if disabled}}disabled{{/if}}"><a
-												class="page-link" href="#" onclick="loadList({{n}})">&raquo;</a></li>
-
-											<li class="page-item {{#if disabled}}disabled{{/if}}"><a
-												class="page-link" href="#" onclick="loadList({{n}})">&raquo;&raquo;</a></li>
-										</ul>
-									</nav>
-								</div>
-
-								<div class="card-list"></div>
-								<div class="pagination-menu"></div>
 							</div>
 						</div>
 					</div>

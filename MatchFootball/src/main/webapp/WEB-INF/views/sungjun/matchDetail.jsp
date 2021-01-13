@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,21 +44,6 @@ a {
 	bottom: 100px;
 	border-radius: 100px;
 }
-.employ1 {
-	bottom: 0;
-	width: 320px;
-	padding: 20px 20px;
-	text-align: center;
-	z-index: 2;
-	width: 320px;
-	left: 0;
-	right: 0;
-	margin: auto;
-	bottom: 100px;
-	border-radius: 100px;
-	background-color: #ddd;
-	color: #999;
-}
 
 .lets {
 	background-color: white;
@@ -98,7 +82,7 @@ a {
 			$(".qqqq a").removeClass("ss");
 			$(event.target).addClass("ss");
 		})
-
+		
 		/* 신청 모달  */
 		$(".p1").on("click", function() {
 			var m_no = $(this).data("num");
@@ -112,6 +96,8 @@ a {
 			});
 		})
 	})
+	
+		
 </script>
 </head>
 <body>
@@ -126,22 +112,21 @@ a {
 					href="#playin"> 주의사항</a> <a href="#playm"> 매치 안내</a>
 			</div>
 			<div>
-				<h3 style="text-align: left;">${p_match.m_date}
-					${p_match.m_hour}</h3>
+				<h3 style="text-align: left;">2020년 12월 24일 12:00</h3>
 			</div>
 			<div style="align: left;">
-				<h2 style="color: #08088A; font-weight: bold;">${p_match.f_name}</h2>
+				<h2 style="color: #08088A; font-weight: bold;">성준 풋살장</h2>
 			</div>
 
 			<div>
-				<h5>${p_match.f_address}</h5>
+				<h5>대구 북구 태전동 333-3</h5>
 			</div>
 			<div>
 				<h6 style="color: #999;">참가비</h6>
 			</div>
 			<div id="play"
 				style="border-bottom: 1px solid #ddd; padding-bottom: 30px;">
-				<h5 style="color: #08088A; font-weight: bold;">${p_match.price}원</h5>
+				<h5 style="color: #08088A; font-weight: bold;">10000원</h5>
 			</div>
 			<div style="border-bottom: 1px solid #ddd; padding-bottom: 30px;">
 				<div>
@@ -149,8 +134,8 @@ a {
 						<h4 style="font-weight: bold; margin: 30px;">진행방식</h4>
 					</div>
 					<div>
-						<a>5vs5</a> &nbsp;&nbsp; <a>남성매치</a>&nbsp;&nbsp; <a>Lv ${p_match.lv}</a>&nbsp;&nbsp;
-						<a>풋살화</a>&nbsp;&nbsp; <a>max ${p_match.p_max}명</a>
+						<a>5vs5</a> &nbsp;&nbsp; <a>남성매치</a>&nbsp;&nbsp; <a>Lv 1~2</a>&nbsp;&nbsp;
+						<a>풋살화</a>&nbsp;&nbsp; <a>max 15</a>
 					</div>
 				</div>
 			</div>
@@ -228,17 +213,9 @@ a {
 		</div>
 	</div>
 	<div class="lets">
-		<c:if test="${p_match.p_max > p_match.f}">
-			<div class="employ">
-			<p class="p1" data-num="${p_match.m_no }">매치 신청</p>
+		<div class="employ">
+			<p class="p1" data-num="${p_matchVO.m_no }">매치 신청</p>
 		</div>
-		</c:if>
-		
-		<c:if test="${p_match.p_max <= p_match.f}">
-			<div class="employ1">
-			<p class="p1">마감</p>
-		</div>
-		</c:if>
 	</div>
 	<!--개인매치 신청 모달  -->
 	<div class="modal fade" id="matchaplly" tabindex="-1"

@@ -50,21 +50,20 @@
 }
 </style>
 <script>
-
-
-$("#reviewMsg").on("click", function(event) {
-   var modal = $('#exampleModal')
-   var no = $(event.target).data("no");
-
-   $.ajax({
-      url : 'reviewMsg?no=' + no,//no 값 같이 넘김
-//      dataType : 'html',//html은 기본으로 dataType안해줘도 됨
-      success : function(result) {
-         modal.find('.modal-body').html(result) //title값
-         modal.modal('show');
-      }
-   });
-})
+	$(function() {
+		$(".reviewMsg").on("click", function(event) {
+			var modal = $('#MsgModal')
+			var m_no = $(this).data("no");
+			$.ajax({
+				url : 'reviewMsg?m_no=' + m_no,
+				//      dataType : 'html',//html은 기본으로 dataType안해줘도 됨
+				success : function(result) {
+					modal.find('#viewMsg').html(result)
+					modal.modal('show');
+				}
+			});
+		})
+	})
 
 	function replyMsg() {
 		$.ajax({
@@ -74,12 +73,11 @@ $("#reviewMsg").on("click", function(event) {
 			error : function(xhr, status, msg) {
 				alert("상태값 :" + status + "에러" + msg);
 			},
-			success : function(result){
+			success : function(result) {
 				alert("성공적으로 발송 되었습니다.")
 			}
 		});
 	}//replyMsg
-	
 </script>
 </head>
 
@@ -93,7 +91,7 @@ $("#reviewMsg").on("click", function(event) {
 					<div class="col-md-7 col-lg-8 col-xl-8"
 						style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;">
 						<div class="page-header bordered">
-							
+
 
 							<h1 id="item-2">
 								메세지<small>MESSAGE</small>
@@ -105,12 +103,13 @@ $("#reviewMsg").on("click", function(event) {
 						</div>
 						<div class="row" style="width: auto">
 							<div style="margin-top: 15px;">
-								<a href="../message"
+								<a href="../message" data-toggle="modal" data-target="#leadform"
 									class="btn btn-primary float-right send-message">메세지 보내기</a>
 							</div>
 							<div style="margin-top: 15px;">
 								<table border="1" style="width: 100%">
 									<tr>
+										<td></td>
 										<td><input type="checkbox"></td>
 										<th>날짜</th>
 										<th>제목</th>
@@ -121,18 +120,19 @@ $("#reviewMsg").on("click", function(event) {
 									<tbody id=toMsg>
 										<c:forEach items="${msg}" var="msg">
 											<tr>
-												<td><input type='hidden' id='hidden_mno' value="${msg.m_no}"><input name="to_id" value="${msg.to_id}" type="text"
-								style="display: none;"></td>
+												<td><input name="to_id" value="${msg.to_id}"
+													type="text" style="display: none;"></td>
 												<td><input type='checkbox' id="mchk"></td>
 												<td><input type="text" name="s_date"
 													value="${msg.s_date}"></td>
-												<td id="reviewMsg"><input type="text" name="m_title"
-													value="${msg.m_title}" id="m_title" onclick="#exampleModal" readonly></td>
-												<td><input type="text" name="send_id"
-													value="${msg.send_id}"></td>
-												<td><button type="button" class="btn btn-primary float-right send-message" id='delMsg' onclick="delMsg()">삭제하기</button></td>
+												<td><a class="reviewMsg" data-toggle="modal"
+													data-target="#MsgModal" data-num="${msg.m_no}">${msg.m_title}</a></td>
+												<td><a class="reviewMsg" data-toggle="modal"
+													data-target="#MsgModal" data-num="${msg.m_no}">${msg.send_id}</a></td>
+												<td><button type="button"
+														class="btn btn-primary float-right send-message"
+														id='delMsg' onclick="delMsg()">삭제하기</button></td>
 											</tr>
-
 										</c:forEach>
 									</tbody>
 								</table>
@@ -153,34 +153,22 @@ $("#reviewMsg").on("click", function(event) {
 		<!-- 위로가기버튼 -->
 		<i class="fa fa-angle-up"></i>
 	</button>
-<!-- Modal -->
-   <div class="modal fade" id="exampleModal" tabindex="-1"
-      aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-         <div class="modal-content">
-            <div class="modal-header">
-               <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-               <button type="button" class="close" data-dismiss="modal"
-                  aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-               </button>
-            </div>
-            <div class="modal-body">
-            ...               
-            </div>
-            <div class="modal-footer">
-               <button type="button" class="btn btn-secondary"
-                  data-dismiss="modal">Close</button>
-               <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-         </div>
-      </div>
-   </div>
- 
+	<!-- Modal -->
+	<div class="modal fade" id="MsgModal" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+
+				<div class="modal-body" id="viewMsg">..</div>
+
+			</div>
+		</div>
+	</div>
+
 	<script>
-	function goPage(q) {
-		location.href = "msg?page=" + q;
-	}
+		function goPage(q) {
+			location.href = "msg?page=" + q;
+		}
 	</script>
 </body>
 
