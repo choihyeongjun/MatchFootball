@@ -19,12 +19,12 @@ $(function(){
 	
 	noticeInsert();
 
-	//noticeUpdate();
+	noticeUpdate();
 	
-	//init();
+	init();
 });
 
-/* //초기화
+//초기화
 function init() {
 	//초기화 버튼 클릭
 	$('#btnInit').on('click',function(){
@@ -32,7 +32,7 @@ function init() {
 			this.reset();
 		});
 	});
-}//init */
+}//init
 
 //사용자 삭제 요청
 function noticeDelete() {
@@ -57,7 +57,7 @@ function noticeDelete() {
 	}); //삭제 버튼 클릭
 }//noticeDelete
 
-/* //수정 요청
+//수정 요청
 function noticeUpdate() {
 	//수정 버튼 클릭
 	$('#btnUpdate').on('click',function(){
@@ -79,7 +79,7 @@ function noticeUpdate() {
 		    }
 		});
 	});//수정 버튼 클릭
-}//userUpdate */
+}//userUpdate
 
 //등록 요청
 function noticeInsert(){
@@ -93,9 +93,10 @@ function noticeInsert(){
 		    //data: JSON.stringify({ id: id, name:name,password: password, role: role }),
 		    data : $("#form1").serialize(),	
 		    success: function(response) {
-		    	if(response == true) {
+		    	if(response != null) {
 		    		alert('등록 되었습니다.');
-		    		noticeList();
+		    		//noticeList();
+		    		location.reload();
 		    	}
 		    }, 
 		    error:function(xhr, status, message) { 
@@ -122,7 +123,7 @@ function noticeList() {
 //조회 요청
 function noticeSelect() {
 	//조회 버튼 클릭
-	$('.body').on('click','#btnSelect',function(){
+	$('body').on('click','#btnSelect',function(){
 		var n_no = $(this).closest('tr').find('#hidden_userId').val();
 		//특정 사용자 조회
 		$.ajax({
@@ -145,15 +146,15 @@ function noticeSelectResult(notice) {
 	$('input:text[name="n_comm"]').val(user.password);
 }//userSelectResult
  */
-
-	//사용자 조회 응답
-	function noticeSelectResult(notice) {
-		console.log(notice);
-		$('input:text[name="n_title"]').val(notice.n_title);
-	    $('#la').html(notice.nq_file);
-		$('#n_no').val(notice.n_img);
-		$('#summernote').summernote('code',notice.n_comm);
-	}//nqSelectResult
+ 
+ //사용자 조회 응답
+function noticeSelectResult(notice) {
+	console.log(notice);
+	$('input:text[name="n_title"]').val(notice.n_title);
+    $('#la').html(notice.n_img);
+	$('#n_no').val(notice.n_no);
+	$('#summernote').summernote('code',notice.n_comm);
+}//nqSelectResult
  
 //사용자 목록 조회 응답
 function noticeListResult(data) {
@@ -170,8 +171,10 @@ function noticeListResult(data) {
 		.append($('<input type=\'hidden\' id=\'hidden_userId\'>').val(item.n_no))
 		.appendTo($('#noti'));
 	});//each
-	$('#dataTable').DataTable()
+	table = $('#dataTable').DataTable()
 }//noticeListResult
+
+var table;
 </script>
 
 <script src="${pageContext.request.contextPath}/resources/seemoo/notice/summernote/js/summernote/summernote-lite.js"></script>

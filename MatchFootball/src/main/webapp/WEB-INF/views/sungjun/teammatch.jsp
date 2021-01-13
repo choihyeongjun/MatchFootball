@@ -52,6 +52,7 @@
 	display: inline-block;
 	font-size: 12px;
 	margin: 4px 2px;
+	cursor: pointer;
 }
 
 img {
@@ -79,23 +80,6 @@ li {
 	margin-bottom: 100px;
 }
 
-.lista {
-	display: flex;
-	align-items: center;
-}
-
-.listl {
-	border-bottom: 1px solid #ddd;
-}
-
-.m-im-t {
-	font-size: 14px;
-	color: #999;
-	margin-bottom: 10px;
-	align-items: center;
-	justify-content: flex-start;
-	flex-wrap: wrap;
-}
 
 p {
 	margin: 0;
@@ -127,7 +111,6 @@ p {
 .ss {
 	background-color: #314d9f;
 	color: white;
-	c: if>;
 	width: 130px;
 	border-radius: 50px;
 	padding-top: 7px;
@@ -142,6 +125,35 @@ p {
 	text-align: center;
 	padding: 10px;
 }
+/* 팀로고랑 승패 이름   */
+.lista {
+	align-items: center;
+	cursor: pointer;
+	display: flex;
+	border-bottom: 1px solid #ddd;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+}
+.m-im-t {
+	margin: 10px;
+	align-items: center;
+	justify-content: flex-start;
+	flex-wrap: wrap;
+}
+.m-im-t .wnwnwn{
+font-size: 14px;
+	color: #999;
+	margin-bottom: 10px;
+	align-items: center;
+	justify-content: flex-start;
+	flex-wrap: wrap;
+}
+.tlwn {
+	align-items:center;
+	padding-right: 15px;
+	 width: 25%; 
+	display: flex;
+}
 </style>
 <script>
 $(function() {
@@ -154,37 +166,39 @@ $(function() {
 </script>
 </head>
 <body>
-	<div class="container"
+	<div class="con"
 		style="backgroundcolor: white; width: 100%; flex: 1;">
 		<!-- 사진  -->
-		<div align="center" style="margin: 40px;">
+		<div align="center" style=" background-color: #fafafa; border-bottom: 1px solid #ddd;">
 			<div id="carouselExampleControls" class="carousel slide"
-				data-ride="carousel">
-				<div class="carousel-inner">
+				data-ride="carousel" >
+				
+				<div class="carousel-inner" style="padding: 40px;">
+				
 					<div class="carousel-item active">
-						<iframe width="929" height="520"
+						<iframe width="629px" height="420px"
 							src="https://www.youtube.com/embed/GKz7d5Wx77s" frameborder="0"
 							allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 							allowfullscreen></iframe>
 					</div>
 					<div class="carousel-item">
-						<img src="resources/img/11.jpg" class="d-block w-100" alt="..."
-							width="929" height="520">
+						<img src="resources/img/11.jpg" class="d-block w-10" alt="..."
+							width="629px" height="420px">
 					</div>
 					<div class="carousel-item">
-						<img src="resources/img/22.jpg" class="d-block w-100" alt="..."
-							width="929" height="520">
+						<img src="resources/img/22.jpg" class="d-block w-10" alt="..."
+							width="629px" height="420px">
 					</div>
 					<div class="carousel-item">
-						<img src="resources/img/33.jpg" class="d-block w-100" alt="..."
-							width="929" height="520">
+						<img src="resources/img/33.jpg" class="d-block w-10" alt="..."
+							width="629px" height="420px">
 					</div>
 					<div class="carousel-item">
-						<img src="resources/img/44.jpg" class="d-block w-100" alt="..."
-							width="929" height="520">
+						<img src="resources/img/44.jpg" class="d-block w-10" alt="..."
+							width="629px" height="420px">
 					</div>
 				</div>
-				<a class="carousel-control-prev" href="#carouselExampleControls"
+				 <a class="carousel-control-prev" href="#carouselExampleControls"
 					role="button" data-slide="prev"> <span
 					class="carousel-control-prev-icon" aria-hidden="true"></span> <span
 					class="sr-only">Previous</span>
@@ -192,14 +206,12 @@ $(function() {
 					role="button" data-slide="next"> <span
 					class="carousel-control-next-icon" aria-hidden="true"></span> <span
 					class="sr-only">Next</span>
-				</a>
+				</a> 
 			</div>
 		</div>
-		<!--날 짜 선 택  -->
 
 		<!-- 클래스명은 변경하면 안 됨 -->
-		<hr>
-		<div class="swiper-container" style="margin: 40px">
+		<div class="swiper-container" style="margin: 0 250px">
 
 			<div class="swiper-wrapper" style="cursor: point;">
 				<c:set var="week" value="${cal.getIDayOfWeek()}" />
@@ -209,7 +221,7 @@ $(function() {
 					<div class="swiper-slide" style="hover: #314d9f; cursor: point;">
 						<fmt:formatNumber var="no" minIntegerDigits="2" value="${i}" />
 
-						<a href="match?m_date=${date}-${no}">
+						<a href="teammatch?m_date=${date}-${no}">
 							<div class="aa"
 								style="<c:if test="${i == m_dat }">background-color:#314d9f; color:white;</c:if>;">
 
@@ -253,40 +265,55 @@ $(function() {
 			<!-- 페이징 -->
 			<div class="swiper-pagination"></div>
 		</div>
-
-
 		<!-- 매치 정보  -->
-		<div>
+		<div style="margin: 0 250px">
 			<div style="display: flex; justify-content: space-between;">
-				<div class="button_match">
-					<p>매치 리스트</p>
+				<div class="tmb">
+					<a href="#">팀 매치 등록</a>
 				</div>
 				<div>
-					<span type="button" class="button_match">모든 매치 <i
-						class="fab fa-sistrix"></i></span>
+					<!--아작스로 불러오기!~~!~ㄴ  -->
+					<span class="button_match"><a>모든 매치 <i
+							class="fab fa-sistrix"></i></a></span>
 				</div>
 			</div>
 
+
 			<ul style="margin-bottom: 50px;">
-				<c:forEach var="p_match" items="${p_matchVO }">
-					<li class="listl"><a class="lista" style="cursor: pointer;"
-						href="matchDetail?m_no=${p_match.m_no }">
-							<div style="text-align: center; width: 10%; font-weight: bold;">
-								<p>${p_match.m_hour }</p>
+				<c:forEach var="teammatch" items="${teammatch }">
+					<li class="listl"><a class="lista"
+						href="teammatchDetail?m_no=${teammatch.m_no }&t_num=${teammatch.t_num}">
+							<div class="tlwn" >
+								<div style="margin: 10px; ">
+									<img alt="nope"
+										src="${pageContext.request.contextPath}/resources/img/${teammatch.t_logo}"
+										style="width: 70px; height: 70px; border-radius: 50%; marging: 5px;">
+								</div>
+									<div class="m-im-t" >
+										<p style="font-weight: bold;font-size:20px;text-align: center;">${teammatch.t_name }</p>
+										<p class="wnwnwn" style="font-size: 15px">2전 1승 1무 1패</p>
+										<input type="hidden" value="${teammatch.m_no }" />
+										<input type="hidden" value="${teammatch.t_num }" />
+									</div>
 							</div>
-							<div class="nameli" style="font-size: 16px; width: 80%;">
-								<div>
-									<h3>${p_match.f_name }</h3>
-								</div>
-								<div class="m-im-t">
-									<span>⦁ ${p_match.m_type } 매치</span><span>·
-										${p_match.p_max }</span> <span>레벨${p_match.lv }Lv</span> <input
-										type="hidden" value="${p_match.m_no }">
-								</div>
+
+							<div style="width: 20%; margin:5px;">
+								<p>⦁날짜 : ${teammatch.m_date } </p>
+								<p>⦁시간 : ${teammatch.m_hour }</p>
+							</div>
+							<div style="width: 30%; margin:5px;">
+								<p>⦁유형 : ${teammatch.mtype }</p>
+								<p>⦁장소 : ${teammatch.f_name }</p>
+								<p>⦁팀원 : ${teammatch.mtype }명</p>
+								<p><input value="${teammatch.t_num }" style="display:none"></p>
 							</div>
 							<div style="width: 20%;">
-								<p class="ap-info" style="">신청 가능</p>
-								<!-- <p class="ap-info" style="">마감</p> -->
+								<%-- <c:if test="${teammatch.p_max > teammatch.f}"> --%>
+								<p class="ap-info">신청 가능</p>
+								<%-- </c:if> --%>
+								<%-- <c:if test="${teammatch.p_max <= teammatch.f}"> --%>
+								<!-- <p class="app-info">마감</p> -->
+								<%-- </c:if> --%>
 							</div>
 					</a></li>
 				</c:forEach>

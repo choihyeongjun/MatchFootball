@@ -182,9 +182,10 @@ public class AdminController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/noticeinsert", method = RequestMethod.POST) //입력
-	public boolean noticeinsert(NoticeVO vo, Model model)  {
+	public NoticeVO noticeinsert(NoticeVO vo, Model model)  {
 		 seemoomapper.noticeinsert(vo);
-		 return true;
+		 vo = seemoomapper.noticeselect(vo);
+		 return vo;
 	}
 	
 	@ResponseBody
@@ -209,7 +210,7 @@ public class AdminController {
 	}
 	
 //	---------------------------------------------------------------------------------------------------------------------
-
+	
 	@RequestMapping("/admin/match") // 매치 페이지
 	public String match() {
 		return "seemoo/match";

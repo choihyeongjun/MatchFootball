@@ -132,7 +132,7 @@
 									aria-labelledby="headingOne"
 									data-parent="#sidenavAccordionPages">
 									<nav class="sb-sidenav-menu-nested nav">
-										<a class="nav-link" href="${pageContext.request.contextPath}/admin/notice">공지사항</a> 
+										<a class="nav-link" href="${pageContext.request.contextPath}/admin/notice/noticewrite">공지사항</a> 
 										<a class="nav-link" href="#">커뮤니티</a> 
 										<a class="nav-link" href="#">리뷰관리</a>
 									</nav>

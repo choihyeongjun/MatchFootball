@@ -9,30 +9,39 @@
 		resultType="P_matchVO">
 		select d.* ,f
 		from p_match d, ( select a.m_no ,count(*) f
-						from p_match a,pplayers b
-						where a.m_no = b.m_no
-						group by a.m_no )c
-		where d.m_no = c.m_no(+)
-		 and to_date(concat(m_date,m_hour),'yyyy-mm-ddhh24:mi')<![CDATA[ >= sysdate +9/24]]>
+		from
+		p_match
+		a,pplayers b
+		where a.m_no = b.m_no
+		group by a.m_no )c
+		where
+		d.m_no =
+		c.m_no(+)
+		and m_date = #{m_date}
+		and
+		to_date(concat(m_date,m_hour),'yyyy-mm-ddhh24:mi')<![CDATA[ >= sysdate +9/24]]>
 		order by m_hour asc
 	</select>
-	<!--개인 매치 신청   -->
+	<!--개인 매치 신청 -->
 	<insert id="matchapply" parameterType="PplayersVO">
-		insert into pplayers 
+		insert into pplayers
 		values(#{m_no},#{id})
 	</insert>
 	<!--point 차감 -->
 	<update id="pointminus" parameterType="MembersVO">
-		update members set 
-		point = point -#{point} 
+		update members set
+		point =
+		point -#{point}
 		where id= #{id}
 	</update>
 	<!--point 내역 추가 -->
 	<insert id="pointcomm" parameterType="MembersVO">
-		insert into point (p_seq,p_id,npoint,p_date,p_con)
-		values(point_seq.nextval ,#{p_id},#{npoint},sysdate,#{p_con})
+		insert into point
+		(p_seq,p_id,npoint,p_date,p_con)
+		values(point_seq.nextval
+		,#{p_id},#{npoint},sysdate,#{p_con})
 	</insert>
-	
+
 	<!--point 입금 내역 -->
 	<select id="pointconselect" parameterType="PointVO"
 		resultType="PointVO">
@@ -46,7 +55,7 @@
 		SELECT * FROM point
 		where p_id = #{p_id}
 	</select>
-	
+
 	<!--p_match 내역 수 페이징 -->
 	<select id="getCount1" resultType="int">
 		SELECT COUNT(*) FROM p_match
@@ -63,8 +72,16 @@
 	<!-- 선택개인매치 조회 -->
 	<select id="pmatchlist1" parameterType="P_matchVO"
 		resultType="P_matchVO">
-		select * from p_match
-		where m_no = #{m_no}
+		select d.* ,nvl(f,0)f
+		from p_match d, ( select a.m_no
+		,count(*) f
+		from p_match a,pplayers b
+		where a.m_no = b.m_no
+		group by
+		a.m_no )c
+		where
+		d.m_no = c.m_no(+)
+		and d.m_no = #{m_no}
 	</select>
 	<!--해당 날 개인매치 검색 -->
 	<select id="pmatchlist3" parameterType="P_matchVO"
@@ -72,12 +89,67 @@
 		select * from p_match
 		where m_date = #{m_date}
 	</select>
+	<!-- 해당 날 팀 매치 리스트 -->
+	<select id="tmatchselect" parameterType="TeammatchVO"
+		resultType="TeammatchVO">
+		select a.* ,b.*
+		from teammatch a,team b
+		where a.t_num =
+		b.t_num
+		and m_date =
+		#{m_date}
+		and
+		to_date(concat(m_date,m_hour),'yyyy-mm-ddhh24:mi')>= sysdate +9/24
+		order by m_hour asc
+	</select>
+	<!--해당 팀 매치 정보 조회 -->
+	<select id="teammatchinfo" parameterType="TeammatchVO"
+		resultType="TeammatchVO">
+		select * from teammatch
+		where m_no = #{m_no} and
+		t_num=#{t_num}
+	</select>
+	<!--팀 매치 정보 조회 -->
+	<select id="teammatchinfo1" parameterType="TeammatchVO"
+		resultType="TeammatchVO">
+		select * from teammatch
+		where t_num = #{t_num}
+	</select>
+	<!--팀 조회 -->
+	<select id="teamselect" parameterType="TeamVO"
+		resultType="TeamVO">
+		select * from team
+		where t_num =#{t_num}
+	</select>
+	<!--등록 선수 선발 명단조회 -->
+	<select id="playerselect" parameterType="PlayersVO"
+		resultType="PlayersVO">
+		select * from players
+		where t_num = #{t_num} and m_no=
+		#{m_no}
+	</select>
 	<!-- 팀 매치 내역 조회 -->
 	<select id="tmatchlist" parameterType="TeammatchVO"
 		resultType="TeammatchVO">
 		select * from teammatch
 		where id = #{id} and <![CDATA[rownum <=4]]>
 		order by m_date asc ,m_hour asc
+	</select>
+	<!--주장 조회 -->
+	<select id="capselect" parameterType="TeamlistVO"
+		resultType="TeamlistVO">
+		select * from teamlist
+		where t_num = #{t_num} and t_author =
+		'팀장'
+	</select>
+	<!--자기 팀 선수 조회 -->
+	<select id="teamlist" parameterType="MembersVO"
+		resultType="MembersVO">
+		select a.id,b.name,b.pos
+		from teamlist a , members b
+		where
+		a.id = b.id
+		and b.t_num = #{t_num}
 	</select>
 	<!--멤버 조회 -->
 	<select id="memberselect" parameterType="MembersVO"
