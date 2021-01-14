@@ -108,7 +108,7 @@
 							aria-controls="collapsePages">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-book-open"></i>
-							</div> 게시판
+							</div> 게시판관리
 							<div class="sb-sidenav-collapse-arrow">
 								<i class="fas fa-angle-down"></i>
 							</div>
@@ -119,12 +119,11 @@
 								id="sidenavAccordionPages">
 								<a class="nav-link collapsed" href="#" data-toggle="collapse"
 									data-target="#pagesCollapseAuth" aria-expanded="false"
-									aria-controls="pagesCollapseAuth"> 커뮤니티
+									aria-controls="pagesCollapseAuth"> 커뮤니티관리
 									<div class="sb-sidenav-collapse-arrow">
 										<i class="fas fa-angle-down"></i>
 									</div>
 								</a>
-								
 								
 								<div class="collapse" id="pagesCollapseAuth"
 									aria-labelledby="headingOne"
@@ -147,32 +146,32 @@
 									<nav class="sb-sidenav-menu-nested nav">
 										<a class="nav-link" href="${pageContext.request.contextPath}/admin/review">개인리뷰</a> 
 										<a class="nav-link" href="${pageContext.request.contextPath}/admin/teamreview">팀리뷰</a> 
-										<a class="nav-link" href="#">#</a>
+										<a class="nav-link" href="${pageContext.request.contextPath}/admin/reviewerite">리뷰작성</a>
 									</nav>
 								</div>
-								
+
 							</nav>
 						</div>
 						
-						
-						
 						<div class="sb-sidenav-menu-heading">통계관리</div>
-						<a class="nav-link" href="charts.html">
+						<a class="nav-link" href="${pageContext.request.contextPath}/admin/sales">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-chart-area"></i>
 							</div> 통계관리
-						</a> <a class="nav-link" href="tables.html">
+						</a>
+						 
+						<a class="nav-link" href="${pageContext.request.contextPath}/admin/point">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-table"></i>
-							</div> Tables
+							</div> 쿠폰관리 및 포인트관리
 						</a>
 					</div>
 				</div>
 				
-				
 				<div class="sb-sidenav-footer">
-					<div class="small">Logged in as:</div>
-					Start Bootstrap
+
+					<div class="small">고객을 위한 고객에 의한</div>
+					Match Football
 				</div>
 			</nav>
 		</div>

@@ -24,8 +24,8 @@
 		)
 	</insert> -->
 	<!--로그인 한사람 팀장인지 조회 팀 번호 -->
-	<select id="cap">
-		select a.t_num,a.id ,b.t_author
+	<select id="cappp" resultType="int" parameterType="MembersVO">
+		select 1
 		from members a , teamlist b
 		where a.id= b.id
 		 and b.id=#{id} and b.t_author='팀장'
@@ -119,7 +119,14 @@
 	<!-- 해당 날 팀 매치 리스트 -->
 	<select id="tmatchselect" parameterType="TeammatchVO"
 		resultType="TeammatchVO">
-		select a.* ,b.t_namt,b.t_address,b.t_type,
+		select a.* ,b.t_name,b.t_address,b.t_type,b.t_age,b.t_level,b.t_info,b.t_logo,b.t_m,b.t_wn
+		<if test="id !=null">
+			,nvl((select 1
+				from members a , teamlist b
+				where a.id= b.id
+				 and b.id=#{id} and b.t_author='팀장'),0)
+					as sel
+		</if>
 		from teammatch a,team b
 		where a.t_num =	b.t_num
 		and m_date = #{m_date}
@@ -214,7 +221,7 @@
 	<insert id="teammatchin">
 		<foreach collection="id" item="dd" open="INSERT ALL "
 			separator=" " close="SELECT * FROM DUAL">
-			into players(m_no, t_num , id)
+			into players(m_no,t_num,id)
 			values(#{m_no},#{t_num},#{dd})
 		</foreach>
 	</insert>

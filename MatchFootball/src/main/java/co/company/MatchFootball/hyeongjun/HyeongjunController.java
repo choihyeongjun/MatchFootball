@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import co.company.MatchFootball.mapper.HyeongjunMapper;
+import co.company.MatchFootball.mapper.SungjunMapper;
 import co.company.MatchFootball.vo.FboardVO;
 import co.company.MatchFootball.vo.FieldVO;
 import co.company.MatchFootball.vo.InviteVO;
@@ -32,7 +33,8 @@ public class HyeongjunController {
 
 	@Autowired
 	HyeongjunMapper hyeongjunMapper;
- 
+	@Autowired
+	SungjunMapper dao;
 	@ResponseBody
 	@RequestMapping(value = "/bollow/ajax")
 	public List<MembersVO> ajaxbollow(Model model) {
@@ -197,6 +199,11 @@ public class HyeongjunController {
 			session.setAttribute("name", vo.getName());
 			session.setAttribute("t_num",vo.getT_num());
 			session.setAttribute("author",vo.getAuthor());
+			Integer dd = dao.cappp(vo);
+			if(dd != null) {
+				session.setAttribute("cap",1);
+			}
+			
 			System.out.println(vo.getT_num());
 			return "redirect:/match";
 		} else {

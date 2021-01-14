@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import co.company.MatchFootball.mapper.SeemooMapper;
+import co.company.MatchFootball.vo.FwboardVO;
 import co.company.MatchFootball.vo.ManagerapplyVO;
 import co.company.MatchFootball.vo.MembersVO;
 import co.company.MatchFootball.vo.NoticeVO;
@@ -27,6 +28,9 @@ public class AdminController {
 	@Autowired
 	SeemooMapper seemoomapper;
 
+//	====================================================유저======================================================
+	
+	
 	@RequestMapping(value = "/admin", method = RequestMethod.GET) // 관리자 메인페이지
 	public String admin(Model model) {
 		model.addAttribute("members", seemoomapper.memberList());
@@ -65,7 +69,8 @@ public class AdminController {
 		return vo;
 	}
 
-//	============================================================================================================================
+//	====================================================팀======================================================
+
 
 	@RequestMapping(value = "/admin/team", method = RequestMethod.GET) // 팀관리 페이지 (전체조회)
 	public String team(Model model, TeamVO vo, HttpServletRequest request, HttpServletResponse reponse) {
@@ -116,7 +121,7 @@ public class AdminController {
 //		return seemoomapper.blackteamsdelete(vo);
 //	}
 	
-//	============================================================================================================================
+//	====================================================매니저======================================================
 	
 	@RequestMapping(value = "/admin/manager", method = RequestMethod.GET) // 매니저관리 페이지
 	public String manager(Model model, TeamVO vo, HttpServletRequest request, HttpServletResponse reponse) {
@@ -157,22 +162,9 @@ public class AdminController {
 	
 //	============================================================================================================================
 
-	@RequestMapping("/admin/tournament") // 토너먼트 페이지
-	public String tournament() {
-		return "seemoo/tournament";
-	}
 
-	@RequestMapping("/admin/field") // 경기장관리 페이지
-	public String field() {
-		return "seemoo/field";
-	}
 
-	@RequestMapping("/admin/community") // 커뮤니티 페이지
-	public String community() {
-		return "seemoo/community";
-	}
-
-//	============================================================================================================================
+//	====================================================공지사항======================================================
 
 	@RequestMapping("/admin/notice/noticewrite") // 공지사항
 	public String noticewrite() {
@@ -207,7 +199,7 @@ public class AdminController {
 		return vo;
 	}
 	
-//	============================================================================================================================
+//	====================================================리뷰======================================================
 
 	@ResponseBody
 	@RequestMapping(value = "/review/ajax", method = RequestMethod.GET) // 리뷰 페이지(ajax)
@@ -251,6 +243,28 @@ public class AdminController {
 	@RequestMapping("/admin/point") // 쿠폰&포인트 관리페이지(김도은)
 	public String point() {
 		return "seemoo/point";
+	}
+	
+	@RequestMapping("/admin/tournament") // 토너먼트 페이지
+	public String tournament() {
+		return "seemoo/tournament";
+	}
+
+	@RequestMapping("/admin/field") // 경기장관리 페이지
+	public String field() {
+		return "no/seemoo/field";
+	}
+
+	@RequestMapping("/admin/community") // 커뮤니티 페이지
+	public String community() {
+		return "seemoo/community";
+	}
+	
+	@RequestMapping("/admin/aa") // 커뮤니티 페이지
+	@ResponseBody
+	public List<FwboardVO> aa(Model model, FwboardVO vo, HttpServletRequest request, HttpServletResponse reponse) {
+		vo.setNum(request.getParameter("num"));
+		return seemoomapper.rcommList(vo);
 	}
 	
 }
