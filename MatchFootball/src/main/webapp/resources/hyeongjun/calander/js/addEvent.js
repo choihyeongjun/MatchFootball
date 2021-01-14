@@ -8,6 +8,7 @@ var editEnd = $('#edit-end');
 var editType = $('#edit-type');
 var editColor = $('#edit-color');
 var editDesc = $('#edit-desc');
+var manager = $('#manager');
 
 var addBtnContainer = $('.modalBtnContainer-addEvent');
 var modifyBtnContainer = $('.modalBtnContainer-modifyEvent');
@@ -85,9 +86,10 @@ var newEvent = function (start, end, eventType) {
 				endtime:editEnd.val(),
 				comm:editDesc.val(),
 				type:editType.val(),
-				id:id,
+				id:frm.d_id.value,
 				backgroundcolor:editColor.val(),
-				title:editTitle.val()
+				title:editTitle.val(),
+				m_id:manager.val()
 				
             },
             success: function (response) {
