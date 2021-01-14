@@ -133,7 +133,7 @@ $(function() {
 							<div class="form-group">
 								<label>이름</label> <input type="text"
 									class="form-control form-control-lg name" placeholder="" name="name"
-									value="${kname}" required="required">
+									value="${id}" >
 							</div>
 							<div class="form-group has-feedback">
 								<label class="control-label" for="photo">프로필 사진</label>

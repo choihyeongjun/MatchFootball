@@ -126,20 +126,17 @@
 								</a>
 								
 								
-								
-								
 								<div class="collapse" id="pagesCollapseAuth"
 									aria-labelledby="headingOne"
 									data-parent="#sidenavAccordionPages">
 									<nav class="sb-sidenav-menu-nested nav">
 										<a class="nav-link" href="${pageContext.request.contextPath}/admin/notice/noticewrite">공지사항</a> 
-										<a class="nav-link" href="#">커뮤니티</a> 
-										<a class="nav-link" href="#">리뷰관리</a>
+										<a class="nav-link" href="${pageContext.request.contextPath}/admin/community">커뮤니티</a> 
 									</nav>
 								</div>
 								<a class="nav-link collapsed" href="#" data-toggle="collapse"
 									data-target="#pagesCollapseError" aria-expanded="false"
-									aria-controls="pagesCollapseError"> 쇼핑
+									aria-controls="pagesCollapseError"> 매니저 리뷰관리
 									<div class="sb-sidenav-collapse-arrow">
 										<i class="fas fa-angle-down"></i>
 									</div>
@@ -148,14 +145,17 @@
 									aria-labelledby="headingOne"
 									data-parent="#sidenavAccordionPages">
 									<nav class="sb-sidenav-menu-nested nav">
-										<a class="nav-link" href="#">유니폼제작</a> 
-										<a class="nav-link" href="#">유니폼판매</a> 
-										<a class="nav-link" href="#">중고판매</a>
+										<a class="nav-link" href="${pageContext.request.contextPath}/admin/review">개인리뷰</a> 
+										<a class="nav-link" href="${pageContext.request.contextPath}/admin/teamreview">팀리뷰</a> 
+										<a class="nav-link" href="#">#</a>
 									</nav>
 								</div>
-
+								
 							</nav>
 						</div>
+						
+						
+						
 						<div class="sb-sidenav-menu-heading">통계관리</div>
 						<a class="nav-link" href="charts.html">
 							<div class="sb-nav-link-icon">

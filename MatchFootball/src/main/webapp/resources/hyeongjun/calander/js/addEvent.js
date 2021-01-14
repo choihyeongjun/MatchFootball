@@ -85,7 +85,7 @@ var newEvent = function (start, end, eventType) {
 				endtime:editEnd.val(),
 				comm:editDesc.val(),
 				type:editType.val(),
-				id:"${sessionScope.id}",
+				id:id,
 				backgroundcolor:editColor.val(),
 				title:editTitle.val()
 				

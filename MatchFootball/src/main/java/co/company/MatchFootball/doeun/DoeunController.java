@@ -40,7 +40,7 @@ public class DoeunController {
 	public String profile(MembersVO mb, Model model, HttpSession session, HttpServletResponse response) {
 	
 		mb.setId((String)session.getAttribute("kemail"));//카카오
-		//mb.setId((String)session.getAttribute("id")); //test용
+	//	mb.setId((String)session.getAttribute("id")); //test용
 		mb.setName((String)session.getAttribute("kname"));
 		model.addAttribute("mb", dao.getUser(mb));
 		session.setAttribute("point", mb.getPoint());
@@ -60,8 +60,8 @@ public class DoeunController {
 	
 	@PostMapping(value="mypage/updateMem")
 	public String upMem(MembersVO vo, HttpServletRequest request, HttpSession session) {
-		vo.setId((String)session.getAttribute("kemail"));
-		//vo.setId((String)session.getAttribute("id"));
+		//vo.setId((String)session.getAttribute("kemail"));
+		vo.setId((String)session.getAttribute("id"));
 		if(dao.getUser(vo) == null) {
 			
 			MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request ;
@@ -122,16 +122,16 @@ public class DoeunController {
 //	}
 	@RequestMapping(value = "mypage/pay") // 결제
 	public ModelAndView payment(HttpServletResponse response, HttpSession session, HttpServletRequest request, MembersVO mvo) throws IOException {
-	//	mvo.setId((String)session.getAttribute("id")); // 테스트용
-		mvo.setId((String)session.getAttribute("kemail"));//카카오
+		mvo.setId((String)session.getAttribute("id")); // 테스트용
+	//	mvo.setId((String)session.getAttribute("kemail"));//카카오
 		request.setAttribute("point", dao.getUser(mvo));
 		return new ModelAndView("doeun/Pay");
 	}
 
 	@RequestMapping(value = "mypage/msg") // 메인메세지함(default 받은 메시지함)
 	public String tomsgList(MembersVO mem, MessageVO msg, Model model, HttpSession session, Paging paging,HttpServletRequest request) {
-	//	mem.setId((String)session.getAttribute("id"));//테스트용
-	    mem.setId((String) session.getAttribute("kemail"));//카카오
+		mem.setId((String)session.getAttribute("id"));//테스트용
+	//    mem.setId((String) session.getAttribute("kemail"));//카카오
 		msg.setTo_id(mem.getId());		
 		paging.setPageUnit(16);
 		paging.setPageSize(10);
@@ -170,8 +170,8 @@ public class DoeunController {
 	@ResponseBody
 	@RequestMapping(value = "mypage/sendmsg/ajax") //보낸 메세지 함
 	public List<MessageVO> sendmsgList(MembersVO mem, MessageVO msg, Model model, HttpSession session, Paging paging) {
-	//	mem.setId((String) session.getAttribute("id"));
-		mem.setId((String) session.getAttribute("kemail"));//카카오
+		mem.setId((String) session.getAttribute("id"));
+	//	mem.setId((String) session.getAttribute("kemail"));//카카오
 		msg.setSend_id(mem.getId());
 		paging.setPageUnit(16);
 		paging.setPageSize(10);
@@ -204,8 +204,8 @@ public class DoeunController {
 	
 	@PostMapping(value = "replymsg/ajax") // 메세지 답장처리
 	public String replymsg(MembersVO mem, MessageVO msg, Model model, HttpSession session) {
-		//mem.setId((String)session.getAttribute("id"));	
-		mem.setId((String)session.getAttribute("kemail"));
+		mem.setId((String)session.getAttribute("id"));	
+		//mem.setId((String)session.getAttribute("kemail"));
 		msg.setSend_id(mem.getId());
 		dao.sendMsg(msg);
 		return "redirect:/mypage/msg";
@@ -218,8 +218,8 @@ public class DoeunController {
 
 	@RequestMapping(value = "mypage/matched") // 개인경기참가내역
 	public String p_matchedList(P_matchVO pmc, Model model, HttpSession session, Paging paging) {
-		//pmc.setM_id((String) session.getAttribute("id"));	
-		pmc.setM_id((String) session.getAttribute("kemail"));
+		pmc.setM_id((String) session.getAttribute("id"));	
+		//pmc.setM_id((String) session.getAttribute("kemail"));
 		model.addAttribute("p_mat", dao.p_matchedList(pmc));
 		return "doeun/review";
 	}
@@ -233,8 +233,8 @@ public class DoeunController {
 //	}
 	@RequestMapping(value = "mypage/usedPoint") // 포인트 사용내역
 	public String pointed(MembersVO mem, PointVO po, Model model, HttpSession session, Paging paging) {
-	//	po.setP_id((String)session.getAttribute("id"));	
-		po.setP_id((String)session.getAttribute("kemail"));		
+		po.setP_id((String)session.getAttribute("id"));	
+	//	po.setP_id((String)session.getAttribute("kemail"));		
 		paging.setPageUnit(21);
 		paging.setPageSize(10);
 		po.setFirst(paging.getFirst());
