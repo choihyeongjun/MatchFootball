@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="my"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -93,6 +94,13 @@
 							<th scope="col">권한</th>
 						</tr>
 					</thead>
+					<c:if test="${teamInfo.t_hidden ne 'Y' }">
+						<tbody align="center">
+							<tr>
+								<td colspan="3">비공개</td>
+							</tr>
+						</tbody>
+					</c:if>
 					<c:if test="${teamInfo.t_hidden eq 'Y' }">
 
 						<c:forEach items="${teamMembers}" var="teamMembers">
@@ -134,15 +142,16 @@
 								</td>
 							</tr>
 						</c:forEach>
-
+						<script>
+							function goPage(p) {
+								location.href = "teamInfo?page=" + p +"&t_num=" + ${teamInfo.t_num};
+							}
+						</script>
+						<div>
+							<my:paging paging="${paging}" jsfunc="goPage" />
+						</div>
 					</c:if>
-					<c:if test="${teamInfo.t_hidden ne 'Y' }">
-						<tbody align="center">
-							<tr>
-								<td colspan="3">비공개</td>
-							</tr>
-						</tbody>
-					</c:if>
+					
 				</table>
 			</div>
 			<div style="float: bottom">
@@ -167,7 +176,11 @@
 			<input type="text" value="${members.manner }" name="i_manner" style="display:none">
 			<button type="submit" class="btn btn-primary" onclick="javascript: form.action='${pageContext.request.contextPath}/teamInviteInsert?t_num=${teamInfo.t_num}'">팀 가입 신청</button>
 		</c:if>
+		<c:if test="${hh.sel eq 1 }">
+		${sessionScope.id }님은  ${where.t_name } 팀에 가입 신청 중입니다.
+		<input type="text" value="${sessionScope.id }" name="id" style="display:none">
 		<button type="submit" class="btn btn-primary" onclick="javascript: form.action='${pageContext.request.contextPath}/teamInviteCancle?t_num=${teamInfo.t_num}'">팀 가입 취소</button>
+		</c:if>
 	</form>
 </body>
 </html>

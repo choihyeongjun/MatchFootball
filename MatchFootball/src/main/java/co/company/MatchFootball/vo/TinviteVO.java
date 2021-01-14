@@ -11,4 +11,5 @@ public class TinviteVO {
 	String i_pos; //포지션
 	String i_lv; //실력
 	String i_manner; //매너
+	String t_name;
 }
