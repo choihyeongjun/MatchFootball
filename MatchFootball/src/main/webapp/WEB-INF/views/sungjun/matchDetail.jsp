@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,7 +46,36 @@ a {
 	bottom: 100px;
 	border-radius: 100px;
 }
-
+.employ2 {
+	bottom: 0;
+	width: 320px;
+	background-color: #ea3e42;
+	padding: 20px 20px;
+	color: white;
+	text-align: center;
+	z-index: 2;
+	width: 320px;
+	left: 0;
+	right: 0;
+	margin: auto;
+	bottom: 100px;
+	border-radius: 100px;
+}
+.employ3{
+bottom: 0;
+	width: 320px;
+	background-color: #ddd;
+	padding: 20px 20px;
+	color: white;
+	text-align: center;
+	z-index: 2;
+	width: 320px;
+	left: 0;
+	right: 0;
+	margin: auto;
+	bottom: 100px;
+	border-radius: 100px;
+}
 .lets {
 	background-color: white;
 	border-top: 1px solid #ddd;
@@ -76,8 +107,8 @@ a {
 }
 </style>
 <script>
-if('${param.msg}' != '' )
-	alert('${param.msg}')
+	if ('${param.msg}' != '')
+		alert('${param.msg}')
 
 	$(function() {
 		/*클릭시 css  */
@@ -85,7 +116,7 @@ if('${param.msg}' != '' )
 			$(".qqqq a").removeClass("ss");
 			$(event.target).addClass("ss");
 		})
-		
+
 		/* 신청 모달  */
 		$(".p1").on("click", function() {
 			var m_no = $(this).data("num");
@@ -99,12 +130,10 @@ if('${param.msg}' != '' )
 			});
 		})
 	})
-	
-		
 </script>
 </head>
 <body>
-${msg}-
+	${msg}-
 	<div class="container">
 		<div>
 			<img src="resources/img/11.jpg" class="d-block w-100" alt="..."
@@ -116,7 +145,8 @@ ${msg}-
 					href="#playin"> 주의사항</a> <a href="#playm"> 매치 안내</a>
 			</div>
 			<div>
-				<h3 style="text-align: left;">${p_match.m_date} ${p_match.m_hour }</h3>
+				<h3 style="text-align: left;">${p_match.m_date}
+					${p_match.m_hour }</h3>
 			</div>
 			<div style="align: left;">
 				<h2 style="color: #08088A; font-weight: bold;">${p_match.f_name }</h2>
@@ -217,10 +247,20 @@ ${msg}-
 		</div>
 	</div>
 	<div class="lets">
-		<div class="employ">
-			<p class="p1" data-num="${p_match.m_no }">매치 신청</p>
-			<p >총 ${p_match.p_max }명 중 ${p_match.f }명 신청</p>
-		</div>
+		<fmt:parseNumber value="${p_match.p_max}" var="p_max" />
+		<fmt:parseNumber value="${p_match.f}" var="f" />
+		<c:if test="${p_max > f && p_match.sel eq '0'}">
+			<div class="employ">
+				<p class="p1" data-num="${p_match.m_no }">매치 신청</p>
+				<p>총 ${p_max }명 중 ${f }명 신청</p>
+			</div>
+		</c:if>
+		<c:if test="${p_match.sel eq '1'}">
+			<p class="employ2">신청 완료</p>
+		</c:if>
+		<c:if test="${p_max <= f}">
+			<p class="employ3">마감</p>
+		</c:if>
 	</div>
 	<!--개인매치 신청 모달  -->
 	<div class="modal fade" id="matchaplly" tabindex="-1"

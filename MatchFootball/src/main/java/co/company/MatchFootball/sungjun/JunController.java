@@ -146,9 +146,10 @@ public class JunController {
 		vo.setLastDate(lastDate);
 		vo.setIDayOfWeek(iDayOfWeek);
 		model.addAttribute("cal", vo);
-
+		
 		mvo.setM_date(year + "-" + month + "-" + day);
 		model.addAttribute("m_dat", day);
+		mvo.setId((String) session.getAttribute("id"));
 		model.addAttribute("p_matchVO", dao.pmatchselect(mvo));
 		model.addAttribute("date", year + "-" + month);
 		//model.addAttribute("pplayers", dao.pplayersselect(pplayer));
@@ -156,8 +157,10 @@ public class JunController {
 	}
 
 	@RequestMapping(value = "/matchDetail")
-	public ModelAndView test6(HttpServletResponse response, Model model, P_matchVO p_matchVO) throws IOException {
+	public ModelAndView test6(HttpSession session, Model model, P_matchVO p_matchVO) throws IOException {
+		p_matchVO.setId((String) session.getAttribute("id"));
 		model.addAttribute("p_match", dao.pmatchlist1(p_matchVO));
+
 		return new ModelAndView("sungjun/matchDetail");
 	}
 

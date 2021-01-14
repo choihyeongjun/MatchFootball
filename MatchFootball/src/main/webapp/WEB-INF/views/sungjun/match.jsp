@@ -142,7 +142,22 @@ p {
 	text-align: center;
 	padding: 10px;
 }
-
+.ap-info1 {
+	background-color: #ddd;
+	border-radius: 10px;
+	font-size: 17px;
+	color: white;
+	text-align: center;
+	padding: 10px;
+}
+.ap-info2 {
+	background-color: #ea3e42;
+	border-radius: 10px;
+	font-size: 17px;
+	color: white;
+	text-align: center;
+	padding: 10px;
+}
 .app-info {
 	background-color: #ddd;
 	border-radius: 10px;
@@ -295,14 +310,15 @@ $(function() {
 							<div style="width: 20%;">
 							<fmt:parseNumber value="${p_match.p_max}" var="p_max"/>
 							<fmt:parseNumber value="${p_match.f}" var="f"/>
-								<c:if test="${p_max > f}">
+								<c:if test="${p_max > f && p_match.sel eq '0'}">
 									<p class="ap-info" style="">신청 가능</p>
 								</c:if>
 								<c:if test="${p_max <= f}">
-									<p class="p" style="">마감</p>
+									<p class="ap-info1">마감</p>
 								</c:if>
-								<%-- <c:if test="${p_match.m_no = pplayers.m_no && sessionScope.id = pplayers.id }">
-								</c:if> --%>
+								<c:if test="${p_match.sel eq '1'}">
+									<p class="ap-info2">매치 참여 완료</p>
+								</c:if>
 							</div>
 					</a></li>
 				</c:forEach>

@@ -18,6 +18,8 @@ public class P_matchVO {//개인매치
 	String t_type;//경기상태
 	String f_id;//구장아이디
 	String f;
+	String id;
+	String sel;
 	int first;
 	int last;
 }
