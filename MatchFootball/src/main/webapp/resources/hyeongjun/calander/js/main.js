@@ -238,8 +238,7 @@ var calendar = $('#calendar').fullCalendar({
       if ($(this).data().role !== 'close') {
 	
 		if(e.target.innerText=='팀매치' || e.target.innerText=='개인매치'){
-			var modal = $('#eventModalll');
-			modal.modal('show');
+			newEvent1(startDate, endDate, $(this).html());
 		}
 		else
         	newEvent(startDate, endDate, $(this).html());

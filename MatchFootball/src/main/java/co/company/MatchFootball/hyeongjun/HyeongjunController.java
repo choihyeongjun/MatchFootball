@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+
 import co.company.MatchFootball.mapper.HyeongjunMapper;
 import co.company.MatchFootball.mapper.SungjunMapper;
 import co.company.MatchFootball.vo.FboardVO;
@@ -26,6 +27,7 @@ import co.company.MatchFootball.vo.LikeitVO;
 import co.company.MatchFootball.vo.MembernInvite;
 import co.company.MatchFootball.vo.MembersVO;
 import co.company.MatchFootball.vo.RfieldVO;
+import co.company.MatchFootball.vo.TeamVO;
 import co.company.MatchFootball.vo.TeammatchVO;
 
 @Controller
@@ -111,6 +113,25 @@ public class HyeongjunController {
 		
 		return hyeongjunMapper.fielddetailinsert(vo);
 	}
+	@ResponseBody
+	@RequestMapping("/matchinsert")
+	public List<TeammatchVO> matchinsert(TeammatchVO vo, RfieldVO vo1,Model model) {
+		vo1.setBackgroundcolor(vo.getBackgroundcolor());
+		vo1.setComm(vo.getM_info());
+		vo1.setEndtime(vo.getM_hour());
+		vo1.setF_id(vo.getF_id());
+		vo1.setId(vo.getT_cap());
+		vo1.setM_id(vo.getId());
+		vo1.setStarttime(vo.getM_date());
+		vo1.setTitle(vo.getTitle());
+		vo1.setType(vo.getTitle());
+		hyeongjunMapper.fielddetailinsert(vo1);
+		vo.setT_num(hyeongjunMapper.mtnum(vo.getT_cap()));
+		vo.setF_name(hyeongjunMapper.fieldname(vo.getF_id()));
+		vo.setT_name(hyeongjunMapper.teamname(hyeongjunMapper.mtnum((vo.getT_cap()))));
+		vo.setF_address(hyeongjunMapper.fieldaddress(vo.getF_id()));
+		return hyeongjunMapper.teammatchinsert(vo);
+	}
 
 	@RequestMapping("/fieldlist")
 	public String fieldlist(Model model, FieldVO vo) {
@@ -118,9 +139,12 @@ public class HyeongjunController {
 		return "hyeongjun/fieldlist";
 	}
 
+	@SuppressWarnings("null")
 	@RequestMapping("/fieldlist/fielddetail/{f_id}")
 	public String fieldselect(@PathVariable String f_id,Model model,RfieldVO vo,HttpSession session) {
 		session.setAttribute("field",f_id);
+		System.out.println(hyeongjunMapper.fieldprice(f_id));
+		model.addAttribute("price",hyeongjunMapper.fieldprice(f_id));
 		model.addAttribute("f_id",f_id);
 		model.addAttribute("list",hyeongjunMapper.fieldselect(vo));
 		return "hyeongjun/fielddetail";
