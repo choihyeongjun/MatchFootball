@@ -116,18 +116,10 @@ public class JunController {
 		dao.teammatchup(teammatch);
 		dao.pointminus(membersvo);
 		dao.pointcomm(pointvo);
-		return new ModelAndView("sungjun/teammatch");
-	}
-	@RequestMapping(value = "/teammatchRegister")
-	public ModelAndView test15(HttpSession session,TeamVO team,MembersVO membersvo , Model model,TeammatchVO teammatch) throws IOException {
-		membersvo.setId((String) session.getAttribute("id"));
-		membersvo.setT_num((String) session.getAttribute("t_num"));
-		model.addAttribute("teamlist", dao.teamlist(membersvo));
-
-		return new ModelAndView("sungjun/teammatchRegister");
+		return new ModelAndView("redirect:/teammatch");
 	}
 	@RequestMapping(value = "/match")
-	public String test1(HttpServletResponse response, Model model, CalVO vo, P_matchVO mvo, HttpServletRequest request)
+	public String test1(HttpSession session, Model model, CalVO vo, P_matchVO mvo,PplayersVO pplayer, HttpServletRequest request)
 			throws IOException {
 		// 달력
 		DecimalFormat df = new DecimalFormat("00");
@@ -150,7 +142,6 @@ public class JunController {
 		int lastDate = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);// 달 마지막 날
 		calendar.set(calendar.DAY_OF_MONTH, 1);
 		int iDayOfWeek = calendar.get(Calendar.DAY_OF_WEEK); // 요일을 구한다
-
 		vo.setDay(day);
 		vo.setLastDate(lastDate);
 		vo.setIDayOfWeek(iDayOfWeek);
@@ -160,7 +151,7 @@ public class JunController {
 		model.addAttribute("m_dat", day);
 		model.addAttribute("p_matchVO", dao.pmatchselect(mvo));
 		model.addAttribute("date", year + "-" + month);
-		System.out.println(mvo.getM_date());
+		//model.addAttribute("pplayers", dao.pplayersselect(pplayer));
 		return "sungjun/match";
 	}
 
@@ -186,10 +177,22 @@ public class JunController {
 		membersvo.setId((String) session.getAttribute("id"));
 		pplayers.setId((String) session.getAttribute("id"));
 		pointvo.setP_id((String) session.getAttribute("id"));
-		dao.pointminus(membersvo);
-		dao.matchapply(pplayers);
-		dao.pointcomm(pointvo);
-		return new ModelAndView("sungjun/match");
+		
+		int ppoint = dao.pointssss(membersvo);
+		  
+		if(ppoint < Integer.parseInt(membersvo.getPoint())) {
+			ModelAndView mvo = new ModelAndView();
+			mvo.setViewName("redirect:/matchDetail?m_no="+pplayers.getM_no());
+			mvo.addObject("msg","포인트가 부족합니다");
+			return mvo;
+		}else {
+			dao.pointminus(membersvo);
+			dao.matchapply(pplayers);
+			dao.pointcomm(pointvo);
+			
+		}
+		
+		return new ModelAndView("redirect:/match");
 	}
 
 	@RequestMapping(value = "/call")

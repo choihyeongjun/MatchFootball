@@ -261,7 +261,7 @@ a {
 				<c:forEach var="p_point" items="${p_point }">
 					<div class="maaa">
 						<ul>
-							<li>${p_point.p_date }${p_point.npoint }원입금</li>
+							<li>${p_point.p_date }       ${p_point.npoint }원입금</li>
 						</ul>
 					</div>
 				</c:forEach>

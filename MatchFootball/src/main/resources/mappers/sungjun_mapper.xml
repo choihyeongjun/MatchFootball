@@ -3,6 +3,13 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="co.company.MatchFootball.mapper.SungjunMapper"> <!-- 패키지.EmpMapper -->
+
+<!--로그인 한사람 포인트 조회  -->
+<select id="pointssss" resultType="int">
+select point 
+from members
+where id= #{id}
+</select>
 	<!--팀 매치 등록 -->
 	<insert id="teammatchRegi">
 		insert into
@@ -19,7 +26,7 @@
 	<!--해당 날의 개인 매치 조회 및 신청 인원 -->
 	<select id="pmatchselect" parameterType="P_matchVO"
 		resultType="P_matchVO">
-		select d.* ,f
+		select d.* ,nvl(f,0)f
 		from p_match d, ( select a.m_no ,count(*) f
 		from
 		p_match
@@ -51,11 +58,11 @@
 		values(point_seq.nextval
 		,#{p_id},#{npoint},sysdate,#{p_con})
 	</insert>
-	<!--point 입금 내역 -->
+	<!--point 매니저비 입금 내역 -->
 	<select id="pointconselect" parameterType="PointVO"
 		resultType="PointVO">
 		select * from point
-		where p_id =#{p_id} and <![CDATA[rownum <=4]]>
+		where p_id =#{p_id} and p_con= '매니저 비' and <![CDATA[rownum <=4]]>
 		order by p_date desc
 	</select>
 	<!--point 전체 내역 -->
@@ -70,13 +77,13 @@
 		SELECT COUNT(*) FROM p_match
 		where m_id = #{m_id}
 	</select>
-	<!--개인매치 일정 조회 -->
+	<!--매니저 개인매치 일정 조회 -->
 	<select id="pmatchlist" parameterType="P_matchVO"
 		resultType="P_matchVO">
 
 		select * from p_match
-		where m_id = #{m_id} and <![CDATA[rownum <=4]]>
-		order by m_date asc, m_hour asc
+		where m_id = #{m_id} and <![CDATA[rownum <=5]]>
+		order by m_date desc, m_hour asc
 	</select>
 	<!-- 선택개인매치 조회 -->
 	<select id="pmatchlist1" parameterType="P_matchVO"
@@ -124,6 +131,11 @@
 		select * from teammatch
 		where t_num = #{t_num}
 	</select>
+	<!--pplayers 참여아이디 조회  -->
+	<select id="pplayersselect" parameterType="PplayersVO" resultType="PplayersVO">
+		select * from pplayers
+		where id=#{id}
+	</select>
 	<!--팀 조회 -->
 	<select id="teamselect" parameterType="TeamVO"
 		resultType="TeamVO">
@@ -157,8 +169,7 @@
 	<select id="capselect" parameterType="TeamlistVO"
 		resultType="TeamlistVO">
 		select * from teamlist
-		where t_num = #{t_num} and t_author =
-		'팀장'
+		where t_num = #{t_num} and t_author ='팀장'
 	</select>
 	<!--자기 팀 선수 조회 -->
 	<select id="teamlist" parameterType="MembersVO"

@@ -82,15 +82,15 @@
 			</div>
 		</div>
 		<div class="col-6">
-			<div>
-				<h3 style="text-align: center;">선수 목록</h3>
+			<div >
+				<h2 style="text-align: center;margin: 30px;">선수 목록</h2>
 			</div>
 			<form id="startmember" name="startmember" action="startmember"
 				method="post" onsubmit="return submitCheck();">
 				<c:forEach var="teamlist" items="${teamlist }">
-					<div style="padding: 10px; text-align: center;">
-						<input type="checkbox" id="chk" name="id" value="${teamlist.id }">
-						<label for="chk">${teamlist.pos} ${teamlist.name } </label>
+					<div style="padding-bottom: 20px; text-align: center;">
+						<label for="chk" style="font-size: 22px;">${teamlist.pos} ${teamlist.name } </label>
+						<input type="checkbox" id="chk" name="id" value="${teamlist.id }" style="zoom:1.5;">
 					</div>
 				</c:forEach>
 				<input type="hidden" name="t_num" value="${teamlist[0].t_num }">
@@ -98,10 +98,7 @@
 					type="hidden" name="p_con" value="팀 매치 비"> <input
 					type="hidden" name="point" value=""> 
 					<input type="hidden" name="npoint" value="">
-
-				<div align="center" style="padding:3px;">
-					<button type="submit" class="abtn">신청하기</button>
-				</div>
+					<button type="submit" class="abtn" >신청하기</button>
 			</form>
 		</div>
 	</div>

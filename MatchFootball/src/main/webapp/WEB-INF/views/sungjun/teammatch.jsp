@@ -269,7 +269,7 @@ $(function() {
 		<div style="margin: 0 250px">
 			<div style="display: flex; justify-content: space-between;">
 				<div class="tmb">
-					<a href="${pageContext.request.contextPath}/teammatchRegister">팀 매치 등록</a>
+					<a>매치 리스트</a>
 				</div>
 				<div>
 					<!--아작스로 불러오기!~~!~ㄴ  -->
