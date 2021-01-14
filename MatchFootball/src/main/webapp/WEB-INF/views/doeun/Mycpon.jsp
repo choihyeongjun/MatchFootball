@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,35 +23,26 @@
 							<br>
 							<h4 id="item-2-2">내 쿠폰</h4>
 							<div>
-								<div>
+								<div>							
 									<table border="1" style="width: 100%">
-										<tr>
+										<c:forEach items="cp" var="cp"></c:forEach>
+										<tr><td><input type ="text" name="m_id" value="${cp.m_id}"></td>
 											<td><input type="checkbox"></td>
 											<td>쿠폰명</td>
 											<td>쿠폰기한</td>
 											<td align="right"><input type="button"
 												class="btn btn-primary cpDel" value="삭제"></td>
+										</tr>
+										<tbody>
 										<tr>
 											<td><input type="checkbox"></td>
-											<td>쇼핑몰 전용 10% 할인 쿠폰</td>
-											<td>쿠폰기한</td>
+											<td>${cp.c_title} </td>
+											<td>${cp.c_edate}</td>
 											<td align="right"><input type="button"
 												class="btn btn-primary cpDel" value="삭제"></td>
 										</tr>
-										<tr>
-											<td><input type="checkbox"></td>
-											<td>쇼핑몰 전용 10% 할인 쿠폰</td>
-											<td>쿠폰기한</td>
-											<td align="right"><input type="button"
-												class="btn btn-primary cpDel" value="삭제"></td>
-										</tr>
-										<tr>
-											<td><input type="checkbox"></td>
-											<td>쇼핑몰 전용 10% 할인 쿠폰</td>
-											<td>쿠폰기한</td>
-											<td align="right"><input type="button"
-												class="btn btn-primary cpDel" value="삭제"></td>
-										</tr>
+										</tbody>
+										
 									</table>
 								</div>
 							</div>

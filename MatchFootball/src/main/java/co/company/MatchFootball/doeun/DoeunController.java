@@ -25,6 +25,7 @@ import co.company.MatchFootball.vo.MessageVO;
 import co.company.MatchFootball.vo.P_matchVO;
 import co.company.MatchFootball.vo.Paging;
 import co.company.MatchFootball.vo.PointVO;
+import co.company.MatchFootball.vo.TeammatchVO;
 
 @Controller
 public class DoeunController {
@@ -39,8 +40,8 @@ public class DoeunController {
 	@RequestMapping("mypage/profile") // 프로필(메인마이페이지)
 	public String profile(MembersVO mb, Model model, HttpSession session, HttpServletResponse response) {
 	
-		mb.setId((String)session.getAttribute("kemail"));//카카오
-	//	mb.setId((String)session.getAttribute("id")); //test용
+	
+		mb.setId((String)session.getAttribute("id")); //test용
 		mb.setName((String)session.getAttribute("kname"));
 		model.addAttribute("mb", dao.getUser(mb));
 		session.setAttribute("point", mb.getPoint());
@@ -50,8 +51,8 @@ public class DoeunController {
 
 	@RequestMapping(value = "mypage/userupdate") // 정보수정폼
 	public String upuserinfo(MembersVO mb, Model model, HttpServletResponse response, HttpServletRequest request,HttpSession session) throws IOException {
-		mb.setId((String)session.getAttribute("kemail"));
-//		mb.setId((String)session.getAttribute("id"));//test 용
+//		mb.setId((String)session.getAttribute("kemail"));
+		mb.setId((String)session.getAttribute("id"));//test 용
 		model.addAttribute("mb", dao.getUser(mb));
 		
 		return "doeun/pfUpdate";
@@ -105,14 +106,6 @@ public class DoeunController {
 		return "redirect:/mypage/profile";
 	}
 	
-	@RequestMapping(value="mypage/pointcharge")// 포인트 충전 url...
-	@ResponseBody
-	public int chargePo(PointVO pay,CuponVO cp) {//결제 db에 insert
-		//쿠폰 등록 dao
-		
-		return dao.Pcharge(pay); //point 충전 dao	
-	}
-	
 //	@RequestMapping("mypage/Mybar") // 총 포인트 조회 
 //	public String myPoint(MembersVO po, Model model, HttpServletResponse response, HttpServletRequest request, HttpSession session) {
 //		po.setId((String)session.getAttribute("id"));
@@ -122,10 +115,22 @@ public class DoeunController {
 //	}
 	@RequestMapping(value = "mypage/pay") // 결제
 	public ModelAndView payment(HttpServletResponse response, HttpSession session, HttpServletRequest request, MembersVO mvo) throws IOException {
-		mvo.setId((String)session.getAttribute("id")); // 테스트용
-	//	mvo.setId((String)session.getAttribute("kemail"));//카카오
+		mvo.setId((String)session.getAttribute("id")); 
 		request.setAttribute("point", dao.getUser(mvo));
 		return new ModelAndView("doeun/Pay");
+	}
+	
+	@RequestMapping(value="mypage/pointcharge")// 포인트 충전 url...
+	@ResponseBody
+	public int chargePo(PointVO pay) {//결제 db에 insert
+		return dao.Pcharge(pay); //point 충전 dao	
+	}
+	
+	@RequestMapping(value="mypage/insertCoupon")// 포인트 충전 url...
+	@ResponseBody
+	public int Autocpup(CuponVO cp) {//결제 db에 insert
+		//쿠폰 등록 dao
+		return dao.Autocpup(cp); //point 충전 dao	
 	}
 
 	@RequestMapping(value = "mypage/msg") // 메인메세지함(default 받은 메시지함)
@@ -139,16 +144,17 @@ public class DoeunController {
 		msg.setLast(paging.getLast());
 		paging.setTotalRecord(dao.getCount1(msg));
 		model.addAttribute("paging", paging);
-		
 		model.addAttribute("msg",dao.tomsgList(msg));
+		
 		return "doeun/Message";
 	}
+	
 	@RequestMapping(value ="/mypage/reviewMsg") // 받은메세지 확인폼
 	public ModelAndView reviewMsg(MembersVO mem, MessageVO msg, Model model, HttpSession session, HttpServletRequest request) {
-		msg.setTo_id((String)session.getAttribute("kemail")); //카카오
-		//msg.setTo_id((String)session.getAttribute("id")); //카카오
 		
-		model.addAttribute("msg",dao.reviewMsg(msg));
+		msg.setTo_id((String)session.getAttribute("id")); //카카오
+		
+		model.addAttribute("msg",dao.viewMsg(msg));
 		return new ModelAndView("no/doeun/viewmsg");
 	}
 //	@ResponseBody
@@ -189,7 +195,7 @@ public class DoeunController {
 	}
 	@RequestMapping(value ="message") // 발송메세지 폼
 	public String msg(MembersVO mem, MessageVO msg, Model model, HttpSession session) {
-		dao.reviewMsg(msg);
+		dao.viewMsg(msg);
 		return "doeun/sendmsg";
 	}
 	@PostMapping(value = "sendmsg") // 메세지 발송 처리
@@ -201,6 +207,11 @@ public class DoeunController {
 		return "redirect:/mypage/msg";
 	}
 	
+	@ResponseBody
+	@RequestMapping(value = "mypage/delMsg/ajax") // 메세지 삭제처리
+	public void delMsg(MessageVO msg, Model model, HttpSession session, Paging paging) {
+		dao.delMsg(msg);
+	}
 	
 	@PostMapping(value = "replymsg/ajax") // 메세지 답장처리
 	public String replymsg(MembersVO mem, MessageVO msg, Model model, HttpSession session) {
@@ -216,13 +227,32 @@ public class DoeunController {
 		return "doeun/InviteMsg";
 	}
 
-	@RequestMapping(value = "mypage/matched") // 개인경기참가내역
+	@RequestMapping(value = "mypage/matching") // 개인경기참가내역
 	public String p_matchedList(P_matchVO pmc, Model model, HttpSession session, Paging paging) {
 		pmc.setM_id((String) session.getAttribute("id"));	
-		//pmc.setM_id((String) session.getAttribute("kemail"));
-		model.addAttribute("p_mat", dao.p_matchedList(pmc));
-		return "doeun/review";
+		paging.setPageUnit(5);
+		paging.setPageSize(10);
+		pmc.setFirst(paging.getFirst());
+		pmc.setLast(paging.getLast());
+		paging.setTotalRecord(dao.getPmatCnt(pmc));
+		model.addAttribute("paging", paging);
+		model.addAttribute("p_mat", dao.AppPmatList(pmc));		
+		System.out.println(dao.AppPmatList(pmc));
+		return "doeun/PApplyDetail";
 	}
+	@RequestMapping(value = "mypage/teamMatching") // 팀경기참가내역
+	public String t_matchedList(TeammatchVO tmat, Model model, HttpSession session, Paging paging) {
+		paging.setPageUnit(5);
+		paging.setPageSize(10);
+		tmat.setFirst(paging.getFirst());
+		tmat.setLast(paging.getLast());
+		paging.setTotalRecord(dao.getTmatCnt(tmat));
+		model.addAttribute("paging", paging);
+		model.addAttribute("p_mat", dao.AppTmatList(tmat));		
+		System.out.println(dao.AppTmatList(tmat));
+		return "doeun/PApplyDetail";
+	}
+	
 //	@RequestMapping(value = "mypage/matched") // 팀경기참가내역
 //	public String t_matchedList(P_matchVO pmc, Model model, HttpSession session, Paging paging) {
 //		//pmc.setM_id((String) session.getAttribute("id"));	
@@ -247,29 +277,20 @@ public class DoeunController {
 	}
 
 	@RequestMapping(value = "mypage/cupon") // 쿠폰함
-	public ModelAndView userCp() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("doeun/Mycpon");// jsp 경로 지정
-		return mav;
+	public String userCp(CuponVO cp,HttpSession session, Model model) {
+	
+		cp.setM_id((String)session.getAttribute("id"));
+		System.out.println(cp.getM_id());
+		model.addAttribute("cp",dao.selectCp(cp));
+	
+		return "doeun/Mycpon";
 	}
 
-	@RequestMapping(value = "/doeun/cupon") // 쿠폰 생성
-	public String cupon() {
-		return "";
-	}
 
-	@RequestMapping(value = "/doeun/write") // 내가 쓴 게시글
+
+	@RequestMapping(value = "/mypage/write") // 내가 쓴 게시글
 	public String Mywrite() {
 		return "";
 	}
 
-	@RequestMapping("/admin/pointm") // 쿠폰&포인트 관리페이지(김도은)
-	public String pointMgm() {
-		return "doeun/pointMgm";
-	}
-
-	@RequestMapping("/admin/coupon") // 쿠폰&포인트 관리페이지(김도은)
-	public String cpmgm() {
-		return "doeun/cpmgm";
-	}
 }
