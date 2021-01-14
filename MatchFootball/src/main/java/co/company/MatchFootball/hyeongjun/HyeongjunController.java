@@ -106,6 +106,7 @@ public class HyeongjunController {
 	@ResponseBody
 	@RequestMapping("/fielddetailinsert")
 	public List<RfieldVO> fielddetailinsert(RfieldVO vo, Model model) {
+		
 		return hyeongjunMapper.fielddetailinsert(vo);
 	}
 
