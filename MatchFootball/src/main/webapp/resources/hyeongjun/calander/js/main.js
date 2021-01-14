@@ -236,7 +236,13 @@ var calendar = $('#calendar').fullCalendar({
 
       //닫기 버튼이 아닐때
       if ($(this).data().role !== 'close') {
-        newEvent(startDate, endDate, $(this).html());
+	
+		if(e.target.innerText=='팀매치' || e.target.innerText=='개인매치'){
+			var modal = $('#eventModalll');
+			modal.modal('show');
+		}
+		else
+        	newEvent(startDate, endDate, $(this).html());
       }
 
       $contextMenu.removeClass("contextOpened");
