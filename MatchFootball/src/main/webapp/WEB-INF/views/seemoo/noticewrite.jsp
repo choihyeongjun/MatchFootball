@@ -19,7 +19,7 @@ $(function(){
 	
 	noticeInsert();
 
-	noticeUpdate();
+	//noticeUpdate();
 	
 	init();
 });
@@ -54,7 +54,7 @@ function noticeDelete() {
 	}); //삭제 버튼 클릭
 }//noticeDelete
 
-//수정 요청
+/* //수정 요청
 function noticeUpdate() {
 	//수정 버튼 클릭
 	$('#btnUpdate').on('click',function(){
@@ -77,7 +77,7 @@ function noticeUpdate() {
 		});
 	});//수정 버튼 클릭
 }//userUpdate
-
+ */
 //등록 요청
 function noticeInsert(){
 	//등록 버튼 클릭

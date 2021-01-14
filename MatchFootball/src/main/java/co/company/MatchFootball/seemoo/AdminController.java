@@ -184,6 +184,14 @@ public class AdminController {
 		return seemoomapper.noticeselect(vo);	
 	}
 	
+	/*
+	 * @ResponseBody
+	 * 
+	 * @RequestMapping(value = "/noticeupdate/{n_no}", method = RequestMethod.GET)
+	 * // (수정) public NoticeVO noticeupdate(NoticeVO vo) {
+	 * seemoomapper.noticeupdate(vo); return vo; }
+	 */
+	
 	@ResponseBody
 	@RequestMapping(value = "/noticeinsert", method = RequestMethod.POST) //입력
 	public NoticeVO noticeinsert(NoticeVO vo, Model model, HttpServletRequest request) throws IllegalStateException, IOException  {
