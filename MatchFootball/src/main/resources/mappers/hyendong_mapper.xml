@@ -78,7 +78,9 @@
 	<!-- 팀원 조회 -->
 	<select id="getTeamMembers" parameterType="TeamlistVO"
 		resultType="TeamlistVO">
+		select * from( select a.*, rownum rn from (
 		select * from teamlist where t_num = #{t_num} order by 3 desc
+		) a ) b where rn between #{first} and #{last}
 	</select>
 
 	<select id="getTeamMemberss" parameterType="TeamlistVO"
@@ -146,7 +148,7 @@
 
 	<!-- 팀 공지 조회 -->
 	<select id="NoticeSelect" parameterType="TnoticeVO" resultType="TnoticeVO">
-		SELECT n_no, t_title, to_date(t_date, 'yyyy-mm-dd HH24:MI:SS'), t_no
+		SELECT n_no, t_title, to_date(t_date, 'yyyy-mm-dd HH24:MI:SS')
 		FROM tnotice
 		WHERE t_num = #{t_num}
 		
@@ -203,9 +205,14 @@
 		)
 	</insert>
 
-	<!--p_match 내역 수 페이징 -->
+	<!--team 내역 수 페이징 -->
 	<select id="getCount1" resultType="int">
 		SELECT COUNT(*) FROM team
+	</select>
+
+	<!--team 내역 수 페이징 -->
+	<select id="getCount2" resultType="int">
+		SELECT COUNT(*) FROM teamlist WHERE t_num = #{t_num}
 	</select>
 
 	<!-- 토너먼트 대진표 조회 -->
@@ -311,6 +318,37 @@
 		WHERE id = #{id}
 	</delete>
 	
+	<!-- 토너먼트 생성 -->
+	<insert id="tournament" parameterType="TournamentVO">
+		<selectKey order="BEFORE" keyProperty="t_no"
+			resultType="string">
+			SELECT NVL(MAX(t_no),0)+1
+			FROM tournament
+		</selectKey>
+		INSERT INTO tournament(
+			t_no,
+			t_max,
+			location,
+			address,
+			s_date,
+			e_date,
+			title,
+			img,
+			t_point,
+			a_id
+		)
+		VALUES(#{t_no}, 
+			   #{t_max}, 
+			   #{location}, 
+			   #{address},
+			   #{s_date},
+			   #{e_date},
+			   #{title},
+			   #{img},
+			   NVL(#{t_point},0),
+			   #{a_id})
+	</insert>
+	
 	<!-- 토너먼트 참가 -->
 	<insert id="teamTournaInsert" parameterType="TournamentTeamVO">
 		INSERT INTO tournamentteam
@@ -322,5 +360,43 @@
 		SELECT count(*)
 		FROM tournamentteam
 		WHERE t_no = #{t_no}
+	</select>
+	
+	<!-- 토너먼트 참가 비 -->
+	<update id="payTournament">
+		update members 
+		set point=to_number(#{point})-100000 
+		where id=#{id}
+	</update>
+	
+	<!-- 토너먼트 상금 -->
+	<update id="plusTournament">
+		update tournament
+		set t_point=to_number(#{t_point})+100000
+		where t_no=#{t_no}
+	</update>
+	
+	<!-- 토너먼트랑 팀 조인 조회-->
+	<select id="joinTeamTournament" resultType="teamVO">
+		select t.*, nvl((select 1 from tournamentteam
+                 where t_num=t.t_num), 0) as sel
+		from team t
+		where t.t_num = #{t_num}
+	</select>
+	
+	<!-- 멤버랑 팀 번호 조인 조회 -->
+	<select id="memberTnum" resultType="membersVO">
+		select t.*, nvl((select 1 from tinvite
+                 where id=t.id), 0) as sel
+		from members t
+		where t.id = #{id}
+	</select>
+	
+	<!-- 어느팀에 가입신청 했는지 조회-->
+	<select id="whereJoin" resultType="TinviteVO" parameterType="TeamVO">
+		select t.t_name 
+		from tinvite e join team t 
+		on e.t_num = t.t_num 
+		where id=#{id}
 	</select>
 </mapper>

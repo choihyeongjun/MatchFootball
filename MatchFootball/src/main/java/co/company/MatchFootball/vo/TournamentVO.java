@@ -14,6 +14,6 @@ public class TournamentVO {
 	String ttype;//토너먼트상태
 	String title;//대회이름
 	String img;//이미지
-	String point;//상금
-	String id;//관리자아이디
+	String t_point;//상금
+	String a_id;//관리자아이디
 }

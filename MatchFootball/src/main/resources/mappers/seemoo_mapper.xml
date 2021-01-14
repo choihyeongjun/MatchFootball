@@ -98,6 +98,11 @@
 		VALUES(#{n_no}, 'pueen0616', #{n_title}, SYSDATE, #{n_comm})
 	</insert>
 	
+	<!-- 수정 -->
+	<!-- <select id="noticeupdate" resultType="NoriceVO" parameterType="NoticeVO">
+		UPDATE NOTICE SET N_TITLE = #{n_title}, N_COMM = #{n_comm} WHERE N_NO = #{n_no}
+	</select> -->
+	
 	<!-- 삭제 -->
 	<select id="noticedelete" resultType="NoticeVO">
 		DELETE NOTICE WHERE N_NO = #{n_no}
@@ -109,4 +114,15 @@
 		<select id="reviewList" resultType="ReviewVO">
 			SELECT * FROM REVIEW
 		</select>	
+		
+<!-- 댓글=================================================================================================  -->
+		
+	<!-- 댓글조회 -->
+	<select id="rcommList" resultType="FwboardVO">
+		SELECT * FROM FBOARD
+	</select>	
+		
+		
+		
+		
 </mapper>

@@ -53,16 +53,41 @@
 			$.ajax({
 				url :'reviewMsg?m_no=' + m_no,
 				type : 'post',
-				//dataType : 'json',
-				//      dataType : 'html',//html은 기본으로 dataType안해줘도 됨
 				success : function(result) {
 					$('#viewMsg').html(result)
 					modal.modal('show');
+					
 				}
 			});
-		})
+		});
+		delMsg();
 	})
+	function delMsg(){
+		
+		$('#delMsg').on('click',function(){
 
+	           var m_no = $(this).closest('tr').find('#m_no').val();
+						console.log(m_no);
+						$.ajax({
+							url : "delMsg/ajax",
+							type : 'POST',
+							dateType:'json',
+							data : {
+								m_no : m_no
+							},
+							error : function(xhr, status, msg) {
+								alert("상태값 :" + status + " Http에러메시지 :" + msg);
+							},
+							success : function(data) {
+								alert("삭제되었습니다.");
+								location.reload();
+							}
+						});
+					//}) 
+					
+		});
+	}
+	
 	function replyMsg() {
 		$(".replyMsg").on("click", function(event) {
 			var modal = $('#replyMsg');
@@ -80,10 +105,12 @@
 		});
 	})
 	}//replyMsg
+	
 </script>
 </head>
 
 <body>
+<form action="delMsg/ajax">
 	<div id="main" style="height: 850px">
 		<div id="content">
 			<div class="container">
@@ -122,19 +149,15 @@
 									<tbody id=toMsg>
 										<c:forEach items="${msg}" var="msg">
 											<tr>
-												<td><input name="to_id" value="${msg.to_id}"
-													type="text" style="display: none;"></td>
-												<td><input type='checkbox' id="mchk"><input type="hidden" id="m_no" value="${msg.m_no}"></td>
-												<td><input type="text" name="s_date"
-													value="${msg.s_date}"></td>
-													
-												<td><a class="reviewMsg" data-toggle="modal"
-													data-target="#MsgModal" data-num="${msg.m_no}">${msg.m_title}</a></td>
-												
-												<td>${msg.send_id}</a></td>
-												<td><button type="button"
-														class="btn btn-primary float-right send-message"
-														id='delMsg' onclick="delMsg()">삭제하기</button></td>
+											<td><input name="to_id" value="${msg.to_id}" type="text" style="display: none;"></td>
+											<td><input type='checkbox' id="mchk"></td>
+												<td>${msg.s_date}</td>												
+												<td><a class="reviewMsg" data-toggle="modal" data-target="#MsgModal" data-num="${msg.m_no}">${msg.m_title}</a></td>
+												<td>${msg.send_id}</td>
+												<td><input type="hidden" id="m_no" name="m_no" value="${msg.m_no}">
+												<button type="button"
+														class="btn btn-primary float-right"
+														id="delMsg">삭제하기</button></td>
 											</tr>
 										</c:forEach>
 									</tbody>
@@ -173,6 +196,7 @@
 			location.href = "msg?page=" + q;
 		}
 	</script>
+</form>
 </body>
 
 </html>

@@ -19,9 +19,14 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/hyeongjun/calander/css/main.css">
 <script>
-$('#match').on("click",function(){
-	
+$(function(){
+	$('.match1').on("click",function(){
+		
+	})
 })
+
+		
+
 </script>
 </head>
 
@@ -36,8 +41,8 @@ $('#match').on("click",function(){
             <li><a tabindex="-1" class="dd">개인축구</a></li>
             <li><a tabindex="-1" class="aa">개인풋살</a></li>
             
-            <li><a tabindex="-1" id="match">팀매치</a></li>
-             <li><a tabindex="-1" id="match">개인매치</a></li>
+            <li><a tabindex="-1" class="match1">팀매치</a></li>
+             <li><a tabindex="-1" class="match2">개인매치</a></li>
             <li class="divider"></li>
             <li><a tabindex="-1" href="#" data-role="close">Close</a></li>
          </ul>
@@ -89,8 +94,8 @@ $('#match').on("click",function(){
                      <div class="col-xs-12">
                         <label class="col-xs-4" for="edit-type">구분</label> <select
                            class="inputModal" type="text" name="edit-type" id="edit-type">
-                           <option value="축구">축구</option>
-                           <option value="풋살">풋살</option>
+                           <option value="개인축구">개인축구</option>
+                           <option value="개인풋살">개인풋살</option>
                         </select>
                      </div>
                   </div>
@@ -122,7 +127,7 @@ $('#match').on("click",function(){
                         <label class="col-xs-4" for="edit-type">매니저</label> <select
                            class="inputModal" type="text" name="manager" id="manager">
                            <option value="없음">없음</option>
-                           <option value="풋살"></option>
+                           
                         </select>
                      </div>
                   </div>
@@ -145,7 +150,7 @@ $('#match').on("click",function(){
       <!-- /.modal -->
       <form action="" name="frm">
       <!-- 일정 추가 MODAL -->
-      <div class="modal fade" tabindex="-1" role="dialog" id="eventModal">
+      <div class="modal fade" tabindex="-1" role="dialog" id="eventModalll">
          <div class="modal-dialog" role="document">
             <div class="modal-content">
                <div class="modal-header">
@@ -216,6 +221,7 @@ $('#match').on("click",function(){
                         <label class="col-xs-4" for="edit-type">매니저</label> <select
                            class="inputModal" type="text" name="manager" id="manager">
                            <option value="없음">없음</option>
+                           <option value="ㅇㅇ">ㅇㅇㅇㅇㅇㅇㅇㅇㅇ</option>
                            <option value="풋살"></option>
                         </select>
                      </div>
