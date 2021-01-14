@@ -8,7 +8,7 @@
 
 	<!-- 유저전체조회 -->
 	<select id="memberList" resultType="MembersVO">
-		SELECT * FROM MEMBERS
+		SELECT * FROM MEMBERS WHERE AUTHOR = 'user'
 	</select>
 
 	<!-- 유저단건조회 -->
@@ -67,7 +67,7 @@
 	</select>
 	
 	<!-- 매니저 권한수정 -->
-	<select id="memberupdate" resultType="MembersVO" parameterType="MembersVO">
+	<select id="managerupdate" resultType="MembersVO" parameterType="MembersVO">
 		UPDATE MEMBERS SET AUTHOR = #{AUTHOR} WHERE ID = #{id}
 	</select>
 	

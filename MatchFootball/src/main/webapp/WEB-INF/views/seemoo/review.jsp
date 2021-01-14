@@ -45,7 +45,7 @@ function reviewListResult(data) {
 		.append($('<td>').html(item.manager_id))//매니저아이디
 		.append($('<td>').html(item.m_id))    	//이용자아이디
 		.append($('<td>').html(item.t_num))     //팀번호
-		.append($('<td>').html(item.score))  	//스코어
+		.append($('<td>').html(item.score))  	//스코어(매너점수)
 		.append($('<td>').html(item.match_info))//매치정보
 		.append($('<td>').html(item.comm))		//상세내용
 		.append($('<td>').html('<button id=\'btnDelete\'class="btn btn-danger">리뷰삭제</button>'))

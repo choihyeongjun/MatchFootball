@@ -65,7 +65,7 @@ public class AdminController {
 		return vo;
 	}
 
-//	---------------------------------------------------------------------------------------------------------------------
+//	============================================================================================================================
 
 	@RequestMapping(value = "/admin/team", method = RequestMethod.GET) // 팀관리 페이지 (전체조회)
 	public String team(Model model, TeamVO vo, HttpServletRequest request, HttpServletResponse reponse) {
@@ -116,7 +116,7 @@ public class AdminController {
 //		return seemoomapper.blackteamsdelete(vo);
 //	}
 	
-//	---------------------------------------------------------------------------------------------------------------------
+//	============================================================================================================================
 	
 	@RequestMapping(value = "/admin/manager", method = RequestMethod.GET) // 매니저관리 페이지
 	public String manager(Model model, TeamVO vo, HttpServletRequest request, HttpServletResponse reponse) {
@@ -136,6 +136,13 @@ public class AdminController {
 		return  seemoomapper.managerselect(vo);
 	}
 	
+	@ResponseBody
+	@RequestMapping(value = "/managerupdate", method = RequestMethod.GET) // 매니저관리 페이지 (수정)
+	public MembersVO managerupdate(MembersVO vo) {
+		 seemoomapper.managerupdate(vo);
+		 return vo;
+	}
+	
 	@RequestMapping(value = "/applymanager/ajax", method = RequestMethod.GET) // 매니저(매니저 신청|승인대기)관리 페이지 (ajax로 전체조회)
 	@ResponseBody	
 	public List<ManagerapplyVO> applymanagerlist(Model model, HttpServletRequest request, HttpServletResponse reponse) {
@@ -148,7 +155,7 @@ public class AdminController {
 		return "seemoo/applymanager";
 	}
 	
-//	---------------------------------------------------------------------------------------------------------------------
+//	============================================================================================================================
 
 	@RequestMapping("/admin/tournament") // 토너먼트 페이지
 	public String tournament() {
@@ -165,7 +172,7 @@ public class AdminController {
 		return "seemoo/community";
 	}
 
-//	---------------------------------------------------------------------------------------------------------------------
+//	============================================================================================================================
 
 	@RequestMapping("/admin/notice/noticewrite") // 공지사항
 	public String noticewrite() {
@@ -200,7 +207,7 @@ public class AdminController {
 		return vo;
 	}
 	
-//	---------------------------------------------------------------------------------------------------------------------
+//	============================================================================================================================
 
 	@ResponseBody
 	@RequestMapping(value = "/review/ajax", method = RequestMethod.GET) // 리뷰 페이지(ajax)
@@ -214,7 +221,7 @@ public class AdminController {
 		return "seemoo/review";
 	}
 	
-//	---------------------------------------------------------------------------------------------------------------------
+//	============================================================================================================================
 	
 	@RequestMapping("/admin/match") // 매치 페이지
 	public String match() {
@@ -229,5 +236,10 @@ public class AdminController {
 	@RequestMapping("/admin/point") // 쿠폰&포인트 관리페이지(김도은)
 	public String point() {
 		return "seemoo/point";
+	}
+	
+	@RequestMapping("/admin/reviewerite") // 공지사항
+	public String notice() {
+		return "seemoo/reviewerite";
 	}
 }
