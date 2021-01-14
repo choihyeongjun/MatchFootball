@@ -39,9 +39,9 @@
 				<div>
 				<ol class="breadcrumb mb-4">
 					<li class="breadcrumb-item">
-						<a>유저 리뷰 작성페이지</a></li>
+						<a>팀 리뷰 작성페이지</a></li>
 					<li class="breadcrumb-item active"></li>
-					<a href="${pageContext.request.contextPath}/admin/teamreviewerite">팀 리뷰 작성페이지 이동</a>
+					<a href="${pageContext.request.contextPath}/admin/reviewerite">개인 리뷰 작성페이지 이동</a>
 				</ol>
 		</div>
 					<table class="table" style="width: 100%">

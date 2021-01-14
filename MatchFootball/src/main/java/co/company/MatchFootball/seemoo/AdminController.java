@@ -215,10 +215,25 @@ public class AdminController {
 		return seemoomapper.reviewList();
 	}
 	
-	@RequestMapping(value = "/admin/review", method = RequestMethod.GET) // 리뷰 페이지(전체조회)
+	@RequestMapping(value = "/admin/review", method = RequestMethod.GET) // 개인리뷰 페이지(전체조회)
 	public String review(Model model, ReviewVO vo, HttpServletRequest request, HttpServletResponse reponse) {
 		model.addAttribute("reviews", seemoomapper.reviewList());
 		return "seemoo/review";
+	}
+	
+	@RequestMapping("/admin/teamreview") // 팀리뷰 페이지(전체조회)
+	public String teamreview() {
+		return "seemoo/teamreview";
+	}
+	
+	@RequestMapping("/admin/reviewerite") // 개인리뷰 작성
+	public String reviewerite() {
+		return "seemoo/reviewerite";
+	}
+	
+	@RequestMapping("/admin/teamreviewerite") // 팀리뷰 작성
+	public String teamreviewerite() {
+		return "seemoo/teamreviewerite";
 	}
 	
 //	============================================================================================================================
@@ -238,8 +253,4 @@ public class AdminController {
 		return "seemoo/point";
 	}
 	
-	@RequestMapping("/admin/reviewerite") // 공지사항
-	public String notice() {
-		return "seemoo/reviewerite";
-	}
 }

@@ -11,7 +11,7 @@
 <meta name="description" content="" />
 <meta name="author" content="" />
 
-<title>개인리뷰 페이지</title>
+<title>팀리뷰 페이지</title>
 
 <link href="${pageContext.request.contextPath}/resources/seemoo/css/styles.css" rel="stylesheet" />
 <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
@@ -65,13 +65,13 @@ function reviewListResult(data) {
 		<div id="layoutSidenav_content">
 			
 				<div class="container-fluid">
-					<h1 class="mt-4">개인리뷰관리</h1>
+					<h1 class="mt-4">팀리뷰관리</h1>
 					<ol class="breadcrumb mb-4">
-						<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/admin/teamreview">팀리뷰페이지</a></li>
+						<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/admin/review">개인리뷰페이지</a></li>
 					</ol>
 						<div class="card mb-4">
 							<div class="card-header">
-								<i class="fas fa-table mr-1"></i> 개인리뷰 관리
+								<i class="fas fa-table mr-1"></i> 팀리뷰 관리
 							</div>
 							<div class="card-body">
 								<div class="table-responsive">
