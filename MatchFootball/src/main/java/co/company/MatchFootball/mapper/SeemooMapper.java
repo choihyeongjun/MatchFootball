@@ -3,6 +3,7 @@ package co.company.MatchFootball.mapper;
 import java.util.List;
 
 import co.company.MatchFootball.vo.BlackTeamListVO;
+import co.company.MatchFootball.vo.FwboardVO;
 import co.company.MatchFootball.vo.ManagerapplyVO;
 import co.company.MatchFootball.vo.MembersVO;
 import co.company.MatchFootball.vo.NoticeVO;
@@ -50,4 +51,9 @@ public interface SeemooMapper {
 	
 	public List<ReviewVO> reviewList();	// 리뷰조회
 	public List<ReviewVO> review();
+	
+// ============================================================================================
+
+	public List<FwboardVO> rcommList(FwboardVO vo); //조회
+	
 }

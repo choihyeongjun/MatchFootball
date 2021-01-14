@@ -109,4 +109,15 @@
 		<select id="reviewList" resultType="ReviewVO">
 			SELECT * FROM REVIEW
 		</select>	
+		
+<!-- 댓글=================================================================================================  -->
+		
+	<!-- 댓글조회 -->
+	<select id="rcommList" resultType="FwboardVO">
+		SELECT * FROM FBOARD
+	</select>	
+		
+		
+		
+		
 </mapper>
