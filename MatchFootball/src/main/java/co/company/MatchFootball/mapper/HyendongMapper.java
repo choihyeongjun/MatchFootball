@@ -33,13 +33,18 @@ public interface HyendongMapper {
 	public int tNumNullUpdate(MembersVO membersVO); //팀번호 널로 변경
 	public int teamMemberOut(TeamlistVO teamlistVO); //팀원 추방
 	public int teamListOut(TeamlistVO teamlistVO); //팀 탈퇴
+	public MembersVO memberTnum(MembersVO membersVO); //멤버 팀 팀넘버 조인 조회
 	public int countSelect(TeamVO teamVO);
 	
+	public int tournament(TournamentVO tournamentVO); //토너먼트 생성
 	public List<TournamentVO> tournamentListSelect(); //토너먼트 리스트 조회
 	public TournamentVO getTournament(TournamentVO tournamentVO); //토너먼트 정보 단건 조회
 	public List<TournamentTeamVO> tournamentPVP(TournamentTeamVO tournamentTeamVO); //토너먼트 대진표 조회
 	public int teamTournaInsert(TournamentTeamVO tournamentVO); //토너먼트 참가
 	public int teamTournaCount(TournamentTeamVO tournamentVO); //토너먼트  팀 참가 수
+	public int payTournament(MembersVO membersVO); //토너먼트 참가비 지불
+	public int plusTournament(TournamentVO tournamentVO); //토너먼트 상금 플러스
+	public TeamVO joinTeamTournament(TeamVO teamVO); //팀이랑 팀토너먼트 조인 조회
 	
 	public TeamVO idTeamSelect(MembersVO membersVO); //아이디의 소속된 팀 조회
 	
