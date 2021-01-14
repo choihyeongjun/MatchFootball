@@ -78,7 +78,7 @@
 					<div class="wrap">
 						<div class="tournament_img">
 							<img
-								src="https://baro-match.co.kr/newsite/../site/_data/on_reservation/1982540371_b5f8280c_2018_ED8FACECB9B4EBA6ACEC8AA4EC9BA8ED8AB8_ED928BEC82B4ED9E88EC96B4EBA19CECA688_ED8FACEC8AA4ED84B0_ECB59CECA285.jpg"
+								src="images/${tournamentList.img }"
 								width="100%">
 						</div>
 
@@ -98,7 +98,7 @@
 							</dl>
 							<dl>
 								<dt>»ó±Ý</dt>
-								<dd>${tournamentList.point }P</dd>
+								<dd>${tournamentList.t_point }P</dd>
 							</dl>
 						</div>
 					</div>

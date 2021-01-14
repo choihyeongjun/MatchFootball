@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,7 +46,36 @@ a {
 	bottom: 100px;
 	border-radius: 100px;
 }
-
+.employ2 {
+	bottom: 0;
+	width: 320px;
+	background-color: #ea3e42;
+	padding: 20px 20px;
+	color: white;
+	text-align: center;
+	z-index: 2;
+	width: 320px;
+	left: 0;
+	right: 0;
+	margin: auto;
+	bottom: 100px;
+	border-radius: 100px;
+}
+.employ3{
+bottom: 0;
+	width: 320px;
+	background-color: #ddd;
+	padding: 20px 20px;
+	color: white;
+	text-align: center;
+	z-index: 2;
+	width: 320px;
+	left: 0;
+	right: 0;
+	margin: auto;
+	bottom: 100px;
+	border-radius: 100px;
+}
 .lets {
 	background-color: white;
 	border-top: 1px solid #ddd;
@@ -76,13 +107,16 @@ a {
 }
 </style>
 <script>
+	if ('${param.msg}' != '')
+		alert('${param.msg}')
+
 	$(function() {
 		/*클릭시 css  */
 		$(".qqqq").on("click", "a", function() {
 			$(".qqqq a").removeClass("ss");
 			$(event.target).addClass("ss");
 		})
-		
+
 		/* 신청 모달  */
 		$(".p1").on("click", function() {
 			var m_no = $(this).data("num");
@@ -96,11 +130,10 @@ a {
 			});
 		})
 	})
-	
-		
 </script>
 </head>
 <body>
+	${msg}-
 	<div class="container">
 		<div>
 			<img src="resources/img/11.jpg" class="d-block w-100" alt="..."
@@ -112,21 +145,22 @@ a {
 					href="#playin"> 주의사항</a> <a href="#playm"> 매치 안내</a>
 			</div>
 			<div>
-				<h3 style="text-align: left;">2020년 12월 24일 12:00</h3>
+				<h3 style="text-align: left;">${p_match.m_date}
+					${p_match.m_hour }</h3>
 			</div>
 			<div style="align: left;">
-				<h2 style="color: #08088A; font-weight: bold;">성준 풋살장</h2>
+				<h2 style="color: #08088A; font-weight: bold;">${p_match.f_name }</h2>
 			</div>
 
 			<div>
-				<h5>대구 북구 태전동 333-3</h5>
+				<h5>${p_match.f_address }</h5>
 			</div>
 			<div>
 				<h6 style="color: #999;">참가비</h6>
 			</div>
 			<div id="play"
 				style="border-bottom: 1px solid #ddd; padding-bottom: 30px;">
-				<h5 style="color: #08088A; font-weight: bold;">10000원</h5>
+				<h5 style="color: #08088A; font-weight: bold;">${p_match.price }원</h5>
 			</div>
 			<div style="border-bottom: 1px solid #ddd; padding-bottom: 30px;">
 				<div>
@@ -213,9 +247,20 @@ a {
 		</div>
 	</div>
 	<div class="lets">
-		<div class="employ">
-			<p class="p1" data-num="${p_matchVO.m_no }">매치 신청</p>
-		</div>
+		<fmt:parseNumber value="${p_match.p_max}" var="p_max" />
+		<fmt:parseNumber value="${p_match.f}" var="f" />
+		<c:if test="${p_max > f && p_match.sel eq '0'}">
+			<div class="employ">
+				<p class="p1" data-num="${p_match.m_no }">매치 신청</p>
+				<p>총 ${p_max }명 중 ${f }명 신청</p>
+			</div>
+		</c:if>
+		<c:if test="${p_match.sel eq '1'}">
+			<p class="employ2">신청 완료</p>
+		</c:if>
+		<c:if test="${p_max <= f}">
+			<p class="employ3">마감</p>
+		</c:if>
 	</div>
 	<!--개인매치 신청 모달  -->
 	<div class="modal fade" id="matchaplly" tabindex="-1"

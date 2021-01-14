@@ -34,6 +34,7 @@ li {
 					<li class="txt">대회기간 : ${tournamentTeam.s_date } ~ ${tournamentTeam.e_date }</li>
 					<li class="txt">대회지역 : ${tournamentTeam.address }</li>
 					<li class="txt">신청현황 : ${tournamentTeam.apply } / ${tournamentTeam.t_max }</li>
+					<li class="txt">상&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;금 : ${tournamentTeam.t_point }P</li>
 				</ul>
 			</div>
 		</div>
@@ -41,7 +42,10 @@ li {
 		<form action="teamTournaInsert" method="post">
 			<input type="text" value="${tournamentTeam.t_no }" name="t_no" style="display:none">
 			<input type="text" value="${sessionScope.t_num }" name="t_num" style="display:none">
-			<c:if test="${updateButton.t_author eq '팀장'}">
+			<input type="text" value="${members.id }" name="id" style="display:none">
+			<input type="text" value="${members.point }" name="point" style="display:none">
+			<input type="text" value="${tournamentTeam.t_point }" name="t_point" style="display:none">
+			<c:if test="${updateButton.t_author eq '팀장' && hh.sel eq 0}">
 			<button type="submit" class="genric-btn info circle" onclick="javascript: form.action='${pageContext.request.contextPath}/teamTournaInsert'" style="float: right;">참가하기</button>
 			</c:if>
 		</form>
@@ -52,7 +56,7 @@ li {
 			<p align="center"
 				style="list-style: none; font-size: 12px; font-family: dotum;">
 				<font face="dotum"><span style="font-size: 11pt;">풋살
-						좋아하는 중학생들의 축제,</span></font>
+						좋아하는 사람들의 축제,</span></font>
 			</p>
 			<p align="center"
 				style="list-style: none; font-size: 12px; font-family: dotum;">
@@ -69,8 +73,8 @@ li {
 			</p>
 			<p align="center"
 				style="list-style: none; font-size: 12px; font-family: dotum;">
-				<font face="dotum"><span style="font-size: 11pt;"><u>*접수기간
-							: 2018년 4월 2일 (월) ~4월 27일 (금)</u></span></font>
+				<font face="dotum"><span style="font-size: 11pt;"><u>* 대회기간
+							: ${tournamentTeam.s_date } ~ ${tournamentTeam.e_date }</u></span></font>
 			</p>
 			<p align="center"
 				style="list-style: none; font-size: 12px; font-family: dotum;">

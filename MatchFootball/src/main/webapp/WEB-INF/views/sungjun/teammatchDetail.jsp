@@ -62,10 +62,9 @@ a {
 	margin: auto;
 	bottom: 100px;
 	border-radius: 100px;
-	background-color: #ddd;
+	background-color: #314d9f;
 	color: #999;
 }
-
 .lets {
 	background-color: white;
 	border-top: 1px solid #ddd;
@@ -116,6 +115,9 @@ a {
 	align-items: center;
 	padding-right: 15px;
 	display: flex;
+}
+.labelbel {
+margin: 10px;
 }
 </style>
 <script>
@@ -180,8 +182,8 @@ a {
 			<div id="play"
 				style="border-bottom: 1px solid #ddd; padding-bottom: 30px;">
 				<h5 style="font-weight: bold;">${teammatch.price}원</h5>
-				<input type="hidden" id="price" value="${teammatch.price }" />
-				<input type="hidden" id="minusprice" value="-${teammatch.price }" />
+				<input type="hidden" id="price" value="${teammatch.price }" /> <input
+					type="hidden" id="minusprice" value="-${teammatch.price }" />
 			</div>
 			<div style="border-bottom: 1px solid #ddd;">
 				<div>
@@ -190,31 +192,41 @@ a {
 							정보</h4>
 					</div>
 					<div>
-						<p style="margin: 3px;">주장 : ${member.name }</p>
-						<p style="margin: 3px;">평균 연령대 : ${team.t_age }</p>
-						<p style="margin: 3px;">팀 Lv : ${team.t_level }</p>
-						<p style="margin: 3px;">팀소개</p>
-						<p style="background-color: #999; margin: 3px;">${team.t_info }</p>
+						<label for="exampleFormControlInput1" class="form-label labelbel">주장 </label> 
+						<input type="texy" class="form-control" value="${member.name }"
+							style="background-color: white;" readonly>
+						<label for="exampleFormControlInput1" class="form-label labelbel">평균 연령대 </label> 
+						<input type="texy" class="form-control" value="${team.t_age }대"
+							style="background-color: white;" readonly>
+						<label for="exampleFormControlInput1" class="form-label labelbel">팀 LV </label> 
+						<input type="texy" class="form-control" value="${team.t_level}"
+							style="background-color: white;" readonly>
+						<label for="exampleFormControlInput1" class="form-label labelbel">팀 소개 </label> 
+						<input type="texy" class="form-control" value="${team.t_info }"
+							style="background-color: white;" readonly>
 					</div>
 				</div>
-				<p style="font-weight: bold; font-size: 50px; margin: 30px;">남기는
-					한마디</p>
-				<p style="margin: 3px; background-color: #999;">${teammatch.m_info}</p>
+				<label for="exampleFormControlInput1" class="form-label labelbel">남기는 한마디 </label> 
+				<textarea  type="text" class="form-control" style="background-color: white; margin-bottom: 20px;" readonly row="4">${teammatch.m_info}</textarea>
 			</div>
 		</div>
 	</div>
 	<div class="lets">
-		 <c:if test="${empty teammatch.so_num}"> 
-		<div class="employ">
-			<p class="p1" data-num="${teammatch.m_no }">매치 신청</p>
-		</div>
-		 </c:if> 
-
-		 <c:if test="${!empty teammatch.so_num }"> 
-		<div class="employ1">
-			<p class="p1">마감</p>
-		</div>
-		 </c:if> 
+		<c:if test="${empty teammatch.so_num}">
+			<div class="employ">
+				<p class="p1" data-num="${teammatch.m_no }">매치 신청</p>
+			</div>
+		</c:if>
+		<c:if test="${!empty teammatch.so_num}">
+			<div class="employ1">
+				<p class="p2">매칭 완료</p>
+			</div>
+		</c:if>
+		<%-- <c:if test="${teammatch.so_num eq sessionScope.t_num}">
+			<div class="employ1">
+				<p class="p2">매칭 완료</p>
+			</div>
+		</c:if> --%>
 	</div>
 	<!--개인매치 신청 모달  -->
 	<div class="modal fade" id="tmatchaplly" tabindex="-1"

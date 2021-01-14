@@ -1,94 +1,109 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
 
 <title>경기장 페이지</title>
 
-<link href="${pageContext.request.contextPath}/resources/seemoo/css/styles.css" rel="stylesheet" />
-<link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
+<style type="text/css">
+.area_reply {
+    width: 100%;
+    margin-top: 26px;
+    overflow: hidden;
+}
+</style>
+
+<script type="text/javascript">
+
+</script>
+
 </head>
 
 <body>
+	<div class="area_reply">
+		<div class="box_reply_info">
+			<a href="#rp" onclick="" class="reply_events">
+				<p class="item_info">
+					댓글 <span class="thema_apply"> <span id="commentCount61_0">0</span>
+					</span>
+				</p>
+			</a>
+			<button type="button" class="btn_fold">
+				<span class="blind">댓글 접기</span>
+			</button>
+			<button type="button" class="btn_spread" style="display: none;">
+				<span class="blind">댓글 펼치기</span>
+			</button>
+		</div>
 
-		<!-- 경기장 관리 -->
-		<div id="layoutSidenav_content">
-			<main>
-				<div class="container-fluid">
-					<h1 class="mt-4">경기장</h1>
-					<ol class="breadcrumb mb-4">
-						<li class="breadcrumb-item"><a href="#">경기장</a></li>
-						<li class="breadcrumb-item active">무엇을???</li>
-					</ol>
-					<div class="card mb-4">
-						<div class="card-body">
-							<a target="_blank" href="https://datatables.net/">경기장</a>
+		<div id="entry61Comment">
+			<!-- reply_content -->
+			<div class="reply_content">
+				<button type="button" class="btn_more btn_replymore"
+					style="display: none;">이전 댓글 더보기</button>
+
+				<!-- box_comment_list -->
+				<div class="box_comment_list"></div>
+				<!-- // box_comment_list -->
+
+				<form method="post" action="/comment/add/61" onsubmit="return false"
+					style="margin: 0">
+					<!-- reply_write -->
+
+					<div class="reply_write">
+
+						<div class="form_content thema_apply">
+							<textarea id="comment" name="comment" placeholder="댓글을 입력해주세요."></textarea>
 						</div>
-					</div>
-					
-					<div class="card mb-4">
-						<div class="card-header">
-							<i class="fas fa-table mr-1"></i> 경기장 현황
-						</div>
-						<div class="card-body">
-							<div class="table-responsive">
-								<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-									<thead align="center">
-										<tr>
-											<th style="width: 10px;">No.</th>
-											<th>제목</th>
-											<th>내용</th>
-											<th>작성자</th>
-											<th>날짜</th>
-											<th>날짜</th>
-											<th>조회수</th>
-										</tr>
-									</thead>
-									<tfoot align="center">
-										<tr>
-											<th>No.</th>
-											<th>제목</th>
-											<th>내용</th>
-											<th>작성자</th>
-											<th>날짜</th>
-											<th>날짜</th>
-											<th>조회수</th>
-										</tr>
-									</tfoot>
-									<tbody align="center">
-										<tr>
-											<td>1</td>
-											<td>형준</td>
-											<td>최형준</td>
-											<td>최행배</td>
-											<td>2020.01.01</td>
-											<td>2020.01.01</td>
-											<td>
-											<input type="button" value="수정" onclick="">
-											<input type="button" value="삭제" onclick="">
-											</td>
-										</tr>
-									</tbody>
-								</table>
+
+
+						<div class="form_guest">
+							<div class="box_inp">
+								<div class="inner_inp">
+									<input type="text" name="name" value="" title="이름"
+										placeholder="이름" class="inp_comment inp_name">
+								</div>
+							</div>
+							<div class="box_inp">
+								<div class="inner_inp">
+									<input type="password" name="password" value="" title="비밀번호"
+										maxlength="12" placeholder="비밀번호"
+										class="inp_comment inp_password">
+								</div>
 							</div>
 						</div>
+
+
+						<div class="form_reg">
+							<label><input type="checkbox" name="secret"> 비밀글</label>
+						</div>
+
+
+						<div class="form_reg">
+							<button type="button" class="btn_register thema_apply"
+								onclick="addComment(this, 61); return false;">등록</button>
+						</div>
 					</div>
-				</div>
-			</main>
+				</form>
+				<!-- // reply_write -->
+
+
+			</div>
+			<!-- // reply_content -->
 		</div>
-	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-	<script src="${pageContext.request.contextPath}/resources/seemoo/js/scripts.js"></script>
-	<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
-	<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
-	<script src="${pageContext.request.contextPath}/resources/seemoo/assets/demo/datatables-demo.js"></script> 
+		<script type="text/javascript">
+			loadedComments[61] = true;
+			findFragmentAndHighlight(61)
+		</script>
+	</div>
 </body>
 </html>

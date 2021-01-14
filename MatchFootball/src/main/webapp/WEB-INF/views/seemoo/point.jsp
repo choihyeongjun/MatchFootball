@@ -4,78 +4,88 @@
 <!DOCTYPE html>
 <html>
 <head>
-
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
 
-<title>매니저관리페이지</title>
+<title>쿠폰관리 페이지</title>
+
+<link href="${pageContext.request.contextPath}/resources/seemoo/css/styles.css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
+
 
 </head>
+
 <body>
-	<!-- 매니저대기관리 -->
+
+		<!-- 쿠폰관리 -->
 		<div id="layoutSidenav_content">
 			<main>
 				<div class="container-fluid">
-					<h1 class="mt-4">매니저 신청 승인대기</h1>
-					<ol class="breadcrumb mb-4">
-						<li class="breadcrumb-item">
-						<a href="${pageContext.request.contextPath}/admin/manager">매니저관리</a></li>
-						<li class="breadcrumb-item active">매니저 신청관리 및 현재 매니저현황</li>
-					</ol>
+					<h1 class="mt-4" style="text-align: center;">쿠폰관리</h1>
 					<div class="card mb-4">
 						<div class="card-body">
-							 <a target="_blank" href="https://www.youtube.com/watch?v=hSEcM3McYyM">매니저 지원 영상</a>
-							 <a>/</a>
-							 <a target="_blank" href="https://www.kfa.or.kr/img_src/data_rule/2016futsal_laws.pdf">공식 경기규칙</a>
-						</div>
+							<div class="input-group col-md-6 col-md-offset-6 col-sm-12" style="float: right;">
+                            <input type="text" name="search" class="form-control input-search coupon-search-input-box" placeholder="검색">
+                            	<span class="input-group-btn">
+                                	 <div class="btn btn-success coupon-search-btn"><i class="fa fa-search"></i></div>
+                                </span>
+                       	    </div>
+                       	    <br>
+                       	    <br>
+                                <input type="button" value="쿠폰발행" onclick="" style="float: right;">
+  	                	 </div>
 					</div>
+				</div>
 					
-					<!-- 매니저 승인대기 현황 -->
-						<div class="card mb-4">
+					
+					
+					
+					<div class="card mb-4">
 						<div class="card-header">
-							<i class="fas fa-table mr-1"></i> 매니저 승인대기 현황
+							<input type="button" value="수정" onclick="" style="float: left;">
+							<input type="button" value="삭제" onclick="" style="float: right;">
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
 								<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 									<thead align="center">
 										<tr>
-											<th style="width: 10px;">No.</th>
-											<th style="width: 80px;">ID</th>
-											<th>이름</th>
-											<th>생년월일</th>
-											<th>성별</th>
-											<th>연락처</th>
-											<th style="width: 180px;">권한</th>
-											<th style="width: 180px;">설문지</th>
-											<th>포부</th>
-											<th></th>
-											<th></th>
-											<th></th>
+											<th style="width: 10px;"></th>
+											<th>쿠폰명</th>
+											<th>쿠폰내용</th>
+											<th>발행내역</th>
+											<th>종료일</th>
+											<th>관리기능</th>
 										</tr>
 									</thead>
 									<tfoot align="center">
 										<tr>
-											<th>No.</th>
-											<th>ID</th>
-											<th>이름</th>
-											<th>생년월일</th>
-											<th>성별</th>
-											<th>연락처</th>
-											<th>권한</th>
-											<th>설문지</th>
-											<th>포부</th>
 											<th></th>
-											<th></th>
-											<th></th>
+											<th>쿠폰명</th>
+											<th>쿠폰내용</th>
+											<th>발행내역</th>
+											<th>종료일</th>
+											<th>관리기능</th>
 										</tr>
 									</tfoot>
 									<tbody align="center">
-
+										<tr>
+											<td>
+											<input type="checkbox" name="xxx" value="yyy" checked>
+											</td>
+											<td>도은</td>
+											<td>김도은</td>
+											<td>나무늘보</td>
+											<td>2020.01.01</td>
+											<td>
+											<input type="button" value="수정" onclick="">
+											<input type="button" value="삭제" onclick="">
+											</td>
+										</tr>
 									</tbody>
 								</table>
 							</div>
@@ -83,5 +93,7 @@
 					</div>
 				</div>
 			</main>
+		</div>
+	<script src="${pageContext.request.contextPath}/resources/seemoo/assets/demo/datatables-demo.js"></script> 
 </body>
 </html>

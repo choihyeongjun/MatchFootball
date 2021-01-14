@@ -30,4 +30,5 @@ public class MembersVO {
 	String t_age;
 	String t_wn;
 	String t_level;
+	String sel;
 }

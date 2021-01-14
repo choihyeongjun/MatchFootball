@@ -3,6 +3,7 @@ var activeInactiveWeekends = true;
 var editTitle=$('#edit-title');
 var editStart=$('#edit-start');
 var editEnd=$('#edit-end');
+var d_id=$('#d_id').val();
 var calendar = $('#calendar').fullCalendar({
 
  /** ******************
@@ -149,15 +150,19 @@ var calendar = $('#calendar').fullCalendar({
    
 
   },
-
+	
   eventDragStart: function (event, jsEvent, ui, view) {
+	
     draggedEventIsAllDay = event.allDay;
+	
+	
   },
 
   //일정 드래그앤드롭
   eventDrop: function (event, delta, revertFunc, jsEvent, ui, view) {
+	if(event.id==d_id){
     $('.popover.fade.top').remove();
-
+	
     //주,일 view일때 종일 <-> 시간 변경불가
     if (view.type === 'agendaWeek' || view.type === 'agendaDay') {
       if (draggedEventIsAllDay !== event.allDay) {
@@ -184,6 +189,9 @@ var calendar = $('#calendar').fullCalendar({
         alert('수-----정: ' + newDates.startDate + ' ~ ' + newDates.endDate);
       }
     });
+	}else{
+		alert("권한없음");
+	}
 
   },
 
@@ -228,7 +236,13 @@ var calendar = $('#calendar').fullCalendar({
 
       //닫기 버튼이 아닐때
       if ($(this).data().role !== 'close') {
-        newEvent(startDate, endDate, $(this).html());
+	
+		if(e.target.innerText=='팀매치' || e.target.innerText=='개인매치'){
+			var modal = $('#eventModalll');
+			modal.modal('show');
+		}
+		else
+        	newEvent(startDate, endDate, $(this).html());
       }
 
       $contextMenu.removeClass("contextOpened");
@@ -242,10 +256,18 @@ var calendar = $('#calendar').fullCalendar({
 
   },
 
+	
   //이벤트 클릭시 수정이벤트
   eventClick: function (event, jsEvent, view) {
+	
+	if(event.id==d_id){
     editEvent(event);
+}
+	else{
+		alert("작성자가 아니십니다")
+	}
   }
+
 
 });
 

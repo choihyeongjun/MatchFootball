@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import co.company.MatchFootball.mapper.SeemooMapper;
+import co.company.MatchFootball.vo.FwboardVO;
 import co.company.MatchFootball.vo.ManagerapplyVO;
 import co.company.MatchFootball.vo.MembersVO;
 import co.company.MatchFootball.vo.NoticeVO;
@@ -27,6 +28,9 @@ public class AdminController {
 	@Autowired
 	SeemooMapper seemoomapper;
 
+//	====================================================유저======================================================
+	
+	
 	@RequestMapping(value = "/admin", method = RequestMethod.GET) // 관리자 메인페이지
 	public String admin(Model model) {
 		model.addAttribute("members", seemoomapper.memberList());
@@ -65,7 +69,8 @@ public class AdminController {
 		return vo;
 	}
 
-//	---------------------------------------------------------------------------------------------------------------------
+//	====================================================팀======================================================
+
 
 	@RequestMapping(value = "/admin/team", method = RequestMethod.GET) // 팀관리 페이지 (전체조회)
 	public String team(Model model, TeamVO vo, HttpServletRequest request, HttpServletResponse reponse) {
@@ -116,7 +121,7 @@ public class AdminController {
 //		return seemoomapper.blackteamsdelete(vo);
 //	}
 	
-//	---------------------------------------------------------------------------------------------------------------------
+//	====================================================매니저======================================================
 	
 	@RequestMapping(value = "/admin/manager", method = RequestMethod.GET) // 매니저관리 페이지
 	public String manager(Model model, TeamVO vo, HttpServletRequest request, HttpServletResponse reponse) {
@@ -136,6 +141,13 @@ public class AdminController {
 		return  seemoomapper.managerselect(vo);
 	}
 	
+	@ResponseBody
+	@RequestMapping(value = "/managerupdate", method = RequestMethod.GET) // 매니저관리 페이지 (수정)
+	public MembersVO managerupdate(MembersVO vo) {
+		 seemoomapper.managerupdate(vo);
+		 return vo;
+	}
+	
 	@RequestMapping(value = "/applymanager/ajax", method = RequestMethod.GET) // 매니저(매니저 신청|승인대기)관리 페이지 (ajax로 전체조회)
 	@ResponseBody	
 	public List<ManagerapplyVO> applymanagerlist(Model model, HttpServletRequest request, HttpServletResponse reponse) {
@@ -148,24 +160,11 @@ public class AdminController {
 		return "seemoo/applymanager";
 	}
 	
-//	---------------------------------------------------------------------------------------------------------------------
+//	============================================================================================================================
 
-	@RequestMapping("/admin/tournament") // 토너먼트 페이지
-	public String tournament() {
-		return "seemoo/tournament";
-	}
 
-	@RequestMapping("/admin/field") // 경기장관리 페이지
-	public String field() {
-		return "seemoo/field";
-	}
 
-	@RequestMapping("/admin/community") // 커뮤니티 페이지
-	public String community() {
-		return "seemoo/community";
-	}
-
-//	---------------------------------------------------------------------------------------------------------------------
+//	====================================================공지사항======================================================
 
 	@RequestMapping("/admin/notice/noticewrite") // 공지사항
 	public String noticewrite() {
@@ -185,6 +184,14 @@ public class AdminController {
 		return seemoomapper.noticeselect(vo);	
 	}
 	
+	/*
+	 * @ResponseBody
+	 * 
+	 * @RequestMapping(value = "/noticeupdate/{n_no}", method = RequestMethod.GET)
+	 * // (수정) public NoticeVO noticeupdate(NoticeVO vo) {
+	 * seemoomapper.noticeupdate(vo); return vo; }
+	 */
+	
 	@ResponseBody
 	@RequestMapping(value = "/noticeinsert", method = RequestMethod.POST) //입력
 	public NoticeVO noticeinsert(NoticeVO vo, Model model, HttpServletRequest request) throws IllegalStateException, IOException  {
@@ -200,7 +207,7 @@ public class AdminController {
 		return vo;
 	}
 	
-//	---------------------------------------------------------------------------------------------------------------------
+//	====================================================리뷰======================================================
 
 	@ResponseBody
 	@RequestMapping(value = "/review/ajax", method = RequestMethod.GET) // 리뷰 페이지(ajax)
@@ -208,13 +215,28 @@ public class AdminController {
 		return seemoomapper.reviewList();
 	}
 	
-	@RequestMapping(value = "/admin/review", method = RequestMethod.GET) // 리뷰 페이지(전체조회)
+	@RequestMapping(value = "/admin/review", method = RequestMethod.GET) // 개인리뷰 페이지(전체조회)
 	public String review(Model model, ReviewVO vo, HttpServletRequest request, HttpServletResponse reponse) {
 		model.addAttribute("reviews", seemoomapper.reviewList());
 		return "seemoo/review";
 	}
 	
-//	---------------------------------------------------------------------------------------------------------------------
+	@RequestMapping("/admin/teamreview") // 팀리뷰 페이지(전체조회)
+	public String teamreview() {
+		return "seemoo/teamreview";
+	}
+	
+	@RequestMapping("/admin/reviewerite") // 개인리뷰 작성
+	public String reviewerite() {
+		return "seemoo/reviewerite";
+	}
+	
+	@RequestMapping("/admin/teamreviewerite") // 팀리뷰 작성
+	public String teamreviewerite() {
+		return "seemoo/teamreviewerite";
+	}
+	
+//	============================================================================================================================
 	
 	@RequestMapping("/admin/match") // 매치 페이지
 	public String match() {
@@ -230,4 +252,27 @@ public class AdminController {
 	public String point() {
 		return "seemoo/point";
 	}
+	
+	@RequestMapping("/admin/tournament") // 토너먼트 페이지
+	public String tournament() {
+		return "seemoo/tournament";
+	}
+
+	@RequestMapping("/admin/field") // 경기장관리 페이지
+	public String field() {
+		return "no/seemoo/field";
+	}
+
+	@RequestMapping("/admin/community") // 커뮤니티 페이지
+	public String community() {
+		return "seemoo/community";
+	}
+	
+	@RequestMapping("/admin/aa") // 커뮤니티 페이지
+	@ResponseBody
+	public List<FwboardVO> aa(Model model, FwboardVO vo, HttpServletRequest request, HttpServletResponse reponse) {
+		vo.setNum(request.getParameter("num"));
+		return seemoomapper.rcommList(vo);
+	}
+	
 }

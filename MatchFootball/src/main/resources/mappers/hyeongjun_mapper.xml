@@ -40,7 +40,7 @@
    where f_id=#{f_id}
    </select>
    <select id="fielddetailinsert" parameterType="rfieldVO" resultType="rfieldVO">
-   		insert into rfield(f_id,starttime,endtime,m_id,title,type,backgroundcolor,comm,id) values(#{f_id},#{starttime},#{endtime},{_id},#{title},#{type},#{backgroundcolor},#{comm},#{id})
+   		insert into rfield(f_id,starttime,endtime,title,type,backgroundcolor,comm,id,m_id) values(#{f_id},#{starttime},#{endtime},#{title},#{type},#{backgroundcolor},#{comm},#{id},#{m_id})
    </select>
    <select id="fboardlist" resultType="fboardVO">
    	 select f.* 
@@ -130,7 +130,7 @@
    		delete from invite where ((TRUNC(SYSDATE+9/24,'MI')-to_date(s_date,'YYYY-MM-DD HH24:MI:SS'))*1440)>=100
    </select>
    <select id="playerinsert" parameterType="membernInvite">
-   	insert into players(m_no,t_num,id) values(#{m_no},#{t_num},#{id})
+   	insert into players(m_no,t_num,id,state) values(#{m_no},#{t_num},#{id},'용병')
    </select>
  	<select id="likecheck" resultType="map">
  		select likeit

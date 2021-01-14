@@ -160,7 +160,7 @@
 		</div>
 
 	<form method="post">
-		<c:if test="${members.t_num eq null}">
+		<c:if test="${members.t_num eq null && hh.sel eq 0}">
 			<input type="text" value="${sessionScope.id }" name="id" style="display:none">
 			<input type="text" value="${members.pos }" name="i_pos" style="display:none">
 			<input type="text" value="${members.lv }" name="i_lv" style="display:none">

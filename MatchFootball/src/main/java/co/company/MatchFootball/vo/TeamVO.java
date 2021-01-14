@@ -17,6 +17,8 @@ public class TeamVO {
 	String t_m;//팀매너점수
 	String t_wn;//팀승패여부
 	String author; 
+	String stop_date;
+	String sel;
 	int first;
 	int last;
 }

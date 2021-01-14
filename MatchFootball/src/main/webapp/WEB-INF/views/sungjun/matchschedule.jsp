@@ -33,7 +33,7 @@
 				<label for="exampleFormControlInput1"
 					style="font-weight: bold; margin-top: 5px; margin-bottom: 5px;">유형
 				</label>
-				<div class="form-control">${p_matchVO.mtype }</div>
+				<div class="form-control">${p_matchVO.m_type }</div>
 			</div>
 			<div class="form-group">
 				<label for="exampleFormControlInput1"

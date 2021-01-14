@@ -50,8 +50,10 @@ public interface SungjunMapper {
 	public MembersVO teamname(MembersVO membersvo);
 	//팀매치 등록
 	public int teammatchRegi(TeammatchVO teammatch);
-	//팀매치 등록 시 선발 명단 조회
-
-	
+	//pplayers 참여 인원 조회
+	public PplayersVO pplayersselect(PplayersVO pplayers);
+	//로그인 한사람 포인트 조회
+	public int pointssss(MembersVO membersvo);
+	public Integer cappp(MembersVO membersvo);
 	
 }
