@@ -80,12 +80,18 @@ public class HyenDongController {
 	// 팀정보
 	@RequestMapping("/teamInfo")
 	public String teamInfo(Model model, TeamVO teamVO, MembersVO membersVO, HttpSession session, TeamlistVO teamlistVO,
-			TinviteVO tinviteVO) {
+			TinviteVO tinviteVO, Paging paging) {
 		String id = (String) session.getAttribute("id");
 		membersVO.setId(id);
 		model.addAttribute("members", hyendongMapper.memberSelect(membersVO)); // 멤버 단건 조회
 		model.addAttribute("teamInfo", hyendongMapper.getTeam(teamVO));
-		model.addAttribute("teamMembers", hyendongMapper.getTeamMembers(teamVO));
+		paging.setPageUnit(10);
+		paging.setPageSize(5);
+		teamlistVO.setFirst(paging.getFirst());	
+		teamlistVO.setLast(paging.getLast());
+		paging.setTotalRecord(hyendongMapper.getCount2(teamlistVO));
+		model.addAttribute("teamMembers", hyendongMapper.getTeamMembers(teamlistVO));
+		model.addAttribute("paging", paging);
 		membersVO.setT_num(teamVO.getT_num());
 		model.addAttribute("memberss", hyendongMapper.memberSelect(membersVO));
 		teamlistVO.setId(id);
@@ -93,6 +99,8 @@ public class HyenDongController {
 		String idd = (String) session.getAttribute("id");
 		membersVO.setId(idd);
 		model.addAttribute("hh", hyendongMapper.memberTnum(membersVO));
+		tinviteVO.setId(idd);
+		model.addAttribute("where",hyendongMapper.whereJoin(tinviteVO));
 		return "hyendong/teamInfo";
 	}
 
@@ -115,7 +123,7 @@ public class HyenDongController {
 		membersVO.setId(id);
 		model.addAttribute("members", hyendongMapper.memberSelect(membersVO)); // 멤버 단건 조회
 		model.addAttribute("teamInfo", hyendongMapper.getTeam(teamVO));
-		model.addAttribute("teamMembers", hyendongMapper.getTeamMembers(teamVO));
+		model.addAttribute("teamMembers", hyendongMapper.getTeamMembers(teamlistVO));
 		teamlistVO.setId(id);
 		teamlistVO.setT_num(teamVO.getT_num());
 		teamlistVO.setT_author("팀원");
@@ -305,7 +313,7 @@ public class HyenDongController {
 		return "redirect:/teamInvite?t_num=" + teamVO.getT_num();
 	}
 
-	// 팀 초대 거절
+	// 팀 초대 취소
 	@RequestMapping("/teamInviteCancle")
 	public String teamInviteCancle(TinviteVO tinviteVO, TeamVO teamVO) {
 		hyendongMapper.teamInviteDelete(tinviteVO);

@@ -92,7 +92,8 @@ a {
 					location.href = "teamList?page=" + q;
 				}
 			</script>
-			<div align="">
+			<hr>
+			<div style="margin-left: 350px">
 				<my:paging paging="${paging}" jsfunc="goPage" />
 			</div>
 		</div>
