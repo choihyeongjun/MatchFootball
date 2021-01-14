@@ -61,11 +61,11 @@ String tel = (String) session.getAttribute("point.pnum");
 	function pay(){
     $('#charge_kakao').click(function () {
         // getter
-        var money = $('input[name="cp_item"]:checked').val();
                 //포인트 충전
+        var money = $('input[name="cp_item"]:checked').val();
                 var p_id = "${sessionScope.id}";		//회원 아이디
+                var p_con = "포인트 충전";
                 
-        		var p_con = "포인트 충전";
         console.log(money);
 
         IMP.request_pay({
@@ -87,6 +87,7 @@ String tel = (String) session.getAttribute("point.pnum");
                 msg += '카드 승인번호 : ' + rsp.apply_num;
            		
                 //쿠폰
+                
            		var npoint = money;	//구매한 포인트
            		var p_pay = money;		// 결제 금액
                 alert("ajax실행전");
@@ -96,15 +97,15 @@ String tel = (String) session.getAttribute("point.pnum");
                     type: "POST", 
                     dataType : "JSON",
                     data: {
-                        //db에 담을 값을 넣음
+                        //point db에 담을 값을 넣음
                         p_id : p_id,
                         p_pay : p_pay,
                         npoint : npoint,  
-                        p_con : p_con,
-                        
-                    },
+                        p_con : p_con,                       
+                     },
                     success : function(response){
                     	alert("ajax성공");
+                    	cuponUp();
                     },
                     error:function(response){
                     	alert("ajax에러");
@@ -117,6 +118,37 @@ String tel = (String) session.getAttribute("point.pnum");
             alert(msg);
         });
     });
+	 function cuponUp(){
+		$("input[name='cp_item']:checked").each(function(i, checkbox){
+		var m_id = "${sessionScope.id}";
+           var tr = $(checkbox).parent().parent();
+           var td = $(tr).children();
+           var c_num = td.eq(2).find("input").val();  
+           var msg = "p 할인 쿠폰";
+           console.log('----------------------------');
+           console.log(m_id);
+			console.log(c_num);
+			console.log(msg);
+			 $.ajax({
+                 url: "insertCoupon", //충전 금액값을 보낼 url 설정
+                 type: "POST", 
+                 dataType : "JSON",
+                 data: {
+                     //coupon db에 담을 값을 넣음
+                     m_id : m_id,
+                     c_title : c_num+msg,
+                     c_num: c_num
+                     
+                  },
+                 success : function(response){
+                 	alert("쿠폰성공");
+                 },
+                 error:function(response){
+                 	alert("쿠폰에러");
+                 }
+             });
+		})
+	 }
 }
 </script>
 </head>
@@ -151,27 +183,27 @@ String tel = (String) session.getAttribute("point.pnum");
 										<tbody>
 											<tr>
 												<td><input type="checkbox" name="cp_item" value="5000"></td>
-												<td>5000</td>
-												<td>보너스 쿠폰</td>
+												<td><input type="hidden" name="point">5000</td>
+												<td><input type="hidden" value="100">보너스 쿠폰</td>
 												<td>\ &nbsp;5,000</td>
 											</tr>
 											<tr>
 												<td><input type="checkbox" name="cp_item" value="10000"></td>
 												<td>10000</td>
-												<td>보너스 쿠폰</td>
+												<td><input type="hidden" value="1000">보너스 쿠폰</td>
 												<td>\10,000</td>
 											</tr>
 											<tr>
 												<td><input type="checkbox" name="cp_item" value="15000"></td>
 												<td>15000</td>
-												<td>보너스 쿠폰</td>
+												<td><input type="hidden" value="1500">보너스 쿠폰</td>
 												<td>\15,000</td>
 											</tr>
 
 											<tr>
 												<td><input type="checkbox" name="cp_item" value="25000"></td>
 												<td>25000</td>
-												<td>보너스 쿠폰</td>
+												<td><input type="hidden" value="2500">보너스 쿠폰</td>
 												<td>\25,000</td>
 											</tr>
 
@@ -179,7 +211,7 @@ String tel = (String) session.getAttribute("point.pnum");
 											<tr>
 												<td><input type="checkbox" name="cp_item" value="50000"></td>
 												<td>50000</td>
-												<td>보너스 쿠폰</td>
+												<td><input type="hidden" value="5000">보너스 쿠폰</td>
 												<td>\50,000</td>
 											</tr>
 										</tbody>
