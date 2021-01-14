@@ -62,10 +62,9 @@ a {
 	margin: auto;
 	bottom: 100px;
 	border-radius: 100px;
-	background-color: #ddd;
+	background-color: #314d9f;
 	color: #999;
 }
-
 .lets {
 	background-color: white;
 	border-top: 1px solid #ddd;
@@ -218,12 +217,16 @@ margin: 10px;
 				<p class="p1" data-num="${teammatch.m_no }">매치 신청</p>
 			</div>
 		</c:if>
-
-		<c:if test="${!empty teammatch.so_num }">
+		<c:if test="${!empty teammatch.so_num}">
 			<div class="employ1">
-				<p class="p1">마감</p>
+				<p class="p2">매칭 완료</p>
 			</div>
 		</c:if>
+		<%-- <c:if test="${teammatch.so_num eq sessionScope.t_num}">
+			<div class="employ1">
+				<p class="p2">매칭 완료</p>
+			</div>
+		</c:if> --%>
 	</div>
 	<!--개인매치 신청 모달  -->
 	<div class="modal fade" id="tmatchaplly" tabindex="-1"

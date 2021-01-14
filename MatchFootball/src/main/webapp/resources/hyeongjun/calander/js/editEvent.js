@@ -15,6 +15,7 @@ var updateevent;
 var editDesc=$('#edit-desc');
 var editEvent = function (event, element, view) {
 	updateevent=event;
+	console.log(event);
     $('#deleteEvent').data('id', event._id); //클릭한 이벤트 ID
 	$('#updateEvent').data('id', event._id);
     $('.popover.fade.top').remove();

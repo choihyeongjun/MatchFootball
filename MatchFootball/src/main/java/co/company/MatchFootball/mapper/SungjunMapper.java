@@ -54,6 +54,6 @@ public interface SungjunMapper {
 	public PplayersVO pplayersselect(PplayersVO pplayers);
 	//로그인 한사람 포인트 조회
 	public int pointssss(MembersVO membersvo);
-	
+	public Integer cappp(MembersVO membersvo);
 	
 }

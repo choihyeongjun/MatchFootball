@@ -80,7 +80,6 @@ li {
 	margin-bottom: 100px;
 }
 
-
 p {
 	margin: 0;
 }
@@ -125,6 +124,15 @@ p {
 	text-align: center;
 	padding: 10px;
 }
+
+.ap-info1 {
+	background-color: #ea3e42;
+	border-radius: 10px;
+	font-size: 17px;
+	color: white;
+	text-align: center;
+	padding: 10px;
+}
 /* 팀로고랑 승패 이름   */
 .lista {
 	align-items: center;
@@ -134,24 +142,27 @@ p {
 	flex-wrap: nowrap;
 	justify-content: space-between;
 }
+
 .m-im-t {
 	margin: 10px;
 	align-items: center;
 	justify-content: flex-start;
 	flex-wrap: wrap;
 }
-.m-im-t .wnwnwn{
-font-size: 14px;
+
+.m-im-t .wnwnwn {
+	font-size: 14px;
 	color: #999;
 	margin-bottom: 10px;
 	align-items: center;
 	justify-content: flex-start;
 	flex-wrap: wrap;
 }
+
 .tlwn {
-	align-items:center;
+	align-items: center;
 	padding-right: 15px;
-	 width: 25%; 
+	width: 25%;
 	display: flex;
 }
 </style>
@@ -166,15 +177,15 @@ $(function() {
 </script>
 </head>
 <body>
-	<div class="con"
-		style="backgroundcolor: white; width: 100%; flex: 1;">
+	<div class="con" style="backgroundcolor: white; width: 100%; flex: 1;">
 		<!-- 사진  -->
-		<div align="center" style=" background-color: #fafafa; border-bottom: 1px solid #ddd;">
+		<div align="center"
+			style="background-color: #fafafa; border-bottom: 1px solid #ddd;">
 			<div id="carouselExampleControls" class="carousel slide"
-				data-ride="carousel" >
-				
+				data-ride="carousel">
+
 				<div class="carousel-inner" style="padding: 40px;">
-				
+
 					<div class="carousel-item active">
 						<iframe width="629px" height="420px"
 							src="https://www.youtube.com/embed/GKz7d5Wx77s" frameborder="0"
@@ -198,7 +209,7 @@ $(function() {
 							width="629px" height="420px">
 					</div>
 				</div>
-				 <a class="carousel-control-prev" href="#carouselExampleControls"
+				<a class="carousel-control-prev" href="#carouselExampleControls"
 					role="button" data-slide="prev"> <span
 					class="carousel-control-prev-icon" aria-hidden="true"></span> <span
 					class="sr-only">Previous</span>
@@ -206,7 +217,7 @@ $(function() {
 					role="button" data-slide="next"> <span
 					class="carousel-control-next-icon" aria-hidden="true"></span> <span
 					class="sr-only">Next</span>
-				</a> 
+				</a>
 			</div>
 		</div>
 
@@ -281,41 +292,46 @@ $(function() {
 
 			<ul style="margin-bottom: 50px;">
 				<c:forEach var="teammatch" items="${teammatch }">
-					<li class="listl"><a class="lista"
-						href="teammatchDetail?m_no=${teammatch.m_no }&t_num=${teammatch.t_num}">
-							<div class="tlwn" >
-								<div style="margin: 10px; ">
-									<img alt="nope"
-										src="${pageContext.request.contextPath}/resources/img/${teammatch.t_logo}"
-										style="width: 70px; height: 70px; border-radius: 50%; marging: 5px;">
-								</div>
-									<div class="m-im-t" >
-										<p style="font-weight: bold;font-size:20px;text-align: center;">${teammatch.t_name }</p>
-										<p class="wnwnwn" style="font-size: 15px">2전 1승 1무 1패</p>
-										<input type="hidden" value="${teammatch.m_no }" />
-										<input type="hidden" value="${teammatch.t_num }" />
+					<li class="listl">
+							<a class="lista"
+								href="teammatchDetail?m_no=${teammatch.m_no }&t_num=${teammatch.t_num}">
+								<div class="tlwn">
+									<div style="margin: 10px;">
+										<img alt="nope"
+											src="${pageContext.request.contextPath}/resources/img/${teammatch.t_logo}"
+											style="width: 70px; height: 70px; border-radius: 50%; marging: 5px;">
 									</div>
-							</div>
+									<div class="m-im-t">
+										<p
+											style="font-weight: bold; font-size: 20px; text-align: center;">${teammatch.t_name }</p>
+										<p class="wnwnwn" style="font-size: 15px">2전 1승 1무 1패</p>
+										<input type="hidden" value="${teammatch.m_no }" /> <input
+											type="hidden" value="${teammatch.t_num }" />
+									</div>
+								</div>
 
-							<div style="width: 20%; margin:5px;">
-								<p>⦁날짜 : ${teammatch.m_date } </p>
-								<p>⦁시간 : ${teammatch.m_hour }</p>
-							</div>
-							<div style="width: 30%; margin:5px;">
-								<p>⦁유형 : ${teammatch.mtype }</p>
-								<p>⦁장소 : ${teammatch.f_name }</p>
-								<p>⦁팀원 : ${teammatch.mtype }명</p>
-								<p><input value="${teammatch.t_num }" style="display:none"></p>
-							</div>
-							<div style="width: 20%;">
-								<%-- <c:if test="${teammatch.p_max > teammatch.f}"> --%>
-								<p class="ap-info">신청 가능</p>
-								<%-- </c:if> --%>
-								<%-- <c:if test="${teammatch.p_max <= teammatch.f}"> --%>
-								<!-- <p class="app-info">마감</p> -->
-								<%-- </c:if> --%>
-							</div>
-					</a></li>
+								<div style="width: 20%; margin: 5px;">
+									<p>⦁날짜 : ${teammatch.m_date }</p>
+									<p>⦁시간 : ${teammatch.m_hour }</p>
+								</div>
+								<div style="width: 30%; margin: 5px;">
+									<p>⦁유형 : ${teammatch.mtype }</p>
+									<p>⦁장소 : ${teammatch.f_name }</p>
+									<p>⦁팀원 : ${teammatch.mtype }명</p>
+									<p>
+										<input value="${teammatch.t_num }" style="display: none">
+									</p>
+								</div>
+								<div style="width: 20%;">
+									<c:if test="${empty teammatch.so_num}">
+										<p class="ap-info">신청 가능</p>
+									</c:if>
+									<c:if test="${!empty teammatch.so_num}">
+										<p class="ap-info1">매칭 완료</p>
+									</c:if>
+								</div>
+							</a>
+						</li>
 				</c:forEach>
 			</ul>
 		</div>

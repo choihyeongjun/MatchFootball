@@ -99,6 +99,7 @@ public class JunController {
 			TeamlistVO teamlist, TeammatchVO teammatch, TeamVO teamvo, PlayersVO playervo) throws IOException {
 		membersvo.setId((String) session.getAttribute("id"));
 		membersvo.setT_num((String) session.getAttribute("t_num"));
+		
 		teammatch.setT_num(dao.memberselect(membersvo).getT_num());
 		model.addAttribute("member",dao.memberselect(membersvo));
 		model.addAttribute("teamlist", dao.teamlist(membersvo));
