@@ -249,7 +249,7 @@ public class HyeongjunController {
 			session.setAttribute("name", vo.getName());
 			session.setAttribute("t_num",vo.getT_num());
 			session.setAttribute("author",vo.getAuthor());
-			Integer dd = dao.cappp(vo);
+			MembersVO dd = dao.cappp(vo);
 			if(dd != null) {
 				session.setAttribute("cap",1);
 			}
