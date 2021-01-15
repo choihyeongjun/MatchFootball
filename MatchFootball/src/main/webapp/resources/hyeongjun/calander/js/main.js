@@ -237,8 +237,12 @@ var calendar = $('#calendar').fullCalendar({
       //닫기 버튼이 아닐때
       if ($(this).data().role !== 'close') {
 	
-		if(e.target.innerText=='팀매치' || e.target.innerText=='개인매치'){
+		if(e.target.innerText=='팀매치'){
 			newEvent1(startDate, endDate, $(this).html());
+		}
+		else if(e.target.innerText=='개인매치')
+		{
+			newEvent2(startDate, endDate, $(this).html());
 		}
 		else
         	newEvent(startDate, endDate, $(this).html());
@@ -260,8 +264,16 @@ var calendar = $('#calendar').fullCalendar({
   eventClick: function (event, jsEvent, view) {
 	
 	if(event.id==d_id){
-    editEvent(event);
-}
+		if(event.description=='팀매치'){
+			editEvent1(event);
+		}
+		else if(event.description='개인매치'){
+			editEvent2(event);
+		}
+		else{
+    	editEvent(event);
+		}
+		}
 	else{
 		alert("작성자가 아니십니다")
 	}

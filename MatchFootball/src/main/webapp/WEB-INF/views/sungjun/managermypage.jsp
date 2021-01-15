@@ -167,7 +167,18 @@ a {
 					modal.modal('show');
 				}
 			});
-		})
+		});
+		$(".tmdetail").on("click", function() {
+			var m_no = $(this).data("num");
+			modal = $("#tmatchdetail");
+			$.ajax({
+				url : "managermypagemm?m_no=" + m_no,
+				success : function(result) {
+					modal.find('#body10').html(result);
+					modal.modal('show');
+				}
+			});
+		});
 	})
 </script>
 </head>
@@ -226,7 +237,15 @@ a {
 					</div>
 				</div>
 			</div>
-
+<!-- 팀매치 정보 모달창 -->
+			<div class="modal fade" id="tmatchdetail" tabindex="-1"
+				aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content">
+						<div class="modal-body" id="body10">...</div>
+					</div>
+				</div>
+			</div>
 			<div class="allscedule">
 				<div class="teamscedule">
 					<h3>팀 매치 경기 일정</h3>
@@ -236,10 +255,13 @@ a {
 						<ul>
 							<li>
 								<div class="matchc">
-									<a class="mdetail" data-toggle="modal"
-										data-target="#matchdetail" data-num="${t_match.m_no }"
+									<a class="tmdetail" data-toggle="modal"
+										data-target="#tmatchdetail" data-num="${t_match.m_no }"
 										style="cursor: pointer; font-size: 18px;"> ${t_match.m_date }
-										${t_match.m_hour }  ${t_match.t_name }</a>
+										${t_match.m_hour }  ${t_match.t_name }
+										 vs  ${t_match.t_name2 }
+										 
+										</a>
 								    <a class="btn sf" href="#"> 리뷰 작성</a>
 								    <input type="hidden" value="${t_match.m_no }">
 								</div>
