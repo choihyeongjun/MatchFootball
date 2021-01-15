@@ -35,7 +35,7 @@
    	from field
    </select>
    <select id="fieldselect" resultType="map">
-   select m_id "_id",title "title" ,type "type",starttime "start", endtime "end",comm "description",backgroundcolor "backgroundColor",id "id"
+   select m_no,m_id "_id",title "title" ,type "type",starttime "start", endtime "end",comm "description",backgroundcolor "backgroundColor",id "id"
    from rfield
    where f_id=#{f_id}
    </select>
