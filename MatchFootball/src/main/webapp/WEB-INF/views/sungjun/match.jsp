@@ -46,12 +46,12 @@
 	border: none;
 	outline: none;
 	color: black;
-	padding: 10px 10px;
+	padding: 10px;
 	text-align: center;
 	text-decoration: none;
 	display: inline-block;
 	font-size: 12px;
-	margin: 4px 2px;
+	margin-left: 40px;
 }
 
 img {
@@ -191,7 +191,7 @@ $(function() {
 		<!-- 사진  -->
 		<div align="center"
 			style="margin: auto; padding: 25px; background-color: #fafafa; border-bottom: 1px solid #ddd;">
-			<div style="margin: 0 250px;">
+			<div style="margin: 0 300px;">
 				<img src="resources/img/코로나.jpeg" class="d-block w-100" alt="..."
 					width="529px" height="320px">
 			</div>
@@ -304,7 +304,7 @@ $(function() {
 							</div>
 							<div class="nameli" style="font-size: 16px; width: 80%;">
 								<div>
-									<h3 style="margin-top: 10px; margin-bottom: 3px;">${p_match.f_name }</h3>
+									<p style="font-size:20px; margin-top: 10px; margin-bottom: 3px;">${p_match.f_name }</p>
 								</div>
 								<div class="m-im-t">
 									<span>⦁ ${p_match.m_type } 매치</span><span>·

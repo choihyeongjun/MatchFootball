@@ -133,7 +133,6 @@ bottom: 0;
 </script>
 </head>
 <body>
-	${msg}-
 	<div class="container">
 		<div>
 			<img src="resources/img/11.jpg" class="d-block w-100" alt="..."
