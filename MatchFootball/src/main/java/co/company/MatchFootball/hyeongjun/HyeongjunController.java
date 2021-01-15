@@ -117,6 +117,7 @@ public class HyeongjunController {
 	@ResponseBody
 	@RequestMapping("/matchinsert")
 	public List<TeammatchVO> matchinsert(TeammatchVO vo, RfieldVO vo1,Model model) {
+	
 		vo1.setBackgroundcolor(vo.getBackgroundcolor());
 		vo1.setComm(vo.getM_info());
 		vo1.setEndtime(vo.getM_hour());
@@ -171,6 +172,11 @@ public class HyeongjunController {
 	@RequestMapping("/fieldselect")
 	public List<RfieldVO> fielddetail(RfieldVO vo) {
 		return hyeongjunMapper.fieldselect(vo);
+	}
+	@ResponseBody
+	@RequestMapping("/teammatchupdate")
+	public TeammatchVO teammatchupdate(TeammatchVO vo) {
+		return hyeongjunMapper.teammatchupdate(vo);
 	}
 	@RequestMapping("/free/freedetail/{num}/{cnt}")
 	public String freeselect(@PathVariable String num,@PathVariable String cnt,Model model,FboardVO vo,HttpSession session) {

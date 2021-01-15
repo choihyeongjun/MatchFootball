@@ -54,4 +54,6 @@ public String mtnum(String vo);
 public String fieldname(String vo);
 public String fieldaddress(String vo);
 public List<P_matchVO>pmatchinsert(P_matchVO vo);
+public TeammatchVO teammatchupdate(TeammatchVO vo);
+public String teamno();
 }

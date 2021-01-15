@@ -154,6 +154,8 @@ $(function(){
       <form action="" name="frm2">
       <!-- 일정 추가 MODAL -->
       <div class="modal fade" tabindex="-1" role="dialog" id="eventModalll">
+      <input type="hidden" name="d_id" id="d_id" value="${id}"/>
+     	<input type="text" name="seq" id="seq" value="${seq}" readonly="readonly">
          <div class="modal-dialog" role="document">
             <div class="modal-content">
                <div class="modal-header">
@@ -189,8 +191,8 @@ $(function(){
                   </div>
                   <div class="row">
                      <div class="col-xs-12">
-                        <label class="col-xs-4" for="edit-type">구분</label> <select
-                           class="inputModal" type="text" name="edit-type" id="edit-type1">
+                        <label class="col-xs-4" for="edit-type1">구분</label> <select
+                           class="inputModal" type="text" name="edit-type1" id="edit-type1">
                            <option value="축구">축구</option>
                            <option value="풋살">풋살</option>
                         </select>
@@ -198,7 +200,7 @@ $(function(){
                   </div>
                   <div class="row">
                      <div class="col-xs-12">
-                        <label class="col-xs-4" for="edit-color">색상</label> <select
+                        <label class="col-xs-4" for="edit-color1">색상</label> <select
                            class="inputModal" name="color1" id="edit-color1">
                            <option value="#D25565" style="color: #D25565;">빨간색</option>
                            <option value="#9775fa" style="color: #9775fa;">보라색</option>
@@ -252,7 +254,7 @@ $(function(){
                   
                   <div class="row">
                      <div class="col-xs-12">
-                        <label class="col-xs-4" for="edit-type">매니저</label> <select
+                        <label class="col-xs-4" for="manager1">매니저</label> <select
                            class="inputModal" type="text" name="manager1" id="manager1">
                            <option value="없음">없음</option>
                            <option value="ㅇㅇ">ㅇㅇㅇㅇㅇㅇㅇㅇㅇ</option>

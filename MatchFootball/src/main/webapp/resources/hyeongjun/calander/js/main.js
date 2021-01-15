@@ -264,8 +264,16 @@ var calendar = $('#calendar').fullCalendar({
   eventClick: function (event, jsEvent, view) {
 	
 	if(event.id==d_id){
-    editEvent(event);
-}
+		if(event.description=='팀매치'){
+			editEvent1(event);
+		}
+		else if(event.description='개인매치'){
+			editEvent2(event);
+		}
+		else{
+    	editEvent(event);
+		}
+		}
 	else{
 		alert("작성자가 아니십니다")
 	}
