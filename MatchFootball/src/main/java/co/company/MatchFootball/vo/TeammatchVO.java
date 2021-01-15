@@ -23,6 +23,7 @@ public class TeammatchVO {
 	String f;
 	String t_logo;
 	String so_num;
+	String t_name2;
 	int first;
 	int last;
 }

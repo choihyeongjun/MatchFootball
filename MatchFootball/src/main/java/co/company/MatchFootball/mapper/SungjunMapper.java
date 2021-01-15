@@ -54,6 +54,14 @@ public interface SungjunMapper {
 	public PplayersVO pplayersselect(PplayersVO pplayers);
 	//로그인 한사람 포인트 조회
 	public int pointssss(MembersVO membersvo);
+	//로그인 한사람 팀장인지 조회 팀 번호
 	public Integer cappp(MembersVO membersvo);
+	//로그인 한사람 팀 있는지 조회
+	public Integer t_numsel(MembersVO membersvo);
+	//개인매치 전체 내역 조회
+	public List<P_matchVO> pmatchselectall(P_matchVO p_match);
+	//팀매치 전체내역 조회
+	public List<TeammatchVO> tmatchselectall(TeammatchVO t_match);
+	
 	
 }
