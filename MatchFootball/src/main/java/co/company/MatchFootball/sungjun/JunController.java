@@ -85,14 +85,25 @@ public class JunController {
 	@RequestMapping(value = "/teammatchDetail")
 	public ModelAndView test13(HttpSession session, HttpServletResponse response, Model model, MembersVO member,
 			TeamlistVO cap, TeammatchVO teammatch, TeamVO teamvo, PlayersVO playervo) throws IOException {
-		model.addAttribute("teammatch", dao.teammatchinfo(teammatch));
-		model.addAttribute("team", dao.teamselect(teamvo));
-		cap = dao.capselect(cap);
-		member.setId(cap.getId());
-		model.addAttribute("member", dao.memberselect(member));
-		model.addAttribute("players", dao.playerselect(playervo));
-
-		return new ModelAndView("sungjun/teammatchDetail");
+		if(session.getAttribute("id") == null) {
+			ModelAndView mvo = new ModelAndView();
+			mvo.setViewName("redirect:/teammatchDetailm?m_no="+pplayers.getM_no());
+			mvo.addObject("msg","포인트가 부족합니다");
+			return mvo;
+		}else {
+			model.addAttribute("teammatch", dao.teammatchinfo(teammatch));
+			model.addAttribute("team", dao.teamselect(teamvo));
+			//해당 팀 주장 찾기
+			cap = dao.capselect(cap);
+			member.setId(cap.getId());
+			model.addAttribute("member", dao.memberselect(member));
+			//세션에 아이디값 넣기
+			member.setId((String) session.getAttribute("id"));
+			model.addAttribute("caption", dao.cappp(member));
+			model.addAttribute("players", dao.playerselect(playervo));
+			return new ModelAndView("sungjun/teammatchDetail");
+			
+		}
 	}
 	@RequestMapping(value = "/teammatchDetailm")
 	public ModelAndView test14(HttpSession session, HttpServletResponse response, Model model, MembersVO membersvo,

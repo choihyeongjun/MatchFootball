@@ -24,6 +24,16 @@
 }
 </style>
 </head>
+<script>
+function teamMemberOut(){
+	if (confirm("해당 팀원을 추방하시겠습니까?") == true){    //확인
+		alert("추방 완료..");
+		    
+		 }else{   //취소
+		     return false;
+		 }
+}
+</script>
 <body>
 		<ul class="hi">
 	  		<c:if test="${sessionScope.t_num ne null }">
@@ -67,7 +77,7 @@
 					</tr>
 					<tr>
 						<th scope="row">팀원수</th>
-						<td>${teamInfo.t_max }</td>
+						<td></td>
 						<th scope="row">실력</th>
 						<td>${teamInfo.t_type }</td>
 					</tr>
@@ -114,29 +124,7 @@
 								<input type="text" value="${teamMembers.id }" name="id" style="display:none">
 								<input type="text" value="${members.t_num }" name="t_num" style="display:none">
 								<c:if test="${teamMembers.t_author eq '팀원' && updateButton.t_author eq '팀장'}">
-								<button type="button" data-toggle="modal" data-target="#modal">추방</button>
-								
-								<!-- modal -->
-								<div class="modal" tabindex="-1" role="dialog" id="modal">
-								  <div class="modal-dialog" role="document">
-								    <div class="modal-content">
-								      <div class="modal-header">
-								        <h5 class="modal-title">Modal title</h5>
-								        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-								          <span aria-hidden="true">&times;</span>
-								        </button>
-								      </div>
-								      <div class="modal-body">
-								        <p>Modal body text goes here.</p>
-								      </div>
-								      <div class="modal-footer">
-								        <button type="submit" class="btn btn-primary" onclick="javascript: form.action='${pageContext.request.contextPath}/memberOut'">Save changes</button>
-								        <button type="button" class="btn btn-secondary" data-dismiss="modal" >Close</button>
-								      </div>
-								    </div>
-								  </div>
-								</div>
-								
+								<button type="submit" onclick="javascript: form.action='${pageContext.request.contextPath}/memberOut'; teamMemberOut();">추방</button>
 								</c:if>
 								</form>
 								</td>
@@ -160,8 +148,8 @@
 						onclick="location.href='teamUpdate?t_num=${teamInfo.t_num}'">팀 정보 변경</button>
 				</c:if>
 					<form action="teamListOut?t_num=${teamInfo.t_num }">
-					<input type="text" value="${teamInfo.t_num }" name="t_num" style="display:none">
-					<c:if test="${members.t_num ne null && updateButton.t_author ne '팀장'}">
+					<input type="text" value="${sessionScope.t_num }" name="t_num" style="display:none">
+					<c:if test="${members.t_num ne null && updateButton.t_author eq '팀원'}">
 					<button type="submit">팀 탈퇴</button>
 					</c:if>
 					</form>
