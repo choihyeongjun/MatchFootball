@@ -124,12 +124,6 @@ div.modal-content { position: relative;
 				</div>
 			</div>
 		</div>
-		
-		<div align="center">
-			<br>
-			<button type="button" data-toggle="modal" data-target="#myModal"
-				id="modal_opne_btn">초대장 작성하기</button>
-		</div>
 
 		<div class="modal fade" id="myModal">
 			<div class="modal-dialog">

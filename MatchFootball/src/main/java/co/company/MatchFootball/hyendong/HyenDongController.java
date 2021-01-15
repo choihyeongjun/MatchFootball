@@ -104,8 +104,6 @@ public class HyenDongController {
 		tinviteVO.setId(idd);
 		model.addAttribute("where",hyendongMapper.whereJoin(tinviteVO));
 		String tNum = (String) session.getAttribute("t_num");
-		teamlistVO.setId(tNum);
-		model.addAttribute("count",hyendongMapper.selectCount(teamlistVO));
 		return "hyendong/teamInfo";
 	}
 
