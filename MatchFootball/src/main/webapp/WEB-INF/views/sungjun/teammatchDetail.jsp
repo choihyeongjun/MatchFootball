@@ -130,6 +130,9 @@ margin: 10px;
 
 		/* 신청 모달  */
 		$(".p1").on("click", function() {
+			if(true){
+				window.alert('팀장만 신청.')
+			}else{
 			var m_no = $(this).data("num");
 			modal = $("#tmatchaplly");
 			$.ajax({
@@ -143,6 +146,7 @@ margin: 10px;
 					modal.modal('show');
 				}
 			});
+			}
 		})
 	})
 </script>
@@ -169,8 +173,8 @@ margin: 10px;
 			</div>
 
 			<div>
-				<h3 style="text-align: left;">${teammatch.m_date}
-					${teammatch.m_hour}</h3>
+				<p style="text-align: left; font-size: 26px; font-weight: 400;">${teammatch.m_date}
+					${teammatch.m_hour}</p>
 			</div>
 			<div style="align: left;">
 				<h2 style="color: #08088A; font-weight: bold;">${teammatch.f_name}</h2>
