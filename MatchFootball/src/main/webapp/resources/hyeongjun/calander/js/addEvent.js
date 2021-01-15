@@ -19,6 +19,7 @@ var manager1 = $('#manager1');
 var manager = $('#manager');
 var level = $('#edit-level');
 var mem=$('#edit-mem');
+var seq=$('#seq');
 var price=$('#edit-price');
 
 var addBtnContainer = $('.modalBtnContainer-addEvent');
@@ -186,6 +187,7 @@ var newEvent1 = function (start, end, eventType) {
             type: "get",
             url: "../../matchinsert",
             data: {
+				m_no:seq.val(),
 				f_id:f_id,
 				m_date:editStart1.val(),
 				m_hour:editEnd1.val(),

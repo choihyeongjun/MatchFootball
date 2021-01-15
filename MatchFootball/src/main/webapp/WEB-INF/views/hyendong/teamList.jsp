@@ -55,6 +55,8 @@ a {
 			<li><a href="teamInvite?t_num=${sessionScope.t_num }">팀 초대</a></li>
 			</c:if>
 			<li><a href="http://localhost/MatchFootball/teamList">팀 리스트</a></li>
+			<li><a href="teamMatchList">팀매치 내역</a></li>
+			<li><a href="teamMatchStatus">팀 초대 현황</a></li>
 	</ul>
 		<div align="center">
 			<br>
@@ -79,6 +81,7 @@ a {
 						</div>
 						<div class="visit">${teamList.t_type}</div>
 						<div class="visit">
+						<input type="text" value="${teamList.t_num }" name="t_num" style="display:none">
 							&nbsp;&nbsp;&nbsp;&nbsp;인원&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							/ ${teamList.t_max}<br>평균
 							연령&nbsp;&nbsp;&nbsp;${teamList.t_age }<br>경기
