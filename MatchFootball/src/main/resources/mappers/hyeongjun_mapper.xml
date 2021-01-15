@@ -34,8 +34,8 @@
    	select *
    	from field
    </select>
-   <select id="fieldselect" resultType="map">
-   select m_no,m_id "_id",title "title" ,type "type",starttime "start", endtime "end",comm "description",backgroundcolor "backgroundColor",id "id"
+   <select id="fieldselect" resultType="map"> 
+   select m_no "m_no",m_id "_id",title "title" ,type "type",starttime "start", endtime "end",comm "description",backgroundcolor "backgroundColor",id "id"
    from rfield
    where f_id=#{f_id}
    </select>
@@ -138,10 +138,14 @@
  		where num=#{num}
  		and id=#{id}
  	</select>
-	<select id="teammatchinsert" parameterType="teammatchVO">
+	<insert id="teammatchinsert" parameterType="teammatchVO">
+	<selectKey order="BEFORE" keyProperty="m_no" resultType="string">
+	select tmatch_seq.nextval from dual
+	</selectKey>
 	insert into teammatch(m_no,t_num,mtype,f_name,f_address,price,t_name,t_cap,t_level,m_info,m_date,m_hour,m_type,id)
-	values(tmatch_seq.nextval,#{t_num},#{mtype},#{f_name},#{f_address},#{price},#{t_name},#{t_cap},#{t_level},#{m_info},#{m_date},#{m_hour},'모집',#{id}) 
-	</select>
+	
+	values(#{m_no},#{t_num},#{mtype},#{f_name},#{f_address},#{price},#{t_name},#{t_cap},#{t_level},#{m_info},#{m_date},#{m_hour},'모집',#{id}) 
+	</insert>
 	<select id="pmatchinsert" parameterType="P_matchVO">
 	insert into p_match(m_no,m_type,f_name,f_address,price,lv,p_max,m_id,m_date,m_hour,t_type,f_id)
 	values(tmatch_seq.nextval,#{m_type},#{f_name},#{f_address},#{price},#{lv},#{p_max},#{id},#{m_date},#{m_hour},'경기장좋음',#{f_id})

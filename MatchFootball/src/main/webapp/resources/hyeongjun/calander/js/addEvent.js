@@ -187,7 +187,6 @@ var newEvent1 = function (start, end, eventType) {
             type: "get",
             url: "../../matchinsert",
             data: {
-				m_no:seq.val(),
 				f_id:f_id,
 				m_date:editStart1.val(),
 				m_hour:editEnd1.val(),

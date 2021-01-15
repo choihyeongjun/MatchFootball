@@ -116,8 +116,8 @@ public class HyeongjunController {
 	}
 	@ResponseBody
 	@RequestMapping("/matchinsert")
-	public List<TeammatchVO> matchinsert(TeammatchVO vo, RfieldVO vo1,Model model) {
-	
+	public RfieldVO matchinsert(TeammatchVO vo, RfieldVO vo1,Model model) {
+		
 		vo1.setBackgroundcolor(vo.getBackgroundcolor());
 		vo1.setComm(vo.getM_info());
 		vo1.setEndtime(vo.getM_hour());
@@ -127,12 +127,14 @@ public class HyeongjunController {
 		vo1.setStarttime(vo.getM_date());
 		vo1.setTitle(vo.getTitle());
 		vo1.setType(vo.getMtype());
-		hyeongjunMapper.fielddetailinsert(vo1);
 		vo.setT_num(hyeongjunMapper.mtnum(vo.getT_cap()));
 		vo.setF_name(hyeongjunMapper.fieldname(vo.getF_id()));
 		vo.setT_name(hyeongjunMapper.teamname(hyeongjunMapper.mtnum((vo.getT_cap()))));
 		vo.setF_address(hyeongjunMapper.fieldaddress(vo.getF_id()));
-		return hyeongjunMapper.teammatchinsert(vo);
+		 hyeongjunMapper.teammatchinsert(vo);
+		 vo1.setM_no(vo.getM_no());
+		 hyeongjunMapper.fielddetailinsert(vo1);
+		 return vo1;
 	}
 	@ResponseBody
 	@RequestMapping("/pmatchinsert")
