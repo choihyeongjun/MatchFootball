@@ -9,6 +9,7 @@ import co.company.MatchFootball.vo.InviteVO;
 import co.company.MatchFootball.vo.LikeitVO;
 import co.company.MatchFootball.vo.MembernInvite;
 import co.company.MatchFootball.vo.MembersVO;
+import co.company.MatchFootball.vo.P_matchVO;
 import co.company.MatchFootball.vo.PlayersVO;
 import co.company.MatchFootball.vo.RfieldVO;
 import co.company.MatchFootball.vo.TeammatchVO;
@@ -52,4 +53,5 @@ public String teamname(String vo);
 public String mtnum(String vo);
 public String fieldname(String vo);
 public String fieldaddress(String vo);
+public List<P_matchVO>pmatchinsert(P_matchVO vo);
 }

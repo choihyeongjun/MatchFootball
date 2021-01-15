@@ -42,7 +42,9 @@ $(function(){
             <li><a tabindex="-1" class="aa">개인풋살</a></li>
             
             <li><a tabindex="-1" class="match1">팀매치</a></li>
+            <c:if test="${sessionStorage.id eq sessionStorage.f_id}">
              <li><a tabindex="-1" class="match2">개인매치</a></li>
+             </c:if>
             <li class="divider"></li>
             <li><a tabindex="-1" href="#" data-role="close">Close</a></li>
          </ul>
@@ -122,6 +124,7 @@ $(function(){
                            id="edit-desc"></textarea>
                      </div>
                   </div>
+                  
                   <div class="row">
                      <div class="col-xs-12">
                         <label class="col-xs-4" for="edit-type">매니저</label> <select
@@ -209,6 +212,15 @@ $(function(){
                         </select>
                      </div>
                   </div>
+                  <c:if test="${sessionStorage.id eq sessionStorage.f_id}">
+                  <div class="row">
+                     <div class="col-xs-12">
+                        <label class="col-xs-4" for="edit-mem">최대인원수</label>
+                        <input
+                           class="inputModal" type="text" name="edit-mem" id="edit-mem" />
+                     </div>
+                  </div>
+                  </c:if>
                    <div class="row">
                      <div class="col-xs-12">
                         <label class="col-xs-4" for="edit-level">레벨</label>
@@ -229,6 +241,7 @@ $(function(){
                            id="edit-price" value="${price}" readonly="readonly"/>
                      </div>
                   </div>
+            
                   <div class="row">
                      <div class="col-xs-12">
                         <label class="col-xs-4" for="edit-desc">설명</label>
@@ -236,6 +249,7 @@ $(function(){
                            id="edit-desc1"></textarea>
                      </div>
                   </div>
+                  
                   <div class="row">
                      <div class="col-xs-12">
                         <label class="col-xs-4" for="edit-type">매니저</label> <select

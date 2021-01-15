@@ -11,12 +11,15 @@ public class P_matchVO {//개인매치
 	String price;//가격
 	String pos;//포지션
 	String lv;//레벨
+	String m_info;
 	String p_max;//인원수
 	String m_id;//매니저아이디
 	String m_date;//매치날짜
 	String m_hour;//매치시간
 	String t_type;//경기상태
 	String f_id;//구장아이디
+	String backgroundcolor;
+	String title;
 	String f;
 	String id;
 	String sel;

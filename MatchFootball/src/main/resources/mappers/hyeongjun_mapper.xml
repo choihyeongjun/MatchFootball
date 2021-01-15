@@ -140,7 +140,11 @@
  	</select>
 	<select id="teammatchinsert" parameterType="teammatchVO">
 	insert into teammatch(m_no,t_num,mtype,f_name,f_address,price,t_name,t_cap,t_level,m_info,m_date,m_hour,m_type,id)
-	values(match_seq.nextval,#{t_num},#{mtype},#{f_name},#{f_address},#{price},#{t_name},#{t_cap},#{t_level},#{m_info},#{m_date},#{m_hour},'모집',#{id}) 
+	values(tmatch_seq.nextval,#{t_num},#{mtype},#{f_name},#{f_address},#{price},#{t_name},#{t_cap},#{t_level},#{m_info},#{m_date},#{m_hour},'모집',#{id}) 
+	</select>
+	<select id="pmatchinsert" parameterType="P_matchVO">
+	insert into p_match(m_no,m_type,f_name,f_address,price,lv,p_max,m_id,m_date,m_hour,t_type,f_id)
+	values(pmatch_seq.nextval,#{m_type},#{f_name},#{f_address},#{price},#{lv},#{p_max},#{id},#{m_date},#{m_hour},'경기장좋음',#{f_id})
 	</select>
 	<select id="fieldprice" parameterType="fieldVO" resultType="string">
 	select price

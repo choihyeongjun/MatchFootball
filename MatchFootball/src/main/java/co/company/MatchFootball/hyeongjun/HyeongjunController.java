@@ -26,6 +26,7 @@ import co.company.MatchFootball.vo.InviteVO;
 import co.company.MatchFootball.vo.LikeitVO;
 import co.company.MatchFootball.vo.MembernInvite;
 import co.company.MatchFootball.vo.MembersVO;
+import co.company.MatchFootball.vo.P_matchVO;
 import co.company.MatchFootball.vo.RfieldVO;
 import co.company.MatchFootball.vo.TeamVO;
 import co.company.MatchFootball.vo.TeammatchVO;
@@ -124,13 +125,30 @@ public class HyeongjunController {
 		vo1.setM_id(vo.getId());
 		vo1.setStarttime(vo.getM_date());
 		vo1.setTitle(vo.getTitle());
-		vo1.setType(vo.getTitle());
+		vo1.setType(vo.getMtype());
 		hyeongjunMapper.fielddetailinsert(vo1);
 		vo.setT_num(hyeongjunMapper.mtnum(vo.getT_cap()));
 		vo.setF_name(hyeongjunMapper.fieldname(vo.getF_id()));
 		vo.setT_name(hyeongjunMapper.teamname(hyeongjunMapper.mtnum((vo.getT_cap()))));
 		vo.setF_address(hyeongjunMapper.fieldaddress(vo.getF_id()));
 		return hyeongjunMapper.teammatchinsert(vo);
+	}
+	@ResponseBody
+	@RequestMapping("/pmatchinsert")
+	public List<P_matchVO> pmatchinsert(P_matchVO vo, RfieldVO vo1,Model model,HttpSession session) {
+		vo1.setBackgroundcolor(vo.getBackgroundcolor());
+		vo1.setEndtime(vo.getM_hour());
+		vo1.setF_id(vo.getF_id());
+		vo1.setComm(vo.getM_info());
+		vo1.setId((String)session.getAttribute("id"));
+		vo1.setM_id(vo.getId());
+		vo1.setStarttime(vo.getM_date());
+		vo1.setTitle(vo.getTitle());
+		vo1.setType(vo.getM_type());
+		hyeongjunMapper.fielddetailinsert(vo1);
+		vo.setF_name(hyeongjunMapper.fieldname(vo.getF_id()));
+		vo.setF_address(hyeongjunMapper.fieldaddress(vo.getF_id()));
+		return hyeongjunMapper.pmatchinsert(vo);
 	}
 
 	@RequestMapping("/fieldlist")
@@ -139,7 +157,7 @@ public class HyeongjunController {
 		return "hyeongjun/fieldlist";
 	}
 
-	@SuppressWarnings("null")
+	
 	@RequestMapping("/fieldlist/fielddetail/{f_id}")
 	public String fieldselect(@PathVariable String f_id,Model model,RfieldVO vo,HttpSession session) {
 		session.setAttribute("field",f_id);
