@@ -13,7 +13,8 @@ var editType1 = $('#edit-type1');
 var editColor = $('#edit-color');
 var editDesc = $('#edit-desc');
 var editDesc1 = $('#edit-desc1');
-var seq=$('#seq');
+var m_no=$('#m_no');
+
 var manager = $('#manager');
 var manager1 = $('#manager1');
 var addBtnContainer = $('.modalBtnContainer-addEvent');
@@ -89,7 +90,7 @@ var editEvent1 = function (event, element, view) {
 
     modalTitle.html('일정 수정');
     editTitle1.val(event.title);
-	seq.val(event.seq);
+	m_no.val(event.)
     editStart1.val(event.start.format('YYYY-MM-DD HH:mm'));
 	editEnd1.val(event.start.format('YYYY-MM-DD HH:mm'));
     editType1.val(event.type);

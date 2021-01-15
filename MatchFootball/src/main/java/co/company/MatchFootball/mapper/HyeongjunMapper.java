@@ -47,7 +47,7 @@ public Map<String,Object> likecheck(Map<String,Object>map);
 public FboardVO heartcntin(LikeitVO vo);
 public FboardVO heartcntdn(LikeitVO vo);
 public FboardVO heartdelete(LikeitVO vo);
-public List<TeammatchVO> teammatchinsert(TeammatchVO vo);
+public int teammatchinsert(TeammatchVO vo);
 public String fieldprice(String vo);
 public String teamname(String vo);
 public String mtnum(String vo);
