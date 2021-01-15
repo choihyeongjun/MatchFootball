@@ -86,9 +86,10 @@ public class JunController {
 	public ModelAndView test13(HttpSession session, HttpServletResponse response, Model model, MembersVO member,
 			TeamlistVO cap, TeammatchVO teammatch, TeamVO teamvo, PlayersVO playervo) throws IOException {
 		if(session.getAttribute("id") == null) {
-			
-			return new ModelAndView("/home");
-			
+			ModelAndView mvo = new ModelAndView();
+			mvo.setViewName("redirect:/teammatchDetailm?m_no="+pplayers.getM_no());
+			mvo.addObject("msg","포인트가 부족합니다");
+			return mvo;
 		}else {
 			model.addAttribute("teammatch", dao.teammatchinfo(teammatch));
 			model.addAttribute("team", dao.teamselect(teamvo));
