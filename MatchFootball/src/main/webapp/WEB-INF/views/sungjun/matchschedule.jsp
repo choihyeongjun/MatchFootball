@@ -56,7 +56,7 @@
 					<th scope="col">이름</th>
 					<th scope="col">연락처</th>
 					<th scope="col">LV</th>
-					<th scope="col">포지션</th>
+					<th scope="col">주 포지션</th>
 					<th scope="col">성별</th>
 				</tr>
 			</thead>

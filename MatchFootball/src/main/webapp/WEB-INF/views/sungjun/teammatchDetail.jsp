@@ -62,7 +62,7 @@ a {
 	margin: auto;
 	bottom: 100px;
 	border-radius: 100px;
-	background-color: #314d9f;
+	background-color: #ddd;
 	color: #999;
 }
 .lets {
@@ -219,7 +219,7 @@ margin: 10px;
 		</c:if>
 		<c:if test="${!empty teammatch.so_num}">
 			<div class="employ1">
-				<p class="p2">매칭 완료</p>
+				<p class="p2" style="margin: 0;">매칭 완료</p>
 			</div>
 		</c:if>
 		<%-- <c:if test="${teammatch.so_num eq sessionScope.t_num}">
