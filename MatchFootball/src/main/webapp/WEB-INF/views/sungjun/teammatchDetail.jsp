@@ -65,6 +65,7 @@ a {
 	background-color: #ddd;
 	color: #999;
 }
+
 .lets {
 	background-color: white;
 	border-top: 1px solid #ddd;
@@ -116,8 +117,9 @@ a {
 	padding-right: 15px;
 	display: flex;
 }
+
 .labelbel {
-margin: 10px;
+	margin: 10px;
 }
 </style>
 <script>
@@ -130,25 +132,27 @@ margin: 10px;
 
 		/* 신청 모달  */
 		$(".p1").on("click", function() {
-			if(true){
-				window.alert('팀장만 신청.')
-			}else{
-			var m_no = $(this).data("num");
-			modal = $("#tmatchaplly");
-			$.ajax({
-				url : "teammatchDetailm?m_no=" + m_no,
-				success : function(result) {
-					modal.find('#body4').html(result);
-					startmember.m_no.value = $("#m_no").val()
-					startmember.point.value = $("#price").val()
-					startmember.npoint.value = $("#minusprice").val()
-					$("#floatingTextarea11").val($("#price").val())
-					modal.modal('show');
-				}
-			});
-			}
+			 /* if ('${caption.t_author}' != '팀장') {
+				alert('팀장만 신청가능 합니다!')
+			} else if('${sessionScope.t_num}' == '${teammatch.t_num}'){
+				alert('신청 할수 없습니다!')
+			}else{ */
+				var m_no = $(this).data("num");
+				modal = $("#tmatchaplly");
+				$.ajax({
+					url : "teammatchDetailm?m_no=" + m_no,
+					success : function(result) {
+						modal.find('#body4').html(result);
+						startmember.m_no.value = $("#m_no").val()
+						startmember.point.value = $("#price").val()
+						startmember.npoint.value = $("#minusprice").val()
+						$("#floatingTextarea11").val($("#price").val())
+						modal.modal('show');
+					}
+				});
+			 /* }  */
 		})
-	})
+	})	
 </script>
 </head>
 <body>
@@ -196,22 +200,25 @@ margin: 10px;
 							정보</h4>
 					</div>
 					<div>
-						<label for="exampleFormControlInput1" class="form-label labelbel">주장 </label> 
-						<input type="texy" class="form-control" value="${member.name }"
-							style="background-color: white;" readonly>
-						<label for="exampleFormControlInput1" class="form-label labelbel">평균 연령대 </label> 
-						<input type="texy" class="form-control" value="${team.t_age }대"
-							style="background-color: white;" readonly>
-						<label for="exampleFormControlInput1" class="form-label labelbel">팀 LV </label> 
-						<input type="texy" class="form-control" value="${team.t_level}"
-							style="background-color: white;" readonly>
-						<label for="exampleFormControlInput1" class="form-label labelbel">팀 소개 </label> 
-						<input type="texy" class="form-control" value="${team.t_info }"
-							style="background-color: white;" readonly>
+						<label for="exampleFormControlInput1" class="form-label labelbel">주장
+						</label> <input type="texy" class="form-control" value="${member.name }"
+							style="background-color: white;" readonly> <label
+							for="exampleFormControlInput1" class="form-label labelbel">평균
+							연령대 </label> <input type="texy" class="form-control"
+							value="${team.t_age }대" style="background-color: white;" readonly>
+						<label for="exampleFormControlInput1" class="form-label labelbel">팀
+							LV </label> <input type="texy" class="form-control"
+							value="${team.t_level}" style="background-color: white;" readonly>
+						<label for="exampleFormControlInput1" class="form-label labelbel">팀
+							소개 </label> <input type="texy" class="form-control"
+							value="${team.t_info }" style="background-color: white;" readonly>
 					</div>
 				</div>
-				<label for="exampleFormControlInput1" class="form-label labelbel">남기는 한마디 </label> 
-				<textarea  type="text" class="form-control" style="background-color: white; margin-bottom: 20px;" readonly row="4">${teammatch.m_info}</textarea>
+				<label for="exampleFormControlInput1" class="form-label labelbel">남기는
+					한마디 </label>
+				<textarea type="text" class="form-control"
+					style="background-color: white; margin-bottom: 20px;" readonly
+					row="4">${teammatch.m_info}</textarea>
 			</div>
 		</div>
 	</div>

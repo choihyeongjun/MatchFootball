@@ -83,17 +83,12 @@ public class JunController {
 	}
 
 	@RequestMapping(value = "/teammatchDetail")
-	public ModelAndView test13(HttpSession session, HttpServletResponse response, Model model, MembersVO member,
+	public String test13(HttpSession session, HttpServletResponse response, Model model, MembersVO member,
 			TeamlistVO cap, TeammatchVO teammatch, TeamVO teamvo, PlayersVO playervo) throws IOException {
-		if(session.getAttribute("id") == null) {
-			ModelAndView mvo = new ModelAndView();
-			mvo.setViewName("redirect:/teammatchDetailm?m_no="+pplayers.getM_no());
-			mvo.addObject("msg","포인트가 부족합니다");
-			return mvo;
-		}else {
+	
 			model.addAttribute("teammatch", dao.teammatchinfo(teammatch));
 			model.addAttribute("team", dao.teamselect(teamvo));
-			//해당 팀 주장 찾기
+			//팀 매치 해당 팀 주장 찾기
 			cap = dao.capselect(cap);
 			member.setId(cap.getId());
 			model.addAttribute("member", dao.memberselect(member));
@@ -101,22 +96,14 @@ public class JunController {
 			member.setId((String) session.getAttribute("id"));
 			model.addAttribute("caption", dao.cappp(member));
 			model.addAttribute("players", dao.playerselect(playervo));
-			return new ModelAndView("sungjun/teammatchDetail");
-			
-		}
+			return "sungjun/teammatchDetail";
 	}
 	@RequestMapping(value = "/teammatchDetailm")
 	public ModelAndView test14(HttpSession session, HttpServletResponse response, Model model, MembersVO membersvo,
 			TeamlistVO teamlist, TeammatchVO teammatch, TeamVO teamvo, PlayersVO playervo) throws IOException {
 		membersvo.setId((String) session.getAttribute("id"));
 		membersvo.setT_num((String) session.getAttribute("t_num"));
-		
-		/*
-		 * Integer team =dao.t_numsel(membersvo); if(team == null) { ModelAndView mvo =
-		 * new ModelAndView();
-		 * mvo.setViewName("redirect:/teammatchDetail?m_no=121&t_num=14"+pplayers.
-		 * getM_no()); mvo.addObject("msg","팀이 없습니다 팀을 가입해주세요"); return mvo; }
-		 */
+	
 		teammatch.setT_num(dao.memberselect(membersvo).getT_num());
 		model.addAttribute("member",dao.memberselect(membersvo));
 		model.addAttribute("teamlist", dao.teamlist(membersvo));

@@ -55,7 +55,7 @@ public interface SungjunMapper {
 	//로그인 한사람 포인트 조회
 	public int pointssss(MembersVO membersvo);
 	//로그인 한사람 팀장인지 조회 팀 번호
-	public Integer cappp(MembersVO membersvo);
+	public MembersVO cappp(MembersVO membersvo);
 	//로그인 한사람 팀 있는지 조회
 	public Integer t_numsel(MembersVO membersvo);
 	//개인매치 전체 내역 조회

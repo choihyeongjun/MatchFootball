@@ -23,8 +23,8 @@
 		valuse( #{m_no},#{t_num}, #{mtype},#{f_name}, #{f_address},#{price}, #{t_name},#{t_cap}, 
 		#{t_level},#{m_info}, #{m_date},#{m_hour} ) </insert> -->
 	<!--로그인 한사람 팀장인지 조회 팀 번호 -->
-	<select id="cappp" resultType="int" parameterType="MembersVO">
-		select 1
+	<select id="cappp" resultType="MembersVO" parameterType="MembersVO">
+		select a.id,a.name,a.t_num,b.t_author
 		from
 		members a , teamlist b
 		where a.id= b.id

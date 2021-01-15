@@ -184,6 +184,14 @@ $(function() {
 		$(event.target).addClass("ss");
 	})
 })
+
+function mdeta(url){
+	if('${sessionScope.id}' == ''){
+		alert("로그인 하세요")
+	}else{
+		location.href=url
+	}
+}
 </script>
 </head>
 <body>
@@ -298,7 +306,7 @@ $(function() {
 			<ul style="margin-bottom: 50px; margin: 0 300px;">
 				<c:forEach var="p_match" items="${p_matchVO }">
 					<li class="listl"><a class="lista" style="cursor: pointer;"
-						href="matchDetail?m_no=${p_match.m_no }">
+						href="javascript:mdeta('matchDetail?m_no=${p_match.m_no }')">
 							<div style="text-align: center; width: 10%; font-weight: bold;">
 								<p>${p_match.m_hour }</p>
 							</div>
