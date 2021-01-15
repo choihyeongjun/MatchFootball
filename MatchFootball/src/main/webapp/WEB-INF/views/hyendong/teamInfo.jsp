@@ -77,7 +77,7 @@ function teamMemberOut(){
 					</tr>
 					<tr>
 						<th scope="row">팀원수</th>
-						<td>${count.c }</td>
+						<td></td>
 						<th scope="row">실력</th>
 						<td>${teamInfo.t_type }</td>
 					</tr>
@@ -148,8 +148,8 @@ function teamMemberOut(){
 						onclick="location.href='teamUpdate?t_num=${teamInfo.t_num}'">팀 정보 변경</button>
 				</c:if>
 					<form action="teamListOut?t_num=${teamInfo.t_num }">
-					<input type="text" value="${teamInfo.t_num }" name="t_num" style="display:none">
-					<c:if test="${members.t_num ne null && updateButton.t_author ne '팀장'}">
+					<input type="text" value="${sessionScope.t_num }" name="t_num" style="display:none">
+					<c:if test="${members.t_num ne null && updateButton.t_author eq '팀원'}">
 					<button type="submit">팀 탈퇴</button>
 					</c:if>
 					</form>

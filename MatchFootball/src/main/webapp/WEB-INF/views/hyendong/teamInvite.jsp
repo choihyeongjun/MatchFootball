@@ -27,7 +27,9 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/css/swiper.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js"></script>
+
 <style>
+
 footer { position: fixed; left: 0px; bottom: 0px; width: 100%; background: grey; color: white; }
 #aa { position: fixed; left: 0; top: 0; width: 100%;}
 #dataTable_filter{padding-left: 330px;}
@@ -59,7 +61,7 @@ div.modal-content { position: relative;
 
 </head>
 <body>
-	<div style="position: fixed; width: 99%; margin-left: -25px;">
+	<div style="position: fixed; width: 99%; margin-left: -25px; padding-top: 38px">
 		<ul class="hi">
 			<c:if test="${sessionScope.t_num ne null }">
 				<li><a href="teamInfo?t_num=${sessionScope.t_num }">팀 정보</a></li>
@@ -123,12 +125,6 @@ div.modal-content { position: relative;
 					</div>
 				</div>
 			</div>
-		</div>
-		
-		<div align="center">
-			<br>
-			<button type="button" data-toggle="modal" data-target="#myModal"
-				id="modal_opne_btn">초대장 작성하기</button>
 		</div>
 
 		<div class="modal fade" id="myModal">

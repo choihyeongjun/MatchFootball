@@ -10,29 +10,51 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="resources/css/teamMenu.css">
 <!-- CSS Files -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/dong1/assets/css/animate-3.7.0.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/dong1/assets/css/font-awesome-4.7.0.min.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/dong1/assets/fonts/flat-icon/flaticon.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/dong1/assets/css/bootstrap-4.1.3.min.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/dong1/assets/css/owl-carousel.min.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/dong1/assets/css/nice-select.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/dong1/assets/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/dong1/assets/css/animate-3.7.0.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/dong1/assets/css/font-awesome-4.7.0.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/dong1/assets/fonts/flat-icon/flaticon.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/dong1/assets/css/bootstrap-4.1.3.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/dong1/assets/css/owl-carousel.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/dong1/assets/css/nice-select.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/dong1/assets/css/style.css">
+
 <style>
-a {
-	text-decoration: none;
-	color: #000000
+a { text-decoration: none; color: #000000 }
+.size { width: 50px; height: 50px }
+
+#a2{   
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    width: 1000px;
+    margin-left: -180px;
+    pointer-events: auto;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,.2);
+    border-radius: .3rem;
+    outline: 0;
+}
+a:visited {
+    text-decoration: none;
+    color: white;
+}
+#az{
+   color: black;
+}
+.lili {
+    padding: 3px 0 3px 0;
+    text-indent: -30px;
+    line-height: 170%;
+    color: white;
+    padding-left: 35px;
 }
 
-.size {
-	width: 50px;
-	height: 50px
+.aa a:visited {
+    text-decoration: none;
+    color: black;
 }
 </style>
 </head>
@@ -71,7 +93,7 @@ a {
 				<div class="serial" align="left" style="margin-left: 120px">경기유형</div>
 				<div class="serial" align="left" style="margin-left: 140px">팀정보</div>
 			</div>
-
+			<div class="aa">
 			<c:forEach items="${teamList }" var="teamList">
 				<a href="teamInfo?t_num=${teamList.t_num}">
 					<div class="table-row">
@@ -90,6 +112,7 @@ a {
 					</div>
 				</a>
 			</c:forEach>
+			</div>
 			<script>
 				function goPage(q) {
 					location.href = "teamList?page=" + q;

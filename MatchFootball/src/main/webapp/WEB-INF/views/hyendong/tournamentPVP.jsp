@@ -190,13 +190,13 @@
 								#<em>01</em> <span>&gt;</span>
 							</p>
 							<div class="box_s">
-								<div class="noClick" data-id="1">
+								<div class="noClick" data-id="1" data-seq="1">
 									<div style="height: 25px">
 										<p>${tournamentPVP[0].t_name }</p>
 									</div>
 									<em></em>
 								</div>
-								<div class="noClickdown" data-id="2">
+								<div class="noClickdown" data-id="2" data-seq="2">
 									<div style="height: 25px">
 										<p>${tournamentPVP[1].t_name }</p>
 									</div>
@@ -212,13 +212,13 @@
 								#<em>02</em> <span>&gt;</span>
 							</p>
 							<div class="box_s">
-								<div class="noClick2" data-id="1">
+								<div class="noClick2" data-id="1" data-seq="3">
 									<div style="height: 25px" >
 										<p>${tournamentPVP[2].t_name }</p>
 									</div>
 									<em></em>
 								</div>
-								<div class="noClickdown2" data-id="2">
+								<div class="noClickdown2" data-id="2" data-seq="4">
 									<div style="height: 25px" >
 										<p>${tournamentPVP[3].t_name }</p>
 									</div>
@@ -236,13 +236,13 @@
 								#<em>03</em> <span>&gt;</span>
 							</p>
 							<div class="box_s">
-								<div class="noClick" data-id="1">
+								<div class="noClick" data-id="1" data-seq="5">
 									<div style="height: 25px" >
 										<p>${tournamentPVP[4].t_name }</p>
 									</div>
 									<em></em>
 								</div>
-								<div class="noClickdown" data-id="2">
+								<div class="noClickdown" data-id="2" data-seq="6">
 									<div style="height: 25px" >
 										<p>${tournamentPVP[5].t_name }</p>
 									</div>
@@ -258,13 +258,13 @@
 								#<em>04</em> <span>&gt;</span>
 							</p>
 							<div class="box_s">
-								<div class="noClick2" data-id="1">
+								<div class="noClick2" data-id="1" data-seq="7">
 									<div style="height: 25px" >
 										<p>${tournamentPVP[6].t_name }</p>
 									</div>
 									<em></em>
 								</div>
-								<div class="noClickdown2" data-id="2">
+								<div class="noClickdown2" data-id="2" data-seq="8">
 									<div style="height: 25px" >
 										<p>${tournamentPVP[7].t_name }</p>
 									</div>
@@ -284,13 +284,13 @@
 								#<em>05</em> <span>&gt;</span>
 							</p>
 							<div class="box_s">
-								<div class="noClick" data-id="1">
+								<div class="noClick" data-id="1" data-seq="9">
 									<div style="height: 25px">
 										<p></p>
 									</div>
 									<em></em>
 								</div>
-								<div class="noClickdown" data-id="2">
+								<div class="noClickdown" data-id="2" data-seq="10">
 									<div style="height: 25px">
 										<p></p>
 									</div>
@@ -306,13 +306,13 @@
 								#<em>06</em> <span>&gt;</span>
 							</p>
 							<div class="box_s">
-								<div class="noClick2" data-id="1">
+								<div class="noClick2" data-id="1" data-seq="11">
 									<div style="height: 25px">
 										<p></p>
 									</div>
 									<em></em>
 								</div>
-								<div class="noClickdown2" data-id="2">
+								<div class="noClickdown2" data-id="2" data-seq="12">
 									<div style="height: 25px">
 										<p></p>
 									</div>
@@ -332,13 +332,13 @@
 								#<em>07</em> <span>&gt;</span>
 							</p>
 							<div class="box_s">
-								<div class="noClick" data-id="1">
+								<div class="noClick" data-id="1" data-seq="13">
 									<div style="height: 25px">
 										<p></p>
 									</div>
 									<em></em>
 								</div>
-								<div class="noClickdown" data-id="2">
+								<div class="noClickdown" data-id="2" data-seq="14">
 									<div style="height: 25px">
 										<p></p>
 									</div>
@@ -348,7 +348,7 @@
 						</div>
 						<div class="champion_box" style="margin-top: -70px;" >
 							<p class="txt">WINNER</p>
-							<div class="player">
+							<div class="player" data-seq="15">
 								<div class="winner">
 									<p></p>
 								</div>

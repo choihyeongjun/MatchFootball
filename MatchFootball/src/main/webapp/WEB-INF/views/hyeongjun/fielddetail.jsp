@@ -155,7 +155,7 @@ $(function(){
       <!-- 일정 추가 MODAL -->
       <div class="modal fade" tabindex="-1" role="dialog" id="eventModalll">
       <input type="hidden" name="d_id" id="d_id" value="${id}"/>
-     	<input type="text" name="seq" id="seq" value="${seq}" readonly="readonly">
+     	<input type="text" name="m_no" id="m_no" readonly="readonly">
          <div class="modal-dialog" role="document">
             <div class="modal-content">
                <div class="modal-header">
