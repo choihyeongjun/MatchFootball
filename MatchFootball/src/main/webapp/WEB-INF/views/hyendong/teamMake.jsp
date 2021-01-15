@@ -47,6 +47,14 @@
 		$("#t_hidden").val('N');
 	}
 	
+	function teamMake(){
+		if (confirm("팀을 생성 하시겠습니까?") == true){    //확인
+			alert("팀 생성을 축하드립니다");
+			    
+			 }else{   //취소
+			     return false;
+			 }
+	}
 </script>
 <body>
 	<ul class="hi">
@@ -140,7 +148,7 @@
 					</div>
 				</div>
 			</div>
-			<br> <input type="submit" class="genric-btn info circle" value="팀가입" />
+			<br> <input type="submit" class="genric-btn info circle" value="팀가입" onclick="teamMake()"/>
 		</div>
 	</form>
 	<!-- End Align Area -->
