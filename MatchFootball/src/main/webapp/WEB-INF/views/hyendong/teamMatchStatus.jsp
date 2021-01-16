@@ -50,17 +50,16 @@
 										</thead>
 										<tbody>
 											<c:forEach items="${select }" var="select">
+											<tr>
 												<td>${select.c_id }</td>
 												<td>${select.s_date }</td>
 												<td>${select.r_id }</td>
-												<td><input type="text" value="${select.c_id }"
-													name="c_id" style="display: none"> <input
-													type="text" value="${select.r_id }" name="r_id"
-													style="display: none">
-													<button type="submit"
-														onclick="javascript: form.action='${pageContext.request.contextPath}/teamMatchStatus'">수락</button>
-													<button type="submit"
-														onclick="javascript: form.action='${pageContext.request.contextPath}/invitePass'">거절</button></td>
+												<td><input type="text" value="${select.c_id }"name="c_id" style="display: none"> 
+													<input type="text" value="${select.r_id }" name="r_id" style="display: none">
+													<button type="submit" onclick="javascript: form.action='${pageContext.request.contextPath}/teamMatchStatus'">수락</button>
+													<button type="submit" onclick="javascript: form.action='${pageContext.request.contextPath}/invitePass'">거절</button>
+												</td>
+											</tr>
 											</c:forEach>
 										</tbody>
 									</table>

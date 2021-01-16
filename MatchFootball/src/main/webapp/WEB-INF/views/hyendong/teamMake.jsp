@@ -37,6 +37,7 @@
   left:50%;
   transform: translate(-50%,-50%);
  }
+ 
 </style>
 </head>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -49,6 +50,7 @@
 	
 	function teamMake(){
 		if (confirm("팀을 생성 하시겠습니까?") == true){    //확인
+			document.makeTeam.submit();
 			alert("팀 생성을 축하드립니다");
 			    
 			 }else{   //취소
@@ -75,11 +77,8 @@
 			</c:if>
 			<li><a href="http://localhost/MatchFootball/teamList">팀 리스트</a></li>
 	</ul>
-	<form action="teamMakeInsert" method="post"
+	<form action="teamMakeInsert" method="post" name="makeTeam"
 		encType="multipart/form-data">
-		<!-- encType 이미지 등록시 필수 -->
-		${sessionScope.kemail } ${sessionScope.id } ${member.t_num }
-		${member.pos }
 		<div class="section-top-border" style="margin-left: 670px; width: 50%">
 			<div class="row">
 				<div class="col-lg-8 col-md-8">
@@ -148,7 +147,7 @@
 					</div>
 				</div>
 			</div>
-			<br> <input type="submit" class="genric-btn info circle" value="팀가입" onclick="teamMake()"/>
+			<br> <input type="button" class="genric-btn info circle" value="팀가입" onclick="teamMake()"/>
 		</div>
 	</form>
 	<!-- End Align Area -->

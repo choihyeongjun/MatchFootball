@@ -22,17 +22,48 @@
 	width: 280px;
 	height: 280px;
 }
+.ap-info {
+	background-color: #314d9f;
+	border-radius: 10px;
+	color: white;
+	text-align: center;
+	padding: 7px;
+	border: 0;
+	outline: 0;
+}
+a { text-decoration: none;}
+
 </style>
 </head>
 <script>
 function teamMemberOut(){
 	if (confirm("해당 팀원을 추방하시겠습니까?") == true){    //확인
 		alert("추방 완료..");
-		    
 		 }else{   //취소
 		     return false;
 		 }
 }
+function teamJoin(){
+    if (confirm("팀에 가입 신청을 하시겠습니까?") == true){    //확인
+       alert("가입 신청 완료");
+        }else{   //취소
+            return true;
+        }
+ }
+function teamCancle(){
+    if (confirm("팀의 가입 신청을 취소 하시겠습니까?") == true){    //확인
+       alert("가입 신청 취소");
+        }else{   //취소
+            return false;
+        }
+ }
+function teamOut(){
+    if (confirm("팀에서 나가시겠습니까?") == true){    //확인
+       alert("팀 탈퇴가 되었습니다");
+        }else{   //취소
+            return false;
+        }
+ }
 </script>
 <body>
 		<ul class="hi">
@@ -53,15 +84,15 @@ function teamMemberOut(){
 			</c:if>
 			<li><a href="http://localhost/MatchFootball/teamList">팀 리스트</a></li>
 	</ul>
-		<div align="center" style="padding-bottom: 606px">
+		<div align="center" style="padding-bottom: 590px">
 			<div>
-				<h1>팀 정 보</h1>
+				<h1>${teamInfo.t_name}팀 정 보</h1>
 			</div>
 			<hr />
 			<div style="float: left; margin-left: 30%">
-				<table class="table table-bordered">
+				<table>
 					<tr>
-						<th>${teamInfo.t_name}</th>
+						<th align="center" style="font-size: 15px">${teamInfo.t_name}</th>
 					</tr>
 				</table>
 				<img class="size" src="images/${teamInfo.t_logo }"
@@ -77,7 +108,7 @@ function teamMemberOut(){
 					</tr>
 					<tr>
 						<th scope="row">팀원수</th>
-						<td></td>
+						<td>${count.c }</td>
 						<th scope="row">실력</th>
 						<td>${teamInfo.t_type }</td>
 					</tr>
@@ -116,15 +147,14 @@ function teamMemberOut(){
 						<c:forEach items="${teamMembers}" var="teamMembers">
 							<tr>
 								<td>${teamMembers.id }</td>
-								<td>${memberss.name }
-								<td>${memberss.pos }
+								<td>${teamMembers.name }</td>
+								<td>${teamMembers.pos }</td>
 								<td>${teamMembers.t_author }</td>
 								<td>
 								<form method="post">
 								<input type="text" value="${teamMembers.id }" name="id" style="display:none">
-								<input type="text" value="${members.t_num }" name="t_num" style="display:none">
 								<c:if test="${teamMembers.t_author eq '팀원' && updateButton.t_author eq '팀장'}">
-								<button type="submit" onclick="javascript: form.action='${pageContext.request.contextPath}/memberOut'; teamMemberOut();">추방</button>
+								<button type="submit" class="ap-info" onclick="javascript: form.action='${pageContext.request.contextPath}/memberOut'; teamMemberOut();">추방</button>
 								</c:if>
 								</form>
 								</td>
@@ -144,31 +174,33 @@ function teamMemberOut(){
 			</div>
 			<div style="float: bottom">
 				<c:if test="${updateButton.t_author eq '팀장' }">
-					<button type="submit" class="btn btn-primary"
+					<button type="submit" class="ap-info"
 						onclick="location.href='teamUpdate?t_num=${teamInfo.t_num}'">팀 정보 변경</button>
 				</c:if>
 					<form action="teamListOut?t_num=${teamInfo.t_num }">
 					<input type="text" value="${sessionScope.t_num }" name="t_num" style="display:none">
 					<c:if test="${members.t_num ne null && updateButton.t_author eq '팀원'}">
-					<button type="submit">팀 탈퇴</button>
+					<button type="submit" class="ap-info" onclick="teamOut();">팀 탈퇴</button>
 					</c:if>
 					</form>
 			</div>
 		</div>
-
+	<div align="center">
 	<form method="post">
 		<c:if test="${members.t_num eq null && hh.sel eq 0}">
 			<input type="text" value="${sessionScope.id }" name="id" style="display:none">
 			<input type="text" value="${members.pos }" name="i_pos" style="display:none">
 			<input type="text" value="${members.lv }" name="i_lv" style="display:none">
 			<input type="text" value="${members.manner }" name="i_manner" style="display:none">
-			<button type="submit" class="btn btn-primary" onclick="javascript: form.action='${pageContext.request.contextPath}/teamInviteInsert?t_num=${teamInfo.t_num}'">팀 가입 신청</button>
+			<button type="submit" class="ap-info" onclick="javascript: form.action='${pageContext.request.contextPath}/teamInviteInsert?t_num=${teamInfo.t_num}'; teamJoin();">팀 가입 신청</button>
 		</c:if>
 		<c:if test="${hh.sel eq 1 }">
 		${sessionScope.id }님은  ${where.t_name } 팀에 가입 신청 중입니다.
 		<input type="text" value="${sessionScope.id }" name="id" style="display:none">
-		<button type="submit" class="btn btn-primary" onclick="javascript: form.action='${pageContext.request.contextPath}/teamInviteCancle?t_num=${teamInfo.t_num}'">팀 가입 취소</button>
+		<button type="submit" class="ap-info" onclick="javascript: form.action='${pageContext.request.contextPath}/teamInviteCancle?t_num=${teamInfo.t_num}'; teamCancle();">팀 가입 취소</button>
 		</c:if>
 	</form>
+	</div>
+	<br>
 </body>
 </html>
