@@ -85,12 +85,10 @@ String tel = (String) session.getAttribute("point.pnum");
                 msg += '상점 거래ID : ' + rsp.merchant_uid;
                 msg += '결제 금액 : ' + rsp.paid_amount;
                 msg += '카드 승인번호 : ' + rsp.apply_num;
-           		
-                //쿠폰
-                
+           		                
            		var npoint = money;	//구매한 포인트
            		var p_pay = money;		// 결제 금액
-                alert("ajax실행전");
+                //alert("ajax실행전");
                 console.log("=====id"+p_id+"point"+npoint+"pay"+p_pay)
                 $.ajax({
                     url: "pointcharge", //충전 금액값을 보낼 url 설정
@@ -104,11 +102,12 @@ String tel = (String) session.getAttribute("point.pnum");
                         p_con : p_con,                       
                      },
                     success : function(response){
-                    	alert("ajax성공");
+                    	//alert("ajax성공");
+                    	pointUp();
                     	cuponUp();
                     },
                     error:function(response){
-                    	alert("ajax에러");
+                    	console.log("ajax에러",response);
                     }
                 });
             } else {
@@ -117,6 +116,27 @@ String tel = (String) session.getAttribute("point.pnum");
             }
             alert(msg);
         });
+        
+   	 function pointUp(){ // 멤버 포인트 변경
+   		 //alert("멤포");
+   	     console.log("aa"+p_id);
+   		 $.ajax({
+             url: "Mypoint/ajax", 
+             type: "POST",
+             data: {
+                 p_id: p_id                     
+              },
+             success : function(response){
+             	//alert("멤성공");
+             	console.log("success", response)
+             },
+             error:function(response){
+             	//alert("멤퍼에러");
+             	console.log("fail",response)
+             }
+         });
+		
+	 }
     });
 	 function cuponUp(){
 		$("input[name='cp_item']:checked").each(function(i, checkbox){
@@ -141,14 +161,17 @@ String tel = (String) session.getAttribute("point.pnum");
                      
                   },
                  success : function(response){
-                 	alert("쿠폰성공");
+                 	//alert("쿠폰성공");
+                 	console.log("success1111", response)
                  },
                  error:function(response){
-                 	alert("쿠폰에러");
+                 	//alert("쿠폰에러");
+                 	console.log("fail11111",response)
                  }
              });
 		})
 	 }
+
 }
 </script>
 </head>

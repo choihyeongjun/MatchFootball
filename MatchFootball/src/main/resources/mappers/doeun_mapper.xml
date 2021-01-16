@@ -13,12 +13,6 @@
 		where id = #{id}
 	</select>
 
-	<!-- 포인트 조회 -->
-	<select id="myPoint" parameterType="MembersVO"
-		resultType="MembersVO">
-		select point from members
-		where id = #{id}
-	</select>
 	<!-- 프로필 등록 -->
 	<insert id="insertMem" parameterType="MembersVO">
 		insert into members(
@@ -60,21 +54,17 @@
 		where id = #{id}
 	</update>
 
-	<!-- 총 포인트 확인 -->
-	<select id="selTpo" parameterType="PointVO" resultType="PointVO">
-		select sum(npoint) point from point p join members m on p_id=id where
-		p_id='test';
-	</select>
-	<!-- 총 포인트 등록 ?? -->
-
-	<!-- update members m set m.point = (select sum(npoint) point from point 
-		p join members m on p_id=id where p_id=#{p_id}) where id = ''; -->
+	<!-- 멤버 포인트 업데이트 -->
+<update id="Mypoint" parameterType="PointVO" >
+	update members m
+	set    m.point = (select nvl(sum(p.NPOINT), 1) from point p where p.p_id = m.id)
+    where id = #{p_id} 
+</update>
 	<!-- 메세지 보내기 -->
 	<insert id="sendMsg" parameterType="MessageVO">
-		insert into message (m_no,
-		to_id, send_id, m_title, m_con)
-		values(mno_seq.nextval, #{to_id},
-		#{send_id}, #{m_title}, #{m_con})
+		insert into message 
+		(m_no, to_id, send_id, m_title, m_con)
+		values(mno_seq.nextval, #{to_id},#{send_id}, #{m_title}, #{m_con})
 	</insert>
 	<!-- 수신 메세지함 확인 -->
 	<select id="tomsgList" parameterType="MessageVO"
@@ -132,7 +122,8 @@
 	</select>
 	<!-- 쿠폰 조회 -->
 	<select id="selectCp" parameterType="CuponVO" resultType="CuponVO">
-	select * from coupon where m_id=#{m_id} order by c_edate DESC
+	select c_no,m_id, c_title, c_num, to_char(c_edate,'YYYY/MM/DD')
+	 from coupon where m_id=#{m_id} order by c_edate DESC
 	</select>
 	<select id="getPoCnt" resultType="int">
 		SELECT COUNT(*) FROM point
@@ -146,7 +137,7 @@
 	<!-- 메세지 조회시 수신 확인으로 변경 -->
 	<update id="Mchg" parameterType="MessageVO">
 		update message set m_check =
-		'Y', o_date = sysdate where to_id =#{to_id} and m_no=#{m_no}
+		'Y', o_date = sysdate where m_no=#{m_no}
 	</update>
 
 	<!-- 개인 경기 이력 조회 -->
@@ -159,20 +150,19 @@
 	</select>
 	<!-- 개인매칭 신청내역 조회 -->
 	<select id="AppPmatList" parameterType="P_matchVO" resultType="P_matchVO">
-		select * from( select a.*, rownum rn from (
+		select * from( select a.*, ROWNUM RN from (
 		select * from p_match where m_id=#{m_id} order by m_date 
-		) a ) b where rn between #{first} and
+		) a ) b where RN between #{first} and
 		#{last}
 	</select>
 		<!-- 팀매칭 신청내역 조회 -->
-	<select id="AppTmatList" parameterType="teammatchVO" resultType="teammatchVO">
-		select * from( select a.*, rownum rn from (
-		select t.*, p.* from teammatch t join players p on t.t_num = p.t_num where p.id= #{p_id} order by m_date 
+	<select id="AppTmatList" parameterType="TeammatchVO" resultType="map">
+	select * from( select a.*, rownum rn from (
+		select t.* from TEAMMATCH t join players p on t.t_num = p.t_num where p.id= #{id} order by m_date 
 		) a ) b where rn between #{first} and
-		#{last}
+		#{last}	
 	</select>
 <select id="getTmatCnt" resultType="int">
-		SELECT COUNT(*) FROM teammatch
-		where m_id=#{m_id}
+		SELECT COUNT(*) from TEAMMATCH t join players p on t.t_num = p.t_num where p.id= #{id} order by m_date 
 	</select>
 </mapper>

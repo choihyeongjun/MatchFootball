@@ -25,24 +25,25 @@
 							<div>
 								<div>							
 									<table border="1" style="width: 100%">
-										<c:forEach items="cp" var="cp"></c:forEach>
-										<tr><td><input type ="text" name="m_id" value="${cp.m_id}"></td>
+										<tr>
 											<td><input type="checkbox"></td>
 											<td>쿠폰명</td>
 											<td>쿠폰기한</td>
 											<td align="right"><input type="button"
 												class="btn btn-primary cpDel" value="삭제"></td>
 										</tr>
-										<tbody>
+										<tbody style="border:'1'">
+										<c:forEach items="${cp}" var="cp">
 										<tr>
-											<td><input type="checkbox"></td>
+										
+											<td><input type="checkbox" name="c_no" value="${cp.c_no}"><input type ="hidden" name="m_id" value="${cp.m_id}"></td>
 											<td>${cp.c_title} </td>
 											<td>${cp.c_edate}</td>
 											<td align="right"><input type="button"
 												class="btn btn-primary cpDel" value="삭제"></td>
 										</tr>
+										</c:forEach>
 										</tbody>
-										
 									</table>
 								</div>
 							</div>

@@ -7,7 +7,7 @@
 <title>메세지창 모달 띄울거임!!!!!!!!!</title>
 </head>
 <body>
-<form id="viewmsg" action="../message" method="post">
+<form id="viewmsg" action="/replyMsg" method="post">
 <table style="align-content: center;" border="1">
 <tr>
 <td><input type="hidden" value="${msg.m_no}"></td>
@@ -19,9 +19,7 @@
 <textarea cols="100%" rows="10" id="toMsgCon" name="m_con" >${msg.m_con}</textarea>
 </td>
 </tr>
-<tr>
-<td colspan="3" align="center"><button type="submit">답장</button> <button type="reset" >취소</button> </td>
-</tr>
+
 </table>
 </form>
 </body>

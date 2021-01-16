@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,7 +33,7 @@ public class KakaoLoginController {
 
    @RequestMapping(value = "/kakaologin", produces = "application/json")
    public ModelAndView kakaoLogin(@RequestParam("code") String code, HttpServletRequest request,
-         HttpServletResponse response, HttpSession session, MembersVO mem) throws Exception {
+         HttpServletResponse response, HttpSession session, MembersVO mb,Model model) throws Exception {
       ModelAndView mav = new ModelAndView(); // 결과값을 node에 담아줌
       JsonNode node = KakaoAPI.getAccessToken(code); // accessToken에 사용자의 로그인한 모든 정보가 들어있음
       JsonNode accessToken = node.get("access_token"); // 사용자의 정보
@@ -59,8 +60,14 @@ public class KakaoLoginController {
       session.setAttribute("kgender", kgender);
       session.setAttribute("kbirthday", kbirthday);
       session.setAttribute("kage", kage);
-      mem.setId((String)session.getAttribute("kemail"));
-      if(dao.getUser(mem)!=null) {
+      mb.setId((String)session.getAttribute("kemail"));
+      
+      mb = dao.getUser(mb);
+      System.out.println("내포인트:"+mb.getPoint());
+      session.setAttribute("mb", mb);
+      session.setAttribute("point", mb.getPoint());
+      
+      if(!mb.getPoint().equals("")) {
     	  mav.setViewName("redirect:/match");    	  
       }else {
     	 mav.setViewName("doeun/pfUpdate");    	  

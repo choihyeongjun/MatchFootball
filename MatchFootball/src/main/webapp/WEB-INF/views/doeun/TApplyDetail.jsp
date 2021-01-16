@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="my"%>
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,9 +29,6 @@
 <link
 	href="${pageContext.request.contextPath}/resources/css/colors/blue.css"
 	rel="stylesheet">
-<link href="../../../lib/font-awesome/css/font-awesome.min.css"
-	rel="stylesheet">
-<link href="../../../lib/aos/aos.css" rel="stylesheet">
 
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/review.css">
@@ -62,7 +61,11 @@
 	color: #777777;
 }
 </style>
-
+<script>
+		function goPage(q) {
+			location.href = "msg?page=" + q;
+		}
+	</script>
 <body>
 	<div id="main" style="height:850px">
 
@@ -85,23 +88,26 @@
 						</div>
 								<div id="tr-template">
 									<div style="border: 1px">
-									<c:forEach items="${p_mat}" var="mat">
+									<c:forEach items="${tmat}" var="tmat">
+										<input type="hidden" value="${tmat.ID}" name="id"><br>
 										<div class="media mt-0">
 											<div class="media-left">
 												<img class="media-object rounded-circle" src="#" width="100"
 													height="100" alt="">지도 맵
 											</div>
-										<input type="hidden" value="${mat.m_id}" name="m_id"><br>
 											<div class="media-body row" style="position: relative">
 												<div class="main-riw col-12 col-sm-6 col-md-8"
 													data-photo={{userPhoto}} data-hostphoto={{hostphoto}}>
-													<p class="text-muted">
-														 ${mat.f_name}
+													<p class="text-muted" align="right">
+														 ${tmat.T_NAME}
 													</p>
 													<p class="text-muted">
-														<i class="fas fa-map-marker-alt"> ${mat.f_address}</i>
+														 ${tmat.F_NAME}
 													</p>
-													<p class="text-muted" >경기일 : ${mat.m_date} 경기시간 : ${mat.m_hour} </p>
+													<p class="text-muted">
+														<i class="fas fa-map-marker-alt"> ${tmat.F_ADDRESS}</i>
+													</p>
+													<p class="text-muted" >경기일 : ${tmat.M_DATE} 경기시간 : ${tmat.M_HOUR} </p>
 												</div>
 												<div class="riw-btn col-6 col-md-4" data-no={{no}}
 													data-grd={{grd}}>
@@ -112,7 +118,9 @@
 										</div>
 										</c:forEach>
 									</div>
-
+<div align="center">
+									<my:paging paging="${paging}" jsfunc="goPage" />
+								</div>
 								</div>
 
 							</div>
