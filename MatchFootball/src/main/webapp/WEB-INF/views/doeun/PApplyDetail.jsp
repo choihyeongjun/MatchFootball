@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="my"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -62,7 +63,11 @@
 	color: #777777;
 }
 </style>
-
+<script>
+		function goPage(q) {
+			location.href = "msg?page=" + q;
+		}
+	</script>
 <body>
 	<div id="main" style="height:850px">
 
@@ -77,7 +82,7 @@
 							<div class="col-md-7 col-lg-8 col-xl-8">
 								<div class="page-header bordered">
 									<h1>
-										개인 매치 신청내역<small>APPLICATION MATCH</small>
+										개인 매치 신청내역<small>APPLICATION MATCH</small>										
 									</h1>
 								</div>
 <div align="right">
@@ -112,7 +117,9 @@
 										</div>
 										</c:forEach>
 									</div>
-
+<div align="center">
+									<my:paging paging="${paging}" jsfunc="goPage" />
+								</div>
 								</div>
 
 							</div>

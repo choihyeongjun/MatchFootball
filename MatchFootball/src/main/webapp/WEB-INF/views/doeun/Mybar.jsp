@@ -47,7 +47,7 @@
 								</div>
 								<br>
 								<div class="list-group no-border list-unstyled">
-									<a class="list-group-item active" href="#">내 포인트 : ${point}</a><br>
+									<a class="list-group-item active" href="#">내 포인트 : ${mb.point}</a><br>
 									<a href="profile" class="list-group-item profile">
 										<i class="far fa-id-card"></i> 내 프로필
 									</a> 									 

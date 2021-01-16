@@ -9,7 +9,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>메세지</title>
+<title>내 게시글</title>
 
 <link
 	href="https://fonts.googleapis.com/css?family=Libre+Franklin:100,200,300,400,500,700"
@@ -38,89 +38,14 @@
 	rel="stylesheet">
 
 
-
+<style id="theia-sticky-sidebar-stylesheet-TSS">
+.theiaStickySidebar:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+</style>
 <script>
-	$(function() {
-		$(".reviewMsg").on("click", function(event) {
-			var m_no = $(this).data("num");
-			console.log(m_no +"11")
-			var modal = $('#MsgModal');
-			$.ajax({
-				url : 'reviewMsg?m_no=' + m_no,
-				type : 'post',
-				success : function(result) {
-					$('#viewMsg').html(result)
-					modal.modal('show');
-					readMsg();
-
-				}
-			});
-			function readMsg(){
-				$.ajax({
-					url: "reviewMsg/ajax?m_no=" + m_no,
-					type: "post",
-					data: m_no,
-					dateType: "json",
-					success: 
-						 function(result) {
-						console.log("success",result)
-					},
-					error : function(xhr, status, msg) {
-						colsole.log("상태값 :" + status + "에러" + msg);
-						
-				}
-			});
-			}
-		});
-		delMsg();
-		replyMsg();
-	})
-	
-		function replyMsg() {
-			$(".replyMsg").on("click", function(event) {
-
-				$.ajax({
-					url : "replymsg/ajax",
-					type : 'post',
-					//data: ,
-					
-					dataType : 'json',
-					error : function(xhr, status, msg) {
-						colsole.log("상태값 :" + status + "에러" + msg);
-					},
-					success : function(result) {
-								$('#viewMsg').html(result)
-								modal.modal('show');
-						
-					}
-				});
-			});
-		}//replyMsg
-	function delMsg() {
-
-		$('#delMsg').on('click', function() {
-
-			var m_no = $(this).closest('tr').find('#m_no').val();
-			console.log(m_no);
-			$.ajax({
-				url : "delMsg/ajax",
-				type : 'POST',
-				dateType : 'json',
-				data : {
-					m_no : m_no
-				},
-				error : function(xhr, status, msg) {
-					alert("상태값 :" + status + " Http에러메시지 :" + msg);
-				},
-				success : function(data) {
-					alert("삭제되었습니다.");
-					location.reload();
-				}
-			});
-			//}) 
-
-		});
-	}
 </script>
 </head>
 
@@ -138,43 +63,41 @@
 
 
 								<h1 id="item-2">
-									메세지<small>MESSAGE</small>
+									게시글<small>WRITE</small>
 								</h1>
 							</div>
 							<div align="right">
-								<a href="msg" id="받은 메일함"> 수신 쪽지함 |</a><a href="outmsg"
-									id="보낸 메일함"> 발신 쪽지함 |</a><a href="#" id="용병초대"> 용병요청 </a>
+								<a href="#" id="FREE"> 자유게시판 |</a><a href="#"
+									id="TEAM"> 팀게시판 |</a>
 							</div>
 							<div class="row" style="width: auto">
-								<div style="margin-top: 15px;">
-									<a href="../message"
-										class="btn btn-primary float-right send-message">메세지 보내기</a>
-								</div>
+								
 								<div style="margin-top: 15px;">
 									<table border="1" style="width: 100%">
 										<tr>
 											<td></td>
 											<td><input type="checkbox"></td>
-											<th>날짜</th>
+											<th>작성일</th>
 											<th>제목</th>
-											<th>보낸 사람</th>
-											<td colspan="2" align="right">삭제하기
-												&nbsp;&nbsp;&nbsp;&nbsp;</td>
+											<th>조회수</th>
+											<th>댓글</th>
+											<th colspan="2" align="right">수정/삭제
+												&nbsp;&nbsp;&nbsp;&nbsp;</th>
 										</tr>
 										<tbody id=toMsg>
-											<c:forEach items="${msg}" var="msg">
+											<c:forEach items="" var="">
 												<tr>
-													<td><input name="to_id" value="${msg.to_id}"
-														type="text" style="display: none;"></td>
-													<td><input type='checkbox' id="mchk"></td>
-													<td>${msg.s_date}</td>
-													<td><a class="reviewMsg" data-toggle="modal"
-														data-target="#MsgModal" data-num="${msg.m_no}">${msg.m_title}</a></td>
-													<td>${msg.send_id}</td>
-													<td><input type="hidden" id="m_no" name="m_no"
-														value="${msg.m_no}">
+													<td></td>
+											<td><input type="checkbox"></td>
+											<th>작성일</th>
+											<th>제목</th>
+											<th>조회수</th>
+											<th>댓글</th>
+													<td>
 														<button type="button" class="btn btn-primary float-right"
-															id="delMsg">삭제하기</button></td>
+															id="delWr">삭제하기</button>
+														<button type="button" class="btn btn-primary float-right"
+															id="delWr">삭제하기</button></td>
 												</tr>
 											</c:forEach>
 										</tbody>
@@ -204,7 +127,7 @@
 					<div class="modal-body" id="viewMsg"></div>
 					<div class="modal-footer">
 
-						<button class="replyMsg" type="button">답장</button>
+						<button class="replyMsg" type="submit">답장</button>
 						<button type="reset">취소</button>
 
 					</div>

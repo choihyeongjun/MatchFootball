@@ -85,21 +85,14 @@ $(function() {
                   str += '<span>' + fileName + '</span><br>';
 
                   //이미지 파일 미리보기
-                  if (f.type.match('image.*')) {
-                     var reader = new FileReader(); //파일을 읽기 위한 FileReader객체 생성
-                     reader.onload = function(e) { //파일 읽어들이기를 성공했을때 호출되는 이벤트 핸들러
-                        //str += '<button type="button" class="delBtn" value="'+f.name+'" style="background: red">x</button><br>';
+                  document.getElementById("fileupload").onchange = function() {
+						var reader = new FileReader();
 
-                        $('#img').attr('src', e.target.result);
-                        $('#img').attr('style',
-                              "width:300px; height: 350px");
-                     }
-                     reader.readAsDataURL(f);
-                  } else {
-                     $('#img').attr('src', e.target.result);
-                     $('#img').attr('style',
-                           "width:300px; height: 350px");
-                  }
+						reader.onload = function(e) {
+							document.getElementById("image").src = e.target.result;
+						};
+						reader.readAsDataURL(this.files[0]);
+					};
                });//arr.forEach
       }
    });
@@ -142,12 +135,28 @@ $(function() {
 									
 										<input type="file" class="custom-file-input" id="fileupload"
 											src="https://bootdey.com/img/Content/avatar/avatar7.png" name="file" required="required" autocomplete=off aria-describedby="inputGroupFileAddon01">
+											
+					<script>
+						document.getElementById("fileupload").onchange = function() {
+							var reader = new FileReader();
+
+							reader.onload = function(e) {
+								document.getElementById("img").src = e.target.result;
+							};
+							reader.readAsDataURL(this.files[0]);
+						};
+					</script>
 										<label class="custom-file-label photo" for="inputGroupFile01">파일을
 											선택하세요</label>
 									</div>
 								</div>
-								<div id='images-div'><img id="img" name="img" src="https://bootdey.com/img/Content/avatar/avatar7.png"
-												alt="Admin" class="rounded-circle" width="150" ></div>
+								<div id='images-div'>
+								<c:if test="${mb.img eq null}">
+								<img id="img" name="img" src="https://bootdey.com/img/Content/avatar/avatar7.png"
+												 class="rounded-circle" width="150" style="height: 200px; width: 200px; border: none" /> </c:if>
+								<c:if test="${mb.img ne null}">				
+								<img id="img" name="img" src="${pageContext.request.contextPath}/images/${mb.img}"
+												class="rounded-circle" width="150" style="height: 200px; width: 200px; border: none" /></c:if> </div>
 								<p style="color: red">이미지을 삭제하시려면 이미지를 클릭해주세요</p>
 								<span class="glyphicon glyphicon-ok form-control-feedback"></span>
 							</div>
@@ -254,8 +263,8 @@ $(function() {
 									style="height: 48px" value="프로필 등록" onclick="location.href='mypage/updateMem'"></c:if>
 								<c:if test="${mb.id ne null}"><input type="submit" class="btn btn-primary" id='btn1'
 									style="height: 48px" value="프로필 변경"></c:if>
-								<!-- <input type="submit" class="btn btn-primary" id='uf'
-									style="height: 48px" value="이미지 변경"> -->
+								 <input type="submit" class="btn btn-primary" id='uf'
+									style="height: 48px" value="이미지 변경">
 							</div>
 						</div>
 					</div>
