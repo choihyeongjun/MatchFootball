@@ -86,37 +86,36 @@
 									</h1>
 								</div>
 <div align="right">
-							<a href="matching"> 개인매칭 신청관리 |</a><a href="teamMatching"> 팀 매칭 신청관리 |</a><a href="#"> 토너먼트 신청관리 </a>
+							<a href="matching"> 개인매칭 신청관리 |</a>
+							<a href="teamMatching"> 팀 매칭 신청관리 |</a><a href="#"> 토너먼트 신청관리 </a>
 						</div>
 								<div id="tr-template">
-									<div style="border: 1px">
 									<c:forEach items="${p_mat}" var="mat">
+									<div style="border: 1px">
+										<input type="hidden" value="${mat.m_id}" name="m_id"><br>
 										<div class="media mt-0">
 											<div class="media-left">
 												<img class="media-object rounded-circle" src="#" width="100"
 													height="100" alt="">지도 맵
 											</div>
-										<input type="hidden" value="${mat.m_id}" name="m_id"><br>
 											<div class="media-body row" style="position: relative">
-												<div class="main-riw col-12 col-sm-6 col-md-8"
-													data-photo={{userPhoto}} data-hostphoto={{hostphoto}}>
+												<div class="main-riw col-12 col-sm-6 col-md-8">
 													<p class="text-muted">
 														 ${mat.f_name}
 													</p>
 													<p class="text-muted">
-														<i class="fas fa-map-marker-alt"> ${mat.f_address}</i>
+														<i class="fas fa-map-marker-alt"> 구장 주소: ${mat.f_address}</i>
 													</p>
-													<p class="text-muted" >경기일 : ${mat.m_date} 경기시간 : ${mat.m_hour} </p>
+													<p class="text-muted" >경기 예정일 및 시간: ${mat.m_date} </p>
 												</div>
-												<div class="riw-btn col-6 col-md-4" data-no={{no}}
-													data-grd={{grd}}>
-													 <a	class="btn btn-link riw-delete" href="#"
-														style="position: absolute; bottom: 0">신청취소</a>
+												<div class="riw-btn col-6 col-md-4">
+													 <a	class="btn btn-link riw-delete"
+														style="position: absolute; bottom: 50%">신청취소</a>
 												</div>
 											</div>
 										</div>
-										</c:forEach>
 									</div>
+										</c:forEach>
 <div align="center">
 									<my:paging paging="${paging}" jsfunc="goPage" />
 								</div>

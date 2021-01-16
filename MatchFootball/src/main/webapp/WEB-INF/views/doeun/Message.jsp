@@ -41,6 +41,12 @@
 
 <script>
 	$(function() {
+		ddd();
+		delMsg();
+		replyMsg();
+	})
+	
+	function ddd(){
 		$(".reviewMsg").on("click", function(event) {
 			var m_no = $(this).data("num");
 			console.log(m_no +"11")
@@ -52,7 +58,6 @@
 					$('#viewMsg').html(result)
 					modal.modal('show');
 					readMsg();
-
 				}
 			});
 			function readMsg(){
@@ -72,10 +77,7 @@
 			});
 			}
 		});
-		delMsg();
-		replyMsg();
-	})
-	
+	}
 		function replyMsg() {
 			$(".replyMsg").on("click", function(event) {
 
@@ -97,30 +99,25 @@
 			});
 		}//replyMsg
 	function delMsg() {
-
 		$('#delMsg').on('click', function() {
-
-			var m_no = $(this).closest('tr').find('#m_no').val();
+			var m_no = $(event.target).data('nom');
 			console.log(m_no);
 			$.ajax({
 				url : "delMsg/ajax",
 				type : 'POST',
 				dateType : 'json',
 				data : {
-					m_no : m_no
+					'm_no' : m_no 
 				},
 				error : function(xhr, status, msg) {
 					alert("상태값 :" + status + " Http에러메시지 :" + msg);
 				},
 				success : function(data) {
 					alert("삭제되었습니다.");
-					location.reload();
 				}
 			});
-			//}) 
-
-		});
-	}
+			}) 
+		}
 </script>
 </head>
 
@@ -173,8 +170,8 @@
 													<td>${msg.send_id}</td>
 													<td><input type="hidden" id="m_no" name="m_no"
 														value="${msg.m_no}">
-														<button type="button" class="btn btn-primary float-right"
-															id="delMsg">삭제하기</button></td>
+														<a id="delMsg" data-nom="${msg.m_no}">삭제하기</a>
+														</td>
 												</tr>
 											</c:forEach>
 										</tbody>

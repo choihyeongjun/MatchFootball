@@ -37,7 +37,6 @@ public class DoeunController {
 
 	@RequestMapping("mypage/profile") // 프로필(메인마이페이지)
 	public String profile(MembersVO mb, Model model, HttpSession session, HttpServletResponse response) {
-
 		mb.setId((String) session.getAttribute("id")); // test용
 		mb.setName((String) session.getAttribute("kname"));
 		mb.setPoint((String) session.getAttribute("point"));
