@@ -45,7 +45,7 @@ public class JunController {
 //	 * ModelAndView("/sungjun/mainmenu"); }
 //	 */
 	@RequestMapping(value = "/teammatch")
-	public String test12(HttpServletResponse response, Model model, CalVO vo, TeammatchVO mvo, TeamVO teamvo,
+	public String test12(HttpSession session, Model model, CalVO vo, TeammatchVO mvo, TeamVO teamvo,
 			PlayersVO player, HttpServletRequest request) throws IOException {
 		// 달력
 		DecimalFormat df = new DecimalFormat("00");
@@ -73,7 +73,7 @@ public class JunController {
 		vo.setLastDate(lastDate);
 		vo.setIDayOfWeek(iDayOfWeek);
 		model.addAttribute("cal", vo);
-
+		mvo.setId((String) session.getAttribute("id"));
 		mvo.setM_date(year + "-" + month + "-" + day);
 		model.addAttribute("m_dat", day);
 		model.addAttribute("date", year + "-" + month);
@@ -83,23 +83,27 @@ public class JunController {
 	}
 
 	@RequestMapping(value = "/teammatchDetail")
-	public ModelAndView test13(HttpSession session, HttpServletResponse response, Model model, MembersVO member,
+	public String test13(HttpSession session, HttpServletResponse response, Model model, MembersVO member,
 			TeamlistVO cap, TeammatchVO teammatch, TeamVO teamvo, PlayersVO playervo) throws IOException {
-		model.addAttribute("teammatch", dao.teammatchinfo(teammatch));
-		model.addAttribute("team", dao.teamselect(teamvo));
-		cap = dao.capselect(cap);
-		member.setId(cap.getId());
-		model.addAttribute("member", dao.memberselect(member));
-		model.addAttribute("players", dao.playerselect(playervo));
-
-		return new ModelAndView("sungjun/teammatchDetail");
+	
+			model.addAttribute("teammatch", dao.teammatchinfo(teammatch));
+			model.addAttribute("team", dao.teamselect(teamvo));
+			//팀 매치 해당 팀 주장 찾기
+			cap = dao.capselect(cap);
+			member.setId(cap.getId());
+			model.addAttribute("member", dao.memberselect(member));
+			//세션에 아이디값 넣기
+			member.setId((String) session.getAttribute("id"));
+			model.addAttribute("caption", dao.cappp(member));
+			model.addAttribute("players", dao.playerselect(playervo));
+			return "sungjun/teammatchDetail";
 	}
 	@RequestMapping(value = "/teammatchDetailm")
 	public ModelAndView test14(HttpSession session, HttpServletResponse response, Model model, MembersVO membersvo,
 			TeamlistVO teamlist, TeammatchVO teammatch, TeamVO teamvo, PlayersVO playervo) throws IOException {
 		membersvo.setId((String) session.getAttribute("id"));
 		membersvo.setT_num((String) session.getAttribute("t_num"));
-		
+	
 		teammatch.setT_num(dao.memberselect(membersvo).getT_num());
 		model.addAttribute("member",dao.memberselect(membersvo));
 		model.addAttribute("teamlist", dao.teamlist(membersvo));
@@ -242,7 +246,15 @@ public class JunController {
 		mv.setViewName("no/sungjun/matchschedule");
 		return mv;
 	}
-
+//	@RequestMapping(value = "/managermypagemm")
+//	public ModelAndView test15(TeammatchVO teammatch,PlayersVO players ,MatchMember matchmember) throws IOException {
+//		ModelAndView mv = new ModelAndView();
+//        mv.addObject("teammatch" dao.team)
+//		mv.addObject("p_matchVO", dao.pmatchlist1(p_matchVO));
+//		mv.addObject("matchmember", dao.matchmember(matchmember));
+//		mv.setViewName("no/sungjun/teammatchschedule");
+//		return mv;
+//	}
 //	@RequestMapping(value = "/managermypagem")
 //	@ResponseBody
 //	public Map<String,Object> test7(HttpServletResponse response,P_matchVO p_matchVO,MatchMember matchmember, Model model, HttpServletRequest request) throws IOException {
@@ -276,9 +288,10 @@ public class JunController {
 			TeammatchVO team_matchVO, PointVO pointvo) throws IOException {
 		p_matchVO.setM_id((String) session.getAttribute("id"));
 		team_matchVO.setId((String) session.getAttribute("id"));
-		model.addAttribute("p_match", dao.pmatchlist(p_matchVO));
-		model.addAttribute("t_match", dao.tmatchlist(team_matchVO));
+		model.addAttribute("p_match", dao.pmatchselectall(p_matchVO));
+		model.addAttribute("t_match", dao.tmatchselectall(team_matchVO));
 		return new ModelAndView("sungjun/allmatchlist");
 	}
 
+	
 }

@@ -25,8 +25,8 @@
 		) a ) b where rn between #{first} and #{last}
 
 	</select>
-	<select id="selectCount" resultType="TeamVO">
-		select count(*) count from  teamlist where t_num = #{t_num}
+	<select id="selectCount" resultType="TeamlistVO" parameterType="TeamlistVO">
+		select count(*) as c from  teamlist where t_num = #{t_num}
 	</select>
 	<!-- 팀 등록 -->
 	<insert id="teamInsert" parameterType="TeamVO">
@@ -78,7 +78,9 @@
 	<!-- 팀원 조회 -->
 	<select id="getTeamMembers" parameterType="TeamlistVO"
 		resultType="TeamlistVO">
+		select * from( select a.*, rownum rn from (
 		select * from teamlist where t_num = #{t_num} order by 3 desc
+		) a ) b where rn between #{first} and #{last}
 	</select>
 
 	<select id="getTeamMemberss" parameterType="TeamlistVO"
@@ -203,9 +205,14 @@
 		)
 	</insert>
 
-	<!--p_match 내역 수 페이징 -->
+	<!--team 내역 수 페이징 -->
 	<select id="getCount1" resultType="int">
 		SELECT COUNT(*) FROM team
+	</select>
+
+	<!--team 내역 수 페이징 -->
+	<select id="getCount2" resultType="int">
+		SELECT COUNT(*) FROM teamlist WHERE t_num = #{t_num}
 	</select>
 
 	<!-- 토너먼트 대진표 조회 -->
@@ -380,8 +387,48 @@
 	<!-- 멤버랑 팀 번호 조인 조회 -->
 	<select id="memberTnum" resultType="membersVO">
 		select t.*, nvl((select 1 from tinvite
-                 where id=t.t_num), 0) as sel
+                 where id=t.id), 0) as sel
 		from members t
 		where t.id = #{id}
 	</select>
+	
+	<!-- 어느팀에 가입신청 했는지 조회-->
+	<select id="whereJoin" resultType="TinviteVO" parameterType="TeamVO">
+		select t.t_name 
+		from tinvite e join team t 
+		on e.t_num = t.t_num 
+		where id=#{id}
+	</select>
+	
+	<!-- 팀 매치 신청 내역 -->
+	<select id="teamMatchWait" resultType="TeammatchVO">
+		select mtype, f_name, f_address, price, m_date, m_hour from teammatch where t_num = #{t_num}
+	</select>
+	
+	<!-- 팀 초대 하기 -->
+	<insert id="teamInviteStatus" parameterType="InviteVO">
+		INSERT INTO invite
+		VALUES (
+			#{c_id},
+			sysdate,
+			null,
+			#{check1},
+			#{r_id},
+			null,
+			null
+		)
+	</insert>
+	
+	<!-- 팀초대현황 조회 -->
+	<select id="inviteSelect" resultType="InviteVO">
+		select c_id, s_date, r_id 
+		from invite
+		where r_id = #{r_id}
+	</select>
+	
+	<!-- 팀 초대 온거 거절하기 -->
+	<delete id="invitePass">
+		delete from invite 
+		where r_id = #{r_id}
+	</delete>
 </mapper>

@@ -25,9 +25,14 @@
 </head>
 <body>
 	<script type="text/javascript">
-		function register() {
-			alert("팀 수정이 완료되었습니다");
-		}
+	function teamUpdate(){
+		if (confirm("팀 정보를 변경 하시겠습니까?") == true){    //확인
+			alert("팀 정보가 변경되었습니다");
+			    
+			 }else{   //취소
+			     return false;
+			 }
+	}
 	</script>
 	<ul class="hi">
 	  		<c:if test="${sessionScope.t_num ne null }">
@@ -120,9 +125,9 @@
 				</div>
 			</div>
 			<br> <input type="submit" class="genric-btn info circle"
-				value="팀수정" />
+				value="팀수정" onclick="teamUpdate()"/>
 				<input type="reset" class="genric-btn info circle"
-				value="취소" />
+				value="취소" onclick="history.back(-1); return false;"/>
 		</div>
 	</form>
 	<!-- Javascript -->

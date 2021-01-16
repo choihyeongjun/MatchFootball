@@ -2,9 +2,11 @@ package co.company.MatchFootball.mapper;
 
 import java.util.List;
 
+import co.company.MatchFootball.vo.InviteVO;
 import co.company.MatchFootball.vo.MembersVO;
 import co.company.MatchFootball.vo.TeamVO;
 import co.company.MatchFootball.vo.TeamlistVO;
+import co.company.MatchFootball.vo.TeammatchVO;
 import co.company.MatchFootball.vo.TgalleryVO;
 import co.company.MatchFootball.vo.TinviteVO;
 import co.company.MatchFootball.vo.TnoticeVO;
@@ -12,14 +14,16 @@ import co.company.MatchFootball.vo.TournamentTeamVO;
 import co.company.MatchFootball.vo.TournamentVO;
 
 public interface HyendongMapper {
+	public int getCount1(TeamVO teamVO); //페이징 count와 list는 매개 같아야함 /팀리스트 페이징
+	public int getCount2(TeamlistVO teamlistVO); //팀원수 페이징
+	
 	public List<TeamVO> teamListSelect(TeamVO teamVO); //전체 팀 조회
-	public int getCount1(TeamVO teamVO); //페이징 count와 list는 매개 같아야함
 	public List<MembersVO>getMembers(); //멤버 리스트 조회
-	public TeamlistVO getTeamMemberss(TeamlistVO teamlistVO);
+	public TeamlistVO getTeamMemberss(TeamlistVO teamlistVO); //팀의 팀원들 조회
 	public TeamlistVO selectCount(TeamlistVO teamlistVO);
 	public MembersVO memberSelect(MembersVO membersVO); //멤버 단건 조회
 	
-	public List<TeamlistVO> getTeamMembers(TeamVO teamVO); //팀원 조회
+	public List<TeamlistVO> getTeamMembers(TeamlistVO teamlistVO); //팀원 조회
 	public int teamInsert(TeamVO teamVO); //팀 생성
 	public TeamVO getTeam(TeamVO teamVO); //팀 단건 정보 조회
 	public MembersVO myTeam(MembersVO membersVO); //마이 팀 정보 조회
@@ -56,4 +60,11 @@ public interface HyendongMapper {
 	
 	public List<TgalleryVO> picSelect(TgalleryVO tgalleryVO); //팀 사진 조회
 	public int picInsert(TgalleryVO tgalleryVO); //팀 사진 등록
+	
+	public TinviteVO whereJoin(TinviteVO tinviteVO); //어느팀에 가입신청 했는지 조회
+	
+	public List<TeammatchVO> teamMatchWait(TeammatchVO teammatchVO); //팀매치 신청 내역
+	public int teamInviteStatus(InviteVO inviteVO); //팀 초대 하기
+	public List<InviteVO> inviteSelect(InviteVO inviteVO); //팀 초대온거 조회
+	public int invitePass(InviteVO inviteVO); //팀 온거 거절
 }

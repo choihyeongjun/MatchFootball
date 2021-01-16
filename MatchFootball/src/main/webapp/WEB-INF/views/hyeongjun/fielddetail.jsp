@@ -42,7 +42,9 @@ $(function(){
             <li><a tabindex="-1" class="aa">개인풋살</a></li>
             
             <li><a tabindex="-1" class="match1">팀매치</a></li>
+            <c:if test="${sessionStorage.id eq sessionStorage.f_id}">
              <li><a tabindex="-1" class="match2">개인매치</a></li>
+             </c:if>
             <li class="divider"></li>
             <li><a tabindex="-1" href="#" data-role="close">Close</a></li>
          </ul>
@@ -122,6 +124,7 @@ $(function(){
                            id="edit-desc"></textarea>
                      </div>
                   </div>
+                  
                   <div class="row">
                      <div class="col-xs-12">
                         <label class="col-xs-4" for="edit-type">매니저</label> <select
@@ -148,9 +151,11 @@ $(function(){
       </div>
       </form>
       <!-- /.modal -->
-      <form action="" name="frm">
+      <form action="" name="frm2">
       <!-- 일정 추가 MODAL -->
       <div class="modal fade" tabindex="-1" role="dialog" id="eventModalll">
+      <input type="hidden" name="d_id" id="d_id" value="${id}"/>
+     	<input type="text" name="m_no" id="m_no" readonly="readonly">
          <div class="modal-dialog" role="document">
             <div class="modal-content">
                <div class="modal-header">
@@ -158,7 +163,7 @@ $(function(){
                      aria-label="Close">
                      <span aria-hidden="true">&times;</span>
                   </button>
-                  <h4 class="modal-title"></h4>
+                  <h4 class="modal-title1"></h4>
                </div>
                <div class="modal-body">
 					<label hidden=""></label>
@@ -166,28 +171,28 @@ $(function(){
 
                   <div class="row">
                      <div class="col-xs-12">
-                        <label class="col-xs-4" for="edit-title">일정명</label> <input
-                           class="inputModal" type="text" name="edit-title"
-                           id="edit-title" required="required" />
+                        <label class="col-xs-4" for="edit-title1">일정명</label> <input
+                           class="inputModal" type="text" name="edit-title1"
+                           id="edit-title1" required="required" />
                      </div>
                   </div>
                   <div class="row">
                      <div class="col-xs-12">
-                        <label class="col-xs-4" for="edit-start">시작</label> <input
-                           class="inputModal" type="text" name="edit-start"
-                           id="edit-start" />
+                        <label class="col-xs-4" for="edit-start1">시작</label> <input
+                           class="inputModal" type="text" name="edit-start1"
+                           id="edit-start1" />
                      </div>
                   </div>
                   <div class="row">
                      <div class="col-xs-12">
-                        <label class="col-xs-4" for="edit-end">끝</label> <input
-                           class="inputModal" type="text" name="edit-end" id="edit-end" />
+                        <label class="col-xs-4" for="edit-end1">끝</label> <input
+                           class="inputModal" type="text" name="edit-end1" id="edit-end1" />
                      </div>
                   </div>
                   <div class="row">
                      <div class="col-xs-12">
-                        <label class="col-xs-4" for="edit-type">구분</label> <select
-                           class="inputModal" type="text" name="edit-type" id="edit-type">
+                        <label class="col-xs-4" for="edit-type1">구분</label> <select
+                           class="inputModal" type="text" name="edit-type1" id="edit-type1">
                            <option value="축구">축구</option>
                            <option value="풋살">풋살</option>
                         </select>
@@ -195,8 +200,8 @@ $(function(){
                   </div>
                   <div class="row">
                      <div class="col-xs-12">
-                        <label class="col-xs-4" for="edit-color">색상</label> <select
-                           class="inputModal" name="color" id="edit-color">
+                        <label class="col-xs-4" for="edit-color1">색상</label> <select
+                           class="inputModal" name="color1" id="edit-color1">
                            <option value="#D25565" style="color: #D25565;">빨간색</option>
                            <option value="#9775fa" style="color: #9775fa;">보라색</option>
                            <option value="#ffa94d" style="color: #ffa94d;">주황색</option>
@@ -209,17 +214,48 @@ $(function(){
                         </select>
                      </div>
                   </div>
+                  <c:if test="${sessionStorage.id eq sessionStorage.f_id}">
+                  <div class="row">
+                     <div class="col-xs-12">
+                        <label class="col-xs-4" for="edit-mem">최대인원수</label>
+                        <input
+                           class="inputModal" type="text" name="edit-mem" id="edit-mem" />
+                     </div>
+                  </div>
+                  </c:if>
+                   <div class="row">
+                     <div class="col-xs-12">
+                        <label class="col-xs-4" for="edit-level">레벨</label>
+                        <select
+                           class="inputModal" type="text" name="edit-level" id="edit-level">
+                           <option value="1">1</option>
+                           <option value="2">2</option>
+                            <option value="3">3</option>
+                           <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                     </div>
+                  </div>
+                   <div class="row">
+                     <div class="col-xs-12">
+                        <label class="col-xs-4" for="edit-price">가격</label> <input
+                           class="inputModal" type="text" name="edit-price"
+                           id="edit-price" value="${price}" readonly="readonly"/>
+                     </div>
+                  </div>
+            
                   <div class="row">
                      <div class="col-xs-12">
                         <label class="col-xs-4" for="edit-desc">설명</label>
-                        <textarea rows="4" cols="50" class="inputModal" name="edit-desc"
-                           id="edit-desc"></textarea>
+                        <textarea rows="4" cols="50" class="inputModal" name="edit-desc1"
+                           id="edit-desc1"></textarea>
                      </div>
                   </div>
+                  
                   <div class="row">
                      <div class="col-xs-12">
-                        <label class="col-xs-4" for="edit-type">매니저</label> <select
-                           class="inputModal" type="text" name="manager" id="manager">
+                        <label class="col-xs-4" for="manager1">매니저</label> <select
+                           class="inputModal" type="text" name="manager1" id="manager1">
                            <option value="없음">없음</option>
                            <option value="ㅇㅇ">ㅇㅇㅇㅇㅇㅇㅇㅇㅇ</option>
                            <option value="풋살"></option>
@@ -227,13 +263,13 @@ $(function(){
                      </div>
                   </div>
                </div>
-               <div class="modal-footer modalBtnContainer-addEvent">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-                  <button type="button" class="btn btn-primary" id="save-event">저장</button>
+               <div class="modal-footer modalBtnContainer-addEvent1">
+                  <button type="button" class="btn btn-default1" data-dismiss="modal">취소</button>
+                  <button type="button" class="btn btn-primary" id="save-event1">저장</button>
                </div>
-               <div class="modal-footer modalBtnContainer-modifyEvent">
-                	<button type="button" class="btn btn-danger" id="deleteEvent">삭제</button>
-                  <button type="button" class="btn btn-primary" id="updateEvent">저장</button>
+               <div class="modal-footer modalBtnContainer-modifyEvent1">
+                	<button type="button" class="btn btn-danger" id="deleteEvent1">삭제</button>
+                  <button type="button" class="btn btn-primary" id="updateEvent1">저장</button>
                   <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
                </div>
             </div>

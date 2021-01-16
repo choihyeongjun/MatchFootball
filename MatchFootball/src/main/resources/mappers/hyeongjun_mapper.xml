@@ -34,8 +34,8 @@
    	select *
    	from field
    </select>
-   <select id="fieldselect" resultType="map">
-   select m_id "_id",title "title" ,type "type",starttime "start", endtime "end",comm "description",backgroundcolor "backgroundColor",id "id"
+   <select id="fieldselect" resultType="map"> 
+   select m_no "m_no",m_id "_id",title "title" ,type "type",starttime "start", endtime "end",comm "description",backgroundcolor "backgroundColor",id "id"
    from rfield
    where f_id=#{f_id}
    </select>
@@ -138,7 +138,50 @@
  		where num=#{num}
  		and id=#{id}
  	</select>
+	<insert id="teammatchinsert" parameterType="teammatchVO">
+	<selectKey order="BEFORE" keyProperty="m_no" resultType="string">
+	select tmatch_seq.nextval from dual
+	</selectKey>
+	insert into teammatch(m_no,t_num,mtype,f_name,f_address,price,t_name,t_cap,t_level,m_info,m_date,m_hour,m_type,id)
 	
+	values(#{m_no},#{t_num},#{mtype},#{f_name},#{f_address},#{price},#{t_name},#{t_cap},#{t_level},#{m_info},#{m_date},#{m_hour},'모집',#{id}) 
+	</insert>
+	<select id="pmatchinsert" parameterType="P_matchVO">
+	insert into p_match(m_no,m_type,f_name,f_address,price,lv,p_max,m_id,m_date,m_hour,t_type,f_id)
+	values(tmatch_seq.nextval,#{m_type},#{f_name},#{f_address},#{price},#{lv},#{p_max},#{id},#{m_date},#{m_hour},'경기장좋음',#{f_id})
+	</select>
+	<select id="fieldprice" parameterType="fieldVO" resultType="string">
+	select price
+	from field
+	where f_id=#{f_id}
+	</select>
+	<select id="teamname" parameterType="teamVO" resultType="string">
+	select t_name from
+	team
+	where t_num=#{t_num}
+	</select>
+	<select id="mtnum" parameterType="membersVO" resultType="string">
+	select t_num
+	from members
+	where id=#{id}
+	</select>
+	<select id="fieldname" parameterType="fieldVO" resultType="string">
+	select name
+	from field
+	where f_id=#{f_id}
+	</select>
+	<select id="fieldaddress" parameterType="fieldVO" resultType="string">
+		select concat(location1,location2)
+		from field
+		where f_id=#{f_id}
+	</select>
+	<select id="teammatchupdate" parameterType="teammatchVO">
+	update teammatch set id=#{id} where t_cap=#{t_cap} and m_info=#{m_info}
+	</select>
+	<select id="teamno" resultType="string">
+	select max(m_no)+1
+	from teammatch
+	</select>
    <!-- <select id="heartselect" result="likeitVO">
    	select likeit
    	from likeit

@@ -173,7 +173,15 @@ $(function() {
 		$(".qqqq a").removeClass("ss");
 		$(event.target).addClass("ss");
 	})
+	
 })
+function tdeta(url){
+	if('${sessionScope.id}' == ''){
+		alert("로그인 하세요")
+	}else{
+		location.href=url
+	}
+}
 </script>
 </head>
 <body>
@@ -294,7 +302,7 @@ $(function() {
 				<c:forEach var="teammatch" items="${teammatch }">
 					<li class="listl">
 							<a class="lista"
-								href="teammatchDetail?m_no=${teammatch.m_no }&t_num=${teammatch.t_num}">
+								href="javascript:tdeta('teammatchDetail?m_no=${teammatch.m_no }&t_num=${teammatch.t_num}')">
 								<div class="tlwn">
 									<div style="margin: 10px;">
 										<img alt="nope"

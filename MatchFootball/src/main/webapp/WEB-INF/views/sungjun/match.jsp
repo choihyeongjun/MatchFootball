@@ -46,12 +46,12 @@
 	border: none;
 	outline: none;
 	color: black;
-	padding: 10px 10px;
+	padding: 10px;
 	text-align: center;
 	text-decoration: none;
 	display: inline-block;
 	font-size: 12px;
-	margin: 4px 2px;
+	margin-left: 40px;
 }
 
 img {
@@ -59,7 +59,7 @@ img {
 }
 
 .swiper-container {
-	position: -webkit-sticky;
+	position: -webkit-sticky; //
 	position: sticky;
 	top: 0;
 	background-color: white;
@@ -106,6 +106,7 @@ p {
 	border-radius: 50px;
 	padding-top: 10px;
 	padding-bottom: 10px;
+	font-size: 18px;
 }
 
 .rr {
@@ -142,6 +143,7 @@ p {
 	text-align: center;
 	padding: 10px;
 }
+
 .ap-info1 {
 	background-color: #ddd;
 	border-radius: 10px;
@@ -150,6 +152,7 @@ p {
 	text-align: center;
 	padding: 10px;
 }
+
 .ap-info2 {
 	background-color: #ea3e42;
 	border-radius: 10px;
@@ -158,6 +161,7 @@ p {
 	text-align: center;
 	padding: 10px;
 }
+
 .app-info {
 	background-color: #ddd;
 	border-radius: 10px;
@@ -165,6 +169,11 @@ p {
 	color: #999;
 	text-align: center;
 	padding: 10px;
+}
+
+.regi-a a:hover {
+	color: white;
+	text-decoration: underline;
 }
 </style>
 <script>
@@ -175,37 +184,47 @@ $(function() {
 		$(event.target).addClass("ss");
 	})
 })
+
+function mdeta(url){
+	if('${sessionScope.id}' == ''){
+		alert("로그인 하세요")
+	}else{
+		location.href=url
+	}
+}
 </script>
 </head>
 <body>
-	<div class="container"
-		style="backgroundcolor: white; width: 100%; flex: 1;">
+	<div style="backgroundcolor: white; width: 100%; flex: 1;">
 		<!-- 사진  -->
-		<div align="center" style="margin: 40px;">
-			<div id="carouselExampleControls" class="carousel slide"
+		<div align="center"
+			style="margin: auto; padding: 25px; background-color: #fafafa; border-bottom: 1px solid #ddd;">
+			<div style="margin: 0 300px;">
+				<img src="resources/img/코로나.jpeg" class="d-block w-100" alt="..."
+					width="529px" height="320px">
+			</div>
+			<!-- <div id="carouselExampleControls" class="carousel slide"
 				data-ride="carousel">
 				<div class="carousel-inner">
 					<div class="carousel-item active">
-						<iframe width="929" height="520"
-							src="https://www.youtube.com/embed/GKz7d5Wx77s" frameborder="0"
-							allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-							allowfullscreen></iframe>
+						<img src="resources/img/11.jpg" class="d-block w-100" alt="..."
+							width="529px" height="320px">
 					</div>
 					<div class="carousel-item">
 						<img src="resources/img/11.jpg" class="d-block w-100" alt="..."
-							width="929" height="520">
+							width="529px" height="320px">
 					</div>
 					<div class="carousel-item">
 						<img src="resources/img/22.jpg" class="d-block w-100" alt="..."
-							width="929" height="520">
+							width="529px" height="320px">
 					</div>
 					<div class="carousel-item">
 						<img src="resources/img/33.jpg" class="d-block w-100" alt="..."
-							width="929" height="520">
+							width="529px" height="320px">
 					</div>
 					<div class="carousel-item">
 						<img src="resources/img/44.jpg" class="d-block w-100" alt="..."
-							width="929" height="520">
+							width="529px" height="320px">
 					</div>
 				</div>
 				<a class="carousel-control-prev" href="#carouselExampleControls"
@@ -217,26 +236,21 @@ $(function() {
 					class="carousel-control-next-icon" aria-hidden="true"></span> <span
 					class="sr-only">Next</span>
 				</a>
-			</div>
+			</div> -->
 		</div>
 		<!--날 짜 선 택  -->
 
 		<!-- 클래스명은 변경하면 안 됨 -->
-		<hr>
-		<div class="swiper-container" style="margin: 40px">
+		<div class="swiper-container" style="margin: 0 300px;">
 
 			<div class="swiper-wrapper" style="cursor: point;">
 				<c:set var="week" value="${cal.getIDayOfWeek()}" />
-
 				<c:forEach begin="1" end="${cal.lastDate }" var="i">
-
 					<div class="swiper-slide" style="hover: #314d9f; cursor: point;">
 						<fmt:formatNumber var="no" minIntegerDigits="2" value="${i}" />
-
 						<a href="match?m_date=${date}-${no}">
 							<div class="aa"
 								style="<c:if test="${i == m_dat }">background-color:#314d9f; color:white;</c:if>;">
-
 								<c:set var="weeklist"
 									value='<%=new String[]{"일", "월", "화", "수", "목", "금", "토"}%>' />
 								<c:choose>
@@ -263,9 +277,7 @@ $(function() {
 							</div>
 						</a>
 					</div>
-
 				</c:forEach>
-
 			</div>
 
 			<!-- 네비게이션 -->
@@ -280,7 +292,8 @@ $(function() {
 
 		<!-- 매치 정보  -->
 		<div>
-			<div style="display: flex; justify-content: space-between;">
+			<div
+				style="display: flex; justify-content: space-between; margin: 0 300px;">
 				<div class="button_match">
 					<p>매치 리스트</p>
 				</div>
@@ -290,16 +303,16 @@ $(function() {
 				</div>
 			</div>
 
-			<ul style="margin-bottom: 50px;">
+			<ul style="margin-bottom: 50px; margin: 0 300px;">
 				<c:forEach var="p_match" items="${p_matchVO }">
 					<li class="listl"><a class="lista" style="cursor: pointer;"
-						href="matchDetail?m_no=${p_match.m_no }">
+						href="javascript:mdeta('matchDetail?m_no=${p_match.m_no }')">
 							<div style="text-align: center; width: 10%; font-weight: bold;">
 								<p>${p_match.m_hour }</p>
 							</div>
 							<div class="nameli" style="font-size: 16px; width: 80%;">
 								<div>
-									<h3>${p_match.f_name }</h3>
+									<p style="font-size:20px; margin-top: 10px; margin-bottom: 3px;">${p_match.f_name }</p>
 								</div>
 								<div class="m-im-t">
 									<span>⦁ ${p_match.m_type } 매치</span><span>·
@@ -308,8 +321,8 @@ $(function() {
 								</div>
 							</div>
 							<div style="width: 20%;">
-							<fmt:parseNumber value="${p_match.p_max}" var="p_max"/>
-							<fmt:parseNumber value="${p_match.f}" var="f"/>
+								<fmt:parseNumber value="${p_match.p_max}" var="p_max" />
+								<fmt:parseNumber value="${p_match.f}" var="f" />
 								<c:if test="${p_max > f && p_match.sel eq '0'}">
 									<p class="ap-info" style="">신청 가능</p>
 								</c:if>
@@ -324,11 +337,22 @@ $(function() {
 				</c:forEach>
 			</ul>
 		</div>
-
+		<c:if test="${empty sessionScope.id }">
+			<div class="registerkk"
+				style="position: fixed; width: 100%; bottom: 40px;">
+				<div class="regi-a"
+					style="color: white; width: 320px; margin: auto; border-radius: 100px; line-height: initial; background-color: #314d9f; padding: 20px;">
+					<a href="#" style=""><p id="res"
+							style="font-weight: bold; font-size: 18px; text-align: center;">회원
+							가입</p>
+						<p style="font-size: 13px; text-align: center;">회원가입 하고
+							매치에참여하세요</p></a>
+				</div>
+			</div>
+		</c:if>
 	</div>
 	<script>
 		new Swiper('.swiper-container', {
-
 			slidesPerView : 7, // 동시에 보여줄 슬라이드 갯수
 			spaceBetween : 30, // 슬라이드간 간격
 			slidesPerGroup : 1, // 그룹으로 묶을 수, slidesPerView 와 같은 값을 지정하는게 좋음
