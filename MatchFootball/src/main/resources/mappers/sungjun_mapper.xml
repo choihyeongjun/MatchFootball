@@ -195,16 +195,16 @@
 		desc, m_hour asc
 	</select>
 	<!--매니저 팀 매치 내역 조회 -->
-	<select id="tmatchlist" parameterType="TeammatchVO"
+	<!-- <select id="tmatchlist" parameterType="TeammatchVO"
 		resultType="TeammatchVO">
-		select * from(select a.* , b.t_name t_name2
+		select * from(select a.* , b.t_name b.t_name2
 						from teammatch a
 						, team b
 						where a.so_num = b.t_num
 						and id = #{id}
 						order by m_date desc ,m_hour asc )
 		where <![CDATA[rownum <=5]]>
-	</select>
+	</select> -->
 	<!--매니저 팀 매치 내역 전체 조회 -->
 	<select id="tmatchselectall" parameterType="TeammatchVO"
 		resultType="TeammatchVO">

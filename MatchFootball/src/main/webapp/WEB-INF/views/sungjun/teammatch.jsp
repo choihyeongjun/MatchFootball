@@ -188,32 +188,29 @@ function tdeta(url){
 	<div class="con" style="backgroundcolor: white; width: 100%; flex: 1;">
 		<!-- 사진  -->
 		<div align="center"
-			style="background-color: #fafafa; border-bottom: 1px solid #ddd;">
+			style="margin: auto; padding: 25px; background-color: #fafafa; border-bottom: 1px solid #ddd;">
 			<div id="carouselExampleControls" class="carousel slide"
-				data-ride="carousel">
+				data-ride="carousel" style="margin: 0 300px;">
 
-				<div class="carousel-inner" style="padding: 40px;">
-
+				<div class="carousel-inner" ">
 					<div class="carousel-item active">
-						<iframe width="629px" height="420px"
-							src="https://www.youtube.com/embed/GKz7d5Wx77s" frameborder="0"
-							allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-							allowfullscreen></iframe>
-					</div>
-					<div class="carousel-item">
-						<img src="resources/img/11.jpg" class="d-block w-10" alt="..."
+						<img src="resources/img/11.jpg" class="d-block w-100" alt="..."
 							width="629px" height="420px">
 					</div>
 					<div class="carousel-item">
-						<img src="resources/img/22.jpg" class="d-block w-10" alt="..."
+						<img src="resources/img/11.jpg" class="d-block w-100" alt="..."
 							width="629px" height="420px">
 					</div>
 					<div class="carousel-item">
-						<img src="resources/img/33.jpg" class="d-block w-10" alt="..."
+						<img src="resources/img/22.jpg" class="d-block w-100" alt="..."
 							width="629px" height="420px">
 					</div>
 					<div class="carousel-item">
-						<img src="resources/img/44.jpg" class="d-block w-10" alt="..."
+						<img src="resources/img/33.jpg" class="d-block w-100" alt="..."
+							width="629px" height="420px">
+					</div>
+					<div class="carousel-item">
+						<img src="resources/img/44.jpg" class="d-block w-100" alt="..."
 							width="629px" height="420px">
 					</div>
 				</div>
