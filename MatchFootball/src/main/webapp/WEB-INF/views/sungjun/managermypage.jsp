@@ -202,7 +202,7 @@ a {
 					<h3>${member.point }원</h3>
 				</div>
 				<div class="btn-right cachec">
-					<a class="btn sm" href="#">캐시 충전</a>
+					<a class="btn sm" href="mypage/pay">포인트 충전</a>
 				</div>
 			</div>
 

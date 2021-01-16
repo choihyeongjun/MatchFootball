@@ -73,7 +73,7 @@ public class JunController {
 		vo.setLastDate(lastDate);
 		vo.setIDayOfWeek(iDayOfWeek);
 		model.addAttribute("cal", vo);
-		mvo.setId((String) session.getAttribute("id"));
+		//mvo.setId((String) session.getAttribute("id"));
 		mvo.setM_date(year + "-" + month + "-" + day);
 		model.addAttribute("m_dat", day);
 		model.addAttribute("date", year + "-" + month);
