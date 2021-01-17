@@ -345,6 +345,8 @@ body, html {
 								</c:if>
 								<li class="lili"><a
 									href="javascript:login('${pageContext.request.contextPath}/teamList')">팀 리스트</a></li>
+								<li class="lili"><a
+								href="javascript:login('${pageContext.request.contextPath}/teamMatchStatus')">스카웃 제의</a></li>
 							</ul>
 						</div>
 

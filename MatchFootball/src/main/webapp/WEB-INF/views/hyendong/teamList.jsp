@@ -48,13 +48,9 @@ a { text-decoration: none; color: #ffffff }
     padding-left: 35px;
 }
 
-.aa a:visited {
+.aa a{
     text-decoration: none;
     color: black;
-}
-
-.hii {
-	color: black;
 }
 </style>
 </head>
@@ -119,7 +115,7 @@ a { text-decoration: none; color: #ffffff }
 				}
 			</script>
 			<hr>
-			<div style="margin-left: 350px;" class="hii">
+			<div style="margin-left: 350px; color: black">
 				<my:paging paging="${paging}" jsfunc="goPage" />
 			</div>
 		</div>

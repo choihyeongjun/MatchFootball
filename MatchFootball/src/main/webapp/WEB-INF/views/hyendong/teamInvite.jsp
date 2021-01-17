@@ -112,9 +112,9 @@ div.modal-content { position: relative;
 											<td>${f.lv}</td>
 											<td>${f.pos}</td>
 											<td><form action="inviteComeon" method="post">
-												<input type="text" value=${sessionScope.id  } name="c_id" style="display:none"> 
-												<input type="text" value=${f.id  } name="r_id" style="display:none"> 
-												<input type="text" value="초대중" name="check1" style="display:none">
+												<input type="text" value="${f.id  }" name="id" style="display:none"> 
+												<input type="text" value="${sessionScope.t_num }" name="t_num" style="display:none">
+												<input type="text" value="${tname.t_name }" name="c_tname" style="display:none">
 												<button type="submit" id="button">팀초대</button>
 												</form>
 											</td>
@@ -188,11 +188,9 @@ div.modal-content { position: relative;
 								<c:if test="${updateButton.t_author eq '팀장' }">
 									<td>
 										<form method="post">
-											<input type="text" value="${sessionScope.t_num }"
-												name="t_num" style="display: none"> <input
-												type="text" value="${tinvite.id }" name="id"
-												style="display: none"> <input type="text" value="팀원"
-												name="t_author" style="display: none">
+											<input type="text" value="${sessionScope.t_num }" name="t_num" style="display: none"> 
+											<input type="text" value="${tinvite.id }" name="id" style="display: none"> 
+											<input type="text" value="팀원" name="t_author" style="display: none">
 											<button type="submit" id="btnSelect"
 												onclick="javascript: form.action='${pageContext.request.contextPath}/teamListInsert'">수락</button>
 											<button type="submit" id="btnSelect"
