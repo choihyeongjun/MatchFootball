@@ -19,7 +19,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/dong1/assets/css/style.css">
 
 <style>
-a { text-decoration: none; color: #000000 }
+a { text-decoration: none; color: #ffffff }
 .size { width: 50px; height: 50px }
 
 #a2{   
@@ -37,10 +37,6 @@ a { text-decoration: none; color: #000000 }
     border-radius: .3rem;
     outline: 0;
 }
-a:visited {
-    text-decoration: none;
-    color: white;
-}
 #az{
    color: black;
 }
@@ -55,6 +51,10 @@ a:visited {
 .aa a:visited {
     text-decoration: none;
     color: black;
+}
+
+.hii {
+	color: black;
 }
 </style>
 </head>
@@ -95,7 +95,7 @@ a:visited {
 			</div>
 			<div class="aa">
 			<c:forEach items="${teamList }" var="teamList">
-				<a href="teamInfo?t_num=${teamList.t_num}">
+				<a href="teamInfo?t_num=${teamList.t_num}" class="hii">
 					<div class="table-row">
 						<div class="serial">${teamList.t_num}</div>
 						<div class="country">
@@ -119,7 +119,7 @@ a:visited {
 				}
 			</script>
 			<hr>
-			<div style="margin-left: 350px">
+			<div style="margin-left: 350px;" class="hii">
 				<my:paging paging="${paging}" jsfunc="goPage" />
 			</div>
 		</div>

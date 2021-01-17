@@ -79,7 +79,7 @@
 	<select id="getTeamMembers" parameterType="TeamlistVO"
 		resultType="TeamlistVO">
 		select * from( select a.*, rownum rn from (
-		select * from teamlist where t_num = #{t_num} order by 3 desc
+		select t.id, m.name, m.pos, t.t_author from teamlist t join members m on t.id = m.id where t.t_num = #{t_num} order by 4 desc
 		) a ) b where rn between #{first} and #{last}
 	</select>
 
@@ -210,7 +210,7 @@
 		SELECT COUNT(*) FROM team
 	</select>
 
-	<!--team 내역 수 페이징 -->
+	<!--팀원 수-->
 	<select id="getCount2" resultType="int">
 		SELECT COUNT(*) FROM teamlist WHERE t_num = #{t_num}
 	</select>
@@ -406,29 +406,32 @@
 	</select>
 	
 	<!-- 팀 초대 하기 -->
-	<insert id="teamInviteStatus" parameterType="InviteVO">
-		INSERT INTO invite
+	<insert id="teamInviteStatus" parameterType="ComeInviteVO">
+	<selectKey order="BEFORE" keyProperty="c_seq"
+			resultType="int">
+			SELECT NVL(MAX(c_seq),0)+1
+			FROM comeInvite
+		</selectKey>
+		INSERT INTO comeInvite
 		VALUES (
-			#{c_id},
-			sysdate,
-			null,
-			#{check1},
-			#{r_id},
-			null,
-			null
+			#{c_seq},
+			#{id},
+			#{t_num},
+			#{c_tname},
+			sysdate
 		)
 	</insert>
 	
 	<!-- 팀초대현황 조회 -->
-	<select id="inviteSelect" resultType="InviteVO">
-		select c_id, s_date, r_id 
-		from invite
-		where r_id = #{r_id}
+	<select id="inviteSelect" resultType="ComeInviteVO">
+		select *
+		from comeInvite
+		where id = #{id}
 	</select>
 	
 	<!-- 팀 초대 온거 거절하기 -->
 	<delete id="invitePass">
-		delete from invite 
-		where r_id = #{r_id}
+		delete from comeInvite 
+		where id = #{id}
 	</delete>
 </mapper>

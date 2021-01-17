@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import co.company.MatchFootball.mapper.HyendongMapper;
+import co.company.MatchFootball.vo.ComeInviteVO;
 import co.company.MatchFootball.vo.InviteVO;
 import co.company.MatchFootball.vo.MembersVO;
 import co.company.MatchFootball.vo.Paging;
@@ -94,8 +95,6 @@ public class HyenDongController {
 		paging.setTotalRecord(hyendongMapper.getCount2(teamlistVO));
 		model.addAttribute("teamMembers", hyendongMapper.getTeamMembers(teamlistVO));
 		model.addAttribute("paging", paging);
-		membersVO.setT_num(teamVO.getT_num());
-		model.addAttribute("memberss", hyendongMapper.memberSelect(membersVO));
 		teamlistVO.setId(id);
 		model.addAttribute("updateButton", hyendongMapper.getTeamMemberss(teamlistVO));
 		String idd = (String) session.getAttribute("id");
@@ -103,7 +102,8 @@ public class HyenDongController {
 		model.addAttribute("hh", hyendongMapper.memberTnum(membersVO));
 		tinviteVO.setId(idd);
 		model.addAttribute("where",hyendongMapper.whereJoin(tinviteVO));
-		String tNum = (String) session.getAttribute("t_num");
+		teamlistVO.setT_num("2");
+		model.addAttribute("count", hyendongMapper.selectCount(teamlistVO));
 		return "hyendong/teamInfo";
 	}
 
@@ -115,6 +115,8 @@ public class HyenDongController {
 		membersVO.setId(teamlistVO.getId());
 		model.addAttribute("members", hyendongMapper.memberSelect(membersVO)); // 멤버 단건 조회
 		hyendongMapper.tNumNullUpdate(membersVO);
+		String tNum = (String)session.getAttribute("t_num");
+		membersVO.setT_num(tNum);
 		return "redirect:/teamInfo?t_num=" + membersVO.getT_num();
 	}
 
@@ -360,33 +362,33 @@ public class HyenDongController {
 	
 	// 팀 초대 현황 페이지
 	@RequestMapping("/teamMatchStatus")
-	public String teamMatchStatus(InviteVO inviteVO, Model model, TeamlistVO teamlistVO, MembersVO membersVO, HttpSession session) {
-		String r_id = (String) session.getAttribute("id");
-		inviteVO.setR_id(r_id);
-		model.addAttribute("select", hyendongMapper.inviteSelect(inviteVO));
+	public String teamMatchStatus(ComeInviteVO comeInviteVO, Model model, HttpSession session) {
+		String id = (String) session.getAttribute("id");
+		comeInviteVO.setId(id);
+		model.addAttribute("select", hyendongMapper.inviteSelect(comeInviteVO));
 		return "hyendong/teamMatchStatus";
 	}
 	
 	// 팀 초대 하기 처리
 	@RequestMapping("/inviteComeon")
-	public String inviteComeon(InviteVO inviteVO, TeamVO teamVO, HttpSession session) {
+	public String inviteComeon(ComeInviteVO comeInviteVO, TeamVO teamVO, HttpSession session) {
 		String tNum = (String) session.getAttribute("t_num");
 		teamVO.setT_num(tNum);
-		hyendongMapper.teamInviteStatus(inviteVO);
+		hyendongMapper.teamInviteStatus(comeInviteVO);
 		return "redirect:/teamInvite?t_num=" + teamVO.getT_num();
 	}
 
 	// 팀 초대 수락 처리
 	@RequestMapping("/inviteOk")
-	public String inviteOk(InviteVO inviteVO, TeamVO teamVO, TeamlistVO teamlistVO, MembersVO membersVO, Model model, HttpSession session) {
+	public String inviteOk(ComeInviteVO comeInviteVO) {
 
 		return "hyendong/teamMatchStatus";
 	}
 	
 	// 팀 초대 거절 처리
 	@RequestMapping("/invitePass")
-	public String invitePass(InviteVO inviteVO) {
-		hyendongMapper.invitePass(inviteVO);
+	public String invitePass(ComeInviteVO comeInviteVO) {
+		hyendongMapper.invitePass(comeInviteVO);
 		return "hyendong/teamMatchStatus";
 	}
 	

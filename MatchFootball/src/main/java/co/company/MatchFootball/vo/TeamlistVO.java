@@ -9,4 +9,6 @@ public class TeamlistVO {
 	String t_author;//팀장과 팀원
 	int first;
 	int last;
+	String name;
+	String pos;
 }

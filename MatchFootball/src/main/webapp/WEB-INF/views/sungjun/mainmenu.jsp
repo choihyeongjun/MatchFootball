@@ -100,6 +100,14 @@ body, html {
 			$("#main_menu").load();
 		});
 	})
+	
+	function login(url){
+	if('${sessionScope.id}' == ''){
+		alert("팀 기능은 로그인 하셔야 이용이 가능합니다")
+	}else{
+		location.href=url
+	}
+}
 </script>
 
 </head>
@@ -322,7 +330,7 @@ body, html {
 							<ul class="menul" style="color: white; font-size: 20px;">
 								<c:if test="${sessionScope.t_num eq null }">
 									<li class="lili"><a
-										href="${pageContext.request.contextPath}/teamMake">팀 생성</a></li>
+										href="javascript:login('${pageContext.request.contextPath}/teamMake')">팀 생성</a></li>
 								</c:if>
 								<c:if test="${sessionScope.t_num ne null }">
 									<li class="lili"><a
@@ -336,7 +344,7 @@ body, html {
 											초대</a></li>
 								</c:if>
 								<li class="lili"><a
-									href="${pageContext.request.contextPath}/teamList">팀 리스트</a></li>
+									href="javascript:login('${pageContext.request.contextPath}/teamList')">팀 리스트</a></li>
 							</ul>
 						</div>
 

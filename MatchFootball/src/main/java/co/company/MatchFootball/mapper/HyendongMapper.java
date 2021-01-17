@@ -2,6 +2,7 @@ package co.company.MatchFootball.mapper;
 
 import java.util.List;
 
+import co.company.MatchFootball.vo.ComeInviteVO;
 import co.company.MatchFootball.vo.InviteVO;
 import co.company.MatchFootball.vo.MembersVO;
 import co.company.MatchFootball.vo.TeamVO;
@@ -64,7 +65,7 @@ public interface HyendongMapper {
 	public TinviteVO whereJoin(TinviteVO tinviteVO); //어느팀에 가입신청 했는지 조회
 	
 	public List<TeammatchVO> teamMatchWait(TeammatchVO teammatchVO); //팀매치 신청 내역
-	public int teamInviteStatus(InviteVO inviteVO); //팀 초대 하기
-	public List<InviteVO> inviteSelect(InviteVO inviteVO); //팀 초대온거 조회
-	public int invitePass(InviteVO inviteVO); //팀 온거 거절
+	public int teamInviteStatus(ComeInviteVO comeInviteVO); //팀 초대 하기
+	public List<ComeInviteVO> inviteSelect(ComeInviteVO comeInviteVO); //팀 초대온거 조회
+	public int invitePass(ComeInviteVO comeInviteVO); //팀 온거 거절
 }
