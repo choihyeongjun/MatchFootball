@@ -326,6 +326,7 @@ function tdeta(url){
 									<p>
 										<input value="${teammatch.t_num }" style="display: none">
 									</p>
+									
 								</div>
 								<div style="width: 20%;">
 									<c:if test="${empty teammatch.so_num}">

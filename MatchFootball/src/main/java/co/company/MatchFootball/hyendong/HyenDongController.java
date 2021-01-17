@@ -276,14 +276,17 @@ public class HyenDongController {
 
 	// 팀 초대
 	@RequestMapping("/teamInvite")
-	public String teamInvite(Model model, HttpSession session, TinviteVO tinviteVO, TeamlistVO teamlistVO,
+	public String teamInvite(Model model, HttpSession session, TinviteVO tinviteVO, TeamlistVO teamlistVO, TeamVO teamVO,
 			MembersVO membersVO) {
 		String id = (String) session.getAttribute("id");
 		tinviteVO.setId(id);
-		model.addAttribute("tinvite", hyendongMapper.teamInviteSelect(tinviteVO));
 		teamlistVO.setId(id);
+		model.addAttribute("tinvite", hyendongMapper.teamInviteSelect(tinviteVO));
 		model.addAttribute("updateButton", hyendongMapper.getTeamMemberss(teamlistVO));
 		model.addAttribute("members", hyendongMapper.getMembers());
+		String tNum = (String) session.getAttribute("t_num");
+		teamVO.setT_num(tNum);
+		model.addAttribute("tname",hyendongMapper.getTeam(teamVO));
 
 		return "hyendong/teamInvite";
 	}
@@ -362,10 +365,12 @@ public class HyenDongController {
 	
 	// 팀 초대 현황 페이지
 	@RequestMapping("/teamMatchStatus")
-	public String teamMatchStatus(ComeInviteVO comeInviteVO, Model model, HttpSession session) {
+	public String teamMatchStatus(ComeInviteVO comeInviteVO, Model model, HttpSession session, MembersVO membersVO) {
 		String id = (String) session.getAttribute("id");
 		comeInviteVO.setId(id);
 		model.addAttribute("select", hyendongMapper.inviteSelect(comeInviteVO));
+		membersVO.setId(id);
+		model.addAttribute("members", hyendongMapper.memberSelect(membersVO));
 		return "hyendong/teamMatchStatus";
 	}
 	
@@ -380,16 +385,19 @@ public class HyenDongController {
 
 	// 팀 초대 수락 처리
 	@RequestMapping("/inviteOk")
-	public String inviteOk(ComeInviteVO comeInviteVO) {
-
-		return "hyendong/teamMatchStatus";
+	public String inviteOk(ComeInviteVO comeInviteVO, TeamlistVO teamlistVO, MembersVO membersVO) {
+		hyendongMapper.teamListInsert(teamlistVO);
+		membersVO.setId(teamlistVO.getId());
+		hyendongMapper.tNumUpdate(membersVO);
+		hyendongMapper.invitePass(comeInviteVO);
+		return "redirect:/teamMatchStatus";
 	}
 	
 	// 팀 초대 거절 처리
 	@RequestMapping("/invitePass")
 	public String invitePass(ComeInviteVO comeInviteVO) {
 		hyendongMapper.invitePass(comeInviteVO);
-		return "hyendong/teamMatchStatus";
+		return "redirect:/teamMatchStatus";
 	}
 	
 	// 전체 팀 보기
