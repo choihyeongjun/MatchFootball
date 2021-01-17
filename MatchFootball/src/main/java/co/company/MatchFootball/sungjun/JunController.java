@@ -246,15 +246,16 @@ public class JunController {
 		mv.setViewName("no/sungjun/matchschedule");
 		return mv;
 	}
-//	@RequestMapping(value = "/managermypagemm")
-//	public ModelAndView test15(TeammatchVO teammatch,PlayersVO players ,MatchMember matchmember) throws IOException {
-//		ModelAndView mv = new ModelAndView();
-//        mv.addObject("teammatch" dao.team)
-//		mv.addObject("p_matchVO", dao.pmatchlist1(p_matchVO));
-//		mv.addObject("matchmember", dao.matchmember(matchmember));
-//		mv.setViewName("no/sungjun/teammatchschedule");
-//		return mv;
-//	}
+	@RequestMapping(value = "/managermypagemm")
+	public ModelAndView test15(TeammatchVO teammatch,PlayersVO players ,MatchMember matchmember) throws IOException {
+		ModelAndView ma = new ModelAndView();
+		
+        ma.addObject("teammatch" ,dao.tmatchlist(teammatch));
+        ma.addObject("players", dao.playerselect(players));
+		ma.addObject("matchmember", dao.matchmember(matchmember));
+		ma.setViewName("no/sungjun/teammatchschedule");
+		return ma;
+	}
 //	@RequestMapping(value = "/managermypagem")
 //	@ResponseBody
 //	public Map<String,Object> test7(HttpServletResponse response,P_matchVO p_matchVO,MatchMember matchmember, Model model, HttpServletRequest request) throws IOException {

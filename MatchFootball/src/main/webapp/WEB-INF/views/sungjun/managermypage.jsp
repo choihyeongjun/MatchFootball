@@ -169,7 +169,7 @@ a {
 			});
 		});
 		$(".tmdetail").on("click", function() {
-			var m_no = $(this).data("num");
+			var m_no = $(this).data("nom");
 			modal = $("#tmatchdetail");
 			$.ajax({
 				url : "managermypagemm?m_no=" + m_no,
@@ -237,15 +237,7 @@ a {
 					</div>
 				</div>
 			</div>
-<!-- 팀매치 정보 모달창 -->
-			<div class="modal fade" id="tmatchdetail" tabindex="-1"
-				aria-labelledby="exampleModalLabel" aria-hidden="true">
-				<div class="modal-dialog modal-lg">
-					<div class="modal-content">
-						<div class="modal-body" id="body10">...</div>
-					</div>
-				</div>
-			</div>
+
 			<div class="allscedule">
 				<div class="teamscedule">
 					<h3>팀 매치 경기 일정</h3>
@@ -256,19 +248,27 @@ a {
 							<li>
 								<div class="matchc">
 									<a class="tmdetail" data-toggle="modal"
-										data-target="#tmatchdetail" data-num="${t_match.m_no }"
+										data-target="#tmatchdetail" data-nom="${t_match.m_no }"
 										style="cursor: pointer; font-size: 18px;"> ${t_match.m_date }
 										${t_match.m_hour }  ${t_match.t_name }
 										 vs  ${t_match.t_name2 }
-										 
 										</a>
 								    <a class="btn sf" href="#"> 리뷰 작성</a>
-								    <input type="hidden" value="${t_match.m_no }">
+								    <input type="hidden" name="m_no" value="${t_match.m_no }">
 								</div>
 							</li>
 						</ul>
 					</div>
 				</c:forEach>
+			</div>
+<!-- 팀매치 정보 모달창 -->
+			<div class="modal fade" id="tmatchdetail" tabindex="-1"
+				aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content">
+						<div class="modal-body" id="body10">...</div>
+					</div>
+				</div>
 			</div>
 
 			<!-- 입금 -->
@@ -295,7 +295,7 @@ a {
 								style="padding-right: 10px; color: #ffc645;"></i>경기 내역 전체 보기</a></li>
 						<li><a href="#"><i class="fas fa-clipboard"
 								style="padding-right: 14px; color: #ffc645;"></i>리뷰 내역 보기</a></li>
-						<li><a href="#"><i class="fas fa-ad"
+						<li><a class = "tma"><i class="fas fa-ad"
 								style="padding-right: 10px; color: #ffc645;"></i>팀 매치 매니저 신청</a></li>
 					</ul>
 				</div>
