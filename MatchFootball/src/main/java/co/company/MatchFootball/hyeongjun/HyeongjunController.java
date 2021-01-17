@@ -26,9 +26,9 @@ import co.company.MatchFootball.vo.InviteVO;
 import co.company.MatchFootball.vo.LikeitVO;
 import co.company.MatchFootball.vo.MembernInvite;
 import co.company.MatchFootball.vo.MembersVO;
+import co.company.MatchFootball.vo.Mmatchlistnmember;
 import co.company.MatchFootball.vo.P_matchVO;
 import co.company.MatchFootball.vo.RfieldVO;
-import co.company.MatchFootball.vo.TeamVO;
 import co.company.MatchFootball.vo.TeammatchVO;
 
 @Controller
@@ -107,11 +107,15 @@ public class HyeongjunController {
 	public String fieldinsert() {
 		return "hyeongjun/fieldcommit";
 	}
-
+	@ResponseBody
+	@RequestMapping("/fielddetailmanagerlist")
+	public List<Mmatchlistnmember> fielddetailmanagerlist(Mmatchlistnmember vo) {
+		return hyeongjunMapper.matchmanagerlist(vo);
+	}
 	@ResponseBody
 	@RequestMapping("/fielddetailinsert")
 	public List<RfieldVO> fielddetailinsert(RfieldVO vo, Model model) {
-		
+		vo.setM_no("1");
 		return hyeongjunMapper.fielddetailinsert(vo);
 	}
 	@ResponseBody
@@ -138,7 +142,10 @@ public class HyeongjunController {
 	}
 	@ResponseBody
 	@RequestMapping("/pmatchinsert")
-	public List<P_matchVO> pmatchinsert(P_matchVO vo, RfieldVO vo1,Model model,HttpSession session) {
+	public boolean pmatchinsert(P_matchVO vo, RfieldVO vo1,Model model,HttpSession session) {
+		vo.setF_name(hyeongjunMapper.fieldname(vo.getF_id()));
+		vo.setF_address(hyeongjunMapper.fieldaddress(vo.getF_id()));
+		 hyeongjunMapper.pmatchinsert(vo);
 		vo1.setBackgroundcolor(vo.getBackgroundcolor());
 		vo1.setEndtime(vo.getM_hour());
 		vo1.setF_id(vo.getF_id());
@@ -148,10 +155,10 @@ public class HyeongjunController {
 		vo1.setStarttime(vo.getM_date());
 		vo1.setTitle(vo.getTitle());
 		vo1.setType(vo.getM_type());
+		vo1.setM_no(vo.getM_no());
 		hyeongjunMapper.fielddetailinsert(vo1);
-		vo.setF_name(hyeongjunMapper.fieldname(vo.getF_id()));
-		vo.setF_address(hyeongjunMapper.fieldaddress(vo.getF_id()));
-		return hyeongjunMapper.pmatchinsert(vo);
+	
+		 return true;
 	}
 
 	@RequestMapping("/fieldlist")
@@ -179,6 +186,12 @@ public class HyeongjunController {
 	@RequestMapping("/teammatchupdate")
 	public TeammatchVO teammatchupdate(TeammatchVO vo) {
 		return hyeongjunMapper.teammatchupdate(vo);
+	}
+	@ResponseBody
+	@RequestMapping("/pmatchupdate")
+	public P_matchVO pmatchupdate(P_matchVO vo) {
+		
+		 return  hyeongjunMapper.pmatchupdate(vo);
 	}
 	@RequestMapping("/free/freedetail/{num}/{cnt}")
 	public String freeselect(@PathVariable String num,@PathVariable String cnt,Model model,FboardVO vo,HttpSession session) {

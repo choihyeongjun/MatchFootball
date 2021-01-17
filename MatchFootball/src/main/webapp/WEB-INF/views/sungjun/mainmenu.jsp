@@ -195,7 +195,7 @@ body, html {
 													href="https://kauth.kakao.com/oauth/authorize?client_id=7e3b7c35576002f01608bd949ca669da&redirect_uri=http://localhost/MatchFootball/kakaologin&response_type=code">
 													<img
 													src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg"
-													width="222" />
+													width="222" /></a>
 											</div>
 										</form>
 									</div>

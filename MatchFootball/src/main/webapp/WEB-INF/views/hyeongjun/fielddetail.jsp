@@ -42,7 +42,7 @@ $(function(){
             <li><a tabindex="-1" class="aa">개인풋살</a></li>
             
             <li><a tabindex="-1" class="match1">팀매치</a></li>
-            <c:if test="${sessionStorage.id eq sessionStorage.f_id}">
+            <c:if test="${id eq f_id}">
              <li><a tabindex="-1" class="match2">개인매치</a></li>
              </c:if>
             <li class="divider"></li>
@@ -193,8 +193,12 @@ $(function(){
                      <div class="col-xs-12">
                         <label class="col-xs-4" for="edit-type1">구분</label> <select
                            class="inputModal" type="text" name="edit-type1" id="edit-type1">
-                           <option value="축구">축구</option>
-                           <option value="풋살">풋살</option>
+                           <option value="매치축구">매치축구</option>
+                           <option value="매치풋살">매치풋살</option>
+                          <c:if test="${id eq f_id}">
+                            <option value="개인매치축구">개인매치축구</option>
+                           <option value="개인매치풋살">개인매치풋살</option>
+                          </c:if>
                         </select>
                      </div>
                   </div>
@@ -202,19 +206,19 @@ $(function(){
                      <div class="col-xs-12">
                         <label class="col-xs-4" for="edit-color1">색상</label> <select
                            class="inputModal" name="color1" id="edit-color1">
-                           <option value="#D25565" style="color: #D25565;">빨간색</option>
-                           <option value="#9775fa" style="color: #9775fa;">보라색</option>
-                           <option value="#ffa94d" style="color: #ffa94d;">주황색</option>
-                           <option value="#74c0fc" style="color: #74c0fc;">파란색</option>
-                           <option value="#f06595" style="color: #f06595;">핑크색</option>
-                           <option value="#63e6be" style="color: #63e6be;">연두색</option>
-                           <option value="#a9e34b" style="color: #a9e34b;">초록색</option>
-                           <option value="#4d638c" style="color: #4d638c;">남색</option>
-                           <option value="#495057" style="color: #495057;">검정색</option>
+                           <option value="#D25565" style="color1: #D25565;">빨간색</option>
+                           <option value="#9775fa" style="color1: #9775fa;">보라색</option>
+                           <option value="#ffa94d" style="color1: #ffa94d;">주황색</option>
+                           <option value="#74c0fc" style="color1: #74c0fc;">파란색</option>
+                           <option value="#f06595" style="color1: #f06595;">핑크색</option>
+                           <option value="#63e6be" style="color1: #63e6be;">연두색</option>
+                           <option value="#a9e34b" style="color1: #a9e34b;">초록색</option>
+                           <option value="#4d638c" style="color1: #4d638c;">남색</option>
+                           <option value="#495057" style="color1: #495057;">검정색</option>
                         </select>
                      </div>
                   </div>
-                  <c:if test="${sessionStorage.id eq sessionStorage.f_id}">
+                  <c:if test="${id eq f_id}">
                   <div class="row">
                      <div class="col-xs-12">
                         <label class="col-xs-4" for="edit-mem">최대인원수</label>
