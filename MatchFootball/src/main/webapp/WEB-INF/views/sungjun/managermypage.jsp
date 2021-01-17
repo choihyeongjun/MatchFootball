@@ -38,6 +38,7 @@ body {
 	align-items: center;
 	padding-bottom: 10px;
 	padding-top: 5px;
+	width: 70%;
 }
 
 .cache {
@@ -130,11 +131,11 @@ a {
 .btn.sf {
 	line-height: 32px;
 	font-size: 15px;
-	padding: 0 10px;
 	color: black;
 	text-decoration: none !important;
 	background-color: #3540A5;
 	color: white;
+	border-radius: 10px;
 }
 
 #body1 {
@@ -179,6 +180,18 @@ a {
 				}
 			});
 		});
+
+		$(".tma").on("click", function() {
+			var m_no = $(this).data("nom");
+			modal = $("#nomanager");
+			$.ajax({
+				url : "managermypagemmm?m_no=" + m_no,
+				success : function(result) {
+					modal.find('#body11').html(result);
+					modal.modal('show');
+				}
+			});
+		});
 	})
 </script>
 </head>
@@ -213,14 +226,16 @@ a {
 				<c:forEach var="p_match" items="${p_match }">
 					<div class="mamama">
 						<ul>
-							<li>
+							<li style="display: flex;">
 								<div class="matchc">
 									<a class="mdetail" data-toggle="modal"
 										data-target="#matchdetail" data-num="${p_match.m_no }"
 										style="cursor: pointer; font-size: 18px;">
-										${p_match.m_date } ${p_match.m_hour } ${p_match.f_name } </a> <a
-										class="btn sf" href="#"> 리뷰 작성</a> <input type="hidden"
+										${p_match.m_date } ${p_match.f_name } </a> <input type="hidden"
 										value="${p_match.m_no }">
+								</div>
+								<div style="width: 20%">
+									<a class="btn sf" href="#"> 리뷰 작성</a>
 								</div>
 							</li>
 						</ul>
@@ -245,23 +260,26 @@ a {
 				<c:forEach var="t_match" items="${t_match }">
 					<div class="mamama">
 						<ul>
-							<li>
+							<li style="display: flex;">
 								<div class="matchc">
 									<a class="tmdetail" data-toggle="modal"
 										data-target="#tmatchdetail" data-nom="${t_match.m_no }"
-										style="cursor: pointer; font-size: 18px;"> ${t_match.m_date }
-										${t_match.m_hour }  ${t_match.t_name }
-										 vs  ${t_match.t_name2 }
-										</a>
-								    <a class="btn sf" href="#"> 리뷰 작성</a>
-								    <input type="hidden" name="m_no" value="${t_match.m_no }">
+										style="cursor: pointer; font-size: 18px;">
+										<p>${t_match.m_date }</p>
+										<p>${t_match.t_name } vs ${t_match.t_name2 }</p>
+										  </a>
+									<input type="hidden" name="m_no" value="${t_match.m_no }">
+									<input type="hidden" name="t_num" value="${t_match.t_num }">
+								</div>
+								<div style="width: 20%">
+									<a class="btn sf" href="#" style="align-items: center; margin-top: 20px;"> 리뷰 작성</a>
 								</div>
 							</li>
 						</ul>
 					</div>
 				</c:forEach>
 			</div>
-<!-- 팀매치 정보 모달창 -->
+			<!-- 팀매치 정보 모달창 -->
 			<div class="modal fade" id="tmatchdetail" tabindex="-1"
 				aria-labelledby="exampleModalLabel" aria-hidden="true">
 				<div class="modal-dialog modal-lg">
@@ -283,7 +301,7 @@ a {
 				<c:forEach var="p_point" items="${p_point }">
 					<div class="maaa">
 						<ul>
-							<li>${p_point.p_date }       ${p_point.npoint }원입금</li>
+							<li>${p_point.p_date }${p_point.npoint }원입금</li>
 						</ul>
 					</div>
 				</c:forEach>
@@ -291,18 +309,27 @@ a {
 			<div class="allscedule">
 				<div class="managermenu">
 					<ul>
-						<li><a href="${pageContext.request.contextPath}/allmatchlist"><i class="fas fa-futbol"
+						<li><a href="${pageContext.request.contextPath}/allmatchlist"><i
+								class="fas fa-futbol"
 								style="padding-right: 10px; color: #ffc645;"></i>경기 내역 전체 보기</a></li>
 						<li><a href="#"><i class="fas fa-clipboard"
 								style="padding-right: 14px; color: #ffc645;"></i>리뷰 내역 보기</a></li>
-						<li><a class = "tma"><i class="fas fa-ad"
+						<li><a class="tma" data-np="${t_match.m_no }"><i class="fas fa-ad"
 								style="padding-right: 10px; color: #ffc645;"></i>팀 매치 매니저 신청</a></li>
 					</ul>
 				</div>
 			</div>
 		</div>
 	</div>
-
+	<!-- 매니저 없는 팀매치  정보 모달창 -->
+	<div class="modal fade" id="nomanager" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-body" id="body11">...</div>
+			</div>
+		</div>
+	</div>
 	<!-- 입금 내역 전체 -->
 	<div class="modal fade" id="staticBackdrop" aria-hidden="true">
 		<div class="modal-dialog modal-sm">

@@ -272,4 +272,9 @@
 		mmatchlist(id,match_info)
 		values(#{id},#{m_no})
 	</insert>
+	<!--매니저 없는 팀매치  -->
+	<select id="nomanager" parameterType="TeammatchVO" resultType="TeammatchVO">
+		select * from teammatch
+		where id = '없음'
+	</select>
 </mapper>

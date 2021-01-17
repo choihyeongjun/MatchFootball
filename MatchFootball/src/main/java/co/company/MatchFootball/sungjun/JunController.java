@@ -256,6 +256,13 @@ public class JunController {
 		ma.setViewName("no/sungjun/teammatchschedule");
 		return ma;
 	}
+	@RequestMapping(value = "/managermypagemmm")
+	public ModelAndView test16(TeammatchVO teammatch,PlayersVO players ,MatchMember matchmember) throws IOException {
+		ModelAndView ma = new ModelAndView();
+		ma.addObject("nomanager" , dao.nomanager(teammatch));
+		ma.setViewName("no/sungjun/teammatchschedule");
+		return ma;
+	}
 //	@RequestMapping(value = "/managermypagem")
 //	@ResponseBody
 //	public Map<String,Object> test7(HttpServletResponse response,P_matchVO p_matchVO,MatchMember matchmember, Model model, HttpServletRequest request) throws IOException {

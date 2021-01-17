@@ -64,5 +64,6 @@ public interface SungjunMapper {
 	public List<TeammatchVO> tmatchselectall(TeammatchVO t_match);
 	//팀매치에 매니저 신청 
 	public Integer mmatchlist(MembersVO membersvo);
-	
+	//매니저 없는 팀매치 검색
+	public List<TeammatchVO> nomanager(TeammatchVO teammatch);
 }
