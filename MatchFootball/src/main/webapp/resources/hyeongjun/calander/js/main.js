@@ -264,10 +264,10 @@ var calendar = $('#calendar').fullCalendar({
   eventClick: function (event, jsEvent, view) {
 	
 	if(event.id==d_id){
-		if(event.description=='팀매치'){
+		if(event.type=='매치축구'||event.type=='매치풋살'){
 			editEvent1(event);
 		}
-		else if(event.description='개인매치'){
+		else if(event.type=='개인매치축구'||event.type=='개인매치풋살'){
 			editEvent2(event);
 		}
 		else{

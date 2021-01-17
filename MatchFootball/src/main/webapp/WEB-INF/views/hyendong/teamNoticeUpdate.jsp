@@ -46,18 +46,18 @@
 
 						<label for="reg_id">작성자</label> <input type="text"
 							class="form-control" name="t_id" id="reg_id" value="${sessionScope.id }"
-							placeholder="이름을 입력해 주세요">
+							placeholder="이름을 입력해 주세요" readonly>
 					</div>
 					<div class="mb-3">
 						<label for="content">내용</label>
 						<textarea class="form-control" rows="5" name="t_content" 
 							id="content" placeholder="내용을 입력해 주세요">${teamNoticeInfo.t_content }</textarea>
 					</div>
-					<input type="text" name="t_num" value="${teamNoticeInfo.t_num }">
-					<input type="text" name="n_no" value="${teamNoticeInfo.n_no }">
+					<input type="text" name="t_num" value="${teamNoticeInfo.t_num }" style="display:none">
+					<input type="text" name="n_no" value="${teamNoticeInfo.n_no }" style="display:none">
 				<div>
 					<button type="submit" class="btn btn-sm btn-primary" id="btnSave">수정</button>
-					<button type="reset" class="btn btn-sm btn-primary" id="btnList">취소</button>
+					<button type="button" class="btn btn-sm btn-primary" id="btnList" onclick="history.back(-1)">취소</button>
 				</div>
 			</div>
 		</article>

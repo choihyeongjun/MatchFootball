@@ -408,7 +408,7 @@
 	<!-- 팀 초대 하기 -->
 	<insert id="teamInviteStatus" parameterType="ComeInviteVO">
 	<selectKey order="BEFORE" keyProperty="c_seq"
-			resultType="int">
+			resultType="string">
 			SELECT NVL(MAX(c_seq),0)+1
 			FROM comeInvite
 		</selectKey>
@@ -432,6 +432,7 @@
 	<!-- 팀 초대 온거 거절하기 -->
 	<delete id="invitePass">
 		delete from comeInvite 
-		where id = #{id}
+		where t_num = #{t_num}
+		and id = #{id}
 	</delete>
 </mapper>
