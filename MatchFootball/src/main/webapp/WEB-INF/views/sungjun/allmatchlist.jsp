@@ -88,7 +88,7 @@ ul {
 										<a class="mdetail" data-toggle="modal"
 											data-target="#matchdetail" data-num="${p_match.m_no }"
 											style="cursor: pointer; font-size: 18px;">
-											${p_match.m_date } ${p_match.m_hour } ${p_match.f_name } </a> <a
+											${p_match.m_date }  ${p_match.f_name } </a> <a
 											class="btn sf" href="#"> 리뷰 작성</a> <input type="hidden"
 											value="${p_match.m_no }">
 									</div>
@@ -112,7 +112,7 @@ ul {
 										<a class="mdetail" data-toggle="modal"
 											data-target="#matchdetail" data-num="${t_match.m_no }"
 											style="cursor: pointer; font-size: 18px;">
-											${t_match.m_date } ${t_match.m_hour } ${t_match.t_name }</a> <a
+											${t_match.m_date } ${t_match.t_name }</a> <a
 											class="btn sf" href="#"> 리뷰 작성</a> <input type="hidden"
 											value="${t_match.m_no }">
 									</div>
