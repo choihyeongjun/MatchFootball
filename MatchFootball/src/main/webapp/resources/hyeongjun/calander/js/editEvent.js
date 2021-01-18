@@ -84,9 +84,9 @@ var editEvent1 = function (event, element, view) {
     }
 
     if (event.allDay === true && event.end !== event.start) {
-        editEnd.val(moment(event.end).subtract(1, 'days').format('YYYY-MM-DD HH:mm'))
+        editEnd1.val(moment(event.end).subtract(1, 'days').format('YYYY-MM-DD HH:mm'))
     } else {
-        editEnd.val(event.end.format('YYYY-MM-DD HH:mm'));
+        editEnd1.val(event.end.format('YYYY-MM-DD HH:mm'));
     }
 	$.ajax({
 		type: "get",
@@ -138,9 +138,9 @@ var editEvent2 = function (event, element, view) {
     }
 
     if (event.allDay === true && event.end !== event.start) {
-        editEnd.val(moment(event.end).subtract(1, 'days').format('YYYY-MM-DD HH:mm'))
+        editEnd1.val(moment(event.end).subtract(1, 'days').format('YYYY-MM-DD HH:mm'))
     } else {
-        editEnd.val(event.end.format('YYYY-MM-DD HH:mm'));
+        editEnd1.val(event.end.format('YYYY-MM-DD HH:mm'));
     }
 	$.ajax({
 		type: "get",
@@ -220,12 +220,12 @@ $('#updateEvent').on('click', function () {
 
             },
             success: function (response) {
-			 	updateevent.starttime=editStart.val();
+			 	/*updateevent.starttime=editStart.val();
 				updateevent.endtime=editEnd.val();
 				updateevent.title=editTitle.val();
 				updateevent.type=editType.val();
 				updateevent.backgroundColor=editColor.val();
-				updateevent.comm=editDesc.val();
+				updateevent.comm=editDesc.val();*/
 				alert('수정되었습니다.');
 				$("#calendar").fullCalendar('updateEvent', updateevent,true);
 				$('#calendar').fullCalendar('refetchEvents',updateevent,true);
@@ -275,10 +275,12 @@ $('#updateEvent1').on('click', function () {
             data: {
 				id:manager1.val(),
 				t_cap:frm.d_id.value,
-				m_info:editDesc1.val()
+				m_info:editDesc1.val(),
+				m_no:m_no.val()
 
             },
             success: function (response) {
+				$('#result').html(response);
 			 	updateevent.starttime=editStart.val();
 				updateevent.endtime=editEnd.val();
 				updateevent.title=editTitle.val();
@@ -287,11 +289,12 @@ $('#updateEvent1').on('click', function () {
 				updateevent.comm=editDesc.val();
 				updateevent._id=manager1.val();
 				alert('수정되었습니다.');
-				$("#calendar").fullCalendar('updateEvent', updateevent,true);
+				$("#calendar").fullCalendar('updateEvent1', updateevent,true);
 				$('#calendar').fullCalendar('refetchEvents',updateevent,true);
  				eventModal1.modal('hide');
-		        
-		    }
+		     
+		    
+		}
         });
 		}
 		else if(updateevent.type=='개인매치축구'||updateevent.type=='개인매치풋살'){
@@ -306,19 +309,23 @@ $('#updateEvent1').on('click', function () {
 
             },
             success: function (response) {
-			 	updateevent.starttime=editStart.val();
+				$('#result').html(response);
+			 	/*updateevent.starttime=editStart.val();
 				updateevent.endtime=editEnd.val();
 				updateevent.title=editTitle.val();
 				updateevent.type=editType.val();
-				updateevent.backgroundColor=editColor.val();
-				updateevent.comm=editDesc.val();
-				updateevent._id=manager1.val();
+				updateevent.backgroundColor=editColor.val();*/
+				//updateevent.comm=editDesc.val();
+				//updateevent._id=manager1.val();
 				alert('수정되었습니다.');
-				$("#calendar").fullCalendar('updateEvent', updateevent,true);
+				$("#calendar").fullCalendar('updateEvent1', updateevent,true);
 				$('#calendar').fullCalendar('refetchEvents',updateevent,true);
  				eventModal1.modall('hide');
 		        
-		    }
+		    },
+			error:function(result){
+				$('#result').html(result);
+			}
         });
 		}
       
