@@ -117,7 +117,7 @@ function teamOut(){
                </tr>
                <tr>
                   <th scope="row">팀원수</th>
-                  <td>${count.c }</td>
+                  <td>${count.c }명</td>
                   <th scope="row">실력</th>
                   <td>${teamInfo.t_type }</td>
                </tr>
