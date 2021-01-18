@@ -17,7 +17,6 @@ div .pagination li {
 </style>
 
 <div class="pagination">
-<div>"${paging }"</div>
 <ul>
 <c:if test="${paging.startPage>1}">
 	<li><a href="javascript:${jsfunc}(${paging.startPage-1})"></a>

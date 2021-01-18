@@ -82,11 +82,17 @@
 	<form class="inser" action="sendmatchapply" method="post"
 		onsubmit="return submitCheck();">
 		<div class="inserm">
-			<input name="id" type="hidden" value="${membervo.id }"> 
-			<input name="m_no" type="hidden" value="${p_matchVO.m_no }"> 
-			<input name="p_con" type="hidden" value="개인 매치비">
-			<input name="point" type="hidden" value="${p_matchVO.price }">
-			<input name="npoint" type="hidden" value="-${p_matchVO.price }">
+			<select class="form-select"  aria-label="Default select example">
+				<option selected>Open this select menu</option>
+				<option value="1">One</option>
+				<option value="2">Two</option>
+				<option value="3">Three</option>
+			</select> 
+			<input name="id" type="hidden" value="${membervo.id }"> <input
+				name="m_no" type="hidden" value="${p_matchVO.m_no }"> <input
+				name="p_con" type="hidden" value="개인 매치비"> <input
+				name="point" type="hidden" value="${p_matchVO.price }"> <input
+				name="npoint" type="hidden" value="-${p_matchVO.price }">
 		</div>
 		<div align="center">
 			<button type="submit" class="abtn">신청하기</button>

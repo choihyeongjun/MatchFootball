@@ -316,9 +316,6 @@ public class JunController {
 	@RequestMapping(value = "/allmatchlist")
 	public ModelAndView test10(Paging paging, Paging paging2, HttpServletResponse response, HttpSession session,
 			Model model, P_matchVO p_matchVO, TeammatchVO team_matchVO, PointVO pointvo) throws IOException {
-		System.out.println(paging);
-		System.out.println("------------------------------------");
-		System.out.println(paging2);
 		
 		p_matchVO.setM_id((String) session.getAttribute("id"));
 		team_matchVO.setId((String) session.getAttribute("id"));
