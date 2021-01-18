@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="my"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,7 +34,7 @@
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<div style="margin-bottom: 350px">
+<div style="margin-bottom: 370px">
 	<form action="teamGalleryInsert" method="post" encType="multipart/form-data">
 	<!-- 4 - contained in center example -->
 <nav class="navbar navbar-expand-xl navbar-dark bg-dark">
@@ -82,9 +83,11 @@
 		</div>
 		<hr />
 	</div>
+	<div align="right" style="padding-right:20px">
 	<input type="text" name="t_num" value="${teamInfo.t_num }" style="display:none">
 	<input type="file" name="file">
 	<input type="submit" value="등록">
+	</div>
 	<div class="site-section">
 		<div class="container">
 			<div class="row">
@@ -95,6 +98,14 @@
 				</div>
 			</c:forEach>
 			</div>
+			<script>
+					function goPage(q) {
+							location.href = "teamGallery?page=" + q + "&t_num=" + ${sessionScope.t_num};
+						}
+					</script>
+					<div style="margin-left: 290px; height:15px; color: black">
+						<my:paging paging="${paging}" jsfunc="goPage" />
+					</div>
 		</div>
 	</div>
 	</form>

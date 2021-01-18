@@ -55,7 +55,7 @@ a { text-decoration: none; color: #ffffff }
 </style>
 </head>
 <body>
-	<div style="padding-bottom: 70px; height: 91%">
+	<div style="height: 86%">
 		<!-- 4 - contained in center example -->
 <nav class="navbar navbar-expand-xl navbar-dark bg-dark">
     <div class="mx-auto d-sm-flex d-block flex-sm-nowrap">
@@ -102,7 +102,7 @@ a { text-decoration: none; color: #ffffff }
 			<hr>
 		</div>
 		<div class="progress-table" align="center"
-			style="margin-left: 570px; width: 50%">
+			style="margin-left: 540px; width: 50%">
 			<div class="table-head" style="margin-right: 150px">
 				<div class="serial" align="left">#</div>
 				<div class="serial" align="left" style="margin-left: 30px">ÆÀ¸í</div>
