@@ -197,10 +197,8 @@
 	<!--매니저 팀 매치 내역 조회 -->
 	<select id="tmatchlist" parameterType="TeammatchVO"
 		resultType="TeammatchVO">
-		select * from(select a.* , b.t_name as t_name2
-						from teammatch a
-						, team b
-						where a.so_num = b.t_num
+		select * from(select *from teammatch
+						where id=#{id}
 						order by m_date desc ,m_hour asc )
 		where <![CDATA[rownum <=5]]>
 	</select>
@@ -244,7 +242,7 @@
 	</select>
 	<!--팀 매치 신청 하고 포인트 차감 하고 내역 입력 -->
 	<update id="teammatchup">
-		update teammatch set so_num = #{t_num}
+		update teammatch set so_num = #{t_num} , so_name = #{so_name}
 		where m_no =
 		#{m_no}
 	</update>

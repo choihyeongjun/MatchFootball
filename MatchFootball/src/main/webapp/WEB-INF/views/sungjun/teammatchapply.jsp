@@ -93,6 +93,7 @@
 						<input type="checkbox" id="chk" name="id" value="${teamlist.id }" style="zoom:1.5;">
 					</div>
 				</c:forEach>
+				<input type="hidden" name="so_name" value="${teamname.t_name }">
 				<input type="hidden" name="t_num" value="${teamlist[0].t_num }">
 				<input type="hidden" name="m_no" value=""> <input
 					type="hidden" name="p_con" value="팀 매치 비"> <input
