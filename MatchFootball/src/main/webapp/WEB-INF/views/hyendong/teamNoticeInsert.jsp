@@ -60,6 +60,7 @@ footer {
              <li class="nav-item">
                  <a class="nav-link" href="http://localhost/MatchFootball/teamList">ÆÀ ¸®½ºÆ®</a>
              </li>
+             <li class="nav-item"><a class="nav-link" href="teamMatchList">ÆÀ ¸ÅÄ¡ ³»¿ª</a></li>
             </ul>
         </div>
     </div>

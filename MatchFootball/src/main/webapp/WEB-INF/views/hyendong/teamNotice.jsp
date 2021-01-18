@@ -32,41 +32,40 @@ footer {
 
 </head>
 <body>
-
 <!-- 4 - contained in center example -->
 <nav class="navbar navbar-expand-xl navbar-dark bg-dark">
     <div class="mx-auto d-sm-flex d-block flex-sm-nowrap">
-        <a class="navbar-brand" href="#">${sessionScope.kname}${sessionScope.name}��</a>
+        <a class="navbar-brand" href="#">${sessionScope.kname}${sessionScope.name}님</a>
         
         <div class="collapse navbar-collapse text-center" id="navbarsExample11">
             <ul class="navbar-nav">
                <c:if test="${sessionScope.t_num ne null }">
                 <li class="nav-item active">
-                    <a class="nav-link" href="teamInfo?t_num=${sessionScope.t_num }">�� ��蹂�</a>
+                    <a class="nav-link" href="teamInfo?t_num=${sessionScope.t_num }">팀 정보</a>
                 </li>
                 </c:if>
                 <c:if test="${sessionScope.t_num eq null }">
                 <li class="nav-item">
-                 <a class="nav-link" href="teamMake">�� ����</a>
+                 <a class="nav-link" href="teamMake">팀 생성</a>
               </li>
               </c:if>
               <c:if test="${sessionScope.t_num ne null }">
              <li class="nav-item">
-                 <a class="nav-link" href="teamInvite?t_num=${sessionScope.t_num }">�� 珥���</a>
+                 <a class="nav-link" href="teamInvite?t_num=${sessionScope.t_num }">팀 초대</a>
              </li>
              </c:if>
              <c:if test="${sessionScope.t_num ne null }">
              <li class="nav-item">
-                 <a class="nav-link" href="teamGallery?t_num=${sessionScope.t_num }">��媛ㅻ�щ━</a>
+                 <a class="nav-link" href="teamGallery?t_num=${sessionScope.t_num }">팀갤러리</a>
              </li>
              </c:if>
              <c:if test="${sessionScope.t_num ne null }">
              <li class="nav-item">
-                 <a class="nav-link" href="teamNotice?t_num=${sessionScope.t_num }">�� 怨듭�</a>
+                 <a class="nav-link" href="teamNotice?t_num=${sessionScope.t_num }">팀 공지</a>
              </li>
              </c:if>
              <li class="nav-item">
-                 <a class="nav-link" href="http://localhost/MatchFootball/teamList">�� 由ъ�ㅽ��</a>
+                 <a class="nav-link" href="http://localhost/MatchFootball/teamList">팀 리스트</a>
              </li>
             </ul>
         </div>
@@ -74,15 +73,15 @@ footer {
 </nav>
 
       <br>
-      <div style="text-align: center;"> <h1>�� 怨듭�</h1> </div>
+      <div style="text-align: center;"> <h1>팀 공 지</h1> </div>
       <hr>
       
       <div class="card mb-4" style="width: 1000px; margin: auto;">
          <div class="card-header">
-            <i class="fas fa-table mr-1" style="margin-top: 10px"></i> ��泥� ���� 紐⑸�
+            <i class="fas fa-table mr-1" style="margin-top: 10px"></i>
          <div style="float: right;">
-            <c:if test="${updateButton.t_author eq '����' }">
-               <button type="button" class="btn btn-primary" onclick="location.href='teamNoticeInsert?t_num=${teamInfo.t_num}'" >怨듭� �깅�</button>
+            <c:if test="${updateButton.t_author eq '팀장' }">
+               <button type="button" class="btn btn-primary" onclick="location.href='teamNoticeInsert?t_num=${teamInfo.t_num}'" >공지 등록</button>
             </c:if>
          </div>
          </div>
@@ -93,8 +92,8 @@ footer {
                      <thead style="text-align: center;">
                         <tr style="width: 10px">
                            <th>No.</th>
-                           <th>��紐�</th>
-                           <th>��吏�</th>
+                           <th>공지 제목</th>
+                           <th>날짜</th>
                         </tr>
                      </thead>
                         <tbody style="width: 10px">
