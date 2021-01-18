@@ -132,11 +132,11 @@ a {
 
 		/* 신청 모달  */
 		$(".p1").on("click", function() {
-			 /* if ('${caption.t_author}' != '팀장') {
+		 if ('${caption.t_author}' != '팀장') {
 				alert('팀장만 신청가능 합니다!')
 			} else if('${sessionScope.t_num}' == '${teammatch.t_num}'){
 				alert('신청 할수 없습니다!')
-			}else{ */
+			}else{ 
 				var m_no = $(this).data("num");
 				modal = $("#tmatchaplly");
 				$.ajax({
@@ -150,7 +150,7 @@ a {
 						modal.modal('show');
 					}
 				});
-			 /* }  */
+			  }  
 		})
 	})	
 </script>

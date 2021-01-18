@@ -33,26 +33,50 @@
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+<div style="margin-bottom: 350px">
 	<form action="teamGalleryInsert" method="post" encType="multipart/form-data">
-	<ul class="hi">
-	  		<c:if test="${sessionScope.t_num ne null }">
-			<li><a href="teamInfo?t_num=${sessionScope.t_num }">팀 정보</a></li>
-			</c:if>
-			<c:if test="${sessionScope.t_num eq null }">
-			<li><a href="teamMake">팀 생성</a></li>
-			</c:if>
-			<c:if test="${sessionScope.t_num ne null }">
-			<li><a href="teamGallery?t_num=${sessionScope.t_num }">팀갤러리</a></li>
-			</c:if>
-			<c:if test="${sessionScope.t_num ne null }">
-			<li><a href="teamNotice?t_num=${sessionScope.t_num }">팀 공지</a></li>
-			</c:if>
-			<c:if test="${sessionScope.t_num ne null }">
-			<li><a href="teamInvite?t_num=${sessionScope.t_num }">팀 초대</a></li>
-			</c:if>
-			<li><a href="http://localhost/MatchFootball/teamList">팀 리스트</a></li>
-	</ul>
-	<div align="center">
+	<!-- 4 - contained in center example -->
+<nav class="navbar navbar-expand-xl navbar-dark bg-dark">
+    <div class="mx-auto d-sm-flex d-block flex-sm-nowrap">
+        <a class="navbar-brand" href="#">${sessionScope.kname}${sessionScope.name}님</a>
+        
+        <div class="collapse navbar-collapse text-center" id="navbarsExample11">
+            <ul class="navbar-nav">
+               <c:if test="${sessionScope.t_num ne null }">
+                <li class="nav-item active">
+                    <a class="nav-link" href="teamInfo?t_num=${sessionScope.t_num }">팀 정보</a>
+                </li>
+                </c:if>
+                <c:if test="${sessionScope.t_num eq null }">
+                <li class="nav-item">
+                 <a class="nav-link" href="teamMake">팀 생성</a>
+              </li>
+              </c:if>
+              <c:if test="${sessionScope.t_num ne null }">
+             <li class="nav-item">
+                 <a class="nav-link" href="teamInvite?t_num=${sessionScope.t_num }">팀 초대</a>
+             </li>
+             </c:if>
+             <c:if test="${sessionScope.t_num ne null }">
+             <li class="nav-item">
+                 <a class="nav-link" href="teamGallery?t_num=${sessionScope.t_num }">팀갤러리</a>
+             </li>
+             </c:if>
+             <c:if test="${sessionScope.t_num ne null }">
+             <li class="nav-item">
+                 <a class="nav-link" href="teamNotice?t_num=${sessionScope.t_num }">팀 공지</a>
+             </li>
+             </c:if>
+             <li class="nav-item">
+                 <a class="nav-link" href="http://localhost/MatchFootball/teamList">팀 리스트</a>
+             </li>
+             <li class="nav-item"><a class="nav-link" href="teamMatchList">팀 매치 내역</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+	
+	<div align="center" >
 		<div>
 			<h1>팀 갤러리</h1>
 		</div>
@@ -74,6 +98,7 @@
 		</div>
 	</div>
 	</form>
+	</div>
 	<script src="${pageContext.request.contextPath}/resources/css/teamGallery/js/jquery.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/css/teamGallery/js/jquery-migrate-3.0.1.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/css/teamGallery/js/jquery-ui.js"></script>

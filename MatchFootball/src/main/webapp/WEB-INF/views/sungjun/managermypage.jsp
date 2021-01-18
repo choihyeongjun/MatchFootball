@@ -182,7 +182,7 @@ a {
 		});
 
 		$(".tma").on("click", function() {
-			var m_no = $(this).data("nom");
+			var m_no = $(this).data("npp");
 			modal = $("#nomanager");
 			$.ajax({
 				url : "managermypagemmm?m_no=" + m_no,
@@ -230,9 +230,9 @@ a {
 								<div class="matchc">
 									<a class="mdetail" data-toggle="modal"
 										data-target="#matchdetail" data-num="${p_match.m_no }"
-										style="cursor: pointer; font-size: 18px;">
-										${p_match.m_date } ${p_match.f_name } </a> <input type="hidden"
-										value="${p_match.m_no }">
+										style="cursor: pointer; font-size: 18px; font-weight: bold;">
+										${p_match.m_date }</a> <a>${p_match.f_name }</a> <input
+										type="hidden" value="${p_match.m_no }">
 								</div>
 								<div style="width: 20%">
 									<a class="btn sf" href="#"> 리뷰 작성</a>
@@ -263,16 +263,18 @@ a {
 							<li style="display: flex;">
 								<div class="matchc">
 									<a class="tmdetail" data-toggle="modal"
-										data-target="#tmatchdetail" data-nom="${t_match.m_no }"
+										data-nom="${t_match.m_no }"
 										style="cursor: pointer; font-size: 18px;">
-										<p>${t_match.m_date }</p>
-										<p>${t_match.t_name } vs ${t_match.t_name2 }</p>
-										  </a>
-									<input type="hidden" name="m_no" value="${t_match.m_no }">
+										<p style="font-weight: bold;'">${t_match.m_date }</p>
+										<p>${t_match.t_name }vs ${t_match.so_name }</p>
+									</a> <input type="hidden" name="m_no" value="${t_match.m_no }">
 									<input type="hidden" name="t_num" value="${t_match.t_num }">
+									<input type="hidden" name="so_num" value="${t_match.so_num }">
+									<input type="hidden" name="so_name" value="${t_match.so_name }">
 								</div>
 								<div style="width: 20%">
-									<a class="btn sf" href="#" style="align-items: center; margin-top: 20px;"> 리뷰 작성</a>
+									<a class="btn sf" href="#"
+										style="align-items: center; margin-top: 20px;"> 리뷰 작성</a>
 								</div>
 							</li>
 						</ul>
@@ -314,19 +316,21 @@ a {
 								style="padding-right: 10px; color: #ffc645;"></i>경기 내역 전체 보기</a></li>
 						<li><a href="#"><i class="fas fa-clipboard"
 								style="padding-right: 14px; color: #ffc645;"></i>리뷰 내역 보기</a></li>
-						<li><a class="tma" data-np="${t_match.m_no }"><i class="fas fa-ad"
-								style="padding-right: 10px; color: #ffc645;"></i>팀 매치 매니저 신청</a></li>
+						<li><a class="tma" data-toggle="modal"
+							data-target="#nomanager" data-npp="${teammatch.m_no}"><i
+								class="fas fa-ad" style="padding-right: 10px; color: #ffc645;"></i>매치
+								매니저 신청</a></li>
 					</ul>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- 매니저 없는 팀매치  정보 모달창 -->
+	<!-- 매니저 없는 매치  정보 모달창 -->
 	<div class="modal fade" id="nomanager" tabindex="-1"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
-				<div class="modal-body" id="body11">...</div>
+				<div class="modal-body" id="body11">...매니저 신청</div>
 			</div>
 		</div>
 	</div>

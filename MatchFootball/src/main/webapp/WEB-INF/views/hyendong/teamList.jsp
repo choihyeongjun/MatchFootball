@@ -56,26 +56,46 @@ a { text-decoration: none; color: #ffffff }
 </head>
 <body>
 	<div style="padding-bottom: 70px; height: 91%">
-		<ul class="hi">
-	  		<c:if test="${sessionScope.t_num ne null }">
-			<li><a href="teamInfo?t_num=${sessionScope.t_num }">ÆÀ Á¤º¸</a></li>
-			</c:if>
-			<c:if test="${sessionScope.t_num eq null }">
-			<li><a href="teamMake">ÆÀ »ý¼º</a></li>
-			</c:if>
-			<c:if test="${sessionScope.t_num ne null }">
-			<li><a href="teamGallery?t_num=${sessionScope.t_num }">ÆÀ°¶·¯¸®</a></li>
-			</c:if>
-			<c:if test="${sessionScope.t_num ne null }">
-			<li><a href="teamNotice?t_num=${sessionScope.t_num }">ÆÀ °øÁö</a></li>
-			</c:if>
-			<c:if test="${sessionScope.t_num ne null }">
-			<li><a href="teamInvite?t_num=${sessionScope.t_num }">ÆÀ ÃÊ´ë</a></li>
-			</c:if>
-			<li><a href="http://localhost/MatchFootball/teamList">ÆÀ ¸®½ºÆ®</a></li>
-			<li><a href="teamMatchList">ÆÀ¸ÅÄ¡ ³»¿ª</a></li>
-			<li><a href="teamMatchStatus">ÆÀ ÃÊ´ë ÇöÈ²</a></li>
-	</ul>
+		<!-- 4 - contained in center example -->
+<nav class="navbar navbar-expand-xl navbar-dark bg-dark">
+    <div class="mx-auto d-sm-flex d-block flex-sm-nowrap">
+        <a class="navbar-brand" href="#">${sessionScope.kname}${sessionScope.name}´Ô</a>
+        
+        <div class="collapse navbar-collapse text-center" id="navbarsExample11">
+            <ul class="navbar-nav">
+               <c:if test="${sessionScope.t_num ne null }">
+                <li class="nav-item active">
+                    <a class="nav-link" href="teamInfo?t_num=${sessionScope.t_num }">ÆÀ Á¤º¸</a>
+                </li>
+                </c:if>
+                <c:if test="${sessionScope.t_num eq null }">
+                <li class="nav-item">
+                 <a class="nav-link" href="teamMake">ÆÀ »ý¼º</a>
+              </li>
+              </c:if>
+              <c:if test="${sessionScope.t_num ne null }">
+             <li class="nav-item">
+                 <a class="nav-link" href="teamInvite?t_num=${sessionScope.t_num }">ÆÀ ÃÊ´ë</a>
+             </li>
+             </c:if>
+             <c:if test="${sessionScope.t_num ne null }">
+             <li class="nav-item">
+                 <a class="nav-link" href="teamGallery?t_num=${sessionScope.t_num }">ÆÀ°¶·¯¸®</a>
+             </li>
+             </c:if>
+             <c:if test="${sessionScope.t_num ne null }">
+             <li class="nav-item">
+                 <a class="nav-link" href="teamNotice?t_num=${sessionScope.t_num }">ÆÀ °øÁö</a>
+             </li>
+             </c:if>
+             <li class="nav-item">
+                 <a class="nav-link" href="http://localhost/MatchFootball/teamList">ÆÀ ¸®½ºÆ®</a>
+             </li>
+             <li class="nav-item"><a class="nav-link" href="teamMatchList">ÆÀ ¸ÅÄ¡ ³»¿ª</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
 		<div align="center">
 			<br>
 			<h3>ÆÀ ¸®½ºÆ®</h3>
@@ -100,9 +120,9 @@ a { text-decoration: none; color: #ffffff }
 						<div class="visit">${teamList.t_type}</div>
 						<div class="visit">
 						<input type="text" value="${teamList.t_num }" name="t_num" style="display:none">
-							&nbsp;&nbsp;&nbsp;&nbsp;ÀÎ¿ø&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							/ ${teamList.t_max}<br>Æò±Õ
-							¿¬·É&nbsp;&nbsp;&nbsp;${teamList.t_age }<br>°æ±â
+							&nbsp;&nbsp;&nbsp;&nbsp;ÀÎ&nbsp;&nbsp;¿ø&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							${count.c } / ${teamList.t_max}<br>Æò±Õ
+							¿¬·É&nbsp;&nbsp;&nbsp;<br>°æ±â
 							À¯Çü&nbsp;&nbsp;&nbsp;${teamList.t_type }
 						</div>
 					</div>
