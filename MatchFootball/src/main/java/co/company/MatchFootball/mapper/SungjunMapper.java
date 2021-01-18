@@ -5,6 +5,7 @@ import java.util.List;
 import co.company.MatchFootball.vo.ManageraplyVO;
 import co.company.MatchFootball.vo.MatchMember;
 import co.company.MatchFootball.vo.MembersVO;
+import co.company.MatchFootball.vo.MmatchlistVO;
 import co.company.MatchFootball.vo.P_matchVO;
 import co.company.MatchFootball.vo.PlayersVO;
 import co.company.MatchFootball.vo.PointVO;
@@ -18,7 +19,9 @@ public interface SungjunMapper {
 	public List<P_matchVO> pmatchselect(P_matchVO p_match);	
 	public List<PointVO> pointconselect(PointVO pointvo);
 	public List<P_matchVO> pmatchlist(P_matchVO p_match);
-	public int getCount1(P_matchVO p_match);
+	//페이징 내역수 
+	public int getCount1(P_matchVO p_matchVO);
+	public int getCount2(TeammatchVO team_matchVO);
 	public MembersVO memberselect(MembersVO membersvo);
 	public List<PointVO> pointallselect(PointVO p_point);
 	public P_matchVO pmatchlist1(P_matchVO p_match);
@@ -62,8 +65,10 @@ public interface SungjunMapper {
 	public List<P_matchVO> pmatchselectall(P_matchVO p_match);
 	//팀매치 전체내역 조회
 	public List<TeammatchVO> tmatchselectall(TeammatchVO t_match);
-	//팀매치에 매니저 신청 
-	public Integer mmatchlist(MembersVO membersvo);
+	//매치에 매니저 신청 
+	public Integer tmapply(MmatchlistVO mmatchlistvo);
 	//매니저 없는 팀매치 검색
 	public List<TeammatchVO> nomanager(TeammatchVO teammatch);
+
+	
 }
