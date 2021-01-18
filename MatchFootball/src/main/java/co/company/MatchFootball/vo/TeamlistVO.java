@@ -11,4 +11,5 @@ public class TeamlistVO {
 	int last;
 	String name;
 	String pos;
+	String c;
 }

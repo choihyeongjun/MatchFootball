@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="my"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -66,7 +67,7 @@ footer { position: fixed; left: 0px; bottom: 0px; width: 100%; background: grey;
 			<div class="card-body">
 				<div class="table-responsive">
 					<div class="container" style="float: left; height: 650px;">
-						<table class="table table-bordered" id="dataTable_filter">
+						<table class="table table-bordered" id="dataTable">
 							<thead>
 								<tr style="width: 10px">
 									<th>아이디</th>
@@ -156,6 +157,14 @@ footer { position: fixed; left: 0px; bottom: 0px; width: 100%; background: grey;
 							</c:forEach>
 						</tbody>
 					</table>
+					<script>
+					function goPage(q) {
+							location.href = "teamInvite?page=" + q + "&t_num=" + ${sessionScope.t_num};
+						}
+					</script>
+					<div style="margin-left: 290px; height:15px; color: black">
+						<my:paging paging="${paging}" jsfunc="goPage" />
+					</div>
 				</div>
 			</div>
 		</div>
@@ -172,38 +181,14 @@ footer { position: fixed; left: 0px; bottom: 0px; width: 100%; background: grey;
 							<thead>
 								<tr class="tr1">
 								<th class="text-center">아이디</th>
-								<th class="text-center">나이</th>
-								<th class="text-center">포지션</th>
-								<th class="text-center">실력</th>
-								<th class="text-center">매 너 도</th>
-								<c:if test="${updateButton.t_author eq '팀장'}">
-								<th class="text-center">초대</th>
-								</c:if>
+								<th class="text-center">초대날짜</th>
 								</tr>
 							</thead>
 							<tbody>
-							<c:forEach items="${tinvite }" var="tinvite">
+							<c:forEach items="${select2 }" var="select2">
 								<tr>
-									<td class="text-center">${tinvite.id}</td>
-									<td class="text-center">${tinvite.i_age}</td>
-									<td class="text-center">${tinvite.i_pos}</td>
-									<td class="text-center">${tinvite.i_lv}</td>
-									<td class="text-center">${tinvite.i_manner}</td>
-									<c:if test="${updateButton.t_author eq '팀장' }">
-										<td>
-											<form method="post">
-												<input type="text" value="${sessionScope.t_num }" name="t_num" style="display: none"> 
-												<input type="text" value="${tinvite.id }" name="id" style="display: none"> 
-												<input type="text" value="팀원" name="t_author" style="display: none">
-												<c:if test="${updateButton.t_author eq '팀장'}">
-												<button type="submit" id="btnSelect"
-													onclick="javascript: form.action='${pageContext.request.contextPath}/teamListInsert'">수락</button>
-												<button type="submit" id="btnSelect"
-													onclick="javascript: form.action='${pageContext.request.contextPath}/teamInviteDelete'">거절</button>
-												</c:if>
-											</form>
-										</td>
-									</c:if>
+									<td class="text-center">${select2.id}</td>
+									<td class="text-center">${select2.c_tdate}</td>
 								</tr>
 							</c:forEach>
 						</tbody>

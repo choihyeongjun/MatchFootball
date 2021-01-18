@@ -1,156 +1,199 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="my"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="resources/css/teamMenu.css">
 <style>
+footer {
+   position: fixed;
+   left: 0px;
+   bottom: 0px;
+   width: 100%;
+   background: grey;
+   color: white;
+}
 .contentWrapper {
-	max-width: 1024px;
-	margin: 0 auto;
-	overflow: auto;
+   max-width: 1024px;
+   margin: 0 auto;
+   overflow: auto;
 }
 
 .contentWrapper.matchDetail {
-	max-width: inherit;
-	padding: 0;
+   max-width: inherit;
+   padding: 0;
 }
 
 .contentWrapper.matchDetail .matchWrap {
-	max-width: 1024px;
-	margin: 0 auto;
+   max-width: 1024px;
+   margin: 0 auto;
 }
 
 .contentWrapper.w480 {
-	max-width: 480px;
-	margin: 0 auto;
-	padding-bottom: 0;
+   max-width: 480px;
+   margin: 0 auto;
+   padding-bottom: 0;
 }
 
 .contentWrapper {
-	
+   
 }
 
 .contentWrapper.acc {
-	padding: 0 20px;
+   padding: 0 20px;
 }
 
 .articleTitle h1 {
-	font-size: 22px;
-	font-weight: 500;
+   font-size: 22px;
+   font-weight: 500;
 }
 
 .articleWrap {
-	margin: 0 20px;
-	padding: 20px 0;
+   margin: 0 20px;
+   padding: 20px 0;
 }
 
 .articleBody {
-	border-bottom: 1px solid #ddd;
-	padding: 20px 0;
-	word-break: keep-all;
+   border-bottom: 1px solid #ddd;
+   padding: 20px 0;
+   word-break: keep-all;
 }
 
 .articleBody pre {
-	font-size: 15px;
-	line-height: 22px;
-	letter-spacing: -0.4px;
+   font-size: 15px;
+   line-height: 22px;
+   letter-spacing: -0.4px;
 }
 
 .articleBottom {
-	padding: 20px 0;
+   padding: 20px 0;
 }
 
 .articleBottom p {
-	margin-bottom: 15px;
-	font-size: 18px;
-	font-weight: 400;
+   margin-bottom: 15px;
+   font-size: 18px;
+   font-weight: 400;
 }
 
 .helpTagWrap {
-	margin-top: 20px;
+   margin-top: 20px;
 }
 
 .helpTagWrap p {
-	font-size: 14px;
+   font-size: 14px;
 }
 
 .helpTagWrap li {
-	display: inline-block;
+   display: inline-block;
 }
 
 .helpTagWrap li a {
-	font-size: 14px;
-	color: #999;
+   font-size: 14px;
+   color: #999;
 }
 
 .helpTagWrap li:nth-child(2):before {
-	display: none;
+   display: none;
 }
 
 .helpTagWrap li:before {
-	content: '°§';
-	padding: 0 2px;
-	color: #999;
+   content: '¬∑';
+   padding: 0 2px;
+   color: #999;
 }
 </style>
 </head>
 <body>
-	<ul class="hi">
-		<c:if test="${sessionScope.t_num ne null }">
-			<li><a href="teamInfo?t_num=${sessionScope.t_num }">∆¿ ¡§∫∏</a></li>
-		</c:if>
-		<c:if test="${sessionScope.t_num eq null }">
-			<li><a href="teamMake">∆¿ ª˝º∫</a></li>
-		</c:if>
-		<c:if test="${sessionScope.t_num ne null }">
-			<li><a href="teamGallery?t_num=${sessionScope.t_num }">∆¿∞∂∑Ø∏Æ</a></li>
-		</c:if>
-		<c:if test="${sessionScope.t_num ne null }">
-			<li><a href="teamNotice?t_num=${sessionScope.t_num }">∆¿ ∞¯¡ˆ</a></li>
-		</c:if>
-		<c:if test="${sessionScope.t_num ne null }">
-			<li><a href="teamInvite?t_num=${sessionScope.t_num }">∆¿ √ ¥Î</a></li>
-		</c:if>
-		<li><a href="http://localhost/MatchFootball/teamList">∆¿ ∏ÆΩ∫∆Æ</a></li>
-	</ul>
-	<div align="center">
-		<h1>∆¿ ∞¯ ¡ˆ</h1>
-		<hr>
-	</div>
-	<div class="contentWrapper" style="height: 643px">
-		<div class="articleTitle">
-			<h1>${teamNoticeInfo.t_title }</h1>
-		</div>
-		<div class="articleBody">
-			<pre>${teamNoticeInfo.t_content }</pre>
-		</div>
-		<div class="articleBody">
-			<pre>${teamNoticeInfo.t_date }</pre>
-		</div>
-		<br>
-		<div style="float: left">
-			<input type="button" class="btn btn-primary" value="∏Ò∑œ" onclick="location.href='teamNotice?t_num=${teamInfo.t_num}'">
-		</div>
-		<div style="float: left; margin-left: 10px">
-			<c:if test="${updateButton.t_author eq '∆¿¿Â' }">
-				<form action="teamNoticeUpdate">
-					<input type="text" value="${teamInfo.t_num }" name="t_num" style="display: none"> <input type="text" value="${teamNoticeInfo.n_no }" name="n_no" style="display: none">
-					<button type="submit" class="btn btn-primary">ºˆ¡§</button>
-				</form>
-			</c:if>
-		</div>
-		<div style="float: left; margin-left: 10px">
-			<c:if test="${updateButton.t_author eq '∆¿¿Â' }">
-				<form action="teamNoticeDelete" method="post">
-					<input type="text" value="${teamInfo.t_num }" name="t_num" style="display: none"> <input type="text" value="${teamNoticeInfo.n_no }" name="n_no" style="display: none">
-					<button type="submit" class="btn btn-primary">ªË¡¶</button>
-				</form>
-			</c:if>
-		</div>
-	</div>
+<!-- 4 - contained in center example -->
+<nav class="navbar navbar-expand-xl navbar-dark bg-dark">
+    <div class="mx-auto d-sm-flex d-block flex-sm-nowrap">
+        <a class="navbar-brand" href="#">${sessionScope.kname}${sessionScope.name}Îãò</a>
+        
+        <div class="collapse navbar-collapse text-center" id="navbarsExample11">
+            <ul class="navbar-nav">
+               <c:if test="${sessionScope.t_num ne null }">
+                <li class="nav-item active">
+                    <a class="nav-link" href="teamInfo?t_num=${sessionScope.t_num }">ÌåÄ Ï†ïÎ≥¥</a>
+                </li>
+                </c:if>
+                <c:if test="${sessionScope.t_num eq null }">
+                <li class="nav-item">
+                 <a class="nav-link" href="teamMake">ÌåÄ ÏÉùÏÑ±</a>
+              </li>
+              </c:if>
+              <c:if test="${sessionScope.t_num ne null }">
+             <li class="nav-item">
+                 <a class="nav-link" href="teamInvite?t_num=${sessionScope.t_num }">ÌåÄ Ï¥àÎåÄ</a>
+             </li>
+             </c:if>
+             <c:if test="${sessionScope.t_num ne null }">
+             <li class="nav-item">
+                 <a class="nav-link" href="teamGallery?t_num=${sessionScope.t_num }">ÌåÄÍ∞§Îü¨Î¶¨</a>
+             </li>
+             </c:if>
+             <c:if test="${sessionScope.t_num ne null }">
+             <li class="nav-item">
+                 <a class="nav-link" href="teamNotice?t_num=${sessionScope.t_num }">ÌåÄ Í≥µÏßÄ</a>
+             </li>
+             </c:if>
+             <li class="nav-item">
+                 <a class="nav-link" href="http://localhost/MatchFootball/teamList">ÌåÄ Î¶¨Ïä§Ìä∏</a>
+             </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+   <div align="center">
+      <h1>ÌåÄ Í≥µ ÏßÄ</h1>
+      <hr>
+   </div>
+   
+   <div>
+   <form action="teamNoticeInsertt" method="post" encType="multipart/form-data">
+      <article>
+         <div class="container" role="main" style="width: 500px">
+               <div class="mb-3">
+                  <label for="title">Ï†úÎ™©</label>
+                  <input type="text" class="form-control" name="t_title" placeholder="Ï†úÎ™©ÏùÑ ÏûÖÎ†•Ìï¥ Ï£ºÏÑ∏Ïöî" value="${teamNoticeInfo.t_title }" readonly>
+               </div>
+               <div class="mb-3">
+                  <label for="reg_id">ÏûëÏÑ±Ïûê</label> 
+                  <input type="text" class="form-control" name="t_id" id="reg_id" value="${sessionScope.id }" placeholder="Ïù¥Î¶ÑÏùÑ ÏûÖÎ†•Ìï¥ Ï£ºÏÑ∏Ïöî" readonly>
+               </div>
+               <div class="mb-3">
+                  <label for="content">ÎÇ¥Ïö©</label>
+                  <textarea class="form-control" rows="5" name="t_content" id="content" placeholder="ÎÇ¥Ïö©ÏùÑ ÏûÖÎ†•Ìï¥ Ï£ºÏÑ∏Ïöî" style="height: 250px">${teamNoticeInfo.t_content }</textarea>
+               </div>
+               <input type="text" name="t_num" value="${teamInfo.t_num }" style="display:none">
+              <br>
+            </div>
+         </article>
+      </form>
+      <br>
+      <div align="center" style="padding-left: 868px;">
+      <div style="float: left">
+         <input type="button" class="btn btn-primary" value="Î™©Î°ù" onclick="location.href='teamNotice?t_num=${teamInfo.t_num}'">
+      </div>
+      <div style="float: left; margin-left: 10px">
+         <c:if test="${updateButton.t_author eq 'ÌåÄÏû•' }">
+            <form action="teamNoticeUpdate">
+               <input type="text" value="${teamInfo.t_num }" name="t_num" style="display: none"> <input type="text" value="${teamNoticeInfo.n_no }" name="n_no" style="display: none">
+               <button type="submit" class="btn btn-primary">ÏàòÏ†ï</button>
+            </form>
+         </c:if>
+      </div>
+      <div style="float: left; margin-left: 10px">
+         <c:if test="${updateButton.t_author eq 'ÌåÄÏû•' }">
+            <form action="teamNoticeDelete" method="post">
+               <input type="text" value="${teamInfo.t_num }" name="t_num" style="display: none"> <input type="text" value="${teamNoticeInfo.n_no }" name="n_no" style="display: none">
+               <button type="submit" class="btn btn-primary">ÏÇ≠Ï†ú</button>
+            </form>
+         </c:if>
+      </div>
+      </div>
+   </div>
 </body>
 </html>
