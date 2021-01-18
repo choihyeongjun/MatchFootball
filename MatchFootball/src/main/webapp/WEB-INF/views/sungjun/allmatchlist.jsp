@@ -100,7 +100,9 @@
 					</c:forEach>
 					<script>
 						function goPage2(p) {
-							location.href = "allmatchlist?page=1&pg=" + p;
+							var p2 = $('#page1').html(); 
+							console.log('team:' , p2);
+							location.href = "allmatchlist?pg=" + p+ "&page="+p2;
 						}
 					</script>
 					<hr>
@@ -132,7 +134,9 @@
 					</c:forEach>
 					<script>
 						function goPage(q) {
-							location.href = "allmatchlist?page=" + q + "&pg=1";
+							var p1 = $('#page2').html(); 
+							console.log('person: ', p1);
+							location.href = "allmatchlist?pg="+p1+"&page=" + q;
 						}
 					</script>
 					<hr>

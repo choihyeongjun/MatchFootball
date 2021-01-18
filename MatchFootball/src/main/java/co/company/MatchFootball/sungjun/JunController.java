@@ -314,7 +314,7 @@ public class JunController {
 	}
 
 	@RequestMapping(value = "/allmatchlist")
-	public ModelAndView test10(Paging paging, Paging paging2, HttpServletResponse response, HttpSession session,
+	public ModelAndView test10(Paging paging, Paging2 paging2, HttpServletResponse response, HttpSession session,
 			Model model, P_matchVO p_matchVO, TeammatchVO team_matchVO, PointVO pointvo) throws IOException {
 		
 		p_matchVO.setM_id((String) session.getAttribute("id"));
