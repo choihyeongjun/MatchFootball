@@ -36,7 +36,7 @@
 <script>
 	function submitCheck() {
 
-		//alert("신청되었습니다");
+		alert("신청되었습니다");
 
 		return true;
 	}
