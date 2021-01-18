@@ -182,7 +182,7 @@ a {
 		});
 
 		$(".tma").on("click", function() {
-			var m_no = $(this).data("nom");
+			var m_no = $(this).data("npp");
 			modal = $("#nomanager");
 			$.ajax({
 				url : "managermypagemmm?m_no=" + m_no,
@@ -266,10 +266,12 @@ a {
 										data-target="#tmatchdetail" data-nom="${t_match.m_no }"
 										style="cursor: pointer; font-size: 18px;">
 										<p>${t_match.m_date }</p>
-										<p>${t_match.t_name } vs ${t_match.t_name2 }</p>
+										<p>${t_match.t_name } vs ${t_match.so_name }</p>
 										  </a>
 									<input type="hidden" name="m_no" value="${t_match.m_no }">
 									<input type="hidden" name="t_num" value="${t_match.t_num }">
+									<input type="hidden" name="so_num" value="${t_match.so_num }">
+									<input type="hidden" name="so_name" value="${t_match.so_name }">
 								</div>
 								<div style="width: 20%">
 									<a class="btn sf" href="#" style="align-items: center; margin-top: 20px;"> 리뷰 작성</a>
@@ -314,7 +316,8 @@ a {
 								style="padding-right: 10px; color: #ffc645;"></i>경기 내역 전체 보기</a></li>
 						<li><a href="#"><i class="fas fa-clipboard"
 								style="padding-right: 14px; color: #ffc645;"></i>리뷰 내역 보기</a></li>
-						<li><a class="tma" data-np="${t_match.m_no }"><i class="fas fa-ad"
+						<li><a class="tma" data-toggle="modal"
+										data-target="#nomanager" data-npp="${t_match.m_no }"><i class="fas fa-ad"
 								style="padding-right: 10px; color: #ffc645;"></i>팀 매치 매니저 신청</a></li>
 					</ul>
 				</div>
