@@ -33,30 +33,8 @@
 footer { position: fixed; left: 0px; bottom: 0px; width: 100%; background: grey; color: white; }
 #aa { position: fixed; left: 0; top: 0; width: 100%;}
 #dataTable_filter{padding-left: 330px;}
-
-div #modal-content {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    width: 1000px;
-    pointer-events: auto;
-    background-color: #fff;
-    background-clip: padding-box;
-    border: 1px solid rgba(0,0,0,.2);
-    border-radius: .3rem;
-    outline: 0;
-}
-div.modal-content { position: relative;
-    display: flex;
-    flex-direction: column;
-    width: 1000px;
-    pointer-events: auto;
-    background-color: #fff;
-    background-clip: padding-box;
-    border: 1px solid rgba(0,0,0,.2);
-    border-radius: .3rem;
-    outline: 0;
-}
+#datasTable_filter{padding-left: 330px;}
+#datassTable_filter{padding-left: 330px;}
 </style>
 
 </head>
@@ -88,7 +66,7 @@ div.modal-content { position: relative;
 			<div class="card-body">
 				<div class="table-responsive">
 					<div class="container" style="float: left; height: 650px;">
-						<table class="table table-bordered" id="dataTable">
+						<table class="table table-bordered" id="dataTable_filter">
 							<thead>
 								<tr style="width: 10px">
 									<th>아이디</th>
@@ -98,7 +76,9 @@ div.modal-content { position: relative;
 									<th>매너도</th>
 									<th>실력</th>
 									<th>포지션</th>
+									<c:if test="${updateButton.t_author eq '팀장'}">
 									<th>초대</th>
+									</c:if>
 								</tr>
 							</thead>
 								<tbody>
@@ -111,13 +91,15 @@ div.modal-content { position: relative;
 											<td>${f.manner}</td>
 											<td>${f.lv}</td>
 											<td>${f.pos}</td>
-											<td><form action="inviteComeon" method="post">
-												<input type="text" value="${f.id  }" name="id" style="display:none"> 
-												<input type="text" value="${sessionScope.t_num }" name="t_num" style="display:none">
-												<input type="text" value="${tname.t_name }" name="c_tname" style="display:none">
-												<button type="submit" id="button">팀초대</button>
-												</form>
-											</td>
+											<c:if test="${updateButton.t_author eq '팀장'}">
+												<td><form action="inviteComeon" method="post">
+													<input type="text" value="${f.id  }" name="id" style="display:none"> 
+													<input type="text" value="${sessionScope.t_num }" name="t_num" style="display:none">
+													<input type="text" value="${tname.t_name }" name="c_tname" style="display:none">
+													<button type="submit" id="button">팀초대</button>
+													</form>
+												</td>
+											</c:if>
 										</tr>
 									</c:forEach>
 								</tbody>
@@ -126,87 +108,112 @@ div.modal-content { position: relative;
 				</div>
 			</div>
 		</div>
-
-		<div class="modal fade" id="myModal">
-			<div class="modal-dialog">
-				<div class="modal-content">
-
-					<div class="modal-header">
-						<h3 class="modal-title">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;초대장</h3>
-						<button type="button" class="close" data-dismiss="modal">&times;</button>
-					</div>
-					<form method="get"
-						action="${pageContext.request.contextPath}/bollowsearch/ajax">
-						<!-- Modal body -->
-						<div class="modal-body" style="height: 300px">
-							<table style="margin: 0% 4% 0% 4%">
-								<tr>
-									<td>제목:</td>
-									<td style="width: 300px"><input id="title" name="title"
-										type="text" style="width: 372px; margin: 1%"></td>
+	
+		<div class="card mb-4">
+			<div class="card-header">
+				<i class="fas fa-table mr-1"></i> 팀 가입 승인 현황
+			</div>
+			<div class="card-body">
+				<div class="table-responsive">
+					<div class="container" style="float: left;">
+						<table class="table table-bordered">
+							<thead>
+								<tr class="tr1">
+								<th class="text-center">아이디</th>
+								<th class="text-center">나이</th>
+								<th class="text-center">포지션</th>
+								<th class="text-center">실력</th>
+								<th class="text-center">매 너 도</th>
+								<c:if test="${updateButton.t_author eq '팀장'}">
+								<th class="text-center">초대</th>
+								</c:if>
 								</tr>
+							</thead>
+							<tbody>
+							<c:forEach items="${tinvite }" var="tinvite">
 								<tr>
-									<td>내용:</td>
-									<td><textarea id="comm" name="comm" rows="4" cols="50"
-											style="margin: 1%; resize: none;"></textarea></td>
+									<td class="text-center">${tinvite.id}</td>
+									<td class="text-center">${tinvite.i_age}</td>
+									<td class="text-center">${tinvite.i_pos}</td>
+									<td class="text-center">${tinvite.i_lv}</td>
+									<td class="text-center">${tinvite.i_manner}</td>
+									<c:if test="${updateButton.t_author eq '팀장' }">
+										<td>
+											<form method="post">
+												<input type="text" value="${sessionScope.t_num }" name="t_num" style="display: none"> 
+												<input type="text" value="${tinvite.id }" name="id" style="display: none"> 
+												<input type="text" value="팀원" name="t_author" style="display: none">
+												<c:if test="${updateButton.t_author eq '팀장'}">
+												<button type="submit" id="btnSelect"
+													onclick="javascript: form.action='${pageContext.request.contextPath}/teamListInsert'">수락</button>
+												<button type="submit" id="btnSelect"
+													onclick="javascript: form.action='${pageContext.request.contextPath}/teamInviteDelete'">거절</button>
+												</c:if>
+											</form>
+										</td>
+									</c:if>
 								</tr>
-							</table>
-						</div>
-					</form>
-
-					<!-- Modal footer -->
-					<div class="modal-footer">
-						<button type="submit" class="btn btn-danger" data-dismiss="modal">저장</button>
-						<input type="reset" class="btn btn-danger" data-dismiss="modal"
-							value="닫기">
-					</div>
+							</c:forEach>
+						</tbody>
+					</table>
 				</div>
 			</div>
 		</div>
-		<div>
-			<h2 class="table text-center">팀 가입 현황</h2>
-			<br>
-			<div class="container" style="float: left; width: 40%">
-				<table class="table text-center">
-					<tr class="tr1">
-						<th class="text-center">아이디</th>
-						<th class="text-center">나이</th>
-						<th class="text-center">포지션</th>
-						<th class="text-center">실력</th>
-						<th class="text-center">매 너 도</th>
-						<th class="text-center">초대</th>
-					</tr>
-					<tbody>
-						<c:forEach items="${tinvite }" var="tinvite">
-							<tr>
-								<td class="text-center">${tinvite.id}</td>
-								<td class="text-center">${tinvite.i_age}</td>
-								<td class="text-center">${tinvite.i_pos}</td>
-								<td class="text-center">${tinvite.i_lv}</td>
-								<td class="text-center">${tinvite.i_manner}</td>
-								<c:if test="${updateButton.t_author eq '팀장' }">
-									<td>
-										<form method="post">
-											<input type="text" value="${sessionScope.t_num }" name="t_num" style="display: none"> 
-											<input type="text" value="${tinvite.id }" name="id" style="display: none"> 
-											<input type="text" value="팀원" name="t_author" style="display: none">
-											<button type="submit" id="btnSelect"
-												onclick="javascript: form.action='${pageContext.request.contextPath}/teamListInsert'">수락</button>
-											<button type="submit" id="btnSelect"
-												onclick="javascript: form.action='${pageContext.request.contextPath}/teamInviteDelete'">거절</button>
-										</form>
-									</td>
+	</div>
+	
+	<div class="card mb-4">
+			<div class="card-header">
+				<i class="fas fa-table mr-1"></i> 내가 초대한 멤버 현황
+			</div>
+			<div class="card-body">
+				<div class="table-responsive">
+					<div class="container" style="float: left;">
+						<table class="table table-bordered">
+							<thead>
+								<tr class="tr1">
+								<th class="text-center">아이디</th>
+								<th class="text-center">나이</th>
+								<th class="text-center">포지션</th>
+								<th class="text-center">실력</th>
+								<th class="text-center">매 너 도</th>
+								<c:if test="${updateButton.t_author eq '팀장'}">
+								<th class="text-center">초대</th>
 								</c:if>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
+								</tr>
+							</thead>
+							<tbody>
+							<c:forEach items="${tinvite }" var="tinvite">
+								<tr>
+									<td class="text-center">${tinvite.id}</td>
+									<td class="text-center">${tinvite.i_age}</td>
+									<td class="text-center">${tinvite.i_pos}</td>
+									<td class="text-center">${tinvite.i_lv}</td>
+									<td class="text-center">${tinvite.i_manner}</td>
+									<c:if test="${updateButton.t_author eq '팀장' }">
+										<td>
+											<form method="post">
+												<input type="text" value="${sessionScope.t_num }" name="t_num" style="display: none"> 
+												<input type="text" value="${tinvite.id }" name="id" style="display: none"> 
+												<input type="text" value="팀원" name="t_author" style="display: none">
+												<c:if test="${updateButton.t_author eq '팀장'}">
+												<button type="submit" id="btnSelect"
+													onclick="javascript: form.action='${pageContext.request.contextPath}/teamListInsert'">수락</button>
+												<button type="submit" id="btnSelect"
+													onclick="javascript: form.action='${pageContext.request.contextPath}/teamInviteDelete'">거절</button>
+												</c:if>
+											</form>
+										</td>
+									</c:if>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
 			</div>
 		</div>
 	</div>
+	</div>
 	<!-- /.container -->
-
 	<script
 		src="${pageContext.request.contextPath}/resources/hyeongjun/calander/vendor/js/jquery.min.js"></script>
 	<script
