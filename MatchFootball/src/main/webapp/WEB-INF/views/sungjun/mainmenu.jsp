@@ -212,6 +212,7 @@ body, html {
 
 	<!--    footer -->
 	<footer>
+	<div class="foottt">
 		<div class="site-links">
 			<div class="site-links-wrapper">
 				<ul>
@@ -269,6 +270,7 @@ body, html {
 				</ul>
 			</div>
 		</div>
+		</div>
 	</footer>
 
 
@@ -288,7 +290,10 @@ body, html {
 								<h3 style="color: red; font-size: 30px;">마이페이지</h3>
 							</div>
 							<ul class="menul" style="color: white; font-size: 20px;" id="a4">
-								<li class="lili" id="a5"><a style="font-size: 17px;">${sessionScope.kname}${sessionScope.name}님 안녕하세요</a>
+								<li class="lili" id="a5">
+								<c:if test="${!empty sessionScope.id }">
+								<a style="font-size: 17px;">${sessionScope.kname}${sessionScope.name}님 안녕하세요</a>
+								</c:if>
 								<li class="lili"><a
 									href="${pageContext.request.contextPath}/mypage/profile">내정보</a></li>
 								<li class="lili"><a

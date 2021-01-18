@@ -87,6 +87,11 @@
 		SELECT COUNT(*) FROM p_match
 		where m_id = #{m_id}
 	</select>
+		<!--team_match 내역 수 페이징 -->
+	<select id="getCount2" resultType="int">
+		SELECT COUNT(*) FROM teammatch
+		where id = #{id}
+	</select>
 	<!-- 선택개인매치 조회 -->
 	<select id="pmatchlist1" parameterType="P_matchVO"
 		resultType="P_matchVO">
@@ -189,10 +194,12 @@
 	<!--매니저 개인매치 일정 전체 조회 -->
 	<select id="pmatchselectall" parameterType="P_matchVO"
 		resultType="P_matchVO">
+		select * from( select a.*, rownum rn from (
 		select * from p_match
 		where m_id = #{m_id}
 		order by m_date
 		desc, m_hour asc
+				)a ) b where rn between #{first} and #{last}
 	</select>
 	<!--매니저 팀 매치 내역 조회 -->
 	<select id="tmatchlist" parameterType="TeammatchVO"
@@ -205,11 +212,16 @@
 	<!--매니저 팀 매치 내역 전체 조회 -->
 	<select id="tmatchselectall" parameterType="TeammatchVO"
 		resultType="TeammatchVO">
-		select * from teammatch
-		where id = #{id}
-		order by m_date desc
-		,m_hour asc
+		select * from( select a.*, rownum rn from (
+					select * from teammatch
+					where id = #{id}
+					order by m_date desc) 
+					a ) b where rn between #{first} and #{last}
 	</select>
+	<!--매치에 매니저 신청-->
+	<insert id="matchmanagerapp">
+	insert into mmatchlist(id,match_info) values(#{id},#{m_no})
+	</insert>
 	<!--주장 조회 -->
 	<select id="capselect" parameterType="TeamlistVO"
 		resultType="TeamlistVO">
@@ -268,11 +280,12 @@
 	<insert id="tmapply" parameterType="MembersVO">
 		insert into
 		mmatchlist(id,match_info)
-		values(#{id},#{m_no})
+		values(#{id},#{match_info})
 	</insert>
-	<!--매니저 없는 팀매치  -->
+	<!--매니저 없는 매치  -->
 	<select id="nomanager" parameterType="TeammatchVO" resultType="TeammatchVO">
-		select * from teammatch
-		where id = '없음'
+		  select * from (select 'a',m_no,f_name, m_date, f_address from teammatch where id='없음' union all
+     select 'b',m_no,f_name, m_date, f_address from p_match where m_id='없음')
+     where to_date(m_date,'yyyy-mm-ddhh24:mi') >= sysdate +9/24
 	</select>
 </mapper>
