@@ -33,8 +33,8 @@
 									${nomanager.m_date }</p>
 								<a>${nomanager.f_address } </a>
 							</div>
-							<div style="width:20%; text-align: center;">
-								<a style=" margin-top: 10px;" >${nomanager.f_name }</a>
+							<div style="width:20%; text-align: center; margin-top: 12px;">
+								<a style=" margin-top: 10px; font-weight: bold; " >${nomanager.f_name }</a>
 								</div>
 							<div style="width: 30%;margin-left: 200px;">
 								<form action="matchmapply" name="matchmapply" id="matchmapply">
