@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>teamNoticeInfo.jsp</title>
 <style>
 footer {
    position: fixed;
@@ -35,10 +35,6 @@ footer {
    max-width: 480px;
    margin: 0 auto;
    padding-bottom: 0;
-}
-
-.contentWrapper {
-   
 }
 
 .contentWrapper.acc {
@@ -174,7 +170,7 @@ footer {
          </article>
       </form>
       <br>
-      <div align="center" style="padding-left: 868px;">
+      <div align="center" style="padding-left: 875px;">
       <div style="float: left">
          <input type="button" class="btn btn-primary" value="목록" onclick="location.href='teamNotice?t_num=${teamInfo.t_num}'">
       </div>
@@ -190,7 +186,7 @@ footer {
          <c:if test="${updateButton.t_author eq '팀장' }">
             <form action="teamNoticeDelete" method="post">
                <input type="text" value="${teamInfo.t_num }" name="t_num" style="display: none"> <input type="text" value="${teamNoticeInfo.n_no }" name="n_no" style="display: none">
-               <button type="submit" class="btn btn-primary">삭제</button>
+               <button type="submit" class="btn btn-danger">삭제</button>
             </form>
          </c:if>
       </div>
