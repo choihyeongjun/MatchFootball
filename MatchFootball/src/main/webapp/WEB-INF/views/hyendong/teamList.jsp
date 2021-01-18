@@ -100,9 +100,9 @@ a { text-decoration: none; color: #ffffff }
 						<div class="visit">${teamList.t_type}</div>
 						<div class="visit">
 						<input type="text" value="${teamList.t_num }" name="t_num" style="display:none">
-							&nbsp;&nbsp;&nbsp;&nbsp;인원&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							/ ${teamList.t_max}<br>평균
-							연령&nbsp;&nbsp;&nbsp;${teamList.t_age }<br>경기
+							&nbsp;&nbsp;&nbsp;&nbsp;인&nbsp;&nbsp;원&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							${count.c } / ${teamList.t_max}<br>평균
+							연령&nbsp;&nbsp;&nbsp;<br>경기
 							유형&nbsp;&nbsp;&nbsp;${teamList.t_type }
 						</div>
 					</div>

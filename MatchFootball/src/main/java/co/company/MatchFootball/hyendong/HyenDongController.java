@@ -102,8 +102,8 @@ public class HyenDongController {
 		model.addAttribute("hh", hyendongMapper.memberTnum(membersVO));
 		tinviteVO.setId(idd);
 		model.addAttribute("where",hyendongMapper.whereJoin(tinviteVO));
-		teamlistVO.setT_num("2");
 		model.addAttribute("count", hyendongMapper.selectCount(teamlistVO));
+		model.addAttribute("avgAge", hyendongMapper.avgAge(membersVO));
 		return "hyendong/teamInfo";
 	}
 
@@ -277,17 +277,24 @@ public class HyenDongController {
 	// 팀 초대
 	@RequestMapping("/teamInvite")
 	public String teamInvite(Model model, HttpSession session, TinviteVO tinviteVO, TeamlistVO teamlistVO, TeamVO teamVO,
-			MembersVO membersVO) {
+			MembersVO membersVO, Paging paging, ComeInviteVO comeInviteVO) {
 		String id = (String) session.getAttribute("id");
 		tinviteVO.setId(id);
 		teamlistVO.setId(id);
-		model.addAttribute("tinvite", hyendongMapper.teamInviteSelect(tinviteVO));
 		model.addAttribute("updateButton", hyendongMapper.getTeamMemberss(teamlistVO));
 		model.addAttribute("members", hyendongMapper.getMembers());
 		String tNum = (String) session.getAttribute("t_num");
 		teamVO.setT_num(tNum);
 		model.addAttribute("tname",hyendongMapper.getTeam(teamVO));
-
+		paging.setPageUnit(5);
+		paging.setPageSize(10);
+		tinviteVO.setFirst(paging.getFirst());
+		tinviteVO.setLast(paging.getLast());
+		paging.setTotalRecord(hyendongMapper.getCount3(tinviteVO));
+		model.addAttribute("tinvite", hyendongMapper.teamInviteSelect(tinviteVO));
+		model.addAttribute("paging", paging);
+		comeInviteVO.setT_num(tNum);
+		model.addAttribute("select2", hyendongMapper.inviteSelect2(comeInviteVO));
 		return "hyendong/teamInvite";
 	}
 	
@@ -363,6 +370,13 @@ public class HyenDongController {
 		return "hyendong/teamMatchList";
 	}
 	
+	// 팀 매치 삭제 처리
+	@RequestMapping("/teamMatchDelete")
+	public String teamMatchDelete(TeammatchVO teammatchVO) {
+		hyendongMapper.teamMatchDelete(teammatchVO);
+		return "redirect:/teamMatchList";
+	}
+	
 	// 팀 초대 현황 페이지
 	@RequestMapping("/teamMatchStatus")
 	public String teamMatchStatus(ComeInviteVO comeInviteVO, Model model, HttpSession session, MembersVO membersVO) {
@@ -414,7 +428,10 @@ public class HyenDongController {
 		String id = (String) session.getAttribute("id");
 		membersVO.setId(id);
 		model.addAttribute("member", hyendongMapper.memberSelect(membersVO));
-//		model.addAttribute("count", hyendongMapper.selectCount(teamlistVO));
+		teamlistVO.setT_num("2");
+		model.addAttribute("count", hyendongMapper.selectCount(teamlistVO));
+		membersVO.setT_num("2");
+		model.addAttribute("avgAge", hyendongMapper.avgAge(membersVO));
 		return "hyendong/teamList";
 	}
 

@@ -1,66 +1,104 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="my"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<link rel="stylesheet" href="resources/css/teamMenu.css">
-<title>°øÁö µî·Ï</title>
+<meta charset="UTF-8">
+<title>ê³µì§€ ë“±ë¡</title>
+
+<style>
+label { font-size: 22px}
+footer {
+   position: fixed;
+   left: 0px;
+   bottom: 0px;
+   width: 100%;
+   background: grey;
+   color: white;
+}
+</style>
 </head>
+
 <body>
-	<ul class="hi">
-	  		<c:if test="${sessionScope.t_num ne null }">
-			<li><a href="teamInfo?t_num=${sessionScope.t_num }">ÆÀ Á¤º¸</a></li>
-			</c:if>
-			<c:if test="${sessionScope.t_num eq null }">
-			<li><a href="teamMake">ÆÀ »ý¼º</a></li>
-			</c:if>
-			<c:if test="${sessionScope.t_num ne null }">
-			<li><a href="teamGallery?t_num=${sessionScope.t_num }">ÆÀ°¶·¯¸®</a></li>
-			</c:if>
-			<c:if test="${sessionScope.t_num ne null }">
-			<li><a href="teamNotice?t_num=${sessionScope.t_num }">ÆÀ °øÁö</a></li>
-			</c:if>
-			<c:if test="${sessionScope.t_num ne null }">
-			<li><a href="teamInvite?t_num=${sessionScope.t_num }">ÆÀ ÃÊ´ë</a></li>
-			</c:if>
-			<li><a href="http://localhost/MatchFootball/teamList">ÆÀ ¸®½ºÆ®</a></li>
-	</ul>
-	<div align="center">
-		<div>
-			<h1>ÆÀ °øÁö ¼öÁ¤</h1>
-		</div>
-		<hr />
-	</div>
-	<form action="teamNoticeUpdatee" method="post"
+<!-- 4 - contained in center example -->
+<nav class="navbar navbar-expand-xl navbar-dark bg-dark">
+    <div class="mx-auto d-sm-flex d-block flex-sm-nowrap">
+        <a class="navbar-brand" href="#">${sessionScope.kname}${sessionScope.name}ë‹˜</a>
+        
+        <div class="collapse navbar-collapse text-center" id="navbarsExample11">
+            <ul class="navbar-nav">
+               <c:if test="${sessionScope.t_num ne null }">
+                <li class="nav-item active">
+                    <a class="nav-link" href="teamInfo?t_num=${sessionScope.t_num }">íŒ€ ì •ë³´</a>
+                </li>
+                </c:if>
+                <c:if test="${sessionScope.t_num eq null }">
+                <li class="nav-item">
+                 <a class="nav-link" href="teamMake">íŒ€ ìƒì„±</a>
+              </li>
+              </c:if>
+              <c:if test="${sessionScope.t_num ne null }">
+             <li class="nav-item">
+                 <a class="nav-link" href="teamInvite?t_num=${sessionScope.t_num }">íŒ€ ì´ˆëŒ€</a>
+             </li>
+             </c:if>
+             <c:if test="${sessionScope.t_num ne null }">
+             <li class="nav-item">
+                 <a class="nav-link" href="teamGallery?t_num=${sessionScope.t_num }">íŒ€ê°¤ëŸ¬ë¦¬</a>
+             </li>
+             </c:if>
+             <c:if test="${sessionScope.t_num ne null }">
+             <li class="nav-item">
+                 <a class="nav-link" href="teamNotice?t_num=${sessionScope.t_num }">íŒ€ ê³µì§€</a>
+             </li>
+             </c:if>
+             <li class="nav-item">
+                 <a class="nav-link" href="http://localhost/MatchFootball/teamList">íŒ€ ë¦¬ìŠ¤íŠ¸</a>
+             </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+   <div align="center">
+      <div>
+         <h1>íŒ€ ê³µì§€ ìˆ˜ì •</h1>
+      </div>
+      <hr />
+   </div>
+   
+   
+   <div>
+   <form action="teamNoticeUpdatee" method="post"
 		encType="multipart/form-data">
 		<article>
-			<div class="container" role="main">
+			<div class="container" role="main" style="width: 500px">
 					<div class="mb-3">
-						<label for="title">Á¦¸ñ</label> <input type="text"
+						<label for="title">ì œëª©</label> <input type="text"
 							class="form-control" name="t_title" value="${teamNoticeInfo.t_title }"
-							placeholder="Á¦¸ñÀ» ÀÔ·ÂÇØ ÁÖ¼¼¿ä">
+							placeholder="ì œëª©ì„ ìž…ë ¥í•´ ì£¼ì„¸ìš”">
 					</div>
 					<div class="mb-3">
 
-						<label for="reg_id">ÀÛ¼ºÀÚ</label> <input type="text"
+						<label for="reg_id">ìž‘ì„±ìž</label> <input type="text"
 							class="form-control" name="t_id" id="reg_id" value="${sessionScope.id }"
-							placeholder="ÀÌ¸§À» ÀÔ·ÂÇØ ÁÖ¼¼¿ä" readonly>
+							placeholder="ì´ë¦„ì„ ìž…ë ¥í•´ ì£¼ì„¸ìš”" readonly>
 					</div>
 					<div class="mb-3">
-						<label for="content">³»¿ë</label>
+						<label for="content">ë‚´ìš©</label>
 						<textarea class="form-control" rows="5" name="t_content" 
-							id="content" placeholder="³»¿ëÀ» ÀÔ·ÂÇØ ÁÖ¼¼¿ä">${teamNoticeInfo.t_content }</textarea>
+							id="content" placeholder="ë‚´ìš©ì„ ìž…ë ¥í•´ ì£¼ì„¸ìš”">${teamNoticeInfo.t_content }</textarea>
 					</div>
 					<input type="text" name="t_num" value="${teamNoticeInfo.t_num }" style="display:none">
 					<input type="text" name="n_no" value="${teamNoticeInfo.n_no }" style="display:none">
 				<div>
-					<button type="submit" class="btn btn-sm btn-primary" id="btnSave">¼öÁ¤</button>
-					<button type="button" class="btn btn-sm btn-primary" id="btnList" onclick="history.back(-1)">Ãë¼Ò</button>
+					<button type="submit" class="btn btn-sm btn-primary" id="btnSave">ìˆ˜ì •</button>
+					<button type="button" class="btn btn-sm btn-primary" id="btnList" onclick="history.back(-1)">ì·¨ì†Œ</button>
 				</div>
 			</div>
 		</article>
 	</form>
+   </div>
 </body>
 </html>
