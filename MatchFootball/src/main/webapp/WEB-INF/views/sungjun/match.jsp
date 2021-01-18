@@ -128,7 +128,6 @@ p {
 .ss {
 	background-color: #314d9f;
 	color: white;
-	c: if>;
 	width: 130px;
 	border-radius: 50px;
 	padding-top: 7px;
