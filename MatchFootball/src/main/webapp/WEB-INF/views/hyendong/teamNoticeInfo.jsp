@@ -92,7 +92,7 @@
 }
 
 .helpTagWrap li:before {
-	content: '¡¤';
+	content: 'ï¿½ï¿½';
 	padding: 0 2px;
 	color: #999;
 }
@@ -101,24 +101,24 @@
 <body>
 	<ul class="hi">
 		<c:if test="${sessionScope.t_num ne null }">
-			<li><a href="teamInfo?t_num=${sessionScope.t_num }">ÆÀ Á¤º¸</a></li>
+			<li><a href="teamInfo?t_num=${sessionScope.t_num }">ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½</a></li>
 		</c:if>
 		<c:if test="${sessionScope.t_num eq null }">
-			<li><a href="teamMake">ÆÀ »ý¼º</a></li>
+			<li><a href="teamMake">ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½</a></li>
 		</c:if>
 		<c:if test="${sessionScope.t_num ne null }">
-			<li><a href="teamGallery?t_num=${sessionScope.t_num }">ÆÀ°¶·¯¸®</a></li>
+			<li><a href="teamGallery?t_num=${sessionScope.t_num }">ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</a></li>
 		</c:if>
 		<c:if test="${sessionScope.t_num ne null }">
-			<li><a href="teamNotice?t_num=${sessionScope.t_num }">ÆÀ °øÁö</a></li>
+			<li><a href="teamNotice?t_num=${sessionScope.t_num }">ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½</a></li>
 		</c:if>
 		<c:if test="${sessionScope.t_num ne null }">
-			<li><a href="teamInvite?t_num=${sessionScope.t_num }">ÆÀ ÃÊ´ë</a></li>
+			<li><a href="teamInvite?t_num=${sessionScope.t_num }">ï¿½ï¿½ ï¿½Ê´ï¿½</a></li>
 		</c:if>
-		<li><a href="http://localhost/MatchFootball/teamList">ÆÀ ¸®½ºÆ®</a></li>
+		<li><a href="http://localhost/MatchFootball/teamList">ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®</a></li>
 	</ul>
 	<div align="center">
-		<h1>ÆÀ °ø Áö</h1>
+		<h1>ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½</h1>
 		<hr>
 	</div>
 	<div class="contentWrapper" style="height: 643px">
@@ -133,21 +133,21 @@
 		</div>
 		<br>
 		<div style="float: left">
-			<input type="button" class="btn btn-primary" value="¸ñ·Ï" onclick="location.href='teamNotice?t_num=${teamInfo.t_num}'">
+			<input type="button" class="btn btn-primary" value="ï¿½ï¿½ï¿½" onclick="location.href='teamNotice?t_num=${teamInfo.t_num}'">
 		</div>
 		<div style="float: left; margin-left: 10px">
-			<c:if test="${updateButton.t_author eq 'ÆÀÀå' }">
+			<c:if test="${updateButton.t_author eq 'ï¿½ï¿½ï¿½ï¿½' }">
 				<form action="teamNoticeUpdate">
 					<input type="text" value="${teamInfo.t_num }" name="t_num" style="display: none"> <input type="text" value="${teamNoticeInfo.n_no }" name="n_no" style="display: none">
-					<button type="submit" class="btn btn-primary">¼öÁ¤</button>
+					<button type="submit" class="btn btn-primary">ï¿½ï¿½ï¿½ï¿½</button>
 				</form>
 			</c:if>
 		</div>
 		<div style="float: left; margin-left: 10px">
-			<c:if test="${updateButton.t_author eq 'ÆÀÀå' }">
+			<c:if test="${updateButton.t_author eq 'ï¿½ï¿½ï¿½ï¿½' }">
 				<form action="teamNoticeDelete" method="post">
 					<input type="text" value="${teamInfo.t_num }" name="t_num" style="display: none"> <input type="text" value="${teamNoticeInfo.n_no }" name="n_no" style="display: none">
-					<button type="submit" class="btn btn-primary">»èÁ¦</button>
+					<button type="submit" class="btn btn-primary">ï¿½ï¿½ï¿½ï¿½</button>
 				</form>
 			</c:if>
 		</div>

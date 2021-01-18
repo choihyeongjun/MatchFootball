@@ -54,24 +54,24 @@ li {
 <body>
 	<ul class="hi">
 	  		<c:if test="${sessionScope.t_num ne null }">
-			<li><a href="teamInfo?t_num=${sessionScope.t_num }">ÆÀ Á¤º¸</a></li>
+			<li><a href="teamInfo?t_num=${sessionScope.t_num }">ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½</a></li>
 			</c:if>
 			<c:if test="${sessionScope.t_num eq null }">
-			<li><a href="teamMake">ÆÀ »ý¼º</a></li>
+			<li><a href="teamMake">ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½</a></li>
 			</c:if>
 			<c:if test="${sessionScope.t_num ne null }">
-			<li><a href="teamGallery?t_num=${sessionScope.t_num }">ÆÀ°¶·¯¸®</a></li>
+			<li><a href="teamGallery?t_num=${sessionScope.t_num }">ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</a></li>
 			</c:if>
 			<c:if test="${sessionScope.t_num ne null }">
-			<li><a href="teamNotice?t_num=${sessionScope.t_num }">ÆÀ °øÁö</a></li>
+			<li><a href="teamNotice?t_num=${sessionScope.t_num }">ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½</a></li>
 			</c:if>
 			<c:if test="${sessionScope.t_num ne null }">
-			<li><a href="teamInvite?t_num=${sessionScope.t_num }">ÆÀ ÃÊ´ë</a></li>
+			<li><a href="teamInvite?t_num=${sessionScope.t_num }">ï¿½ï¿½ ï¿½Ê´ï¿½</a></li>
 			</c:if>
-			<li><a href="http://localhost/MatchFootball/teamList">ÆÀ ¸®½ºÆ®</a></li>
+			<li><a href="http://localhost/MatchFootball/teamList">ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®</a></li>
 	</ul>
 	<div align="center">
-		<h1>ÆÀ °ø Áö</h1>
+		<h1>ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½</h1>
 	</div>
 	<div class="topicList" style="height: 643px">
 		<c:forEach items="${teamNotice }" var="teamNotice">
@@ -83,8 +83,8 @@ li {
 		</c:forEach>
 	</div>
 	<div align="center">
-		<c:if test="${updateButton.t_author eq 'ÆÀÀå' }">
-		<button type="button" class="btn btn-primary" onclick="location.href='teamNoticeInsert?t_num=${teamInfo.t_num}'" >°øÁö µî·Ï</button>
+		<c:if test="${updateButton.t_author eq 'ï¿½ï¿½ï¿½ï¿½' }">
+		<button type="button" class="btn btn-primary" onclick="location.href='teamNoticeInsert?t_num=${teamInfo.t_num}'" >ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½</button>
 		</c:if>
 	</div>
 </body>
