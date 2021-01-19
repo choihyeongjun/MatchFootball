@@ -37,8 +37,8 @@ public interface SeemooMapper {
 	public int managerupdate(MembersVO vo);			// 매니저 수정
 	
 	
-	public List<ManagerapplyVO> managerapplyList(); // 매니저 승인|대기 전체조회
-	
+	public List<ManagerapplyVO> managerapplyList(); 	// 매니저 승인|대기 전체조회
+	public MembersVO managerapplyupdate(MembersVO vo);	// 매니저 권한 수정
 // ============================================================================================
 	
 	public List<NoticeVO> noticeList(); 			// 공지사항조회

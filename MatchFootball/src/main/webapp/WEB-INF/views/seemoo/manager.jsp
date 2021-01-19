@@ -19,6 +19,28 @@ $(function(){
 	managerUpdate();
 });
 
+
+
+function managerUpdate() {
+	//업데이트 버튼 클릭
+	$('main').on('click','#btnUpdate',function(){
+		var userId = $(event.target).closest('tr').find('#hidden_userId').val();
+		var author = $(event.target).closest('tr').find("#author").val();
+		var result = confirm(userId +"를 "+ author +"로 수정 하시겠습니까?");
+		if(result) {
+			$.ajax({
+				url:'../managerupdate',
+				data : {id : userId, author: author},
+				dataType:'json',
+				error:function(xhr,status,msg){
+					console.log("상태값 :" + status + " Http에러메시지 :"+msg);
+				}, success: location.reload() 
+			});
+		}//if
+	}); //업데이트 버튼 클릭
+}//managerupdate
+
+
 //사용자 목록 조회 요청
 function managerList() {
 	$.ajax({
@@ -60,25 +82,6 @@ function managerListResult(data) {
 	});//each
 	$('#dataTable').DataTable();
 }//managerListResult
-
-function managerUpdate() {
-	//업데이트 버튼 클릭
-	$('main').on('click','#btnUpdate',function(){
-		var userId = $(event.target).closest('tr').find('#hidden_userId').val();
-		var author = $(event.target).closest('tr').find("#author").val();
-		var result = confirm(userId +"를 "+ author +"로 수정 하시겠습니까?");
-		if(result) {
-			$.ajax({
-				url:'../managerupdate',
-				data : {id : userId, author: author},
-				dataType:'json',
-				error:function(xhr,status,msg){
-					console.log("상태값 :" + status + " Http에러메시지 :"+msg);
-				}, success: location.reload() 
-			});
-		}//if
-	}); //업데이트 버튼 클릭
-}//managerupdate
 
 </script>
 

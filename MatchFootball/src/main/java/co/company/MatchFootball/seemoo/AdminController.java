@@ -148,7 +148,9 @@ public class AdminController {
 		 seemoomapper.managerupdate(vo);
 		 return vo;
 	}
-	
+
+//	====================================================매니저 신청 권한======================================================
+
 	@RequestMapping(value = "/applymanager/ajax", method = RequestMethod.GET) // 매니저(매니저 신청|승인대기)관리 페이지 (ajax로 전체조회)
 	@ResponseBody	
 	public List<ManagerapplyVO> applymanagerlist(Model model, HttpServletRequest request, HttpServletResponse reponse) {
@@ -159,6 +161,13 @@ public class AdminController {
 	public String applymanager(Model model, ManagerapplyVO vo, HttpServletRequest request, HttpServletResponse reponse) {
 		model.addAttribute("managerapplys", seemoomapper.managerapplyList());
 		return "seemoo/applymanager";
+	}
+	
+	@RequestMapping(value = "/managerapplyupdate", method = RequestMethod.GET) // 매니저관리 페이지 (수정)
+	@ResponseBody
+	public MembersVO managerapplyUpdate(MembersVO vo) {
+		 seemoomapper.managerapplyupdate(vo);
+		 return vo;
 	}
 	
 //	============================================================================================================================
