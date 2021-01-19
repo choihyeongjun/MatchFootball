@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>공지 등록</title>
+<title>공지 수정페이지</title>
 
 <style>
 label { font-size: 22px}
@@ -92,9 +92,9 @@ footer {
                
                <input type="text" name="t_num" value="${teamNoticeInfo.t_num }" style="display:none">
                <input type="text" name="n_no" value="${teamNoticeInfo.n_no }" style="display:none">
-            <div>
-               <button type="submit" class="btn btn-sm btn-primary" id="btnSave">수정</button>
-               <button type="button" class="btn btn-sm btn-primary" id="btnList" onclick="history.back(-1)">취소</button>
+            <div style="margin: auto; text-align: center;">
+               <button type="submit" class="btn btn-primary" id="btnSave">수정</button>
+               <button type="button" class="btn btn-danger" id="btnList" onclick="history.back(-1)">취소</button>
             </div>
          </div>
       </article>

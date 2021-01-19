@@ -88,7 +88,7 @@ footer {
                   <textarea class="form-control" rows="5" name="t_content" id="content" placeholder="내용을 입력해 주세요" style="height: 250px"></textarea>
                </div>
                
-               <input type="text" name="t_num" value="${teamInfo.t_num }">
+               <input type="text" name="t_num" value="${teamInfo.t_num }" style="display:none">
                <div align="center">   
                   <button type="submit" class="btn btn-primary" id="btnSave">등록</button>
                   <button type="button" class="btn btn-success" id="btnList">목록</button>

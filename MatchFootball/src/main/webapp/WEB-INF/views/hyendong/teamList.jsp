@@ -8,7 +8,6 @@
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
-<link rel="stylesheet" href="resources/css/teamMenu.css">
 <!-- CSS Files -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/dong1/assets/css/animate-3.7.0.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/dong1/assets/css/font-awesome-4.7.0.min.css">
@@ -19,7 +18,6 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/dong1/assets/css/style.css">
 
 <style>
-a { text-decoration: none; color: #ffffff }
 .size { width: 50px; height: 50px }
 
 #a2{   
@@ -40,7 +38,7 @@ a { text-decoration: none; color: #ffffff }
 #az{
    color: black;
 }
-.lili {
+.lili a {
     padding: 3px 0 3px 0;
     text-indent: -30px;
     line-height: 170%;
@@ -55,7 +53,7 @@ a { text-decoration: none; color: #ffffff }
 </style>
 </head>
 <body>
-	<div style="padding-bottom: 70px; height: 91%">
+	<div style="height: 86%">
 		<!-- 4 - contained in center example -->
 <nav class="navbar navbar-expand-xl navbar-dark bg-dark">
     <div class="mx-auto d-sm-flex d-block flex-sm-nowrap">
@@ -101,13 +99,12 @@ a { text-decoration: none; color: #ffffff }
 			<h3>팀 리스트</h3>
 			<hr>
 		</div>
-		<div class="progress-table" align="center"
-			style="margin-left: 570px; width: 50%">
+		<div class="progress-table" align="center" style="margin-left: 400px; width: 50%">
 			<div class="table-head" style="margin-right: 150px">
-				<div class="serial" align="left">#</div>
+				<div class="serial" align="left">No.</div>
 				<div class="serial" align="left" style="margin-left: 30px">팀명</div>
-				<div class="serial" align="left" style="margin-left: 120px">경기유형</div>
-				<div class="serial" align="left" style="margin-left: 140px">팀정보</div>
+				<div class="serial" align="left" style="margin-left: 90px; width: 120px;">경기유형</div>
+				<div class="serial" align="left" style="margin-left: 85px">팀정보</div>
 			</div>
 			<div class="aa">
 			<c:forEach items="${teamList }" var="teamList">
@@ -135,25 +132,18 @@ a { text-decoration: none; color: #ffffff }
 				}
 			</script>
 			<hr>
-			<div style="margin-left: 350px; color: black">
+			<div style="font-size: 20px; text-align: center; margin-left: 380px; }">
 				<my:paging paging="${paging}" jsfunc="goPage" />
 			</div>
 		</div>
 	</div>
 	<!-- Javascript -->
-	<script
-		src="${pageContext.request.contextPath}/resources/css/dong1/assets/js/vendor/jquery-2.2.4.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/css/dong1/assets/js/vendor/bootstrap-4.1.3.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/css/dong1/assets/js/vendor/wow.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/css/dong1/assets/js/vendor/owl-carousel.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/css/dong1/assets/js/vendor/jquery.datetimepicker.full.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/css/dong1/assets/js/vendor/jquery.nice-select.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/css/dong1/assets/js/main.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/css/dong1/assets/js/vendor/jquery-2.2.4.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/css/dong1/assets/js/vendor/bootstrap-4.1.3.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/css/dong1/assets/js/vendor/wow.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/css/dong1/assets/js/vendor/owl-carousel.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/css/dong1/assets/js/vendor/jquery.datetimepicker.full.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/css/dong1/assets/js/vendor/jquery.nice-select.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/css/dong1/assets/js/main.js"></script>
 </body>
 </html>

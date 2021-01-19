@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>팀공지페이지</title>
 
 <style>
 a:link { text-decoration: none; }
@@ -17,8 +17,8 @@ li { list-style: none; }
 .topicList ul li a { font-size: 16px; display: block; padding: 12px 0; word-break: keep-all; }
 .topicList ul li p { font-size: 12px; color: #999; }
 .topicList ul li h2 { font-size: 15px; font-weight: 400; letter-spacing: -0.4px; }
-#dataTable_filter{padding-left: 330px;}
-.pagination { display: flex; padding-left: 0; list-style: none; padding-left: 395px; }
+#dataTable_filter{padding-left: 265px;}
+.pagination { display: flex; padding-left: 0; list-style: none; padding-left: 362px; }
 footer {
    position: fixed;
    left: 0px;
@@ -76,9 +76,9 @@ footer {
       <div style="text-align: center;"> <h1>팀 공 지</h1> </div>
       <hr>
       
-      <div class="card mb-4" style="width: 1000px; margin: auto;">
+      <div class="card mb-4" style="width: 1000px; height: 600px; margin: auto;">
          <div class="card-header">
-            <i class="fas fa-table mr-1" style="margin-top: 10px"></i>
+            <i class="fas fa-table mr-1" style="margin-top: 10px">전체 공지사항</i>
          <div style="float: right;">
             <c:if test="${updateButton.t_author eq '팀장' }">
                <button type="button" class="btn btn-primary" onclick="location.href='teamNoticeInsert?t_num=${teamInfo.t_num}'" >공지 등록</button>
@@ -87,16 +87,16 @@ footer {
          </div>
          <div class="card-body">
             <div class="table-responsive">
-               <div class="container" style="float: left; height: 650px;">
+               <div class="container" style="float: left; height: 600px;">
                   <table class="table table-bordered" id="dataTable">
-                     <thead style="text-align: center;">
-                        <tr style="width: 10px">
+                     <thead align="center">
+                        <tr>
                            <th>No.</th>
                            <th>공지 제목</th>
                            <th>날짜</th>
                         </tr>
                      </thead>
-                        <tbody style="width: 10px">
+                        <tbody align="center">
                            <c:forEach var="teamNotice" items="${teamNotice}">
                               <tr>
                                  <td style='cursor:pointer;' onclick="location.href='teamNoticeInfo?n_no=${teamNotice.n_no }&t_num=${sessionScope.t_num}'">${teamNotice.n_no }</td>
