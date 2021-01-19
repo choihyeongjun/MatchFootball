@@ -81,4 +81,6 @@ public interface HyendongMapper {
 	public int twoWin(TournamentTeamVO tournamentTeamVO); //결승 진출 업뎃
 	public int threeWin(TournamentTeamVO tournamentTeamVO); //우승 업뎃
 	public int winTournament(MembersVO membersVO); //우승자 포인트 업뎃
+	
+	public int blackCancle(TeamVO teamVO); //팀 블랙 권한 취소
 }

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import co.company.MatchFootball.mapper.HyendongMapper;
 import co.company.MatchFootball.mapper.SeemooMapper;
 import co.company.MatchFootball.vo.FwboardVO;
 import co.company.MatchFootball.vo.ManagerapplyVO;
@@ -27,7 +28,7 @@ public class AdminController {
 
 	@Autowired
 	SeemooMapper seemoomapper;
-
+	HyendongMapper hyendongmapper;
 //	====================================================유저======================================================
 	
 	
@@ -275,4 +276,9 @@ public class AdminController {
 		return seemoomapper.rcommList(vo);
 	}
 	
+	@RequestMapping("/blackCancle") //블랙 권한 취소
+	public String blackCancle(TeamVO teamVO){
+		hyendongmapper.blackCancle(teamVO);
+		return "redirect:admin/blackteam";
+	}
 }

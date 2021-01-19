@@ -498,4 +498,9 @@
 		                                               on a.t_num=b.t_num where a.t_wn='우승' 
 		                                               and a.t_no=#{t_no} and b.t_author='팀장'))
 	</update>
+	
+	<!-- 블랙팀 팀권한 수정 -->
+	<update id="blackCancle">
+		update team set author from where t_num=#{t_num}
+	</update>
 </mapper>
