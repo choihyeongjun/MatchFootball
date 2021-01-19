@@ -75,4 +75,5 @@ public interface HyendongMapper {
 	public int teamMatchDelete(TeammatchVO teammatchVO); //팀매치 신청 삭제
 	
 	public MembersVO avgAge(MembersVO membersVO); //팀 평균 나이
+	public MembersVO scoutInvite(MembersVO membersVO); //스카웃 테이블 있고없고 셀렉트
 }

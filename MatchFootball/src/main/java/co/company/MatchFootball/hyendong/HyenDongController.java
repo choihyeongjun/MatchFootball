@@ -2,11 +2,14 @@ package co.company.MatchFootball.hyendong;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Enumeration;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpSessionContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,7 +37,14 @@ import co.company.MatchFootball.vo.TournamentVO;
 public class HyenDongController {
 	@Autowired
 	HyendongMapper hyendongMapper;
-
+	
+	@RequestMapping("/mainmenu")
+	public String mainMenu(HttpSession session, MembersVO membersVO) {
+		membersVO = hyendongMapper.scoutInvite(membersVO);
+		session.setAttribute("scout", membersVO.getSel());
+		System.out.println(membersVO.getSel());
+		return "";
+	}
 	// 팀생성
 	@RequestMapping("/teamMake")
 	public String teamMake(HttpServletRequest request, TeamVO teamVO, MembersVO membersVO, HttpSession session,
@@ -42,6 +52,8 @@ public class HyenDongController {
 		String id = (String) session.getAttribute("id");
 		membersVO.setId(id);
 		model.addAttribute("member", hyendongMapper.memberSelect(membersVO));
+		membersVO = hyendongMapper.scoutInvite(membersVO);
+		session.setAttribute("scout", membersVO.getSel());
 		return "hyendong/teamMake";
 	}
 
@@ -438,6 +450,8 @@ public class HyenDongController {
 		model.addAttribute("count", hyendongMapper.selectCount(teamlistVO));
 		membersVO.setT_num("2");
 		model.addAttribute("avgAge", hyendongMapper.avgAge(membersVO));
+		membersVO = hyendongMapper.scoutInvite(membersVO);
+		session.setAttribute("scout", membersVO.getSel());
 		return "hyendong/teamList";
 	}
 

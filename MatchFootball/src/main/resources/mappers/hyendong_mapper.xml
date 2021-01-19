@@ -467,4 +467,12 @@
 		delete from teammatch 
 		where m_no=#{m_no}
 	</delete>
+	
+	<!-- 스카웃 있고없고 -->
+	<select id="scoutInvite" resultType="membersVO">
+		select t.id, nvl((select 1 from comeinvite
+    					  where id=t.id), 0) as sel
+		from members t
+		where t.id = #{id}
+	</select>
 </mapper>
