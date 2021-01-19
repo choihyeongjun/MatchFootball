@@ -16,7 +16,7 @@ $(function() {
 
 </script>
 <body>
-<form id="msgFrm" action="sendmsg" method="post">
+<form id="msgFrm" action="${pageContext.request.contextPath}/sendmsg" method="post">
 <table style="align-content: center;" border="1">
 <tr>
 <td><input type ="hidden" name="m_no" value="${msg.m_no}" style="display:none;"><input type ="hidden" name="send_id" value="${msg.send_id}" style="display:none;"></td>
@@ -29,7 +29,7 @@ $(function() {
 </td>
 </tr>
 <tr>
-<td colspan="3" align="center"><button type="submit">보내기</button> <button type="reset" >취소</button> </td>
+<td colspan="3" align="center"><button type="submit" class="btn btn-primary float-right send-message">보내기</button> <button type="reset" >취소</button> </td>
 </tr>
 </table>
 </form>

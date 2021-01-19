@@ -40,8 +40,8 @@
                                     <div class="mt-3">
                                     <br>
                                        <h4 style="font-family: 'NanumSquareRound';">${mb.name}</h4>
-                                    <br>   <p class="text-secondary mb-1">활동 지역 : ${mb.location2}</p>
-                                    <br>   <p class="text-muted font-size-sm">포지션 : ${mb.pos} 연령대 : ${kage}</p>
+                                    <br>   <p class="text-secondary mb-1">활동 지역 : ${mb.location2}
+                                    <br>   포지션 : ${mb.pos} <br>연령대 : ${kage}</p>
                                     <br>   <a href="userupdate"><button class="btn btn-primary">수정</button>
                                        </a>
                                        <button class="btn btn-outline-primary" onclick="location.href='../message'">Message</button>

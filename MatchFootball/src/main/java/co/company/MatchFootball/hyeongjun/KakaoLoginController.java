@@ -62,15 +62,12 @@ public class KakaoLoginController {
       session.setAttribute("kage", kage);
       mb.setId((String)session.getAttribute("kemail"));
       
-      mb = dao.getUser(mb);
-      System.out.println("내포인트:"+mb.getPoint());
-      session.setAttribute("mb", mb);
-      session.setAttribute("point", mb.getPoint());
-      
-      if(!mb.getPoint().equals("")) {
+      if(dao.getUser(mb)!=null) {
+    	  session.setAttribute("point", dao.getUser(mb).getPoint());
+    	  session.setAttribute("author", dao.getUser(mb).getAuthor());
     	  mav.setViewName("redirect:/match");    	  
       }else {
-    	 mav.setViewName("doeun/pfUpdate");    	  
+    	 mav.setViewName("doeun/pfUpdate");   
       }
     	  
       

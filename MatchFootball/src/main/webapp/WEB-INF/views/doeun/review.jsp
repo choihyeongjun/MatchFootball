@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>경기참가내역</title>
+<title>개인경기 이력</title>
 
 <link rel="shortcut icon" href="/heunheuntrip/img/favicon.ico">
 <link rel="stylesheet"

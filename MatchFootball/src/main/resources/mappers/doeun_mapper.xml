@@ -2,10 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="co.company.MatchFootball.mapper.DoeunMapper"> 
+<mapper namespace="co.company.MatchFootball.mapper.DoeunMapper">
 
 	<!-- <insert id="payMent" parameterType="paymentVO" > insert into payment 
-	values(id=#{id},p_no=#{p_no},#{p_price},#{p_date}) </insert> -->
+		values(id=#{id},p_no=#{p_no},#{p_price},#{p_date}) </insert> -->
 	<!-- 프로필 조회 -->
 	<select id="getUser" parameterType="MembersVO"
 		resultType="MembersVO">
@@ -16,66 +16,74 @@
 	<!-- 프로필 등록 -->
 	<insert id="insertMem" parameterType="MembersVO">
 		insert into members(
-		id,
-		name,
-		gender,
-		postcode,
-		location1,
-		location2,
-		pnum,
-		email,
-		birth,
-		img,
-		lv,
-		pos,
-		author2,point
-		)
-		values(
-		#{id},#{name},#{gender},#{postCode},#{location1},#{location2},#{pnum},#{email},#{birth},#{img},#{lv},#{pos},
-		#{author2},0
+				id,
+				name,
+				gender,
+				postcode,
+				location1,
+				location2,
+				pnum,
+				email,
+				birth,
+				img,
+				lv,
+				pos,
+				author2,point
+		) values(
+				#{id},
+				#{name},
+				#{gender},
+				#{postCode},
+				#{location1},
+				#{location2},
+				#{pnum},
+				#{email},
+				#{birth},
+				#{img},
+				#{lv},
+				#{pos},
+				#{author2},
+				0
 		)
 	</insert>
 
 	<update id="upMem" parameterType="MembersVO">
 		update members
-		set
-		name=#{name},
-		gender=#{gender},
-		postcode=#{postCode},
-		location1=#{location1},
-		location2=#{location2},
-		pnum=#{pnum},
-		email=#{email},
-		birth=#{birth},
-		img=#{img},
-		lv= #{lv},
-		pos=#{pos},
-		author2 = #{author2}
+		set name = #{name},
+			gender = #{gender},
+			postcode = #{postCode},
+			location1 = #{location1},
+			location2 = #{location2},
+			pnum = #{pnum},
+			email = #{email},
+			birth = #{birth},
+			img = #{img},
+			lv = #{lv},
+			pos = #{pos},
+			author2 = #{author2}
 		where id = #{id}
 	</update>
 
 	<!-- 멤버 포인트 업데이트 -->
-<update id="Mypoint" parameterType="PointVO" >
-	update members m
-	set    m.point = (select nvl(sum(p.NPOINT), 1) from point p where p.p_id = m.id)
-    where id = #{p_id} 
-</update>
+	<update id="Mypoint" parameterType="PointVO">
+		update members m
+		set m.point = (select nvl(sum(p.NPOINT), 1) from point p 
+		               where p.p_id = m.id)
+		where id = #{p_id}
+	</update>
 	<!-- 메세지 보내기 -->
 	<insert id="sendMsg" parameterType="MessageVO">
-		insert into message 
-		(m_no, to_id, send_id, m_title, m_con)
-		values(mno_seq.nextval, #{to_id},#{send_id}, #{m_title}, #{m_con})
+		insert into message (m_no, to_id, send_id, m_title, m_con)
+		values(mno_seq.nextval, #{to_id}, #{send_id}, #{m_title}, #{m_con})
 	</insert>
 	<!-- 수신 메세지함 확인 -->
-	<select id="tomsgList" parameterType="MessageVO"
-		resultType="MessageVO">
+	<select id="tomsgList" parameterType="MessageVO" resultType="MessageVO">
 
 		select * from( select a.*, rownum rn from (
-		select * from
-		message
-		where to_id = #{to_id} order by m_no desc
-		) a ) b where rn
-		between #{first} and #{last}
+			select * from message
+			where to_id = #{to_id} order by m_no desc
+		) a ) b 
+		where rn between #{first} and #{last}
 	</select>
 	<!-- 메세지 삭제 -->
 	<delete id="delMsg" parameterType="MessageVO">
@@ -92,24 +100,23 @@
 	<!-- 발신 메세지함 확인 -->
 	<select id="sendmsgList" parameterType="MessageVO"
 		resultType="MessageVO">
-		select * from( select a.*, rownum rn from (
-		select m_no,
-		to_id, send_id, m_title, m_con, o_date,
-		TO_CHAR(s_date,'mm-dd
-		HH24:MI:SS'),m_check from message
-		where send_id = #{send_id} order by m_no desc
-		) a ) b where rn between
-		#{first} and #{last}
+		select * from( select a.*, rownum rn 
+		  from (select m_no, to_id, send_id, m_title, m_con, o_date, TO_CHAR(s_date,'mm-dd HH24:MI:SS'),m_check 
+		        from message
+		        where send_id = #{send_id} order by m_no desc
+		) a ) b 
+		where rn between #{first} and #{last}
 	</select>
 	<!-- 포인트 충전 결제 등록 -->
 	<insert id="Pcharge" parameterType="PointVO">
-		insert into
-		point(p_seq,p_id,p_pay,npoint,p_date,p_con)
+		insert into point(p_seq,p_id,p_pay,npoint,p_date,p_con)
 		values(point_seq.nextval,#{p_id},#{p_pay},#{npoint},sysdate,#{p_con})
 	</insert>
 	<!-- 포인트 충전시 쿠폰 자동 등록 -->
 	<insert id="Autocpup" parameterType="CuponVO">
-		insert into coupon(c_no,m_id, c_title, c_num) values(cu_seq.nextval,#{m_id},#{c_title}, #{c_num})
+		insert into
+		coupon(c_no,m_id, c_title, c_num)
+		values(cu_seq.nextval,#{m_id},#{c_title}, #{c_num})
 	</insert>
 	<!-- 포인트 내역조회 -->
 	<select id="pointList" parameterType="PointVO"
@@ -121,10 +128,20 @@
 		#{last}
 	</select>
 	<!-- 쿠폰 조회 -->
-	<select id="selectCp" parameterType="CuponVO" resultType="CuponVO">
-	select c_no,m_id, c_title, c_num, to_char(c_edate,'YYYY/MM/DD')
-	 from coupon where m_id=#{m_id} order by c_edate DESC
+	<select id="selectCp" parameterType="CuponVO"
+		resultType="CuponVO">
+		select c_no,m_id, c_title, c_num,
+		TO_CHAR(c_edate,'YYYY/MM/DD') as c_edate,
+		c_check
+		from coupon where
+		m_id=#{m_id} order by c_edate DESC
 	</select>
+	<!-- 쿠폰 유효 기간 경과시 사용불가 -->
+	<update id="unusedCp" parameterType="CuponVO">
+		update coupon set c_check = 'O' 
+		where <![CDATA[c_edate < SYSDATE+1]]>
+		and c_check = 'N'
+	</update>
 	<select id="getPoCnt" resultType="int">
 		SELECT COUNT(*) FROM point
 		where p_id=#{p_id}
@@ -141,28 +158,47 @@
 	</update>
 
 	<!-- 개인 경기 이력 조회 -->
- 	<!-- <select id="p_matchedList" parameterType="P_matchVO" resultType="P_matchVO">	</select>  -->
- 	
- 	
+	<!-- <select id="p_matchedList" parameterType="P_matchVO" resultType="P_matchVO"> 
+		</select> -->
+
+
 	<select id="getPmatCnt" resultType="int">
 		SELECT COUNT(*) FROM p_match
 		where m_id=#{m_id}
 	</select>
-	<!-- 개인매칭 신청내역 조회 -->
-	<select id="AppPmatList" parameterType="P_matchVO" resultType="P_matchVO">
+
+
+	<select id="AppPmatList" parameterType="P_matchVO"
+		resultType="P_matchVO">
 		select * from( select a.*, ROWNUM RN from (
-		select * from p_match where m_id=#{m_id} order by m_date 
-		) a ) b where RN between #{first} and
+			select * from
+			p_match pm join PPLAYERS pp on pm.m_no = pp.m_no where
+			pp.id=#{m_id} order by m_date
+		) a ) b where RN between #{first} and #{last}
+	</select>
+
+	<!-- 팀매칭 신청내역 조회 -->
+	<select id="AppTmatList" parameterType="TeammatchVO"
+		resultType="map">
+		select * from( select a.*, rownum rn from (
+		select t.* from
+		TEAMMATCH t join
+		players p on t.t_num = p.t_num where p.id= #{id} order
+		by m_date
+		) a ) b where rn between #{first} and
 		#{last}
 	</select>
-		<!-- 팀매칭 신청내역 조회 -->
-	<select id="AppTmatList" parameterType="TeammatchVO" resultType="map">
-	select * from( select a.*, rownum rn from (
-		select t.* from TEAMMATCH t join players p on t.t_num = p.t_num where p.id= #{id} order by m_date 
-		) a ) b where rn between #{first} and
-		#{last}	
+	<select id="getTmatCnt" resultType="int">
+		SELECT COUNT(*) from
+		TEAMMATCH t join players p on t.t_num = p.t_num where p.id= #{id}
+		order by m_date
 	</select>
-<select id="getTmatCnt" resultType="int">
-		SELECT COUNT(*) from TEAMMATCH t join players p on t.t_num = p.t_num where p.id= #{id} order by m_date 
-	</select>
+
+	<!-- 프로시저 -->
+	<insert id="delPMatchProc" statementType="CALLABLE">
+		{call DEL_P_MATCH_PROC(
+			#{p_id}, 
+			#{m_no}
+		)}
+	</insert>
 </mapper>

@@ -32,7 +32,9 @@ public interface DoeunMapper {
 	public int Pcharge(PointVO pay); // 포인트 충전
 	public int Autocpup(CuponVO cp);// 충전 시 쿠폰 자동 등록
 	public List<CuponVO> selectCp(CuponVO cp); // 내 쿠폰 조회
+	public int unusedCp(CuponVO cp);// 쿠폰 유효기간 경과시 사용불가로 변경
 	public int Mchg(MessageVO msg);// 받은 메세지 확인 시 수신여부 변경
 	public void Mypoint(PointVO point);//내 포인트 업데이트?
+	public void delPMatchProc(P_matchVO pmat);
 	
 }
