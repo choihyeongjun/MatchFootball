@@ -62,18 +62,10 @@ public class KakaoLoginController {
       session.setAttribute("kage", kage);
       mb.setId((String)session.getAttribute("kemail"));
       
-<<<<<<< HEAD
       if(dao.getUser(mb)!=null) {
     	  session.setAttribute("point", dao.getUser(mb).getPoint());
-    	  session.setAttribute("author", dao.getUser(mb).getAuthor());
-=======
-     // mb = dao.getUser(mb);
-    //  System.out.println("내포인트:"+mb.getPoint());
-      //session.setAttribute("mb", mb);
-    //  session.setAttribute("point", mb.getPoint());
-      
-      if(dao.getUser(mb) != null) {
->>>>>>> branch 'master' of https://github.com/tjdwns631/MatchFootball.git
+    session.setAttribute("author", dao.getUser(mb).getAuthor());
+
     	  mav.setViewName("redirect:/match");    	  
       }else {
     	 mav.setViewName("doeun/pfUpdate");   
