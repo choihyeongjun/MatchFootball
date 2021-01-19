@@ -2,6 +2,9 @@ package co.company.MatchFootball.doeun;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,6 +18,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -37,7 +41,6 @@ public class DoeunController {
 
 	@RequestMapping("mypage/profile") // 프로필(메인마이페이지)
 	public String profile(MembersVO mb, Model model, HttpSession session, HttpServletResponse response) {
-
 		mb.setId((String) session.getAttribute("id")); // test용
 		mb.setName((String) session.getAttribute("kname"));
 		mb.setPoint((String) session.getAttribute("point"));
@@ -78,6 +81,7 @@ public class DoeunController {
 				vo.setImg(multipartFile.getOriginalFilename());
 			}
 			dao.insertMem(vo);
+			session.setAttribute("point", dao.getUser(vo).getPoint());
 
 		} else {
 
@@ -115,7 +119,7 @@ public class DoeunController {
 		mb.setId((String) session.getAttribute("id"));
 		mb.setPoint((String) session.getAttribute("point"));
 		model.addAttribute("mb", dao.getUser(mb));
-//		request.setAttribute("point", dao.getUser(mvo));
+		session.setAttribute("point", mb.getPoint());
 		return new ModelAndView("doeun/Pay");
 	}
 
@@ -136,9 +140,7 @@ public class DoeunController {
 	public String tomsgList(MembersVO mb, MessageVO msg, Model model, HttpSession session, Paging paging,
 			HttpServletRequest request) {
 		mb.setId((String) session.getAttribute("id"));// 테스트용
-		
 		msg.setTo_id(mb.getId());
-		
 		paging.setPageUnit(16);
 		paging.setPageSize(10);
 		msg.setFirst(paging.getFirst());
@@ -170,28 +172,11 @@ public class DoeunController {
 			HttpServletRequest request) {
 		msg.setTo_id((String) session.getAttribute("id")); // 카카오
 		model.addAttribute("msg", dao.viewMsg(msg));
-		dao.sendMsg(msg);
 		return new ModelAndView("no/doeun/sendmsg");
 	}	
 
-	
-//	@ResponseBody
-//	@RequestMapping(value = "mypage/msg/ajax")
-//	public List<MessageVO> tomsgList(MembersVO mem, MessageVO msg, Model model, HttpSession session, Paging paging) {
-//		mem.setId((String)session.getAttribute("id"));
-//		msg.setTo_id(mem.getId());		
-//		paging.setPageUnit(16);
-//		paging.setPageSize(10);
-//		msg.setFirst(paging.getFirst());
-//		msg.setLast(paging.getLast());
-//		paging.setTotalRecord(dao.getCount1(msg));
-//		model.addAttribute("paging", paging);
-//		return dao.tomsgList(msg);
-//	}
-
-	@ResponseBody
-	@RequestMapping(value = "mypage/sendmsg/ajax") // 보낸 메세지 함
-	public List<MessageVO> sendmsgList(MembersVO mem, MessageVO msg, Model model, HttpSession session, Paging paging) {
+	@RequestMapping(value = "mypage/outmsg") // 보낸 메세지함
+	public String OpMsg(MembersVO mem, MessageVO msg, Model model, HttpSession session, Paging paging) {
 		mem.setId((String) session.getAttribute("id"));
 		msg.setSend_id(mem.getId());
 		paging.setPageUnit(16);
@@ -201,11 +186,7 @@ public class DoeunController {
 		paging.setTotalRecord(dao.getCount2(msg));
 		model.addAttribute("paging", paging);
 		model.addAttribute("msg", dao.sendmsgList(msg));
-		return dao.sendmsgList(msg);
-	}
-
-	@RequestMapping(value = "mypage/outmsg") // 보낸 메세지함
-	public String OpMsg() {
+		
 		return "doeun/OutMessage";
 	}
 
@@ -239,7 +220,7 @@ public class DoeunController {
 	}
 
 	@RequestMapping(value = "mypage/matching") // 개인경기참가내역
-	public String p_matchList(P_matchVO pmc, Model model, HttpSession session, Paging paging) {
+	public String p_matchList(P_matchVO pmc, Model model, HttpSession session, Paging paging) throws ParseException {
 		pmc.setM_id((String) session.getAttribute("id"));
 		paging.setPageUnit(5);
 		paging.setPageSize(10);
@@ -248,6 +229,29 @@ public class DoeunController {
 		paging.setTotalRecord(dao.getPmatCnt(pmc));
 		model.addAttribute("paging", paging);
 		model.addAttribute("p_mat", dao.AppPmatList(pmc));
+		
+//		// 포맷 설정
+//		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//		Date currentTime = new Date();
+//		String date = format.format(currentTime);
+//
+//		String end_dt = (String)session.getAttribute(pmc.getM_date());
+//
+//		Date endDate = format.parse(end_dt);
+//		Date todate = format.parse(date);
+//
+//		System.out.println("endDate:" + endDate);
+//		System.out.println("todate:" + todate);
+//		int compare = endDate.compareTo(todate);
+//
+//		System.out.println("compare:"+ compare);
+//
+//		if(compare >= 0) {
+//		System.out.println("사용가능");
+//		model.addAttribute("endDate",compare);
+//		} else {
+//		System.out.println("유효기간만료");
+//		}
 		System.out.println(dao.AppPmatList(pmc));
 		return "doeun/PApplyDetail";
 	}
@@ -272,14 +276,14 @@ public class DoeunController {
 
 	}
 
-//	@RequestMapping(value = "mypage/matched") // 경기참가 이력
-//	public String AppTmatList(P_matchVO pmc, Model model, HttpSession session, Paging paging) {
+	@RequestMapping(value = "mypage/matched") // 경기참가 이력
+	public String AppTmatList(P_matchVO pmc, Model model, HttpSession session, Paging paging) {
 //		List<Map<String,Object>> map = new ArrayList<Map<String, Object>>();
 //		model.addAttribute("p_mat", dao.p_matchedList(pmc));
 //		map.put("tmat", dao.AppTmatList(tmat));
-//		
-//		return "doeun/review";
-//	}
+		
+		return "doeun/review";
+	}
 	@RequestMapping(value = "mypage/usedPoint") // 포인트 사용내역
 	public String pointed(MembersVO mem, PointVO po, Model model, HttpSession session, Paging paging) {
 		po.setP_id((String) session.getAttribute("id"));
@@ -310,5 +314,13 @@ public class DoeunController {
 		
 		return "doeun/MyWriter";
 	}
-
+	@RequestMapping(value="mypage/matching/del", method=RequestMethod.GET)
+	public void delPMatchProc(P_matchVO pmat, Model model, HttpSession session, HttpServletRequest request) {
+		pmat.setP_id((String) session.getAttribute("id"));
+		pmat.setM_no(request.getParameter("m_no"));
+		
+		dao.delPMatchProc(pmat);
+	}
+	
+	
 }

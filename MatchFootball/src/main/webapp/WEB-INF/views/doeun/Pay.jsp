@@ -81,10 +81,10 @@ String tel = (String) session.getAttribute("point.pnum");
             console.log(rsp);
             if (rsp.success) {
                 var msg = '결제가 완료되었습니다.';
-                msg += '고유ID : ' + rsp.imp_uid;
-                msg += '상점 거래ID : ' + rsp.merchant_uid;
-                msg += '결제 금액 : ' + rsp.paid_amount;
-                msg += '카드 승인번호 : ' + rsp.apply_num;
+            //    msg += '고유ID : ' + rsp.imp_uid;
+            //    msg += '상점 거래ID : ' + rsp.merchant_uid;
+             //   msg += '결제 금액 : ' + rsp.paid_amount;
+             //   msg += '카드 승인번호 : ' + rsp.apply_num;
            		                
            		var npoint = money;	//구매한 포인트
            		var p_pay = money;		// 결제 금액
@@ -105,6 +105,7 @@ String tel = (String) session.getAttribute("point.pnum");
                     	//alert("ajax성공");
                     	pointUp();
                     	cuponUp();
+                    	location.reload();
                     },
                     error:function(response){
                     	console.log("ajax에러",response);
@@ -162,6 +163,7 @@ String tel = (String) session.getAttribute("point.pnum");
                   },
                  success : function(response){
                  	//alert("쿠폰성공");
+                 	
                  	console.log("success1111", response)
                  },
                  error:function(response){

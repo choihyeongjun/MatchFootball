@@ -116,7 +116,6 @@
          <groupId>com.oracle.ojdbc</groupId>
          <artifactId>ojdbc10</artifactId>
          <version>19.3.0.0</version>
-         
          <exclusions>
             <exclusion>
                <groupId>com.oracle.database.ha</groupId>
@@ -127,7 +126,6 @@
                <artifactId>ons</artifactId>
             </exclusion>
          </exclusions>
-         
       </dependency>
 
       <!-- https://mvnrepository.com/artifact/com.oracle.database.security/oraclepki -->
@@ -213,13 +211,7 @@
          <artifactId>mybatis-spring</artifactId>
          <version>2.0.6</version>
       </dependency>
-      <!-- ORACLE JDBC -->
-      <dependency>
-         <groupId>com.oracle.ojdbc</groupId>
-         <artifactId>ojdbc8</artifactId>
-         <version>19.3.0.0</version>
-      </dependency>
-
+    
       <!-- junit -->
       <dependency>
          <groupId>junit</groupId>
