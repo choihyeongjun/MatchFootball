@@ -20,7 +20,7 @@
    </select>
    
    <select id="invitestore" parameterType="inviteVO" resultType="inviteVO">
-      insert into invite value(#{id},sysdate,#{comm},#{check1})
+      insert into invite value(#{id},sysdate+9/24,#{comm},#{check1})
    </select>
    <select id="login" resultType="membersVO">
       select *
@@ -39,9 +39,7 @@
    from rfield
    where f_id=#{f_id}
    </select>
-   <select id="fielddetailinsert" parameterType="rfieldVO" resultType="rfieldVO">
-   		insert into rfield(f_id,starttime,endtime,title,type,backgroundcolor,comm,id,m_id) values(#{f_id},#{starttime},#{endtime},#{title},#{type},#{backgroundcolor},#{comm},#{id},#{m_id})
-   </select>
+ 
    <select id="fboardlist" resultType="fboardVO">
    	 select f.* 
    <if test="id !=null"> 
@@ -52,10 +50,8 @@
  		</if>
  		 from fboard f
    </select>
-   <select id="fielddetailupdate" parameterType="rfieldVO" resultType="rfieldVO">
-   		update rfield set starttime=#{starttime},endtime=#{endtime} where title=#{title}
-   </select>
-   <select id="fielddetailupdate1" parameterType="rfieldVO" resultType="rfieldVO">
+  
+   <select id="fielddetailupdate1" parameterType="rfieldVO" >
    		update rfield set starttime=#{starttime},endtime=#{endtime},comm=#{comm},type=#{type},backgroundcolor=#{backgroundcolor} where title=#{title}
    </select>
    <select id="fielddetaildelete" resultType="rfieldVO">
@@ -138,6 +134,9 @@
  		where num=#{num}
  		and id=#{id}
  	</select>
+ 	<select id="fielddetailinsert" parameterType="rfieldVO" resultType="rfieldVO">
+   		insert into rfield(f_id,starttime,endtime,title,type,backgroundcolor,comm,id,m_id,m_no) values(#{f_id},#{starttime},#{endtime},#{title},#{type},#{backgroundcolor},#{comm},#{id},#{m_id},#{m_no})
+   </select>
 	<insert id="teammatchinsert" parameterType="teammatchVO">
 	<selectKey order="BEFORE" keyProperty="m_no" resultType="string">
 	select tmatch_seq.nextval from dual
@@ -146,10 +145,13 @@
 	
 	values(#{m_no},#{t_num},#{mtype},#{f_name},#{f_address},#{price},#{t_name},#{t_cap},#{t_level},#{m_info},#{m_date},#{m_hour},'모집',#{id}) 
 	</insert>
-	<select id="pmatchinsert" parameterType="P_matchVO">
+	<insert id="pmatchinsert" parameterType="p_matchVO">
+	<selectKey order="BEFORE" keyProperty="m_no" resultType="string">
+	select tmatch_seq.nextval from dual
+	</selectKey>
 	insert into p_match(m_no,m_type,f_name,f_address,price,lv,p_max,m_id,m_date,m_hour,t_type,f_id)
-	values(tmatch_seq.nextval,#{m_type},#{f_name},#{f_address},#{price},#{lv},#{p_max},#{id},#{m_date},#{m_hour},'경기장좋음',#{f_id})
-	</select>
+	values(#{m_no},#{m_type},#{f_name},#{f_address},#{price},#{lv},#{p_max},#{id},#{m_date},#{m_hour},'경기장좋음',#{f_id})
+	</insert>
 	<select id="fieldprice" parameterType="fieldVO" resultType="string">
 	select price
 	from field
@@ -175,12 +177,51 @@
 		from field
 		where f_id=#{f_id}
 	</select>
-	<select id="teammatchupdate" parameterType="teammatchVO">
-	update teammatch set id=#{id} where t_cap=#{t_cap} and m_info=#{m_info}
+	 <select id="fielddetailupdate" parameterType="rfieldVO" resultType="rfieldVO">
+   		update rfield set starttime=#{starttime},endtime=#{endtime} where title=#{title}
+   </select>
+   <select id="fielddetailupdate3" parameterType="rfieldVO" resultType="rfieldVO">
+   		update rfield set m_id=#{id} where comm=#{comm}
+   </select>
+	<update id="teammatchupdate" parameterType="teammatchVO">
+	update teammatch set id=#{id} where t_cap=#{t_cap} and m_no=#{m_no}
+	</update>
+	<select id="pmatchupdate" parameterType="p_matchVO">
+	update p_match set m_id=#{id} where m_no=#{m_no}
 	</select>
 	<select id="teamno" resultType="string">
 	select max(m_no)+1
 	from teammatch
+	</select>
+	<select id="matchmanagerlist" resultType="mmatchlistnmember">
+		select m.id,m.name,m.gender,m.pnum,m.manner
+		from members m,mmatchlist l
+		where m.id=l.id and l.match_info=#{m_no}
+	</select>
+	<select id="updatemmatch" parameterType="mmatchlistVO">
+	update mmatchlist set chk= case when id=#{id} then 'Y'
+	else 'N' end
+	where match_info=#{match_info} 
+	</select>
+	<select id="matchresult" resultType="mmatchnmatchVO">
+		select t.mtype "type",t.f_name,t.f_address,t.m_date,t.m_hour,m.chk
+		from mmatchlist m,teammatch t
+		where t.m_no=m.match_info and t.m_no=#{m_no} and m.id=#{id}
+	</select>
+	<select id="matchresult1" parameterType="mmatchnmatchVO" resultType="mmatchnmatchVO">
+		select t.m_type "type",t.f_name,t.f_address,t.m_date,t.m_hour,m.chk,t.m_no
+		from mmatchlist m,p_match t
+		where t.m_no=m.match_info and t.m_no=#{m_no} and m.id=#{id}
+	</select>
+	<select id="mmatchsearch" parameterType="string" resultType="mmatchlistVO">
+		select match_info,id
+		from mmatchlist
+		where id=#{id}
+	</select>
+	<select id="teammatchsearch" parameterType="string" resultType="teammatchVO">
+		select *
+		from teammatch
+		where m_no=#{m_no}
 	</select>
    <!-- <select id="heartselect" result="likeitVO">
    	select likeit

@@ -128,7 +128,6 @@ p {
 .ss {
 	background-color: #314d9f;
 	color: white;
-	c: if>;
 	width: 130px;
 	border-radius: 50px;
 	padding-top: 7px;
@@ -179,7 +178,7 @@ p {
 <script>
 $(function() {
 	/*클릭시 css  */
-	$(".aa").on("click", "a", function() {
+	$(".aa").on("click", "a", function() { v 
 		$(".qqqq a").removeClass("ss");
 		$(event.target).addClass("ss");
 	})

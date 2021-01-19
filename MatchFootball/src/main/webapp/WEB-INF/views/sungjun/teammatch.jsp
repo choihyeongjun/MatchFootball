@@ -319,13 +319,14 @@ function tdeta(url){
 									<p>⦁날짜 : ${teammatch.m_date }</p>
 									<p>⦁시간 : ${teammatch.m_hour }</p>
 								</div>
-								<div style="width: 30%; margin: 5px;">
+								<div style="width: 40%; margin: 5px;">
 									<p>⦁유형 : ${teammatch.mtype }</p>
 									<p>⦁장소 : ${teammatch.f_name }</p>
 									<p>⦁팀원 : ${teammatch.mtype }명</p>
 									<p>
 										<input value="${teammatch.t_num }" style="display: none">
 									</p>
+									
 								</div>
 								<div style="width: 20%;">
 									<c:if test="${empty teammatch.so_num}">

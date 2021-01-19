@@ -1,91 +1,117 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="my"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>Insert title here</title>
-<link rel="stylesheet" href="resources/css/teamMenu.css">
+<meta charset="UTF-8">
+<title>ÌåÄÍ≥µÏßÄÌéòÏù¥ÏßÄ</title>
+
 <style>
-a:link {
-	text-decoration: none;
+a:link { text-decoration: none; }
+a:visited { text-decoration: none; }
+a:hover { text-decoration: none; }
+li { list-style: none; }
+.topicList { margin: 20px; }
+.topicList ul li { border-bottom: 1px solid #eee; }
+.topicList ul li a { font-size: 16px; display: block; padding: 12px 0; word-break: keep-all; }
+.topicList ul li p { font-size: 12px; color: #999; }
+.topicList ul li h2 { font-size: 15px; font-weight: 400; letter-spacing: -0.4px; }
+#dataTable_filter{padding-left: 265px;}
+.pagination { display: flex; padding-left: 0; list-style: none; padding-left: 362px; }
+footer {
+   position: fixed;
+   left: 0px;
+   bottom: 0px;
+   width: 100%;
+   background: grey;
+   color: white;
 }
 
-a:visited {
-	text-decoration: none;
-}
-
-a:hover {
-	text-decoration: none;
-}
-
-li {
-	list-style: none;
-}
-
-.topicList {
-	margin: 20px;
-}
-
-.topicList ul li {
-	border-bottom: 1px solid #eee;
-}
-
-.topicList ul li a {
-	font-size: 16px;
-	display: block;
-	padding: 12px 0;
-	word-break: keep-all;
-}
-
-.topicList ul li p {
-	font-size: 12px;
-	color: #999;
-}
-
-.topicList ul li h2 {
-	font-size: 15px;
-	font-weight: 400;
-	letter-spacing: -0.4px;
-}
 </style>
+
 </head>
 <body>
-	<ul class="hi">
-	  		<c:if test="${sessionScope.t_num ne null }">
-			<li><a href="teamInfo?t_num=${sessionScope.t_num }">∆¿ ¡§∫∏</a></li>
-			</c:if>
-			<c:if test="${sessionScope.t_num eq null }">
-			<li><a href="teamMake">∆¿ ª˝º∫</a></li>
-			</c:if>
-			<c:if test="${sessionScope.t_num ne null }">
-			<li><a href="teamGallery?t_num=${sessionScope.t_num }">∆¿∞∂∑Ø∏Æ</a></li>
-			</c:if>
-			<c:if test="${sessionScope.t_num ne null }">
-			<li><a href="teamNotice?t_num=${sessionScope.t_num }">∆¿ ∞¯¡ˆ</a></li>
-			</c:if>
-			<c:if test="${sessionScope.t_num ne null }">
-			<li><a href="teamInvite?t_num=${sessionScope.t_num }">∆¿ √ ¥Î</a></li>
-			</c:if>
-			<li><a href="http://localhost/MatchFootball/teamList">∆¿ ∏ÆΩ∫∆Æ</a></li>
-	</ul>
-	<div align="center">
-		<h1>∆¿ ∞¯ ¡ˆ</h1>
-	</div>
-	<div class="topicList" style="height: 643px">
-		<c:forEach items="${teamNotice }" var="teamNotice">
-			<ul>
-				<li><a href="teamNoticeInfo?n_no=${teamNotice.n_no }&t_num=${sessionScope.t_num}">
-						${teamNotice.n_no }. ${teamNotice.t_title} ${teamNotice.t_date }
-				</a></li>
-			</ul>
-		</c:forEach>
-	</div>
-	<div align="center">
-		<c:if test="${updateButton.t_author eq '∆¿¿Â' }">
-		<button type="button" class="btn btn-primary" onclick="location.href='teamNoticeInsert?t_num=${teamInfo.t_num}'" >∞¯¡ˆ µÓ∑œ</button>
-		</c:if>
-	</div>
+<!-- 4 - contained in center example -->
+<nav class="navbar navbar-expand-xl navbar-dark bg-dark">
+    <div class="mx-auto d-sm-flex d-block flex-sm-nowrap">
+        <a class="navbar-brand" href="#">${sessionScope.kname}${sessionScope.name}Îãò</a>
+        
+        <div class="collapse navbar-collapse text-center" id="navbarsExample11">
+            <ul class="navbar-nav">
+               <c:if test="${sessionScope.t_num ne null }">
+                <li class="nav-item active">
+                    <a class="nav-link" href="teamInfo?t_num=${sessionScope.t_num }">ÌåÄ Ï†ïÎ≥¥</a>
+                </li>
+                </c:if>
+                <c:if test="${sessionScope.t_num eq null }">
+                <li class="nav-item">
+                 <a class="nav-link" href="teamMake">ÌåÄ ÏÉùÏÑ±</a>
+              </li>
+              </c:if>
+              <c:if test="${sessionScope.t_num ne null }">
+             <li class="nav-item">
+                 <a class="nav-link" href="teamInvite?t_num=${sessionScope.t_num }">ÌåÄ Ï¥àÎåÄ</a>
+             </li>
+             </c:if>
+             <c:if test="${sessionScope.t_num ne null }">
+             <li class="nav-item">
+                 <a class="nav-link" href="teamGallery?t_num=${sessionScope.t_num }">ÌåÄÍ∞§Îü¨Î¶¨</a>
+             </li>
+             </c:if>
+             <c:if test="${sessionScope.t_num ne null }">
+             <li class="nav-item">
+                 <a class="nav-link" href="teamNotice?t_num=${sessionScope.t_num }">ÌåÄ Í≥µÏßÄ</a>
+             </li>
+             </c:if>
+             <li class="nav-item">
+                 <a class="nav-link" href="http://localhost/MatchFootball/teamList">ÌåÄ Î¶¨Ïä§Ìä∏</a>
+             </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+      <br>
+      <div style="text-align: center;"> <h1>ÌåÄ Í≥µ ÏßÄ</h1> </div>
+      <hr>
+      
+      <div class="card mb-4" style="width: 1000px; height: 600px; margin: auto;">
+         <div class="card-header">
+            <i class="fas fa-table mr-1" style="margin-top: 10px">Ï†ÑÏ≤¥ Í≥µÏßÄÏÇ¨Ìï≠</i>
+         <div style="float: right;">
+            <c:if test="${updateButton.t_author eq 'ÌåÄÏû•' }">
+               <button type="button" class="btn btn-primary" onclick="location.href='teamNoticeInsert?t_num=${teamInfo.t_num}'" >Í≥µÏßÄ Îì±Î°ù</button>
+            </c:if>
+         </div>
+         </div>
+         <div class="card-body">
+            <div class="table-responsive">
+               <div class="container" style="float: left; height: 600px;">
+                  <table class="table table-bordered" id="dataTable">
+                     <thead align="center">
+                        <tr>
+                           <th>No.</th>
+                           <th>Í≥µÏßÄ Ï†úÎ™©</th>
+                           <th>ÎÇ†Ïßú</th>
+                        </tr>
+                     </thead>
+                        <tbody align="center">
+                           <c:forEach var="teamNotice" items="${teamNotice}">
+                              <tr>
+                                 <td style='cursor:pointer;' onclick="location.href='teamNoticeInfo?n_no=${teamNotice.n_no }&t_num=${sessionScope.t_num}'">${teamNotice.n_no }</td>
+                                 <td style='cursor:pointer;' onclick="location.href='teamNoticeInfo?n_no=${teamNotice.n_no }&t_num=${sessionScope.t_num}'">${teamNotice.t_title}</td>
+                                 <td style='cursor:pointer;' onclick="location.href='teamNoticeInfo?n_no=${teamNotice.n_no }&t_num=${sessionScope.t_num}'">${teamNotice.t_date }</td>
+                              </tr>
+                           </c:forEach>
+                        </tbody>
+                  </table>
+               </div>
+            </div>
+         </div>
+      </div>
+   <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+   <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+   <script src="${pageContext.request.contextPath}/resources/seemoo/assets/demo/datatables-demo.js"></script>
 </body>
 </html>

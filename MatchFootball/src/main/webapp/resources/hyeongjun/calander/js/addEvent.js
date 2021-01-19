@@ -149,8 +149,8 @@ var newEvent1 = function (start, end, eventType) {
         var eventData = {
             _id: eventId,
             title: editTitle1.val(),
-            start: editStart1.val(),
-            end: editEnd1.val(),
+            start: editStart.val(),
+            end: editEnd.val(),
             description: editDesc1.val(),
             type: editType1.val(),
             username: '사나',
@@ -159,7 +159,7 @@ var newEvent1 = function (start, end, eventType) {
             allDay: false
         };
 
-        if (eventData.start1 > eventData.end1) {
+        if (eventData.start > eventData.end) {
             alert('끝나는 날짜가 앞설 수 없습니다.');
             return false;
         }
@@ -172,9 +172,9 @@ var newEvent1 = function (start, end, eventType) {
         var realEndDay;
 
         if (editAllDay.is(':checked')) {
-            eventData.start1 = moment(eventData.start).format('YYYY-MM-DD');
+            eventData.start = moment(eventData.start).format('YYYY-MM-DD');
             //render시 날짜표기수정
-            eventData.end1 = moment(eventData.end).add(1, 'days').format('YYYY-MM-DD');
+            eventData.end = moment(eventData.end).add(1, 'days').format('YYYY-MM-DD');
             //DB에 넣을때(선택)
             realEndDay = moment(eventData.end).format('YYYY-MM-DD');
 
@@ -251,7 +251,7 @@ var newEvent2 = function (start, end, eventType) {
             allDay: false
         };
 
-        if (eventData.start1 > eventData.end1) {
+        if (eventData.start > eventData.end) {
             alert('끝나는 날짜가 앞설 수 없습니다.');
             return false;
         }
