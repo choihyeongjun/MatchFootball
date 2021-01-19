@@ -23,6 +23,7 @@ public class P_matchVO {//개인매치
 	String f;
 	String id;
 	String sel;
+	String p_id;//개인 유저 아이디
 	int first;
 	int last;
 }

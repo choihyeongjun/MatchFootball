@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
 <body>
 	<form action="tournamentInsertt" method="post"
 		encType="multipart/form-data">

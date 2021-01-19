@@ -18,6 +18,7 @@ public interface HyendongMapper {
 	public int getCount1(TeamVO teamVO); //페이징 count와 list는 매개 같아야함 /팀리스트 페이징
 	public int getCount2(TeamlistVO teamlistVO); //팀원수 페이징
 	public int getCount3(TinviteVO tinviteVO); //팀 초대 페이징
+	public int getCount4(TgalleryVO tgalleryVO); //팀 사진 페이징
 	
 	public List<TeamVO> teamListSelect(TeamVO teamVO); //전체 팀 조회
 	public List<MembersVO>getMembers(); //멤버 리스트 조회
@@ -74,4 +75,5 @@ public interface HyendongMapper {
 	public int teamMatchDelete(TeammatchVO teammatchVO); //팀매치 신청 삭제
 	
 	public MembersVO avgAge(MembersVO membersVO); //팀 평균 나이
+	public MembersVO scoutInvite(MembersVO membersVO); //스카웃 테이블 있고없고 셀렉트
 }

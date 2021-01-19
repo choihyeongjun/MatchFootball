@@ -23,10 +23,12 @@
 		valuse( #{m_no},#{t_num}, #{mtype},#{f_name}, #{f_address},#{price}, #{t_name},#{t_cap}, 
 		#{t_level},#{m_info}, #{m_date},#{m_hour} ) </insert> -->
 	<!--로그인 한사람 팀장인지 조회 팀 번호 -->
-	<select id="cappp" resultType="MembersVO" parameterType="MembersVO">
+	<select id="cappp" resultType="MembersVO"
+		parameterType="MembersVO">
 		select a.id,a.name,a.t_num,b.t_author
 		from
-		members a , teamlist b
+		members a ,
+		teamlist b
 		where a.id= b.id
 		and b.id=#{id} and
 		b.t_author='팀장'
@@ -34,21 +36,24 @@
 	<!--해당 날의 개인 매치 조회 및 신청 인원 -->
 	<select id="pmatchselect" parameterType="P_matchVO"
 		resultType="P_matchVO">
-		select d.m_no,d.m_type,d.f_name,d.f_address,d.price,d.lv,d.p_max,d.m_id,substr(d.m_date, 12, 5) as m_hour,substr(d.m_date, 1,10) as m_date,d.t_type,d.f_id ,
+		select
+		d.m_no,d.m_type,d.f_name,d.f_address,d.price,d.lv,d.p_max,d.m_id,substr(d.m_date,
+		12, 5) as m_hour,substr(d.m_date, 1,10) as m_date,d.t_type,d.f_id ,
 		nvl(f,0)f
 		<if test="id !=null">
 			,nvl((select 1 from pplayers
-				where m_no=d.m_no and
-				id=#{id}),0)
+			where m_no=d.m_no and
+			id=#{id}),0)
 			as sel
 		</if>
 		from p_match d, ( select a.m_no ,count(*) f
-						from p_match a,pplayers b
-						where a.m_no = b.m_no
-						group by a.m_no )c
+		from p_match a,pplayers b
+		where a.m_no = b.m_no
+		group by a.m_no )c
 		where d.m_no = c.m_no(+)
 		and
-		substr(m_date,1,10) = #{m_date}
+		substr(m_date,1,10) =
+		#{m_date}
 		and to_date(m_date,'yyyy-mm-ddhh24:mi')<![CDATA[ >= sysdate +9/24]]>
 		order by m_hour asc
 	</select>
@@ -87,7 +92,7 @@
 		SELECT COUNT(*) FROM p_match
 		where m_id = #{m_id}
 	</select>
-		<!--team_match 내역 수 페이징 -->
+	<!--team_match 내역 수 페이징 -->
 	<select id="getCount2" resultType="int">
 		SELECT COUNT(*) FROM teammatch
 		where id = #{id}
@@ -95,7 +100,8 @@
 	<!-- 선택개인매치 조회 -->
 	<select id="pmatchlist1" parameterType="P_matchVO"
 		resultType="P_matchVO">
-		select d.m_no,d.m_type,d.f_name,d.f_address,d.price,d.lv,d.p_max,d.m_id,
+		select
+		d.m_no,d.m_type,d.f_name,d.f_address,d.price,d.lv,d.p_max,d.m_id,
 		substr(d.m_date, 12, 5) as m_hour,substr(d.m_date, 1,10) as m_date,
 		d.t_type,d.f_id,nvl(f,0)f
 		<if test="id !=null">
@@ -105,11 +111,11 @@
 			as sel
 		</if>
 		from p_match d, ( select a.m_no
-						,count(*) f
-						from p_match a,pplayers b
-						where a.m_no = b.m_no
-						group by
-						a.m_no )c
+		,count(*) f
+		from p_match a,pplayers b
+		where a.m_no = b.m_no
+		group by
+		a.m_no )c
 		where d.m_no = c.m_no(+)
 		and
 		d.m_no = #{m_no}
@@ -123,22 +129,27 @@
 	<!-- 해당 날 팀 매치 리스트 -->
 	<select id="tmatchselect" parameterType="TeammatchVO"
 		resultType="TeammatchVO">
-		select a.m_no,a.t_num,a.mtype,a.f_name,a.f_address,a.price,a.t_name,a.t_wn ,a.t_cap,a.t_level,a.m_info,
-		substr(a.m_date,1,10) as m_date,substr(a.m_date,12,5) as m_hour,a.m_type,a.id,a.so_num
+		select
+		a.m_no,a.t_num,a.mtype,a.f_name,a.f_address,a.price,a.t_name,a.t_wn
+		,a.t_cap,a.t_level,a.m_info,
+		substr(a.m_date,1,10) as
+		m_date,substr(a.m_date,12,5) as m_hour,a.m_type,a.id,a.so_num
 		,b.t_name,b.t_address,b.t_type,b.t_age,b.t_level,b.t_info,b.t_logo,b.t_m,b.t_wn
 		<if test="id !=null">
 			,nvl((select 1
-					from members a , teamlist b
-					where a.id= b.id
-					and b.id=#{id} and b.t_author='팀장'),0)
-				as sel
+			from members a , teamlist b
+			where a.id= b.id
+			and b.id=#{id} and b.t_author='팀장'),0)
+			as sel
 		</if>
 		from teammatch a,team b
 		where a.t_num = b.t_num
-		and substr(a.m_date,1,10) = #{m_date}
-		and to_date(m_date,'yyyy-mm-ddhh24:mi')<![CDATA[>= sysdate +9/24]]>
+		and
+		substr(a.m_date,1,10) = #{m_date}
+		and
+		to_date(m_date,'yyyy-mm-ddhh24:mi')<![CDATA[>= sysdate +9/24]]>
 		order by m_hour asc
-		
+
 	</select>
 	<!--팀 매치 정보 조회 -->
 	<select id="teammatchinfo1" parameterType="TeammatchVO"
@@ -182,45 +193,46 @@
 		where t_num = #{t_num} and m_no=
 		#{m_no}
 	</select>
-	
+
 	<!--매니저 개인매치 일정 조회 -->
 	<select id="pmatchlist" parameterType="P_matchVO"
 		resultType="P_matchVO">
 		select * from (select * from p_match
-						where m_id = #{m_id}
-						order by m_date desc, m_hour asc)
+		where m_id = #{m_id}
+		order by m_date desc, m_hour asc)
 		where <![CDATA[rownum <=5]]>
 	</select>
 	<!--매니저 개인매치 일정 전체 조회 -->
 	<select id="pmatchselectall" parameterType="P_matchVO"
 		resultType="P_matchVO">
 		select * from( select a.*, rownum rn from (
-		select * from p_match
+		select * from
+		p_match
 		where m_id = #{m_id}
 		order by m_date
 		desc, m_hour asc
-				)a ) b where rn between #{first} and #{last}
+		)a ) b where rn between #{first} and #{last}
 	</select>
 	<!--매니저 팀 매치 내역 조회 -->
 	<select id="tmatchlist" parameterType="TeammatchVO"
 		resultType="TeammatchVO">
 		select * from(select *from teammatch
-						where id=#{id}
-						order by m_date desc ,m_hour asc )
+		where id=#{id}
+		order by m_date desc ,m_hour asc )
 		where <![CDATA[rownum <=5]]>
 	</select>
 	<!--매니저 팀 매치 내역 전체 조회 -->
 	<select id="tmatchselectall" parameterType="TeammatchVO"
 		resultType="TeammatchVO">
 		select * from( select a.*, rownum rn from (
-					select * from teammatch
-					where id = #{id}
-					order by m_date desc) 
-					a ) b where rn between #{first} and #{last}
+		select * from teammatch
+		where id = #{id}
+		order by m_date desc)
+		a ) b where rn between #{first} and #{last}
 	</select>
-	<!--매치에 매니저 신청-->
+	<!--매치에 매니저 신청 -->
 	<insert id="matchmanagerapp">
-	insert into mmatchlist(id,match_info) values(#{id},#{m_no})
+		insert into mmatchlist(id,match_info) values(#{id},#{m_no})
 	</insert>
 	<!--주장 조회 -->
 	<select id="capselect" parameterType="TeamlistVO"
@@ -254,7 +266,8 @@
 	</select>
 	<!--팀 매치 신청 하고 포인트 차감 하고 내역 입력 -->
 	<update id="teammatchup">
-		update teammatch set so_num = #{t_num} , so_name = #{so_name}
+		update teammatch set so_num = #{t_num} , so_name =
+		#{so_name}
 		where m_no =
 		#{m_no}
 	</update>
@@ -276,16 +289,19 @@
 		manageraply(id,name,gender,pnum,birth,comm,loc)
 		values(#{id},#{name},#{gender},#{pnum},#{birth},#{comm},#{loc})
 	</insert>
-<!--팀 매치 매니저 신청 -->
+	<!--팀 매치 매니저 신청 -->
 	<insert id="tmapply" parameterType="MembersVO">
 		insert into
 		mmatchlist(id,match_info)
 		values(#{id},#{match_info})
 	</insert>
-	<!--매니저 없는 매치  -->
-	<select id="nomanager" parameterType="TeammatchVO" resultType="TeammatchVO">
-		  select * from (select 'a',m_no,f_name, m_date, f_address from teammatch where id='없음' union all
-     select 'b',m_no,f_name, m_date, f_address from p_match where m_id='없음')
-     where to_date(m_date,'yyyy-mm-ddhh24:mi') >= sysdate +9/24
+	<!--매니저 없는 매치 -->
+	<select id="nomanager" parameterType="TeammatchVO"
+		resultType="TeammatchVO">
+		select * from (select * from (select 'a',m_no,f_name, m_date, f_address from teammatch
+						where id='없음' union all
+						select 'b',m_no,f_name, m_date, f_address from p_match where m_id='없음')
+		where to_date(m_date,'yyyy-mm-ddhh24:mi') >= sysdate +9/24)
+		order by m_date desc ,m_hour asc
 	</select>
 </mapper>

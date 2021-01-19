@@ -220,6 +220,10 @@
 		SELECT COUNT(*) FROM tinvite WHERE t_num = #{t_num}
 	</select>
 	
+	<!-- 사진 페이징 -->
+	<select id="getCount4" resultType="int">
+		SELECT COUNT(*) FROM tgallery WHERE t_num = #{t_num}
+	</select>
 	<!-- 토너먼트 대진표 조회 -->
 	<select id="tournamentPVP" parameterType="TournamentTeamVO"
 		resultType="TournamentTeamVO">
@@ -242,9 +246,11 @@
 	
 	<!-- 사진 조회 -->
 	<select id="picSelect" resultType="TgalleryVO">
+	select * from( select a.*, rownum rn from (
 		select img
 		from tgallery
 		where t_num = #{t_num}
+	) a ) b where rn between #{first} and #{last}
 	</select>
 	
 	<!-- 사진 삽입 -->
@@ -409,7 +415,7 @@
 	
 	<!-- 팀 매치 신청 내역 -->
 	<select id="teamMatchWait" resultType="TeammatchVO">
-		select m_no, mtype, f_name, f_address, price, substr(m_date, 0, 10) as m_date, substr(m_hour, 12) as m_hour from teammatch where t_num = #{t_num}
+		select m_no, mtype, f_name, f_address, price, substr(m_date, 0, 10) as m_date, substr(m_date, 12) as m_hour from teammatch where t_num = #{t_num}
 		order by m_date
 	</select>
 	
@@ -461,4 +467,12 @@
 		delete from teammatch 
 		where m_no=#{m_no}
 	</delete>
+	
+	<!-- 스카웃 있고없고 -->
+	<select id="scoutInvite" resultType="membersVO">
+		select t.id, nvl((select 1 from comeinvite
+    					  where id=t.id), 0) as sel
+		from members t
+		where t.id = #{id}
+	</select>
 </mapper>

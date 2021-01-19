@@ -19,9 +19,7 @@
 <link
 	href="${pageContext.request.contextPath}/resources/css/animate.css"
 	rel="stylesheet">
-<link
-	href="${pageContext.request.contextPath}/resources/css/selectric.css"
-	rel="stylesheet">
+
 <link
 	href="${pageContext.request.contextPath}/resources/css/Magnific-popup.css"
 	rel="stylesheet">
@@ -34,16 +32,19 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Pacifico|ZCOOL+XiaoWei&display=swap&subset=cyrillic"
 	rel="stylesheet">
-<link href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
-	rel="stylesheet">
 
 
 
 <script>
 	$(function() {
+		ddd();
+		replyMsg();
+	})
+
+	function ddd() {
 		$(".reviewMsg").on("click", function(event) {
 			var m_no = $(this).data("num");
-			console.log(m_no +"11")
+			console.log(m_no + "11")
 			var modal = $('#MsgModal');
 			$.ajax({
 				url : 'reviewMsg?m_no=' + m_no,
@@ -52,73 +53,66 @@
 					$('#viewMsg').html(result)
 					modal.modal('show');
 					readMsg();
-
+					replyMsg();
 				}
 			});
-			function readMsg(){
+			function readMsg() {
 				$.ajax({
-					url: "reviewMsg/ajax?m_no=" + m_no,
-					type: "post",
-					data: m_no,
-					dateType: "json",
-					success: 
-						 function(result) {
-						console.log("success",result)
-					},
-					error : function(xhr, status, msg) {
-						colsole.log("상태값 :" + status + "에러" + msg);
-						
-				}
-			});
-			}
-		});
-		delMsg();
-		replyMsg();
-	})
-	
-		function replyMsg() {
-			$(".replyMsg").on("click", function(event) {
-
-				$.ajax({
-					url : "replymsg/ajax",
-					type : 'post',
-					//data: ,
-					
-					dataType : 'json',
-					error : function(xhr, status, msg) {
-						colsole.log("상태값 :" + status + "에러" + msg);
-					},
+					url : "reviewMsg/ajax?m_no=" + m_no,
+					type : "post",
+					data : m_no,
+					dateType : "json",
 					success : function(result) {
-								$('#viewMsg').html(result)
-								modal.modal('show');
-						
+						console.log("success", result)
+					},
+					error : function(xhr, status, msg) {
+						colsole.log("상태값 :" + status + "에러" + msg);
+
 					}
 				});
-			});
-		}//replyMsg
-	function delMsg() {
-
-		$('#delMsg').on('click', function() {
-
-			var m_no = $(this).closest('tr').find('#m_no').val();
-			console.log(m_no);
+			}
+		});
+	}
+	function replyMsg() {//답장 폼
+		$(".btn.btn-primary").on("click", function(event) {
+			var m_no = $(this).data("nom");
+			var modal = $('#MsgModal');
+			console.log("::::::::::::::::"+m_no)
 			$.ajax({
-				url : "delMsg/ajax",
-				type : 'POST',
-				dateType : 'json',
-				data : {
-					m_no : m_no
-				},
+				url : "replyMsg",
+				type : 'post',
+				data: { m_no: m_no},
+
+				
 				error : function(xhr, status, msg) {
-					alert("상태값 :" + status + " Http에러메시지 :" + msg);
+					console.log("상태값 :" + status + "에러" + msg);
 				},
-				success : function(data) {
-					alert("삭제되었습니다.");
-					location.reload();
+				success : function(result) {
+					console.log(result);
+					$('#viewMsg').html(result)
+					modal.modal('show');
+					sendMsg(); // 답장처리
 				}
 			});
-			//}) 
-
+		});
+	}//replyMsg
+	function sendMsg(){
+		$(".btn.btn-primary").on("click",function(event) {
+			$.ajax({
+				url : "replymsg/ajax",
+				type : 'post',
+				data: { send_id: send_id,
+					to_id : to_id,
+					m_title : m_title,
+					m_con : m_con},				
+				error : function(xhr, status, msg) {
+					console.log("상태값 :" + status + "에러" + msg);
+				},
+				success : function(result) {
+					console.log(result);
+					
+				}
+			});
 		});
 	}
 </script>
@@ -143,7 +137,7 @@
 							</div>
 							<div align="right">
 								<a href="msg" id="받은 메일함"> 수신 쪽지함 |</a><a href="outmsg"
-									id="보낸 메일함"> 발신 쪽지함 |</a><a href="#" id="용병초대"> 용병요청 </a>
+									id="보낸 메일함"> 발신 쪽지함 </a>
 							</div>
 							<div class="row" style="width: auto">
 								<div style="margin-top: 15px;">
@@ -158,23 +152,25 @@
 											<th>날짜</th>
 											<th>제목</th>
 											<th>보낸 사람</th>
-											<td colspan="2" align="right">삭제하기
+											<td colspan="2" align="right">답장하기
 												&nbsp;&nbsp;&nbsp;&nbsp;</td>
 										</tr>
 										<tbody id=toMsg>
 											<c:forEach items="${msg}" var="msg">
 												<tr>
-													<td><input name="to_id" value="${msg.to_id}"
-														type="text" style="display: none;"></td>
+													<td><input type="hidden" id="m_no" name="m_no"
+														value="${msg.m_no}"><input name="to_id"
+														value="${msg.to_id}" type="text" style="display: none;"></td>
 													<td><input type='checkbox' id="mchk"></td>
 													<td>${msg.s_date}</td>
 													<td><a class="reviewMsg" data-toggle="modal"
 														data-target="#MsgModal" data-num="${msg.m_no}">${msg.m_title}</a></td>
 													<td>${msg.send_id}</td>
-													<td><input type="hidden" id="m_no" name="m_no"
-														value="${msg.m_no}">
-														<button type="button" class="btn btn-primary float-right"
-															id="delMsg">삭제하기</button></td>
+													<td>
+														<button type="button"
+															class="btn btn-primary float-right reply-message"
+															id="reply" data-nom="${msg.m_no}">답장하기</button>
+													</td>
 												</tr>
 											</c:forEach>
 										</tbody>
@@ -201,12 +197,8 @@
 			aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
-					<div class="modal-body" id="viewMsg"></div>
-					<div class="modal-footer">
-
-						<button class="replyMsg" type="button">답장</button>
-						<button type="reset">취소</button>
-
+					<div class="modal-body">
+					<div id="viewMsg"></div>
 					</div>
 				</div>
 			</div>

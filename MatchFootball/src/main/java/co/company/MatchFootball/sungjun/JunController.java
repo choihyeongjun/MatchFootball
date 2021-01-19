@@ -281,7 +281,7 @@ public class JunController {
 		ModelAndView ma = new ModelAndView();
 
 		dao.tmapply(mmatchlistvo);
-		ma.setViewName("sungjun/managermypage");
+		ma.setViewName("redirect:/managermypage");
 		return ma;
 	}
 

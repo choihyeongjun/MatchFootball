@@ -97,7 +97,8 @@
 							aria-labelledby="heading" data-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
 								<a class="nav-link" href="${pageContext.request.contextPath}/admin/match">매치관리</a> 
-								<a class="nav-link" href="${pageContext.request.contextPath}/admin/tournament">토너먼트관리</a> 
+								<a class="nav-link" href="${pageContext.request.contextPath}/admin/tournament">토너먼트 생성</a> 
+								<a class="nav-link" href="${pageContext.request.contextPath}/admin/tournamentList">토너먼트 정보</a>  
 								<a class="nav-link" href="${pageContext.request.contextPath}/admin/field">경기장관리</a>
 							</nav>
 						</div>
