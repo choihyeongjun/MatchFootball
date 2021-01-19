@@ -90,7 +90,7 @@ var editEvent1 = function (event, element, view) {
 
     modalTitle.html('일정 수정');
     editTitle1.val(event.title);
-	m_no.val(event.)
+	m_no.val(event.m_no);
     editStart1.val(event.start.format('YYYY-MM-DD HH:mm'));
 	editEnd1.val(event.start.format('YYYY-MM-DD HH:mm'));
     editType1.val(event.type);
