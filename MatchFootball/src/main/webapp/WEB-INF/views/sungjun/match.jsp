@@ -178,7 +178,7 @@ p {
 <script>
 $(function() {
 	/*클릭시 css  */
-	$(".aa").on("click", "a", function() {
+	$(".aa").on("click", "a", function() { v 
 		$(".qqqq a").removeClass("ss");
 		$(event.target).addClass("ss");
 	})
