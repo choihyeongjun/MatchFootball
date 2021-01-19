@@ -564,4 +564,12 @@ public class HyenDongController {
 		hyendongMapper.plusTournament(tournamentVO);
 		return "redirect:/tournamentInfo?t_no=" + tournamentVO.getT_no();
 	}
+	
+	// 토너먼트 상금 전달 처리
+	@RequestMapping("/winTournament")
+	public String winTournament(MembersVO membersVO, TournamentVO tournamentVO) {
+		hyendongMapper.getTournament(tournamentVO);
+		hyendongMapper.winTournament(membersVO);
+		return "redirect:/tournamentPVP?t_no=" + tournamentVO.getT_no();
+	}
 }

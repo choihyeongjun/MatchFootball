@@ -358,8 +358,6 @@
 				</div>
 			</div>
 		</div>
-	<button type="button">결과 저장</button>
-	<button type="button">상금 전달</button>
 	</div>
 </body>
 </html>
