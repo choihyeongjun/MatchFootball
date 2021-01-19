@@ -7,13 +7,32 @@
 <title>Insert title here</title>
 </head>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<!-- Favicon -->
+<link rel="shortcut icon" href="assets/images/logo/favicon.png"
+	type="image/x-icon">
+<link rel="stylesheet" href="resources/css/teamMenu.css">
+<!-- CSS Files -->
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/dong1/assets/css/animate-3.7.0.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/dong1/assets/css/font-awesome-4.7.0.min.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/dong1/assets/fonts/flat-icon/flaticon.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/dong1/assets/css/bootstrap-4.1.3.min.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/dong1/assets/css/owl-carousel.min.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/dong1/assets/css/nice-select.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/dong1/assets/css/style.css">
 <body>
 	<form action="tournamentInsertt" method="post"
 		encType="multipart/form-data">
 		<!-- encType 이미지 등록시 필수 -->
 		${sessionScope.kemail } ${sessionScope.id } ${member.t_num }
 		${member.pos }
-		<div class="section-top-border" style="margin-left: 670px; width: 50%">
+		<div class="section-top-border" style="margin-left: 670px; width: 50%; padding-top: 70px">
 			<div class="row">
 				<div class="col-lg-8 col-md-8">
 					<h3>토너먼트 생성</h3>

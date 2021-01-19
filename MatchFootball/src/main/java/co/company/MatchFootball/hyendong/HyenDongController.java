@@ -486,6 +486,13 @@ public class HyenDongController {
 		return "seemoo/tournament";
 	}
 
+	// 관리자 토너먼트 리스트
+	@RequestMapping("/admin/tournamentList")
+	public String adminTournamentList(Model model) {
+		model.addAttribute("tournamentList", hyendongMapper.tournamentListSelect());
+		return "seemoo/tournamentList";
+	}
+	
 	// 토너먼트 리스트
 	@RequestMapping("/tournamentList")
 	public String tournamentList(Model model) {
@@ -512,13 +519,39 @@ public class HyenDongController {
 		model.addAttribute("hh", hyendongMapper.joinTeamTournament(teamVO));
 		return "hyendong/tournamentInfo";
 	}
+	
+	// 토너먼트 상세
+		@RequestMapping("/admin/tournamentInfo")
+		public String adminTournamentInfo(TeamVO teamVO, TournamentVO tournamentVO, MembersVO membersVO, HttpSession session,
+				TeamlistVO teamlistVO, Model model, TournamentTeamVO tt) {
+			model.addAttribute("tournamentTeam", hyendongMapper.getTournament(tournamentVO));
+			String id = (String) session.getAttribute("id");
+			String t_num = (String) session.getAttribute("t_num");
+			membersVO.setId(id);
+			model.addAttribute("members",hyendongMapper.memberSelect(membersVO)); // 멤버 단건 조회
+			teamlistVO.setId(id);
+			teamlistVO.setT_num(t_num);
+			model.addAttribute("updateButton", hyendongMapper.getTeamMemberss(teamlistVO));
+			
+			String t_num2 = (String) session.getAttribute("t_num");
+			teamVO.setT_num(t_num2);
+			System.out.println(teamVO.getT_num());
+			model.addAttribute("hh", hyendongMapper.joinTeamTournament(teamVO));
+			return "seemoo/tournamentInfo";
+		}
 
 	// 토너먼트 대진표
 	@RequestMapping("/tournamentPVP")
 	public String tournamentPVP(Model model, TournamentTeamVO tournamentTeamVO, TeamVO teamVO) {
 		model.addAttribute("tournamentPVP", hyendongMapper.tournamentPVP(tournamentTeamVO));
-
 		return "hyendong/tournamentPVP";
+	}
+	
+	// 토너먼트 대진표
+	@RequestMapping("/admin/tournamentPVP")
+	public String adminTournamentPVP(Model model, TournamentTeamVO tournamentTeamVO, TeamVO teamVO) {
+		model.addAttribute("tournamentPVP", hyendongMapper.tournamentPVP(tournamentTeamVO));
+		return "seemoo/tournamentPVP";
 	}
 
 	// 토너먼트 참가 처리

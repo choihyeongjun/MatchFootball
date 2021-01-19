@@ -25,7 +25,7 @@ li {
 		<div class="tournament_view_top">
 			<div class="img">
 				<img
-					src="https://baro-match.co.kr/newsite/../site/_data/on_reservation/1982540371_b5f8280c_2018_ED8FACECB9B4EBA6ACEC8AA4EC9BA8ED8AB8_ED928BEC82B4ED9E88EC96B4EBA19CECA688_ED8FACEC8AA4ED84B0_ECB59CECA285.jpg"
+					src="${pageContext.request.contextPath}/images/${tournamentTeam.img}"
 					width="100%">
 			</div>
 			<div class="info">
