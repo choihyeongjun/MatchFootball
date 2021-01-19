@@ -148,7 +148,7 @@
 
 	<!-- 팀 공지 조회 -->
 	<select id="NoticeSelect" parameterType="TnoticeVO" resultType="TnoticeVO">
-		SELECT n_no, t_title, to_date(t_date, 'yyyy-mm-dd HH24:MI:SS')
+		SELECT n_no, t_title, t_date
 		FROM tnotice
 		WHERE t_num = #{t_num}
 		
@@ -215,6 +215,15 @@
 		SELECT COUNT(*) FROM teamlist WHERE t_num = #{t_num}
 	</select>
 
+	<!-- 팀 초대 내역 수 페이징 -->
+	<select id="getCount3" resultType="int">
+		SELECT COUNT(*) FROM tinvite WHERE t_num = #{t_num}
+	</select>
+	
+	<!-- 사진 페이징 -->
+	<select id="getCount4" resultType="int">
+		SELECT COUNT(*) FROM tgallery WHERE t_num = #{t_num}
+	</select>
 	<!-- 토너먼트 대진표 조회 -->
 	<select id="tournamentPVP" parameterType="TournamentTeamVO"
 		resultType="TournamentTeamVO">
@@ -237,9 +246,11 @@
 	
 	<!-- 사진 조회 -->
 	<select id="picSelect" resultType="TgalleryVO">
+	select * from( select a.*, rownum rn from (
 		select img
 		from tgallery
 		where t_num = #{t_num}
+	) a ) b where rn between #{first} and #{last}
 	</select>
 	
 	<!-- 사진 삽입 -->
@@ -288,9 +299,11 @@
 	
 	<!-- 팀 가입 신청 조회 -->
 	<select id="teamInviteSelect" resultType="TinviteVO">
+	select * from( select a.*, rownum rn from (
 		SELECT * 
 		FROM tinvite
 		WHERE t_num = #{t_num}
+	) a ) b where rn between #{first} and #{last}
 	</select>
 	
 	<select id="teamInviteSelectt" resultType="TinviteVO">
@@ -402,7 +415,8 @@
 	
 	<!-- 팀 매치 신청 내역 -->
 	<select id="teamMatchWait" resultType="TeammatchVO">
-		select mtype, f_name, f_address, price, m_date, m_hour from teammatch where t_num = #{t_num}
+		select m_no, mtype, f_name, f_address, price, substr(m_date, 0, 10) as m_date, substr(m_date, 12) as m_hour from teammatch where t_num = #{t_num}
+		order by m_date
 	</select>
 	
 	<!-- 팀 초대 하기 -->
@@ -429,10 +443,28 @@
 		where id = #{id}
 	</select>
 	
+	<!-- 팀장의 팀초대현황 조회 -->
+	<select id="inviteSelect2" resultType="ComeInviteVO">
+		select *
+		from comeInvite
+		where t_num = #{t_num}
+	</select>
+	
 	<!-- 팀 초대 온거 거절하기 -->
 	<delete id="invitePass">
 		delete from comeInvite 
 		where t_num = #{t_num}
 		and id = #{id}
+	</delete>
+	
+	<!-- 팀 평균 나이 구하기 -->
+	<select id="avgAge" resultType="membersVO" parameterType="membersVO">
+		select avg(nvl(trunc(months_between(sysdate, to_date(substr(birth, 1, 4), 'yyyy'))/12), 0)+1) as age from members where t_num=#{t_num}
+	</select>
+	
+	<!-- 팀매치 취소 -->
+	<delete id="teamMatchDelete">
+		delete from teammatch 
+		where m_no=#{m_no}
 	</delete>
 </mapper>

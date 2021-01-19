@@ -31,8 +31,9 @@ $(function(){
 </head>
 
 <body>
+
    <div class="container">
-		
+	
       <!-- 일자 클릭시 메뉴오픈 -->
       <div id="contextMenu" class="dropdown clearfix">
          <ul class="dropdown-menu dropNewEvent" role="menu"
@@ -288,7 +289,7 @@ $(function(){
 		</script>
 		 ${id}
       ${f_id}
-     
+     <div id="result"></div>
       <div class="card mb-4">
          <div class="card-header">
             <i class="fas fa-table mr-1"></i> 경기예약일정

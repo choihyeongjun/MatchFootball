@@ -45,22 +45,12 @@ body {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 10px;
+	padding: 20px 0 20px 30px;
 	margin-bottom: 20px;
 	background-color: white;
 }
 
-.cachec {
-	background-color: #3540A5;
-	color: white;
-	border-radius: 6px;
-	border: none;
-	box-shadow: none;
-	transition: background-color 0.3s ease-out;
-	display: block;
-	text-align: center;
-	cursor: pointer;
-}
+
 
 .btn.sm {
 	line-height: 32px;
@@ -123,7 +113,16 @@ a {
 	text-align: center;
 	cursor: pointer;
 }
-
+.mamamaa{
+	color: black;
+	border-radius: 6px;
+	border: none;
+	box-shadow: none;
+	transition: background-color 0.3s ease-out;
+	display: block;
+	text-align: center;
+	cursor: pointer;
+}
 .mamama ul {
 	list-style: none;
 }
@@ -209,30 +208,28 @@ a {
 			<div class="cache">
 				<div>
 					<p style="font-size: 10px; color: #999; margin-bottom: 5px;">
-						나의 캐시 잔액 <i class="fas fa-comment-dollar fa-3x"
+						나의 포인트 잔액 <i class="fas fa-comment-dollar fa-3x"
 							style="margin-left: 10px; color: #ffc645;"></i>
 					</p>
-					<h3>${member.point }원</h3>
+					<h3>${member.point }포인트</h3>
 				</div>
-				<div class="btn-right cachec">
-					<a class="btn sm" href="mypage/pay">포인트 충전</a>
-				</div>
+				
 			</div>
 
 			<div class="allscedule">
 				<div class="scedule">
-					<h3>개인 매치 경기 일정</h3>
+					<h3><i class="far fa-futbol" style="color: #ffc645; padding-right: 10px;"></i>개인 매치 경기 일정</h3>
 				</div>
 				<c:forEach var="p_match" items="${p_match }">
 					<div class="mamama">
-						<ul>
+						<ul style="padding: 0px;">
 							<li style="display: flex;">
 								<div class="matchc">
 									<a class="mdetail" data-toggle="modal"
 										data-target="#matchdetail" data-num="${p_match.m_no }"
-										style="cursor: pointer; font-size: 18px;">
-										${p_match.m_date } ${p_match.f_name } </a> <input type="hidden"
-										value="${p_match.m_no }">
+										style="cursor: pointer; font-size: 18px; font-weight: bold;">
+										<a style="font-size: 18px; font-weight: bold;">${p_match.m_date }</a> <a style="margin-right: 200px;">${p_match.f_name }</a></a> <input
+										type="hidden" value="${p_match.m_no }">
 								</div>
 								<div style="width: 20%">
 									<a class="btn sf" href="#"> 리뷰 작성</a>
@@ -254,27 +251,27 @@ a {
 			</div>
 
 			<div class="allscedule">
-				<div class="teamscedule">
-					<h3>팀 매치 경기 일정</h3>
+				<div class="teamscedule" style="margin-bottom:10px; padding: 10px;">
+					<h3><i class="far fa-futbol" style="color: #ffc645; padding-right: 10px;"></i>팀 매치 경기 일정</h3>
 				</div>
 				<c:forEach var="t_match" items="${t_match }">
-					<div class="mamama">
+					<div class="mamamaa">
 						<ul>
 							<li style="display: flex;">
 								<div class="matchc">
 									<a class="tmdetail" data-toggle="modal"
-										data-target="#tmatchdetail" data-nom="${t_match.m_no }"
+										data-nom="${t_match.m_no }"
 										style="cursor: pointer; font-size: 18px;">
-										<p>${t_match.m_date }</p>
-										<p>${t_match.t_name } vs ${t_match.so_name }</p>
-										  </a>
-									<input type="hidden" name="m_no" value="${t_match.m_no }">
+										<p style="font-weight: bold; margin: 0px;">${t_match.m_date }</p>
+										<p><b>${t_match.t_name }</b>  vs  <b>${t_match.so_name }</b></p>
+									</a> <input type="hidden" name="m_no" value="${t_match.m_no }">
 									<input type="hidden" name="t_num" value="${t_match.t_num }">
 									<input type="hidden" name="so_num" value="${t_match.so_num }">
 									<input type="hidden" name="so_name" value="${t_match.so_name }">
 								</div>
 								<div style="width: 20%">
-									<a class="btn sf" href="#" style="align-items: center; margin-top: 20px;"> 리뷰 작성</a>
+									<a class="btn sf" href="#"
+										style="align-items: center; margin-top: 20px;"> 리뷰 작성</a>
 								</div>
 							</li>
 						</ul>
@@ -317,19 +314,20 @@ a {
 						<li><a href="#"><i class="fas fa-clipboard"
 								style="padding-right: 14px; color: #ffc645;"></i>리뷰 내역 보기</a></li>
 						<li><a class="tma" data-toggle="modal"
-										data-target="#nomanager" data-npp="${t_match.m_no }"><i class="fas fa-ad"
-								style="padding-right: 10px; color: #ffc645;"></i>팀 매치 매니저 신청</a></li>
+							data-target="#nomanager" data-npp="${teammatch.m_no}"><i
+								class="fas fa-ad" style="padding-right: 10px; color: #ffc645;"></i>매치
+								매니저 신청</a></li>
 					</ul>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- 매니저 없는 팀매치  정보 모달창 -->
+	<!-- 매니저 없는 매치  정보 모달창 -->
 	<div class="modal fade" id="nomanager" tabindex="-1"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
-				<div class="modal-body" id="body11">...</div>
+				<div class="modal-body" id="body11">...매니저 신청</div>
 			</div>
 		</div>
 	</div>

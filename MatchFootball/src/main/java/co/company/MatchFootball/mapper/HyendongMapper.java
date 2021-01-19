@@ -17,11 +17,13 @@ import co.company.MatchFootball.vo.TournamentVO;
 public interface HyendongMapper {
 	public int getCount1(TeamVO teamVO); //페이징 count와 list는 매개 같아야함 /팀리스트 페이징
 	public int getCount2(TeamlistVO teamlistVO); //팀원수 페이징
+	public int getCount3(TinviteVO tinviteVO); //팀 초대 페이징
+	public int getCount4(TgalleryVO tgalleryVO); //팀 사진 페이징
 	
 	public List<TeamVO> teamListSelect(TeamVO teamVO); //전체 팀 조회
 	public List<MembersVO>getMembers(); //멤버 리스트 조회
 	public TeamlistVO getTeamMemberss(TeamlistVO teamlistVO); //팀의 팀원들 조회
-	public TeamlistVO selectCount(TeamlistVO teamlistVO);
+	public TeamlistVO selectCount(TeamlistVO teamlistVO); //팀원수 조회
 	public MembersVO memberSelect(MembersVO membersVO); //멤버 단건 조회
 	
 	public List<TeamlistVO> getTeamMembers(TeamlistVO teamlistVO); //팀원 조회
@@ -64,8 +66,13 @@ public interface HyendongMapper {
 	
 	public TinviteVO whereJoin(TinviteVO tinviteVO); //어느팀에 가입신청 했는지 조회
 	
-	public List<TeammatchVO> teamMatchWait(TeammatchVO teammatchVO); //팀매치 신청 내역
 	public int teamInviteStatus(ComeInviteVO comeInviteVO); //팀 초대 하기
 	public List<ComeInviteVO> inviteSelect(ComeInviteVO comeInviteVO); //팀 초대온거 조회
+	public List<ComeInviteVO> inviteSelect2(ComeInviteVO comeInviteVO);//팀장이 초대한거 조회
 	public int invitePass(ComeInviteVO comeInviteVO); //팀 온거 거절
+	
+	public List<TeammatchVO> teamMatchWait(TeammatchVO teammatchVO); //팀매치 신청 내역
+	public int teamMatchDelete(TeammatchVO teammatchVO); //팀매치 신청 삭제
+	
+	public MembersVO avgAge(MembersVO membersVO); //팀 평균 나이
 }

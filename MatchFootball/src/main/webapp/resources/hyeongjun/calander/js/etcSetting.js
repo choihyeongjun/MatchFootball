@@ -17,3 +17,6 @@ $("#type_filter").select2({
 $("#edit-start, #edit-end").datetimepicker({
     format: 'YYYY-MM-DD HH:mm'
 });
+$("#edit-start1, #edit-end1").datetimepicker({
+    format: 'YYYY-MM-DD HH:mm'
+});
