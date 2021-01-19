@@ -144,7 +144,9 @@
 			for(i=0; i<link[s].length; i++){
 				$(this).parent().find(".line_sty"+link[s][i]).toggleClass('on')
 			}
-			
+			$.ajax({
+				
+			})
 			
 		});
 
