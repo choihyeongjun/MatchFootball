@@ -107,9 +107,7 @@ bottom: 0;
 }
 </style>
 <script>
-	if ('${param.msg}' != '')
-		alert('${param.msg}')
-
+	
 	$(function() {
 		/*클릭시 css  */
 		$(".qqqq").on("click", "a", function() {
@@ -130,6 +128,7 @@ bottom: 0;
 			});
 		})
 	})
+
 </script>
 </head>
 <body>

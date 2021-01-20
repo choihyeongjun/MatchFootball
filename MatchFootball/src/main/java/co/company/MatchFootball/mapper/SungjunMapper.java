@@ -10,6 +10,7 @@ import co.company.MatchFootball.vo.P_matchVO;
 import co.company.MatchFootball.vo.PlayersVO;
 import co.company.MatchFootball.vo.PointVO;
 import co.company.MatchFootball.vo.PplayersVO;
+import co.company.MatchFootball.vo.PreviewVO;
 import co.company.MatchFootball.vo.TeamVO;
 import co.company.MatchFootball.vo.TeamlistVO;
 import co.company.MatchFootball.vo.TeammatchVO;
@@ -26,6 +27,15 @@ public interface SungjunMapper {
 	public List<PointVO> pointallselect(PointVO p_point);
 	public P_matchVO pmatchlist1(P_matchVO p_match);
 	public List<MatchMember> matchmember(MatchMember matchmember);
+	//해당 매치의 선수 불러오기 매치번호로 매치 조회
+	public List<MembersVO> pmreview(MembersVO membersvo);
+	public P_matchVO pmreviewmat(P_matchVO p_match);
+	//개인 매치 선수 리뷰 등록
+	public int pmreviewapp(PreviewVO preview);
+	public int reviewup(P_matchVO p_match);
+	//매니저 신청할떄 멤버에 권한 웨이트로 바꾸기
+	public int mapplymem(MembersVO membersvo);
+	
 	public int mapply(ManageraplyVO manageraply);
 	public P_matchVO pmatchlist3(P_matchVO p_match);
 		//	개인 매치 신청후 실행 쿼리 3개 //
@@ -69,6 +79,16 @@ public interface SungjunMapper {
 	public Integer tmapply(MmatchlistVO mmatchlistvo);
 	//매니저 없는 팀매치 검색
 	public List<TeammatchVO> nomanager(TeammatchVO teammatch);
-
-	
+	//같은 시간대 예약 찾기
+	public Integer seltime(P_matchVO p_match);
+	//해당날 매치있는지 없는지 체크
+	public Integer daysel(P_matchVO p_match);
+	//매니저 신청햇는지 안했는지 체크
+	public Integer chekma(ManageraplyVO aply);
+	//매니저 신청 취소
+	public Integer delapply(ManageraplyVO aply);
+	//tnum 조회
+	public TeamVO tnumsel(TeamVO teamvo);
+	//so_num 조회
+	public TeamVO sonumsel(TeamVO teamvo);
 }
