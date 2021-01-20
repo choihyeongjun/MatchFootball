@@ -26,6 +26,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import co.company.MatchFootball.mapper.DoeunMapper;
 import co.company.MatchFootball.vo.CuponVO;
+import co.company.MatchFootball.vo.FboardVO;
 import co.company.MatchFootball.vo.MembersVO;
 import co.company.MatchFootball.vo.MessageVO;
 import co.company.MatchFootball.vo.P_matchVO;
@@ -108,10 +109,9 @@ public class DoeunController {
 	}
 
 	@RequestMapping("mypage/Mypoint/ajax") // 내 포인트 업데이트
-	@ResponseBody
-	public void myPoint(PointVO point, Model model, HttpServletResponse response, HttpServletRequest request, HttpSession session) {
+	public int myPoint(PointVO point, Model model, HttpServletResponse response, HttpServletRequest request, HttpSession session) {
 		System.out.println("mypoint call");
-		dao.Mypoint(point);
+	return	dao.Mypoint(point);
 	}
 	@RequestMapping(value = "mypage/pay") // 결제
 	public ModelAndView payment(HttpServletResponse response, HttpSession session, HttpServletRequest request,
@@ -229,30 +229,8 @@ public class DoeunController {
 		paging.setTotalRecord(dao.getPmatCnt(pmc));
 		model.addAttribute("paging", paging);
 		model.addAttribute("p_mat", dao.AppPmatList(pmc));
-		
-//		// 포맷 설정
-//		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//		Date currentTime = new Date();
-//		String date = format.format(currentTime);
-//
-//		String end_dt = (String)session.getAttribute(pmc.getM_date());
-//
-//		Date endDate = format.parse(end_dt);
-//		Date todate = format.parse(date);
-//
-//		System.out.println("endDate:" + endDate);
-//		System.out.println("todate:" + todate);
-//		int compare = endDate.compareTo(todate);
-//
-//		System.out.println("compare:"+ compare);
-//
-//		if(compare >= 0) {
-//		System.out.println("사용가능");
-//		model.addAttribute("endDate",compare);
-//		} else {
-//		System.out.println("유효기간만료");
-//		}
-		System.out.println(dao.AppPmatList(pmc));
+
+//		System.out.println(dao.AppPmatList(pmc));
 		return "doeun/PApplyDetail";
 	}
 
@@ -310,15 +288,15 @@ public class DoeunController {
 	}
 
 	@RequestMapping(value = "/mypage/write") // 내가 쓴 게시글
-	public String Mywrite() {
-		
+	public String Mywrite(FboardVO mywt, Model model, HttpSession session) {
+		mywt.setId((String)session.getAttribute("id"));
+		model.addAttribute("my",dao.myWriteList(mywt));
 		return "doeun/MyWriter";
 	}
-	@RequestMapping(value="mypage/matching/del", method=RequestMethod.GET)
+	@RequestMapping(value="mypage/matching/del", method=RequestMethod.POST) // 개인매칭 신청 취소
 	public void delPMatchProc(P_matchVO pmat, Model model, HttpSession session, HttpServletRequest request) {
 		pmat.setP_id((String) session.getAttribute("id"));
-		pmat.setM_no(request.getParameter("m_no"));
-		
+		pmat.setM_no(request.getParameter("m_no"));		
 		dao.delPMatchProc(pmat);
 	}
 	

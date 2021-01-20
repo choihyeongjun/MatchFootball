@@ -24,6 +24,7 @@ public class P_matchVO {//개인매치
 	String id;
 	String sel;
 	String p_id;//개인 유저 아이디
+	String gubun;
 	int first;
 	int last;
 }
