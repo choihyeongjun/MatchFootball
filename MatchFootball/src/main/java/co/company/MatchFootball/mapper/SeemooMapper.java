@@ -42,6 +42,7 @@ public interface SeemooMapper {
 // ============================================================================================
 	
 	public List<NoticeVO> noticeList(); 			// 공지사항조회
+	public List<NoticeVO> noticeList(NoticeVO noticeVO); // 유져 공지 조회
 	public NoticeVO noticeselect(NoticeVO vo);		// 공지사항단건조회
 	public int noticeinsert(NoticeVO vo);			// 공지사항입력
 	public int noticedelete(NoticeVO vo); 			// 공지사항삭제

@@ -382,7 +382,7 @@ body, html {
                      </div>
                      <ul class="menul" style="color: white; font-size: 20px;">
                         <li class="lili"><a
-                           href="${pageContext.request.contextPath}/allnotice"
+                           href="${pageContext.request.contextPath}/notice"
                            style="color: white;">공지사항</a></li>
                         <li class="lili"><a
                            href="${pageContext.request.contextPath}/free">자유게시판</a></li>

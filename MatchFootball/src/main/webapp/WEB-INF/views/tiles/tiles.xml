@@ -11,6 +11,10 @@
     	<put-attribute name="body" value="/WEB-INF/views/{1}/{2}.jsp"></put-attribute>
     </definition> 
 
+	<definition name="a/*/*" template="/WEB-INF/views/sungjun/mainmenu.jsp">	
+		<put-attribute name="body" value="/WEB-INF/views/{1}/{2}.jsp" />
+	</definition>
+
 	<definition name="hyendong/*" template="/WEB-INF/views/sungjun/mainmenu.jsp">	
 		<put-attribute name="body" value="/WEB-INF/views/hyendong/{1}.jsp" />
 	</definition>

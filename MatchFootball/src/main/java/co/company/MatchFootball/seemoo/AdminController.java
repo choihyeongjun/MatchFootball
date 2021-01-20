@@ -290,4 +290,17 @@ public class AdminController {
 		hyendongmapper.blackCancle(teamVO);
 		return "redirect:admin/blackteam";
 	}
+	
+	@RequestMapping(value = "/notice") // 매니저관리 페이지
+	public String notice(Model model, NoticeVO vo, HttpServletRequest request, HttpServletResponse reponse) {
+		model.addAttribute("notice", seemoomapper.noticeList());
+		return "a/seemoo/notice";
+	}
+	
+	@RequestMapping("/noticeView")
+	public String noticeView(NoticeVO vo, Model model) {
+		model.addAttribute("noticeView", seemoomapper.noticeselect(vo));
+		return "a/seemoo/noticeView";
+	}
+	
 }
