@@ -16,78 +16,84 @@
 	<!-- 프로필 등록 -->
 	<insert id="insertMem" parameterType="MembersVO">
 		insert into members(
-				id,
-				name,
-				gender,
-				postcode,
-				location1,
-				location2,
-				pnum,
-				email,
-				birth,
-				img,
-				lv,
-				pos,
-				author2,point
+		id,
+		name,
+		gender,
+		postcode,
+		location1,
+		location2,
+		pnum,
+		email,
+		birth,
+		img,
+		lv,
+		pos,
+		author2,point
 		) values(
-				#{id},
-				#{name},
-				#{gender},
-				#{postCode},
-				#{location1},
-				#{location2},
-				#{pnum},
-				#{email},
-				#{birth},
-				#{img},
-				#{lv},
-				#{pos},
-				#{author2},
-				0
+		#{id},
+		#{name},
+		#{gender},
+		#{postCode},
+		#{location1},
+		#{location2},
+		#{pnum},
+		#{email},
+		#{birth},
+		#{img},
+		#{lv},
+		#{pos},
+		#{author2},
+		0
 		)
 	</insert>
 
 	<update id="upMem" parameterType="MembersVO">
 		update members
-		set name = #{name},
-			gender = #{gender},
-			postcode = #{postCode},
-			location1 = #{location1},
-			location2 = #{location2},
-			pnum = #{pnum},
-			email = #{email},
-			birth = #{birth},
-			img = #{img},
-			lv = #{lv},
-			pos = #{pos},
-			author2 = #{author2}
+		set name =
+		#{name},
+		gender = #{gender},
+		postcode = #{postCode},
+		location1 = #{location1},
+		location2 = #{location2},
+		pnum = #{pnum},
+		email = #{email},
+		birth = #{birth},
+		img = #{img},
+		lv = #{lv},
+		pos = #{pos},
+		author2 = #{author2}
 		where id = #{id}
 	</update>
 
 	<!-- 멤버 포인트 업데이트 -->
 	<update id="Mypoint" parameterType="PointVO">
 		update members m
-		set m.point = (select nvl(sum(p.NPOINT), 1) from point p 
-		               where p.p_id = m.id)
+		set m.point =
+		(select nvl(sum(p.NPOINT), 1) from point p
+		where p.p_id = m.id)
 		where id = #{p_id}
 	</update>
 	<!-- 메세지 보내기 -->
 	<insert id="sendMsg" parameterType="MessageVO">
-		insert into message (m_no, to_id, send_id, m_title, m_con)
-		values(mno_seq.nextval, #{to_id}, #{send_id}, #{m_title}, #{m_con})
+		insert into message (m_no,
+		to_id, send_id, m_title, m_con)
+		values(mno_seq.nextval, #{to_id},
+		#{send_id}, #{m_title}, #{m_con})
 	</insert>
 	<!-- 수신 메세지함 확인 -->
-	<select id="tomsgList" parameterType="MessageVO" resultType="MessageVO">
+	<select id="tomsgList" parameterType="MessageVO"
+		resultType="MessageVO">
 
 		select * from( select a.*, rownum rn from (
-			select * from message
-			where to_id = #{to_id} order by m_no desc
-		) a ) b 
+		select * from message
+		where to_id = #{to_id} order by m_no desc
+		) a ) b
 		where rn between #{first} and #{last}
 	</select>
 	<!-- 메세지 삭제 -->
 	<delete id="delMsg" parameterType="MessageVO">
-		delete from message where m_no = #{m_no}
+		delete from message where m_no
+		= #{m_no}
 	</delete>
 	<!--쪽지 내역 수 페이징 -->
 	<select id="getCount1" resultType="int">
@@ -100,16 +106,18 @@
 	<!-- 발신 메세지함 확인 -->
 	<select id="sendmsgList" parameterType="MessageVO"
 		resultType="MessageVO">
-		select * from( select a.*, rownum rn 
-		  from (select m_no, to_id, send_id, m_title, m_con, o_date, TO_CHAR(s_date,'mm-dd HH24:MI:SS'),m_check 
-		        from message
-		        where send_id = #{send_id} order by m_no desc
-		) a ) b 
+		select * from( select a.*, rownum rn
+		from (select m_no, to_id, send_id, m_title, m_con, o_date,
+		TO_CHAR(s_date,'mm-dd HH24:MI:SS') s_date,m_check
+		from message
+		where send_id = #{send_id} order by m_no desc
+		) a ) b
 		where rn between #{first} and #{last}
 	</select>
 	<!-- 포인트 충전 결제 등록 -->
 	<insert id="Pcharge" parameterType="PointVO">
-		insert into point(p_seq,p_id,p_pay,npoint,p_date,p_con)
+		insert into
+		point(p_seq,p_id,p_pay,npoint,p_date,p_con)
 		values(point_seq.nextval,#{p_id},#{p_pay},#{npoint},sysdate,#{p_con})
 	</insert>
 	<!-- 포인트 충전시 쿠폰 자동 등록 -->
@@ -121,10 +129,10 @@
 	<!-- 포인트 내역조회 -->
 	<select id="pointList" parameterType="PointVO"
 		resultType="PointVO">
-		select * from( select a.*, rownum rn from (
+		select * from( select a.*, ROWNUM RN from (
 		select * from
-		point where p_id = #{p_id}
-		) a ) b where rn between #{first} and
+		point where p_id = #{p_id} order by p_date DESC
+		) a ) b where RN between #{first} and
 		#{last}
 	</select>
 	<!-- 쿠폰 조회 -->
@@ -138,7 +146,7 @@
 	</select>
 	<!-- 쿠폰 유효 기간 경과시 사용불가 -->
 	<update id="unusedCp" parameterType="CuponVO">
-		update coupon set c_check = 'O' 
+		update coupon set c_check = 'O'
 		where <![CDATA[c_edate < SYSDATE+1]]>
 		and c_check = 'N'
 	</update>
@@ -162,19 +170,21 @@
 		</select> -->
 
 
-	<select id="getPmatCnt" resultType="int">
-		SELECT COUNT(*) FROM p_match
-		where m_id=#{m_id}
-	</select>
-
-
+<!-- 개인매칭 신청 관리 -->
 	<select id="AppPmatList" parameterType="P_matchVO"
 		resultType="P_matchVO">
 		select * from( select a.*, ROWNUM RN from (
-			select * from
-			p_match pm join PPLAYERS pp on pm.m_no = pp.m_no where
-			pp.id=#{m_id} order by m_date
+		select pm.*, case when SUBSTR(to_date(pm.m_date,'YYYY-MM-DD HH24:MI'),0) > SYSDATE
+		then 'Y' else 'N' end as gubun
+		from p_match pm join PPLAYERS pp on pm.m_no = pp.m_no
+		where pp.id=#{m_id} order by m_date desc
+
 		) a ) b where RN between #{first} and #{last}
+	</select>
+	<select id="getPmatCnt" resultType="int">
+		SELECT COUNT(*) 
+		from p_match pm join PPLAYERS pp on pm.m_no = pp.m_no
+		where pp.id=#{m_id}
 	</select>
 
 	<!-- 팀매칭 신청내역 조회 -->
@@ -183,22 +193,29 @@
 		select * from( select a.*, rownum rn from (
 		select t.* from
 		TEAMMATCH t join
-		players p on t.t_num = p.t_num where p.id= #{id} order
+		players p on t.m_no = p.m_no where p.id= #{id} order
 		by m_date
 		) a ) b where rn between #{first} and
 		#{last}
 	</select>
 	<select id="getTmatCnt" resultType="int">
 		SELECT COUNT(*) from
-		TEAMMATCH t join players p on t.t_num = p.t_num where p.id= #{id}
+		TEAMMATCH t join players p on t.m_no = p.m_no where p.id= #{id}
 		order by m_date
 	</select>
 
 	<!-- 프로시저 -->
-	<insert id="delPMatchProc" statementType="CALLABLE">
+	<insert id="delPMatchProc" statementType="CALLABLE" parameterType="P_matchVO">
 		{call DEL_P_MATCH_PROC(
-			#{p_id}, 
-			#{m_no}
+		#{p_id},
+		#{m_no}
 		)}
 	</insert>
+
+
+	<!-- 게시판 조회 -->
+	<select id="myWriteList" parameterType="FboardVO"
+		resultType="FboardVO">
+		select * from fboard where id=#{id}
+	</select>
 </mapper>

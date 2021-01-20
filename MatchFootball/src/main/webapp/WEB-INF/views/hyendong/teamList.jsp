@@ -50,6 +50,12 @@
     text-decoration: none;
     color: black;
 }
+a {
+    color: #000000;
+    text-decoration: none;
+    background-color: transparent;
+    -webkit-text-decoration-skip: objects;
+}
 </style>
 </head>
 <body>
@@ -99,12 +105,12 @@
 			<h3>팀 리스트</h3>
 			<hr>
 		</div>
-		<div class="progress-table" align="center" style="margin-left: 400px; width: 50%">
+		<div class="progress-table" align="center" style="margin-left: 530px; width: 50%">
 			<div class="table-head" style="margin-right: 150px">
 				<div class="serial" align="left">No.</div>
 				<div class="serial" align="left" style="margin-left: 30px">팀명</div>
-				<div class="serial" align="left" style="margin-left: 90px; width: 120px;">경기유형</div>
-				<div class="serial" align="left" style="margin-left: 85px">팀정보</div>
+				<div class="serial" align="left" style="margin-left: 90px; width: 120px; padding-left: 54px;">경기유형</div>
+				<div class="serial" align="left" style="margin-left: 117px;">팀정보</div>
 			</div>
 			<div class="aa">
 			<c:forEach items="${teamList }" var="teamList">
@@ -116,10 +122,8 @@
 						</div>
 						<div class="visit">${teamList.t_type}</div>
 						<div class="visit">
-						<input type="text" value="${teamList.t_num }" name="t_num" style="display:none">
-							&nbsp;&nbsp;&nbsp;&nbsp;인&nbsp;&nbsp;원&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							${count.c } / ${teamList.t_max}<br>평균
-							연령&nbsp;&nbsp;&nbsp;<br>경기
+							&nbsp;&nbsp;&nbsp;인원&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							${teamList.teamListCount } / ${teamList.t_max}<br>경기
 							유형&nbsp;&nbsp;&nbsp;${teamList.t_type }
 						</div>
 					</div>
@@ -131,8 +135,7 @@
 					location.href = "teamList?page=" + q;
 				}
 			</script>
-			<hr>
-			<div style="font-size: 20px; text-align: center; margin-left: 380px; }">
+			<div style="font-size: 20px; text-align: center; margin-left: 380px;">
 				<my:paging paging="${paging}" jsfunc="goPage" />
 			</div>
 		</div>

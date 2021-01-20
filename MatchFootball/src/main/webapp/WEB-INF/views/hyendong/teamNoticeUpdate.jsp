@@ -74,25 +74,25 @@ footer {
    <form action="teamNoticeUpdatee" method="post"
       encType="multipart/form-data">
       <article>
-         <div class="container" role="main" style="width: 500px">
-               <div class="mb-3">
+         <div class="container" role="main">
+               <div class="mb-3" style="float:right;">
+                  <label for="reg_id">작성자</label> 
+                  <input type="text" class="form-control" name="t_id" id="reg_id" value="${sessionScope.id }" placeholder="이름을 입력해 주세요." readonly>
+               </div>
+               
+               <div class="mb-3" style="width: 1050px">
                   <label for="title">제목</label> 
                   <input type="text" class="form-control" name="t_title" value="${teamNoticeInfo.t_title }" placeholder="제목을 입력해 주세요.">
                </div>
                
                <div class="mb-3">
-                  <label for="reg_id">작성자</label> 
-                  <input type="text" class="form-control" name="t_id" id="reg_id" value="${sessionScope.id }" placeholder="이름을 입력해 주세요." readonly>
-               </div>
-               
-               <div class="mb-3">
                   <label for="content">내용</label>
-                  <textarea class="form-control" rows="5" name="t_content" id="content" placeholder="내용을 입력 해주세요.">${teamNoticeInfo.t_content }</textarea>
+                  <textarea class="form-control" rows="5" name="t_content" id="content" placeholder="내용을 입력 해주세요." style="height: 250px">${teamNoticeInfo.t_content }</textarea>
                </div>
                
                <input type="text" name="t_num" value="${teamNoticeInfo.t_num }" style="display:none">
                <input type="text" name="n_no" value="${teamNoticeInfo.n_no }" style="display:none">
-            <div style="margin: auto; text-align: center;">
+            <div style="margin: auto; text-align: right;">
                <button type="submit" class="btn btn-primary" id="btnSave">수정</button>
                <button type="button" class="btn btn-danger" id="btnList" onclick="history.back(-1)">취소</button>
             </div>

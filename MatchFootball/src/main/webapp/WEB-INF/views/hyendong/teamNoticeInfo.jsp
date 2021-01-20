@@ -151,14 +151,14 @@ footer {
    <div>
    <form action="teamNoticeInsertt" method="post" encType="multipart/form-data">
       <article>
-         <div class="container" role="main" style="width: 500px">
-               <div class="mb-3">
-                  <label for="title">제목</label>
-                  <input type="text" class="form-control" name="t_title" placeholder="제목을 입력해 주세요" value="${teamNoticeInfo.t_title }" readonly>
-               </div>
-               <div class="mb-3">
+         <div class="container" role="main" >
+               <div class="mb-3" style="float:right;">
                   <label for="reg_id">작성자</label> 
                   <input type="text" class="form-control" name="t_id" id="reg_id" value="${sessionScope.id }" placeholder="이름을 입력해 주세요" readonly>
+               </div>
+               <div class="mb-3" style="width: 1050px">
+                  <label for="title">제목</label>
+                  <input type="text" class="form-control" name="t_title" placeholder="제목을 입력해 주세요" value="${teamNoticeInfo.t_title }" readonly>
                </div>
                <div class="mb-3">
                   <label for="content">내용</label>
@@ -170,7 +170,7 @@ footer {
          </article>
       </form>
       <br>
-      <div align="center" style="padding-left: 875px;">
+      <div style="padding-left: 1424px;">
       <div style="float: left">
          <input type="button" class="btn btn-primary" value="목록" onclick="location.href='teamNotice?t_num=${teamInfo.t_num}'">
       </div>

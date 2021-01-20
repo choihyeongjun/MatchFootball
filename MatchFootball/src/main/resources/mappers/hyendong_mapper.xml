@@ -19,9 +19,7 @@
 	<select id="teamListSelect" resultType="TeamVO"
 		parameterType="TeamVO">
 		select * from( select a.*, rownum rn from (
-		SELECT *
-		FROM TEAM
-		ORDER BY t_num
+		select t.*, (select count(1) from teamlist l where l.t_num=t.t_num) as teamListCount from team t order by t_num
 		) a ) b where rn between #{first} and #{last}
 
 	</select>
@@ -227,7 +225,7 @@
 	<!-- 토너먼트 대진표 조회 -->
 	<select id="tournamentPVP" parameterType="TournamentTeamVO"
 		resultType="TournamentTeamVO">
-		select t.t_name from tournamentteam tt join team t on tt.t_num = t.t_num where t_no=#{t_no}
+		select t.t_name, tt.t_no from tournamentteam tt join team t on tt.t_num = t.t_num where t_no=#{t_no}
 	</select>
 	
 	<!-- 멤버 팀 번호 변경 -->
@@ -459,7 +457,7 @@
 	
 	<!-- 팀 평균 나이 구하기 -->
 	<select id="avgAge" resultType="membersVO" parameterType="membersVO">
-		select avg(nvl(trunc(months_between(sysdate, to_date(substr(birth, 1, 4), 'yyyy'))/12), 0)+1) as age from members where t_num=#{t_num}
+		select round(avg(nvl(trunc(months_between(sysdate, to_date(substr(birth, 1, 4), 'yyyy'))/12), 0)+1),1) as age from members where t_num=#{t_num}
 	</select>
 	
 	<!-- 팀매치 취소 -->
@@ -467,4 +465,45 @@
 		delete from teammatch 
 		where m_no=#{m_no}
 	</delete>
+	
+	<!-- 스카웃 있고없고 -->
+	<select id="scoutInvite" resultType="membersVO">
+		select t.id, nvl((select 1 from comeinvite
+    					  where id=t.id), 0) as sel
+		from members t
+		where t.id = #{id}
+	</select>
+	
+	<!-- 토너먼트 4강 진출 -->
+	<update id="oneWin">
+		update tournamentteam set t_wn='4강 진출' where t_num=#{t_num} and t_no=#{t_no}
+	</update>
+	
+	<!-- 토너먼트 결승 진출 -->
+	<update id="twoWin">
+		update tournamentteam set t_wn='결승 진출' where t_num=#{t_num} and t_no=#{t_no}
+	</update>
+	
+	<!-- 토너먼트 우승자 업뎃  -->
+	<update id="threeWin">
+		update tournamentteam set t_wn='우승' where t_num=#{t_num} and t_no=#{t_no}
+	</update>
+	
+	<!-- 토너먼트 상금 전달 -->
+	<update id="winTournament">
+		update members set point = (select t_point from tournament where t_no=#{t_no}) 
+		where id = (select id from members where id = (select b.id from tournamentteam a join teamlist b 
+		                                               on a.t_num=b.t_num where a.t_wn='우승' 
+		                                               and a.t_no=#{t_no} and b.t_author='팀장'))
+	</update>
+	
+	<!-- 블랙팀 팀권한 수정 -->
+	<update id="blackCancle">
+		update team set author from where t_num=#{t_num}
+	</update>
+	
+	<!-- 토너먼트 팀 카운트 -->
+	<select id="tournamentTeamCount" resultType="TournamentTeamVO">
+		select count(1) as count from tournamentteam where t_no=#{t_no}
+	</select>
 </mapper>

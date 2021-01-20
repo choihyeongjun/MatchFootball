@@ -122,9 +122,15 @@
 								</h1>
 							</div>
 							<div class="form-group">
-								<label>이름</label> <input type="text"
-									class="form-control form-control-lg name" placeholder=""
-									name="name" value="${kname}">
+								<label>이름</label>
+								<c:if test="${mb.id eq null }">
+									<input type="text" class="form-control form-control-lg name"
+										name="name" value="${kname}">
+								</c:if>
+								<c:if test="${mb.id ne null }">
+									<input type="text" class="form-control form-control-lg name"
+										name="name" value="${mb.name}">
+								</c:if>
 							</div>
 							<div class="form-group has-feedback">
 								<label class="control-label" for="photo">프로필 사진</label>
@@ -172,14 +178,14 @@
 							</div>
 							<div class="form-group">
 								<label>이메일</label>
-								<c:if test="${mb_email eq null}">
+								<c:if test="${mb.email eq null}">
 									<input type="text" name="email" id="email"
 										class="form-control form-control-lg email" value="${kemail}"
 										required="required">
 								</c:if>
-								<c:if test="${mb_email ne null}">
+								<c:if test="${mb.email ne null}">
 									<input type="text" name="email" id="email"
-										class="form-control form-control-lg email" value="${mb_email}"
+										class="form-control form-control-lg email" value="${mb.email}"
 										readonly="readonly">
 								</c:if>
 							</div>

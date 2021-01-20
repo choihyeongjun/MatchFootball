@@ -74,14 +74,14 @@ footer {
    </div>
    <form action="teamNoticeInsertt" method="post" encType="multipart/form-data">
       <article>
-         <div class="container" role="main" style="width: 500px">
-               <div class="mb-3">
-                  <label for="title">제목</label>
-                  <input type="text" class="form-control" name="t_title" placeholder="제목을 입력해 주세요">
-               </div>
-               <div class="mb-3">
-                  <label for="reg_id">작성자</label> 
+         <div class="container" role="main">
+               <div class="mb-3" style="float:right;">
+                  <label for="reg_id" >작성자</label> 
                   <input type="text" class="form-control" name="t_id" id="reg_id" value="${sessionScope.id }" placeholder="이름을 입력해 주세요" readonly>
+               </div>
+               <div class="mb-3" style="width:1050px;">
+                  <label for="title" >제목</label>
+                  <input type="text" class="form-control" name="t_title" placeholder="제목을 입력해 주세요">
                </div>
                <div class="mb-3">
                   <label for="content">내용</label>
@@ -89,7 +89,7 @@ footer {
                </div>
                
                <input type="text" name="t_num" value="${teamInfo.t_num }" style="display:none">
-               <div align="center">   
+               <div align="right">   
                   <button type="submit" class="btn btn-primary" id="btnSave">등록</button>
                   <button type="button" class="btn btn-success" id="btnList">목록</button>
                </div>

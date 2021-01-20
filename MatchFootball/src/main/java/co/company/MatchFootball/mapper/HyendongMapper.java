@@ -75,4 +75,13 @@ public interface HyendongMapper {
 	public int teamMatchDelete(TeammatchVO teammatchVO); //팀매치 신청 삭제
 	
 	public MembersVO avgAge(MembersVO membersVO); //팀 평균 나이
+	public MembersVO scoutInvite(MembersVO membersVO); //스카웃 테이블 있고없고 셀렉트
+	
+	public int oneWin(TournamentTeamVO tournamentTeamVO); //4강 진출 업뎃
+	public int twoWin(TournamentTeamVO tournamentTeamVO); //결승 진출 업뎃
+	public int threeWin(TournamentTeamVO tournamentTeamVO); //우승 업뎃
+	public int winTournament(MembersVO membersVO); //우승자 포인트 업뎃
+	
+	public int blackCancle(TeamVO teamVO); //팀 블랙 권한 취소
+	public TournamentTeamVO tournamentTeamCount(TournamentTeamVO tournamentTeamVO); //토너먼트 참가 팀 카운트
 }

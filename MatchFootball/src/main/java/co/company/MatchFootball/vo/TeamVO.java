@@ -21,4 +21,5 @@ public class TeamVO {
 	String sel;
 	int first;
 	int last;
+	String teamListCount;
 }
