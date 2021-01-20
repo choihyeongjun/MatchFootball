@@ -16,4 +16,5 @@ public class TournamentVO {
 	String img;//이미지
 	String t_point;//상금
 	String a_id;//관리자아이디
+	String count;
 }

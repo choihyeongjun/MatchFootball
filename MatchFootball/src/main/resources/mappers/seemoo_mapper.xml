@@ -69,11 +69,12 @@
 	<!-- 매니저 권한수정 -->
 	<select id="managerupdate" resultType="MembersVO" parameterType="MembersVO">
 		UPDATE MEMBERS SET AUTHOR = #{author} WHERE ID = #{id}
+		
 	</select>
 	
 	<!-- 매니저 승인|대기조회 -->
 	<select id="managerapplyList" resultType="ManagerapplyVO">
-		select a.author, b.* from members a join manageraply b on a.id=b.id where a.author='wait' or a.author='stop'
+		SELECT A.AUTHOR, B.* FROM MEMBERS A JOIN MANAGERAPLY B ON A.ID=B.ID WHERE A.AUTHOR = 'wait' OR A.AUTHOR = 'stop'
 	</select>
 	
 	<!-- 매니저 권한 수정 -->
@@ -127,7 +128,24 @@
 		SELECT * FROM FBOARD
 	</select>	
 		
+	<!-- 매치확인 -->
+	<select id="matchList" resultType="P_matchVO">
+		SELECT * FROM P_MATCH
+	</select>
+	
+	<!-- 경기장 확인 -->
+	<select id="fieldList" resultType="FieldVO">
+		SELECT * FROM FIELD
+	</select>
 		
-		
+	<!-- 경기장단건조회 -->
+	<select id="fieldselect" parameterType="FieldVO" resultType="FieldVO">
+		SELECT * FROM FIELD WHERE F_ID = #{f_id} 
+	</select>	
+	
+	<!-- 경기장삭제 -->
+	<select id="fielddelete" resultType="FieldVO">
+		DELETE FROM FIELD WHERE F_ID = #{f_id} 
+	</select>
 		
 </mapper>

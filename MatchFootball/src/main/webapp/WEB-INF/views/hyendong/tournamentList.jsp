@@ -68,7 +68,7 @@
 </style>
 </head>
 <body>
-<div class="contentWrapper" style="margin-bottom: 200px">
+<div class="contentWrapper">
 	<div id="main_contents">
 		<ul class="tournament_wrap">
 			<c:forEach items="${tournamentList}" var="tournamentList">

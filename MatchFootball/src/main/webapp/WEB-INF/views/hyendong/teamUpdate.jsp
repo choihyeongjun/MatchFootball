@@ -82,12 +82,12 @@
 					<h3>팀 수정</h3>
 					<div class="mt-10">
 						<input type="text" name="t_name" placeholder="팀명"
-							value="${teamUpdate.t_name }" class="single-input-accent">
+							value="${teamUpdate.t_name }" class="single-input-accent" required="required">
 					</div>
 					<hr>
 					<div class="mt-10">
 						<input type="text" name="t_max" placeholder="최대 팀원수"
-							value="${teamUpdate.t_max }" class="single-input-accent">
+							value="${teamUpdate.t_max }" class="single-input-accent" required="required">
 					</div>
 					<hr>
 					<div class="input-group-icon mt-10">

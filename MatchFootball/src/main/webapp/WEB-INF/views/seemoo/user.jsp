@@ -91,20 +91,22 @@ function userListResult(data) {
 
 function userDelete() {
 	//삭제 버튼 클릭
-	$('main').on('click','#btnDelete',function(){
+	$('#main').on('click','#btnDelete',function(){
 		var userId = $(event.target).closest('tr').find('#hidden_userId').val();
 		var result = confirm(userId +" 사용자를 정말로 삭제하시겠습니까?");
 		if(result) {
-			console.log("아이디값: "+userId)
+			console.log("아이디값: "+id)
 			$.ajax({
-				url:'../userdelete',  
+				url:'/userdelete'+userId,  
 				contentType:'application/json;charset=utf-8',
 				dataType:'json',
-				type : 'GET',
-				data :{id : userId},
+				type : 'DELETE',
 				error:function(xhr,status,msg){
 					console.log("상태값 :" + status + " Http에러메시지 :"+msg);
-				}, success: location.reload()
+				}, success: function(xhr) {
+					console.log(xhr.result);
+					userList();
+				}
 			});      
 		}//if
 	}); //삭제 버튼 클릭

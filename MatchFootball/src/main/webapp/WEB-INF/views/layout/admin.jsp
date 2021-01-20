@@ -130,12 +130,12 @@
 									aria-labelledby="headingOne"
 									data-parent="#sidenavAccordionPages">
 									<nav class="sb-sidenav-menu-nested nav">
-										<a class="nav-link" href="${pageContext.request.contextPath}/admin/notice/noticewrite">공지사항</a> 
+										<a class="nav-link" href="${pageContext.request.contextPath}/admin/notice/noticewrite">공지사항</a>
 										<a class="nav-link" href="${pageContext.request.contextPath}/admin/community">커뮤니티</a> 
 									</nav>
 								</div>
 								<a class="nav-link collapsed" href="#" data-toggle="collapse"
-									data-target="#pagesCollapseError" aria-expanded="false"
+									data-target="#pagesCollapseError" aria-expanded="false"	
 									aria-controls="pagesCollapseError"> 매니저 리뷰관리
 									<div class="sb-sidenav-collapse-arrow">
 										<i class="fas fa-angle-down"></i>
@@ -161,11 +161,6 @@
 							</div> 통계관리
 						</a>
 						 
-						<a class="nav-link" href="${pageContext.request.contextPath}/admin/point">
-							<div class="sb-nav-link-icon">
-								<i class="fas fa-table"></i>
-							</div> 쿠폰관리 및 포인트관리
-						</a>
 					</div>
 				</div>
 				

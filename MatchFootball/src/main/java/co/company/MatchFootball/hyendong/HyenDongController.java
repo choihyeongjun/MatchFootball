@@ -533,8 +533,6 @@ public class HyenDongController {
 			teamVO.setT_num(t_num2);
 			System.out.println(teamVO.getT_num());
 			model.addAttribute("hh", hyendongMapper.joinTeamTournament(teamVO));
-			
-//			model.addAttribute("count", hyendongMapper.tournamentTeamCount(tt));
 			return "seemoo/tournamentInfo";
 		}
 

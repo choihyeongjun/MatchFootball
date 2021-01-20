@@ -94,11 +94,11 @@ function teamOut(){
     </div>
 </nav>
 
-   <div align="center" style="padding-bottom: 650px">
+   <div align="center" style="padding-bottom: 591px">
       <br>
       <div> <h1>${teamInfo.t_name}의 팀 정보</h1> </div>
       <hr>
-         <div class="card" style="float: left; margin-left: 24%; height: 600px;">
+         <div class="card" style="float: left; margin-left: 28%; height: 600px;">
             <img class="size" src="images/${teamInfo.t_logo }" class="img-thumbnail" style=" text-align: center; ">
             <hr> 
             
