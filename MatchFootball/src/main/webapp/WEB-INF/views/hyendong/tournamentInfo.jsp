@@ -33,7 +33,9 @@ li {
 					<li class="tit">${tournamentTeam.title }</li>
 					<li class="txt">대회기간 : ${tournamentTeam.s_date } ~ ${tournamentTeam.e_date }</li>
 					<li class="txt">대회지역 : ${tournamentTeam.address }</li>
-					<li class="txt">신청현황 : ${tournamentTeam.apply } / ${tournamentTeam.t_max }</li>
+					<li class="txt">
+					<input type="text" value="${tournamentTeam.t_no }" name="t_no" style="display:none">
+					신청현황 : ${tournamentTeam.count } / ${tournamentTeam.t_max }</li>
 					<li class="txt">참 &nbsp;가  &nbsp;비 : 100000 P</li><br>
 					<li class="txt">총 &nbsp;&nbsp;상금 : ${tournamentTeam.t_point } P</li>
 				</ul>
@@ -48,6 +50,7 @@ li {
 			<input type="text" value="${tournamentTeam.t_point }" name="t_point" style="display:none">
 		</form>
 			<input type="submit" class="genric-btn info circle" value="대진표" onclick="location.href='tournamentPVP?t_no=${tournamentTeam.t_no}'"/>
+			<input type="submit" class="genric-btn info circle" value="참가하기" onclick="location.href='tournamentPVP?t_no=${tournamentTeam.t_no}'"/>
 		</div>
 		<br>
 		<div class="tournament_view_cont">
@@ -80,6 +83,5 @@ li {
 			</p>
 		</div>
 	</div>
-	
 </body>
 </html>

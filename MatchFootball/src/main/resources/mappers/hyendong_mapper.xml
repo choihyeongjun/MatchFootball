@@ -183,9 +183,7 @@
 	<!-- 토너먼트 정보 단건 조회 -->
 	<select id="getTournament" parameterType="TournamentVO"
 		resultType="TournamentVO">
-		SELECT *
-		FROM tournament
-		WHERE t_no = #{t_no}
+		SELECT t.*, (select count(1) from tournamentteam l where l.t_no=t.t_no) as count FROM tournament t WHERE t_no = #{t_no}
 	</select>
 
 	<!-- 팀 토너먼트 참가 -->
