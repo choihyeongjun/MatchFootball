@@ -8,10 +8,13 @@
 </head>
 <body>
 <div class="container">
-  <div class="row cols-2">
-    <div class="col">Column1</div>
-    <div class="col">Column2</div>
-    <div class="col">Column3</div>
+  <div class="row">
+    <div class="col">
+      <h1>우리팀</h1>
+    </div>
+    <div class="col">
+      <h1>상대팀</h1>
+    </div>
   </div>
 </body>
 </html>

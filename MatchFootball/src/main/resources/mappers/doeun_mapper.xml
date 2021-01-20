@@ -170,21 +170,21 @@
 		</select> -->
 
 
-	<select id="getPmatCnt" resultType="int">
-		SELECT COUNT(*) FROM p_match
-		where m_id=#{m_id}
-	</select>
-
-
+<!-- 개인매칭 신청 관리 -->
 	<select id="AppPmatList" parameterType="P_matchVO"
 		resultType="P_matchVO">
 		select * from( select a.*, ROWNUM RN from (
 		select pm.*, case when SUBSTR(to_date(pm.m_date,'YYYY-MM-DD HH24:MI'),0) > SYSDATE
 		then 'Y' else 'N' end as gubun
 		from p_match pm join PPLAYERS pp on pm.m_no = pp.m_no
-		where pp.id='test1' order by m_date desc
+		where pp.id=#{m_id} order by m_date desc
 
 		) a ) b where RN between #{first} and #{last}
+	</select>
+	<select id="getPmatCnt" resultType="int">
+		SELECT COUNT(*) 
+		from p_match pm join PPLAYERS pp on pm.m_no = pp.m_no
+		where pp.id=#{m_id}
 	</select>
 
 	<!-- 팀매칭 신청내역 조회 -->

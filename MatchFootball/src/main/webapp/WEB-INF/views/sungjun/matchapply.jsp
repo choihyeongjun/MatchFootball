@@ -34,12 +34,7 @@
 }
 </style>
 <script>
-	function submitCheck() {
 
-		alert("신청되었습니다");
-
-		return true;
-	}
 </script>
 </head>
 <body>
@@ -79,15 +74,9 @@
 			value="${p_matchVO.price } 원" required="required" readonly><label
 			for="floatingTextarea">참가비</label>
 	</div>
-	<form class="inser" action="sendmatchapply" method="post"
-		onsubmit="return submitCheck();">
+	<form class="inser" action="sendmatchapply" method="post">
 		<div class="inserm">
-			<select class="form-select"  aria-label="Default select example">
-				<option selected>Open this select menu</option>
-				<option value="1">One</option>
-				<option value="2">Two</option>
-				<option value="3">Three</option>
-			</select> 
+			
 			<input name="id" type="hidden" value="${membervo.id }"> <input
 				name="m_no" type="hidden" value="${p_matchVO.m_no }"> <input
 				name="p_con" type="hidden" value="개인 매치비"> <input
