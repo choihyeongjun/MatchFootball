@@ -93,6 +93,7 @@
 				<textarea class="form-control" name="comm" placeholder="Leave"
 					id="floatingTextarea2" style="height: 100px;" required="required"></textarea>
 				<label for="floatingTextarea">한마디 남기기</label>
+				<input type="hidden" name="author" value = "wait">
 			</div>
 		</div>
 		<div align="center">

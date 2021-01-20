@@ -179,7 +179,10 @@
 
 </script>
 <body style="background: white;">
-	<div class="bracket_overflow" style="overflow: visible; margin-bottom: 270px" align="center">
+<br>
+<div align="center" style="font-size: 36px">토너먼트 대진표</div>
+<hr>
+	<div class="bracket_overflow" style="overflow: visible; margin-bottom: 179px; padding-top: 134px; padding-left: 176px;" align="center">
 		<div class="match_list_outer" id="bracket_capture">
 			<div id="loser_players" class="team_player_1"></div>
 			<div id="team_players" class="team_player_1">

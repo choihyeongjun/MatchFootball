@@ -107,12 +107,12 @@
 					<h3>팀 생성</h3>
 					<div class="mt-10">
 						<input type="text" name="t_name" placeholder="팀명"
-							class="single-input-accent" >
+							class="single-input-accent" required="required" >
 					</div>
 					<hr>
 					<div class="mt-10">
 						<input type="text" name="t_max" placeholder="최대 팀원수"
-							class="single-input-accent">
+							class="single-input-accent" required="required">
 					</div>
 					<hr>
 					<div class="input-group-icon mt-10">
@@ -170,6 +170,7 @@
 				</div>
 			</div>
 			<br> <input type="button" class="genric-btn info circle" value="팀가입" onclick="teamMake()"/>
+				 <input type="button" class="genric-btn info circle" value="취소" onclick="history.back(-1)"/>
 		</div>
 	</form>
 	<!-- End Align Area -->

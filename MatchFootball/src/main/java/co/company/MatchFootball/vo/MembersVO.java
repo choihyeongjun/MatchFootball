@@ -33,5 +33,6 @@ public class MembersVO {
 	String sel;
 	String t_author;
 	String age;
+	String m_no;
 	String t_no;
 }

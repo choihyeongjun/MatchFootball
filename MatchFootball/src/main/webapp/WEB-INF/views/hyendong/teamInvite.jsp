@@ -12,7 +12,18 @@ footer { position: fixed; left: 0px; bottom: 0px; width: 100%; background: grey;
 #aa { position: fixed; left: 0; top: 0; width: 100%;}
 #dataTable_filter { padding-left: 333px; }
 </style>
+<script>
+function teamInvite(){
+    if (confirm("팀에 초대 하시겠습니까?") == true){    //확인
+        }else{   //취소
+            return false;
+        }
+ }
+ function btnOK(){ alert('팀 초대 성공'); } 
+ function btnNO(){ alert('팀 초대 거절'); } 
 
+
+</script>
 </head>
 <body>
    <div style="width: 99%; margin-left: -25px; padding-top: 38px">
@@ -59,7 +70,7 @@ footer { position: fixed; left: 0px; bottom: 0px; width: 100%; background: grey;
    
       <div class="card mb-4" style="width: 60%; float: left; margin-left: 60px;">
          <div class="card-header">
-            <i class="fas fa-table mr-1"></i> 전체 회원 목록
+            <i class="fas fa-table mr-1"></i> 팀이 없는 전체 회원들
          </div>
          <div class="card-body">
             <div class="table-responsive">
@@ -90,11 +101,11 @@ footer { position: fixed; left: 0px; bottom: 0px; width: 100%; background: grey;
                                  <td>${f.lv}</td>
                                  <td>${f.pos}</td>
                                  <c:if test="${updateButton.t_author eq '팀장'}">
-                                    <td><form action="inviteComeon" method="post">
+                                    <td><form action="inviteComeon" method="post" name="inviteComeon">
                                        <input type="text" value="${f.id  }" name="id" style="display:none"> 
                                        <input type="text" value="${sessionScope.t_num }" name="t_num" style="display:none">
                                        <input type="text" value="${tname.t_name }" name="c_tname" style="display:none">
-                                       <button type="submit" id="button" class="btn btn-primary" style="height: 31px">팀초대</button>
+                                       <button type="submit" id="button" class="btn btn-primary" style="height: 31px" onclick="teamInvite()">팀초대</button>
                                        </form>
                                     </td>
                                  </c:if>
@@ -109,7 +120,7 @@ footer { position: fixed; left: 0px; bottom: 0px; width: 100%; background: grey;
    
       <div class="card mb-4">
          <div class="card-header">
-            <i class="fas fa-table mr-1"></i> 팀 가입 승인 현황
+            <i class="fas fa-table mr-1"></i> 우리팀에 가입 신청한 회원들
          </div>
          <div class="card-body">
             <div class="table-responsive">
@@ -143,9 +154,9 @@ footer { position: fixed; left: 0px; bottom: 0px; width: 100%; background: grey;
                                     <input type="text" value="팀원" name="t_author" style="display: none">
                                     <c:if test="${updateButton.t_author eq '팀장'}">
                                     <button type="submit" id="btnSelect" 
-                                    class="btn btn-primary" onclick="javascript: form.action='${pageContext.request.contextPath}/teamListInsert'" style="height: 30px; width: 55px">수락</button>
+                                    class="btn btn-primary" onclick="javascript: form.action='${pageContext.request.contextPath}/teamListInsert'" style="height: 30px; width: 55px" onclick="javascript:btnOK()">수락</button>
                                     <button type="submit" id="btnSelect"
-                                    class="btn btn-danger" onclick="javascript: form.action='${pageContext.request.contextPath}/teamInviteDelete'" style="height: 30px; width: 55px">거절</button>
+                                    class="btn btn-danger" onclick="javascript: form.action='${pageContext.request.contextPath}/teamInviteDelete'" style="height: 30px; width: 55px" onclick="javascript:btnNO()">거절</button>
                                     </c:if>
                                  </form>
                               </td>
@@ -169,7 +180,7 @@ footer { position: fixed; left: 0px; bottom: 0px; width: 100%; background: grey;
    
    <div class="card mb-4">
          <div class="card-header">
-            <i class="fas fa-table mr-1"></i> 내가 초대한 멤버 현황
+            <i class="fas fa-table mr-1"></i> 내가 초대한 회원들 현황
          </div>
          <div class="card-body">
             <div class="table-responsive">

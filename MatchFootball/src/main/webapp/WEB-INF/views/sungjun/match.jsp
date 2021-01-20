@@ -176,9 +176,10 @@ p {
 }
 </style>
 <script>
+
 $(function() {
 	/*클릭시 css  */
-	$(".aa").on("click", "a", function() { v 
+	$(".aa").on("click", "a", function() { 
 		$(".qqqq a").removeClass("ss");
 		$(event.target).addClass("ss");
 	})
@@ -191,6 +192,7 @@ function mdeta(url){
 		location.href=url
 	}
 }
+
 </script>
 </head>
 <body>
@@ -303,37 +305,47 @@ function mdeta(url){
 			</div>
 
 			<ul style="margin-bottom: 50px; margin: 0 300px;">
-				<c:forEach var="p_match" items="${p_matchVO }">
-					<li class="listl"><a class="lista" style="cursor: pointer;"
-						href="javascript:mdeta('matchDetail?m_no=${p_match.m_no }')">
-							<div style="text-align: center; width: 10%; font-weight: bold;">
-								<p>${p_match.m_hour }</p>
-							</div>
-							<div class="nameli" style="font-size: 16px; width: 80%;">
-								<div>
-									<p style="font-size:20px; margin-top: 10px; margin-bottom: 3px;">${p_match.f_name }</p>
+				<c:if test="${!empty day }">
+					<c:forEach var="p_match" items="${p_matchVO }">
+						<li class="listl"><a class="lista" style="cursor: pointer;"
+							href="javascript:mdeta('matchDetail?m_no=${p_match.m_no}')">
+								<div style="text-align: center; width: 10%; font-weight: bold;">
+									<p>${p_match.m_hour }</p>
 								</div>
-								<div class="m-im-t">
-									<span>⦁ ${p_match.m_type } 매치</span><span>·
-										${p_match.p_max }</span> <span>레벨${p_match.lv }Lv</span> <input
-										type="hidden" value="${p_match.m_no }">
+								<div class="nameli" style="font-size: 16px; width: 80%;">
+									<div>
+										<p
+											style="font-size: 20px; margin-top: 10px; margin-bottom: 3px;">${p_match.f_name }</p>
+									</div>
+									<div class="m-im-t">
+										<span>⦁ ${p_match.m_type } 매치</span><span>·
+											${p_match.p_max }</span> <span>레벨${p_match.lv }Lv</span> <input
+											type="hidden" value="${p_match.m_no }">
+									</div>
 								</div>
-							</div>
-							<div style="width: 20%;">
-								<fmt:parseNumber value="${p_match.p_max}" var="p_max" />
-								<fmt:parseNumber value="${p_match.f}" var="f" />
-								<c:if test="${p_max > f && p_match.sel eq '0'}">
-									<p class="ap-info" style="">신청 가능</p>
-								</c:if>
-								<c:if test="${p_max <= f}">
-									<p class="ap-info1">마감</p>
-								</c:if>
-								<c:if test="${p_match.sel eq '1'}">
-									<p class="ap-info2">매치 참여 완료</p>
-								</c:if>
-							</div>
-					</a></li>
-				</c:forEach>
+								<div style="width: 20%;">
+									<fmt:parseNumber value="${p_match.p_max}" var="p_max" />
+									<fmt:parseNumber value="${p_match.f}" var="f" />
+									<c:if test="${p_max > f && p_match.sel eq '0'}">
+										<p class="ap-info" style="">신청 가능</p>
+									</c:if>
+									<c:if test="${p_max <= f}">
+										<p class="ap-info1">마감</p>
+									</c:if>
+									<c:if test="${p_match.sel eq '1'}">
+										<p class="ap-info2">매치 참여 완료</p>
+									</c:if>
+								</div>
+						</a></li>
+					</c:forEach>
+				</c:if>
+				<c:if test="${day eq 0 }">
+					<div style="text-align:center; margin: 100px;">
+						<p style="font-size: 25px;">등록된 매치가 없습니다</p>
+						<p style="color:#999;">다른 날을 검색 해 주세요 </p>
+						
+					</div>
+				</c:if>
 			</ul>
 		</div>
 		<c:if test="${empty sessionScope.id }">

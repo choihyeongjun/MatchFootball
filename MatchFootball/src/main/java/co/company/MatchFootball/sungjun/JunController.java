@@ -31,6 +31,7 @@ import co.company.MatchFootball.vo.Paging2;
 import co.company.MatchFootball.vo.PlayersVO;
 import co.company.MatchFootball.vo.PointVO;
 import co.company.MatchFootball.vo.PplayersVO;
+import co.company.MatchFootball.vo.PreviewVO;
 import co.company.MatchFootball.vo.TeamVO;
 import co.company.MatchFootball.vo.TeamlistVO;
 import co.company.MatchFootball.vo.TeammatchVO;
@@ -162,7 +163,9 @@ public class JunController {
 		mvo.setId((String) session.getAttribute("id"));
 		model.addAttribute("p_matchVO", dao.pmatchselect(mvo));
 		model.addAttribute("date", year + "-" + month);
-		// model.addAttribute("pplayers", dao.pplayersselect(pplayer));
+		model.addAttribute("day" , dao.daysel(mvo));
+		//model.addAttribute("seltime",dao.seltime(p_match));
+		
 		return "sungjun/match";
 	}
 
@@ -190,22 +193,25 @@ public class JunController {
 		membersvo.setId((String) session.getAttribute("id"));
 		pplayers.setId((String) session.getAttribute("id"));
 		pointvo.setP_id((String) session.getAttribute("id"));
-
+		
 		int ppoint = dao.pointssss(membersvo);
-
+		
 		if (ppoint < Integer.parseInt(membersvo.getPoint())) {
 			ModelAndView mvo = new ModelAndView();
-			mvo.setViewName("redirect:/matchDetail?m_no=" + pplayers.getM_no());
+			mvo.setViewName("redirect:/mypage/pay");
 			mvo.addObject("msg", "포인트가 부족합니다");
 			return mvo;
 		} else {
 			dao.pointminus(membersvo);
 			dao.matchapply(pplayers);
 			dao.pointcomm(pointvo);
+			ModelAndView vo = new ModelAndView();
+			vo.setViewName("redirect:/match");
+			vo.addObject("msg1", "신청되었습니다");
 
+			return vo;
 		}
 
-		return new ModelAndView("redirect:/match");
 	}
 
 	@RequestMapping(value = "/call")
@@ -253,12 +259,14 @@ public class JunController {
 	}
 
 	@RequestMapping(value = "/managermypagemm")
-	public ModelAndView test15(TeammatchVO teammatch, PlayersVO players, MatchMember matchmember) throws IOException {
+	public ModelAndView test15(HttpSession session,TeamVO teamvo,TeammatchVO teammatch, PlayersVO players, MatchMember matchmember) throws IOException {
 		ModelAndView ma = new ModelAndView();
-
+		teammatch.setId((String) session.getAttribute("id"));
 		ma.addObject("teammatch", dao.tmatchlist(teammatch));
-		ma.addObject("players", dao.playerselect(players));
+		//ma.addObject("players", dao.playerselect(players));
 		ma.addObject("matchmember", dao.matchmember(matchmember));
+		//ma.addObject("tnum",dao.tnumsel(teamvo));
+		//ma.addObject("sonum",dao.sonumsel(teamvo));
 		ma.setViewName("no/sungjun/teammatchschedule");
 		return ma;
 	}
@@ -274,7 +282,23 @@ public class JunController {
 
 		return ma;
 	}
+	@RequestMapping(value = "/managermypagepre")
+	public ModelAndView test17(HttpSession session,P_matchVO p_match ,MembersVO membersvo)
+			throws IOException {
+		ModelAndView ma = new ModelAndView();
+		ma.addObject("pplayers", dao.pmreview(membersvo));
+		ma.addObject("p_match" , dao.pmreviewmat(p_match));
+		ma.setViewName("no/sungjun/pmreivew");
 
+		return ma;
+	}
+	@PostMapping(value = "/inreview")
+	public ModelAndView test18(P_matchVO p_match,HttpServletResponse response,PreviewVO preview, Model model) throws IOException {
+		dao.pmreviewapp(preview);
+		dao.reviewup(p_match);
+		return new ModelAndView("redirect:/managerymypage");
+	}
+	
 	@RequestMapping(value = "/matchmapply")
 	public ModelAndView test17(MmatchlistVO mmatchlistvo, TeammatchVO teammatch, PlayersVO players, MembersVO member)
 			throws IOException {
@@ -295,22 +319,29 @@ public class JunController {
 //		return list;
 //	}
 	@RequestMapping(value = "/manageremploy")
-	public ModelAndView test3(HttpServletResponse response, Model model, MembersVO member, HttpSession session)
+	public ModelAndView test3(HttpServletResponse response,ManageraplyVO aply, Model model, MembersVO member, HttpSession session)
 			throws IOException {
-
+		aply.setId((String) session.getAttribute("id"));
+		model.addAttribute("aply", dao.chekma(aply));
 		return new ModelAndView("sungjun/manageremploy");
 	}
-
 	@RequestMapping(value = "/managerapply")
 	public ModelAndView test5(HttpServletResponse response, Model model, MembersVO member) throws IOException {
 		model.addAttribute("member", dao.memberselect(member));
 		return new ModelAndView("no/sungjun/managerapply");
 	}
-
+	@RequestMapping(value = "/manageredel")
+	public ModelAndView test18(HttpServletResponse response,ManageraplyVO aply, Model model, MembersVO member, HttpSession session)
+			throws IOException {
+		aply.setId((String) session.getAttribute("id"));
+		dao.delapply(aply);
+		return new ModelAndView("redirect:/manageremploy");
+	}
 	@PostMapping(value = "/sendapply")
-	public ModelAndView test9(HttpServletResponse response, Model model, ManageraplyVO manageraply) throws IOException {
+	public ModelAndView test9(HttpServletResponse response, Model model, ManageraplyVO manageraply,MembersVO membersvo) throws IOException {
 		dao.mapply(manageraply);
-		return new ModelAndView("sungjun/manageremploy");
+		dao.mapplymem(membersvo);
+		return new ModelAndView("redirect:/manageremploy");
 	}
 
 	@RequestMapping(value = "/allmatchlist")

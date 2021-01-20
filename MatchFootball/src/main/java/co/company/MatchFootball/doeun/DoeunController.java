@@ -111,6 +111,8 @@ public class DoeunController {
 	@RequestMapping("mypage/Mypoint/ajax") // 내 포인트 업데이트
 	public int myPoint(PointVO point, Model model, HttpServletResponse response, HttpServletRequest request, HttpSession session) {
 		System.out.println("mypoint call");
+		
+		
 	return	dao.Mypoint(point);
 	}
 	@RequestMapping(value = "mypage/pay") // 결제
@@ -294,10 +296,12 @@ public class DoeunController {
 		return "doeun/MyWriter";
 	}
 	@RequestMapping(value="mypage/matching/del", method=RequestMethod.POST) // 개인매칭 신청 취소
-	public void delPMatchProc(P_matchVO pmat, Model model, HttpSession session, HttpServletRequest request) {
+	@ResponseBody
+	public String delPMatchProc(P_matchVO pmat, Model model, HttpSession session, HttpServletRequest request) {
 		pmat.setP_id((String) session.getAttribute("id"));
 		pmat.setM_no(request.getParameter("m_no"));		
 		dao.delPMatchProc(pmat);
+		return "";
 	}
 	
 	

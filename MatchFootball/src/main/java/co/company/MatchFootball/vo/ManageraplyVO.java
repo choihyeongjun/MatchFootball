@@ -12,4 +12,5 @@ public class ManageraplyVO {
 	String comm;//신청포부
 	String apply;//신청지 점수 유뮤 Y/N
 	String loc;
+	String author;
 }

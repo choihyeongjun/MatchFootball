@@ -74,6 +74,7 @@
 	}
 	$(function() {
 		$(".riw-delete").on("click", function(event) {
+			var bbbb = $(this).parent().parent().parent();
 			var m_no = $(this).data("num");
 			$.ajax({
 				url : "matching/del",
@@ -82,12 +83,13 @@
 					m_no : m_no
 				},
 				error : function(xhr, status, msg) {
-					console.log("상태값 :" + status + "에러" + msg);
+					console.log("상태값 :" + xhr + "에러" + msg);
 				},
 				success : function(result) {
 					console.log(result);
 					alert("신청 취소 되었습니다.")
-
+					
+					$(bbbb).remove();
 				}
 			});
 		});
