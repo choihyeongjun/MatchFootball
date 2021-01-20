@@ -108,7 +108,7 @@
 		resultType="MessageVO">
 		select * from( select a.*, rownum rn
 		from (select m_no, to_id, send_id, m_title, m_con, o_date,
-		TO_CHAR(s_date,'mm-dd HH24:MI:SS'),m_check
+		TO_CHAR(s_date,'mm-dd HH24:MI:SS') s_date,m_check
 		from message
 		where send_id = #{send_id} order by m_no desc
 		) a ) b
@@ -129,10 +129,10 @@
 	<!-- 포인트 내역조회 -->
 	<select id="pointList" parameterType="PointVO"
 		resultType="PointVO">
-		select * from( select a.*, rownum rn from (
+		select * from( select a.*, ROWNUM RN from (
 		select * from
-		point where p_id = #{p_id}
-		) a ) b where rn between #{first} and
+		point where p_id = #{p_id} order by p_date DESC
+		) a ) b where RN between #{first} and
 		#{last}
 	</select>
 	<!-- 쿠폰 조회 -->
@@ -200,7 +200,7 @@
 	</select>
 	<select id="getTmatCnt" resultType="int">
 		SELECT COUNT(*) from
-		TEAMMATCH t join players p on t.t_num = p.t_num where p.id= #{id}
+		TEAMMATCH t join players p on t.m_no = p.m_no where p.id= #{id}
 		order by m_date
 	</select>
 

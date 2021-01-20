@@ -87,24 +87,25 @@
 									<a href="matching"> 개인 매칭 </a><a href="teamMatching"> | 팀
 										매칭 참가 |</a><a href="#"> 토너먼트 참가 </a>
 								</div>
+								<br>
 								<c:forEach items="${tmat}" var="tmat">
 									<div style="border: 1px">
-										<div class="media mt-0">
+										<div class="media mt-0" style="margin-bottom: 10px;">
 											<div class="media-left">
 												<img class="media-object rounded-circle" src="#" width="100"
 													height="100" alt="">지도 맵
 											</div>
-											<div class="media-body row" style="position: relative">
-
-												<div>
-													<div class="text-muted">${tmat.F_NAME}</div>
-													<div class="text-muted" align="right">${tmat.T_NAME}</div>
+											<div class="media-body row" style="position: relative; margin-top: 10px;" >
+												<div style="margin-bottom: 10px;">
+													<div>
+														<div align="right" style="float: left;">${tmat.F_NAME}</div>
+														<div class="text-muted" align="right">${tmat.T_NAME} VS ${tmat.so_name}</div>
+													</div>
 												</div>
 												<p class="text-muted">
 													<i class="fas fa-map-marker-alt"> ${tmat.F_ADDRESS}</i>
 												</p>
-												<p class="text-muted">경기일 : ${tmat.M_DATE} 경기시간 :
-													${tmat.M_HOUR}</p>
+												<p class="text-muted">경기일 및 경기 시간: ${tmat.M_DATE}</p>
 
 											</div>
 										</div>
