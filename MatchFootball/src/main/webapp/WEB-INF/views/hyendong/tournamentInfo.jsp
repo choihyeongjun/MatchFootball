@@ -21,7 +21,7 @@ li {
 <body>
 	
 	<div id="main_contents"
-		style="margin-left: 470px; width: 50%; margin-top: 30px; margin-bottom: 200px">
+		style="margin-left: 470px; width: 50%; margin-top: 30px; margin-bottom: 155px">
 		<div class="tournament_view_top">
 			<div class="img">
 				<img
@@ -42,15 +42,19 @@ li {
 			</div>
 		</div>
 		<div align="center">
+		<c:if test="${tournamentTeam.count ne 8}">
+		<c:if test="${hh.sel eq 0}">
 		<form action="teamTournaInsert" method="post">
 			<input type="text" value="${tournamentTeam.t_no }" name="t_no" style="display:none">
 			<input type="text" value="${sessionScope.t_num }" name="t_num" style="display:none">
 			<input type="text" value="${members.id }" name="id" style="display:none">
 			<input type="text" value="${members.point }" name="point" style="display:none">
 			<input type="text" value="${tournamentTeam.t_point }" name="t_point" style="display:none">
+			<input type="submit" class="genric-btn info circle" value="참가하기" onclick="location.href='tournamentPVP?t_no=${tournamentTeam.t_no}'" style="float: right"/>
 		</form>
+		</c:if>
+		</c:if>
 			<input type="submit" class="genric-btn info circle" value="대진표" onclick="location.href='tournamentPVP?t_no=${tournamentTeam.t_no}'"/>
-			<input type="submit" class="genric-btn info circle" value="참가하기" onclick="location.href='tournamentPVP?t_no=${tournamentTeam.t_no}'"/>
 		</div>
 		<br>
 		<div class="tournament_view_cont">
@@ -80,6 +84,11 @@ li {
 			<p align="center"
 				style="list-style: none; font-size: 17px; font-family: dotum;">
 				<font face="dotum"><span style="font-size: 15pt;">* 참가 포인트는 전체 상금 포인트에 누적됩니다.</span></font>
+			</p>
+			
+			<p align="center"
+				style="list-style: none; font-size: 17px; font-family: dotum;">
+				<font face="dotum"><span style="font-size: 15pt;">* 신청 팀이 8팀 일 시 가입을 할 수 없어요. 빨리 하세요.</span></font>
 			</p>
 		</div>
 	</div>

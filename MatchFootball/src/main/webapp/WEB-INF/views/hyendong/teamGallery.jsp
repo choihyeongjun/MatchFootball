@@ -85,7 +85,7 @@
    
    <div class="card-header" style="text-align: center;">
    <input type="text" name="t_num" value="${teamInfo.t_num }" style="display:none">
-   <input type="file" name="file" multiple="multiple">
+   <input type="file" name="file" multiple="multiple" required="required">
    <input type="submit" value="등록">
    </div>
    <br>

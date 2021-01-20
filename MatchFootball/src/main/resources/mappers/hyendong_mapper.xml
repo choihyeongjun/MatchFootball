@@ -411,7 +411,7 @@
 	
 	<!-- 팀 매치 신청 내역 -->
 	<select id="teamMatchWait" resultType="TeammatchVO">
-		select m_no, mtype, f_name, f_address, price, substr(m_date, 0, 10) as m_date, substr(m_date, 12) as m_hour from teammatch where t_num = #{t_num}
+		select so_num, so_name, m_no, mtype, f_name, f_address, price, substr(m_date, 0, 10) as m_date, substr(m_date, 12) as m_hour from teammatch where t_num = #{t_num}
 		order by m_date
 	</select>
 	
