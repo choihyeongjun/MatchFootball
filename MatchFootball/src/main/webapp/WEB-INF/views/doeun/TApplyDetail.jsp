@@ -88,6 +88,7 @@
 										매칭 참가 |</a><a href="#"> 토너먼트 참가 </a>
 								</div>
 								<br>
+									<div id="tr-template">
 								<c:forEach items="${tmat}" var="tmat">
 									<div style="border: 1px">
 										<div class="media mt-0" style="margin-bottom: 10px;">
@@ -111,6 +112,7 @@
 										</div>
 									</div>
 								</c:forEach>
+									</div>
 								<div align="center">
 									<my:paging paging="${paging}" jsfunc="goPage" />
 								</div>
