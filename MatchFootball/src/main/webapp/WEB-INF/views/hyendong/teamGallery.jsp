@@ -33,7 +33,7 @@
 
 <body>
 
-<div style="margin-bottom: 350px">
+<div style="margin-bottom: 1px">
 <form action="teamGalleryInsert" method="post" encType="multipart/form-data">
 
 <!-- 4 - contained in center example -->
@@ -85,7 +85,7 @@
    
    <div class="card-header" style="text-align: center;">
    <input type="text" name="t_num" value="${teamInfo.t_num }" style="display:none">
-   <input type="file" name="file">
+   <input type="file" name="file" multiple="multiple">
    <input type="submit" value="등록">
    </div>
    <br>
@@ -104,7 +104,7 @@
 							location.href = "teamGallery?page=" + q + "&t_num=" + ${sessionScope.t_num};
 						}
 					</script>
-					<div style="margin-left: 290px; height:15px; color: black">
+					<div style="margin-left: 508px; color: #625b5b; font-size: 21px;">
 						<my:paging paging="${paging}" jsfunc="goPage" />
 					</div>
       </div>

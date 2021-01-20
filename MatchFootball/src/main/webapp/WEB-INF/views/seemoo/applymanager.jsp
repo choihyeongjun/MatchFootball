@@ -37,23 +37,28 @@ function managerListResult(data) {
 	$("#manager_st").empty();
 	$.each(data,function(idx,item){
 		$('<tr>')
-		.append($('<td>').html(item.id))    	//아이디
-		.append($('<td>').html(item.name))	    //이름
-		.append($('<td>').html(item.birth))	    //생년월일
-		.append($('<td>').html(item.gender))    //성별
-		.append($('<td>').html(item.pnum))    	//연락처
-		.append($('<td>').html(					//매니저권한
+		.append($('<td>').html(item.id))    						//아이디
+		.append($('<td>').html(item.name))	    					//이름
+		.append($('<td>').html(item.birth))	    					//생년월일
+		.append($('<td>').html(item.gender))   	  				 	//성별
+		.append($('<td>').html(item.pnum))    						//연락처
+		.append($('<td>').html(										//매니저권한
 				$('<select id="author" class=\'author\'> '+
 				'<option selected value="">선택</option>'+
 				'<option value="manager" name="manager">매니저</option>'+
 				'<option value="user" name="user">회원</option>'+
 				'<option value="wait" name="wait">매니저대기</option>'+
 				'<option value="stop" name="stop">매니저정지</option>'+
-				'</select>').val(item.author)))
-		.append($('<td>').html(item.apply))    	//설문지
-		.append($('<td>').html(item.comm))    	//포부
+				'</select>').val(item.author))) 					//매니저권한
+		.append($('<td>').html(					
+				$('<select id="author" class=\'author\'> '+
+				'<option selected value="">선택</option>'+
+				'<option value="Y" name="Y">면접O</option>'+
+				'<option value="N" name="N">면접X</option>'+
+				'</select>').val(item.apply)))						//설문지
+		.append($('<td>').html(item.comm))    						//포부
 		.append($('<td>').html('<button id=\'btnSelect\'class="btn btn-primary">상세조회</button>'))
-		.append($('<td>').html('<button id=\'btnUpdate\'class="btn btn-success">권한수정</button>'))
+		.append($('<td>').html('<button type="button" id=\'btnUpdate\'class="btn btn-success">권한수정</button>'))
 		.append($('<td>').html('<button id=\'btnDelete\'class="btn btn-danger">삭제</button>'))
 		.append($('<input type=\'hidden\' id=\'hidden_userId\'>').val(item.id))
 		.append($('<input type=\'hidden\' id=\'author\'>').val(item.author))
@@ -70,12 +75,13 @@ function managerUpdate() {
 		var result = confirm(userId +"를 "+ author +"로 수정 하시겠습니까?");
 		if(result) {
 			$.ajax({
-				url:'../managerupdate',
+				url:'../managerapplyupdate',
 				data : {id : userId, author: author},
 				dataType:'json',
 				error:function(xhr,status,msg){
 					console.log("상태값 :" + status + " Http에러메시지 :"+msg);
-				}, success: location.reload() 
+				}
+				//,success: location.reload() 
 			});
 		}//if
 	}); //업데이트 버튼 클릭
@@ -121,8 +127,8 @@ function managerUpdate() {
 											<th>생년월일</th>
 											<th style="width: 50px;">성별</th>
 											<th>연락처</th>
-											<th style="width: 90px;">권한</th>
 											<th style="width: 50px;">포부</th>
+											<th style="width: 90px;">권한</th>
 											<th>설문지</th>
 											<th style="width: 80px;"></th>
 											<th style="width: 80px;"></th>

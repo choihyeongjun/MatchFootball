@@ -68,12 +68,17 @@
 	
 	<!-- 매니저 권한수정 -->
 	<select id="managerupdate" resultType="MembersVO" parameterType="MembersVO">
-		UPDATE MEMBERS SET AUTHOR = #{AUTHOR} WHERE ID = #{id}
+		UPDATE MEMBERS SET AUTHOR = #{author} WHERE ID = #{id}
 	</select>
 	
 	<!-- 매니저 승인|대기조회 -->
 	<select id="managerapplyList" resultType="ManagerapplyVO">
-		SELECT * FROM MANAGERAPLY
+		select a.author, b.* from members a join manageraply b on a.id=b.id where a.author='wait' or a.author='stop'
+	</select>
+	
+	<!-- 매니저 권한 수정 -->
+	<select id="managerapplyupdate" parameterType="MembersVO" resultType="MembersVO">
+		update members set author=#{author} where id=#{id}    
 	</select>
 	
 <!-- 공지사항=================================================================================================  -->

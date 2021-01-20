@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
 <body>
 	<form action="tournamentInsertt" method="post"
 		encType="multipart/form-data">
@@ -21,32 +22,26 @@
 						<input type="text" name="title" placeholder="대회명"
 							class="single-input-accent">
 					</div>
-					<hr>
 					<div class="mt-10">
 						<input type="text" name="t_max" placeholder="최대 팀원수"
 							class="single-input-accent">
 					</div>
-					<hr>
 					<div class="mt-10">
 						<input type="text" name="location" placeholder="구장"
 							class="single-input-accent">
 					</div>
-					<hr>
 					<div class="mt-10">
 						<input type="text" name="address" placeholder="구장 상세 주소"
 							class="single-input-accent">
 					</div>
-					<hr>
 					<div class="mt-10">
 						<input type="date" name="s_date" placeholder="시작 날짜"
 							class="single-input-accent">
 					</div>
-					<hr>
 					<div class="mt-10">
 						<input type="date" name="e_date" placeholder="종료 날짜"
 							class="single-input-accent">
 					</div>
-					<hr>
 					<div class="mt-10">
 						<input type="file" id="files" name="file" placeholder="토너먼트 사진"
 							class="single-input-accent"> 
@@ -62,7 +57,6 @@
 							};
 						</script>
 					</div>
-					<hr>
 					<div class="mt-10">
 						<input type="text" name="point" placeholder="기본 상금"
 							class="single-input-accent">

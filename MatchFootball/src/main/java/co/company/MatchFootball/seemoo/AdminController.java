@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import co.company.MatchFootball.mapper.HyendongMapper;
 import co.company.MatchFootball.mapper.SeemooMapper;
 import co.company.MatchFootball.vo.FwboardVO;
 import co.company.MatchFootball.vo.ManagerapplyVO;
@@ -27,7 +28,7 @@ public class AdminController {
 
 	@Autowired
 	SeemooMapper seemoomapper;
-
+	HyendongMapper hyendongmapper;
 //	====================================================유저======================================================
 	
 	
@@ -147,7 +148,9 @@ public class AdminController {
 		 seemoomapper.managerupdate(vo);
 		 return vo;
 	}
-	
+
+//	====================================================매니저 신청 권한======================================================
+
 	@RequestMapping(value = "/applymanager/ajax", method = RequestMethod.GET) // 매니저(매니저 신청|승인대기)관리 페이지 (ajax로 전체조회)
 	@ResponseBody	
 	public List<ManagerapplyVO> applymanagerlist(Model model, HttpServletRequest request, HttpServletResponse reponse) {
@@ -158,6 +161,13 @@ public class AdminController {
 	public String applymanager(Model model, ManagerapplyVO vo, HttpServletRequest request, HttpServletResponse reponse) {
 		model.addAttribute("managerapplys", seemoomapper.managerapplyList());
 		return "seemoo/applymanager";
+	}
+	
+	@RequestMapping(value = "/managerapplyupdate", method = RequestMethod.GET) // 매니저관리 페이지 (수정)
+	@ResponseBody
+	public MembersVO managerapplyUpdate(MembersVO vo) {
+		 seemoomapper.managerapplyupdate(vo);
+		 return vo;
 	}
 	
 //	============================================================================================================================
@@ -275,4 +285,9 @@ public class AdminController {
 		return seemoomapper.rcommList(vo);
 	}
 	
+	@RequestMapping("/blackCancle") //블랙 권한 취소
+	public String blackCancle(TeamVO teamVO){
+		hyendongmapper.blackCancle(teamVO);
+		return "redirect:admin/blackteam";
+	}
 }

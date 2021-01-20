@@ -11,12 +11,11 @@
 footer { position: fixed; left: 0px; bottom: 0px; width: 100%; background: grey; color: white; }
 #aa { position: fixed; left: 0; top: 0; width: 100%;}
 #dataTable_filter { padding-left: 333px; }
-div .pagination { padding-left: 333px; }
 </style>
 
 </head>
 <body>
-   <div style="position: fixed; width: 99%; margin-left: -25px; padding-top: 38px">
+   <div style="width: 99%; margin-left: -25px; padding-top: 38px">
       <!-- 4 - contained in center example -->
 <nav class="navbar navbar-expand-xl navbar-dark bg-dark" style="width: 103%; margin-top: 36px;">
     <div class="mx-auto d-sm-flex d-block flex-sm-nowrap">
@@ -95,7 +94,7 @@ div .pagination { padding-left: 333px; }
                                        <input type="text" value="${f.id  }" name="id" style="display:none"> 
                                        <input type="text" value="${sessionScope.t_num }" name="t_num" style="display:none">
                                        <input type="text" value="${tname.t_name }" name="c_tname" style="display:none">
-                                       <button type="submit" id="button" class="btn btn-primary">팀초대</button>
+                                       <button type="submit" id="button" class="btn btn-primary" style="height: 31px">팀초대</button>
                                        </form>
                                     </td>
                                  </c:if>
@@ -144,9 +143,9 @@ div .pagination { padding-left: 333px; }
                                     <input type="text" value="팀원" name="t_author" style="display: none">
                                     <c:if test="${updateButton.t_author eq '팀장'}">
                                     <button type="submit" id="btnSelect" 
-                                    class="btn btn-primary" onclick="javascript: form.action='${pageContext.request.contextPath}/teamListInsert'">수락</button>
+                                    class="btn btn-primary" onclick="javascript: form.action='${pageContext.request.contextPath}/teamListInsert'" style="height: 30px; width: 55px">수락</button>
                                     <button type="submit" id="btnSelect"
-                                    class="btn btn-danger" onclick="javascript: form.action='${pageContext.request.contextPath}/teamInviteDelete'">거절</button>
+                                    class="btn btn-danger" onclick="javascript: form.action='${pageContext.request.contextPath}/teamInviteDelete'" style="height: 30px; width: 55px">거절</button>
                                     </c:if>
                                  </form>
                               </td>
@@ -160,7 +159,7 @@ div .pagination { padding-left: 333px; }
                      location.href = "teamInvite?page=" + q + "&t_num=" + ${sessionScope.t_num};
                   }
                </script>
-               <div style="margin-left: 290px; height:15px; color: black">
+               <div style="margin-left: 270px;">
                   <my:paging paging="${paging}" jsfunc="goPage" />
                </div>
             </div>

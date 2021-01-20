@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
@@ -7,41 +6,36 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta property="og:image"
-   content="https://raw.githubusercontent.com/nauvalazhar/Magz/master/images/preview.png" />
+<meta property="og:image" content="https://raw.githubusercontent.com/nauvalazhar/Magz/master/images/preview.png" />
 <title>Insert title here</title>
+
 <link rel="stylesheet" href="/css/owl.carousel.css">
 <!-- Bootstrap -->
-<link rel="stylesheet"
-   href="${pageContext.request.contextPath}/resources/hyeongjun/scripts/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/hyeongjun/scripts/bootstrap/bootstrap.min.css">
 <!-- IonIcons -->
-<link rel="stylesheet"
-   href="${pageContext.request.contextPath}/resources/hyeongjun/scripts/ionicons/css/ionicons.min.css">
-<!-- Toast -->
-<link rel="stylesheet"
-   href="${pageContext.request.contextPath}/resources/hyeongjun/scripts/toast/jquery.toast.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/hyeongjun/scripts/ionicons/css/ionicons.min.css">
+<!-- Toast --> 
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/hyeongjun/scripts/toast/jquery.toast.min.css">
 <!-- OwlCarousel -->
-<link rel="stylesheet"
-   href="${pageContext.request.contextPath}/resources/hyeongjun/scripts/owlcarousel/dist/assets/owl.carousel.min.css">
-<link rel="stylesheet"
-   href="${pageContext.request.contextPath}/resources/hyeongjun/scripts/owlcarousel/dist/assets/owl.theme.default.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/hyeongjun/scripts/owlcarousel/dist/assets/owl.carousel.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/hyeongjun/scripts/owlcarousel/dist/assets/owl.theme.default.min.css">
 <!-- Magnific Popup -->
-<link rel="stylesheet"
-   href="${pageContext.request.contextPath}/resources/hyeongjun/scripts/magnific-popup/dist/magnific-popup.css">
-<link rel="stylesheet"
-   href="${pageContext.request.contextPath}/resources/hyeongjun/scripts/sweetalert/dist/sweetalert.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/hyeongjun/scripts/magnific-popup/dist/magnific-popup.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/hyeongjun/scripts/sweetalert/dist/sweetalert.css">
 <!-- Custom style -->
-<link rel="stylesheet"
-   href="${pageContext.request.contextPath}/resources/hyeongjun/css1/style.css">
-<script
-   src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script
-      src="${pageContext.request.contextPath}/resources/hyeongjun/js1/e-magz.js"></script> 
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/hyeongjun/css1/style.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/hyeongjun/js1/e-magz.js"></script> 
+
 <style>
 .ion-android-favorite:before { content: "\f388"; }
 
 .ion-android-favorite-outline111:before { content: "\f387"; }
-
+div .page-link { width: 65px; }
+#dataTable_filter { padding-left: 360px; }
+.lili a { color: white; }
+div .pagination { text-align: center;  }
+div .navbar-brand { display: contents; }
 footer {
     position: fixed;
     left: 0px;
@@ -50,12 +44,24 @@ footer {
     background: grey;
     color: white;
 }
-
+div .modal fade bd-example-modal-xl show {   
+       background-color: black;
+    opacity: 0.6;
+    display: block;
+    }
+div #a2 { width: 1000px; margin-left: -180px; }
+.lili {
+    padding: 3px 0 3px 0;
+    text-indent: -17px;
+    line-height: 170%;
+    color: white;
+}
 #btnwriter:hover {
    background-color: #1752ff;
    border-color: #1752ff;
 }
 </style>
+   
 <script>
 var likecnt;
 var clickstate;
@@ -173,11 +179,9 @@ var btn_like = document.getElementById("love");
                         <article class="article col-md-12">
                            <div class="inner">
                               <figure>
-                                  <img id="${f.num}"
-                                    src=""
-                                    alt="대표사진이없습니다.">
-                                 
+                                  <img id="${f.num}" src="" alt="대표사진이없습니다.">
                               </figure>
+                              
                               <div class="padding">
                                  <div>
                                  <input id="no" type="text" value="${f.num}" hidden=""/>
@@ -192,22 +196,22 @@ var btn_like = document.getElementById("love");
                                  
                                  <div class="likeit">
                                     <c:if test="${f.heartstate eq '0'}">
-                                    <a href="#" class="love"><i
+                                    <a href="#" class="love" style="float: right;"><i
                                        class="ion-android-favorite-outline"></i>
                                        <input id="num" name="num" type="text" value="${f.num}" hidden=""/>
                                        <div>${f.likeit}</div></a>
                                     </c:if>
                                     
                                      <c:if test="${f.heartstate eq '1'}">
-                                    <a href="#" class="love active"><i
+                                    <a href="#" class="love active"  style="float: right;"><i
                                        class="ion-android-favorite"></i>
                                        <input id="num" type="text" name="num" value="${f.num}" hidden=""/>
                                        <div>${f.likeit}</div></a>
                                     </c:if> 
                                        
                                        
-                                       <div>조회수:${f.cnt}</div> <a class="btn btn-primary more"
-                                       href="${pageContext.request.contextPath}/free/freedetail/${f.num}/${f.cnt}">
+                                       <div>조회수:${f.cnt}</div> 
+                                       <a class="btn btn-primary more" href="${pageContext.request.contextPath}/free/freedetail/${f.num}/${f.cnt}">
                                        <div>More</div>
                                        <div>
                                           <i class="ion-ios-arrow-thin-right"></i>
@@ -218,34 +222,35 @@ var btn_like = document.getElementById("love");
                            </div>
                         </article>
                      </div>
-                    <script>
-                  var sentence = '${f.comm}';
-                  console.log('======');
-                  console.log(sentence);
-                  var start = sentence.indexOf('src="');
-                  var end = sentence.indexOf('"', start+5);
-                  var list = sentence.substring(start+5, end);
-                  $('#${f.num}').attr('src',list);
-            
-                  
-         </script>
-
+                     <script>
+                   var sentence = '${f.comm}';
+                   console.log('======');
+                   console.log(sentence);
+                   var start = sentence.indexOf('src="');
+                   var end = sentence.indexOf('"', start+5);
+                   var list = sentence.substring(start+5, end);
+                      $('#${f.num}').attr('src',list);
+                   </script>
                   </c:forEach>
                </div>
                </div>
+               
                <div class="line">
                   <div>인기글</div>
                   <br />
                </div>
+               
                <div class="card mb-4">
                   <div class="card-header">
-                     <i class="fas fa-table mr-1"></i> 자유게시판
+                     <i class="fas fa-table mr-1" style="margin-top: 15px;"></i> 자유게시판
+                     <div style="float: right;">
+                        <button type="submit" class="btn btn-primary" id="btnwriter" onclick="location.href='${pageContext.request.contextPath}/freewriter'" style="float: right;">글쓰기</button>
+                     </div>
                   </div>
 
                   <div class="card-body">
                      <div class="table-responsive">
-                        <table class="table table-bordered" id="dataTable" width="100%"
-                           cellspacing="0">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                            <thead>
                               <tr>
                                  <th>번호</th>
@@ -279,39 +284,26 @@ var btn_like = document.getElementById("love");
                               </c:forEach>
                            </tbody>
                         </table>
-                     <div>
-                        <button type="submit" class="btn btn-primary" id="btnwriter" onclick="location.href='${pageContext.request.contextPath}/freewriter'" style="float: right;">글쓰기</button>
-                     </div>
                      </div>
                   </div>
                </div>
-               <!-- /.container -->
-            
          </div>
       </div>
       
    </section>
+   <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+   <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+   <script src="${pageContext.request.contextPath}/resources/seemoo/assets/demo/datatables-demo.js"></script>
    
-   
-   <script
-      src="${pageContext.request.contextPath}/resources/hyeongjun/js1/jquery.migrate.js"></script>
-   <script
-      src="${pageContext.request.contextPath}/resources/hyeongjun/scripts/bootstrap/bootstrap.min.js"></script>
-   <script>
-      var $target_end = $(".best-of-the-week");
-   </script>
-   <script
-      src="${pageContext.request.contextPath}/resources/hyeongjun/scripts/jquery-number/jquery.number.min.js"></script>
-   <script
-      src="${pageContext.request.contextPath}/resources/hyeongjun/scripts/owlcarousel/dist/owl.carousel.min.js"></script>
-   <script
-      src="${pageContext.request.contextPath}/resources/hyeongjun/scripts/magnific-popup/dist/jquery.magnific-popup.min.js"></script>
-   <script
-      src="${pageContext.request.contextPath}/resources/hyeongjun/scripts/easescroll/jquery.easeScroll.js"></script>
-   <script
-      src="${pageContext.request.contextPath}/resources/hyeongjun/scripts/sweetalert/dist/sweetalert.min.js"></script>
-   <script
-      src="${pageContext.request.contextPath}/resources/hyeongjun/scripts/toast/jquery.toast.min.js"></script>
+   <script src="${pageContext.request.contextPath}/resources/hyeongjun/js1/jquery.migrate.js"></script>
+   <script src="${pageContext.request.contextPath}/resources/hyeongjun/scripts/bootstrap/bootstrap.min.js"></script>
+   <script> var $target_end = $(".best-of-the-week"); </script>
+   <script src="${pageContext.request.contextPath}/resources/hyeongjun/scripts/jquery-number/jquery.number.min.js"></script>
+   <script src="${pageContext.request.contextPath}/resources/hyeongjun/scripts/owlcarousel/dist/owl.carousel.min.js"></script>
+   <script src="${pageContext.request.contextPath}/resources/hyeongjun/scripts/magnific-popup/dist/jquery.magnific-popup.min.js"></script>
+   <script src="${pageContext.request.contextPath}/resources/hyeongjun/scripts/easescroll/jquery.easeScroll.js"></script>
+   <script src="${pageContext.request.contextPath}/resources/hyeongjun/scripts/sweetalert/dist/sweetalert.min.js"></script>
+   <script src="${pageContext.request.contextPath}/resources/hyeongjun/scripts/toast/jquery.toast.min.js"></script>
     
 </body>
 </html>

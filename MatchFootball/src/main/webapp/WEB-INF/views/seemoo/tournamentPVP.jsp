@@ -6,11 +6,9 @@
 <head>
 <meta charset="utf-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="resources/css/teamMenu.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/dong/tournamentPVP/bracket.css">
 <link rel="stylesheet"
-	href="resources/css/dong/tournamentPVP/bracket.css">
-<link rel="stylesheet"
-	href="resources/css/dong/tournamentPVP/easyMaker.css">
+	href="${pageContext.request.contextPath}/resources/css/dong/tournamentPVP/easyMaker.css">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
@@ -26,7 +24,7 @@
 	font-size: 12px;
 	background: #f5f5f5;
 	color: #000;
-	font-size: 20px;
+	font-size: 15px;
 }
 
 .click {
@@ -37,7 +35,7 @@
 	font-size: 12px;
 	background: #4bb8e6;
 	z-index: 10;
-	font-size: 20px;
+	font-size: 15px;
 }
 
 .noClickdown {
@@ -48,7 +46,7 @@
 	border-radius: 0 0 5px 5px;
 	font-size: 12px;
 	background: #f5f5f5;
-	font-size: 20px;
+	font-size: 15px;
 }
 
 .clickdown {
@@ -60,7 +58,7 @@
 	font-size: 12px;
 	background: #4bb8e6;
 	z-index: 10;
-	font-size: 20px;
+	font-size: 15px;
 }
 .noClick2 {
 	display: block;
@@ -70,7 +68,7 @@
 	font-size: 12px;
 	background: #f5f5f5;
 	color: #000;
-	font-size: 20px;
+	font-size: 15px;
 }
 
 .click2 {
@@ -81,7 +79,7 @@
 	font-size: 12px;
 	background: #4bb8e6;
 	z-index: 10;
-	font-size: 20px;
+	font-size: 15px;
 }
 
 .noClickdown2 {
@@ -92,7 +90,7 @@
 	border-radius: 0 0 5px 5px;
 	font-size: 12px;
 	background: #f5f5f5;
-	font-size: 20px;
+	font-size: 15px;
 }
 
 .clickdown2 {
@@ -104,7 +102,7 @@
 	font-size: 12px;
 	background: #4bb8e6;
 	z-index: 10;
-	font-size: 20px;
+	font-size: 15px;
 }
 .match_g01 .match_list.win .line_sty01.on {
 	border-color: #137eaa;
@@ -146,7 +144,9 @@
 			for(i=0; i<link[s].length; i++){
 				$(this).parent().find(".line_sty"+link[s][i]).toggleClass('on')
 			}
-			
+			$.ajax({
+				
+			})
 			
 		});
 
@@ -179,7 +179,8 @@
 
 </script>
 <body style="background: white;">
-	<div class="bracket_overflow" style="overflow: visible; margin-bottom: 270px" align="center">
+	<div class="bracket_overflow" style="overflow: visible; margin-bottom: 270px; padding-left: 500px; padding-top: 100px" align="center">
+	<div style="font-size: 36px">토너먼트 대진표 관리</div><br><hr>
 		<div class="match_list_outer" id="bracket_capture">
 			<div id="loser_players" class="team_player_1"></div>
 			<div id="team_players" class="team_player_1">
@@ -346,15 +347,23 @@
 								</div>
 							</div>
 						</div>
-						<div class="champion_box" style="margin-top: -70px;" >
+						<div class="champion_box" style="margin-top: -70px; padding-bottom: 20px;">
 							<p class="txt">WINNER</p>
-							<div class="player" data-seq="15">
+							<div class="player" data-seq="15" style="background: #d38923; border-radius: 3em;">
 								<div class="winner">
-									<p></p>
+									<p style="color: white"></p>
 								</div>
 							</div>
 						</div>
 					</div>
+					
+			<form action="winTournament" method="post" style="padding-top: 150px; padding-right:10px">
+			<input type="text" value="${tournamentPVP[3].t_name }" name="t_num" style="display:none">
+			<input type="text" value="${tournamentPVP[0].t_no }" name="t_no" style="display:none">
+			<div align="right" style="padding-right: 180px">
+			<input type="submit" value="상금전달" class="genric-btn info circle">
+			</div>
+				</form>
 				</div>
 			</div>
 		</div>

@@ -6,15 +6,14 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/hyeongjun/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/hyeongjun/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/hyeongjun/css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/hyeongjun/css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/hyeongjun/css/jquery-ui.min.css" type="text/css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/hyeongjun/css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/hyeongjun/css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/hyeongjun/css/style.css" type="text/css">
-    <script
-	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/hyeongjun/css/font-awesome.min.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/hyeongjun/css/elegant-icons.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/hyeongjun/css/nice-select.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/hyeongjun/css/jquery-ui.min.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/hyeongjun/css/owl.carousel.min.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/hyeongjun/css/slicknav.min.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/hyeongjun/css/style.css" type="text/css">
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
 function openDaumZipAddress() {
 	new daum.Postcode({
@@ -25,6 +24,15 @@ function openDaumZipAddress() {
 	}).open();
 }
 </script>
+<style>
+.lili a { color: white; }
+.lili {
+    padding: 3px 0 3px 0;
+    text-indent: 0px;
+    line-height: 170%;
+    color: white;
+}
+</style>				
 </head>
 <body>
 <div class="contact-form spad">
@@ -49,33 +57,35 @@ function openDaumZipAddress() {
                     </div>
                    <div class="form-group">
 								<div class="row form-group has-feedback in-line">
-									<label class="control-label" for="address">주소</label>
+									<label class="control-label" for="address"></label>
 									<div class="col col-lg-5">
 										<input class="form-control form-control-lg required"
 											type="text" data-name='우편번호' name="postCode" id="postCode"
-											width="30%" placeholder="우편번호" readonly />
+											width="30%" placeholder="우편번호" style="margin-left: 17px; width: 300px;" readonly />
 									</div>
 									<div class="col col-lg-7">
 										<input type="button" class='btn btn-primary' onclick ='openDaumZipAddress()'
-											style="height: 48px" value="우편번호 찾기">
+											style="height: 50px; margin-left: -154px; width: 180px; color: white;" value="우편번호 찾기">
 									</div>
 								</div>
-								<input type="text" class="form-control form-control-lg address" name="location1"
-									id="location1" readonly>
+								<input type="text" class="form-control form-control-lg address" 
+								name="location1" style="margin-left: 17px; width: 1000px;" placeholder="주소" id="location1" readonly>
 							</div>
 							<div class="form-group">
-								<label>상세주소</label> <input type="text" name="location2"
-									class="form-control form-control-lg mian" id="location2"
-									>
+								<label></label> 
+								<input type="text" name="location2" class="form-control form-control-lg mian" 
+								style="margin-left: 17px; width: 1000px;" placeholder="상세주소" id="location2">
 							</div>
                     <div class="col-lg-6 col-md-6">
-                        <input type="text" name="price "placeholder="가격">
+                        <input type="text" name="price" style="width: 300px" placeholder="가격">
                     </div>
                      <div class="col-lg-6 col-md-6">
-                        <input type="file" placeholder="이미지" name="uploadFile">
+                        <input type="file" placeholder="이미지" style="width: 300px" name="uploadFile">
                     </div>
                     <div class="col-lg-12 text-center">
-                        <textarea name="comm" placeholder="구장 상세 설명"></textarea>
+                        <textarea name="comm" style="width: 1000px; margin-left: -110px;" placeholder="구장 상세 설명"></textarea>
+                    </div>
+                    <div style="text-align: center;">
                         <button type="submit" class="site-btn">구장등록</button>
                     </div>
                 </div>
