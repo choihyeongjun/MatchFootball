@@ -46,6 +46,7 @@
 }
 </style>
 <script>
+	
 </script>
 </head>
 
@@ -67,74 +68,63 @@
 								</h1>
 							</div>
 							<div align="right">
-								<a href="#" id="FREE"> 자유게시판 |</a><a href="#"
-									id="TEAM"> 팀게시판 |</a>
+							${sessionScope.t_num}////////id :::: ${sessionScope.id}
+								<a href="${pageContext.request.contextPath}//mypage/write" id="FREE"> 자유게시판 |</a><a href="${pageContext.request.contextPath}/teamGallery?t_num=${sessionScope.t_num}" id="TEAM">
+									팀게시판 </a>
 							</div>
 							<div class="row" style="width: auto">
-								
+
 								<div style="margin-top: 15px;">
-									<table border="1" style="width: 100%">
-										<tr>
-											<td></td>
-											<td><input type="checkbox"></td>
-											<th>작성일</th>
-											<th>제목</th>
-											<th>조회수</th>
-											<th>댓글</th>
-											<th colspan="2" align="right">수정/삭제
-												&nbsp;&nbsp;&nbsp;&nbsp;</th>
-										</tr>
-										<tbody id=toMsg>
-											<c:forEach items="" var="">
+									<div class="table-responsive">
+										<table class="table table-bordered" id="dataTable"
+											style="width:100%; cellspacing: 0; padding: 0;">
+											<thead>
 												<tr>
-													<td></td>
-											<td><input type="checkbox"></td>
-											<th>작성일</th>
-											<th>제목</th>
-											<th>조회수</th>
-											<th>댓글</th>
-													<td>
-														<button type="button" class="btn btn-primary float-right"
-															id="delWr">삭제하기</button>
-														<button type="button" class="btn btn-primary float-right"
-															id="delWr">삭제하기</button></td>
+													<th>번호</th>
+													<th>제목</th>
+													<th>작성날짜</th>
+													<th>좋아요수</th>
+													<th>조회수</th>
+													<th style="width:138px;"></th>
 												</tr>
-											</c:forEach>
-										</tbody>
-									</table>
-									<div align="center">
-										<my:paging paging="${paging}" jsfunc="goPage" />
+											</thead>
+										
+											<tbody>
+												 <c:forEach var="my" items="${my}">
+													<tr>
+														<td>${my.num}</td>
+														<td><a
+															href="${pageContext.request.contextPath}/free/freedetail/${my.num}/${my.cnt}">${my.title}</a></td>
+														<td>${my.b_date}</td>
+														<td>${my.likeit}</td>
+														<td>${my.cnt}</td>
+														<td style="display:flex;" >
+														<button class="btn" type='button' onclick="location.href='${pageContext.request.contextPath}/free/freedetail/${my.num}/${my.cnt}'">수정</button>
+														<button class="btn" type='button'>삭제</button>
+													</tr>
+												</c:forEach>
+											</tbody>
+										</table>
 									</div>
 								</div>
+								<div align="center">
+									<my:paging paging="${paging}" jsfunc="goPage" />
+								</div>
 							</div>
-							<div class="clearfix"></div>
-							<div class="item-listing list"></div>
 						</div>
+						<div class="clearfix"></div>
+						<div class="item-listing list"></div>
 					</div>
 				</div>
 			</div>
 		</div>
+	
 		<button class="btn btn-primary btn-circle" id="to-top"
 			style="visibility: visible; opacity: 0.5;">
 			<!-- 위로가기버튼 -->
 			<i class="fa fa-angle-up"></i>
 		</button>
-		<!-- Modal -->
-		<div class="modal fade" id="MsgModal" tabindex="-1"
-			aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-body" id="viewMsg"></div>
-					<div class="modal-footer">
-
-						<button class="replyMsg" type="submit">답장</button>
-						<button type="reset">취소</button>
-
-					</div>
-				</div>
-			</div>
-		</div>
-
+		
 		<script>
 			function goPage(q) {
 				location.href = "msg?page=" + q;
