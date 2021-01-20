@@ -446,10 +446,6 @@ public class HyenDongController {
 		String id = (String) session.getAttribute("id");
 		membersVO.setId(id);
 		model.addAttribute("member", hyendongMapper.memberSelect(membersVO));
-		teamlistVO.setT_num("2");
-		model.addAttribute("count", hyendongMapper.selectCount(teamlistVO));
-		membersVO.setT_num("2");
-		model.addAttribute("avgAge", hyendongMapper.avgAge(membersVO));
 		membersVO = hyendongMapper.scoutInvite(membersVO);
 		session.setAttribute("scout", membersVO.getSel());
 		return "hyendong/teamList";
@@ -537,6 +533,8 @@ public class HyenDongController {
 			teamVO.setT_num(t_num2);
 			System.out.println(teamVO.getT_num());
 			model.addAttribute("hh", hyendongMapper.joinTeamTournament(teamVO));
+			
+//			model.addAttribute("count", hyendongMapper.tournamentTeamCount(tt));
 			return "seemoo/tournamentInfo";
 		}
 
