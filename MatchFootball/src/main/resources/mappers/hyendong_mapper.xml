@@ -19,9 +19,7 @@
 	<select id="teamListSelect" resultType="TeamVO"
 		parameterType="TeamVO">
 		select * from( select a.*, rownum rn from (
-		SELECT *
-		FROM TEAM
-		ORDER BY t_num
+		select t.*, (select count(1) from teamlist l where l.t_num=t.t_num) as teamListCount from team t order by t_num
 		) a ) b where rn between #{first} and #{last}
 
 	</select>
@@ -459,7 +457,7 @@
 	
 	<!-- 팀 평균 나이 구하기 -->
 	<select id="avgAge" resultType="membersVO" parameterType="membersVO">
-		select avg(nvl(trunc(months_between(sysdate, to_date(substr(birth, 1, 4), 'yyyy'))/12), 0)+1) as age from members where t_num=#{t_num}
+		select round(avg(nvl(trunc(months_between(sysdate, to_date(substr(birth, 1, 4), 'yyyy'))/12), 0)+1),1) as age from members where t_num=#{t_num}
 	</select>
 	
 	<!-- 팀매치 취소 -->
@@ -503,4 +501,9 @@
 	<update id="blackCancle">
 		update team set author from where t_num=#{t_num}
 	</update>
+	
+	<!-- 토너먼트 팀 카운트 -->
+	<select id="tournamentTeamCount" resultType="TournamentTeamVO">
+		select count(1) as count from tournamentteam where t_no=#{t_no}
+	</select>
 </mapper>

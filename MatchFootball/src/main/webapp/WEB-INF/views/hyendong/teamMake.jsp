@@ -170,6 +170,7 @@
 				</div>
 			</div>
 			<br> <input type="button" class="genric-btn info circle" value="팀가입" onclick="teamMake()"/>
+				 <input type="button" class="genric-btn info circle" value="취소" onclick="history.back(-1)"/>
 		</div>
 	</form>
 	<!-- End Align Area -->
