@@ -147,7 +147,7 @@
 	<!-- 쿠폰 유효 기간 경과시 사용불가 -->
 	<update id="unusedCp" parameterType="CuponVO">
 		update coupon set c_check = 'O'
-		where <![CDATA[c_edate < SYSDATE+1]]>
+		where <![CDATA[c_edate > SYSDATE]]>
 		and c_check = 'N'
 	</update>
 	<select id="getPoCnt" resultType="int">
@@ -216,6 +216,26 @@
 	<!-- 게시판 조회 -->
 	<select id="myWriteList" parameterType="FboardVO"
 		resultType="FboardVO">
-		select * from fboard where id=#{id}
+	select * 
+	from( 
+		select a.*, ROWNUM RN 
+		from (
+			select * 
+			from fboard 
+			where id=#{id}
+			) a 
+		) b 
+	where RN between #{first} and #{last}
 	</select>
+	<select id="cntMyWrite" parameterType="FboardVO"
+		resultType="int">
+		select count(*) 
+		from fboard 
+		where id=#{id}
+	</select>
+	<delete id="delMywrite">
+	delete 
+	from fboard 
+	where num= #{num}
+	</delete>
 </mapper>

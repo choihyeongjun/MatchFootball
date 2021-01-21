@@ -36,5 +36,8 @@ public interface DoeunMapper {
 	public int Mchg(MessageVO msg);// 받은 메세지 확인 시 수신여부 변경
 	public int Mypoint(PointVO point);//내 포인트 업데이트?
 	public void delPMatchProc(P_matchVO pmat); // 프로시저
-	public List<FboardVO> myWriteList(FboardVO mywt);//내가 쓴 글 조회
+	public List<FboardVO> myWriteList(FboardVO fboard);//내가 쓴 글 조회
+	public int cntMyWrite(FboardVO fboard);// 내가 쓴 게시글 페이징
+	public int delMywrite(FboardVO fboard); // 내가 쓴 게시글 삭제
+
 }

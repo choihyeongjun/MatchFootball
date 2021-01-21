@@ -127,9 +127,9 @@ function managerUpdate() {
 											<th>생년월일</th>
 											<th style="width: 50px;">성별</th>
 											<th>연락처</th>
-											<th style="width: 50px;">포부</th>
 											<th style="width: 90px;">권한</th>
 											<th>설문지</th>
+											<th style="width: 50px;">포부</th>
 											<th style="width: 80px;"></th>
 											<th style="width: 80px;"></th>
 											<th style="width: 70px;"></th>
@@ -143,8 +143,8 @@ function managerUpdate() {
 											<th>성별</th>
 											<th>연락처</th>
 											<th>권한</th>
-											<th>포부</th>
 											<th>설문지</th>
+											<th>포부</th>
 											<th></th>
 											<th></th>
 											<th></th>

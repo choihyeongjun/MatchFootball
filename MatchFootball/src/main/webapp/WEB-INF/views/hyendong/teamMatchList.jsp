@@ -70,7 +70,7 @@ element.style {
 		<div class="card-header">
 			<i class="fas fa-table mr-1"></i> 팀매치 신청 내역
 		</div>
-		<div class="card-body">
+		<div class="card-body" style="margin-left:140px">
 			<div class="table-responsive" style="margin-left: 150px; margin-bottom: 100px">
 				<div class="container" style="float: left;">
 					<table class="table table-bordered" id="dataTable">
@@ -82,6 +82,7 @@ element.style {
 								<th>구장 가격</th>
 								<th>경기 날짜</th>
 								<th>경기 시간</th>
+								<th>상대 팀</th>
 								<th>경기 취소 여부</th>
 							</tr>
 						</thead>
@@ -94,6 +95,12 @@ element.style {
 									<td class="text-center">${match.price}</td>
 									<td class="text-center">${match.m_date}</td>
 									<td class="text-center">${match.m_hour}</td>
+									<c:if test="${match.so_num eq null}">
+									<td class="text-center">대기중..</td>
+									</c:if>
+									<c:if test="${match.so_num ne null}">
+									<td class="text-center">${match.so_name }</td>
+									</c:if>
 									<c:if test="${match.so_num eq null}">
 									<td align="center"><form action="teamMatchDelete" method="post">
 									<input type="text" value="${match.m_no }" name="m_no" style="display:none">

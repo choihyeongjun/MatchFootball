@@ -288,7 +288,7 @@ body, html {
                            href="${pageContext.request.contextPath}/mypage/pay">결제 |
                               쿠폰</a></li>
                         <li class="lili"><a
-                           href="${pageContext.request.contextPath}/mypage/usedPoint">매칭 관리</a></li>
+                           href="${pageContext.request.contextPath}/mypage/matching">매칭 관리</a></li>
                         <li class="lili"><a
                            href="${pageContext.request.contextPath}/mypage/msg">쪽지 |
                               게시글</a></li>
@@ -335,6 +335,9 @@ body, html {
                            <li class="lili"><a
                               href="${pageContext.request.contextPath}/teamInvite?t_num=${sessionScope.t_num}">팀
                                  초대</a></li>
+                           <li class="lili"><a
+                              href="${pageContext.request.contextPath}/teamMatchList?t_num=${sessionScope.t_num}">팀
+                                 매치 내역</a></li>     
                         </c:if>
                         <li class="lili"><a
                            href="javascript:login('${pageContext.request.contextPath}/teamList')">팀 리스트</a></li>
