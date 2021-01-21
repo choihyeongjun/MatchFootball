@@ -1,5 +1,8 @@
 package co.company.MatchFootball.hyeongjun;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -68,6 +71,17 @@ public class KakaoLoginController {
 
     	  mav.setViewName("redirect:/match");    	  
       }else {
+    	  response.setContentType("text/html; charset=UTF-8");
+          PrintWriter writer;
+          try {
+             writer = response.getWriter();
+             writer.println("<script>alert('회원 정보가 없습니다. 등록화면으로 이동합니다');");
+             writer.close();
+          } catch (IOException e) {
+             // TODO Auto-generated catch block
+             e.printStackTrace();
+
+          }
     	 mav.setViewName("doeun/pfUpdate");   
       }
     	  

@@ -13,4 +13,6 @@ public class FboardVO {//자유게시판
 	String likeit;
 	String cnt;//조회수
 	String heartstate;
+	int first;
+	int last;
 }

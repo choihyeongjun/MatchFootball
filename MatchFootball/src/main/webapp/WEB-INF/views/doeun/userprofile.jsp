@@ -110,12 +110,6 @@
                                              aria-valuemax="100"></div>
                                        </div>
                                        <small></small>
-                                       <!-- <div class="progress mb-3" style="height: 5px">
-                                          <div class="progress-bar bg-primary" role="progressbar"
-                                             style="width: 89%" aria-valuenow="89" aria-valuemin="0"
-                                             aria-valuemax="100"></div>
-                                       </div> -->
-                                       
                                     </div>
                                  </div>
                               </div>
