@@ -144,10 +144,15 @@
 			for(i=0; i<link[s].length; i++){
 				$(this).parent().find(".line_sty"+link[s][i]).toggleClass('on')
 			}
-			$.ajax({
-				
-			})
 			
+			var t =parseInt( $('div[data-seq="2"]').html())
+			for(i=0; i<link[t].length; i++){
+				$(this).parent().find(".line_sty"+link[t][i]).toggleClass('on')
+			}
+			
+			var ttt = $('div[data-seq="1"]').find('p').html();
+			console.log(ttt);
+			$('div[data-seq="9"]').find('p').html(ttt);
 		});
 
 		$(".noClickdown").on('click', function() {
@@ -156,6 +161,9 @@
 			for(i=0; i<link[s].length; i++){
 				$(this).parent().find(".line_sty"+link[s][i]).toggleClass('on')
 			}
+			var ttt = $('div[data-seq="2"]').find('p').html();
+			console.log(ttt);
+			$('div[data-seq="9"]').find('p').html(ttt);
 		});
 		
 		$(".noClick2").on('click', function() {

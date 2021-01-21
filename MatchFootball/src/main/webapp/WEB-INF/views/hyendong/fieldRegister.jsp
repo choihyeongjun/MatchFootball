@@ -23,6 +23,26 @@
         <script src="../plugin/bootstrap/js/bootstrap.min.js"></script>
         <script src="../config/js/join.js"></script>
     </head>
+    <script type="text/javascript">
+    	function check(){
+    		var p1 = document.getElementById('pw1').value;
+    		var p2 = document.getElementById('pw2').value;
+    		
+    		 if(p1.length < 6) {
+                 alert('비밀번호는 6글자 이상이어야 합니다.');
+                 return false;
+             }    		
+    		
+    		if(p1 != p2){
+    			alert("비밀번호가 일치 하지 않습니다");
+    			return false;
+    		} else {
+    			alert("비밀번호가 일치합니다");
+    			return true;
+    			}
+    		}
+    	}
+    </script>
     <body>
     	<div style="padding-bottom: 250px">
         <article class="container">
@@ -35,27 +55,31 @@
                 <form action="fieldRegisterr" method="post">
                     <div class="form-group">
                         <label for="inputName">Id</label>
-                        <input type="text" class="form-control" name="f_id" placeholder="Id를 입력해 주세요">
+                        <input type="text" class="form-control" name="f_id" placeholder="Id를 입력해 주세요" required="required">
                     </div><br>
                     <div class="form-group">
                         <label for="inputPassword">비밀번호</label>
-                        <input type="password" class="form-control" name="pw" placeholder="비밀번호를 입력해주세요">
+                        <input type="password" class="form-control" id="pw1" name="pw" placeholder="비밀번호를 입력해주세요" required="required">
                     </div><br>
                     <div class="form-group">
                         <label for="inputPasswordCheck">비밀번호 확인</label>
-                        <input type="password" class="form-control" placeholder="비밀번호 확인을 위해 다시한번 입력 해 주세요">
+                        <input type="password" class="form-control" id="pw2" placeholder="비밀번호 확인을 위해 다시한번 입력 해 주세요" required="required">
+                    </div><br>
+                    <div class="form-group">
+                        <label for="inputPassword">이름</label>
+                        <input type="text" class="form-control" name="name" placeholder="이름을 입력해주세요" required="required">
                     </div><br>
                      <div class="form-group">
                         <label for="inputMobile">휴대폰 번호</label>
-                        <input type="tel" class="form-control" name="pnum" placeholder="휴대폰번호를 입력해 주세요">
+                        <input type="tel" class="form-control" name="pnum" placeholder="휴대폰번호를 입력해 주세요" required="required">
                     </div><br>
                     <div class="form-group">
                         <label for="inputPasswordCheck">성별</label><br>
-                        <label for="huey">남</label><input type="radio" id="inputPasswordCheck" value="남" name="남">
-                        <label for="huey">여</label><input type="radio" id="inputPasswordCheck" value="여" name="여">
+                        <label for="huey">남</label><input type="radio" id="inputPasswordCheck" value="남" name="gender">
+                        <label for="huey">여</label><input type="radio" id="inputPasswordCheck" value="여" name="gender">
                     </div><br>
                     <div class="form-group text-center">
-                        <button type="submit" id="join-submit" class="btn btn-primary">회원가입<i class="fa fa-check spaceLeft"></i></button>
+                        <button type="submit" id="join-submit" class="btn btn-primary" onclick="check()">회원가입<i class="fa fa-check spaceLeft"></i></button>
                         <button type="submit" class="btn btn-warning">가입취소<i class="fa fa-times spaceLeft"></i></button>
                     </div>
                 </form>
