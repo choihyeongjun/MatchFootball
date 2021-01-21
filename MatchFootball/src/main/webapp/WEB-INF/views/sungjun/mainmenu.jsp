@@ -121,6 +121,7 @@ body, html {
                <a>님 환영합니다. | </a>
                <a href="${pageContext.request.contextPath}/logout"
                   style="color: black;">로그아웃</a>
+                  ${sessionScope.request}
             </c:if>
             <c:if test="${sessionScope.id eq null}">
                <button type="button" class="btn abc" data-toggle="modal"

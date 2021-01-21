@@ -64,6 +64,7 @@ public class KakaoLoginController {
       session.setAttribute("kbirthday", kbirthday);
       session.setAttribute("kage", kage);
       mb.setId((String)session.getAttribute("kemail"));
+      session.setAttribute("request",request.getParameter("login"));
       
       if(dao.getUser(mb)!=null) {
     	  session.setAttribute("point", dao.getUser(mb).getPoint());

@@ -21,6 +21,7 @@ var level = $('#edit-level');
 var mem=$('#edit-mem');
 var seq=$('#seq');
 var price=$('#edit-price');
+var price1=$('#edit-price1');
 
 var addBtnContainer = $('.modalBtnContainer-addEvent');
 var addBtnContainer1 = $('.modalBtnContainer-addEvent1');
@@ -96,6 +97,7 @@ var newEvent = function (start, end, eventType) {
             url: "../../fielddetailinsert",
             data: {
 				f_id:f_id,
+				price:price.val(),
 				starttime:editStart.val(),
 				endtime:editEnd.val(),
 				comm:editDesc.val(),
