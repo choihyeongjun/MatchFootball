@@ -116,16 +116,9 @@ body, html {
             width="100px" height="50px" /></a>
 
          <div>
-<<<<<<< HEAD
             
-=======
->>>>>>> branch 'master' of https://github.com/tjdwns631/MatchFootball.git
             <c:if test="${sessionScope.id!=null}">
-<<<<<<< HEAD
-               <a>${sessionScope.id} 님 환영합니다. | </a>
-=======
-               <a>${kname}님 환영합니다 | </a>
->>>>>>> branch 'master' of https://github.com/tjdwns631/MatchFootball.git
+               <a>${sessionScope.kname} 님 환영합니다. | </a>
                <a href="${pageContext.request.contextPath}/logout"
                   style="color: black;">로그아웃</a>
             </c:if>
