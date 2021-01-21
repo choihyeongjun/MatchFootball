@@ -2,6 +2,7 @@ package co.company.MatchFootball.mapper;
 
 import java.util.List;
 
+import co.company.MatchFootball.vo.FieldmanagerVO;
 import co.company.MatchFootball.vo.ManageraplyVO;
 import co.company.MatchFootball.vo.MatchMember;
 import co.company.MatchFootball.vo.MembersVO;
@@ -26,6 +27,7 @@ public interface SungjunMapper {
 	public MembersVO memberselect(MembersVO membersvo);
 	public List<PointVO> pointallselect(PointVO p_point);
 	public P_matchVO pmatchlist1(P_matchVO p_match);
+	
 	public List<MatchMember> matchmember(MatchMember matchmember);
 	//해당 매치의 선수 불러오기 매치번호로 매치 조회
 	public List<MembersVO> pmreview(MembersVO membersvo);
@@ -44,6 +46,7 @@ public interface SungjunMapper {
 	public int pointminus(MembersVO membersvo);
 	public int matchapply(PplayersVO pplayers);
 	public int pointcomm(PointVO pointvo);
+	public int pointplus(FieldmanagerVO fieldmanager);
 	// 팀 매치 신청 쿼리//
 	public int teammatchin(PlayersVO players);
 	public int teammatchup(TeammatchVO teammatch);
@@ -93,6 +96,11 @@ public interface SungjunMapper {
 	public TeamVO tnumsel(TeamVO teamvo);
 	//so_num 조회
 	public TeamVO sonumsel(TeamVO teamvo);
+	//해당 매치 조회
 	public P_matchVO matchsell(P_matchVO p_matchVO);
+	//가격 조회
+	public P_matchVO price(P_matchVO p_matchVO);
+	//팀 매치 m_no로 단건조회
+	public int teammatchselect(TeammatchVO teammatch);
 	
 }

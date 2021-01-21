@@ -16,10 +16,28 @@
 	width: 100%;
 	height: 70px;
 	border-radius: 10px;
-	background-color: #314d9f;
 	color: white;
 	border: none;
 	box-shadow: none;
+	padding: 15px;
+	margin: 0;
+	text-align: center;
+	font-size: 25px;
+	background-color: #314d9f;
+}
+
+.abtn1 {
+	width: 100%;
+	height: 70px;
+	border-radius: 10px;
+	color: white;
+	border: none;
+	box-shadow: none;
+	padding: 15px;
+	margin: 0;
+	text-align: center;
+	font-size: 25px;
+	background-color: red;
 }
 
 .form-floating {
@@ -35,18 +53,19 @@
 }
 </style>
 <script>
-	
+ 
+
 </script>
 </head>
 <body>
 	<div style="padding: 20px; display: flex;">
-		<span style="font-size: 30px; margin: 15px;"> 공도 차고, <br>
-			돈도 버는 <br> <strong style="border-bottom: 5px solid #FCC645;">
-				MF 매니저</strong>
+		<span style="font-size: 30px; margin: 15px;"> 즐겁게, <br>
+			재밌게 <br> <strong style="border-bottom: 5px solid #FCC645;">
+				매칭 신청</strong>
 		</span>
-		<div style="padding-left: 30px;">
-			<img alt="dd" src="images/라이언.jpg"
-				style="width: 250px; height: 250px; float: right;">
+		<div style="padding-left: 60px;">
+			<img alt="dd" src="images/라이언2.png"
+				style="width: 200px; height: 200px; float: right;">
 		</div>
 	</div>
 
@@ -83,13 +102,16 @@
 				name="p_con" type="hidden" value="개인 매치비"> <input
 				name="point" type="hidden" value="${p_matchVO.price }"> <input
 				name="npoint" type="hidden" value="-${p_matchVO.price }">
+				<input
+				name="f_id" type="hidden" value="-${p_matchVO.f_id }">
+
 		</div>
 		<div align="center">
 			<c:if test="${empty seltime }">
-				<button type="submit" class="abtn">신청하기</button>
+				<button type="submit" class="abtn" id="abtn">신청하기</button>
 			</c:if>
 			<c:if test="${!empty seltime }">
-				<p class="abtn" style="text-align: center; font-size: 25px; background-color: red">같은 시간대에 예약이 있습니다</p>
+				<p class="abtn1">같은 시간대에 예약이 있습니다</p>
 			</c:if>
 		</div>
 	</form>
