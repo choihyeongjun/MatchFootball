@@ -314,13 +314,13 @@ function mdeta(url){
 								</div>
 								<div class="nameli" style="font-size: 16px; width: 80%;">
 									<div>
-										<p
-											style="font-size: 20px; margin-top: 10px; margin-bottom: 3px;">${p_match.f_name }</p>
+										<p style="font-size: 20px; margin-top: 10px; margin-bottom: 3px;">${p_match.f_name }</p>
 									</div>
 									<div class="m-im-t">
-										<span>⦁ ${p_match.m_type } 매치</span><span>·
-											${p_match.p_max }</span> <span>레벨${p_match.lv }Lv</span> <input
-											type="hidden" value="${p_match.m_no }">
+										<span>⦁ ${p_match.m_type } 매치</span>
+										<span>⦁  ${p_match.p_max }</span> 
+										<span>⦁  레벨 ${p_match.lv } Lv</span> 
+										<input type="hidden" value="${p_match.m_no }">
 									</div>
 								</div>
 								<div style="width: 20%;">
@@ -329,12 +329,13 @@ function mdeta(url){
 									<c:if test="${p_max > f && p_match.sel eq '0'}">
 										<p class="ap-info" style="">신청 가능</p>
 									</c:if>
-									<c:if test="${p_max <= f}">
+									<c:if test="${p_max <= f ||p_match.sel eq '1'}">
 										<p class="ap-info1">마감</p>
 									</c:if>
-									<c:if test="${p_match.sel eq '1'}">
+									
+									<%-- <c:if test="${p_match.sel eq '1'}">
 										<p class="ap-info2">매치 참여 완료</p>
-									</c:if>
+									</c:if> --%>
 								</div>
 						</a></li>
 					</c:forEach>

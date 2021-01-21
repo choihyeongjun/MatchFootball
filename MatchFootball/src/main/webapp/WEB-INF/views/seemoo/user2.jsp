@@ -41,7 +41,7 @@ function userUpdate() {
 //사용자 목록 조회 요청
 function userList() {
 	$.ajax({
-		url:'../user/ajax',
+		url:'../user2/ajax',
 		//contentType:'application/json;charset=utf-8',
 		dataType:'json',
 		error:function(xhr,status,msg){
@@ -128,10 +128,10 @@ function userListResult(data) {
 	<div id="layoutSidenav_content">
 		<main>
 			<div class="container-fluid">
-				<h1 class="mt-4">유저페이지</h1>
+				<h1 class="mt-4">용병 등록 유저페이지</h1>
 				<ol class="breadcrumb mb-4">
 					<li class="breadcrumb-item">
-						<a href="${pageContext.request.contextPath}/admin/user2">용병등록회원</a></li>
+						<a href="${pageContext.request.contextPath}/admin/user">등록회원</a></li>
 					<li class="breadcrumb-item active"></li>
 					<a href="#">정지회원</a>
 				</ol>

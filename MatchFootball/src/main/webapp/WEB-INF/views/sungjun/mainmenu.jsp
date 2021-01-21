@@ -116,9 +116,9 @@ body, html {
             width="100px" height="50px" /></a>
 
          <div>
-            ${sessionScope.id} ${kemail}
+            
             <c:if test="${sessionScope.id!=null}">
-               <a>님 환영합니다. | </a>
+               <a>${sessionScope.kname} 님 환영합니다. | </a>
                <a href="${pageContext.request.contextPath}/logout"
                   style="color: black;">로그아웃</a>
             </c:if>
@@ -335,6 +335,9 @@ body, html {
                            <li class="lili"><a
                               href="${pageContext.request.contextPath}/teamInvite?t_num=${sessionScope.t_num}">팀
                                  초대</a></li>
+                           <li class="lili"><a
+                              href="${pageContext.request.contextPath}/teamMatchList?t_num=${sessionScope.t_num}">팀
+                                 매치 내역</a></li>     
                         </c:if>
                         <li class="lili"><a
                            href="javascript:login('${pageContext.request.contextPath}/teamList')">팀 리스트</a></li>
