@@ -165,9 +165,9 @@
 	<selectKey order="BEFORE" keyProperty="m_no" resultType="string">
 	select tmatch_seq.nextval from dual
 	</selectKey>
-	insert into teammatch(m_no,t_num,mtype,f_name,f_address,price,t_name,t_cap,t_level,m_info,m_date,m_hour,m_type,id)
+	insert into teammatch(m_no,t_num,mtype,f_name,f_address,price,t_name,t_cap,t_level,m_info,m_date,m_hour,m_type,id,min)
 	
-	values(#{m_no},#{t_num},#{mtype},#{f_name},#{f_address},#{price},#{t_name},#{t_cap},#{t_level},#{m_info},#{m_date},#{m_hour},'모집',#{id}) 
+	values(#{m_no},#{t_num},#{mtype},#{f_name},#{f_address},#{price},#{t_name},#{t_cap},#{t_level},#{m_info},#{m_date},#{m_hour},'모집',#{id},#{min}) 
 	</insert>
 	<insert id="pmatchinsert" parameterType="p_matchVO">
 	<selectKey order="BEFORE" keyProperty="m_no" resultType="string">
@@ -230,12 +230,12 @@
 	<select id="matchresult" resultType="mmatchnmatchVO">
 		select t.mtype "type",t.f_name,t.f_address,t.m_date,t.m_hour,m.chk
 		from mmatchlist m,teammatch t
-		where t.m_no=m.match_info and t.m_no=#{m_no} and m.id=#{id}
+		where t.m_no=m.match_info and m.id=#{id}
 	</select>
 	<select id="matchresult1" parameterType="mmatchnmatchVO" resultType="mmatchnmatchVO">
 		select t.m_type "type",t.f_name,t.f_address,t.m_date,t.m_hour,m.chk,t.m_no
 		from mmatchlist m,p_match t
-		where t.m_no=m.match_info and t.m_no=#{m_no} and m.id=#{id}
+		where t.m_no=m.match_info and  m.id=#{id}
 	</select>
 	<select id="mmatchsearch" parameterType="string" resultType="mmatchlistVO">
 		select match_info,id
@@ -253,7 +253,11 @@
    <update id="mpointupdate" parameterType="membersVO">
 		update members set point=point-#{point} where id=#{id}
 	</update>
+   <select id="memauthor" parameterType="membersVO" resultType="string">
+   select t_author from teamlist where id=#{id} and t_num=(
+   select t_num from members where id=#{id})
    
+   </select>
    
 
 </mapper>

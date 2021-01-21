@@ -15,6 +15,7 @@ import co.company.MatchFootball.vo.MmatchnmatchVO;
 import co.company.MatchFootball.vo.P_matchVO;
 import co.company.MatchFootball.vo.PointVO;
 import co.company.MatchFootball.vo.RfieldVO;
+import co.company.MatchFootball.vo.TeamlistVO;
 import co.company.MatchFootball.vo.TeammatchVO;
 
 public interface HyeongjunMapper {
@@ -26,9 +27,9 @@ public MembersVO login(MembersVO vo);
 public List<FieldVO> fieldlist();
 public List<RfieldVO> fieldselect(RfieldVO vo);
 public List<RfieldVO> fielddetailinsert(RfieldVO vo);
-public List<FboardVO> fboardlist();
-public List<FboardVO> fboardlist1();
-public List<FboardVO> fboardlist2();
+public List<FboardVO> fboardlist(FboardVO vo);
+public List<FboardVO> fboardlist1(FboardVO vo);
+public List<FboardVO> fboardlist2(FboardVO vo);
 public List<RfieldVO> fielddetailupdate(RfieldVO vo);
 public List<RfieldVO> fielddetailupdate1(RfieldVO vo);
 public RfieldVO fielddetaildelete(RfieldVO vo);
@@ -71,4 +72,5 @@ public List<MmatchnmatchVO> matchresult(MmatchnmatchVO vo);
 public List<MmatchnmatchVO> matchresult1(MmatchnmatchVO vo);
 public int pointinsert(PointVO vo);
 public int mpointupdate(MembersVO vo);
+public String memauthor(MembersVO vo);
 }
