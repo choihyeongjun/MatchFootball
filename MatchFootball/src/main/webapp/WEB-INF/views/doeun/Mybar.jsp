@@ -58,10 +58,14 @@ function membersSelect() {
 
 //사용자 조회 응답
 function userSelectResult(user) {
-	$('#myPoint').val('내 포인트 : ' + user.point);
+	$('#myPoint').val('내 포인트 : ' + user.point).comma(str);
+	
  console.log(user);
 }//userSelectResult
-
+function comma(str) {
+    str = String(str);
+    return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+}
 </script>
 </head>
 <body>
