@@ -46,9 +46,6 @@
 String tel = (String) session.getAttribute("point.pnum");
 %>
 <script type="text/javascript">
-if ('${param.msg}' != ''){
-	alert('${param.msg}')
-}
 
 	function goTop() {
 		$(document).animate({
