@@ -2,14 +2,11 @@ package co.company.MatchFootball.hyendong;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Enumeration;
 import java.util.List;
 
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.servlet.http.HttpSessionContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,7 +18,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import co.company.MatchFootball.mapper.HyendongMapper;
 import co.company.MatchFootball.vo.ComeInviteVO;
-import co.company.MatchFootball.vo.InviteVO;
+import co.company.MatchFootball.vo.FieldmanagerVO;
 import co.company.MatchFootball.vo.MembersVO;
 import co.company.MatchFootball.vo.Paging;
 import co.company.MatchFootball.vo.TeamVO;
@@ -32,6 +29,7 @@ import co.company.MatchFootball.vo.TinviteVO;
 import co.company.MatchFootball.vo.TnoticeVO;
 import co.company.MatchFootball.vo.TournamentTeamVO;
 import co.company.MatchFootball.vo.TournamentVO;
+import co.company.MatchFootball.vo.WriterVO;
 
 @Controller
 public class HyenDongController {
@@ -243,12 +241,13 @@ public class HyenDongController {
 	// 팀 공지 확인
 	@RequestMapping("/teamNoticeInfo")
 	public String teamNoticeInfo(Model model, TnoticeVO tNoticeVO, HttpSession session, TeamlistVO teamlistVO,
-			TeamVO teamVO) {
+			TeamVO teamVO, WriterVO writerVO) {
 		model.addAttribute("teamNoticeInfo", hyendongMapper.NoticeSelectInfo(tNoticeVO));
 		String id = (String) session.getAttribute("id");
 		teamlistVO.setId(id);
 		model.addAttribute("teamInfo", hyendongMapper.getTeam(teamVO));
 		model.addAttribute("updateButton", hyendongMapper.getTeamMemberss(teamlistVO));
+		model.addAttribute("writer", hyendongMapper.writerSelect(writerVO));
 		return "hyendong/teamNoticeInfo";
 	}
 
@@ -292,6 +291,20 @@ public class HyenDongController {
 		return "redirect:/teamNotice?t_num=" + tNoticeVO.getT_num();
 	}
 
+	// 공지 댓글 등록 처리
+	@RequestMapping("/writerInsert")
+	public String noticeWriterInsert(WriterVO writerVO) {
+		hyendongMapper.writerInsert(writerVO);
+		return "redirect:/teamNoticeInfo?t_num=" + writerVO.getT_num() + "&n_no=" + writerVO.getN_no();
+	}
+	
+	// 공지 댓글 등록 처리
+	@RequestMapping("/writerDelete")
+	public String noticeWriterDelete(WriterVO writerVO) {
+		hyendongMapper.writerDelete(writerVO);
+		return "redirect:/teamNoticeInfo?t_num=" + writerVO.getT_num() + "&n_no=" + writerVO.getN_no();
+	}
+	
 	// 팀 초대
 	@RequestMapping("/teamInvite")
 	public String teamInvite(Model model, HttpSession session, TinviteVO tinviteVO, TeamlistVO teamlistVO, TeamVO teamVO,
@@ -561,10 +574,25 @@ public class HyenDongController {
 		return "redirect:/tournamentInfo?t_no=" + tournamentVO.getT_no();
 	}
 	
+	// 8강 처리
 	@ResponseBody
 	@RequestMapping("/oneWin")
 	public TournamentTeamVO oneWin(TournamentTeamVO tournamentTeamVO) {
 		hyendongMapper.oneWin(tournamentTeamVO);
+		return tournamentTeamVO;
+	}
+	// 4강 처리
+	@ResponseBody
+	@RequestMapping("/twoWin")
+	public TournamentTeamVO twoWin(TournamentTeamVO tournamentTeamVO) {
+		hyendongMapper.twoWin(tournamentTeamVO);
+		return tournamentTeamVO;
+	}
+	// 결승 처리
+	@ResponseBody
+	@RequestMapping("/threeWin")
+	public TournamentTeamVO threeWin(TournamentTeamVO tournamentTeamVO) {
+		hyendongMapper.threeWin(tournamentTeamVO);
 		return tournamentTeamVO;
 	}
 	
@@ -574,5 +602,18 @@ public class HyenDongController {
 		hyendongMapper.getTournament(tournamentVO);
 		hyendongMapper.winTournament(membersVO);
 		return "redirect:/tournamentPVP?t_no=" + tournamentVO.getT_no();
+	}
+	
+	// 구장관리자 
+	@RequestMapping("/fieldRegister")
+	public String fieldRegister() {
+		return "hyendong/fieldRegister";
+	}
+	
+	// 구장관리자 처리 
+	@RequestMapping("/fieldRegisterr")
+	public String fieldRegisterr(FieldmanagerVO fieldmanagerVO) {
+		hyendongMapper.fieldRegister(fieldmanagerVO);
+		return "sungjun/match";
 	}
 }

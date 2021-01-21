@@ -15,7 +15,11 @@ import co.company.MatchFootball.vo.TeamVO;
 public interface SeemooMapper {
 
 	public List<MembersVO> memberListmap();			// 유저(ajax) 전체조회
-	public List<MembersVO> memberList();			// 유저 전체조회
+	public List<MembersVO> memberList();			// 유저 전체조회(용병X)
+	
+	public List<MembersVO> membersListmap();		// 유저(ajax) 전체조회
+	public List<MembersVO> membersList();			// 유저 전체조회(용병)
+	
 	public MembersVO memberselect(MembersVO vo); 	// 유저 단건조회
 	public int membersupdate(MembersVO vo); 		// 유저 수정
 	public int membersdelete(MembersVO vo); 		// 유저 삭제
@@ -25,13 +29,13 @@ public interface SeemooMapper {
 	public List<TeamVO> teamListmap(); 				// 팀(ajax) 전체조회
 	public List<TeamVO> teamList(); 				// 팀 전체조회
 	public TeamVO teamselect(TeamVO vo); 			// 팀 단건조회
+	
 	public int teamsupdate(TeamVO vo); 				// 팀 수정
-	public int teamsdelete(TeamVO vo);				// 팀 삭제
 	
-	public List<TeamVO> blackteamList();			// 블랙팀 전체조회
+	public List<BlackTeamListVO> blackteamList(BlackTeamListVO vo);	// 블랙팀(ajax) 전체조회
+	public List<TeamVO> blackteamList();							// 블랙팀 전체조회
+	public int teamsdelete(TeamVO vo);								// 블랙팀 삭제
 	
-	public List<BlackTeamListVO> blackteamList(BlackTeamListVO vo);	// 블랙팀 전체조회
-
 // ============================================================================================
 	
 	public List<MembersVO> managerList(); 				// 매니저(ajax) 전체조회

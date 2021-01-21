@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import co.company.MatchFootball.mapper.SungjunMapper;
 import co.company.MatchFootball.vo.CalVO;
+import co.company.MatchFootball.vo.FieldmanagerVO;
 import co.company.MatchFootball.vo.ManageraplyVO;
 import co.company.MatchFootball.vo.MatchMember;
 import co.company.MatchFootball.vo.MembersVO;
@@ -122,6 +123,7 @@ public class JunController {
 		membersvo.setId((String) session.getAttribute("id"));
 		membersvo.setT_num((String) session.getAttribute("t_num"));
 		pointvo.setP_id((String) session.getAttribute("id"));
+		
 		int ppoint = dao.pointssss(membersvo);
 
 		if (ppoint < Integer.parseInt(membersvo.getPoint())) {
@@ -197,37 +199,44 @@ public class JunController {
 		// 선택한 매치 조회
 		P_matchVO vo = dao.pmatchlist1(p_matchVO);
 		model.addAttribute("p_matchVO", vo);
-
+		
 		// 매치정보 조회
 		P_matchVO voo = dao.matchsell(p_matchVO);
 		voo.setId(membersvo.getId());
 		model.addAttribute("seltime", dao.seltime(voo));
 		model.addAttribute("membervo", dao.memberselect(membersvo));
+		
+		
 		return new ModelAndView("no/sungjun/matchapply");
 	}
 
 	@PostMapping(value = "/sendmatchapply")
 	public ModelAndView test12(HttpServletResponse response, Model model, MembersVO membersvo, PplayersVO pplayers,
-			HttpSession session, PointVO pointvo) throws IOException {
+			HttpSession session, PointVO pointvo, P_matchVO p_match,FieldmanagerVO fieldmanager) throws IOException {
 		membersvo.setId((String) session.getAttribute("id"));
 		pplayers.setId((String) session.getAttribute("id"));
 		pointvo.setP_id((String) session.getAttribute("id"));
-
+		ModelAndView mvo = new ModelAndView();
+		//매치 포인트 조회
 		int ppoint = dao.pointssss(membersvo);
-
 		if (ppoint < Integer.parseInt(membersvo.getPoint())) {
-			ModelAndView mvo = new ModelAndView();
-			mvo.setViewName("redirect:/mypage/pay");
+			mvo.setViewName("no/sungjun/mesaage");
 			mvo.addObject("msg", "포인트가 부족합니다");
+			mvo.addObject("url", "mypage/pay");
 			return mvo;
-		} else {
+		} else  {
+			//내 포인트 차감
 			dao.pointminus(membersvo);
+			//선수목록에 추가
 			dao.matchapply(pplayers);
+			//포인트 내역 추가
 			dao.pointcomm(pointvo);
+			//구장에 포인트 주기
+			dao.pointplus(fieldmanager);
 			ModelAndView vo = new ModelAndView();
-			vo.setViewName("redirect:/match");
-			vo.addObject("msg1", "신청되었습니다");
-
+			vo.setViewName("no/sungjun/mesaage");
+			vo.addObject("msg", "신청 되었습니다");
+			vo.addObject("url", "match");
 			return vo;
 		}
 
@@ -281,11 +290,8 @@ public class JunController {
 			MatchMember matchmember) throws IOException {
 		ModelAndView ma = new ModelAndView();
 		teammatch.setId((String) session.getAttribute("id"));
-		ma.addObject("teammatch", dao.tmatchlist(teammatch));
-		// ma.addObject("players", dao.playerselect(players));
-		ma.addObject("matchmember", dao.matchmember(matchmember));
-		// ma.addObject("tnum",dao.tnumsel(teamvo));
-		// ma.addObject("sonum",dao.sonumsel(teamvo));
+		//팀매치 단건 조회
+		ma.addObject("teammatch", dao.teammatchselect(teammatch));
 		ma.setViewName("no/sungjun/teammatchschedule");
 		return ma;
 	}

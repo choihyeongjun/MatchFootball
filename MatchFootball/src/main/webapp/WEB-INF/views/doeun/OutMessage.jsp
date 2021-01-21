@@ -27,6 +27,15 @@
 
 <style>
 .lili a { color: white; }
+footer {
+	position: fixed;
+	left: 0px;
+	bottom: 0px;
+	width: 100%;
+	background: grey;
+	color: white;
+}
+
 </style>
 
 
@@ -113,15 +122,16 @@ delMsg();
 									<thead align="center">
 										<tr>
 											<td style="display:none;"></td>
-										<td><input type="checkbox"></td>
+										<td>
+											<input type="checkbox">
+										</td>
 										<th>날짜</th>
 										<th>제목</th>
 										<th>받은 사람</th>
-										<td colspan="2" align="center">수신확인
-											&nbsp;&nbsp;&nbsp;&nbsp;</td>
+										<th>수신확인</th>
 										</tr>
 									</thead>
-									<tbody id=sendingMsg>
+									<tbody id=sendingMsg align="center">
 										<c:forEach items="${msg}" var="msg">
 											<tr>
 												<td style="display:none;"><input type="hidden" id="m_no" name="m_no"

@@ -24,8 +24,12 @@ public class P_matchVO {//개인매치
 	String id;
 	String sel;
 	String p_id;//개인 유저 아이디
-	String m_dati;
 	String gubun;
+	String m_year;
+	String m_month;
+	String m_day;
+	String m_ho;
+	String review;
 	int first;
 	int last;
 }

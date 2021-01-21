@@ -28,6 +28,7 @@ public class TeammatchVO {
 	String so_num;
 	String so_name;
 	String m_id;
+	String review;
 	int first;
 	int last;
 }

@@ -136,7 +136,16 @@ a {
 	color: white;
 	border-radius: 10px;
 }
-
+.btn.sf1 {
+	line-height: 32px;
+	font-size: 15px;
+	color: black;
+	text-decoration: none !important;
+	background-color: #ea3e42;
+	color: white;
+	border-radius: 10px;
+	cursor: 
+}
 #body1 {
 	border-radius: 20px;
 }
@@ -264,12 +273,12 @@ a {
 									</a> <input type="hidden" value="${p_match.m_no }">
 								</div>
 								<div style="width: 20%">
-									<c:if test="${empty preview.m_no }">
+									<c:if test="${empty p_match.review }">
 										<a class="btn sf" data-toggle="modal" data-target="#pmreivew"
 											data-pn="${p_match.m_no }"> 리뷰 작성</a>
 									</c:if>
-									<c:if test="${!empty preview.m_no }">
-										<a class="btn sf" style="background-color: red;"> 작성 완료</a>
+									<c:if test="${!empty p_match.review }">
+										<b class="btn sf1"> 작성 완료</b>
 									</c:if>
 								</div>
 							</li>

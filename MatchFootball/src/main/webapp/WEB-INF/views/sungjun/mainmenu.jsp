@@ -116,9 +116,9 @@ body, html {
             width="100px" height="50px" /></a>
 
          <div>
-            ${sessionScope.id} ${kemail}
+            
             <c:if test="${sessionScope.id!=null}">
-               <a>님 환영합니다. | </a>
+               <a>${sessionScope.id} 님 환영합니다. | </a>
                <a href="${pageContext.request.contextPath}/logout"
                   style="color: black;">로그아웃</a>
                   ${sessionScope.request}
@@ -153,10 +153,8 @@ body, html {
                         <div class="box box-border">
                            <div class="box-body">
                               <h2 style="text-align: center;">Login</h2>
-                              <div align="right">
-                                 <input type="radio" name="login" class="login" value="user"
-                                    checked /> <label for="user">회원</label> <input type="radio"
-                                    name="login" class="login" value="fadmin" /> <label
+                              <div align="right"> <input type="radio"
+                                    name="login" class="login" value="fadmin" checked="checked" /> <label
                                     for="fadmin">구장관리자</label> <br>
                               </div>
                               <form action="${pageContext.request.contextPath}/logincheck"
@@ -178,11 +176,11 @@ body, html {
                                  <br>
                                  <div class="form-group text-center"
                                     style="text-align: center;">
-                                    <span class="text-muted">아직 계정이 없으십니까?</span> <a
-                                       href="register.html" style="color: blue;">가입하기</a>
+                                    <span class="text-muted">구장 관계자는 여기서 </span> <a
+                                       href="${pageContext.request.contextPath}/fieldRegister" style="color: blue;">가입하기</a>
                                  </div>
                                  <br>
-                                 <div class="hr-sect">또는</div>
+                                 <div class="hr-sect">USER</div>
                                  <br>
                                  <div class="title-line" style="text-align: center;">
                                     <a id="custom-login-btn"
@@ -336,6 +334,9 @@ body, html {
                            <li class="lili"><a
                               href="${pageContext.request.contextPath}/teamInvite?t_num=${sessionScope.t_num}">팀
                                  초대</a></li>
+                           <li class="lili"><a
+                              href="${pageContext.request.contextPath}/teamMatchList?t_num=${sessionScope.t_num}">팀
+                                 매치 내역</a></li>     
                         </c:if>
                         <li class="lili"><a
                            href="javascript:login('${pageContext.request.contextPath}/teamList')">팀 리스트</a></li>

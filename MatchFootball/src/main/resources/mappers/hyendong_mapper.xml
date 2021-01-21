@@ -504,4 +504,36 @@
 	<select id="tournamentTeamCount" resultType="TournamentTeamVO">
 		select count(1) as count from tournamentteam where t_no=#{t_no}
 	</select>
+	
+	<!-- 공지 댓글 등록 -->
+	<insert id="writerInsert">
+		<selectKey order="BEFORE" keyProperty="seq_info"
+			resultType="string">
+			SELECT NVL(MAX(seq_info),0)+1
+			FROM writer
+		</selectKey>
+		insert into writer values(
+			#{seq_info},
+			#{comm},
+			sysdate,
+			#{id},
+			#{n_no},
+			#{t_num}
+		)
+	</insert>
+	
+	<!-- 공지 댓글 조회 -->
+	<select id="writerSelect" resultType="writerVO">
+		select * from writer where n_no = #{n_no} and t_num = #{t_num} order by 1 desc
+	</select>
+	
+	<!-- 공지 댓글 삭제 -->
+	<delete id="writerDelete">
+		delete from writer where seq_info = #{seq_info}
+	</delete>
+	
+	<!-- 구장관리자 회원가입 -->
+	<insert id="fieldRegister">
+		insert into fieldmanager values(#{f_id}, #{pw}, #{name}, #{gender}, #{pnum}, 0, null)
+	</insert>
 </mapper>
