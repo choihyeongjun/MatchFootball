@@ -104,6 +104,13 @@ $(function(){
                   </div>
                   <div class="row">
                      <div class="col-xs-12">
+                        <label class="col-xs-4" for="edit-price">가격</label> <input
+                           class="inputModal" type="text" name="edit-price1"
+                           id="edit-price1" value="${price}" readonly="readonly"/>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-xs-12">
                         <label class="col-xs-4" for="edit-color">색상</label> <select
                            class="inputModal" name="color" id="edit-color">
                            <option value="#D25565" style="color: #D25565;">빨간색</option>
@@ -194,11 +201,14 @@ $(function(){
                      <div class="col-xs-12">
                         <label class="col-xs-4" for="edit-type1">구분</label> <select
                            class="inputModal" type="text" name="edit-type1" id="edit-type1">
-                           <option value="매치축구">매치축구</option>
-                           <option value="매치풋살">매치풋살</option>
+                           <c:if test="${id ne f_id}">
+                           <option value="매치축구">팀매치축구</option>
+                           <option value="매치풋살">팀매치풋살</option>
+                           </c:if>
                           <c:if test="${id eq f_id}">
-                            <option value="개인매치축구">개인매치축구</option>
-                           <option value="개인매치풋살">개인매치풋살</option>
+                            <option value="5:5 풋살">5:5 풋살</option>
+                           <option value="6:6 풋살">6:6 풋살</option>
+                           <option value="축구">축구</option>
                           </c:if>
                         </select>
                      </div>
@@ -262,7 +272,6 @@ $(function(){
                         <label class="col-xs-4" for="manager1">매니저</label> <select
                            class="inputModal" type="text" name="manager1" id="manager1">
                            <option value="없음">없음</option>
-                           <option value="ㅇㅇ">ㅇㅇㅇㅇㅇㅇㅇㅇㅇ</option>
                            <option value="풋살"></option>
                         </select>
                      </div>

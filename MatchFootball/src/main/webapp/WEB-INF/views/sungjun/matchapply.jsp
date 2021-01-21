@@ -53,8 +53,7 @@
 }
 </style>
 <script>
- 
-
+	
 </script>
 </head>
 <body>
@@ -101,8 +100,7 @@
 				name="m_no" type="hidden" value="${p_matchVO.m_no }"> <input
 				name="p_con" type="hidden" value="개인 매치비"> <input
 				name="point" type="hidden" value="${p_matchVO.price }"> <input
-				name="npoint" type="hidden" value="-${p_matchVO.price }">
-				<input
+				name="npoint" type="hidden" value="-${p_matchVO.price }"> <input
 				name="f_id" type="hidden" value="-${p_matchVO.f_id }">
 
 		</div>

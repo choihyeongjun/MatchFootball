@@ -128,18 +128,23 @@ public class JunController {
 
 		if (ppoint < Integer.parseInt(membersvo.getPoint())) {
 			ModelAndView mvo = new ModelAndView();
-			mvo.setViewName("redirect:/mypage/pay");
+			mvo.setViewName("no/sungjun/mesaage");
 			mvo.addObject("msg", "포인트가 부족합니다");
+			mvo.addObject("url", "mypage/pay");
 			return mvo;
 		} else {
+			//선수 등록
 			dao.teammatchin(players);
+			//팀 매치 so 에다 등록
 			dao.teammatchup(teammatch);
+			//포인트 차감
 			dao.pointminus(membersvo);
+			//포인트 내역에다 등록
 			dao.pointcomm(pointvo);
 			ModelAndView vo = new ModelAndView();
-			vo.setViewName("redirect:/teammatch");
-			vo.addObject("msg1", "신청되었습니다");
-
+			vo.setViewName("no/sungjun/mesaage");
+			vo.addObject("msg", "신청 되었습니다");
+			vo.addObject("url", "teammatch");
 			return vo;
 		}
 	}
@@ -236,7 +241,7 @@ public class JunController {
 			ModelAndView vo = new ModelAndView();
 			vo.setViewName("no/sungjun/mesaage");
 			vo.addObject("msg", "신청 되었습니다");
-			vo.addObject("url", "sungjun/match");
+			vo.addObject("url", "match");
 			return vo;
 		}
 
