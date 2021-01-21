@@ -531,4 +531,9 @@
 	<delete id="writerDelete">
 		delete from writer where seq_info = #{seq_info}
 	</delete>
+	
+	<!-- 구장관리자 회원가입 -->
+	<insert id="fieldRegister">
+		insert into fieldmanager values(#{f_id}, #{pw}, #{name}, #{gender}, #{pnum}, 0, null)
+	</insert>
 </mapper>

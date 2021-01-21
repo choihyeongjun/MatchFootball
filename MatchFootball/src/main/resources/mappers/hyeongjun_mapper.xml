@@ -49,7 +49,31 @@
 	 		and id=#{id}),0) as heartstate
  		</if>
  		 from fboard f
+ 		 order by b_date desc
    </select>
+      <select id="fboardlist1" resultType="fboardVO">
+   	 select f.* 
+   <if test="id !=null"> 
+          ,nvl((select likeit
+	 		from likeit  
+	 		where num=f.num
+	 		and id=#{id}),0) as heartstate
+ 		</if>
+ 		 from fboard f
+ 		 order by cnt desc
+   </select>
+     <select id="fboardlist2" resultType="fboardVO">
+   	 select f.* 
+   <if test="id !=null"> 
+          ,nvl((select likeit
+	 		from likeit  
+	 		where num=f.num
+	 		and id=#{id}),0) as heartstate
+ 		</if>
+ 		 from fboard f
+ 		 order by likeit desc
+   </select>
+  
   
    <select id="fielddetailupdate1" parameterType="rfieldVO" >
    		update rfield set starttime=#{starttime},endtime=#{endtime},comm=#{comm},type=#{type},backgroundcolor=#{backgroundcolor} where title=#{title}
@@ -223,10 +247,13 @@
 		from teammatch
 		where m_no=#{m_no}
 	</select>
-   <!-- <select id="heartselect" result="likeitVO">
-   	select likeit
-   	from likeit
-   </select> -->
+   <insert id="pointinsert" parameterType="pointVO">
+   	insert into point(p_seq,p_id,npoint,p_date,p_con) values(point_seq.nextval,#{p_id},#{npoint},sysdate+9/24,#{p_con})
+   </insert>
+   <update id="mpointupdate" parameterType="membersVO">
+		update members set point=point-#{point} where id=#{id}
+	</update>
+   
    
 
 </mapper>

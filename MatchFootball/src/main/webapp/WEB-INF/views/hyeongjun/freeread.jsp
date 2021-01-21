@@ -137,11 +137,12 @@ footer {
             <div align="center">
             <c:if test="${sessionScope.id eq select.id }">
             
-               <textarea id="summernote" name="comm" >${select.comm}</textarea>
+               <div id="summernote" style="border:'1px'; width: 100px;height: 100px" name="comm" >${select.comm}</div>
+     
             </c:if>
             <c:if test="${sessionScope.id ne select.id }">
             
-               <textarea id="summernote" cols="135" rows="15" name="comm" readonly>${select.comm}</textarea>
+               <td style=" border:'1px'; width: 100px;height: 100px" name="comm" readonly>${select.comm}</td>
             </c:if>
             <br>
                <c:if test="${sessionScope.id eq select.id}">

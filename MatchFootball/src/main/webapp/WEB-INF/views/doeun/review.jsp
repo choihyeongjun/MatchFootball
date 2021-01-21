@@ -84,6 +84,9 @@
 								<div id="tr-template">
 									<div class="card">
 									<c:forEach items="${p_mat}" var="mat">
+									<c:if test="${mat. eq null }">
+									매칭 된 경기 이력이 없습니다.
+									</c:if>>
 										<div class="media mt-0">
 											<div class="media-left">
 												<img class="media-object rounded-circle" src="#" width="100"

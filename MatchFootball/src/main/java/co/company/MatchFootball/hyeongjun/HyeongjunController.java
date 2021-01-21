@@ -2,6 +2,7 @@ package co.company.MatchFootball.hyeongjun;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.http.HttpRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,6 +31,7 @@ import co.company.MatchFootball.vo.MmatchlistVO;
 import co.company.MatchFootball.vo.Mmatchlistnmember;
 import co.company.MatchFootball.vo.MmatchnmatchVO;
 import co.company.MatchFootball.vo.P_matchVO;
+import co.company.MatchFootball.vo.PointVO;
 import co.company.MatchFootball.vo.RfieldVO;
 import co.company.MatchFootball.vo.TeammatchVO;
 
@@ -123,8 +125,17 @@ public class HyeongjunController {
 
 	@ResponseBody
 	@RequestMapping("/fielddetailinsert")
-	public List<RfieldVO> fielddetailinsert(RfieldVO vo, Model model) {
+	public List<RfieldVO> fielddetailinsert(RfieldVO vo, Model model,MembersVO vo1,HttpSession session,PointVO vo2,HttpServletRequest request) {
+		
+		vo2.setP_con(vo.getType());
+		vo2.setP_id(vo.getId());
+		vo2.setNpoint("-"+vo.getPrice());
+		System.out.println(vo2);
+	//	hyeongjunMapper.pointinsert(vo2);
 		vo.setM_no("1");
+		vo1.setId(vo.getId());		
+		vo1.setPoint((String)session.getAttribute("price"));
+		//hyeongjunMapper.mpointupdate(vo1);
 		return hyeongjunMapper.fielddetailinsert(vo);
 	}
 
@@ -208,7 +219,7 @@ public class HyeongjunController {
 
 	@ResponseBody
 	@RequestMapping("/pmatchupdate")
-	public P_matchVO pmatchupdate(P_matchVO vo, RfieldVO vo1, MmatchlistVO vo2) {
+	public int pmatchupdate(P_matchVO vo, RfieldVO vo1, MmatchlistVO vo2) {
 		vo1.setM_no(vo.getM_no());
 		vo1.setM_id(vo.getM_id());
 		vo2.setId(vo.getM_id());
@@ -233,12 +244,26 @@ public class HyeongjunController {
 	}
 
 	@RequestMapping("/free")
-	public String freeboard(Model model, FboardVO vo, HttpSession session) {
+	public String freeboard(Model model, FboardVO vo, HttpSession session, HttpServletRequest request) {
 		if (session.getAttribute("id") != null) {
 			vo.setId((String) session.getAttribute("id"));
 		}
-		model.addAttribute("list", hyeongjunMapper.fboardlist(vo));
+		else {
+		if (request.getParameter("first").equals("1")) {
+			model.addAttribute("list", hyeongjunMapper.fboardlist1());
+			return "hyeongjun/freeboard";
+		} else if (request.getParameter("first").equals("2")) {
+			model.addAttribute("list", hyeongjunMapper.fboardlist2());
+			return "hyeongjun/freeboard";
+		} 
+		model.addAttribute("list", hyeongjunMapper.fboardlist());
+			return "hyeongjun/freeboard";
+			
+		}
+		model.addAttribute("list", hyeongjunMapper.fboardlist());
 		return "hyeongjun/freeboard";
+
+	
 	}
 
 	@ResponseBody

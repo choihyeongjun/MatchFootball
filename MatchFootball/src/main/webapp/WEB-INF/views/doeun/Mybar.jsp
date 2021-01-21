@@ -33,7 +33,40 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script>
+//사용자 조회 요청
+$(function(){
+ membersSelect();	
+})
 
+
+function membersSelect() {
+   //조회 버튼 클릭
+      var id = $('#hiddenId').val();
+      //특정 사용자 조회
+      $.ajax({
+         url:'mybar/'+id,
+         type:'GET',
+         contentType:'application/json;charset=utf-8',
+         dataType:'json',
+         error:function(xhr,status,msg){
+            alert("상태값 :" + status + " Http에러메시지 :"+msg);
+         },
+         success:userSelectResult
+      });
+}//userSelect
+
+//사용자 조회 응답
+function userSelectResult(user) {
+	$('#myPoint').val('내 포인트 : ' + user.point).comma(str);
+	
+ console.log(user);
+}//userSelectResult
+function comma(str) {
+    str = String(str);
+    return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+}
+</script>
 </head>
 <body>
 <div class="col-md-5 col-lg-4 col-xl-4 col-sidebar">
@@ -50,7 +83,8 @@
 								</div>
 								<br>
 								<div class="list-group no-border list-unstyled">
-									<a class="list-group-item active" href="#">내 포인트 : ${sessionScope.point}</a><br>
+									<input type="hidden" id="hiddenId" value="${sessionScope.id}">
+									<input class="list-group-item active" href="#" id="myPoint"><br>
 									<a href="${pageContext.request.contextPath}/mypage/profile" class="list-group-item profile">
 										<i class="far fa-id-card"></i> 내 프로필
 									</a> 									 
@@ -68,7 +102,7 @@
 									<a href="${pageContext.request.contextPath}/mypage/msg" class="list-group-item point">&nbsp;&nbsp;&nbsp;&nbsp;- 메세지 </a> 
 									<a href="${pageContext.request.contextPath}/mypage/write" class="list-group-item point">&nbsp;&nbsp;&nbsp;&nbsp;- 내가 쓴 게시글 </a>
 									<c:if test="${sessionScope.author eq 'user'}">
-                        <a href="${pageContext.request.contextPath}/manageremploy" class="list-group-item Manager">&nbsp;&nbsp;&nbsp;&nbsp;신청페이지</a>
+                        <a href="${pageContext.request.contextPath}/manageremploy" class="list-group-item Manager">&nbsp;&nbsp;&nbsp;&nbsp;매니저 신청페이지</a>
                         </c:if>
                       
 								</div>
