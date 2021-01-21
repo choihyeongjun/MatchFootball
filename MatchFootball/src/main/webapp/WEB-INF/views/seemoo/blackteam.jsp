@@ -70,10 +70,9 @@ function blackteamListResult(data) {
 				'<option value="black">블랙</option>'+
 				'</select>').val(item.author)))
 		.append($('<td>').html(item.t_m))						//팀매너점수
-		.append($('<td>').html(item.t_info))    				//팀소개
-		.append($('<td>').html(item.stopdate))					//정지날짜
+		.append($('<td>').html(item.stop_date))					//정지날짜
+		.append($('<td>').html('<button id=\'btnSelect\'class="btn btn-primary">팀프로필</button>'))
 		.append($('<td>').html('<button id=\'btnUpdate\'class="btn btn-success">팀복귀</button>'))
-		.append($('<td>').html('<button id=\'btnDelete\'class="btn btn-primary">팀삭제</button>'))
 		.append($('<input type=\'hidden\' id=\'hidden_t_num\'>').val(item.t_num))
 		.append($('<input type=\'hidden\' id=\'hidden_t_name\'>').val(item.t_name))
 		.append($('<input type=\'hidden\' id=\'hidden_author\'>').val(item.author))
@@ -84,34 +83,31 @@ function blackteamListResult(data) {
 
 /* function blackteamDelete() {
 	//삭제 버튼 클릭
-	$('#blackTeam').on('click','#btnDelete',function(){
+	$('body').on('click','#btnDelete',function(){
 		var t_num = $(event.target).closest('tr').find('#hidden_t_num').val();
 		var t_name = $(event.target).closest('tr').find("#hidden_t_name").val();
 		var result = confirm(t_name +" 팀을 정말로 삭제하시겠습니까?");
 		if(result) {
 			console.log("아이디값: "+t_num)
 			$.ajax({
-				url:'../teamdelete',  
+				url:'${pageContext.request.contextPath}/teamsdelete/'+t_num, 
 				contentType:'application/json;charset=utf-8',
 				dataType:'json',
-				type : 'GET',
-				data :{t_num : t_num},
+				type : 'DELETE',
 				error:function(xhr,status,msg){
 					console.log("상태값 :" + status + " Http에러메시지 :"+msg);
-				}, success: location.reload()
+				},  success: function(xhr) {
+					console.log(xhr.result);
+					blackteamList();
+				}
 			});      
 		}//if
 	}); //삭제 버튼 클릭
-}//blackteamDelete
-
-function deleteResult(data){
-	console.log("deleteResult아이디값 : "+data);
-	
-} */
+}//blackteamDelete */
 </script>
+
 </head>
 		<body>
-		
 		<!--팀관리 -->
 		<div id="layoutSidenav_content">
 			<main>
@@ -144,7 +140,6 @@ function deleteResult(data){
 											<th>팀승률</th>
 											<th>팀권한</th>
 											<th>팀매너점수</th>
-											<th>팀소개</th>
 											<th>정지기간</th>
 											<th style="width: 90px;"></th>
 											<th style="width: 90px;"></th>
@@ -158,7 +153,6 @@ function deleteResult(data){
 											<th>팀승률</th>
 											<th>팀권한</th>
 											<th>팀매너점수</th>
-											<th>팀소개</th>
 											<th>정지기간</th>
 											<th></th>
 											<th></th>
@@ -171,5 +165,58 @@ function deleteResult(data){
 					</div>
 				</div>
 			</main>
+				<!-- The Modal -->
+		<div class="modal fade" id="myModal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<!-- Modal Header -->
+					<div class="modal-header"></div>
+					
+					<!-- Modal body -->
+					<div class="modal-body">
+						<table  align="center">
+							<img class="userProfileImg" alt="유저이미지" id="t_log" src="${pageContext.request.contextPath}/images">
+							<tr><th>No.</th><td>:</td><td style="padding-left: 10px" id="t_num"></td></tr>
+							<tr><th>팀명</th>	<td>:</td><td style="padding-left: 10px" id="t_name"></td></tr>
+							<tr><th>팀인원</th><td>:</td><td style="padding-left: 10px" id="t_max"></td></tr>
+							<tr><th>지역</th><td>:</td><td style="padding-left: 10px" id="t_address"></td></tr>
+							<tr><th>팀레벨</th><td>:</td><td style="padding-left: 10px" id="t_level"></td></tr>
+							<tr><th>팀승률</th><td>:</td><td style="padding-left: 10px" id="t_wn"></td></tr>
+							<tr><th>팀매너</th><td>:</td><td style="padding-left: 10px" id="t_m"></td></tr>
+							<tr><th>팀소개</th><td>:</td><td style="padding-left: 10px; width: 250px;" id="t_info"></td></tr>
+						</table>
+					</div>
+
+					<!-- Modal footer -->
+					<div class="modal-footer">
+						<button type="button" class="btn btn-danger" data-dismiss="modal">종료</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+		<script>
+		$("#dataTable").on("click", "#btnSelect", function() {
+			//event.stopPropagation();
+  			var num = $(event.target).parent().parent().find('.tnum').text();
+			modal = $('#myModal');
+			$.ajax({
+				url : "teaminfo?t_num=" + num,
+				dataType : "json",
+				success : function(result) {
+					$('#t_log').attr("src",'${pageContext.request.contextPath}/images/'+result.t_log);
+					$('#t_num').text(result.t_num);
+					$('#t_name').text(result.t_name);
+					$('#t_max').text(result.t_max);
+					$('#t_address').text(result.t_address);
+					$('#t_level').text(result.t_level);
+					$('#t_wn').text(result.t_wn);
+					$('#t_m').text(result.t_m);
+					$('#t_info').text(result.t_info);
+					modal.modal('show');
+				}
+			})
+		})
+	</script>		
 </body>
 </html>

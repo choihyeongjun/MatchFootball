@@ -34,21 +34,23 @@ body #form1 { width: 1000px; height: 600px; margin: auto; margin-top: 20px; }
 					<table class="table">
 						<tbody>
 							<tr>
-								<td>제</td>
-								<td>목</td>
-								<td><input name="n_title" type="text" style="width: 930px" value="${noticeView.n_title }" readonly="readonly"></td>
+								<td></td>
+								<td>제목</td>
+								<td><input style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;"
+ 									name="n_title" type="text" style="width: 930px" value="${noticeView.n_title }" readonly="readonly"></td>
 							</tr>
 							<tr>	
-								<td>날</td>
-								<td>짜</td>
-								<td><input name="n_title" type="text" style="width: 930px" value="${noticeView.n_date }" readonly="readonly"></td>
+								<td></td>
+								<td>날짜</td>
+								<td><input style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;"
+ 									name="n_title" type="text" name="n_title" type="text" style="width: 930px" value="${noticeView.n_date }" readonly="readonly"></td>
 							</tr>
 						</tbody>
 					</table>
 				</div>
 
 				<div align="center">
-					<textarea id="summernote" name="n_comm" style="width: 1000px" readonly="readonly">${noticeView.n_comm }</textarea><br> 
+					<textarea id="summernote" name="n_comm" style="width: 1000px" disabled >${noticeView.n_comm }</textarea><br> 
 						<button type="submit" onclick="javascript: form.action='${pageContext.request.contextPath}/notice'" class="btn btn-primary" id="btnInsert">목록으로</button> 
 				</div>
 			</form>

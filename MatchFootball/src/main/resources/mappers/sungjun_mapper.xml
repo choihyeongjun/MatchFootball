@@ -37,6 +37,7 @@
 	<select id="daysel" resultType="int">
 	select count(*) as day from p_match 
 	where substr(m_date,1,10) = #{m_date}
+	and to_date(m_date,'yyyy-mm-ddhh24:mi')<![CDATA[ >= sysdate +9/24]]>
 	</select>
 	<!--해당 날의 개인 매치 조회 및 신청 인원 -->
 	<select id="pmatchselect" parameterType="P_matchVO"
@@ -57,8 +58,7 @@
 		group by a.m_no )c
 		where d.m_no = c.m_no(+)
 		and
-		substr(m_date,1,10) =
-		#{m_date}
+		substr(m_date,1,10) = #{m_date}
 		and to_date(m_date,'yyyy-mm-ddhh24:mi')<![CDATA[ >= sysdate +9/24]]>
 		order by m_hour asc
 	</select>
@@ -90,7 +90,7 @@
 	<select id="pointallselect" parameterType="PointVO"
 		resultType="PointVO">
 		SELECT * FROM point
-		where p_id = #{p_id}
+		where p_id = #{p_id} and p_con= '매니저 비'
 	</select>
 	<!--p_match 내역 수 페이징 -->
 	<select id="getCount1" resultType="int">
@@ -336,15 +336,13 @@
 		select * from (select * from (select 'a',m_no,f_name,
 		m_date, f_address from teammatch
 		where id='없음' union all
-		select
-		'b',m_no,f_name, m_date, f_address from p_match where m_id='없음')
+		select 'b',m_no,f_name, m_date, f_address from p_match where m_id='없음')
 		where
 		to_date(m_date,'yyyy-mm-ddhh24:mi') >= sysdate +9/24)
 		order by
 		m_date
-		desc ,m_hour asc
+		desc 
 	</select>
-
 	<!--개인 리뷰 선수 조회 & 매치 번호로 매치 정보 조회 -->
 	<select id="pmreview" parameterType="MembersVO"
 		resultType="MembersVO">
@@ -357,12 +355,17 @@
 		select * from p_match
 		where m_no = #{m_no}
 	</select>
+	<!-- 리뷰 등록된 매치 조회 -->
+	<select id="selrrrr" parameterType="PreviewVO" resultType="PreviewVO">
+		select * from preview 
+		where m_no=#{m_no}
+	</select>
 	<!--뛴 선수 리뷰 등록 -->
 	<insert id="pmreviewapp">
-		<foreach collection="m_no" item="m_no" open="INSERT ALL "
+		<foreach collection="list" item="vo" open="INSERT ALL "
 			separator=" " close="SELECT * FROM DUAL">
 			into preview(id,manner,m_id,m_no)
-			values(#{id},#{manner},#{m_id},#{m_no})
+			values(#{vo.id},#{vo.manner},#{vo.m_id},#{vo.m_no})
 		</foreach>
 	</insert>
 	<update id="reviewup">
@@ -372,6 +375,9 @@
 	<select id="seltime" resultType="int">
 		select 1 from p_match a , pplayers b
 		where a.m_no = b.m_no
-		and substr(a.m_date,1,13) = #{m_date} and id= #{id}
+		and substr(a.m_date,1,13) = substr(#{m_date},1,13) and id= #{id}
+	</select>
+	<select id="matchsell" resultType="P_matchVO">
+	select * from p_match where m_no=#{m_no}
 	</select>
 </mapper>

@@ -69,8 +69,6 @@ function managerListResult(data) {
 				$('<select id="author" class=\'author\' name="author"> '+
 				'<option selected value="">선택</option>'+
 				'<option value="manager" name="manager">매니저</option>'+
-				'<option value="user" name="user">회원</option>'+
-				'<option value="wait" name="wait">매니저대기</option>'+
 				'<option value="stop" name="stop">매니저정지</option>'+
 				'</select>').val(item.author)))
 		.append($('<td>').html(item.point))    	//매니저포인트
@@ -177,12 +175,14 @@ function managerListResult(data) {
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<!-- Modal Header -->
-					<div class="modal-header"><h2 id="u_id">의 프로필 정보</h2></div>
+					<div class="modal-header" style="margin: auto;">
+						<h2 id="name"></h2><a style="margin-top: 16px">님의 프로필</a>
+					</div>
 					
 					<!-- Modal body -->
 					<div class="modal-body">
 						<table  align="center">
-						<img class="userProfileImg" alt="유저이미지" src="${pageContext.request.contextPath}/resources/seemoo/img/1.jpg">
+							<img class="userProfileImg" alt="유저이미지" id="img" src="${pageContext.request.contextPath}/images">
 							<tr><th>아이디</th><td>:</td><td style="padding-left: 10px" id="id"></td></tr>
 							<tr><th>이름</th>	<td>:</td><td style="padding-left: 10px" id="name"></td></tr>
 							<tr><th>성별</th><td>:</td><td style="padding-left: 10px" id="gender"></td></tr>
@@ -213,6 +213,7 @@ function managerListResult(data) {
 				url : "managerinfo?id=" + num,
 				dataType : "json",
 				success : function(result) {
+					$('#img').attr("src",'${pageContext.request.contextPath}/images/'+result.img);
 					$('#id').text(result.id);
 					$('#name').text(result.name);
 					$('#gender').text(result.gender);

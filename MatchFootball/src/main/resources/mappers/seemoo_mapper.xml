@@ -6,19 +6,24 @@
 
 <!-- 유저관리=================================================================================================  -->
 
-	<!-- 유저전체조회 -->
+	<!-- 유저전체조회(용병X) -->
 	<select id="memberList" resultType="MembersVO">
-		SELECT * FROM MEMBERS WHERE AUTHOR = 'user'
+		SELECT * FROM MEMBERS WHERE AUTHOR = 'user' AND AUTHOR2 = 'N'
 	</select>
-
+	
+	<!-- 유저전체조회(용병O) -->
+	<select id="membersList" resultType="MembersVO">
+		SELECT * FROM MEMBERS WHERE AUTHOR = 'user' AND AUTHOR2 = 'Y'
+	</select>
+	
 	<!-- 유저단건조회 -->
 	<select id="memberselect" parameterType="MembersVO" resultType="MembersVO">
 		SELECT * FROM MEMBERS WHERE ID = #{id}
 	</select>
 	
-	<!-- 유저 권한, 권한2 수정 -->
-	<select id="membersupdate" parameterType="MembersVO" resultType="MembersVO">
-		UPDATE MEMBERS SET AUTHOR = #{author}, AUTHOR2 = #{author2} WHERE ID = #{id}     
+	<!-- 유저 권한(용병)수정 -->
+	<select id="membersupdate" parameterType="MembersVO" resultType="int">
+		UPDATE MEMBERS SET AUTHOR2 = #{author2} WHERE ID = #{id}     
 	</select>
 	
 	<!-- 유저삭제 -->
@@ -30,28 +35,27 @@
 
 	<!-- 팀조회 -->
 	<select id="teamList" resultType="TeamVO">
-		SELECT * FROM TEAM WHERE AUTHOR = 'team'
-		<!-- select * from team -->
+		select * from team where author = 'team' or  author is null
 	</select>
 
 	<!-- 팀단건조회 -->
 	<select id="teamselect" parameterType="TeamVO" resultType="TeamVO">
-		SELECT * FROM TEAM WHERE T_NUM = #{t_num}
+		select * from team where t_num = #{t_num}
 	</select>
 	
 	<!-- 팀권한 수정 -->
-	<select id="teamsupdate" parameterType="TeamVO" resultType="TeamVO">
-		UPDATE TEAM SET AUTHOR = #{author} WHERE T_NUM = #{t_num}     
-	</select>
-	
-	<!-- 팀삭제 -->
-	<select id="teamsdelete" parameterType="TeamVO">
-		DELETE FROM TEAM WHERE T_NUM = #{t_num}
+	<select id="teamsupdate" parameterType="TeamVO" resultType="int">
+		update team set stop_date = sysdate + 14, author = 'black' where t_num = #{t_num}     
 	</select>
 	
 	<!-- 블랙팀 조회 -->
 	<select id="blackteamList" resultType="TeamVO">
-		SELECT * FROM TEAM WHERE AUTHOR = 'black'
+		select * from team where author = 'black'
+	</select>
+	
+	<!-- 블랙팀 삭제 -->
+	<select id="teamsdelete" parameterType="TeamVO">
+		delete from team where t_num = #{t_num}
 	</select>
 	
 <!-- 매니저관리=================================================================================================  -->
@@ -69,11 +73,12 @@
 	<!-- 매니저 권한수정 -->
 	<select id="managerupdate" resultType="MembersVO" parameterType="MembersVO">
 		UPDATE MEMBERS SET AUTHOR = #{author} WHERE ID = #{id}
+		
 	</select>
 	
 	<!-- 매니저 승인|대기조회 -->
 	<select id="managerapplyList" resultType="ManagerapplyVO">
-		select a.author, b.* from members a join manageraply b on a.id=b.id where a.author='wait' or a.author='stop'
+		SELECT A.AUTHOR, B.* FROM MEMBERS A JOIN MANAGERAPLY B ON A.ID=B.ID WHERE A.AUTHOR = 'wait' OR A.AUTHOR = 'stop'
 	</select>
 	
 	<!-- 매니저 권한 수정 -->
@@ -127,7 +132,24 @@
 		SELECT * FROM FBOARD
 	</select>	
 		
+	<!-- 매치확인 -->
+	<select id="matchList" resultType="P_matchVO">
+		SELECT * FROM P_MATCH
+	</select>
+	
+	<!-- 경기장 확인 -->
+	<select id="fieldList" resultType="FieldVO">
+		SELECT * FROM FIELD
+	</select>
 		
-		
+	<!-- 경기장단건조회 -->
+	<select id="fieldselect" parameterType="FieldVO" resultType="FieldVO">
+		SELECT * FROM FIELD WHERE F_ID = #{f_id} 
+	</select>	
+	
+	<!-- 경기장삭제 -->
+	<select id="fielddelete" resultType="FieldVO">
+		DELETE FROM FIELD WHERE F_ID = #{f_id} 
+	</select>
 		
 </mapper>

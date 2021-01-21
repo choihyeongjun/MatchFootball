@@ -16,10 +16,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import co.company.MatchFootball.mapper.HyendongMapper;
 import co.company.MatchFootball.mapper.SeemooMapper;
+import co.company.MatchFootball.vo.FieldVO;
 import co.company.MatchFootball.vo.FwboardVO;
 import co.company.MatchFootball.vo.ManagerapplyVO;
 import co.company.MatchFootball.vo.MembersVO;
 import co.company.MatchFootball.vo.NoticeVO;
+import co.company.MatchFootball.vo.P_matchVO;
 import co.company.MatchFootball.vo.ReviewVO;
 import co.company.MatchFootball.vo.TeamVO;
 
@@ -29,97 +31,119 @@ public class AdminController {
 	@Autowired
 	SeemooMapper seemoomapper;
 	HyendongMapper hyendongmapper;
-//	====================================================유저======================================================
+//	=======================================================================================================================
 	
-	
-	@RequestMapping(value = "/admin", method = RequestMethod.GET) // 관리자 메인페이지
+	@RequestMapping(value = "/admin", method = RequestMethod.GET)		// 관리자 메인페이지
 	public String admin(Model model) {
 		model.addAttribute("members", seemoomapper.memberList());
 		return "no/seemoo/index";
 	}
 	
-	@RequestMapping(value = "/user/ajax", method = RequestMethod.GET) // 유저관리 페이지 (ajax로 전체조회)
+	@RequestMapping(value = "/user/ajax", method = RequestMethod.GET)	// 유저관리 페이지 (ajax로 전체조회)
 	@ResponseBody	
 	public List<MembersVO> userlist(Model model, HttpServletRequest request, HttpServletResponse reponse) {
 		return seemoomapper.memberList();
 	}
 
-	@RequestMapping(value = "/admin/user", method = RequestMethod.GET) // 유저관리 페이지 (전체조회)
+	@RequestMapping(value = "/admin/user", method = RequestMethod.GET)	// 유저관리 페이지 (전체조회)
 	public String user(Model model, MembersVO vo, HttpServletRequest request, HttpServletResponse reponse) {
 		model.addAttribute("members", seemoomapper.memberList());
 		return "seemoo/user";
 	}
+
+//........................................................................................................................................
 	
-	@RequestMapping(value = "/admin/userinfo", method = RequestMethod.GET) // 유저관리 페이지 (단건조회)
+	@RequestMapping(value = "/user2/ajax", method = RequestMethod.GET)	// 용병신청 유저페이지 (ajax로 전체조회)
+	@ResponseBody	
+	public List<MembersVO> userslist(Model model, HttpServletRequest request, HttpServletResponse reponse) {
+		return seemoomapper.membersList();
+	}
+	
+	@RequestMapping(value = "/admin/user2", method = RequestMethod.GET)	// 용병신청 유저페이지
+	public String user2(Model model, MembersVO vo, HttpServletRequest request, HttpServletResponse reponse) {
+		model.addAttribute("members", seemoomapper.membersList());
+		return "seemoo/user2";
+	}
+//........................................................................................................................................
+	
+	@RequestMapping(value = "/admin/userinfo", method = RequestMethod.GET)	// 유저단건조회 (모달페이지)
 	@ResponseBody
 	public MembersVO userselect(Model model, MembersVO vo, HttpServletRequest request, HttpServletResponse reponse) {
 		return  seemoomapper.memberselect(vo);
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/userupdate", method = RequestMethod.GET) // 유저관리 페이지 (수정)
-	public MembersVO usersupdate(MembersVO vo) {
-		 seemoomapper.membersupdate(vo);
-		 return vo;
+	@RequestMapping(value = "/userupdate", method = RequestMethod.GET) 		// 유저권한수정
+	public int usersupdate(MembersVO vo) {
+		return seemoomapper.membersupdate(vo);
+		 
 	}
 	
-	@ResponseBody
-	@RequestMapping(value = "/userdelete", method = RequestMethod.GET) // 유저관리 페이지 (삭제)
-	public MembersVO usersdelete(MembersVO vo) {
-		seemoomapper.membersdelete(vo);
-		return vo;
-	}
+//	@ResponseBody
+//	@RequestMapping(value = "/userdelete/{id}", method=RequestMethod.DELETE) // 유저관리 페이지 (삭제)
+//	public void usersdelete(@PathVariable String id, MembersVO vo, Model model) {
+//		seemoomapper.membersdelete(vo);
+//	}
+	
+//	==================================================================================================================================
 
-//	====================================================팀======================================================
 
-
-	@RequestMapping(value = "/admin/team", method = RequestMethod.GET) // 팀관리 페이지 (전체조회)
+	@RequestMapping(value = "/admin/team", method = RequestMethod.GET)		// 팀관리 페이지 (전체조회)
 	public String team(Model model, TeamVO vo, HttpServletRequest request, HttpServletResponse reponse) {
 		model.addAttribute("teams", seemoomapper.teamList());
 		return "seemoo/team";
 	}
 	
-	@RequestMapping(value = "/team/ajax", method = RequestMethod.GET) // 팀관리 페이지 (ajax로 전체조회)
+	@RequestMapping(value = "/team/ajax", method = RequestMethod.GET)	  	// 팀관리 페이지 (ajax로 전체조회)
 	@ResponseBody	
 	public List<TeamVO> teamlist(Model model, TeamVO vo, HttpServletRequest request, HttpServletResponse reponse) {
 		return seemoomapper.teamList();
 	}
 
-	@RequestMapping(value = "/admin/teaminfo", method = RequestMethod.GET) // 팀관리 페이지 (단건조회)
+	@RequestMapping(value = "/admin/teaminfo", method = RequestMethod.GET) 	// 팀단건조회 (모달페이지)
 	@ResponseBody
 	public TeamVO teamselect(Model model, TeamVO vo, HttpServletRequest request, HttpServletResponse reponse) {
 		return  seemoomapper.teamselect(vo);
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/teamupdate", method = RequestMethod.GET) // 팀관리 페이지 (수정)
-	public TeamVO teamsupdate(TeamVO vo) {
-		seemoomapper.teamsupdate(vo);
-		return vo;
+	@RequestMapping(value = "/teamsupdate", method = RequestMethod.GET) 	// 팀권한수정(수정)
+	public int teamsupdate(TeamVO vo) {
+		return seemoomapper.teamsupdate(vo);
 	}
 	
-	@ResponseBody
-	@RequestMapping(value = "/teamdelete", method = RequestMethod.GET) // 팀관리 페이지 (삭제)
-	public TeamVO teamsdelete(TeamVO vo) {
-		seemoomapper.teamsdelete(vo);
-		return vo;
-	}
+//	@ResponseBody
+//	@RequestMapping(value = "/userupdate", method = RequestMethod.GET) 		// 유저권한수정
+//	public int usersupdate(MembersVO vo) {
+//		return seemoomapper.membersupdate(vo);
+//		 
+//	}
 	
-	@RequestMapping(value = "/admin/blackteam", method = RequestMethod.GET) // 블랙팀관리 페이지
+//........................................................................................................................................
+	
+	@RequestMapping(value = "/admin/blackteam", method = RequestMethod.GET) // 블랙팀 페이지
 	public String blackteam(Model model, TeamVO vo, HttpServletRequest request, HttpServletResponse reponse) {
 		model.addAttribute("teams", seemoomapper.teamList());
 		return "seemoo/blackteam";
 	}
 	
-	@RequestMapping(value = "/blackteam/ajax", method = RequestMethod.GET) // 블랙팀관리 조회페이지 (ajax로 전체조회)
+	@RequestMapping(value = "/blackteam/ajax", method = RequestMethod.GET) // 블랙팀 조회페이지 (ajax로 전체조회)
 	@ResponseBody	
 	public List<TeamVO> blackteamlist(Model model, TeamVO vo, HttpServletRequest request, HttpServletResponse reponse) {
 		return seemoomapper.blackteamList();
 	}
 	
-//	@RequestMapping("/admin/blackteam") // 블랙팀관리 페이지 (삭제)
-//	public String blackteamdelete(BlackTeamVO vo) {
-//		return seemoomapper.blackteamsdelete(vo);
+	@ResponseBody
+	@RequestMapping(value = "/teamsdelete/{t_num}", method = RequestMethod.DELETE) 	// 블랙팀 (삭제)
+	public void teamsdelete(@PathVariable String t_num, TeamVO vo, Model model) {
+		seemoomapper.teamsdelete(vo);
+	}
+	
+	
+//	@ResponseBody
+//	@RequestMapping(value = "/userdelete/{id}", method=RequestMethod.DELETE) // 유저관리 페이지 (삭제)
+//	public void usersdelete(@PathVariable String id, MembersVO vo, Model model) {
+//		seemoomapper.membersdelete(vo);
 //	}
 	
 //	====================================================매니저======================================================
@@ -203,7 +227,7 @@ public class AdminController {
 	 */
 	
 	@ResponseBody
-	@RequestMapping(value = "/noticeinsert", method = RequestMethod.POST) //입력
+	@RequestMapping(value = "/noticeinsert", method = RequestMethod.POST) //공지사항 입력
 	public NoticeVO noticeinsert(NoticeVO vo, Model model, HttpServletRequest request) throws IllegalStateException, IOException  {
 		 seemoomapper.noticeinsert(vo);
 		 vo = seemoomapper.noticeselect(vo);
@@ -215,6 +239,19 @@ public class AdminController {
 	public NoticeVO noticedelete(@PathVariable String n_no,NoticeVO vo, Model model) {
 		seemoomapper.noticedelete(vo);
 		return vo;
+	}
+//  -------------------------------------------------------------------------------------------------------------
+	
+	@RequestMapping(value = "/notice") //공지사항 리스트페이지(메인페이지)
+	public String notice(Model model, NoticeVO vo, HttpServletRequest request, HttpServletResponse reponse) {
+		model.addAttribute("notice", seemoomapper.noticeList());
+		return "a/seemoo/notice";
+	}
+	
+	@RequestMapping("/noticeView") //공지사항 뷰페이지(메인페이지)
+	public String noticeView(NoticeVO vo, Model model) {
+		model.addAttribute("noticeView", seemoomapper.noticeselect(vo));
+		return "a/seemoo/noticeView";
 	}
 	
 //	====================================================리뷰======================================================
@@ -248,10 +285,44 @@ public class AdminController {
 	
 //	============================================================================================================================
 	
-	@RequestMapping("/admin/match") // 매치 페이지
-	public String match() {
+	@RequestMapping(value = "/admin/match") //매치 페이지
+	public String match(Model model, P_matchVO vo, HttpServletRequest request, HttpServletResponse reponse) {
+		model.addAttribute("match", seemoomapper.matchList(vo));
 		return "seemoo/match";
 	}
+	
+	@RequestMapping(value = "/admin/field") // 경기장관리 페이지
+	public String field(Model model, FieldVO vo, HttpServletRequest request, HttpServletResponse reponse) {
+		model.addAttribute("field", seemoomapper.fieldList());
+		return "seemoo/field";
+	}
+	
+	@RequestMapping(value = "/field/ajax", method = RequestMethod.GET) // 경기장관리 페이지 (ajax로 전체조회)
+	@ResponseBody	
+	public List<FieldVO> fieldlist(Model model, FieldVO vo, HttpServletRequest request, HttpServletResponse reponse) {
+		return seemoomapper.fieldList();
+	}
+	
+	@RequestMapping(value = "/admin/fieldinfo", method = RequestMethod.GET) // 경기장관리 페이지 (단건조회)
+	@ResponseBody
+	public FieldVO fieldselect(Model model, FieldVO vo, HttpServletRequest request, HttpServletResponse reponse) {
+		return  seemoomapper.fieldselect(vo);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/fielddelete/{f_id}", method = RequestMethod.GET) // 경기장관리 페이지 (삭제)
+	public FieldVO fielddelete(@PathVariable String f_id, FieldVO vo, Model model) {
+		seemoomapper.fielddelete(vo);
+		return vo;
+	}
+	
+//	@ResponseBody
+//	@RequestMapping(value = "/userdelete", method = RequestMethod.GET) // 유저관리 페이지 (삭제)
+//	public MembersVO usersdelete(MembersVO vo) {
+//		seemoomapper.membersdelete(vo);
+//		return vo;
+//	}
+//  -------------------------------------------------------------------------------------------------------------
 
 	@RequestMapping("/admin/sales") // 매출수익통계 페이지
 	public String sales() {
@@ -266,11 +337,6 @@ public class AdminController {
 	@RequestMapping("/admin/tournament") // 토너먼트 페이지
 	public String tournament() {
 		return "seemoo/tournament";
-	}
-
-	@RequestMapping("/admin/field") // 경기장관리 페이지
-	public String field() {
-		return "no/seemoo/field";
 	}
 
 	@RequestMapping("/admin/community") // 커뮤니티 페이지
@@ -291,16 +357,6 @@ public class AdminController {
 		return "redirect:admin/blackteam";
 	}
 	
-	@RequestMapping(value = "/notice") // 매니저관리 페이지
-	public String notice(Model model, NoticeVO vo, HttpServletRequest request, HttpServletResponse reponse) {
-		model.addAttribute("notice", seemoomapper.noticeList());
-		return "a/seemoo/notice";
-	}
-	
-	@RequestMapping("/noticeView")
-	public String noticeView(NoticeVO vo, Model model) {
-		model.addAttribute("noticeView", seemoomapper.noticeselect(vo));
-		return "a/seemoo/noticeView";
-	}
+
 	
 }

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,7 +35,7 @@
 }
 </style>
 <script>
-
+	
 </script>
 </head>
 <body>
@@ -76,7 +77,7 @@
 	</div>
 	<form class="inser" action="sendmatchapply" method="post">
 		<div class="inserm">
-			
+
 			<input name="id" type="hidden" value="${membervo.id }"> <input
 				name="m_no" type="hidden" value="${p_matchVO.m_no }"> <input
 				name="p_con" type="hidden" value="개인 매치비"> <input
@@ -84,7 +85,12 @@
 				name="npoint" type="hidden" value="-${p_matchVO.price }">
 		</div>
 		<div align="center">
-			<button type="submit" class="abtn">신청하기</button>
+			<c:if test="${empty seltime }">
+				<button type="submit" class="abtn">신청하기</button>
+			</c:if>
+			<c:if test="${!empty seltime }">
+				<p class="abtn" style="text-align: center; font-size: 25px; background-color: red">같은 시간대에 예약이 있습니다</p>
+			</c:if>
 		</div>
 	</form>
 

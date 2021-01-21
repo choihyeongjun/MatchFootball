@@ -1,5 +1,8 @@
 package co.company.MatchFootball.hyeongjun;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -68,11 +71,11 @@ public class KakaoLoginController {
 
     	  mav.setViewName("redirect:/match");    	  
       }else {
-    	 mav.setViewName("doeun/pfUpdate");   
+    	 mav.setViewName("doeun/pfUpdate");       	 
       }
+      return mav;
     	  
       
-      return mav;
    }
    @RequestMapping(value = "/kakaologout", produces = "application/json")
    public ModelAndView kakaoLogout(String code, HttpServletRequest request,

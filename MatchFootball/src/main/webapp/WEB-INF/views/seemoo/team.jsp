@@ -48,7 +48,6 @@ function teamListResult(data) {
 				'<option value="black">블랙</option>'+
 				'</select>').val(item.author)))
 		.append($('<td>').html(item.t_m))						//팀매너점수
-		.append($('<td>').html(item.t_info))    				//팀소개
 		.append($('<td>').html('<button id=\'btnSelect\'class="btn btn-primary">팀프로필</button>'))
 		.append($('<td>').html('<button id=\'btnUpdate\'class="btn btn-success">팀수정</button>'))
 		.append($('<input type=\'hidden\' id=\'hidden_t_num\'>').val(item.t_num))
@@ -69,12 +68,12 @@ function teamUpdate() {
 		var result = confirm(t_name+"팀을 "+author+" 로 변경 하시겠습니까?");
 		if(result) {
 			$.ajax({
-				url:'../teamupdate',
+				url:'../teamsupdate',
 				data : {t_num : t_num, author: author},
 				dataType:'json',
 				error:function(xhr,status,msg){
 					console.log("상태값 :" + status + " Http에러메시지 :"+msg);
-				}, success: location.reload() 
+				}, success:location.reload()
 			});
 		}//if
 	}); //업데이트 버튼 클릭
@@ -140,7 +139,6 @@ function deleteResult(data){
 											<th>팀승률</th>
 											<th style="width: 150px;">팀권한</th>
 											<th>팀매너점수</th>
-											<th>팀소개</th>
 											<th style="width: 90px;">프로필</th>
 											<th style="width: 90px;">수정</th>
 										</tr>
@@ -153,7 +151,6 @@ function deleteResult(data){
 											<th>팀승률</th>
 											<th>팀권한</th>
 											<th>팀매너점수</th>
-											<th>팀소개</th>
 											<th></th>
 											<th></th>
 										</tr>
@@ -176,7 +173,7 @@ function deleteResult(data){
 					<!-- Modal body -->
 					<div class="modal-body">
 						<table  align="center">
-						<img class="userProfileImg" alt="유저이미지" src="${pageContext.request.contextPath}/resources/seemoo/img/1.jpg">
+							<img class="userProfileImg" alt="유저이미지" id="t_log" src="${pageContext.request.contextPath}/images">
 							<tr><th>No.</th><td>:</td><td style="padding-left: 10px" id="t_num"></td></tr>
 							<tr><th>팀명</th>	<td>:</td><td style="padding-left: 10px" id="t_name"></td></tr>
 							<tr><th>팀인원</th><td>:</td><td style="padding-left: 10px" id="t_max"></td></tr>
@@ -184,7 +181,7 @@ function deleteResult(data){
 							<tr><th>팀레벨</th><td>:</td><td style="padding-left: 10px" id="t_level"></td></tr>
 							<tr><th>팀승률</th><td>:</td><td style="padding-left: 10px" id="t_wn"></td></tr>
 							<tr><th>팀매너</th><td>:</td><td style="padding-left: 10px" id="t_m"></td></tr>
-							<tr><th>팀소개</th><td>:</td><td style="padding-left: 10px" id="t_info"></td></tr>
+							<tr><th>팀소개</th><td>:</td><td style="padding-left: 10px; width: 250px;" id="t_info"></td></tr>
 						</table>
 					</div>
 
@@ -205,6 +202,7 @@ function deleteResult(data){
 				url : "teaminfo?t_num=" + num,
 				dataType : "json",
 				success : function(result) {
+					$('#t_log').attr("src",'${pageContext.request.contextPath}/images/'+result.t_log);
 					$('#t_num').text(result.t_num);
 					$('#t_name').text(result.t_name);
 					$('#t_max').text(result.t_max);
