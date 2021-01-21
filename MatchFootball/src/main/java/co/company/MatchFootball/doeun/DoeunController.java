@@ -30,6 +30,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -63,7 +64,12 @@ public class DoeunController {
 
 		return "doeun/userprofile";
 	}
-
+	@RequestMapping("mypage/mybar/{id}")
+	@ResponseBody
+	public MembersVO findPoint(@PathVariable String id, MembersVO mem, Model model) {
+		mem.setId(id);
+		return dao.getUser(mem);
+	}
 	@RequestMapping(value = "mypage/userupdate") // 정보수정폼
 	public String upuserinfo(MembersVO mb, Model model, HttpServletResponse response, HttpServletRequest request,
 			HttpSession session) throws IOException {
