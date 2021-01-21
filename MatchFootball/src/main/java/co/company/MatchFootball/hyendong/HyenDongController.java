@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import co.company.MatchFootball.mapper.HyendongMapper;
 import co.company.MatchFootball.vo.ComeInviteVO;
+import co.company.MatchFootball.vo.FieldmanagerVO;
 import co.company.MatchFootball.vo.MembersVO;
 import co.company.MatchFootball.vo.Paging;
 import co.company.MatchFootball.vo.TeamVO;
@@ -573,10 +574,25 @@ public class HyenDongController {
 		return "redirect:/tournamentInfo?t_no=" + tournamentVO.getT_no();
 	}
 	
+	// 8강 처리
 	@ResponseBody
 	@RequestMapping("/oneWin")
 	public TournamentTeamVO oneWin(TournamentTeamVO tournamentTeamVO) {
 		hyendongMapper.oneWin(tournamentTeamVO);
+		return tournamentTeamVO;
+	}
+	// 4강 처리
+	@ResponseBody
+	@RequestMapping("/twoWin")
+	public TournamentTeamVO twoWin(TournamentTeamVO tournamentTeamVO) {
+		hyendongMapper.twoWin(tournamentTeamVO);
+		return tournamentTeamVO;
+	}
+	// 결승 처리
+	@ResponseBody
+	@RequestMapping("/threeWin")
+	public TournamentTeamVO threeWin(TournamentTeamVO tournamentTeamVO) {
+		hyendongMapper.threeWin(tournamentTeamVO);
 		return tournamentTeamVO;
 	}
 	
@@ -586,5 +602,18 @@ public class HyenDongController {
 		hyendongMapper.getTournament(tournamentVO);
 		hyendongMapper.winTournament(membersVO);
 		return "redirect:/tournamentPVP?t_no=" + tournamentVO.getT_no();
+	}
+	
+	// 구장관리자 
+	@RequestMapping("/fieldRegister")
+	public String fieldRegister() {
+		return "hyendong/fieldRegister";
+	}
+	
+	// 구장관리자 처리 
+	@RequestMapping("/fieldRegisterr")
+	public String fieldRegisterr(FieldmanagerVO fieldmanagerVO) {
+		hyendongMapper.fieldRegister(fieldmanagerVO);
+		return "sungjun/match";
 	}
 }
