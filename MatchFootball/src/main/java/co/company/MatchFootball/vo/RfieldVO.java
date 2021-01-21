@@ -14,4 +14,5 @@ public class RfieldVO {
 	String type;
 	String backgroundcolor;
 	String comm;
+	String price;
 }

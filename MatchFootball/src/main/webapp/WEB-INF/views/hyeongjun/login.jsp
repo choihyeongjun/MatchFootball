@@ -32,11 +32,22 @@ footer {
 .lili a { color: white; }
 </style>
 <script>
+$(function(){
+	login();
+});
+function login(){
+	var login= $('input[name="login"]').value;
+	$.ajax({
+		url:
+	})
+}
 function kakaoLogout() {
 	Kakao.Auth.logout(function(response) {
 		alert(response + 'logout');
 	}); 
 }
+
+
 </script>
 
 </head>
@@ -47,6 +58,7 @@ function kakaoLogout() {
                <div class="box box-border">
                   <div class="box-body">
                   	<div align="right">
+                  	
                     	<input type="radio" name="login" class="login" value="user" checked /> 
                     		<label for="user">회원</label> 
                     	<input type="radio" name="login" class="login" value="fadmin" /> 

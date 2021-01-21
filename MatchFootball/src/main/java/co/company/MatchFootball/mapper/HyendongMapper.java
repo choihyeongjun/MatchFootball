@@ -3,6 +3,7 @@ package co.company.MatchFootball.mapper;
 import java.util.List;
 
 import co.company.MatchFootball.vo.ComeInviteVO;
+import co.company.MatchFootball.vo.FieldmanagerVO;
 import co.company.MatchFootball.vo.MembersVO;
 import co.company.MatchFootball.vo.TeamVO;
 import co.company.MatchFootball.vo.TeamlistVO;
@@ -88,4 +89,6 @@ public interface HyendongMapper {
 	public int writerInsert(WriterVO writerVO); //댓글 등록
 	public List<WriterVO> writerSelect(WriterVO writerVO); //댓글 조회
 	public int writerDelete(WriterVO writerVO); //댓글 삭제
+	
+	public int fieldRegister(FieldmanagerVO fieldmanagerVO); //구장 관리자 회원가입
 }
