@@ -153,8 +153,11 @@ body, html {
                         <div class="box box-border">
                            <div class="box-body">
                               <h2 style="text-align: center;">Login</h2>
-                              <div align="right"> <input type="radio"
-                                    name="login" class="login" value="fadmin" checked="checked" /> <label
+                              <div align="right"><input type="radio"
+                                    name="login" class="login" value="fadmin" /> <label
+                                    for="fadmin">회원</label> 
+                             		 <input type="radio"
+                                    name="login" class="login" value="fadmin" /> <label
                                     for="fadmin">구장관리자</label> <br>
                               </div>
                               <form action="${pageContext.request.contextPath}/logincheck"
