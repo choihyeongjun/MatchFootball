@@ -71,22 +71,11 @@ public class KakaoLoginController {
 
     	  mav.setViewName("redirect:/match");    	  
       }else {
-    	  response.setContentType("text/html; charset=UTF-8");
-          PrintWriter writer;
-          try {
-             writer = response.getWriter();
-             writer.println("<script>alert('회원 정보가 없습니다. 등록화면으로 이동합니다');");
-             writer.close();
-          } catch (IOException e) {
-             // TODO Auto-generated catch block
-             e.printStackTrace();
-
-          }
-    	 mav.setViewName("doeun/pfUpdate");   
+    	 mav.setViewName("doeun/pfUpdate");       	 
       }
+      return mav;
     	  
       
-      return mav;
    }
    @RequestMapping(value = "/kakaologout", produces = "application/json")
    public ModelAndView kakaoLogout(String code, HttpServletRequest request,

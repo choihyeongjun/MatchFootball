@@ -35,6 +35,11 @@
 <script src="https://kit.fontawesome.com/e15da187be.js"></script>
 <script>
 	$(function() {
+		if('${mb.id}' ==''){
+			alert('회원 정보가 없습니다. 회원정보를 등록해주세요');
+		};
+		
+		
 		$("#uf").on('change', function(e) {
 
 			var files = e.target.files;
