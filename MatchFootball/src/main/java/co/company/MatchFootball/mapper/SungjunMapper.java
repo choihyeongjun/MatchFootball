@@ -31,10 +31,12 @@ public interface SungjunMapper {
 	public List<MembersVO> pmreview(MembersVO membersvo);
 	public P_matchVO pmreviewmat(P_matchVO p_match);
 	//개인 매치 선수 리뷰 등록
-	public int pmreviewapp(PreviewVO preview);
+	public int pmreviewapp(List<PreviewVO> preview);
 	public int reviewup(P_matchVO p_match);
 	//매니저 신청할떄 멤버에 권한 웨이트로 바꾸기
 	public int mapplymem(MembersVO membersvo);
+	//리뷰 등록한지 체크
+	public PreviewVO selrrrr(PreviewVO preview);
 	
 	public int mapply(ManageraplyVO manageraply);
 	public P_matchVO pmatchlist3(P_matchVO p_match);
@@ -91,4 +93,6 @@ public interface SungjunMapper {
 	public TeamVO tnumsel(TeamVO teamvo);
 	//so_num 조회
 	public TeamVO sonumsel(TeamVO teamvo);
+	public P_matchVO matchsell(P_matchVO p_matchVO);
+	
 }

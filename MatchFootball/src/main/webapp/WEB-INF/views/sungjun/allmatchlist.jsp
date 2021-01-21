@@ -76,7 +76,7 @@
 </head>
 
 <body>
-	<div class="container">
+	<div class="container" style="margin-bottom: 200px;">
 		<div class="row" style="padding: 20px;">
 			<div class="col" style="padding: 20px;">
 				<div class="allscedule">
@@ -91,8 +91,6 @@
 										<a class="mdetail" data-toggle="modal" data-target="#matchdetail"
 											data-num="${p_match.m_no }" style="cursor: pointer; font-size: 18px;">
 											${p_match.m_date } ${p_match.f_name } </a>
-										<a class="btn sf" href="#"> 리뷰 작성</a> <input type="hidden"
-											value="${p_match.m_no }">
 									</div>
 								</li>
 							</ul>
@@ -125,8 +123,6 @@
 										<a class="mdetail" data-toggle="modal" data-target="#matchdetail"
 											data-num="${t_match.m_no }" style="cursor: pointer; font-size: 18px;">
 											${t_match.m_date } ${t_match.t_name }</a>
-										<a class="btn sf" href="#"> 리뷰 작성</a> <input type="hidden"
-											value="${t_match.m_no }">
 									</div>
 								</li>
 							</ul>

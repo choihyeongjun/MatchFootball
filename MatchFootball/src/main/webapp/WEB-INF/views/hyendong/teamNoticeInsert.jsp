@@ -77,11 +77,11 @@ footer {
          <div class="container" role="main">
                <div class="mb-3" style="float:right;">
                   <label for="reg_id" >작성자</label> 
-                  <input type="text" class="form-control" name="t_id" id="reg_id" value="${sessionScope.id }" placeholder="이름을 입력해 주세요" readonly>
+                  <input type="text" class="form-control" name="t_id" id="reg_id" value="${sessionScope.id }" readonly>
                </div>
                <div class="mb-3" style="width:1050px;">
                   <label for="title" >제목</label>
-                  <input type="text" class="form-control" name="t_title" placeholder="제목을 입력해 주세요">
+                  <input type="text" class="form-control" name="t_title" placeholder="제목을 입력해 주세요" required="required">
                </div>
                <div class="mb-3">
                   <label for="content">내용</label>

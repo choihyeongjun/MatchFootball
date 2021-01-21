@@ -183,9 +183,7 @@
 	<!-- 토너먼트 정보 단건 조회 -->
 	<select id="getTournament" parameterType="TournamentVO"
 		resultType="TournamentVO">
-		SELECT *
-		FROM tournament
-		WHERE t_no = #{t_no}
+		SELECT t.*, (select count(1) from tournamentteam l where l.t_no=t.t_no) as count FROM tournament t WHERE t_no = #{t_no}
 	</select>
 
 	<!-- 팀 토너먼트 참가 -->
@@ -413,7 +411,7 @@
 	
 	<!-- 팀 매치 신청 내역 -->
 	<select id="teamMatchWait" resultType="TeammatchVO">
-		select m_no, mtype, f_name, f_address, price, substr(m_date, 0, 10) as m_date, substr(m_date, 12) as m_hour from teammatch where t_num = #{t_num}
+		select so_num, so_name, m_no, mtype, f_name, f_address, price, substr(m_date, 0, 10) as m_date, substr(m_date, 12) as m_hour from teammatch where t_num = #{t_num}
 		order by m_date
 	</select>
 	

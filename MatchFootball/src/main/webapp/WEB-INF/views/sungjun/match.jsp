@@ -196,7 +196,7 @@ function mdeta(url){
 </script>
 </head>
 <body>
-	<div style="backgroundcolor: white; width: 100%; flex: 1;">
+	<div style="backgroundcolor: white; width: 100%; flex: 1; margin-bottom: 80px;">
 		<!-- 사진  -->
 		<div align="center"
 			style="margin: auto; padding: 25px; background-color: #fafafa; border-bottom: 1px solid #ddd;">

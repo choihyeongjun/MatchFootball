@@ -30,7 +30,7 @@
 						<div style="display: flex; margin: 15px 0 0 10px;">
 							<label style="font-weight: bold;">이름 : ${pplayers.name }</label>
 						</div>
-						<select id="manner" class="form-select"
+						<select id="manner" name="manner" class="form-select"
 							aria-label="Default select example" style="margin: 5px;">
 							<option value="1">1점</option>
 							<option value="2">2점</option>
@@ -38,10 +38,10 @@
 							<option value="4">4점</option>
 							<option value="5">5점</option>
 						</select>
-						<input type="hidden" id="m_no" value="${pplayers.m_no }">
-						<input type="hidden" id="id" value="${pplayers.id }">
-						<input type="hidden" id="m_id" value="${p_match.m_id}">
-						<input type="hidden" id="review" value="Y">
+						<input type="hidden" name="m_no" value="${pplayers.m_no }">
+						<input type="hidden" name="id" value="${pplayers.id }">
+						<input type="hidden" name="m_id" value="${p_match.m_id}">
+						<input type="hidden" name="review" value="Y">
 					</c:forEach>
 					<p style="text-align: center; margin-top: 30px;">
 						<button class="bbbb" type="submit">리뷰 등록</button>

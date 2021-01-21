@@ -1,7 +1,9 @@
 package co.company.MatchFootball.seemoo;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,10 +18,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import co.company.MatchFootball.mapper.HyendongMapper;
 import co.company.MatchFootball.mapper.SeemooMapper;
+import co.company.MatchFootball.vo.FieldVO;
 import co.company.MatchFootball.vo.FwboardVO;
 import co.company.MatchFootball.vo.ManagerapplyVO;
 import co.company.MatchFootball.vo.MembersVO;
 import co.company.MatchFootball.vo.NoticeVO;
+import co.company.MatchFootball.vo.P_matchVO;
 import co.company.MatchFootball.vo.ReviewVO;
 import co.company.MatchFootball.vo.TeamVO;
 
@@ -64,11 +68,26 @@ public class AdminController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/userdelete", method = RequestMethod.GET) // 유저관리 페이지 (삭제)
-	public MembersVO usersdelete(MembersVO vo) {
+	@RequestMapping(value = "/userdelete/{id}", method=RequestMethod.DELETE) // 유저관리 페이지 (삭제)
+	public void usersdelete(@PathVariable String id, MembersVO vo, Model model) {
 		seemoomapper.membersdelete(vo);
-		return vo;
 	}
+	
+//	//삭제
+//		@RequestMapping(value="/users/{id}", method=RequestMethod.DELETE)
+//		public Map  getUserList( @PathVariable String id, UserVO vo, Model model) {
+//			vo.setId(id);
+//			userService.deleteUser(vo);
+//			Map result = new HashMap<String, Object>();
+//			result.put("result", Boolean.TRUE);
+//			return result;
+//		}
+//	@ResponseBody
+//	@RequestMapping(value = "/noticedelete/{n_no}", method = RequestMethod.DELETE) // 공지사항 페이지 (삭제)
+//	public NoticeVO noticedelete(@PathVariable String n_no,NoticeVO vo, Model model) {
+//		seemoomapper.noticedelete(vo);
+//		return vo;
+//	}
 
 //	====================================================팀======================================================
 
@@ -203,7 +222,7 @@ public class AdminController {
 	 */
 	
 	@ResponseBody
-	@RequestMapping(value = "/noticeinsert", method = RequestMethod.POST) //입력
+	@RequestMapping(value = "/noticeinsert", method = RequestMethod.POST) //공지사항 입력
 	public NoticeVO noticeinsert(NoticeVO vo, Model model, HttpServletRequest request) throws IllegalStateException, IOException  {
 		 seemoomapper.noticeinsert(vo);
 		 vo = seemoomapper.noticeselect(vo);
@@ -215,6 +234,19 @@ public class AdminController {
 	public NoticeVO noticedelete(@PathVariable String n_no,NoticeVO vo, Model model) {
 		seemoomapper.noticedelete(vo);
 		return vo;
+	}
+//  -------------------------------------------------------------------------------------------------------------
+	
+	@RequestMapping(value = "/notice") //공지사항 리스트페이지(메인페이지)
+	public String notice(Model model, NoticeVO vo, HttpServletRequest request, HttpServletResponse reponse) {
+		model.addAttribute("notice", seemoomapper.noticeList());
+		return "a/seemoo/notice";
+	}
+	
+	@RequestMapping("/noticeView") //공지사항 뷰페이지(메인페이지)
+	public String noticeView(NoticeVO vo, Model model) {
+		model.addAttribute("noticeView", seemoomapper.noticeselect(vo));
+		return "a/seemoo/noticeView";
 	}
 	
 //	====================================================리뷰======================================================
@@ -248,10 +280,44 @@ public class AdminController {
 	
 //	============================================================================================================================
 	
-	@RequestMapping("/admin/match") // 매치 페이지
-	public String match() {
+	@RequestMapping(value = "/admin/match") //매치 페이지
+	public String match(Model model, P_matchVO vo, HttpServletRequest request, HttpServletResponse reponse) {
+		model.addAttribute("match", seemoomapper.matchList(vo));
 		return "seemoo/match";
 	}
+	
+	@RequestMapping(value = "/admin/field") // 경기장관리 페이지
+	public String field(Model model, FieldVO vo, HttpServletRequest request, HttpServletResponse reponse) {
+		model.addAttribute("field", seemoomapper.fieldList());
+		return "seemoo/field";
+	}
+	
+	@RequestMapping(value = "/field/ajax", method = RequestMethod.GET) // 경기장관리 페이지 (ajax로 전체조회)
+	@ResponseBody	
+	public List<FieldVO> fieldlist(Model model, FieldVO vo, HttpServletRequest request, HttpServletResponse reponse) {
+		return seemoomapper.fieldList();
+	}
+	
+	@RequestMapping(value = "/admin/fieldinfo", method = RequestMethod.GET) // 경기장관리 페이지 (단건조회)
+	@ResponseBody
+	public FieldVO fieldselect(Model model, FieldVO vo, HttpServletRequest request, HttpServletResponse reponse) {
+		return  seemoomapper.fieldselect(vo);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/fielddelete/{f_id}", method = RequestMethod.GET) // 경기장관리 페이지 (삭제)
+	public FieldVO fielddelete(@PathVariable String f_id, FieldVO vo, Model model) {
+		seemoomapper.fielddelete(vo);
+		return vo;
+	}
+	
+//	@ResponseBody
+//	@RequestMapping(value = "/userdelete", method = RequestMethod.GET) // 유저관리 페이지 (삭제)
+//	public MembersVO usersdelete(MembersVO vo) {
+//		seemoomapper.membersdelete(vo);
+//		return vo;
+//	}
+//  -------------------------------------------------------------------------------------------------------------
 
 	@RequestMapping("/admin/sales") // 매출수익통계 페이지
 	public String sales() {
@@ -266,11 +332,6 @@ public class AdminController {
 	@RequestMapping("/admin/tournament") // 토너먼트 페이지
 	public String tournament() {
 		return "seemoo/tournament";
-	}
-
-	@RequestMapping("/admin/field") // 경기장관리 페이지
-	public String field() {
-		return "no/seemoo/field";
 	}
 
 	@RequestMapping("/admin/community") // 커뮤니티 페이지
@@ -291,16 +352,6 @@ public class AdminController {
 		return "redirect:admin/blackteam";
 	}
 	
-	@RequestMapping(value = "/notice") // 매니저관리 페이지
-	public String notice(Model model, NoticeVO vo, HttpServletRequest request, HttpServletResponse reponse) {
-		model.addAttribute("notice", seemoomapper.noticeList());
-		return "a/seemoo/notice";
-	}
-	
-	@RequestMapping("/noticeView")
-	public String noticeView(NoticeVO vo, Model model) {
-		model.addAttribute("noticeView", seemoomapper.noticeselect(vo));
-		return "a/seemoo/noticeView";
-	}
+
 	
 }
