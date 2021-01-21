@@ -116,8 +116,9 @@ body, html {
             width="100px" height="50px" /></a>
 
          <div>
+            
             <c:if test="${sessionScope.id!=null}">
-               <a>${sessionScope.id}님 환영합니다 | </a>
+               <a>${sessionScope.id} 님 환영합니다. | </a>
                <a href="${pageContext.request.contextPath}/logout"
                   style="color: black;">로그아웃</a>
             </c:if>

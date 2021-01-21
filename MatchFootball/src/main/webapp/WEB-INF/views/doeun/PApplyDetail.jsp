@@ -32,9 +32,6 @@
 <link
 	href="${pageContext.request.contextPath}/resources/css/colors/blue.css"
 	rel="stylesheet">
-<link href="../../../lib/font-awesome/css/font-awesome.min.css"
-	rel="stylesheet">
-<link href="../../../lib/aos/aos.css" rel="stylesheet">
 
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/review.css">
@@ -46,10 +43,6 @@
 
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
-
-<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-<script type="text/javascript"
-	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d91f3d18bd10e8cd72b2f2827dea9f7c&libraries=services"></script>
 
 </head>
 
@@ -74,21 +67,24 @@
 	}
 	$(function() {
 		$(".riw-delete").on("click", function(event) {
+			alert("취소 하시겠습니까?");
 			var bbbb = $(this).parent().parent().parent();
 			var m_no = $(this).data("num");
+			var price=$("#mat_price").val()
+			
 			$.ajax({
 				url : "matching/del",
 				type : 'POST',
 				data : {
-					m_no : m_no
+					m_no : m_no,
+					price : price
 				},
 				error : function(xhr, status, msg) {
 					console.log("상태값 :" + xhr + "에러" + msg);
 				},
 				success : function(result) {
-					console.log(result);
-					alert("신청 취소 되었습니다.")
-					
+					alert("신청 취소 되었습니다.");
+					membersSelect();
 					$(bbbb).remove();
 				}
 			});
@@ -124,10 +120,10 @@
 											<div class="media mt-0">
 												<div class="media-left">
 													<img class="media-object rounded-circle" src="#"
-														width="100" height="100" alt="">지도 맵
+														width="100" height="100" alt="">
 												</div>
 												<div class="media-body row" style="position: relative">
-
+<input type="hidden" name="price" value="${mat.price}" id="mat_price">
 													<div class="main-riw col-12 col-sm-6 col-md-8">
 														<p class="text-muted">${mat.f_name}</p>
 														<p class="text-muted">
@@ -138,7 +134,7 @@
 													</div>
 													<div class="riw-btn col-6 col-md-4">
 														<c:if test="${mat.gubun eq 'N'}">
-															<input type="button" class="btn btn-link riw-delete"
+															<input type="button" class="btn btn-link"
 																style="position: absolute; bottom: 50%" value="취소불가능">
 														</c:if>
 														<c:if test="${mat.gubun eq 'Y'}">

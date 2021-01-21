@@ -22,11 +22,20 @@
 <link href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" rel="stylesheet">
 
 <link href="${pageContext.request.contextPath}/resources/seemoo/css/styles.css" rel="stylesheet" />
-<link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
+<link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet"  />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js"></script>
 
 <style>
 .lili a { color: white; }
+footer {
+	position: fixed;
+	left: 0px;
+	bottom: 0px;
+	width: 100%;
+	background: grey;
+	color: white;
+}
+
 </style>
 
 
@@ -39,7 +48,6 @@
 	function ddd() {
 		$(".reviewMsg").on("click", function(event) {
 			var m_no = $(this).data("num");
-			console.log(m_no + "11")
 			var modal = $('#MsgModal');
 			$.ajax({
 				url : 'reviewMsg?m_no=' + m_no,
@@ -151,25 +159,30 @@
 											<th>날짜</th>
 											<th>제목</th>
 											<th>보낸 사람</th>
-											<td colspan="2" align="right">답장하기
-												&nbsp;&nbsp;&nbsp;&nbsp;</td>
+											<th>답장하기</th>
 										</tr>
 									</thead>
-									<tbody id=toMsg>
+									<tbody id=toMsg align="center">
 											<c:forEach items="${msg}" var="msg">
 												<tr>
-													<td style="display:none;"><input type="hidden" id="m_no" name="m_no"
-														value="${msg.m_no}"><input name="to_id"
-														value="${msg.to_id}" type="text" style="display: none;"></td>
-													<td><input type='checkbox' id="mchk"></td>
-													<td>${msg.s_date}</td>
-													<td><a class="reviewMsg" data-toggle="modal"
-														data-target="#MsgModal" data-num="${msg.m_no}">${msg.m_title}</a></td>
-													<td>${msg.send_id}</td>
+													<td style="display:none;">
+														<input type="hidden" id="m_no" name="m_no" value="${msg.m_no}">
+														<input name="to_id" value="${msg.to_id}" type="text" style="display: none;">
+													</td>
 													<td>
-														<button type="button"
-															class="btn btn-primary float-right reply-message"
-															id="reply" data-nom="${msg.m_no}">답장하기</button>
+														<input type='checkbox' id="mchk">
+													</td> 
+													<td>
+														${msg.s_date}
+													</td>
+													<td>
+														<a class="reviewMsg" data-toggle="modal" data-target="#MsgModal" data-num="${msg.m_no}">${msg.m_title}</a>
+													</td>
+													<td>
+														${msg.send_id}
+													</td>
+													<td>
+														<button type="button" class="btn btn-primary float-right reply-message" id="reply" data-nom="${msg.m_no}">답장하기</button>
 													</td>
 												</tr>
 											</c:forEach>

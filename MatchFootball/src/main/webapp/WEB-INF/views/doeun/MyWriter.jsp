@@ -71,9 +71,12 @@
 						</div>
 						<div align="right">
 							<a href="${pageContext.request.contextPath}//mypage/write"
-								id="FREE"> 자유게시판 |</a><a
+								id="FREE"> 자유게시판 </a>
+								<c:if test="${sessionScope.t_num ne null}">
+								<a
 								href="${pageContext.request.contextPath}/teamGallery?t_num=${sessionScope.t_num}"
-								id="TEAM"> 팀게시판 </a>
+								id="TEAM">| 팀게시판 </a>
+								</c:if>
 						</div>
 						<div class="row" style="width: auto">
 

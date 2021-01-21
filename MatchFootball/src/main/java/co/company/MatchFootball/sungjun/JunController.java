@@ -236,7 +236,7 @@ public class JunController {
 			ModelAndView vo = new ModelAndView();
 			vo.setViewName("no/sungjun/mesaage");
 			vo.addObject("msg", "신청 되었습니다");
-			vo.addObject("url", "sungjun/match");
+			vo.addObject("url", "match");
 			return vo;
 		}
 

@@ -39,5 +39,6 @@ public interface DoeunMapper {
 	public List<FboardVO> myWriteList(FboardVO fboard);//내가 쓴 글 조회
 	public int cntMyWrite(FboardVO fboard);// 내가 쓴 게시글 페이징
 	public int delMywrite(FboardVO fboard); // 내가 쓴 게시글 삭제
+	
 
 }
