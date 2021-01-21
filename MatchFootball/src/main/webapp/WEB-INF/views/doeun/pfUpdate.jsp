@@ -35,6 +35,11 @@
 <script src="https://kit.fontawesome.com/e15da187be.js"></script>
 <script>
 	$(function() {
+		if('${mb.id}' ==''){
+			alert('회원 정보가 없습니다. 회원정보를 등록해주세요');
+		};
+		
+		
 		$("#uf").on('change', function(e) {
 
 			var files = e.target.files;
@@ -138,8 +143,8 @@
 									<div class="custom-file">
 
 										<input type="file" class="custom-file-input" id="fileupload"
-											src="https://bootdey.com/img/Content/avatar/avatar7.png"
-											name="file" required="required" autocomplete=off
+											src="${pageContext.request.contextPath}/images/default1.png"
+											name="file" autocomplete=off
 											aria-describedby="inputGroupFileAddon01">
 
 										<script>
@@ -295,9 +300,9 @@
 
 								<div class="form-group action update">
 									<c:if test="${mb.id eq null}">
-										<input type="button" class="btn btn-primary" id='btn1'
+										<input type="submit" class="btn btn-primary" id='btn1'
 											style="height: 48px" value="프로필 등록"
-											onclick="location.href='mypage/updateMem'">
+											onclick="javascript: form.action='${pageContext.request.contextPath}/mypage/updateMem';" >
 									</c:if>
 									<c:if test="${mb.id ne null}">
 										<input type="submit" class="btn btn-primary" id='btn1'
@@ -317,25 +322,7 @@
 				<i class="fa fa-angle-up"></i>
 			</button>
 	</form>
-
-	<div id="contents">
-		<form action="#" method="post">
-			받는사람 : <input type="text" id="to" name="to"
-				placeholder=" 전화번호 입력 ( '-' 포함 )" />
-			<!-- 인증번호 받을사람 휴대폰 번호 -->
-			<input type="button" id="send" value="전송" /><br>
-			<!-- 문자보내는 전송버튼 -->
-			인증번호 : <input type="text" id="userNum">
-			<!-- 인증번호 입력창 -->
-			<input type="button" id="enterBtn" value="확인">
-			<!-- 인증번호와 내가 입력창에 입력한 인증번호 비교하는 창 -->
-
-
-			<input type="hidden" name="text" id="text">
-			<!-- 인증번호를 히든으로 저장해서 보낸다 -->
-
-		</form>
-	</div>
-
 </body>
+
+
 </html>

@@ -85,7 +85,7 @@
 								</div>
 								<div align="right">
 									<a href="matching"> 개인 매칭 </a><a href="teamMatching"> | 팀
-										매칭 참가 |</a><a href="#"> 토너먼트 참가 </a>
+										매칭 참가 </a>
 								</div>
 								<br>
 									<div id="tr-template">

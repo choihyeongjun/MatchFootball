@@ -46,38 +46,41 @@
 }
 </style>
 <script>
-	
+	function goPage(q) {
+		location.href = "write?page=" + q;
+	}
 </script>
 </head>
 
 <body>
-	<form>
-		<div id="main" style="height: 850px">
-			<div id="content">
-				<div class="container">
 
-					<div class="row has-sidebar">
-						<jsp:include page="Mybar.jsp"></jsp:include>
-						<div class="col-md-7 col-lg-8 col-xl-8"
-							style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;">
-							<div class="page-header bordered">
+	<div id="main" style="height: 850px">
+		<div id="content">
+			<div class="container">
+
+				<div class="row has-sidebar">
+					<jsp:include page="Mybar.jsp"></jsp:include>
+					<div class="col-md-7 col-lg-8 col-xl-8"
+						style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;">
+						<div class="page-header bordered">
 
 
-								<h1 id="item-2">
-									게시글<small>WRITE</small>
-								</h1>
-							</div>
-							<div align="right">
-							${sessionScope.t_num}////////id :::: ${sessionScope.id}
-								<a href="${pageContext.request.contextPath}//mypage/write" id="FREE"> 자유게시판 |</a><a href="${pageContext.request.contextPath}/teamGallery?t_num=${sessionScope.t_num}" id="TEAM">
-									팀게시판 </a>
-							</div>
-							<div class="row" style="width: auto">
+							<h1 id="item-2">
+								게시글<small>WRITE</small>
+							</h1>
+						</div>
+						<div align="right">
+							<a href="${pageContext.request.contextPath}//mypage/write"
+								id="FREE"> 자유게시판 |</a><a
+								href="${pageContext.request.contextPath}/teamGallery?t_num=${sessionScope.t_num}"
+								id="TEAM"> 팀게시판 </a>
+						</div>
+						<div class="row" style="width: auto">
 
-								<div style="margin-top: 15px;">
-									<div class="table-responsive">
-										<table class="table table-bordered" id="dataTable"
-											style="width:100%; cellspacing: 0; padding: 0;">
+							<div style="margin-top: 15px;">
+								<div class="table-responsive">
+									<table class="table table-bordered" id="dataTable"
+											style="width: 100%; cellspacing: 0; padding: 0;">
 											<thead>
 												<tr>
 													<th>번호</th>
@@ -92,15 +95,15 @@
 											<tbody>
 												 <c:forEach var="my" items="${my}">
 													<tr>
-														<td>${my.num}</td>
+														<td><input type="text" value="${my.num}" name="num" style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px; width:20px;"></td>
 														<td><a
 															href="${pageContext.request.contextPath}/free/freedetail/${my.num}/${my.cnt}">${my.title}</a></td>
 														<td>${my.b_date}</td>
 														<td>${my.likeit}</td>
 														<td>${my.cnt}</td>
-														<td style="display:flex;" >
-														<button class="btn" type='button' onclick="location.href='${pageContext.request.contextPath}/free/freedetail/${my.num}/${my.cnt}'">수정</button>
-														<button class="btn" type='button'>삭제</button>
+														<td style="display:flex;" >	<form action="myWritedelete" method="post">
+														<button style="float: left;" class="btn" type='button' onclick="location.href='${pageContext.request.contextPath}/free/freedetail/${my.num}/${my.cnt}'">수정</button>
+														<button class="btn" type='submit'>삭제</button></form></td>
 													</tr>
 												</c:forEach>
 											</tbody>
@@ -112,8 +115,6 @@
 								</div>
 							</div>
 						</div>
-						<div class="clearfix"></div>
-						<div class="item-listing list"></div>
 					</div>
 				</div>
 			</div>
@@ -124,13 +125,6 @@
 			<!-- 위로가기버튼 -->
 			<i class="fa fa-angle-up"></i>
 		</button>
-		
-		<script>
-			function goPage(q) {
-				location.href = "msg?page=" + q;
-			}
-		</script>
-	</form>
 </body>
 
 </html>

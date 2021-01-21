@@ -1,10 +1,12 @@
 package co.company.MatchFootball.doeun;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.http.HttpResponse;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +15,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.http.HttpHost;
+import org.apache.http.auth.AuthScope;
+import org.apache.http.auth.UsernamePasswordCredentials;
+import org.apache.http.client.AuthCache;
+import org.apache.http.client.CredentialsProvider;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.protocol.HttpClientContext;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.auth.BasicScheme;
+import org.apache.http.impl.client.BasicAuthCache;
+import org.apache.http.impl.client.BasicCredentialsProvider;
+import org.apache.http.impl.client.DefaultHttpClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -60,7 +74,7 @@ public class DoeunController {
 		return "doeun/pfUpdate";
 	}
 
-	@PostMapping(value = "mypage/updateMem")
+	@RequestMapping(value = "mypage/updateMem",  method=RequestMethod.POST)
 	public String upMem(MembersVO vo, HttpServletRequest request, HttpSession session) {
 		vo.setId((String) session.getAttribute("id"));
 		if (dao.getUser(vo) == null) {
@@ -290,9 +304,15 @@ public class DoeunController {
 	}
 
 	@RequestMapping(value = "/mypage/write") // 내가 쓴 게시글
-	public String Mywrite(FboardVO mywt, Model model, HttpSession session) {
-		mywt.setId((String)session.getAttribute("id"));
-		model.addAttribute("my",dao.myWriteList(mywt));
+	public String Mywrite(FboardVO fboard, Model model, HttpSession session, Paging paging) {
+		fboard.setId((String)session.getAttribute("id"));
+		paging.setPageUnit(16);
+		paging.setPageSize(10);
+		fboard.setFirst(paging.getFirst());
+		fboard.setLast(paging.getLast());
+		paging.setTotalRecord(dao.cntMyWrite(fboard));
+		model.addAttribute("my",dao.myWriteList(fboard));
+		model.addAttribute("paging", paging);
 		return "doeun/MyWriter";
 	}
 	@RequestMapping(value="mypage/matching/del", method=RequestMethod.POST) // 개인매칭 신청 취소
@@ -303,6 +323,5 @@ public class DoeunController {
 		dao.delPMatchProc(pmat);
 		return "";
 	}
-	
-	
+
 }

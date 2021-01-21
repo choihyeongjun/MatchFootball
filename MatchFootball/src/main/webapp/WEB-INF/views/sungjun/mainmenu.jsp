@@ -288,7 +288,7 @@ body, html {
                            href="${pageContext.request.contextPath}/mypage/pay">결제 |
                               쿠폰</a></li>
                         <li class="lili"><a
-                           href="${pageContext.request.contextPath}/mypage/usedPoint">매칭 관리</a></li>
+                           href="${pageContext.request.contextPath}/mypage/matching">매칭 관리</a></li>
                         <li class="lili"><a
                            href="${pageContext.request.contextPath}/mypage/msg">쪽지 |
                               게시글</a></li>
