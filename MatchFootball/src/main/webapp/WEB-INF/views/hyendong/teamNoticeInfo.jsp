@@ -6,9 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>teamNoticeInfo.jsp</title>
+<!-- CSS Files -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/dong1/assets/css/style.css">
 <style>
 footer {
-   position: fixed;
    left: 0px;
    bottom: 0px;
    width: 100%;
@@ -99,6 +100,15 @@ footer {
    padding: 0 2px;
    color: #999;
 }
+.progress-table .serial {
+    width: 1000px;
+    padding-left: 0px;
+}
+.progress-table .table-row {
+    padding: 4px 0;
+    border-top: 1px solid #edf3fd;
+    display: flex;
+}
 </style>
 </head>
 <body>
@@ -106,11 +116,10 @@ footer {
 <nav class="navbar navbar-expand-xl navbar-dark bg-dark">
     <div class="mx-auto d-sm-flex d-block flex-sm-nowrap">
         <a class="navbar-brand" href="#">${sessionScope.kname}${sessionScope.name}님</a>
-        
         <div class="collapse navbar-collapse text-center" id="navbarsExample11">
             <ul class="navbar-nav">
                <c:if test="${sessionScope.t_num ne null }">
-                <li class="nav-item active">
+                <li class="nav-item active">	
                     <a class="nav-link" href="teamInfo?t_num=${sessionScope.t_num }">팀 정보</a>
                 </li>
                 </c:if>
@@ -139,15 +148,11 @@ footer {
              </li>
              <li class="nav-item"><a class="nav-link" href="teamMatchList">팀 매치 내역</a></li>
             </ul>
+            
         </div>
     </div>
 </nav>
-
-   <div align="center">
-      <h1>팀 공 지</h1>
-      <hr>
-   </div>
-   
+<br><br>
    <div>
    <form action="teamNoticeInsertt" method="post" encType="multipart/form-data">
       <article>
@@ -156,13 +161,13 @@ footer {
                   <label for="reg_id">작성자</label> 
                   <input type="text" class="form-control" name="t_id" id="reg_id" value="${sessionScope.id }" placeholder="이름을 입력해 주세요" readonly>
                </div>
-               <div class="mb-3" style="width: 1050px">
+               <div class="mb-3" style="width: 1103px">
                   <label for="title">제목</label>
                   <input type="text" class="form-control" name="t_title" placeholder="제목을 입력해 주세요" value="${teamNoticeInfo.t_title }" readonly>
                </div>
                <div class="mb-3">
                   <label for="content">내용</label>
-                  <textarea class="form-control" rows="5" name="t_content" id="content" placeholder="내용을 입력해 주세요" style="height: 250px">${teamNoticeInfo.t_content }</textarea>
+                  <textarea class="form-control" rows="5" name="t_content" id="content" placeholder="내용을 입력해 주세요" style="height: 200px">${teamNoticeInfo.t_content }</textarea>
                </div>
                <input type="text" name="t_num" value="${teamInfo.t_num }" style="display:none">
               <br>
@@ -170,10 +175,7 @@ footer {
          </article>
       </form>
       <br>
-      <div style="padding-left: 1424px;">
-      <div style="float: left">
-         <input type="button" class="btn btn-primary" value="목록" onclick="location.href='teamNotice?t_num=${teamInfo.t_num}'">
-      </div>
+      <div style="padding-left: 1407px;">
       <div style="float: left; margin-left: 10px">
          <c:if test="${updateButton.t_author eq '팀장' }">
             <form action="teamNoticeUpdate">
@@ -182,7 +184,7 @@ footer {
             </form>
          </c:if>
       </div>
-      <div style="float: left; margin-left: 10px">
+      <div style="float: left; margin-left: 10px; padding-right: 10px">
          <c:if test="${updateButton.t_author eq '팀장' }">
             <form action="teamNoticeDelete" method="post">
                <input type="text" value="${teamInfo.t_num }" name="t_num" style="display: none"> <input type="text" value="${teamNoticeInfo.n_no }" name="n_no" style="display: none">
@@ -190,7 +192,45 @@ footer {
             </form>
          </c:if>
       </div>
+      <div style="float: left">
+         <input type="button" class="btn btn-primary" value="목록" onclick="location.href='teamNotice?t_num=${teamInfo.t_num}'">
+      </div>
       </div>
    </div>
+   <br>
+   <hr>
+   <!-- 댓글 -->
+   <form method="post">
+   <div class="mb-3" style="padding-left: 311px">
+   <input type="text" value="${teamNoticeInfo.n_no }" name="n_no" style="display: none">
+   <input type="text" value="${sessionScope.t_num }" name="t_num" style="display: none">
+   <input type="text" value="${sessionScope.id }" name="id" style="display: none">
+   <div style="float:left; width: 1095px;">
+    <input type="text" class="form-control" name="comm" id="reg_id" placeholder="댓글">
+    </div>
+    <button type="submit" class="btn btn-primary" onclick="javascript: form.action='${pageContext.request.contextPath}/writerInsert'" style="margin-left:10px">댓글</button>
+   </div>
+    </form>
+	<div class="progress-table" align="center" style="margin-left: 315px; padding-bottom:44px; width: 70%">
+			<div class="aa">
+			<c:forEach items="${writer }" var="writer">
+					<div class="table-row">
+					<div class="serial" style="margin-right: 315px;">${writer.comm}</div>
+						<div class="serial">${writer.id}</div>
+						<div class="visit">${writer.w_date}</div>
+					    <form method="post">
+						<input type="text" value="${teamNoticeInfo.n_no }" name="n_no" style="display: none">
+					    <input type="text" value="${sessionScope.t_num }" name="t_num" style="display: none">
+					    <input type="text" value="${sessionScope.id }" name="id" style="display: none">
+						<input type="text" value="${writer.seq_info }" name="seq_info" style="display: none">
+						<c:if test="${sessionScope.id eq writer.id }">
+						<button type="submit" class="btn btn-primary" onclick="javascript: form.action='${pageContext.request.contextPath}/writerDelete'" style="margin-right: 192px;">삭</button>
+						</c:if>
+						<button type="button" class="btn btn-primary" style="margin-right: 192px; background-color: #ffffff; border-color: #ffffff; ">삭</button>
+						</form>
+					</div>
+			</c:forEach>
+			</div>
+		</div>
 </body>
 </html>
