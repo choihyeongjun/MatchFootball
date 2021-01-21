@@ -20,10 +20,12 @@ import co.company.MatchFootball.vo.FieldVO;
 import co.company.MatchFootball.vo.FwboardVO;
 import co.company.MatchFootball.vo.ManagerapplyVO;
 import co.company.MatchFootball.vo.MembersVO;
+import co.company.MatchFootball.vo.NboardVO;
 import co.company.MatchFootball.vo.NoticeVO;
 import co.company.MatchFootball.vo.P_matchVO;
 import co.company.MatchFootball.vo.ReviewVO;
 import co.company.MatchFootball.vo.TeamVO;
+import co.company.MatchFootball.vo.WriterVO;
 
 @Controller
 public class AdminController {
@@ -194,9 +196,6 @@ public class AdminController {
 		 return vo;
 	}
 	
-//	============================================================================================================================
-
-
 
 //	====================================================공지사항======================================================
 
@@ -248,11 +247,36 @@ public class AdminController {
 		return "a/seemoo/notice";
 	}
 	
-	@RequestMapping("/noticeView") //공지사항 뷰페이지(메인페이지)
-	public String noticeView(NoticeVO vo, Model model) {
+	@RequestMapping(value = "/noticeView") //공지사항 뷰페이지(메인페이지)
+	public String noticeView(NoticeVO vo, NboardVO nvo, Model model) {
 		model.addAttribute("noticeView", seemoomapper.noticeselect(vo));
+		model.addAttribute("nboardselect", seemoomapper.nboardselect(nvo));
 		return "a/seemoo/noticeView";
 	}
+	
+//	@RequestMapping(value = "/noticeselect/{n_no}", method = RequestMethod.GET) //(단건조회)
+//	@ResponseBody
+//	public NoticeVO noticeselect(@PathVariable String n_no, NoticeVO vo, NboardVO nvo, Model model) {
+//		vo.setN_no(n_no);
+//		model.addAttribute("nboardselect", seemoomapper.nboardselect(nvo));
+//		return seemoomapper.noticeselect(vo);	
+//	}
+	
+//  -------------------------------------------------------------------------------------------------------------
+	
+	// 공지 댓글 등록 처리
+		@RequestMapping("/nboardinsert")
+		public String nboardinsert(NboardVO vo) {
+			seemoomapper.nboardinsert(vo);   
+			return "redirect:/noticeView?n_no=" + vo.getN_no() ; 
+		}
+		
+	// 공지 댓글 등록 처리
+		@RequestMapping("/nboarddelete")
+		public String nboarddelete(NboardVO vo) {
+			seemoomapper.nboarddelete(vo);
+			return "redirect:/noticeView?n_no=" + vo.getN_no() ; 
+		}
 	
 //	====================================================리뷰======================================================
 

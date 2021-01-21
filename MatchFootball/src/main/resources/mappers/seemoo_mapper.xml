@@ -131,6 +131,26 @@
 	<select id="rcommList" resultType="FwboardVO">
 		SELECT * FROM FBOARD
 	</select>	
+	
+	<!-- 공지 댓글 등록 -->
+	<insert id="nboardinsert" parameterType="NboardVO">
+		<selectKey order="BEFORE" keyProperty="n_seq" resultType="string">
+			SELECT NVL(MAX(n_seq),0)+1 FROM nboard
+		</selectKey>
+		insert into nboard values( #{n_seq}, #{n_no}, #{n_comm}, sysdate, #{id} )
+	</insert>
+	
+	<!-- 공지 댓글 조회 -->
+	<select id="nboardselect" resultType="NboardVO">
+		select * from nboard where n_no = #{n_no} order by 1 desc
+	</select>
+	
+	<!-- 공지 댓글 삭제 -->
+	<select id="nboarddelete" resultType="NboardVO">
+		delete from nboard where n_seq = {n_seq}
+	</select>
+
+<!-- 댓글=================================================================================================  -->
 		
 	<!-- 매치확인 -->
 	<select id="matchList" resultType="P_matchVO">
@@ -151,5 +171,7 @@
 	<select id="fielddelete" resultType="FieldVO">
 		DELETE FROM FIELD WHERE F_ID = #{f_id} 
 	</select>
+<!-- 댓글=================================================================================================  -->
+	
 		
 </mapper>
