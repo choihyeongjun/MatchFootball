@@ -25,6 +25,14 @@
 
 <style>
 .bg-dark { background-color: #212529!important; }
+footer {
+   position: fixed;
+   left: 0px;
+   bottom: 0px;
+   width: 100%;
+   background: grey;
+   color: white;
+}
 </style>
 
 </head>
@@ -76,13 +84,6 @@
         </div>
     </div>
 </nav>
-   
-   <div align="center" >
-     <br>
-      <div> <h1>${teamInfo.t_name}의 팀 갤러리</h1> </div>
-      <hr>
-   </div>
-   
    <div class="card-header" style="text-align: center;">
    <input type="text" name="t_num" value="${teamInfo.t_num }" style="display:none">
    <input type="file" name="file" multiple="multiple" required="required">

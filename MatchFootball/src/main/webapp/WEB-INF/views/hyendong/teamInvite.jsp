@@ -180,7 +180,7 @@ function teamInvite(){
    
    <div class="card mb-4">
          <div class="card-header">
-            <i class="fas fa-table mr-1"></i> 내가 초대한 회원들 현황
+            <i class="fas fa-table mr-1"></i> 팀이 초대한 회원들 현황
          </div>
          <div class="card-body">
             <div class="table-responsive">

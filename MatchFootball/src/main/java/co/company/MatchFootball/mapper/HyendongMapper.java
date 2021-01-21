@@ -3,7 +3,6 @@ package co.company.MatchFootball.mapper;
 import java.util.List;
 
 import co.company.MatchFootball.vo.ComeInviteVO;
-import co.company.MatchFootball.vo.InviteVO;
 import co.company.MatchFootball.vo.MembersVO;
 import co.company.MatchFootball.vo.TeamVO;
 import co.company.MatchFootball.vo.TeamlistVO;
@@ -13,6 +12,7 @@ import co.company.MatchFootball.vo.TinviteVO;
 import co.company.MatchFootball.vo.TnoticeVO;
 import co.company.MatchFootball.vo.TournamentTeamVO;
 import co.company.MatchFootball.vo.TournamentVO;
+import co.company.MatchFootball.vo.WriterVO;
 
 public interface HyendongMapper {
 	public int getCount1(TeamVO teamVO); //페이징 count와 list는 매개 같아야함 /팀리스트 페이징
@@ -84,4 +84,8 @@ public interface HyendongMapper {
 	
 	public int blackCancle(TeamVO teamVO); //팀 블랙 권한 취소
 	public TournamentTeamVO tournamentTeamCount(TournamentTeamVO tournamentTeamVO); //토너먼트 참가 팀 카운트
+	
+	public int writerInsert(WriterVO writerVO); //댓글 등록
+	public List<WriterVO> writerSelect(WriterVO writerVO); //댓글 조회
+	public int writerDelete(WriterVO writerVO); //댓글 삭제
 }
