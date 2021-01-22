@@ -329,13 +329,13 @@ function mdeta(url){
 									<c:if test="${p_max > f && p_match.sel eq '0'}">
 										<p class="ap-info" style="">신청 가능</p>
 									</c:if>
-									<c:if test="${p_max <= f ||p_match.sel eq '1'}">
+									<c:if test="${p_max <= f }">
 										<p class="ap-info1">마감</p>
 									</c:if>
 									
-									<%-- <c:if test="${p_match.sel eq '1'}">
+									<c:if test="${p_max > f && p_match.sel eq '1'}">
 										<p class="ap-info2">매치 참여 완료</p>
-									</c:if> --%>
+									</c:if> 
 								</div>
 						</a></li>
 					</c:forEach>

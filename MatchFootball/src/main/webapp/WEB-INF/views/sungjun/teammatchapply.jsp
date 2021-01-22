@@ -36,15 +36,20 @@
 }
 </style>
 <script>
-	function submitCheck() {
-
-		alert("신청되었습니다");
-
-		return true;
-	}
+$(function(){
+	$(".abtn").on("click",function(){
+		if($("input[name=id]:checked").length < '${min.min }'){
+			alert("인원수가 부족합니다")
+		}else{
+			$("#startmember").submit();
+		}
+		
+	})
+})
 </script>
 </head>
 <body>
+
 	<div class="row">
 		<div class="col-6">
 			<div>
@@ -86,11 +91,11 @@
 				<h2 style="text-align: center;margin: 30px;">선수 목록</h2>
 			</div>
 			<form id="startmember" name="startmember" action="startmember"
-				method="post" onsubmit="return submitCheck();">
+				method="post" ">
 				<c:forEach var="teamlist" items="${teamlist }">
 					<div style="padding-bottom: 20px; text-align: center;">
 						<label for="chk" style="font-size: 22px;">${teamlist.pos} ${teamlist.name } </label>
-						<input type="checkbox" id="chk" name="id" value="${teamlist.id }" style="zoom:1.5;">
+						<input type="checkbox" class="chk" id="chk" name="id" value="${teamlist.id }" style="zoom:1.5;" >
 					</div>
 				</c:forEach>
 				<input type="hidden" name="so_name" value="${teamname.t_name }">
@@ -99,7 +104,7 @@
 					type="hidden" name="p_con" value="팀 매치 비"> <input
 					type="hidden" name="point" value=""> 
 					<input type="hidden" name="npoint" value="">
-					<button type="submit" class="abtn" >신청하기</button>
+					<button type="button" class="abtn" >신청하기</button>
 			</form>
 		</div>
 	</div>

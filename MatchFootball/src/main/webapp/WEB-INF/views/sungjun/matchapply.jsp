@@ -93,6 +93,11 @@
 			value="${p_matchVO.price } 원" required="required" readonly><label
 			for="floatingTextarea">참가비</label>
 	</div>
+	<div class="form-floating">
+		<input class="form-control" placeholder="Leave" id="floatingTextarea"
+			value="Lv ${membervo.lv } " required="required" readonly><label
+			for="floatingTextarea">실력</label>
+	</div>
 	<form class="inser" action="sendmatchapply" method="post">
 		<div class="inserm">
 
@@ -101,7 +106,7 @@
 				name="p_con" type="hidden" value="개인 매치비"> <input
 				name="point" type="hidden" value="${p_matchVO.price }"> <input
 				name="npoint" type="hidden" value="-${p_matchVO.price }"> <input
-				name="f_id" type="hidden" value="-${p_matchVO.f_id }">
+				name="f_id" type="hidden" value="${p_matchVO.f_id }">
 
 		</div>
 		<div align="center">
