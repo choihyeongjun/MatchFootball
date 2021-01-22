@@ -12,6 +12,7 @@ import co.company.MatchFootball.vo.PlayersVO;
 import co.company.MatchFootball.vo.PointVO;
 import co.company.MatchFootball.vo.PplayersVO;
 import co.company.MatchFootball.vo.PreviewVO;
+import co.company.MatchFootball.vo.ReviewVO;
 import co.company.MatchFootball.vo.TeamVO;
 import co.company.MatchFootball.vo.TeamlistVO;
 import co.company.MatchFootball.vo.TeammatchVO;
@@ -24,6 +25,7 @@ public interface SungjunMapper {
 	//페이징 내역수 
 	public int getCount1(P_matchVO p_matchVO);
 	public int getCount2(TeammatchVO team_matchVO);
+	
 	public MembersVO memberselect(MembersVO membersvo);
 	public List<PointVO> pointallselect(PointVO p_point);
 	public P_matchVO pmatchlist1(P_matchVO p_match);
@@ -35,10 +37,10 @@ public interface SungjunMapper {
 	//개인 매치 선수 리뷰 등록
 	public int pmreviewapp(List<PreviewVO> preview);
 	public int reviewup(P_matchVO p_match);
+	//개인 매치  리뷰 등록한지 체크
+	public PreviewVO selrrrr(PreviewVO preview);
 	//매니저 신청할떄 멤버에 권한 웨이트로 바꾸기
 	public int mapplymem(MembersVO membersvo);
-	//리뷰 등록한지 체크
-	public PreviewVO selrrrr(PreviewVO preview);
 	
 	public int mapply(ManageraplyVO manageraply);
 	public P_matchVO pmatchlist3(P_matchVO p_match);
@@ -50,6 +52,8 @@ public interface SungjunMapper {
 	// 팀 매치 신청 쿼리//
 	public int teammatchin(PlayersVO players);
 	public int teammatchup(TeammatchVO teammatch);
+	public int pointminus1(MembersVO membersvo);
+	
 	//해당 매니저  팀 경기 내역  //
 	public List<TeammatchVO> tmatchlist(TeammatchVO t_match);
 	// 해당 날 팀 매치 리스트 뽑기//
@@ -71,7 +75,7 @@ public interface SungjunMapper {
 	//pplayers 참여 인원 조회
 	public PplayersVO pplayersselect(PplayersVO pplayers);
 	//로그인 한사람 포인트 조회
-	public int pointssss(MembersVO membersvo);
+	public Integer pointssss(MembersVO membersvo);
 	//로그인 한사람 팀장인지 조회 팀 번호
 	public MembersVO cappp(MembersVO membersvo);
 	//로그인 한사람 팀 있는지 조회
@@ -80,14 +84,17 @@ public interface SungjunMapper {
 	public List<P_matchVO> pmatchselectall(P_matchVO p_match);
 	//팀매치 전체내역 조회
 	public List<TeammatchVO> tmatchselectall(TeammatchVO t_match);
-	//매치에 매니저 신청 
+	//매치에 매니저 신청 //매니저 없는 팀매치 검색//매치에 매니저 참가 신청했는지 안했는지 조회
 	public Integer tmapply(MmatchlistVO mmatchlistvo);
-	//매니저 없는 팀매치 검색
 	public List<TeammatchVO> nomanager(TeammatchVO teammatch);
+	public Integer tmapplysel(MmatchlistVO mmatchlistvo);
+	
 	//같은 시간대 예약 찾기
 	public Integer seltime(P_matchVO p_match);
-	//해당날 매치있는지 없는지 체크
+	//해당날 개인매치있는지 없는지 체크
 	public Integer daysel(P_matchVO p_match);
+	//해당날 팀매치있는지 없는지 체크
+	public Integer daysel1(TeammatchVO Teammatch);
 	//매니저 신청햇는지 안했는지 체크
 	public Integer chekma(ManageraplyVO aply);
 	//매니저 신청 취소
@@ -101,6 +108,14 @@ public interface SungjunMapper {
 	//가격 조회
 	public P_matchVO price(P_matchVO p_matchVO);
 	//팀 매치 m_no로 단건조회
-	public int teammatchselect(TeammatchVO teammatch);
-	
+	public TeammatchVO teammatchselect(TeammatchVO teammatch);
+	//개인 레벨 조회
+	public int lvsel(MembersVO membersvo);
+	//개인 매치 레벨 조회
+	public int lvpmatch(P_matchVO p_matchVO);
+	//최소인원 조회
+	public TeammatchVO minteam(TeammatchVO teammatchVO);
+	//팀 매치 리뷰작성 및 팀매치 업데이트
+	public int teamreviewup(TeammatchVO teammatchVO);
+	public int teamreview(ReviewVO reviewVO);
 }

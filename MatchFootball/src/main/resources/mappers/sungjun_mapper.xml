@@ -8,7 +8,7 @@
 		select price from p_match where m_no=#{m_no}
 	</select>
 	<!--로그인 한사람 포인트 조회 -->
-	<select id="pointssss" resultType="int">
+	<select id="pointssss" resultType="Integer">
 		select point
 		from members
 		where
@@ -36,12 +36,19 @@
 		and b.id=#{id} and
 		b.t_author='팀장'
 	</select>
-	<!--해당 날 매치가 있는지 없는지 조회 -->
+	<!--해당 날 개인매치가 있는지 없는지 조회 -->
 	<select id="daysel" resultType="int">
 		select count(*) as day from p_match
 		where substr(m_date,1,10) = #{m_date}
 		and to_date(m_date,'yyyy-mm-ddhh24:mi')<![CDATA[ >= sysdate +9/24]]>
 	</select>
+	<!--해당 날 팀매치가 있는지 없는지 조회 -->
+	<select id="daysel1" resultType="int">
+		select count(*) as day from teammatch
+		where substr(m_date,1,10) = #{m_date}
+		and to_date(m_date,'yyyy-mm-ddhh24:mi')<![CDATA[ >= sysdate +9/24]]>
+	</select>
+	
 	<!--해당 날의 개인 매치 조회 및 신청 인원 -->
 	<select id="pmatchselect" parameterType="P_matchVO"
 		resultType="P_matchVO">
@@ -84,14 +91,8 @@
 		,#{p_id},#{npoint},sysdate,#{p_con})
 	</insert>
 	<update id="pointplus">
-		update fieldmanager set point= point +#{point} where f_id =#{f_id}
+		update fieldmanager set point = point + #{point} where f_id = #{f_id}
 	</update>
-	<insert id="pointcomm2" parameterType="MembersVO">
-		insert into point
-		(p_seq,p_id,npoint,p_date,p_con)
-		values(point_seq.nextval
-		,#{p_id},#{npoint},sysdate,#{p_con})
-	</insert>
 	<!--point 매니저비 입금 내역 -->
 	<select id="pointconselect" parameterType="PointVO"
 		resultType="PointVO">
@@ -315,8 +316,10 @@
 			values(#{m_no},#{t_num},#{dd})
 		</foreach>
 	</insert>
-	<!-- <update id="pointminus" parameterType="MembersVO"> update members set 
-		point = point -#{point} where id= #{id} </update> -->
+	<update id="pointminus1" parameterType="MembersVO">
+	 update members set point = point - (#{point}/2)
+	  where id=#{id};
+		</update>
 	<!-- <insert id="pointcomm" parameterType="MembersVO"> insert into point 
 		(p_seq,p_id,npoint,p_date,p_con) values(point_seq.nextval ,#{p_id},#{npoint},sysdate,#{p_con}) 
 		</insert> -->
@@ -347,6 +350,10 @@
 		mmatchlist(id,match_info)
 		values(#{id},#{match_info})
 	</insert>
+	<!--팀 매치 매니저 신청 조회 -->
+	<select id="tmapplysel" parameterType="MembersVO">
+		select 1 from mmatchlist where id= #{id} and match_info= #{match_info}
+	</select>
 	<!--매니저 없는 매치 -->
 	<select id="nomanager" parameterType="TeammatchVO"
 		resultType="TeammatchVO">
@@ -373,12 +380,13 @@
 		select * from p_match
 		where m_no = #{m_no}
 	</select>
-	<!-- 리뷰 등록된 매치 조회 -->
+	<!-- 리뷰 등록된 개인 매치 조회 -->
 	<select id="selrrrr" parameterType="PreviewVO"
 		resultType="PreviewVO">
 		select * from preview
 		where m_no=#{m_no}
 	</select>
+	
 	<!--뛴 선수 리뷰 등록 -->
 	<insert id="pmreviewapp">
 		<foreach collection="list" item="vo" open="INSERT ALL "
@@ -406,5 +414,27 @@
 	<select id="teammatchselect" resultType="TeammatchVO">
 		select * from teammatch where m_no= #{m_no}
 	</select>
-	
+	<!--개인 레벨 조회   -->
+	<select id="lvsel" resultType="int">
+		select lv from members where id= #{id}
+	</select>
+	<!--개인매치 레벨 조회   -->
+	<select id="lvpmatch" resultType="int">
+		select lv from p_match where m_no= #{m_no}
+	</select>
+		<!--팀매치 최소인원 조회   -->
+	<select id="minteam" resultType="TeammatchVO">
+		select min from teammatch where m_no= #{m_no}
+	</select>
+	<!--팀매치 레벨 조회   -->
+	<select id="lvteammatch" resultType="int">
+		select t_level from teammatch where m_no= #{m_no}
+	</select>
+	<!--팀 매치 리뷰 작성 및 팀 매치 리뷰작성 y로 업데이트 -->
+	<insert id="teamreview" >
+		insert into review values(#{t_num},#{m_no},#{score},#{manager_id},#{manner})
+	</insert>
+	<update id="teamreviewup">
+	update teammatch set review ='Y' where m_no
+	</update>
 </mapper>
