@@ -61,7 +61,9 @@ element.style {
              <li class="nav-item">
                  <a class="nav-link" href="http://localhost/MatchFootball/teamList">팀 리스트</a>
              </li>
+             <c:if test="${sessionScope.t_num ne null }">
              <li class="nav-item"><a class="nav-link" href="teamMatchList">팀 매치 내역</a></li>
+             </c:if>
             </ul>
         </div>
     </div>

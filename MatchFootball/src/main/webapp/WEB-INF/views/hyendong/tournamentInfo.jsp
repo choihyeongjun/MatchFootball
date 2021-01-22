@@ -17,6 +17,16 @@ li {
 	background: rgba(0,0,0,0)
 }
 </style>
+<script>
+function joinSuccess(){
+    if (confirm("토너먼트에 참가 하시겠습니까?") == true){    //확인
+    	document.joinGame.submit();
+    	alert("참가 완료");
+        }else{   //취소
+            return;
+        }
+ }
+</script>
 </head>
 <body>
 	
@@ -44,13 +54,13 @@ li {
 		<div align="center">
 		<c:if test="${tournamentTeam.count ne 8}">
 		<c:if test="${hh.sel eq 0}">
-		<form action="teamTournaInsert" method="post">
+		<form action="teamTournaInsert" method="post" name="joinGame">
 			<input type="text" value="${tournamentTeam.t_no }" name="t_no" style="display:none">
 			<input type="text" value="${sessionScope.t_num }" name="t_num" style="display:none">
 			<input type="text" value="${members.id }" name="id" style="display:none">
 			<input type="text" value="${members.point }" name="point" style="display:none">
 			<input type="text" value="${tournamentTeam.t_point }" name="t_point" style="display:none">
-			<input type="submit" class="genric-btn info circle" value="참가하기" onclick="location.href='tournamentPVP?t_no=${tournamentTeam.t_no}'" style="float: right"/>
+			<input type="button" class="genric-btn info circle" value="참가하기" onclick="joinSuccess();" style="float: right"/>
 		</form>
 		</c:if>
 		</c:if>

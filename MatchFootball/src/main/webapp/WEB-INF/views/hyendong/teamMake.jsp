@@ -42,21 +42,31 @@
 </head>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script>
-	if ($("#t_hidden").prop("checked")) {
-		$("#t_hidden").val('Y');
-	} else {
-		$("#t_hidden").val('N');
-	}
 	
 	function teamMake(){
 		if (confirm("팀을 생성 하시겠습니까?") == true){    //확인
+/* 			if ($("#t_hidden").prop("checked")) {
+				$("#t_hidden").val('Y');
+			} else {
+				$("#t_hidden").val('N');
+			}
+ */			console.log($("#t_hidden").val());
 			document.makeTeam.submit();
 			alert("팀 생성을 축하드립니다");
-			    
-			 }else{   //취소
-			     return false;
-			 }
+		  }else{   //취소
+			     return ;
+		  }
 	}
+	
+	$(function(){
+		$('#t_hidden').on('click', function(){
+			if($(this).prop('check')){
+				$(this).val('Y');
+			}else{
+				$(this).val('N');
+			};
+		})
+	})
 </script>
 <body>
 	<!-- 4 - contained in center example -->
@@ -94,7 +104,9 @@
              <li class="nav-item">
                  <a class="nav-link" href="http://localhost/MatchFootball/teamList">팀 리스트</a>
              </li>
+             <c:if test="${sessionScope.t_num ne null }">
              <li class="nav-item"><a class="nav-link" href="teamMatchList">팀 매치 내역</a></li>
+             </c:if>
             </ul>
         </div>
     </div>
@@ -163,8 +175,8 @@
 					<p>팀원 공개 여부</p>
 					<div class="switch-wrap d-flex justify-content-between">
 						<div class="primary-switch">
-							<input type="checkbox" id="t_hidden" name="t_hidden" value="Y"
-								checked> <label for="t_hidden"></label>
+							<input type="checkbox" id="t_hidden" name="t_hidden" value='Y' checked> 
+							<label for="t_hidden"></label>
 						</div>
 					</div>
 				</div>

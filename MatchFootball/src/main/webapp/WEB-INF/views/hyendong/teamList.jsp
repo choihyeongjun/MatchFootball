@@ -95,7 +95,9 @@ a {
              <li class="nav-item">
                  <a class="nav-link" href="http://localhost/MatchFootball/teamList">ÆÀ ¸®½ºÆ®</a>
              </li>
+             <c:if test="${sessionScope.t_num ne null }">
              <li class="nav-item"><a class="nav-link" href="teamMatchList">ÆÀ ¸ÅÄ¡ ³»¿ª</a></li>
+             </c:if>
             </ul>
         </div>
     </div>
