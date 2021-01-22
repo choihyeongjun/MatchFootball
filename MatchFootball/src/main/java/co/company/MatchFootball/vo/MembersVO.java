@@ -35,4 +35,5 @@ public class MembersVO {
 	String age;
 	String m_no;
 	String t_no;
+	String stop_date;
 }

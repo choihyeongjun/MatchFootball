@@ -11,7 +11,7 @@
 <meta name="description" content="" />
 <meta name="author" content="" />
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" ></script>
-<title>유저관리페이지</title>
+<title>용병 미등록 페이지</title>
 <script>
 $(function(){
 	userList();
@@ -58,6 +58,7 @@ function userListResult(data) {
 		.append($('<td class="idnum">').html(item.id))   //유저아이디
 		.append($('<td>').html(item.name))	   			 //유저이름
 		.append($('<td>').html(item.gender))  			 //유저성별
+		.append($('<td>').html(item.location1))			 //유저주소
 		.append($('<td>').html(item.manner))   			 //유저매너도
 		.append($('<td>').html(item.point))  			 //유저포인트
 		.append($('<td>').html(							 //유저권한2
@@ -137,7 +138,7 @@ function userListResult(data) {
 				</ol>
 				<div class="card mb-4">
 					<div class="card-header">
-						<i class="fas fa-table mr-1"></i>회원현황
+						<i class="fas fa-table mr-1"></i>용병 미등록 회원현황
 					</div>
 					<div class="card-body">
 						<div class="table-responsive">
@@ -147,12 +148,13 @@ function userListResult(data) {
 										<th>ID</th>
 										<th>Name</th>
 										<th style="width: 40px;">성별</th>
-										<th>매너점수</th>
+										<th>지역</th>
+										<th style="width: 100px;">매너점수</th>
 										<th>포인트</th>
-										<th>용병권한</th>
-										<th style="width: 90px;"></th>
-										<th style="width: 80px;"></th>
-										<th style="width: 60px;"></th>
+										<th style="width: 100px;">용병권한</th>
+										<th style="width: 100px;"></th>
+										<th style="width: 100px;"></th>
+										<th style="width: 100px;"></th>
 									</tr>
 								</thead>
 								
@@ -161,6 +163,7 @@ function userListResult(data) {
 										<th>ID</th>
 										<th>Name</th>
 										<th>성별</th>
+										<th>지역</th>
 										<th>매너점수</th>
 										<th>포인트</th>
 										<th>용병권한</th>

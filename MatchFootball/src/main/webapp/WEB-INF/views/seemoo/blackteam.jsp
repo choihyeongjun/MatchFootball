@@ -11,7 +11,7 @@
 <meta name="description" content="" />
 <meta name="author" content="" />
 
-<title>블랙리스트팀관리페이지</title>
+<title>블랙리스트 팀관리페이지</title>
 
 <script>
 $(function(){
@@ -22,14 +22,14 @@ $(function(){
 
 function blackUpdate() {
 	//업데이트 버튼 클릭
-	$('#body').on('click','#btnUpdate',function(){
+	$('body').on('click','#btnUpdate',function(){
 		var t_num = $(event.target).closest('tr').find('#hidden_t_num').val();
 		var t_name = $(event.target).closest('tr').find("#hidden_t_name").val();
 		var author = $(event.target).closest('tr').find("#author").val();
 		var result = confirm(t_name +" 을 복귀 하시겠습니까?");
 		if(result) {
 			$.ajax({
-				url:'../teamupdate',
+				url:'../blackteamupdate',
 				data : {t_num : t_num, author: author},
 				dataType:'json',
 				error:function(xhr,status,msg){
