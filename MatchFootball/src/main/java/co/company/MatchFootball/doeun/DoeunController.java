@@ -215,6 +215,8 @@ public class DoeunController {
 	@RequestMapping(value = "message") // 발송메세지 폼
 	public String msg(MembersVO mem, MessageVO msg, Model model, HttpSession session) {
 		msg.setSend_id((String)session.getAttribute("id"));
+		mem.setId((String)session.getAttribute("id"));
+		model.addAttribute("ID", dao.findId(mem));
 		return "doeun/sendmsg";
 	}
 

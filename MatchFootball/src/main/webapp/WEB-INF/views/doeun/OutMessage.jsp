@@ -128,7 +128,7 @@ delMsg();
 										<th>날짜</th>
 										<th>제목</th>
 										<th>받은 사람</th>
-										<th>수신확인</th>
+										<th colspan="2">수신확인</th>
 										</tr>
 									</thead>
 									<tbody id=sendingMsg align="center">
@@ -143,12 +143,15 @@ delMsg();
 												<td><a class="Msg" data-toggle="modal"
 													data-target="#MsgModal" data-num="${msg.m_no}">${msg.m_title}</a></td>
 												<td>${msg.to_id}</td>
-												<td style="text-align: center;">${msg.m_check} ${msg.o_date}<c:if
-														test="${msg.m_check eq 'N'}">
-														<input type="button" class="btn btn-primary float-right delMsg" data-nom="${msg.m_no}"
-															value="취소하기">
-													</c:if>
+												<td style="text-align: center;">${msg.m_check}
 												</td>
+												<c:if test="${msg.o_date ne null}">
+												<td>${msg.o_date}</td>	
+												</c:if>
+												<c:if test="${msg.m_check eq 'N'}">
+												<td><input type="button" class="btn btn-primary float-right delMsg" data-nom="${msg.m_no}"
+												value="취소하기"></td>
+												</c:if>
 											</tr>
 										</c:forEach>
 									</tbody>
