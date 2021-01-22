@@ -182,7 +182,7 @@ footer {
 														${msg.send_id}
 													</td>
 													<td>
-														<button type="button" class="btn btn-primary float-right reply-message" id="reply" data-nom="${msg.m_no}">답장하기</button>
+														<button type="button" class="btn btn-primary float-center reply-message" id="reply" data-nom="${msg.m_no}">답장하기</button>
 													</td>
 												</tr>
 											</c:forEach>
