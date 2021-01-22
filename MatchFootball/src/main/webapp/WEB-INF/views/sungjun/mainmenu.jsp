@@ -397,7 +397,7 @@ body, html {
                            href="${pageContext.request.contextPath}/tournamentList">토너먼트</a></li>
                      </ul>
                   </div>
-                  <c:if test="${sessionScope.id eq 'pueen0616' }">
+                  <c:if test="${sessionScope.id eq 'admin' }">
                   <div class="col-md-3 col-sm-6">
                      <div>
                         <h3 style="color: red; font-size: 30px;">관리자</h3>

@@ -105,7 +105,7 @@
 			FROM NOTICE
 		</selectKey>
 		INSERT INTO NOTICE(N_NO, ID, N_TITLE, N_DATE, N_COMM) 
-		VALUES(#{n_no}, 'pueen0616', #{n_title}, SYSDATE, #{n_comm})
+		VALUES(#{n_no}, 'admin', #{n_title}, SYSDATE, #{n_comm})
 	</insert>
 	
 	<!-- 수정 -->
@@ -147,7 +147,7 @@
 	
 	<!-- 공지 댓글 삭제 -->
 	<select id="nboarddelete" resultType="NboardVO">
-		delete from nboard where n_seq = {n_seq}
+		delete from nboard where n_seq = #{n_seq}
 	</select>
 
 <!-- 댓글=================================================================================================  -->

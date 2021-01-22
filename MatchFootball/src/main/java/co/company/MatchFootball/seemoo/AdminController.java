@@ -34,7 +34,6 @@ public class AdminController {
 	SeemooMapper seemoomapper;
 	HyendongMapper hyendongmapper;
 //	=======================================================================================================================
-	
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)		// 관리자 메인페이지
 	public String admin(Model model) {
 		model.addAttribute("members", seemoomapper.memberList());
