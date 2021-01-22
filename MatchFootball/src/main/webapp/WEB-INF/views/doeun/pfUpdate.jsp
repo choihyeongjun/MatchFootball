@@ -40,19 +40,7 @@
 		};
 		
 		
-		$("#uf").on('change', function(e) {
-
-			var files = e.target.files;
-			var arr = Array.prototype.slice.call(files);
-			for (var i = 0; i < files.length; i++) {
-				if (!checkExtension(files[i].name, files[i].size)) {
-					return false;
-				}
-			}
-
-			preview(arr);
-
-		});
+	
 
 		function checkExtension(fileName, fileSize) {
 
@@ -112,15 +100,16 @@
 </head>
 <body>
 	<form action="updateMem" method="post" encType="multipart/form-data">
+						<input value="${kemail}" name="id" type="text"
+							style="display: none;">
 
 		<div id="main">
 			<div id="content">
 				<div class="container">
 					<div class="row has-sidebar">
-						<jsp:include page="Mybar.jsp"></jsp:include>
-						<input value="${kemail}" name="id" type="text"
-							style="display: none;">
-						<div class="col-md-7 col-lg-8 col-xl-8">
+
+						<div class="col-md-10 col-lg-10 col-xl-10">
+
 							<div class="page-header bordered">
 								<h1>
 									내 프로필<small>기본 정보 수정</small>
@@ -144,8 +133,8 @@
 
 										<input type="file" class="custom-file-input" id="fileupload"
 											src="${pageContext.request.contextPath}/images/default1.png"
-											name="file" autocomplete=off
-											aria-describedby="inputGroupFileAddon01">
+											name="file" autocomplete=off required="required"
+											aria-describedby="inputGroupFileAddon01" value="${mb.img }">
 
 										<script>
 											document
@@ -166,10 +155,10 @@
 								</div>
 								<div id='images-div'>
 									<c:if test="${mb.img eq null}">
-										<img id="img" name="img"
+										<img id="img" name="img" 
 											src="${pageContext.request.contextPath}/images/default1.png"
-											class="rounded-circle" width="150"
-											style="height: 200px; width: 200px; border: none" />
+											class="rounded-circle" width="150" 
+											style="height: 200px; width: 200px; border: none"  />
 									</c:if>
 									<c:if test="${mb.img ne null}">
 										<img id="img" name="img"
@@ -200,13 +189,13 @@
 									<div class="col col-lg-8">
 										<input class="form-control form-control-lg required"
 											required="required" type="text" data-name='전화번호' name="pnum"
-											id="pnum" width="100%" />
+											id="pnum" width="100%" value="${mb.pnum}" />
 									</div>
-									<div class="col col-lg-4 tel-div" align="right">
+									<!-- <div class="col col-lg-4 tel-div" align="right">
 										<button type='button' class='btn btn-primary' id='tel-btn'
 											style="height: 48px">인증번호 받기</button>
 
-									</div>
+									</div> -->
 									<div id="sms-tag"></div>
 								</div>
 								<div class="form-group">
@@ -228,7 +217,8 @@
 										readonly>
 								</div>
 								<div class="form-group">
-									<label>상세주소</label> <input type="text" name="location2"
+									<label>활동지역</label> 
+									<input type="text" name="location2"
 										class="form-control form-control-lg mian" id="location2"
 										value="${mb.location2}">
 								</div>
@@ -251,15 +241,23 @@
 									<div class="form-group">
 										<label>성별</label> <br> <input type="radio" name="gender"
 											id="gender" value="남"
-											<c:if test="${mb.gender eq '남'}" >checked="checked"</c:if>>남
+											<c:if test="${mb.gender eq '남'}" >checked="checked"</c:if> checked>남
 
 										<input type="radio" name="gender" value="여" id="gender"
 											<c:if test="${mb.gender eq '여'}" >checked="checked"</c:if>>여
 									</div>
 									<div class="form-group">
-										<label>생년월일</label> <input type="text" id="birth" name="birth"
+										<label>연령대</label> 
+										<c:if test="${mb.birth eq null}">
+										<input type="text" id="birth" name="birth"
+											class="form-control form-control-lg birth"
+											value="${kage}">
+											</c:if>
+											<c:if test="${mb.birth ne null}">
+										<input type="text" id="birth" name="birth"
 											class="form-control form-control-lg birth"
 											value="${mb.birth}" required="required">
+											</c:if>
 									</div>
 									<div class="form-group">
 										<label>포지션</label><br> <select id="inputState pos"
@@ -277,7 +275,7 @@
 									<div class="form-group">
 										<label>실력</label> <br> <input type="radio" name="lv"
 											id="lv" value="1"
-											<c:if test="${mb.lv eq '1'}" >checked="checked"</c:if>>상
+											<c:if test="${mb.lv eq '1'}" >checked="checked"</c:if> checked>상
 										<input type="radio" name="lv" value="2"
 											<c:if test="${mb.lv eq '2'}" >checked="checked"</c:if>>중상
 										<input type="radio" name="lv" value="3"
@@ -290,7 +288,7 @@
 									<div class="form-group helper">
 										<label>용병</label><br> <input type="radio" name="author2"
 											value="Y"
-											<c:if test="${mb.author2 eq 'Y'}" >checked="checked"</c:if>>신청
+											<c:if test="${mb.author2 eq 'Y'}" >checked="checked"</c:if> checked>신청
 										<input type="radio" name="author2" value="N"
 											<c:if test="${mb.author2 eq 'N'}" >checked="checked"</c:if>>안
 										함
@@ -308,15 +306,15 @@
 										<input type="submit" class="btn btn-primary" id='btn1'
 											style="height: 48px" value="프로필 변경">
 									</c:if>
-									<input type="submit" class="btn btn-primary" id='uf'
-										style="height: 48px" value="이미지 변경">
+									
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<button class="btn btn-primary btn-circle" id="to-top"
+			</div>
+			<button type="button" class="btn btn-primary btn-circle" id="to-top"
 				style="visibility: visible; opacity: 0.5;">
 				<!-- 위로가기버튼 -->
 				<i class="fa fa-angle-up"></i>

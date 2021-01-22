@@ -143,12 +143,16 @@ delMsg();
 												<td><a class="Msg" data-toggle="modal"
 													data-target="#MsgModal" data-num="${msg.m_no}">${msg.m_title}</a></td>
 												<td>${msg.to_id}</td>
-												<td style="text-align: center;">${msg.m_check} ${msg.o_date}<c:if
-														test="${msg.m_check eq 'N'}">
-														<input type="button" class="btn btn-primary float-right delMsg" data-nom="${msg.m_no}"
-															value="취소하기">
-													</c:if>
+												<td style="text-align: center;">${msg.m_check}
+												
+												<c:if test="${msg.m_check eq 'N'}">
+												<input type="button" class="btn btn-primary float-right delMsg" data-nom="${msg.m_no}"
+												value="취소하기">
+												</c:if>
 												</td>
+												<c:if test="${msg.o_date ne null}">
+												<td>${msg.o_date}</td>	
+												</c:if>
 											</tr>
 										</c:forEach>
 									</tbody>

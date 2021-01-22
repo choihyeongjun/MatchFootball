@@ -83,7 +83,7 @@ function comma(str) {
 								</div>
 								<br>
 								<div class="list-group no-border list-unstyled">
-									<input type="hidden" id="hiddenId" value="${sessionScope.id}">
+									<input type="hidden" id="hiddenId" value="${sessionScope.id}" read only>
 									<input class="list-group-item active" href="#" id="myPoint"><br>
 									<a href="${pageContext.request.contextPath}/mypage/profile" class="list-group-item profile">
 										<i class="far fa-id-card"></i> 내 프로필
