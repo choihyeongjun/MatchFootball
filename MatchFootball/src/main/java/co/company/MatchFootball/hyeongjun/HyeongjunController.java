@@ -125,17 +125,18 @@ public class HyeongjunController {
 
 	@ResponseBody
 	@RequestMapping("/fielddetailinsert")
-	public List<RfieldVO> fielddetailinsert(RfieldVO vo, Model model,MembersVO vo1,HttpSession session,PointVO vo2,HttpServletRequest request) {
-		
+	public List<RfieldVO> fielddetailinsert(RfieldVO vo, Model model, MembersVO vo1, HttpSession session, PointVO vo2,
+			HttpServletRequest request) {
+
 		vo2.setP_con(vo.getType());
 		vo2.setP_id(vo.getId());
-		vo2.setNpoint("-"+vo.getPrice());
+		vo2.setNpoint("-" + vo.getPrice());
 		System.out.println(vo2);
-	//	hyeongjunMapper.pointinsert(vo2);
+		hyeongjunMapper.pointinsert(vo2);
 		vo.setM_no("1");
-		vo1.setId(vo.getId());		
-		vo1.setPoint((String)session.getAttribute("price"));
-		//hyeongjunMapper.mpointupdate(vo1);
+		vo1.setId(vo.getId());
+		vo1.setPoint(vo.getPrice());
+		hyeongjunMapper.mpointupdate(vo1);
 		return hyeongjunMapper.fielddetailinsert(vo);
 	}
 
@@ -190,7 +191,9 @@ public class HyeongjunController {
 	}
 
 	@RequestMapping("/fieldlist/fielddetail/{f_id}")
-	public String fieldselect(@PathVariable String f_id, Model model, RfieldVO vo, HttpSession session) {
+	public String fieldselect(@PathVariable String f_id, Model model, RfieldVO vo, HttpSession session,MembersVO vo1) {
+		vo1.setId((String)session.getAttribute("id"));
+		model.addAttribute("author",hyeongjunMapper.memauthor(vo1));
 		session.setAttribute("field", f_id);
 		System.out.println(hyeongjunMapper.fieldprice(f_id));
 		model.addAttribute("price", hyeongjunMapper.fieldprice(f_id));
@@ -201,7 +204,7 @@ public class HyeongjunController {
 
 	@ResponseBody
 	@RequestMapping("/fieldselect")
-	public List<RfieldVO> fielddetail(RfieldVO vo) {
+	public List<RfieldVO> fielddetail(RfieldVO vo,Model model,HttpSession session) {
 		return hyeongjunMapper.fieldselect(vo);
 	}
 
@@ -245,25 +248,26 @@ public class HyeongjunController {
 
 	@RequestMapping("/free")
 	public String freeboard(Model model, FboardVO vo, HttpSession session, HttpServletRequest request) {
-		if (session.getAttribute("id") != null) {
-			vo.setId((String) session.getAttribute("id"));
+		if(session.getAttribute("id")!=null) {
+			vo.setId((String)session.getAttribute("id"));
 		}
-		else {
-		if (request.getParameter("first").equals("1")) {
-			model.addAttribute("list", hyeongjunMapper.fboardlist1());
-			return "hyeongjun/freeboard";
-		} else if (request.getParameter("first").equals("2")) {
-			model.addAttribute("list", hyeongjunMapper.fboardlist2());
-			return "hyeongjun/freeboard";
-		} 
-		model.addAttribute("list", hyeongjunMapper.fboardlist());
-			return "hyeongjun/freeboard";
-			
-		}
-		model.addAttribute("list", hyeongjunMapper.fboardlist());
-		return "hyeongjun/freeboard";
 
-	
+		if (request.getParameter("first") != null) {
+			if (request.getParameter("first").equals("1")) {
+				model.addAttribute("list", hyeongjunMapper.fboardlist1(vo));
+				return "hyeongjun/freeboard";
+			} else if (request.getParameter("first").equals("2")) {
+				model.addAttribute("list", hyeongjunMapper.fboardlist2(vo));
+				return "hyeongjun/freeboard";
+			} else {
+				model.addAttribute("list", hyeongjunMapper.fboardlist(vo));
+				return "hyeongjun/freeboard";
+			}
+		} else {
+			model.addAttribute("list", hyeongjunMapper.fboardlist(vo));
+			return "hyeongjun/freeboard";
+		}
+
 	}
 
 	@ResponseBody

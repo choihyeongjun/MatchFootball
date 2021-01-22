@@ -25,7 +25,7 @@ public interface DoeunMapper {
 	public MessageVO viewMsg(MessageVO msg); // 받은 메세지 확인
 	public void delMsg(MessageVO msg);//메세지 삭제
 	public List<P_matchVO> AppPmatList(P_matchVO pmat);//개인 매치 신청 조회
-	public List<P_matchVO> p_matchedList(P_matchVO pmat); // 개인매치이력 조회
+	public List<Map<String, Object>> p_matchedList(P_matchVO pmat); // 개인매치이력 조회
 	public int getPmatCnt(P_matchVO pmat);                                                                             
 	public List<Map<String, Object>> AppTmatList(TeammatchVO tmat); //팀매치 신청 조회
 	public int getTmatCnt(TeammatchVO tmat);
@@ -39,6 +39,6 @@ public interface DoeunMapper {
 	public List<FboardVO> myWriteList(FboardVO fboard);//내가 쓴 글 조회
 	public int cntMyWrite(FboardVO fboard);// 내가 쓴 게시글 페이징
 	public int delMywrite(FboardVO fboard); // 내가 쓴 게시글 삭제
-	
+	public List<MembersVO> findId(MembersVO mem);
 
 }

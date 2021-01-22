@@ -110,6 +110,11 @@ footer {
     display: flex;
 }
 </style>
+
+<script>
+
+</script>
+
 </head>
 <body>
 <!-- 4 - contained in center example -->
@@ -176,7 +181,7 @@ footer {
       </form>
       <br>
       <div style="padding-left: 1407px;">
-      <div style="float: left; margin-left: 10px">
+      <div style="float: left">
          <c:if test="${updateButton.t_author eq '팀장' }">
             <form action="teamNoticeUpdate">
                <input type="text" value="${teamInfo.t_num }" name="t_num" style="display: none"> <input type="text" value="${teamNoticeInfo.n_no }" name="n_no" style="display: none">
@@ -192,41 +197,44 @@ footer {
             </form>
          </c:if>
       </div>
-      <div style="float: left">
+      <div style="float: left; padding-right: 10px">
          <input type="button" class="btn btn-primary" value="목록" onclick="location.href='teamNotice?t_num=${teamInfo.t_num}'">
       </div>
       </div>
    </div>
    <br>
+   <br>
    <hr>
    <!-- 댓글 -->
    <form method="post">
-   <div class="mb-3" style="padding-left: 311px">
-   <input type="text" value="${teamNoticeInfo.n_no }" name="n_no" style="display: none">
-   <input type="text" value="${sessionScope.t_num }" name="t_num" style="display: none">
-   <input type="text" value="${sessionScope.id }" name="id" style="display: none">
-   <div style="float:left; width: 1095px;">
-    <input type="text" class="form-control" name="comm" id="reg_id" placeholder="댓글">
-    </div>
-    <button type="submit" class="btn btn-primary" onclick="javascript: form.action='${pageContext.request.contextPath}/writerInsert'" style="margin-left:10px">댓글</button>
-   </div>
+	   <div class="mb-3" style="padding-left: 311px">
+			<input type="text" value="${teamNoticeInfo.n_no }" name="n_no" style="display: none">
+	   		<input type="text" value="${sessionScope.t_num }" name="t_num" style="display: none">
+	   		<input type="text" value="${sessionScope.id }" name="id" style="display: none">
+	   	<div style="float:left; width: 1000px;">
+	    	<input type="text" class="form-control" name="comm" id="reg_id" placeholder="댓글을 입력하세요.">
+	   	</div>
+	    	<button type="submit" class="btn btn-primary" 
+	    	 onclick="javascript: form.action='${pageContext.request.contextPath}/writerInsert'" style="margin-left:10px">댓글작성</button>
+	   </div>
     </form>
-	<div class="progress-table" align="center" style="margin-left: 315px; padding-bottom:44px; width: 70%">
+    
+	<div class="progress-table" align="center" style="margin-left: 315px; padding-bottom:44px; width: 70%; height: 1000px">
 			<div class="aa">
 			<c:forEach items="${writer }" var="writer">
 					<div class="table-row">
 					<div class="serial" style="margin-right: 315px;">${writer.comm}</div>
-						<div class="serial">${writer.id}</div>
-						<div class="visit">${writer.w_date}</div>
+						<div class="serial" style="width: 100px">${writer.id}</div>
+						<div class="visit" style="width: 100px">${writer.w_date}</div>
 					    <form method="post">
 						<input type="text" value="${teamNoticeInfo.n_no }" name="n_no" style="display: none">
 					    <input type="text" value="${sessionScope.t_num }" name="t_num" style="display: none">
 					    <input type="text" value="${sessionScope.id }" name="id" style="display: none">
 						<input type="text" value="${writer.seq_info }" name="seq_info" style="display: none">
 						<c:if test="${sessionScope.id eq writer.id }">
-						<button type="submit" class="btn btn-primary" onclick="javascript: form.action='${pageContext.request.contextPath}/writerDelete'" style="margin-right: 192px;">삭</button>
+						<button type="submit" class="btn btn-danger" onclick="javascript: form.action='${pageContext.request.contextPath}/writerDelete'" 
+						style="margin-right: -60px; width: 60px;">삭제</button>
 						</c:if>
-						<button type="button" class="btn btn-primary" style="margin-right: 192px; background-color: #ffffff; border-color: #ffffff; ">삭</button>
 						</form>
 					</div>
 			</c:forEach>

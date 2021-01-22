@@ -139,24 +139,45 @@
 	
 	$(function() {
 		$(".noClick").on('click', function() {
+
+			// 아래부분 스타일 변경.
+			$('.noClickdown').removeClass('clickdown');
+			var t = 2;
+			for(i=0; i<link[t].length; i++){
+				$(this).parent().find(".line_sty"+link[t][i]).removeClass('on')
+			}
+			
 			$(this).toggleClass('click')
 			var s =parseInt( $(this).data('id'))
 			for(i=0; i<link[s].length; i++){
 				$(this).parent().find(".line_sty"+link[s][i]).toggleClass('on')
 			}
-			$.ajax({
-				
-			})
+			var v = $(this).find('p').html();
+			$('div[data-seq="9"]').find('p').html(v);
 			
 		});
 
 		$(".noClickdown").on('click', function() {
+			
+			$('.noClick').removeClass('click');
+
+			var t = 1;
+			for(i=0; i<link[t].length; i++){
+				$(this).parent().find(".line_sty"+link[t][i]).removeClass('on')
+			}
+			
 			$(this).toggleClass('clickdown')
 			var s =parseInt( $(this).data('id'))
 			for(i=0; i<link[s].length; i++){
 				$(this).parent().find(".line_sty"+link[s][i]).toggleClass('on')
 			}
+
+			var v = $(this).find('p').html();
+			$('div[data-seq="9"]').find('p').html(v);
+
 		});
+
+
 		
 		$(".noClick2").on('click', function() {
 			$(this).toggleClass('click2')

@@ -20,6 +20,7 @@ import co.company.MatchFootball.vo.FieldVO;
 import co.company.MatchFootball.vo.FwboardVO;
 import co.company.MatchFootball.vo.ManagerapplyVO;
 import co.company.MatchFootball.vo.MembersVO;
+import co.company.MatchFootball.vo.NboardVO;
 import co.company.MatchFootball.vo.NoticeVO;
 import co.company.MatchFootball.vo.P_matchVO;
 import co.company.MatchFootball.vo.ReviewVO;
@@ -32,7 +33,6 @@ public class AdminController {
 	SeemooMapper seemoomapper;
 	HyendongMapper hyendongmapper;
 //	=======================================================================================================================
-	
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)		// 관리자 메인페이지
 	public String admin(Model model) {
 		model.addAttribute("members", seemoomapper.memberList());
@@ -194,9 +194,6 @@ public class AdminController {
 		 return vo;
 	}
 	
-//	============================================================================================================================
-
-
 
 //	====================================================공지사항======================================================
 
@@ -218,13 +215,19 @@ public class AdminController {
 		return seemoomapper.noticeselect(vo);	
 	}
 	
-	/*
-	 * @ResponseBody
-	 * 
-	 * @RequestMapping(value = "/noticeupdate/{n_no}", method = RequestMethod.GET)
-	 * // (수정) public NoticeVO noticeupdate(NoticeVO vo) {
-	 * seemoomapper.noticeupdate(vo); return vo; }
-	 */
+	 @ResponseBody
+	 @RequestMapping(value = "/noticeupdate")
+	 public int noticeupdate(NoticeVO vo) {
+		 return seemoomapper.noticeupdate(vo); 
+	 }
+	
+//		@ResponseBody
+//		@RequestMapping(value = "/userupdate", method = RequestMethod.GET) 		// 유저권한수정
+//		public int usersupdate(MembersVO vo) {
+//			return seemoomapper.membersupdate(vo);
+//			 
+//		}
+//	 
 	
 	@ResponseBody
 	@RequestMapping(value = "/noticeinsert", method = RequestMethod.POST) //공지사항 입력
@@ -248,11 +251,36 @@ public class AdminController {
 		return "a/seemoo/notice";
 	}
 	
-	@RequestMapping("/noticeView") //공지사항 뷰페이지(메인페이지)
-	public String noticeView(NoticeVO vo, Model model) {
+	@RequestMapping(value = "/noticeView") //공지사항 뷰페이지(메인페이지)
+	public String noticeView(NoticeVO vo, NboardVO nvo, Model model) {
 		model.addAttribute("noticeView", seemoomapper.noticeselect(vo));
+		model.addAttribute("nboardselect", seemoomapper.nboardselect(nvo));
 		return "a/seemoo/noticeView";
 	}
+	
+//	@RequestMapping(value = "/noticeselect/{n_no}", method = RequestMethod.GET) //(단건조회)
+//	@ResponseBody
+//	public NoticeVO noticeselect(@PathVariable String n_no, NoticeVO vo, NboardVO nvo, Model model) {
+//		vo.setN_no(n_no);
+//		model.addAttribute("nboardselect", seemoomapper.nboardselect(nvo));
+//		return seemoomapper.noticeselect(vo);	
+//	}
+	
+//  -------------------------------------------------------------------------------------------------------------
+	
+	// 공지 댓글 등록 처리
+		@RequestMapping("/nboardinsert")
+		public String nboardinsert(NboardVO vo) {
+			seemoomapper.nboardinsert(vo);   
+			return "redirect:/noticeView?n_no=" + vo.getN_no() ; 
+		}
+		
+	// 공지 댓글 등록 처리
+		@RequestMapping("/nboarddelete")
+		public String nboarddelete(NboardVO vo) {
+			seemoomapper.nboarddelete(vo);
+			return "redirect:/noticeView?n_no=" + vo.getN_no() ; 
+		}
 	
 //	====================================================리뷰======================================================
 

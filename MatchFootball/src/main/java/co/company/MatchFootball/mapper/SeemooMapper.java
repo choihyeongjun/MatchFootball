@@ -7,6 +7,7 @@ import co.company.MatchFootball.vo.FieldVO;
 import co.company.MatchFootball.vo.FwboardVO;
 import co.company.MatchFootball.vo.ManagerapplyVO;
 import co.company.MatchFootball.vo.MembersVO;
+import co.company.MatchFootball.vo.NboardVO;
 import co.company.MatchFootball.vo.NoticeVO;
 import co.company.MatchFootball.vo.P_matchVO;
 import co.company.MatchFootball.vo.ReviewVO;
@@ -53,13 +54,18 @@ public interface SeemooMapper {
 	public NoticeVO noticeselect(NoticeVO vo);				// 공지사항단건조회
 	public int noticeinsert(NoticeVO vo);					// 공지사항입력
 	public int noticedelete(NoticeVO vo); 					// 공지사항삭제
-	//public int noticeupdate(NoticeVO vo);					// 공지사항수정
+	public int noticeupdate(NoticeVO vo);					// 공지사항수정
 	public List<NoticeVO> noticeselect(); 
 
 // ============================================================================================
 	
 	public List<ReviewVO> reviewList();	// 리뷰조회
 	public List<ReviewVO> review();
+	
+	public int nboardinsert(NboardVO vo); 			 	// 댓글 등록
+	public List<NboardVO> nboardselect(NboardVO nvo);	// 댓글 조회
+	public int nboarddelete(NboardVO vo);				// 댓글 삭제
+
 	
 // ============================================================================================
 

@@ -13,7 +13,7 @@
 	overflow: auto;
 }
 #main_contents {
-    margin: 0 0 70px 0;
+    margin: -36px  0 70px 0;
     min-height: 500px;
     font-size: 1.05em;
 }
@@ -75,7 +75,7 @@
 			<li><a
 				href="tournamentInfo?t_no=${tournamentList.t_no }"
 				data-fade="fade" style="text-decoration:none">
-					<div class="wrap">
+					<div class="wrap" style="width: 300px">
 						<div class="tournament_img">
 							<img
 								src="${pageContext.request.contextPath}/images/${tournamentList.img }"

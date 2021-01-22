@@ -62,14 +62,36 @@
 								<td><input type="hidden" name="match_date" type="text" style="width: 100%"></td>
 							</tr>
 							<tr>
-								<td style="width: 20%">매너별점</td>
+								<td style="width: 20%">매너점수</td>
 								<td> : </td>
 								<td><input type="hidden" name="score" type="text" style="width: 100%"></td>
 							</tr>
 						</tbody>
 					</table>
 				</div>
-
+				<hr>
+				<table class="" style="width: 100%; margin-left: 70px;">
+					<tr>
+						<td align="center">이름</td>
+						<td> : </td>
+						<td style="width: 200px">
+							<input type="hidden" name="score" type="text" > 김땡땡
+						</td>
+						<td style="padding-top: 10px">
+							<span class="star-input">
+							  <span class="input">
+							    <input type="radio" name="star-input" id="p1" value="1"><label for="p1">1</label>
+							    <input type="radio" name="star-input" id="p2" value="2"><label for="p2">2</label>
+							    <input type="radio" name="star-input" id="p3" value="3"><label for="p3">3</label>
+							    <input type="radio" name="star-input" id="p4" value="4"><label for="p4">4</label>
+							    <input type="radio" name="star-input" id="p5" value="5"><label for="p5">5</label>
+							  </span>
+							  <output for="star-input"><b>${vo.star}</b>점</output>
+							</span>
+						</td>
+					</tr>
+				</table>
+			  	<br>
 				<div align="center">
 					<textarea id="summernote" name="n_comm"></textarea><br> 
 						<input type="button" class="btn btn-primary" value="등록" id="btnInsert" /> 

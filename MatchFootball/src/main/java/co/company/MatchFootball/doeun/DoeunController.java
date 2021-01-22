@@ -215,6 +215,8 @@ public class DoeunController {
 	@RequestMapping(value = "message") // 발송메세지 폼
 	public String msg(MembersVO mem, MessageVO msg, Model model, HttpSession session) {
 		msg.setSend_id((String)session.getAttribute("id"));
+		mem.setId((String)session.getAttribute("id"));
+		model.addAttribute("ID", dao.findId(mem));
 		return "doeun/sendmsg";
 	}
 
@@ -277,12 +279,19 @@ public class DoeunController {
 	}
 
 	@RequestMapping(value = "mypage/matched") // 경기참가 이력
-	public String AppTmatList(P_matchVO pmc, Model model, HttpSession session, Paging paging) {
-//		List<Map<String,Object>> map = new ArrayList<Map<String, Object>>();
-//		model.addAttribute("p_mat", dao.p_matchedList(pmc));
-//		map.put("tmat", dao.AppTmatList(tmat));
-		
-		return "doeun/review";
+	public String PmatchedList(P_matchVO pmc, Model model, HttpSession session, Paging paging) {
+		pmc.setP_id((String) session.getAttribute("id"));
+		List<Map<String, Object>> list = dao.p_matchedList(pmc);
+
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		map.put("id", pmc.getId());
+		System.out.println(map);
+		list.add(map);
+		model.addAttribute("pmc", list);
+//		map.put("tmat", dao.AppTmatList(tmat));????
+
+		return "doeun/pmatchedList";
 	}
 	@RequestMapping(value = "mypage/usedPoint") // 포인트 사용내역
 	public String pointed(MembersVO mem, PointVO po, Model model, HttpSession session, Paging paging) {

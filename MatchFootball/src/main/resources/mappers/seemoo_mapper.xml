@@ -101,17 +101,17 @@
 	<!-- 등록 -->
 	<insert id="noticeinsert" parameterType="NoticeVO">
 		<selectKey order="BEFORE" keyProperty="n_no" resultType="string">
-			SELECT MAX(N_NO)+1
+			SELECT NVL(MAX(N_NO),0)+1
 			FROM NOTICE
 		</selectKey>
 		INSERT INTO NOTICE(N_NO, ID, N_TITLE, N_DATE, N_COMM) 
-		VALUES(#{n_no}, 'pueen0616', #{n_title}, SYSDATE, #{n_comm})
+		VALUES(#{n_no}, 'ad1', #{n_title}, SYSDATE, #{n_comm})
 	</insert>
 	
 	<!-- 수정 -->
-	<!-- <select id="noticeupdate" resultType="NoriceVO" parameterType="NoticeVO">
+	<select id="noticeupdate" resultType="int" parameterType="NoticeVO">
 		UPDATE NOTICE SET N_TITLE = #{n_title}, N_COMM = #{n_comm} WHERE N_NO = #{n_no}
-	</select> -->
+	</select>
 	
 	<!-- 삭제 -->
 	<select id="noticedelete" resultType="NoticeVO">
@@ -131,6 +131,26 @@
 	<select id="rcommList" resultType="FwboardVO">
 		SELECT * FROM FBOARD
 	</select>	
+	
+	<!-- 공지 댓글 등록 -->
+	<insert id="nboardinsert" parameterType="NboardVO">
+		<selectKey order="BEFORE" keyProperty="n_seq" resultType="string">
+			SELECT NVL(MAX(n_seq),0)+1 FROM nboard
+		</selectKey>
+		insert into nboard values( #{n_seq}, #{n_no}, #{n_comm}, sysdate, #{id} )
+	</insert>
+	
+	<!-- 공지 댓글 조회 -->
+	<select id="nboardselect" resultType="NboardVO">
+		select * from nboard where n_no = #{n_no} order by 1 desc
+	</select>
+	
+	<!-- 공지 댓글 삭제 -->
+	<delete id="nboarddelete">
+		delete from nboard where n_seq = #{n_seq}
+	</delete>
+
+<!-- 댓글=================================================================================================  -->
 		
 	<!-- 매치확인 -->
 	<select id="matchList" resultType="P_matchVO">
@@ -151,5 +171,7 @@
 	<select id="fielddelete" resultType="FieldVO">
 		DELETE FROM FIELD WHERE F_ID = #{f_id} 
 	</select>
+<!-- 댓글=================================================================================================  -->
+	
 		
 </mapper>
