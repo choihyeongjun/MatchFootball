@@ -220,8 +220,8 @@
 	</insert>
 
 	<!-- 개인 경기 이력 조회 -->
-	 <select id="p_matchedList" parameterType="P_matchVO" resultType="P_matchVO"> 
-		select m.*, p.id, p.manner from preview p join p_match m on p.m_no = m.m_no where p.id = #{p_id};
+	 <select id="p_matchedList" parameterType="P_matchVO" resultType="map"> 
+		select m.*, p.id, p.manner from preview p join p_match m on p.m_no = m.m_no where p.id = #{p_id}
 		</select> 
 		
 	<!-- 게시판 조회 -->

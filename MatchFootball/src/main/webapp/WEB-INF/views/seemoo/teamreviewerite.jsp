@@ -61,14 +61,32 @@
 								<td> : </td>
 								<td><input type="hidden" name="match_date" type="text" style="width: 100%"></td>
 							</tr>
-							<tr>
-								<td style="width: 20%">매너별점</td>
-								<td> : </td>
-								<td><input type="hidden" name="score" type="text" style="width: 100%"></td>
-							</tr>
 						</tbody>
 					</table>
 				</div>
+				<hr>
+				<table class="" style="width: 100%; margin-left: 13px; margin-bottom: 16px; ">
+					<tr>
+						<td style="width: 20%">팀매너점수</td>
+						<td> : </td>
+						<td>
+							<input type="hidden" name="score" type="text" style="width: 100%">
+						</td>
+						<td>
+							<span class="star-input">
+							  <span class="input">
+							    <input type="radio" name="star-input" id="p1" value="1"><label for="p1">1</label>
+							    <input type="radio" name="star-input" id="p2" value="2"><label for="p2">2</label>
+							    <input type="radio" name="star-input" id="p3" value="3"><label for="p3">3</label>
+							    <input type="radio" name="star-input" id="p4" value="4"><label for="p4">4</label>
+							    <input type="radio" name="star-input" id="p5" value="5"><label for="p5">5</label>
+							  </span>
+							  <output for="star-input"><b>${vo.star}</b>점</output>
+							</span>
+						</td>
+					</tr>
+				</table>
+
 
 				<div align="center">
 					<textarea id="summernote" name="n_comm"></textarea><br> 

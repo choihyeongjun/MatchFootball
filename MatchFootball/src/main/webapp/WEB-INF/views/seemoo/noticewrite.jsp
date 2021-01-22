@@ -30,6 +30,7 @@ function init() {
 	$('#btnInit').on('click',function(){
 		$('#form1').each(function(){
 			this.reset();
+			$('.note-editable').html("");
 		});
 	});
 }//init
@@ -58,26 +59,23 @@ function noticeDelete() {
 function noticeUpdate() {
 	//수정 버튼 클릭
 	$('#btnUpdate').on('click',function(){
-		var id = $('input:text[name="id"]').val();
-		var name = $('input:text[name="name"]').val();
-		var password = $('input:text[name="password"]').val();
-		var role = $('select[name="role"]').val();		
+		var form = $('#form1')[0];
 		$.ajax({ 
-		    url: "users", 
-		    type: 'PUT', 
+		    url: "${pageContext.request.contextPath}/noticeupdate", 
+		    type: 'POST', 
 		    dataType: 'json', 
-		    data: JSON.stringify({ id: id, name:name,password: password, role: role }),
+		    data: JSON.stringify({ n_no:n_no, n_title:n_title, n_comm:n_comm }),
 		    contentType: 'application/json',
 		    success: function(data) { 
-		        userList();
+		    	noticeList();
 		    },
 		    error:function(xhr, status, message) { 
 		        alert(" status: "+status+" er:"+message);
 		    }
 		});
 	});//수정 버튼 클릭
-}//userUpdate
- */
+}//userUpdate */
+
 //등록 요청
 function noticeInsert(){
 	//등록 버튼 클릭
@@ -203,7 +201,7 @@ var table;
 								<td><input name="n_title" type="text" style="width: 100%"></td>
 							</tr>
 							<tr>
-									</div> <input type="hidden" id="n_no" name="n_no"></td>
+								<td> <input type="hidden" id="n_no" name="n_no"></td>
 							</tr>
 						</tbody>
 					</table>
