@@ -58,7 +58,7 @@ function membersSelect() {
 
 //사용자 조회 응답
 function userSelectResult(user) {
-	$('#myPoint').val('내 포인트 : ' + user.point).comma(str);
+	$('#myPoint').val('내 포인트 : ' + comma(user.point));
 	
  console.log(user);
 }//userSelectResult
