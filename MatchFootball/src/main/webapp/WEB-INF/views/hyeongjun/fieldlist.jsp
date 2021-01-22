@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
 <!-- Css Styles --> 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/hyeongjun/css/bootstrap.min.css" type="text/css"> 
@@ -42,21 +43,42 @@ footer{
 		<div style="test-align:center;" >
 				<h2>경기장 리스트</h2>
 			</div>
-		<div class="map">
-			<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d49116.39176087041!2d-86.41867791216099!3d39.69977417971648!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x886ca48c841038a1%3A0x70cfba96bf847f0!2sPlainfield%2C%20IN%2C%20USA!5e0!3m2!1sen!2sbd!4v1586106673811!5m2!1sen!2sbd"
-				height="500" style="border: 0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
-			<div class="map-inside">
-				<i class="icon_pin"></i>
-				<div class="inside-widget">
-					<h4>New York</h4>
-					<ul>
-						<li>Phone: +12-345-6789</li>
-						<li>Add: 16 Creek Ave. Farmingdale, NY</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-		
+		<%-- <div id="map" style="width:1300px;height:400px;"></div>
+		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c53a2f38f2293a05c7f311d007c7d8f1&libraries=services"></script>
+		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c53a2f38f2293a05c7f311d007c7d8f1"></script>
+		<script>
+			var container=document.getElementById('map');
+			var options={
+				center:new kakao.maps.LatLng(35.87139213893614, 128.6018273197994),
+				level: 3
+			};
+			var map = new kakao.maps.Map(container, options);
+			// 주소-좌표 변환 객체를 생성합니다
+			var geocoder = new kakao.maps.services.Geocoder();
+			// 주소로 좌표를 검색합니다
+			geocoder.addressSearch('<%=store_add%>', function (result, status)
+					{
+				// 정상적으로 검색이 완료됐으면 
+				if (status === kakao.maps.services.Status.OK)
+				{
+					var coords = new kakao.maps.LatLng(result[0].y, result[0].x); 
+					// 결과값으로 받은 위치를 마커로 표시합니다 
+					var marker = new kakao.maps.Marker(
+							{ 
+								map: map, position: coords 
+								}); 
+					// 인포윈도우로 장소에 대한 설명을 표시합니다 
+					var infowindow = new kakao.maps.InfoWindow({ 
+						content: '<div style="width:150px;text-align:center;padding:6px 0;"><div style="font-weight: bold;"><%=store_name%></div>
+						<div>1등당첨횟수 : <%=win_cnt%></div></div>'
+						}); infowindow.open(map, marker); 
+						// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+						map.setCenter(coords); 
+						} 
+				});
+
+			
+		</script> --%>
 		<div class="filter__item">
 			<div class="row">
 				<div class="col-lg-4 col-md-5">
