@@ -14,6 +14,7 @@ var editType1 = $('#edit-type1');
 var editColor = $('#edit-color');
 var editDesc = $('#edit-desc');
 var editDesc1 = $('#edit-desc1');
+var mem=$('#edit-mem');
 var m_no=$('#m_no');
 
 var manager = $('#manager');
@@ -107,6 +108,7 @@ var editEvent1 = function (event, element, view) {
     modalTitle1.html('일정 수정');
     editTitle1.val(event.title);
 	m_no.val(event.m_no);
+	mem.val(event.min);
     editStart1.val(event.start.format('YYYY-MM-DD HH:mm'));
 	editEnd1.val(event.start.format('YYYY-MM-DD HH:mm'));
     editType1.val(event.type);
@@ -161,6 +163,7 @@ var editEvent2 = function (event, element, view) {
     modalTitle.html('일정 수정');
     editTitle1.val(event.title);
 	m_no.val(event.m_no);
+	mem.val(event.p_max);
     editStart1.val(event.start.format('YYYY-MM-DD HH:mm'));
 	editEnd1.val(event.start.format('YYYY-MM-DD HH:mm'));
     editType1.val(event.type);

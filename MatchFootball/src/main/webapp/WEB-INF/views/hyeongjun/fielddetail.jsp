@@ -41,8 +41,9 @@ $(function(){
             style="display: block; position: static; margin-bottom: 5px;">
             <li><a tabindex="-1" class="dd">개인축구</a></li>
             <li><a tabindex="-1" class="aa">개인풋살</a></li>
-            
+             <c:if test="${author eq '팀장'}">
             <li><a tabindex="-1" class="match1">팀매치</a></li>
+            </c:if>
             <c:if test="${id eq f_id}">
              <li><a tabindex="-1" class="match2">개인매치</a></li>
              </c:if>
@@ -238,6 +239,15 @@ $(function(){
                      </div>
                   </div>
                   </c:if>
+                  <c:if test="${id ne f_id}">
+                  <div class="row">
+                     <div class="col-xs-12">
+                        <label class="col-xs-4" for="edit-mem">최소인원수</label>
+                        <input
+                           class="inputModal" type="text" name="edit-mem" id="edit-mem" />
+                     </div>
+                  </div>
+                  </c:if>
                    <div class="row">
                      <div class="col-xs-12">
                         <label class="col-xs-4" for="edit-level">레벨</label>
@@ -298,6 +308,7 @@ $(function(){
 		</script>
 		 ${id}
       ${f_id}
+      ${author}
      <div id="result"></div>
       <div class="card mb-4">
          <div class="card-header">

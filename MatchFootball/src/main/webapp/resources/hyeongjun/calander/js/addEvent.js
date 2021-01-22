@@ -97,7 +97,7 @@ var newEvent = function (start, end, eventType) {
             url: "../../fielddetailinsert",
             data: {
 				f_id:f_id,
-				price:price.val(),
+				price:price1.val(),
 				starttime:editStart.val(),
 				endtime:editEnd.val(),
 				comm:editDesc.val(),
@@ -195,10 +195,11 @@ var newEvent1 = function (start, end, eventType) {
 				m_info:editDesc1.val(),
 				mtype:editType1.val(),
 				t_cap:frm.d_id.value,
+				min:mem.val(),
 				t_level:level.val(),
 				backgroundcolor:editColor1.val(),
 				title:editTitle1.val(),
-				price:price.val(),
+				price:price.val()/2,
 				id:manager1.val()
 				
             },

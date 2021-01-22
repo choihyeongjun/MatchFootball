@@ -29,6 +29,7 @@ body #form1 { width: 1000px; height: 600px; margin: auto; margin-top: 20px; }
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/seemoo/notice/summernote/css/summernote/summernote-lite.css">
 </head>
 <body>
+<div style="margin-bottom: 100px]">
      <form id="form1" class="form-horizontal" method="post">
 				<div align="center" id="mdiv">
 					<table class="table">
@@ -54,5 +55,45 @@ body #form1 { width: 1000px; height: 600px; margin: auto; margin-top: 20px; }
 						<button type="submit" onclick="javascript: form.action='${pageContext.request.contextPath}/notice'" class="btn btn-primary" id="btnInsert">목록으로</button> 
 				</div>
 			</form>
+		</div>
+		<br>
+		<br>
+		<div style="margin-top: 100px">
+		<!-- 댓글 -->
+		<c:if test="${sessionScope.id ne null }">
+		   <form method="post">
+			   <div class="mb-3" style="padding-left: 450px">
+					<input type="text" value="${noticeView.n_no }" name="n_no" style="display: none">
+			   		<input type="text" value="${sessionScope.id }" name="id" style="display:none">
+			   	<div style="float:left; width: 1000px;">
+			    	<input type="text" class="form-control" name="n_comm" placeholder="댓글을 입력하세요.">
+			   	</div>
+			    	<button type="submit" class="btn btn-primary" 
+			    	 onclick="javascript: form.action='${pageContext.request.contextPath}/nboardinsert'" style="margin-left:10px">댓글작성</button>
+			   </div>
+		    </form>
+	    </c:if>
+	    
+			<div class="progress-table" align="center" style="margin-left: 315px; padding-bottom:44px; width: 70%; height: 1000px">
+				<div class="aa">
+				<c:forEach items="${nboardselect}" var="nboardselect">
+						<div class="table-row">
+						<div class="serial" style="margin-right: 315px;">${nboardselect.n_comm}</div>
+							<div class="serial" style="width: 100px">${nboardselect.id}</div>
+							<div class="visit" style="width: 100px">${nboardselect.n_date}</div>
+						    <form method="post">
+							<input type="text" value="${noticeView.n_no }" name="n_no"  style="display: none">
+						    <input type="text" value="${sessionScope.id }" name="id"  style="display: none">
+							<input type="text" value="${nboardselect.n_seq }" name="n_seq"  style="display: none">
+						<c:if test="${sessionScope.id eq nboardselect.id }">
+							<button type="submit" class="btn btn-danger" onclick="javascript: form.action='${pageContext.request.contextPath}/nboarddelete'" 
+							style="margin-right: -60px; width: 60px;">삭제</button>
+						</c:if>
+							</form>
+						</div>
+				</c:forEach>
+				</div>
+			</div>
+		</div>	
 </body>
 </html>

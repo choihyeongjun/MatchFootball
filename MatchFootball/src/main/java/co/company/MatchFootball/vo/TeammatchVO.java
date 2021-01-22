@@ -23,6 +23,7 @@ public class TeammatchVO {
 	String m_type;//매치상태
 	String backgroundcolor;
 	String id;
+	String min;
 	String f;
 	String t_logo;
 	String so_num;
