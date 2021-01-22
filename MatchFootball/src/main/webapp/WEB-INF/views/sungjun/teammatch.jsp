@@ -303,7 +303,7 @@ function tdeta(url){
 								<div class="tlwn">
 									<div style="margin: 10px;">
 										<img alt="nope"
-											src="${pageContext.request.contextPath}/resources/img/${teammatch.t_logo}"
+											src="${pageContext.request.contextPath}/images/${teammatch.t_logo}"
 											style="width: 70px; height: 70px; border-radius: 50%; marging: 5px;">
 									</div>
 									<div class="m-im-t">
