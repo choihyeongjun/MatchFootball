@@ -3,6 +3,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="my"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -136,6 +137,16 @@ a {
 	color: white;
 	border-radius: 10px;
 }
+.btn.sff {
+	line-height: 32px;
+	font-size: 15px;
+	color: black;
+	text-decoration: none !important;
+	background-color: #3540A5;
+	color: white;
+	border-radius: 10px;
+}
+
 .btn.sf1 {
 	line-height: 32px;
 	font-size: 15px;
@@ -144,8 +155,9 @@ a {
 	background-color: #ea3e42;
 	color: white;
 	border-radius: 10px;
-	cursor: 
+	cursor:
 }
+
 #body1 {
 	border-radius: 20px;
 }
@@ -203,7 +215,19 @@ a {
 				}
 			});
 		});
-
+		//팀 매치 리뷰작성 
+		$(".sff").on("click", function() {
+			var m_no = $(this).data("pn");
+			modal = $("#teamreviewapl");
+			$.ajax({
+				url : "managermypageteamreview?m_no=" + m_no,
+				success : function(result) {
+					modal.find('#body20').html(result);
+					modal.modal('show');
+				}
+			});
+		});
+		//매치에 매니저 신청
 		$(".tma").on("click", function() {
 			var m_no = $(this).data("npp");
 			modal = $("#nomanager");
@@ -259,6 +283,7 @@ a {
 							style="color: #ffc645; padding-right: 10px;"></i>개인 매치 경기 일정
 					</h3>
 				</div>
+				<c:if test="${!empty p_match }">
 				<c:forEach var="p_match" items="${p_match }">
 					<div class="mamama">
 						<ul style="padding: 0px;">
@@ -273,9 +298,12 @@ a {
 									</a> <input type="hidden" value="${p_match.m_no }">
 								</div>
 								<div style="width: 20%">
-									<c:if test="${empty p_match.review }">
+									<c:if test="${empty p_match.review && p_match.m_date > sysdate }">
 										<a class="btn sf" data-toggle="modal" data-target="#pmreivew"
 											data-pn="${p_match.m_no }"> 리뷰 작성</a>
+									</c:if>
+									<c:if test="${p_match.m_date < sysdate }">
+									<b class="btn sf1">경기 시작 전</b>
 									</c:if>
 									<c:if test="${!empty p_match.review }">
 										<b class="btn sf1"> 작성 완료</b>
@@ -285,6 +313,10 @@ a {
 						</ul>
 					</div>
 				</c:forEach>
+				</c:if>
+				<c:if test="${empty p_match }">
+				<div style="margin: 30px">내역이 없습니다</div>
+				</c:if>
 			</div>
 			<!-- 개인매치 리뷰 모달창 -->
 			<div class="modal fade" id="pmreivew" tabindex="-1"
@@ -312,6 +344,7 @@ a {
 							style="color: #ffc645; padding-right: 10px;"></i>팀 매치 경기 일정
 					</h3>
 				</div>
+				<c:if test="${!empty t_match }">
 				<c:forEach var="t_match" items="${t_match }">
 					<div class="mamamaa">
 						<ul style="margin: 0;">
@@ -331,48 +364,75 @@ a {
 									<input type="hidden" name="so_name" value="${t_match.so_name }">
 								</div>
 								<div style="width: 20%">
-									<a class="btn sf"
-										style="align-items: center; margin-top: 20px;"> 리뷰 작성</a>
+									<c:if test="${empty t_match.review }">
+										<a class="btn sff" data-toggle="modal"
+											data-target="#teamreviewapl" data-pn="${t_match.m_no }"
+											style="align-items: center; margin-top: 20px;"> 리뷰 작성</a>
+									</c:if>
+									<c:if test="${!empty t_match.review }">
+										<b class="btn sf1"> 작성 완료</b>
+									</c:if>
+
 								</div>
 							</li>
 						</ul>
 					</div>
 				</c:forEach>
+				</c:if>
+				<c:if test="${empty t_match }">
+				<div style="margin: 30px">내역이 없습니다</div>
+				</c:if>
 			</div>
 			<!-- 팀매치 정보 모달창 -->
 			<div class="modal fade" id="tmatchdetail" tabindex="-1"
 				aria-labelledby="exampleModalLabel" aria-hidden="true">
 				<div class="modal-dialog modal-lg">
 					<div class="modal-content">
-						<div class="modal-body" id="body10">...</div>
+						<div class="modal-body" id="body10"></div>
+					</div>
+				</div>
+			</div>
+			<!-- 팀매치 리뷰 작성 모달찰 -->
+			<div class="modal fade" id="teamreviewapl" tabindex="-1"
+				aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content">
+						<div class="modal-body" id="body20"></div>
 					</div>
 				</div>
 			</div>
 
+
 			<!-- 입금 -->
 			<div class="allscedule">
 				<div class="allcha">
-					<h3>입금내역</h3>
+					<h3><i class="fas fa-coins" style="color: #ffc645; padding-right: 10px;"></i> 입금내역</h3>
 					<div class="scedulemore">
 						<a class="pointalll" data-toggle="modal"
 							data-target="#staticBackdrop" style="cursor: pointer;">전체 보기</a>
 					</div>
 				</div>
-				<c:forEach var="p_point" items="${p_point }">
-					<div class="maaa">
-						<ul>
-							<li>${p_point.p_date }${p_point.npoint }원입금</li>
-						</ul>
-					</div>
-				</c:forEach>
+				<c:if test="${!empty p_point }">
+					<c:forEach var="p_point" items="${p_point }">
+						<div class="maaa">
+							<ul>
+								<li>${p_point.p_date }${p_point.npoint }원입금</li>
+							</ul>
+						</div>
+					</c:forEach>
+				</c:if>
+				<c:if test="${empty p_point }">
+					<div style="margin: 30px">내역이 없습니다</div>
+				</c:if>
 			</div>
 			<div class="allscedule">
 				<div class="managermenu">
 					<ul>
-						<li><a class="allmatchlist"data-toggle="modal"
-							data-target="#allmatchlist11" data-al="${member.id}">
-						<i class="fas fa-futbol" style="padding-right: 10px; color: #ffc645;"></i>경기 내역 전체 보기</a>
-						</li>
+						<li><a class="allmatchlist" data-toggle="modal"
+							data-target="#allmatchlist11" data-al="${member.id}"> <i
+								class="fas fa-futbol"
+								style="padding-right: 10px; color: #ffc645;"></i>경기 내역 전체 보기
+						</a></li>
 						<li><a class="tma" data-toggle="modal"
 							data-target="#nomanager" data-npp="${teammatch.m_no}"><i
 								class="fas fa-ad" style="padding-right: 10px; color: #ffc645;"></i>매치
@@ -396,7 +456,7 @@ a {
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
-				<div class="modal-body" id="body12">all amas</div>
+				<div class="modal-body" id="body12"></div>
 			</div>
 		</div>
 	</div>
@@ -408,13 +468,18 @@ a {
 					<h1>전체 입금 내역</h1>
 				</div>
 				<hr>
-				<c:forEach var="p_pointall" items="${p_pointall }">
-					<div class="maaa" align="center">
-						<ul>
-							<li>${p_pointall.p_date }${p_pointall.npoint }원입금</li>
-						</ul>
-					</div>
-				</c:forEach>
+				<c:if test="${!empty p_pointall  }">
+					<c:forEach var="p_pointall" items="${p_pointall }">
+						<div class="maaa" align="center">
+							<ul>
+								<li>${p_pointall.p_date }${p_pointall.npoint }원입금</li>
+							</ul>
+						</div>
+					</c:forEach>
+				</c:if>
+				<c:if test="${empty p_pointall}">
+					<div style="text-align: center; margin: 30px ">내역이 없습니다</div>
+				</c:if>
 			</div>
 		</div>
 	</div>

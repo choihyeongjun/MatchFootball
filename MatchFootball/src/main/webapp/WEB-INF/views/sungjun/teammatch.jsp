@@ -339,6 +339,13 @@ function tdeta(url){
 							</a>
 						</li>
 				</c:forEach>
+				<c:if test="${day eq 0 }">
+					<div style="text-align:center; margin: 100px;">
+						<p style="font-size: 25px;">등록된 매치가 없습니다</p>
+						<p style="color:#999;">다른 날을 검색 해 주세요 </p>
+						
+					</div>
+				</c:if>
 			</ul>
 		</div>
 

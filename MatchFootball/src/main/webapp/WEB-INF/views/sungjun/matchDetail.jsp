@@ -167,8 +167,8 @@ bottom: 0;
 						<h4 style="font-weight: bold; margin: 30px;">진행방식</h4>
 					</div>
 					<div>
-						<a>5vs5</a> &nbsp;&nbsp; <a>남성매치</a>&nbsp;&nbsp; <a>Lv 1~2</a>&nbsp;&nbsp;
-						<a>풋살화</a>&nbsp;&nbsp; <a>max 15</a>
+						<b> ${p_match.m_type }</b> &nbsp;&nbsp; <b>매치 레벨 :  ${p_match.lv } LV</b>&nbsp;&nbsp; <b>총 인원 : ${p_match.p_max }명</b>&nbsp;&nbsp;
+						
 					</div>
 				</div>
 			</div>
@@ -255,7 +255,7 @@ bottom: 0;
 				<p>총 ${p_max }명 중 ${f }명 신청</p>
 			</div>
 		</c:if>
-		<c:if test="${p_match.sel eq '1'}">
+		<c:if test="${p_max > f && p_match.sel eq '1'}">
 			<p class="employ2">신청 완료</p>
 		</c:if>
 		<c:if test="${p_max <= f}">
