@@ -72,6 +72,10 @@
 		values(mno_seq.nextval, #{to_id},
 		#{send_id}, #{m_title}, #{m_con})
 	</insert>
+	<!-- 보낼 아이디 찾기 -->
+	<select id ="findId" parameterType="MembersVO" resultType="MembersVO">
+	 select id from members where id != #{id} 
+	</select>
 	<!-- 수신 메세지함 확인 -->
 	<select id="tomsgList" parameterType="MessageVO"
 		resultType="MessageVO">

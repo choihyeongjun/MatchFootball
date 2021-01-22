@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> 
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script>
 $(function() {
 	$("#findID").on("click", function(event) {
@@ -8,8 +8,14 @@ $(function() {
 })//end func
 </script>
 
+<c:if test ="${msg.to_id ne null }">
+<h1>MESSAGE</h1>
+</c:if>
+
 <div align="center">
-<h2 class="modal-title">${msg.to_id}에게 메시지</h2>
+<c:if test ="${msg.to_id eq null }">
+<h1>MESSAGE</h1>
+</c:if>
 					
 <form id="msgFrm" action="${pageContext.request.contextPath}/sendmsg" method="post">						
 	<table class="userInfoTable" align="center">
@@ -31,7 +37,15 @@ $(function() {
 			<td>
 				<label style="width: 70px">받는사람</label>
 				<input type ="text" name="to_id" value="${msg.to_id}" required="required">
-				<button type='button' id="findID" style="margin-left: 10px">id찾기</button>
+				<c:if test ="${msg.to_id eq null }">
+				<label>보낼 ID 찾기</label>
+				<select>
+				<c:forEach items="${ID}" var="id">
+				<option>${id.id}</option>
+				</c:forEach>
+				</select>
+				</c:if>
+			
 			</td>
 		</tr>
 		<tr>

@@ -167,7 +167,7 @@
 											style="height: 200px; width: 200px; border: none" />
 									</c:if>
 								</div>
-								<p style="color: red">이미지을 삭제하시려면 이미지를 클릭해주세요</p>
+							<!-- 	<p style="color: red">이미지을 삭제하시려면 이미지를 클릭해주세요</p> -->
 								<span class="glyphicon glyphicon-ok form-control-feedback"></span>
 							</div>
 							<div class="form-group">
