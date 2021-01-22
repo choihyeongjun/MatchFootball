@@ -160,7 +160,41 @@ body, html {
                                     name="login" class="login" value="fadmin" /> <label
                                     for="fadmin">구장관리자</label> <br>
                               </div>
-                              <form action="${pageContext.request.contextPath}/logincheck"
+                              <form action="${pageContext.request.contextPath}/fieldLogin"
+                                 method="post">
+                                 <div class="form-group">
+                                    <label>Username</label> <input type="text" name="f_id"
+                                       class="form-control">
+                                 </div>
+                                 <div class="form-group">
+                                    <label class="fw">Password</label> <input type="password"
+                                       name="pw" class="form-control">
+                                 </div>
+                                 <a href="forgot.html" class="pull-right">비밀번호 찾기</a>
+                                 <div class="form-group text-right"
+                                    style="text-align: center;">
+                                    <button class="btn btn-primary btn-block">로그인</button>
+                                    <td>${sessionScope.login}</td>
+                                 </div>
+                                 <br>
+                                 <div class="form-group text-center"
+                                    style="text-align: center;">
+                                    <span class="text-muted">구장 관계자는 여기서 </span> <a
+                                       href="${pageContext.request.contextPath}/fieldRegister" style="color: blue;">가입하기</a>
+                                 </div>
+                                 <br>
+                                 <div class="hr-sect">USER</div>
+                                 <br>
+                                 <div class="title-line" style="text-align: center;">
+                                    <a id="custom-login-btn"
+                                       href="https://kauth.kakao.com/oauth/authorize?client_id=7e3b7c35576002f01608bd949ca669da&redirect_uri=http://localhost/MatchFootball/kakaologin&response_type=code">
+                                       <img
+                                       src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg"
+                                       width="222" /></a>
+                                 </div>
+                              </form>
+                              
+                               <form action="${pageContext.request.contextPath}/logincheck"
                                  method="post">
                                  <div class="form-group">
                                     <label>Username</label> <input type="text" name="id"
@@ -397,7 +431,7 @@ body, html {
                            href="${pageContext.request.contextPath}/tournamentList">토너먼트</a></li>
                      </ul>
                   </div>
-                  <c:if test="${sessionScope.id eq 'admin' }">
+                  <c:if test="${sessionScope.id eq 'ad1' }">
                   <div class="col-md-3 col-sm-6">
                      <div>
                         <h3 style="color: red; font-size: 30px;">관리자</h3>

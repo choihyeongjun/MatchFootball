@@ -149,7 +149,7 @@ delMsg();
 												<td>${msg.o_date}</td>	
 												</c:if>
 												<c:if test="${msg.m_check eq 'N'}">
-												<td><input type="button" class="btn btn-primary float-right delMsg" data-nom="${msg.m_no}"
+												<td><input type="button" class="btn btn-primary float-center delMsg" data-nom="${msg.m_no}"
 												value="취소하기"></td>
 												</c:if>
 											</tr>

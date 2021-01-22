@@ -83,33 +83,31 @@
 
 								<div id="tr-template">
 									<div class="card">
-									<c:forEach items="${p_mat}" var="mat">
-									<c:if test="${mat. eq null }">
-									매칭 된 경기 이력이 없습니다.
-									</c:if>>
+									<c:forEach items="${pmc}" var="mat">
+									<c:if test="${mat.MANNER eq null }">
+									완료 된 경기 이력이 없습니다.
+									</c:if>
+									<c:if test="${mat.MANNER ne null }">
 										<div class="media mt-0">
 											<div class="media-left">
 												<img class="media-object rounded-circle" src="#" width="100"
 													height="100" alt="">
 											</div>
-										<input type="hidden" value="${mat.m_id}" name="m_id"><br>
+										<input type="hidden" value="${mat.ID}" name="p_id"><br>
 											<div class="media-body row" style="position: relative">
 												<div class="main-riw col-12 col-sm-6 col-md-8"
 													data-photo={{userPhoto}} data-hostphoto={{hostphoto}}>
 													
 													<p class="text-muted">
-														<i class="fas fa-map-marker-alt"> ${mat.f_address}</i>
+														<i class="fas fa-map-marker-alt"> ${mat.F_ADDRESS}</i>
 													</p>
-													<p class="text-muted" >경기일 : ${mat.m_date} </p>
-													
+													<p class="text-muted" >경기일 : ${mat.M_DATE} </p>
+													<div><label>매너 점수</label> ${mat.MANNER} </div>
 												</div>
-												<div class="riw-btn col-6 col-md-4" data-no={{no}}
-													data-grd={{grd}}>
-													 <a	class="btn btn-link riw-delete" href="#"
-														style="position: absolute; bottom: 0">삭제</a>
-												</div>
+												
 											</div>
 										</div>
+										</c:if>
 										</c:forEach>
 									</div>
 
@@ -129,5 +127,6 @@
 		<i class="fa fa-angle-up"></i>
 	</button>
 </body>
+
 
 </html>

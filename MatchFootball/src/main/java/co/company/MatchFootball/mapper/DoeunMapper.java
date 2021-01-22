@@ -25,7 +25,7 @@ public interface DoeunMapper {
 	public MessageVO viewMsg(MessageVO msg); // 받은 메세지 확인
 	public void delMsg(MessageVO msg);//메세지 삭제
 	public List<P_matchVO> AppPmatList(P_matchVO pmat);//개인 매치 신청 조회
-	public List<P_matchVO> p_matchedList(P_matchVO pmat); // 개인매치이력 조회
+	public List<Map<String, Object>> p_matchedList(P_matchVO pmat); // 개인매치이력 조회
 	public int getPmatCnt(P_matchVO pmat);                                                                             
 	public List<Map<String, Object>> AppTmatList(TeammatchVO tmat); //팀매치 신청 조회
 	public int getTmatCnt(TeammatchVO tmat);
