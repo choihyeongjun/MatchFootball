@@ -61,7 +61,7 @@ public class HyeongjunController {
 	@RequestMapping("/bollow")
 	public String bollow(Model model, TeammatchVO vo, HttpSession session) {
 		// model.addAttribute("list",hyeongjunMapper.getbollowlist());
-		vo.setId((String) session.getAttribute("id"));
+		vo.setT_cap((String) session.getAttribute("id"));
 		model.addAttribute("matchlist", hyeongjunMapper.selectmatch(vo));
 		return "hyeongjun/bollowlist";
 	}
@@ -91,7 +91,7 @@ public class HyeongjunController {
 	public String updateinvite1(InviteVO vo, HttpSession session, @PathVariable String c_id) {
 		vo.setR_id((String) session.getAttribute("id"));
 		vo.setC_id(c_id);
-		hyeongjunMapper.updateinvite(vo);
+	//	hyeongjunMapper.updateinvite(vo);
 		hyeongjunMapper.updateinvite1(vo);
 		return "redirect:/inviteselect";
 	}
