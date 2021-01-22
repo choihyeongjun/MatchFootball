@@ -7,6 +7,14 @@
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <style>
+footer {
+   position: fixed;
+   left: 0px;
+   bottom: 0px;
+   width: 100%;
+   background: grey;
+   color: white;
+}
 .contentWrapper {
 	max-width: 1024px;
 	margin: 0 auto;

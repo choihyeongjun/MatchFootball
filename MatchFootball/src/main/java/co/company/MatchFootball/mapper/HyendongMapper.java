@@ -91,4 +91,5 @@ public interface HyendongMapper {
 	public int writerDelete(WriterVO writerVO); //댓글 삭제
 	
 	public int fieldRegister(FieldmanagerVO fieldmanagerVO); //구장 관리자 회원가입
+	public FieldmanagerVO fieldLogin(FieldmanagerVO fieldmanagerVO); //구장 관리자 로그인
 }

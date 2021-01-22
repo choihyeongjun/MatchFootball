@@ -177,6 +177,7 @@
 
 		});
 
+
 		
 		$(".noClick2").on('click', function() {
 			$(this).toggleClass('click2')

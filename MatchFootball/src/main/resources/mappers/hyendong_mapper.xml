@@ -536,4 +536,9 @@
 	<insert id="fieldRegister">
 		insert into fieldmanager values(#{f_id}, #{pw}, #{name}, #{gender}, #{pnum}, 0, null)
 	</insert>
+	
+	<!-- 구장관리자 로그인 -->
+	<select id="fieldLogin" resultType="FieldmanagerVO">
+		select * from fieldmanager where f_id = #{f_id} and pw = #{pw} 
+	</select>
 </mapper>
