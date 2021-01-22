@@ -144,7 +144,7 @@
    update invite set check1='거절됨' where r_id=#{r_id} and c_id=#{c_id}
    </select>
    <select id="selectmatch" parameterType="teammatchVO" resultType="teammatchVO">
-   	select * from teammatch where id=#{id}
+   	select * from teammatch where t_cap=#{t_cap}
    </select>
  <select id="deleteinvite" >
    		delete from invite where ((TRUNC(SYSDATE+9/24,'MI')-to_date(s_date,'YYYY-MM-DD HH24:MI:SS'))*1440)>=100
