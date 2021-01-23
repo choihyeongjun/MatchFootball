@@ -31,6 +31,11 @@
 		DELETE FROM MEMBERS WHERE ID = #{id}
 	</select>
 	
+	<!-- 유저 신고조회 -->
+	<select id="stopmembersselect" resultType="MembersVO">
+		SELECT * FROM MEMBERS WHERE AUTHOR = 'stop'
+	</select>
+	
 <!-- 팀관리================================================================================================= -->
 
 	<!-- 팀조회 -->
@@ -53,6 +58,11 @@
 		select * from team where author = 'black'
 	</select>
 	
+	<!-- 블랙팀권한 수정 -->
+	<select id="blackteamupdate" parameterType="TeamVO" resultType="int">
+		update team set stop_date = null , author = 'team' where t_num = #{t_num}     
+	</select>
+	
 	<!-- 블랙팀 삭제 -->
 	<select id="teamsdelete" parameterType="TeamVO">
 		delete from team where t_num = #{t_num}
@@ -70,20 +80,24 @@
 		SELECT * FROM MEMBERS WHERE ID = #{id}
 	</select>
 	
-	<!-- 매니저 권한수정 -->
-	<select id="managerupdate" resultType="MembersVO" parameterType="MembersVO">
-		UPDATE MEMBERS SET AUTHOR = #{author} WHERE ID = #{id}
-		
+	<!-- 매니저권한 수정 -->
+	<select id="managerupdate" parameterType="MembersVO" resultType="int">
+		update members set stop_date = sysdate + 14, author = 'stop' where id = #{id}     
 	</select>
 	
 	<!-- 매니저 승인|대기조회 -->
 	<select id="managerapplyList" resultType="ManagerapplyVO">
-		SELECT A.AUTHOR, B.* FROM MEMBERS A JOIN MANAGERAPLY B ON A.ID=B.ID WHERE A.AUTHOR = 'wait' OR A.AUTHOR = 'stop'
+		SELECT A.AUTHOR, B.* FROM MEMBERS A JOIN MANAGERAPLY B ON A.ID=B.ID WHERE A.AUTHOR = 'wait'
 	</select>
 	
 	<!-- 매니저 권한 수정 -->
-	<select id="managerapplyupdate" parameterType="MembersVO" resultType="MembersVO">
+	<select id="managerapplyupdate" parameterType="MembersVO" resultType="int">
 		update members set author=#{author} where id=#{id}    
+	</select>
+	
+	<!-- 매니저 정지조회 -->
+	<select id="stopmanagerList" resultType="MembersVO">
+		SELECT * FROM MEMBERS WHERE AUTHOR = 'stop'
 	</select>
 	
 <!-- 공지사항=================================================================================================  -->

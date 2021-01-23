@@ -50,7 +50,8 @@
 		#{t_type},
 		#{t_info},
 		#{t_logo,jdbcType=VARCHAR},
-		#{t_hidden})
+		#{t_hidden}
+		)
 	</insert>
 	
 	<!-- 팀 리스트 추가 -->

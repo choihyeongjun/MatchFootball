@@ -15,8 +15,10 @@ footer { position: fixed; left: 0px; bottom: 0px; width: 100%; background: grey;
 <script>
 function teamInvite(){
     if (confirm("팀에 초대 하시겠습니까?") == true){    //확인
+    	document.inviteSuccess.submit();
+    	alert("초대 완료");
         }else{   //취소
-            return false;
+            return;
         }
  }
  function btnOK(){ alert('팀 초대 성공'); } 
@@ -62,7 +64,9 @@ function teamInvite(){
              <li class="nav-item">
                  <a class="nav-link" href="http://localhost/MatchFootball/teamList">팀 리스트</a>
              </li>
+             <c:if test="${sessionScope.t_num ne null }">
              <li class="nav-item"><a class="nav-link" href="teamMatchList">팀 매치 내역</a></li>
+             </c:if>
             </ul>
         </div>
     </div>
@@ -101,11 +105,11 @@ function teamInvite(){
                                  <td>${f.lv}</td>
                                  <td>${f.pos}</td>
                                  <c:if test="${updateButton.t_author eq '팀장'}">
-                                    <td><form action="inviteComeon" method="post" name="inviteComeon">
+                                    <td><form action="inviteComeon" method="post" name="inviteSuccess">
                                        <input type="text" value="${f.id  }" name="id" style="display:none"> 
                                        <input type="text" value="${sessionScope.t_num }" name="t_num" style="display:none">
                                        <input type="text" value="${tname.t_name }" name="c_tname" style="display:none">
-                                       <button type="submit" id="button" class="btn btn-primary" style="height: 31px" onclick="teamInvite()">팀초대</button>
+                                       <input type="submit" class="btn btn-primary" style="height: 31px" onclick="teamInvite()" value="팀초대">
                                        </form>
                                     </td>
                                  </c:if>

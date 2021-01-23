@@ -112,7 +112,7 @@ function managerListResult(data) {
 						<li class="breadcrumb-item">
 						<a href="${pageContext.request.contextPath}/admin/applymanager">매니저신청 | 승인대기</a>
 						<li class="breadcrumb-item active"></li>
-						<a href="${pageContext.request.contextPath}/manageremploy">매니저지원페이지</a></li>
+						<a href="${pageContext.request.contextPath}/admin/stopmanager">정지된 매니저리스트</a></li>
 						</li>
 					</ol>
 					
@@ -134,17 +134,16 @@ function managerListResult(data) {
 								<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 									<thead align="center">
 										<tr>
-											<th style="width: 80px;">ID</th>
+											<th>ID</th>
 											<th>Name</th>
 											<th style="width: 40px;">성별</th>
-											<th>연락처</th>
-											<th>E-mail</th>
 											<th>지역</th>
-											<th>권한</th>
+											<th>매너점수</th>
 											<th>포인트</th>
+											<th>용병권한</th>
+											<th style="width: 90px;">포인트</th>
 											<th style="width: 80px;"></th>
 											<th style="width: 80px;"></th>
-											
 										</tr>
 									</thead>
 									<tfoot align="center">

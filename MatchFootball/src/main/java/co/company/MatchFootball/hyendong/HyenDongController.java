@@ -83,6 +83,10 @@ public class HyenDongController {
 		String id = (String) session.getAttribute("id"); // 세션 id 들고와서
 		membersVO.setId(id); // 아이디 vo에 담고
 		model.addAttribute("member", hyendongMapper.memberSelect(membersVO)); // 전체멤버 조회하는거 member 객체 생성
+
+		if(teamVO.getT_hidden() == null) {
+			teamVO.setT_hidden("N");
+		}
 		hyendongMapper.teamInsert(teamVO); // 팀 생성 처리하면 팀vo에 팀 정보 담음
 		membersVO.setT_num(teamVO.getT_num()); // 팀 번호를 멤버vo의 팀 num에 넣음
 		hyendongMapper.tNumUpdate(membersVO); // 팀 번호 변경 처리하고 멤버vo에 담음
@@ -90,6 +94,7 @@ public class HyenDongController {
 		teamlistVO.setT_num(teamVO.getT_num());
 		teamlistVO.setT_author("팀장");
 		hyendongMapper.teamListInsert(teamlistVO); // 팀 만든 사람 정보 팀 리스트에 추가
+		session.setAttribute("t_num", membersVO.getT_num());
 		return "redirect:/teamInfo?t_num=" + teamVO.getT_num();
 	}
 
@@ -176,6 +181,9 @@ public class HyenDongController {
 				e.printStackTrace();
 			}
 			teamVO.setT_logo(multipartFile.getOriginalFilename());
+		}
+		if(teamVO.getT_hidden() == null) {
+			teamVO.setT_hidden("N");
 		}
 		hyendongMapper.teamUpdate(teamVO);
 		return "redirect:/teamInfo?t_num=" + teamVO.getT_num();
@@ -434,11 +442,12 @@ public class HyenDongController {
 
 	// 팀 초대 수락 처리
 	@RequestMapping("/inviteOk")
-	public String inviteOk(ComeInviteVO comeInviteVO, TeamlistVO teamlistVO, MembersVO membersVO) {
+	public String inviteOk(ComeInviteVO comeInviteVO, TeamlistVO teamlistVO, MembersVO membersVO, HttpSession session) {
 		hyendongMapper.teamListInsert(teamlistVO);
 		membersVO.setId(teamlistVO.getId());
 		hyendongMapper.tNumUpdate(membersVO);
 		hyendongMapper.invitePass(comeInviteVO);
+		session.setAttribute("t_num", membersVO.getT_num());
 		return "redirect:/teamMatchStatus";
 	}
 
@@ -530,6 +539,7 @@ public class HyenDongController {
 		teamVO.setT_num(t_num2);
 		System.out.println(teamVO.getT_num());
 		model.addAttribute("hh", hyendongMapper.joinTeamTournament(teamVO));
+		model.addAttribute("count", hyendongMapper.selectCount(teamlistVO));
 		return "hyendong/tournamentInfo";
 	}
 

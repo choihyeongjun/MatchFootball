@@ -76,12 +76,21 @@ footer {
 </style>
 </head>
 <body>
+<script>
+function noteam(url){
+	   if('${sessionScope.t_num}' == ''){
+	      alert("토너먼트는 팀에 가입된 사용자만 이용 가능 합니다.")
+	   }else{
+	      location.href=url
+	   }
+	}
+</script>
 <div class="contentWrapper">
 	<div id="main_contents">
 		<ul class="tournament_wrap">
 			<c:forEach items="${tournamentList}" var="tournamentList">
 			<li><a
-				href="tournamentInfo?t_no=${tournamentList.t_no }"
+				href="javascript:noteam('tournamentInfo?t_no=${tournamentList.t_no }')"
 				data-fade="fade" style="text-decoration:none">
 					<div class="wrap">
 						<div class="tournament_img">
