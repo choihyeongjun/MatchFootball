@@ -155,9 +155,17 @@ a {
 	background-color: #ea3e42;
 	color: white;
 	border-radius: 10px;
-	cursor:
 }
-
+.btn.sf2 {
+	line-height: 32px;
+	font-size: 15px;
+	color: black;
+	text-decoration: none !important;
+	background-color: #999;
+	color: white;
+	border-radius: 10px;
+	cursor: none;
+}
 #body1 {
 	border-radius: 20px;
 }
@@ -298,15 +306,18 @@ a {
 									</a> <input type="hidden" value="${p_match.m_no }">
 								</div>
 								<div style="width: 20%">
-									<c:if test="${empty p_match.review && p_match.m_date > sysdate }">
+										<fmt:parseDate value="${p_match.m_date}" var="m_date" pattern="yyyy-MM-dd HH:mm" />
+										<fmt:formatDate value="${m_date}" var="m_date" pattern="yyyy-MM-dd HH" />
+								
+									<c:if test="${empty p_match.review && m_date < sysdate }">
 										<a class="btn sf" data-toggle="modal" data-target="#pmreivew"
 											data-pn="${p_match.m_no }"> 리뷰 작성</a>
 									</c:if>
-									<c:if test="${p_match.m_date < sysdate }">
-									<b class="btn sf1">경기 시작 전</b>
-									</c:if>
+									<c:if test="${m_date > sysdate }">
+									<p class="btn sf1">경기 시작 전</p>
+									</c:if> 
 									<c:if test="${!empty p_match.review }">
-										<b class="btn sf1"> 작성 완료</b>
+										<p class="btn sf2"> 작성 완료</p>
 									</c:if>
 								</div>
 							</li>

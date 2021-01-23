@@ -318,7 +318,7 @@
 	</insert>
 	<update id="pointminus1" parameterType="MembersVO">
 	 update members set point = point - (#{point}/2)
-	  where id=#{id};
+	  where id=#{id}
 		</update>
 	<!-- <insert id="pointcomm" parameterType="MembersVO"> insert into point 
 		(p_seq,p_id,npoint,p_date,p_con) values(point_seq.nextval ,#{p_id},#{npoint},sysdate,#{p_con}) 
@@ -351,7 +351,7 @@
 		values(#{id},#{match_info})
 	</insert>
 	<!--팀 매치 매니저 신청 조회 -->
-	<select id="tmapplysel" parameterType="MembersVO">
+	<select id="tmapplysel" parameterType="MmatchlistVO">
 		select 1 from mmatchlist where id= #{id} and match_info= #{match_info}
 	</select>
 	<!--매니저 없는 매치 -->
@@ -398,13 +398,19 @@
 	<update id="reviewup">
 		update p_match set review = 'Y' where m_no =#{m_no}
 	</update>
-	<!--같은 시간대 예약 찾기 -->
+	<!--같은 시간대 개인매치 예약 찾기 -->
 	<select id="seltime" resultType="int">
 		select 1 from p_match a ,
 		pplayers b
 		where a.m_no = b.m_no
 		and substr(a.m_date,1,13) =
 		substr(#{m_date},1,13) and id= #{id}
+	</select>
+	<!--같은 시간대 팀매치 예약 찾기 -->
+	<select id="selteamtime" resultType="int">
+		select 1 from teammatch 
+		where so_num = #{t_num}
+    	and substr(m_date,1,13) = substr(#{m_date},1,13)
 	</select>
 	<!--해당 매치 조회  -->
 	<select id="matchsell" resultType="P_matchVO">

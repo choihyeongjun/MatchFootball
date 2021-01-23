@@ -284,19 +284,14 @@ public class JunController {
 		// 입금전체 내역
 		model.addAttribute("p_pointall", dao.pointallselect(pointvo));
 		// 개인매치 내역
-//		paging.setPageUnit(3); // (한페이지를 출력 할)레코드 수
-//		paging.setPageSize(5); // 페이지 번호 수
-//		p_matchVO.setFirst(paging.getFirst());
-//		p_matchVO.setLast(paging.getLast());
-//		paging.setTotalRecord(dao.getCount1(p_matchVO));
-//		model.addAttribute("paging", paging);
 		p_matchVO.setM_id((String) session.getAttribute("id"));
 		model.addAttribute("p_match", dao.pmatchlist(p_matchVO));
 		// 팀매치 내역
 		team_matchVO.setId((String) session.getAttribute("id"));
 		model.addAttribute("t_match", dao.tmatchlist(team_matchVO));
-		// model.addAttribute("p_match1",dao.pmatchlist1(p_match));
-		//sysdate
+		//팀 매치 신청 내역 조회
+		
+		//sysdate 구하기
 		long day = System.currentTimeMillis();
         System.out.println(day);
         SimpleDateFormat simpl2 = new SimpleDateFormat("yyyy-MM-dd HH");
@@ -305,16 +300,32 @@ public class JunController {
         
 		return new ModelAndView("sungjun/managermypage");
 	}
+	//매니저 참가 신청 모달
+		@RequestMapping(value = "/managermypagemmm")
+		public ModelAndView test16(HttpSession session,MmatchlistVO mmatchlistvo, TeammatchVO teammatch, PlayersVO players, MembersVO member)
+				throws IOException {
+			ModelAndView ma = new ModelAndView();
+			member.setId((String) session.getAttribute("id"));
+			mmatchlistvo.setId((String) session.getAttribute("id"));
+			//매니저 없는 매치 조회
+			ma.addObject("nomanager", dao.nomanager(teammatch));
+			ma.addObject("manager", dao.memberselect(member));
+			//매치에 매니저 참가신청 넣엇는지 조회
+			//ma.addObject("tmapplysel" , dao.tmapplysel(mmatchlistvo));
+			ma.setViewName("no/sungjun/nomanager");
 
-	@RequestMapping(value = "/managermypagem")
-	public ModelAndView test7(P_matchVO p_matchVO, MatchMember matchmember) throws IOException {
-		ModelAndView mv = new ModelAndView();
-
-		mv.addObject("p_matchVO", dao.pmatchlist1(p_matchVO));
-		mv.addObject("matchmember", dao.matchmember(matchmember));
-		mv.setViewName("no/sungjun/matchschedule");
-		return mv;
-	}
+			return ma;
+		}
+		//매니저 참가 신청 서브밋
+		@RequestMapping(value = "/matchmapply")
+		public ModelAndView test17(MmatchlistVO mmatchlistvo, TeammatchVO teammatch, PlayersVO players, MembersVO member)
+				throws IOException {
+			ModelAndView ma = new ModelAndView();
+			dao.tmapply(mmatchlistvo);
+			ma.setViewName("redirect:/managermypage");
+			return ma;
+		}
+	
 //팀 매치 정보 조회
 	@RequestMapping(value = "/managermypagemm")
 	public ModelAndView test15(HttpSession session, TeamVO teamvo, TeammatchVO teammatch, PlayersVO players,
@@ -336,30 +347,8 @@ public class JunController {
 		return ma;
 	}
 	
-//매니저 참가 신청 모달
-	@RequestMapping(value = "/managermypagemmm")
-	public ModelAndView test16(HttpSession session,MmatchlistVO mmatchlistvo, TeammatchVO teammatch, PlayersVO players, MembersVO member)
-			throws IOException {
-		ModelAndView ma = new ModelAndView();
-		member.setId((String) session.getAttribute("id"));
-		mmatchlistvo.setId((String) session.getAttribute("id"));
-		//매니저 없는 매치 조회
-		ma.addObject("nomanager", dao.nomanager(teammatch));
-		ma.addObject("manager", dao.memberselect(member));
-		//ma.addObject("tmapplysel" , dao.tmapplysel(mmatchlistvo));
-		ma.setViewName("no/sungjun/nomanager");
 
-		return ma;
-	}
-	//매니저 참가 신청 서브밋
-	@RequestMapping(value = "/matchmapply")
-	public ModelAndView test17(MmatchlistVO mmatchlistvo, TeammatchVO teammatch, PlayersVO players, MembersVO member)
-			throws IOException {
-		ModelAndView ma = new ModelAndView();
-		dao.tmapply(mmatchlistvo);
-		ma.setViewName("redirect:/managermypage");
-		return ma;
-	}
+	//개인 매치 리뷰 모달
 	@RequestMapping(value = "/managermypagepre")
 	public ModelAndView test17(HttpSession session, P_matchVO p_match, MembersVO membersvo) throws IOException {
 		ModelAndView ma = new ModelAndView();
@@ -369,7 +358,7 @@ public class JunController {
 
 		return ma;
 	}
-
+//개인매치 리뷰 등록
 	@PostMapping(value = "/inreview")
 	public ModelAndView test18(P_matchVO p_match, HttpServletRequest request, HttpServletResponse response,
 			PreviewVO preview, Model model) throws IOException {
