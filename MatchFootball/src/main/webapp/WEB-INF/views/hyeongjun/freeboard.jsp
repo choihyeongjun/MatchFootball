@@ -99,6 +99,55 @@ div #a2 {
 	background-color: #1752ff;
 	border-color: #1752ff;
 }
+
+
+
+
+
+
+
+
+
+.dropbtn {
+  background-color: #F73F52;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  right: 0;
+  display: none;
+  position: absolute;
+  background-color: #F73F52;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content button {
+  color: white;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content button:hover {background-color: yellow}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: #3e8e41;
+}
 </style>
 
 <script>
@@ -207,18 +256,28 @@ var btn_like = document.getElementById("love");
 			<div class="row">
 				<div class="col-md-8 col-sm-12 col-xs-12">
 					<div>
-						<form id="dd"  method="get" action="${pageContext.request.contextPath}/free" >
-						<input type="text" name="first" value="1" hidden="">
-						<button type="submit" id="first" >조회순</button>
-						</form>
-						<form id="dd"  method="get" action="${pageContext.request.contextPath}/free" >
-						<input type="text" name="first" value="2" hidden="">
-						<button type="submit" id="first" >인기순</button>
-						</form>
-						<form id="dd"  method="get" action="${pageContext.request.contextPath}/free" >
-						<input type="text" name="first" value="3" hidden="">
-						<button type="submit" id="first" >최신순</button>
-						</form>
+						<div class="dropdown">
+							<button class="dropbtn">정렬</button>
+							<div class="dropdown-content">
+								<form id="dd"  method="get" action="${pageContext.request.contextPath}/free" >
+									<input type="text" name="first" value="1" hidden="">
+									<button type="submit" class="btn btn-primary" id="first" >조회순</button>
+								</form>
+								<form id="dd"  method="get" action="${pageContext.request.contextPath}/free" >
+									<input type="text" name="first" value="2" hidden="">
+									<button type="submit" class="btn btn-primary" id="first" >인기순</button>
+								</form>
+								<form id="dd"  method="get" action="${pageContext.request.contextPath}/free" >
+									<input type="text" name="first" value="3" hidden="">
+									<button type="submit" class="btn btn-primary" id="first" >최신순</button>
+								</form>
+							</div>
+						</div>
+						
+					
+					
+					
+					
 					</div>
 					<div class="line">
 						<div>인기글</div>
