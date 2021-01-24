@@ -17,58 +17,52 @@
 	border-radius: 10px;
 }
 </style>
-<script>
-function twobutton(){
-	document.team1review.submit();
-	document.team2review.submit();
-}
-</script>
 </head>
 <body>
 	<div>
 		<h2 style="text-align: center;">
 			팀 매치 등록
-			</h3>
+		</h2>
 			<div>
-				<form action="teamreview" name="teamreview" id="teamreview" method="post" target="1">
-						<div style="display: flex; margin: 15px 0 0 10px;">
-							<label style="font-weight: bold;">팀 이름 : ${teammatch.t_name }</label>
-							<input type="hidden" name="t_num" value="${teammatch.t_num }">
-						</div>
-						<select id="manner" name="manner" class="form-select"
-							aria-label="Default select example" style="margin: 5px;">
-							<option value="1">1점</option>
-							<option value="2">2점</option>
-							<option value="3">3점</option>
-							<option value="4">4점</option>
-							<option value="5">5점</option>
-						</select>
-						<select id="score" name="score" class="form-select"
-							aria-label="Default select example" style="margin: 5px;">
-							<option value="승">승</option>
-							<option value="패">패</option>
-						</select>
-						<input type="hidden" name="m_no" value="${teammatch.m_no }">
-						<input type="hidden" name="id" value="${teammatch.id }">
-						<input type="hidden" name="review" value="Y">
-						
-				<div style="display: flex; margin: 15px 0 0 10px;">
-							<label style="font-weight: bold;">팀 이름 : ${teammatch.so_name }</label>
-							<input type="hidden" name="t_num" value="${teammatch.so_num }">
-						</div>
-						<select id="manner" name="manner" class="form-select"
-							aria-label="Default select example" style="margin: 5px;">
-							<option value="1">1점</option>
-							<option value="2">2점</option>
-							<option value="3">3점</option>
-							<option value="4">4점</option>
-							<option value="5">5점</option>
-						</select>	
-						<select id="score" name="score" class="form-select"
-							aria-label="Default select example" style="margin: 5px;">
-							<option value="승">승</option>
-							<option value="패">패</option>
-						</select>		
+				<form action="teamreview" name="teamreview" id="teamreview" method="post" >
+					<div style="display: flex; margin: 15px 0 0 10px;">
+						<label style="font-weight: bold;">팀 이름 : ${teammatch.t_name }</label>
+					</div>
+					<input type="hidden" name="t_num" value="${teammatch.t_num }">
+					<input type="hidden" name="m_no" value="${teammatch.m_no }">  
+					<input type="hidden" name="manager_id" value="${teammatch.id }">
+					<select id="manner" name="manner" class="form-select"
+						aria-label="Default select example" style="margin: 5px;">
+						<option value="1">1점</option>
+						<option value="2">2점</option>
+						<option value="3">3점</option>
+						<option value="4">4점</option>
+						<option value="5">5점</option>
+					</select> 
+					<select id="score" name="score" class="form-select"
+						aria-label="Default select example" style="margin: 5px;">
+						<option value="승">승</option>
+						<option value="패">패</option>
+					</select> 
+					<div style="display: flex; margin: 15px 0 0 10px;">
+						<label style="font-weight: bold;">팀 이름 : ${teammatch.so_name }</label> 
+					<input type="hidden" name="t_num" value="${teammatch.so_num }">
+					<input type="hidden" name="m_no" value="${teammatch.m_no }">  
+					<input type="hidden" name="manager_id" value="${teammatch.id }">
+					</div>
+					<select id="manner" name="manner" class="form-select"
+						aria-label="Default select example" style="margin: 5px;">
+						<option value="1">1점</option>
+						<option value="2">2점</option>
+						<option value="3">3점</option>
+						<option value="4">4점</option>
+						<option value="5">5점</option>
+					</select> <select id="score" name="score" class="form-select"
+						aria-label="Default select example" style="margin: 5px;">
+						<option value="승">승</option>
+						<option value="패">패</option>
+					</select>
+					<input type="hidden" name="review" value="Y">
 					<p style="text-align: center; margin-top: 30px;">
 						<button class="bbbb" type="submit">리뷰 등록</button>
 					</p>

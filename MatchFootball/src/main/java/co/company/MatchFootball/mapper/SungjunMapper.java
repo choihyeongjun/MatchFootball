@@ -88,6 +88,8 @@ public interface SungjunMapper {
 	public Integer tmapply(MmatchlistVO mmatchlistvo);
 	public List<TeammatchVO> nomanager(TeammatchVO teammatch);
 	public Integer tmapplysel(MmatchlistVO mmatchlistvo);
+	//매니저없는 팀매치 단거 조회
+	public TeammatchVO nomanagersel(TeammatchVO teammatch);
 	//같은 시간대 팀매치 예약 찾기
 	public Integer selteamtime(TeammatchVO p_match);
 	//같은 시간대  개인매치예약 찾기
