@@ -28,6 +28,46 @@ $(function(){
 		
 
 </script>
+
+<style>
+#dataTable_filter { padding-left: 358px; }
+#aa {
+	position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    margin-top: -27px;
+    margin-left: -27px;
+    width: 1660px;
+    height: 71px
+}
+.navbar-brand { margin-top: -33px;}
+footer { position: fixed; left: 0px; bottom: 0px; width: 100%; background: grey; color: white; }
+
+#a2{   
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    flex-direction: column;
+    width: 1000px;
+    margin-left: -200px;
+    pointer-events: auto;
+    background-color: #fff;
+    background-clip: padding-box;
+    outline: 0;
+}
+.lili a {
+    padding: 3px 0 3px 0;
+    line-height: 170%;
+    margin-left: -23px;
+    color: white;
+    padding-left: 35px;
+}
+</style>
+
 </head>
 
 <body>
@@ -310,7 +350,7 @@ $(function(){
       ${f_id}
       ${author}
      <div id="result"></div>
-      <div class="card mb-4">
+      <div class="card mb-4" style="height: 500px;">
          <div class="card-header">
             <i class="fas fa-table mr-1"></i> 경기예약일정
          </div>

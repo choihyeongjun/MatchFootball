@@ -27,15 +27,7 @@
 
 <style>
 .lili a { color: white; }
-footer {
-	position: fixed;
-	left: 0px;
-	bottom: 0px;
-	width: 100%;
-	background: grey;
-	color: white;
-}
-
+footer { position: fixed; left: 0px; bottom: 0px; width: 100%; background: grey; color: white; }
 </style>
 
 

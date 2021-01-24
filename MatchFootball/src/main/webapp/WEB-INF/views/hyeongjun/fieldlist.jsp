@@ -71,6 +71,7 @@ footer{
 #pagination {margin:10px auto;text-align: center;}
 #pagination a {display:inline-block;margin-right:10px;}
 #pagination .on {font-weight: bold; cursor: default;color:#777;}
+#a1 img { height: 260px; width: 400px;}
 </style>
 	
 
@@ -349,7 +350,7 @@ function removeAllChildNods(el) {
 			<c:forEach var="field" items="${list}">
 			<div class="col-lg-4 col-md-6 col-sm-6">
 				<div class="product__item">
-					<div class="product__item__pic set-bg">
+					<div class="product__item__pic set-bg" id="a1">
 					<img src="${pageContext.request.contextPath}/images/${field.img}">
 					</div>
 					<div class="product__item__text">
