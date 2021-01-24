@@ -201,7 +201,7 @@ function mdeta(url){
 		<div align="center"
 			style="margin: auto; padding: 25px; background-color: #fafafa; border-bottom: 1px solid #ddd;">
 			<div style="margin: 0 300px;">
-				<img src="resources/img/코로나.jpeg" class="d-block w-100" alt="..."
+				<img src="${pageContext.request.contextPath}/images/코로나.jpeg" class="d-block w-100" alt="..."
 					width="529px" height="320px">
 			</div>
 		</div>

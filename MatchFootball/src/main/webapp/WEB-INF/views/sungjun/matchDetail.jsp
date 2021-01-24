@@ -46,6 +46,7 @@ a {
 	bottom: 100px;
 	border-radius: 100px;
 }
+
 .employ2 {
 	bottom: 0;
 	width: 320px;
@@ -61,8 +62,9 @@ a {
 	bottom: 100px;
 	border-radius: 100px;
 }
-.employ3{
-bottom: 0;
+
+.employ3 {
+	bottom: 0;
 	width: 320px;
 	background-color: #ddd;
 	padding: 20px 20px;
@@ -76,6 +78,7 @@ bottom: 0;
 	bottom: 100px;
 	border-radius: 100px;
 }
+
 .lets {
 	background-color: white;
 	border-top: 1px solid #ddd;
@@ -105,9 +108,9 @@ bottom: 0;
 	line-height: 50px;
 	color: #314d9f
 }
+
 </style>
 <script>
-	
 	$(function() {
 		/*클릭시 css  */
 		$(".qqqq").on("click", "a", function() {
@@ -128,14 +131,13 @@ bottom: 0;
 			});
 		})
 	})
-
 </script>
 </head>
 <body>
 	<div class="container" style="padding: 50px;">
 		<div>
-			<img src="resources/img/11.jpg" class="d-block w-100" alt="..."
-				width="929" height="520">
+			<img src="${pageContext.request.contextPath}/images/구장사진.png"
+				class="d-block w-100" alt="..." width="929px" height="520px">
 		</div>
 		<div style="margin-left: 200px; margin-right: 200px; margin-top: 30px">
 			<div class="qqqq" align="center">
@@ -143,8 +145,8 @@ bottom: 0;
 					href="#playin"> 주의사항</a> <a href="#playm"> 매치 안내</a>
 			</div>
 			<div>
-				<h3 style="text-align: left;">${p_match.m_year}년  ${p_match.m_month}월  ${p_match.m_day}일  ${p_match.m_ho}시
-					</h3>
+				<h3 style="text-align: left;">${p_match.m_year}년
+					${p_match.m_month}월 ${p_match.m_day}일 ${p_match.m_ho}시</h3>
 			</div>
 			<div style="align: left;">
 				<h2 style="color: #08088A; font-weight: bold;">${p_match.f_name }</h2>
@@ -161,22 +163,62 @@ bottom: 0;
 				style="border-bottom: 1px solid #ddd; padding-bottom: 30px;">
 				<h5 style="color: #08088A; font-weight: bold;">${p_match.price }원</h5>
 			</div>
-			<div style="border-bottom: 1px solid #ddd; padding-bottom: 30px;">
-				<div>
+				<div style="border-bottom: 1px solid #ddd;">
 					<div id="playroom">
 						<h4 style="font-weight: bold; margin: 30px;">진행방식</h4>
 					</div>
-					<div>
-						<b> ${p_match.m_type }</b> &nbsp;&nbsp; <b>매치 레벨 :  ${p_match.lv } LV</b>&nbsp;&nbsp; <b>총 인원 : ${p_match.p_max }명</b>&nbsp;&nbsp;
-						
+					<div style="margin: 10px;">
+							<fmt:parseNumber value="${p_match.lv}" var="lv" />
+						<ul class="playbo" style="padding: 10px;">
+							<c:if test="${p_match.m_type eq '풋살' }">
+								<li style="text-align: center; float: left; width: 30%"><img
+									src="${pageContext.request.contextPath}/images/6대6.png"
+									style="width: 150px; height: 100px;">
+									<p style="font-weight: bold;">${p_match.m_type }</p></li>
+							</c:if>
+							<c:if test="${p_match.m_type eq '5:5 풋살' }">
+								<li style="text-align: center; float: left;"><img
+									src="${pageContext.request.contextPath}/images/5대5.png"
+									style="width: 150px; height: 100px;">
+								<p style="font-weight: bold;">${p_match.m_type }</p></li>
+							</c:if>
+							<c:if test="${p_match.m_type eq '6:6 풋살' }">
+								<li style="text-align: center; float: left;"><img
+									src="${pageContext.request.contextPath}/images/6대6.png"
+									style="width: 150px; height: 100px;">
+								<p style="font-weight: bold;">${p_match.m_type }</p></li>
+							</c:if>
+							<c:if test="${p_match.m_type eq '축구' }">
+								<li style="text-align: center; float: left;"><img
+									src="${pageContext.request.contextPath}/images/축구.jpg"
+									style="width: 150px; height: 100px;">
+								<p style="font-weight: bold;">${p_match.m_type }</p></li>
+							</c:if>
+							<c:if test="${lv > 3 }">
+								<li style="text-align: center;"><img
+									src="${pageContext.request.contextPath}/images/삼이상.png"
+									style="width: 150px; height: 100px;">
+								<p style="font-weight: bold;">중급 매치</p></li>
+							</c:if>
+							
+							<c:if test="${lv <= 3 }">
+								<li style="text-align: center; width: 50%;"><img
+									src="${pageContext.request.contextPath}/images/일에서삼.png"
+									style="width: 150px; height: 100px;">
+								<p style="font-weight: bold;">일반 매치</p></li>
+							</c:if>
+							<c:if test="${lv > 3 }">
+								<li style="text-align: center; width: 50%;"><img
+									src="${pageContext.request.contextPath}/images/삼이상.png"
+									style="width: 150px; height: 100px;">
+								<p style="font-weight: bold;">LV : ${p_match.lv }</p></li>
+							</c:if>
+						</ul>
 					</div>
 				</div>
-			</div>
 
-			<div>
 				<div id="playin"
 					style="border-bottom: 1px solid #ddd; padding-bottom: 30px;">
-
 					<div style="margin: 30px;">
 						<h4 style="font-weight: bold;">구장시설</h4>
 					</div>
@@ -192,8 +234,6 @@ bottom: 0;
 		</pre>
 					</div>
 				</div>
-			</div>
-
 
 			<div id="playm"
 				style="border-bottom: 1px solid #ddd; padding-bottom: 30px;">
