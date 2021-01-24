@@ -53,7 +53,7 @@
 			<div class="form-control">${teammatch.so_name }</div>
 		</c:if>
 		<c:if test="${empty teammatch.so_name }">
-			<div class="form-control">매칭 실패 !!</div>
+			<div class="form-control" style="color: #999;">신청한 팀이 없습니다</div>
 			</c:if>
 	</div>
 	<div class="form-group">

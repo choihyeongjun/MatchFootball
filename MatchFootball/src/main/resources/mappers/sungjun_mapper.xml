@@ -219,11 +219,27 @@
 	<!--매니저 개인매치 일정 조회 -->
 	<select id="pmatchlist" parameterType="P_matchVO"
 		resultType="P_matchVO">
-		select * from (select * from p_match
-		where m_id = #{m_id}
-		order by
-		m_date desc, m_hour asc)
-		where <![CDATA[rownum <=5]]>
+		select * from (select
+		d.m_no,d.m_type,d.f_name,d.f_address,d.price,d.lv,d.p_max,d.m_id,
+		substr(d.m_date, 12, 5) as m_hour,d.m_date,
+		substr(d.m_date, 1,4) as m_year,substr(d.m_date, 6,2) as
+		m_month,substr(d.m_date,9, 2) as m_day,
+		substr(d.m_date, 12,2) as m_ho,
+		d.t_type,d.f_id,nvl(f,0)f
+			,nvl((select 1 from pplayers
+			where m_no=d.m_no),0)
+			as sel
+		from p_match d, ( select a.m_no
+		,count(*) f
+		from p_match a,pplayers b
+		where a.m_no = b.m_no
+		group by
+		a.m_no )c
+		where d.m_no = c.m_no(+)
+		and
+		d.m_id = #{m_id}
+		order by m_date desc)
+		where <![CDATA[rownum <=7]]>
 	</select>
 	<!--매니저 개인매치 일정 전체 조회 -->
 	<select id="pmatchselectall" parameterType="P_matchVO"
@@ -248,6 +264,7 @@
 		where d.m_no = c.m_no(+)
 		and
 		d.m_id = #{m_id}
+		order by m_date desc
 		)a ) b where
 		rn between #{first} and #{last}
 	</select>

@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-.btn.sf {
+/* .btn.sft {
 	line-height: 32px;
 	font-size: 15px;
 	color: black;
@@ -15,7 +15,8 @@
 	background-color: #3540A5;
 	color: white;
 	border-radius: 10px;
-}
+	cursor: pointer;
+} */
 </style>
 <script>
 	$(function() {
@@ -35,14 +36,14 @@
 </script>
 </head>
 <body>
-	<div class="container" style="margin-bottom: 40px; margin-top: 40px">
+	<div class="container" style="margin-bottom: 140px; margin-top: 140px">
 		<div class="scedule" style="text-align: center; margin: 30px">
 			<h1>참가 가능한 매치 목록</h1>
 		</div>
-		<div class="allscedule" style="margin: 30px; text-align: center;">
+		<div class="allscedule" style="margin: 30px; text-align: center; margin-top:50px;">
 			<ul>
 				<c:forEach var="nomanager" items="${nomanager }">
-					<li style="margin: 10px;"><a class="sft" data-toggle="modal"
+					<li style="margin: 40px;"><a class="sft" data-toggle="modal"
 						style="text-decoration: none;" data-target="#nomanager"
 						data-pn="${nomanager.m_no }">
 							<div style=" display:flex; margin: 5px; margin-left: 400px;">
@@ -53,6 +54,7 @@
 								<div style="margin-left: 10px;">
 									<span style="font-weight: bold; font-size: 24px;">${nomanager.f_name }</span>
 								</div>
+							
 							</div>
 					</a></li>
 				</c:forEach>

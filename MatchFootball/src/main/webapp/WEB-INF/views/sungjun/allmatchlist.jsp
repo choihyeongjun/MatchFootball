@@ -152,17 +152,17 @@ ul {
 											<fmt:formatDate value="${m_date}" var="m_date"
 												pattern="yyyy-MM-dd HH" />
 
-											<c:if test="${p_max > f && m_date < sysdate}">
+											<c:if test="${p_max > f && m_date <= sysdate}">
 												<p class="btn sf3">매칭 실패</p>
 											</c:if>
 											<c:if test="${m_date > sysdate && p_max <= f }">
-												<p class="btn sf2">경기 시작 전</p>
+												<p class="btn sf3">경기 시작 전</p>
 											</c:if>
 											<c:if test="${m_date > sysdate && p_max > f }">
 												<p class="btn sf2">매칭 중</p>
 											</c:if>
 											<c:if test="${m_date < sysdate && p_max <= f }">
-												<p class="btn sf2">경기 완료</p>
+												<p class="btn sf1">경기 완료</p>
 											</c:if>
 										</div>
 									</li>
@@ -229,11 +229,11 @@ ul {
 												pattern="yyyy-MM-dd HH:mm" />
 											<fmt:formatDate value="${m_date}" var="m_date"
 												pattern="yyyy-MM-dd HH" />
-											<c:if test="${t_match.so_num eq null and m_date < sysdate }">
+											<c:if test="${t_match.so_num eq null and m_date <= sysdate }">
 												<p class="btn sf3">매칭 실패</p>
 											</c:if>
 											<c:if test="${m_date > sysdate && t_match.so_num ne null }">
-												<p class="btn sf1">경기 시작전</p>
+												<p class="btn sf2">경기 시작전</p>
 											</c:if>
 											<c:if test="${m_date < sysdate && t_match.so_num ne null }">
 												<p class="btn sf1">경기 완료</p>
