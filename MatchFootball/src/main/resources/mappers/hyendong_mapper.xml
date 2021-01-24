@@ -542,4 +542,10 @@
 	<select id="fieldLogin" resultType="FieldmanagerVO">
 		select * from fieldmanager where f_id = #{f_id} and pw = #{pw} 
 	</select>
+	
+	<!-- 구장관리자 아이디 중복체크 -->
+	<select id="fmIdCheck" resultType="int">
+		select count(*) from fieldmanager
+		where f_id=#{f_id};
+	</select>
 </mapper>

@@ -103,11 +103,18 @@ element.style {
 									<c:if test="${match.so_num ne null}">
 									<td class="text-center">${match.so_name }</td>
 									</c:if>
-									<c:if test="${match.so_num eq null}">
+									<c:if test="${match.so_num eq null && author.t_author eq '팀장'}">
 									<td align="center"><form action="teamMatchDelete" method="post">
 									<input type="text" value="${match.m_no }" name="m_no" style="display:none">
 									<input type="submit" class="btn btn-danger" value="경기취소"></form></td>
 									</c:if>
+									
+									<c:if test="${match.so_num eq null && author.t_author eq '팀원'}">
+									<td align="center"><form action="teamMatchDelete" method="post">
+									<input type="text" value="${match.m_no }" name="m_no" style="display:none">
+									<input type="submit" class="btn btn-danger" value="경기취소" disabled="disabled"></form></td>
+									</c:if>
+									
 									<c:if test="${match.so_num ne null}">
 									<td align="center"><input type="button" value="매칭완료" disabled="disabled"></td>
 									</c:if>

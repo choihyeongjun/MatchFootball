@@ -126,9 +126,7 @@ function teamOut(){
                </tr>
                <tr>
                   <th scope="row">지역</th>
-                  <td>${teamInfo.t_address }</td>
-                  <th scope="row">승률</th>
-                  <td>75%</td>
+                  <td colspan="3">${teamInfo.t_address }</td>
                </tr>
                <tr>
                   <th scope="row" style="height: 100px; margin-top: 10px" >팀 소개</th>
