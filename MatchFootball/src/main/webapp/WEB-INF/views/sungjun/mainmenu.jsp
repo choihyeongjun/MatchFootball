@@ -354,7 +354,12 @@ body, html {
                            <li class="lili"><a
                               href="${pageContext.request.contextPath}/allmatchlist">전체경기
                                  일정</a></li>
+                                 <li class="lili"><a
+                              href="${pageContext.request.contextPath}/managerresult">매니저 경기신청 결과
+                                 </a></li>
                         </ul>
+                         
+                       
                      </div>
                   </c:if>
                   <div class="col-md-3 col-sm-6">

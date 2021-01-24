@@ -3,6 +3,7 @@ package co.company.MatchFootball.mapper;
 import java.util.List;
 import java.util.Map;
 
+import co.company.MatchFootball.vo.CuponVO;
 import co.company.MatchFootball.vo.FboardVO;
 import co.company.MatchFootball.vo.FieldVO;
 import co.company.MatchFootball.vo.InviteVO;
@@ -15,7 +16,6 @@ import co.company.MatchFootball.vo.MmatchnmatchVO;
 import co.company.MatchFootball.vo.P_matchVO;
 import co.company.MatchFootball.vo.PointVO;
 import co.company.MatchFootball.vo.RfieldVO;
-import co.company.MatchFootball.vo.TeamlistVO;
 import co.company.MatchFootball.vo.TeammatchVO;
 
 public interface HyeongjunMapper {
@@ -73,4 +73,6 @@ public List<MmatchnmatchVO> matchresult1(MmatchnmatchVO vo);
 public int pointinsert(PointVO vo);
 public int mpointupdate(MembersVO vo);
 public String memauthor(MembersVO vo);
+public List<CuponVO> cuponlist(CuponVO vo);
+
 }

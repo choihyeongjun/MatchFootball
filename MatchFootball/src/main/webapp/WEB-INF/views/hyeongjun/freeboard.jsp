@@ -96,57 +96,67 @@ div #a2 {
 }
 
 #btnwriter:hover {
-	background-color: #1752ff;
-	border-color: #1752ff;
+	background-color: #0d6efd;
+	border-color: #0d6efd;
 }
 
 
+.btn-primary {
+	background-color: #314d9f;
+	border-color: #314d9f;
+}
 
-
+.btn-primary:hover {
+	background-color: #0d6efd;
+	border-color: #0d6efd;
+}
 
 
 
 
 
 .dropbtn {
-  background-color: #F73F52;
+  background-color: #314d9f;
   color: white;
-  padding: 16px;
+  padding: 10px 24px;
   font-size: 16px;
   border: none;
   cursor: pointer;
+  margin-right: 15px;
+  width: 81px;
 }
 
 .dropdown {
   position: relative;
   display: inline-block;
+  float: right;
 }
 
 .dropdown-content {
   right: 0;
   display: none;
   position: absolute;
-  background-color: #F73F52;
-  min-width: 160px;
+  background-color: #314d9f;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
+  margin-right: 15px;
 }
 
 .dropdown-content button {
   color: white;
-  padding: 12px 16px;
+  padding: 10px 16px;
   text-decoration: none;
   display: block;
 }
 
-.dropdown-content button:hover {background-color: yellow}
+.dropdown-content button:hover {background-color: #337ab7}
 
 .dropdown:hover .dropdown-content {
   display: block;
 }
 
 .dropdown:hover .dropbtn {
-  background-color: #3e8e41;
+  background-color: #0d6efd;
 }
 </style>
 
@@ -251,11 +261,14 @@ var btn_like = document.getElementById("love");
 </head>
 <body>
 
-	<section class="home">
+	<section class="home" style="padding-bottom: 110px;">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-8 col-sm-12 col-xs-12">
-					<div>
+					<div class="line" style="margin-bottom: 16px;">
+						<div>인기글</div>
+					</div>
+					<div style="width: 1139.96px; height: 42.29px; margin-bottom: 20px;">
 						<div class="dropdown">
 							<button class="dropbtn">정렬</button>
 							<div class="dropdown-content">
@@ -273,14 +286,6 @@ var btn_like = document.getElementById("love");
 								</form>
 							</div>
 						</div>
-						
-					
-					
-					
-					
-					</div>
-					<div class="line">
-						<div>인기글</div>
 					</div>
 
 					<div class="row" style="flex-wrap: nowrap;">
@@ -291,7 +296,7 @@ var btn_like = document.getElementById("love");
 								<article class="article col-md-12">
 									<div class="inner">
 										<figure>
-											<img id="${f.num}" src="" alt="대표사진이없습니다.">
+											<img style="height: -webkit-fill-available;" id="${f.num}" src="" alt="대표사진이없습니다.">
 										</figure>
 
 										<div class="padding">
@@ -302,7 +307,7 @@ var btn_like = document.getElementById("love");
 											<div class="detail">
 												<div class="time">${f.b_date}</div>
 											</div>
-											<h2>${f.title}</h2>
+											<h2 style="height: 55.2px;">${f.title}</h2>
 
 											<div class="likeit">
 												<c:if test="${f.heartstate eq '0'}">
@@ -347,7 +352,7 @@ var btn_like = document.getElementById("love");
 				</div>
 
 				<div class="line">
-					<div>인기글</div>
+					<div>전체글</div>
 					<br />
 				</div>
 
@@ -386,7 +391,7 @@ var btn_like = document.getElementById("love");
 									</tr>
 								</tfoot>
 								<tbody>
-									<c:forEach var="f" items="${list}" begin="3">
+									<c:forEach var="f" items="${list}" >
 										<tr>
 											<td>${f.num}</td>
 											<td><a

@@ -22,6 +22,7 @@ var mem=$('#edit-mem');
 var seq=$('#seq');
 var price=$('#edit-price');
 var price1=$('#edit-price1');
+var coupon=$('#coupon');
 
 var addBtnContainer = $('.modalBtnContainer-addEvent');
 var addBtnContainer1 = $('.modalBtnContainer-addEvent1');
@@ -89,8 +90,21 @@ var newEvent = function (start, end, eventType) {
 
             eventData.allDay = true;
         }
-
-
+		 $.ajax({
+			type: "get",
+            url: "../couponlist",
+			dataType:"json",
+			data:{
+				m_id:'cap3'
+			},
+			success:function(data){
+				for(var i=0;i<data.length;i++){
+					var tag="<option value="+data[i].c_num+">"
+					+"쿠폰이름:"+data[i].c_title+"할인금액:"+data[i].c_num+"유효기한:"+data[i].c_edate+"</option>"
+					$("#coupon").append(tag);
+				}	
+			}
+		});
         //새로운 일정 저장
         $.ajax({
             type: "get",

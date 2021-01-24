@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import co.company.MatchFootball.mapper.HyeongjunMapper;
 import co.company.MatchFootball.mapper.SungjunMapper;
+import co.company.MatchFootball.vo.CuponVO;
 import co.company.MatchFootball.vo.FboardVO;
 import co.company.MatchFootball.vo.FieldVO;
 import co.company.MatchFootball.vo.InviteVO;
@@ -109,7 +110,7 @@ public class HyeongjunController {
 			vo.setImg(multipartFile.getOriginalFilename());
 		}
 		hyeongjunMapper.fieldinsert(vo);
-		return "hyeongjun/fieldlist";
+		return "redirect:/fieldlist";
 	}
 
 	@RequestMapping("/fieldinsert")
@@ -121,6 +122,11 @@ public class HyeongjunController {
 	@RequestMapping("/fielddetailmanagerlist")
 	public List<Mmatchlistnmember> fielddetailmanagerlist(Mmatchlistnmember vo) {
 		return hyeongjunMapper.matchmanagerlist(vo);
+	}
+	@ResponseBody
+	@RequestMapping("/couponlist")
+	public List<CuponVO>cucponlist(CuponVO vo){
+		return hyeongjunMapper.cuponlist(vo);
 	}
 
 	@ResponseBody
@@ -339,7 +345,7 @@ public class HyeongjunController {
 	public String logout(HttpSession session) {
 
 		session.invalidate();
-		return "home";
+		return "redirect:/match";
 	}
 
 	@RequestMapping("/invitelist")
