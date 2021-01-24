@@ -101,6 +101,14 @@ body, html {
       location.href=url
    }
 }
+   
+   function logins(url){
+	   if('${sessionScope.id}' == ''){
+	      alert("로그인 하셔야 이용이 가능합니다")
+	   }else{
+	      location.href=url
+	   }
+	}
 </script>
 
 </head>
@@ -327,14 +335,14 @@ body, html {
                      <ul class="menul" style="color: white; font-size: 20px;" id="a4">
                         <li class="lili" id="a5"><a style="font-size: 17px;">${sessionScope.kname}${sessionScope.name}님 안녕하세요</a>
                         <li class="lili"><a
-                           href="${pageContext.request.contextPath}/mypage/profile">내정보</a></li>
+                           href="javascript:logins('${pageContext.request.contextPath}/mypage/profile')">내정보</a></li>
                         <li class="lili"><a
-                           href="${pageContext.request.contextPath}/mypage/pay">결제 |
+                           href="javascript:logins('${pageContext.request.contextPath}/mypage/pay')">결제 |
                               쿠폰</a></li>
                         <li class="lili"><a
-                           href="${pageContext.request.contextPath}/mypage/matching">매칭 관리</a></li>
+                           href="javascript:logins('${pageContext.request.contextPath}/mypage/matching')">매칭 관리</a></li>
                         <li class="lili"><a
-                           href="${pageContext.request.contextPath}/mypage/msg">쪽지 |
+                           href="javascript:logins('${pageContext.request.contextPath}/mypage/msg')">쪽지 |
                               게시글</a></li>
                         <c:if test="${sessionScope.author eq 'user'}">
                            <li class="lili"><a
@@ -435,10 +443,8 @@ body, html {
                            style="color: white;">공지사항</a></li>
                         <li class="lili"><a
                            href="${pageContext.request.contextPath}/free">자유게시판</a></li>
-                        <li class="lili"><a
-                           href="${pageContext.request.contextPath}/productlist">중고장터</a></li>
-                        <li class="lili"><a
-                           href="${pageContext.request.contextPath}/tournamentList">토너먼트</a></li>
+                           
+                        <li class="lili"><a href="${pageContext.request.contextPath}/tournamentList">토너먼트</a></li>
                      </ul>
                   </div>
                   <c:if test="${sessionScope.id eq 'ad1' }">

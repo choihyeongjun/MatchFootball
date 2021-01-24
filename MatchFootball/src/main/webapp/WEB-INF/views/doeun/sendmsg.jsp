@@ -1,5 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<style>
+.lili a {
+    color: white;
+}
+footer { position: fixed; left: 0px; bottom: 0px; width: 100%; background: grey; color: white; }
+</style>
+
 <script>
 $(function() {
 	$("#findID").on("click", function(event) {

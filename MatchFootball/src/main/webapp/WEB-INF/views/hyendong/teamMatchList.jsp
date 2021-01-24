@@ -72,7 +72,7 @@ element.style {
 		<div class="card-header">
 			<i class="fas fa-table mr-1"></i> 팀매치 신청 내역
 		</div>
-		<div class="card-body" style="margin-left:140px">
+		<div class="card-body" style="margin-left:0px">
 			<div class="table-responsive" style="margin-left: 150px; margin-bottom: 100px">
 				<div class="container" style="float: left;">
 					<table class="table table-bordered" id="dataTable">
