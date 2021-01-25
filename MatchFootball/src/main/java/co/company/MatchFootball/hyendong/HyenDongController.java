@@ -659,6 +659,7 @@ public class HyenDongController {
 			session.setAttribute("name", fieldmanagerVO.getName());
 			session.setAttribute("pnum", fieldmanagerVO.getPnum());
 			session.setAttribute("point", fieldmanagerVO.getPoint());
+			session.setAttribute("f","1");
 			return "redirect:/match";
 		} else {
 			return "hyeongjun/login";
