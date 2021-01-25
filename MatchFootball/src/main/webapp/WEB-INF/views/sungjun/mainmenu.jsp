@@ -437,8 +437,10 @@ body, html {
                      <ul class="menul" style="color: white; font-size: 20px;">
                         <li class="lili"><a
                            href="${pageContext.request.contextPath}/fieldlist">구장 정보</a></li>
+                           <c:if test="${sessionScope.f ne null}">
                         <li class="lili"><a
                            href="${pageContext.request.contextPath}/fieldinsert">구장 등록</a></li>
+                           </c:if>
                      </ul>
                   </div>
 

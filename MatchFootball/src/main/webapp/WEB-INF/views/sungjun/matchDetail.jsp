@@ -196,7 +196,7 @@ a {
 							</c:if>
 							<c:if test="${lv > 3 }">
 								<li style="text-align: center;"><img
-									src="${pageContext.request.contextPath}/images/삼이상.png"
+									src="${pageContext.request.contextPath}/images/3이상.png"
 									style="width: 150px; height: 100px;">
 								<p style="font-weight: bold;">중급 매치</p></li>
 							</c:if>
@@ -206,12 +206,6 @@ a {
 									src="${pageContext.request.contextPath}/images/일에서삼.png"
 									style="width: 150px; height: 100px;">
 								<p style="font-weight: bold;">일반 매치</p></li>
-							</c:if>
-							<c:if test="${lv > 3 }">
-								<li style="text-align: center; width: 50%;"><img
-									src="${pageContext.request.contextPath}/images/삼이상.png"
-									style="width: 150px; height: 100px;">
-								<p style="font-weight: bold;">LV : ${p_match.lv }</p></li>
 							</c:if>
 						</ul>
 					</div>

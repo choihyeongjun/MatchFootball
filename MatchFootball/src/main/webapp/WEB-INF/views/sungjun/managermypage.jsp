@@ -448,9 +448,9 @@ a {
 								class="fas fa-futbol"
 								style="padding-right: 10px; color: #ffc645;"></i>경기 내역 전체 보기 </a></li>
 						<li><a class="tma"
-							href="${pageContext.request.contextPath}/nomanager"><i
+							href="${pageContext.request.contextPath}/managerresult"><i
 								class="fas fa-ad" style="padding-right: 10px; color: #ffc645;"></i>매치
-								매니저 신청</a></li>
+								매니저 신청 및 내역 </a></li>
 					</ul>
 				</div>
 			</div>
