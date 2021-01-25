@@ -192,7 +192,7 @@ function tdeta(url){
 			<div id="carouselExampleControls" class="carousel slide"
 				data-ride="carousel" style="margin: 0 300px;">
 
-				<div class="carousel-inner" ">
+				<div class="carousel-inner"">
 					<div class="carousel-item active">
 						<img src="resources/img/11.jpg" class="d-block w-100" alt="..."
 							width="629px" height="420px">
@@ -297,53 +297,58 @@ function tdeta(url){
 
 			<ul style="margin-bottom: 50px;">
 				<c:forEach var="teammatch" items="${teammatch }">
-					<li class="listl">
-							<a class="lista"
-								href="javascript:tdeta('teammatchDetail?m_no=${teammatch.m_no }&t_num=${teammatch.t_num}')">
-								<div class="tlwn">
-									<div style="margin: 10px;">
-										<img alt="nope"
-											src="${pageContext.request.contextPath}/images/${teammatch.t_logo}"
-											style="width: 70px; height: 70px; border-radius: 50%; marging: 5px;">
-									</div>
-									<div class="m-im-t">
-										<p
-											style="font-weight: bold; font-size: 20px; text-align: center;">${teammatch.t_name }</p>
-										<p class="wnwnwn" style="font-size: 15px">2전 1승 1무 1패</p>
-										<input type="hidden" value="${teammatch.m_no }" /> <input
-											type="hidden" value="${teammatch.t_num }" />
-									</div>
+					<li class="listl"><a class="lista"
+						href="javascript:tdeta('teammatchDetail?m_no=${teammatch.m_no }&t_num=${teammatch.t_num}')">
+							<div class="tlwn">
+								<div style="margin: 10px;">
+									<img alt="nope"
+										src="${pageContext.request.contextPath}/images/${teammatch.t_logo}"
+										style="width: 70px; height: 70px; border-radius: 50%; marging: 5px;">
 								</div>
+								<div class="m-im-t">
+									<p
+										style="font-weight: bold; font-size: 20px; text-align: center;">${teammatch.t_name }</p>
+									<p class="wnwnwn" style="font-size: 15px">2전 1승 1무 1패</p>
+									<input type="hidden" value="${teammatch.m_no }" /> <input
+										type="hidden" value="${teammatch.t_num }" />
+								</div>
+							</div>
 
-								<div style="width: 20%; margin: 5px;">
-									<p>⦁날짜 : ${teammatch.m_date }</p>
-									<p>⦁시간 : ${teammatch.m_hour }</p>
-								</div>
-								<div style="width: 40%; margin: 5px;">
-									<p>⦁유형 : ${teammatch.mtype }</p>
-									<p>⦁장소 : ${teammatch.f_name }</p>
-									<p>⦁팀원 : ${teammatch.mtype }명</p>
-									<p>
-										<input value="${teammatch.t_num }" style="display: none">
-									</p>
-									
-								</div>
-								<div style="width: 20%;">
-									<c:if test="${empty teammatch.so_num}">
-										<p class="ap-info">신청 가능</p>
-									</c:if>
-									<c:if test="${!empty teammatch.so_num}">
-										<p class="ap-info1">매칭 완료</p>
-									</c:if>
-								</div>
-							</a>
-						</li>
+							<div style="width: 20%; margin: 5px;">
+								<p>⦁날짜 : ${teammatch.m_date }</p>
+								<p>⦁시간 : ${teammatch.m_hour }</p>
+							</div>
+							<div style="width: 40%; margin: 5px;">
+								<p>⦁유형 : ${teammatch.mtype }</p>
+								<p>⦁장소 : ${teammatch.f_name }</p>
+								<c:choose>
+								<c:when test="${teammatch.id eq '없음' }">
+									<p style="color: #999;">⦁담당 매니저 : 배치안됨 </p>
+								</c:when>
+								<c:otherwise>
+									<p>⦁담당 매니저 : ${teammatch.id }</p>
+								</c:otherwise>
+								</c:choose>
+								<p>
+									<input value="${teammatch.t_num }" style="display: none">
+								</p>
+
+							</div>
+							<div style="width: 20%;">
+								<c:if test="${empty teammatch.so_num}">
+									<p class="ap-info">신청 가능</p>
+								</c:if>
+								<c:if test="${!empty teammatch.so_num}">
+									<p class="ap-info1">매칭 완료</p>
+								</c:if>
+							</div>
+					</a></li>
 				</c:forEach>
 				<c:if test="${day eq 0 }">
-					<div style="text-align:center; margin: 100px;">
+					<div style="text-align: center; margin: 100px;">
 						<p style="font-size: 25px;">등록된 매치가 없습니다</p>
-						<p style="color:#999;">다른 날을 검색 해 주세요 </p>
-						
+						<p style="color: #999;">다른 날을 검색 해 주세요</p>
+
 					</div>
 				</c:if>
 			</ul>

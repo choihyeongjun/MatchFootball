@@ -186,8 +186,10 @@ $(function() {
 })
 
 function mdeta(url){
-	if('${sessionScope.id}' == ''){
-		alert("로그인 하세요")
+	if('${sessionScope.author}' == 'stop'){
+		alert("이용할수 없습니다 ")
+	}else if('${sessionScope.id}' == ''){
+		alert("로그인 하고 이용 하세요")
 	}else{
 		location.href=url
 	}
@@ -283,8 +285,8 @@ function mdeta(url){
 										<p style="font-size: 20px; margin-top: 10px; margin-bottom: 3px;">${p_match.f_name }</p>
 									</div>
 									<div class="m-im-t">
-										<span>⦁ ${p_match.m_type } 매치</span>
-										<span>⦁  ${p_match.p_max }</span> 
+										<span>⦁  ${p_match.m_type } 매치</span>
+										<span>⦁  ${p_match.p_max }명 모집</span> 
 										<span>⦁  레벨 ${p_match.lv } Lv</span> 
 										<input type="hidden" value="${p_match.m_no }">
 									</div>
@@ -315,16 +317,23 @@ function mdeta(url){
 				</c:if>
 			</ul>
 		</div>
-		<c:if test="${empty sessionScope.id }">
+		<c:if test="${sessionScope.author eq 'stop' }">
+			<div class="registerkk"
+				style="position: fixed; width: 100%; bottom: 40px;">
+				<div class="regi-a"
+					style="color: white; width: 320px; margin: auto; border-radius: 100px; line-height: initial; background-color: #dc3545; padding: 20px;">
+					<p id="res"
+							style="font-weight: bold; font-size: 30px; text-align: center;">이용 불가능</p>
+				</div>
+			</div>
+		</c:if>
+			<c:if test="${sessionScope.id eq null }">
 			<div class="registerkk"
 				style="position: fixed; width: 100%; bottom: 40px;">
 				<div class="regi-a"
 					style="color: white; width: 320px; margin: auto; border-radius: 100px; line-height: initial; background-color: #314d9f; padding: 20px;">
-					<a href="#" style=""><p id="res"
-							style="font-weight: bold; font-size: 18px; text-align: center;">회원
-							가입</p>
-						<p style="font-size: 13px; text-align: center;">회원가입 하고
-							매치에참여하세요</p></a>
+					<p id="res"
+							style="font-weight: bold; font-size: 30px; text-align: center;">로그인 하세요</p>
 				</div>
 			</div>
 		</c:if>

@@ -163,6 +163,7 @@ public class JunController {
 	@RequestMapping(value = "/match")
 	public String test1(HttpSession session, Model model, CalVO vo, P_matchVO mvo, PplayersVO pplayer,
 			HttpServletRequest request) throws IOException {
+		
 		// 달력
 		DecimalFormat df = new DecimalFormat("00");
 		Calendar calendar;

@@ -177,8 +177,7 @@ a {
 			</div>
 
 			<div>
-				<p style="text-align: left; font-size: 26px; font-weight: 400;">${teammatch.m_date}
-					${teammatch.m_hour}</p>
+				<p style="text-align: left; font-size: 26px; font-weight: 400;">${teammatch.m_date}</p>
 			</div>
 			<div style="align: left;">
 				<h2 style="color: #08088A; font-weight: bold;">${teammatch.f_name}</h2>
