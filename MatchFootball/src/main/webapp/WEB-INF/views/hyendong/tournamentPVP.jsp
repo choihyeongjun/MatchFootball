@@ -18,6 +18,26 @@
 	crossorigin="anonymous"></script>
 </head>
 <style>
+#a2{   
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    flex-direction: column;
+    width: 1000px;
+    margin-left: 140px;
+    pointer-events: auto;
+    background-color: #fff;
+    background-clip: padding-box;
+    outline: 0;
+}
+.lili a {
+    padding: 3px 0 3px 0;
+    line-height: 170%;
+    color: white;
+    padding-left: 35px;
+}
+
+
 .noClick {
 	display: block;
 	width: 188px;

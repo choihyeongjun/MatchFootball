@@ -92,4 +92,5 @@ public interface HyendongMapper {
 	
 	public int fieldRegister(FieldmanagerVO fieldmanagerVO); //구장 관리자 회원가입
 	public FieldmanagerVO fieldLogin(FieldmanagerVO fieldmanagerVO); //구장 관리자 로그인
+	public int fmIdCheck(FieldmanagerVO fieldmanagerVO); //구장 관리자 아이디 중복체크
 }

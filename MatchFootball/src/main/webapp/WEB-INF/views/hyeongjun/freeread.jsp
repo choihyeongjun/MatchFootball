@@ -84,6 +84,68 @@
    };   
 </script>
 <style>
+.navbar-brand {
+	padding: 0;
+}
+
+.modal.show .modal-dialog {
+    transform: none;
+}
+
+.modal-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    pointer-events: auto;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,.2);
+    border-radius: .3rem;
+    outline: 0;
+}
+
+.container-fluid {
+    width: 100%;
+    padding-right: var(--bs-gutter-x,.75rem);
+    padding-left: var(--bs-gutter-x,.75rem);
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1050;
+    display: none;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    outline: 0;
+}
+
+.lili {
+    padding: 3px 0 3px 0;
+    text-indent: -30px;
+    line-height: 170%;
+    color: white;
+}
+
+.row>* {
+    flex-shrink: 0;
+    width: 100%;
+    max-width: 100%;
+    padding-right: calc(var(--bs-gutter-x)/ 2);
+    padding-left: calc(var(--bs-gutter-x)/ 2);
+    margin-top: var(--bs-gutter-y);
+}
+
+.col-md-3 {
+    flex: 0 0 auto;
+    width: 25%;
+}
+
 footer {
     position: fixed;
     left: 0px;
@@ -97,10 +159,20 @@ footer {
    background-color: #1752ff;
    border-color: #1752ff;
 }
+.btn-primary {
+	background-color: #314d9f;
+	border-color: #314d9f;
+}
+
+.btn-primary:hover {
+	background-color: #0d6efd;
+	border-color: #0d6efd;
+}
+
 </style>
 </head>
 <body>
-   <section class="home">
+   <section class="home" style="padding-bottom: 110px;">
       <div class="container">
          <form id="form1" class="form-horizontal" method="post">
             <div align="center" id="mdiv" style="width: 100%;">
@@ -137,7 +209,7 @@ footer {
             <div align="center">
             <c:if test="${sessionScope.id eq select.id }">
             
-               <div id="summernote" style="border:'1px'; width: 100px;height: 100px" name="comm" >${select.comm}</div>
+               <textarea id="summernote" style="border:'1px'; width: 100px;height: 100px" name="comm" >${select.comm}</textarea>
      
             </c:if>
             <c:if test="${sessionScope.id ne select.id }">

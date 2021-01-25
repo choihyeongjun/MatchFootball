@@ -11,7 +11,7 @@
 <meta name="description" content="" />
 <meta name="author" content="" />
 
-<title>매니저관리페이지</title>
+<title>매니저 지원신청자 페이지</title>
 
 <script>
 $(function(){
@@ -45,17 +45,9 @@ function managerListResult(data) {
 		.append($('<td>').html(										//매니저권한
 				$('<select id="author" class=\'author\'> '+
 				'<option selected value="">선택</option>'+
-				'<option value="manager" name="manager">매니저</option>'+
-				'<option value="user" name="user">회원</option>'+
+				'<option value="manager" name="manager">매니저승인</option>'+
 				'<option value="wait" name="wait">매니저대기</option>'+
-				'<option value="stop" name="stop">매니저정지</option>'+
 				'</select>').val(item.author))) 					//매니저권한
-		.append($('<td>').html(					
-				$('<select id="author" class=\'author\'> '+
-				'<option selected value="">선택</option>'+
-				'<option value="Y" name="Y">면접O</option>'+
-				'<option value="N" name="N">면접X</option>'+
-				'</select>').val(item.apply)))						//설문지
 		.append($('<td>').html(item.comm))    						//포부
 		.append($('<td>').html('<button id=\'btnSelect\'class="btn btn-primary">상세조회</button>'))
 		.append($('<td>').html('<button type="button" id=\'btnUpdate\'class="btn btn-success">권한수정</button>'))
@@ -100,7 +92,7 @@ function managerUpdate() {
 						<li class="breadcrumb-item">
 						<a href="${pageContext.request.contextPath}/admin/manager">매니저현황</a>
 						<li class="breadcrumb-item active"></li>
-						<a href="${pageContext.request.contextPath}/manageremploy">매니저지원페이지</a></li>
+						<a href="${pageContext.request.contextPath}/admin/stopmanager">정지된 매니저리스트</a></li>
 						</li>
 					</ol>
 					
@@ -125,14 +117,13 @@ function managerUpdate() {
 											<th style="width: 80px;">ID</th>
 											<th>이름</th>
 											<th>생년월일</th>
-											<th style="width: 50px;">성별</th>
+											<th style="width: 40px;">성별</th>
 											<th>연락처</th>
-											<th style="width: 90px;">권한</th>
-											<th>설문지</th>
-											<th style="width: 50px;">포부</th>
-											<th style="width: 80px;"></th>
-											<th style="width: 80px;"></th>
-											<th style="width: 70px;"></th>
+											<th>권한</th>
+											<th>포부</th>
+											<th style="width: 75px;"></th>
+											<th style="width: 75px;"></th>
+											<th style="width: 50px;"></th>
 										</tr>
 									</thead>
 									<tfoot align="center">
@@ -143,7 +134,6 @@ function managerUpdate() {
 											<th>성별</th>
 											<th>연락처</th>
 											<th>권한</th>
-											<th>설문지</th>
 											<th>포부</th>
 											<th></th>
 											<th></th>

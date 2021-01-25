@@ -174,7 +174,7 @@ footer {
                </div>
                <div class="mb-3">
                   <label for="content">내용</label>
-                  <textarea class="form-control" rows="5" name="t_content" id="content" placeholder="내용을 입력해 주세요" style="height: 200px">${teamNoticeInfo.t_content }</textarea>
+                  <textarea class="form-control" rows="5" name="t_content" id="content" placeholder="내용을 입력해 주세요" style="height: 200px" readonly>${teamNoticeInfo.t_content }</textarea>
                </div>
                <input type="text" name="t_num" value="${teamInfo.t_num }" style="display:none">
               <br>
@@ -221,7 +221,7 @@ footer {
 	   </div>
     </form>
     
-	<div class="progress-table" align="center" style="margin-left: 315px; padding-bottom:44px; width: 70%; height: 1000px">
+	<div class="progress-table" align="center" style="margin-left: 315px; padding-bottom:44px; width: 70%; height: 300px">
 			<div class="aa">
 			<c:forEach items="${writer }" var="writer">
 					<div class="table-row">

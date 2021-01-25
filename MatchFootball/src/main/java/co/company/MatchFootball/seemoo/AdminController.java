@@ -51,7 +51,7 @@ public class AdminController {
 		return "seemoo/user";
 	}
 
-//........................................................................................................................................
+//.......................................................................................................................................
 	
 	@RequestMapping(value = "/user2/ajax", method = RequestMethod.GET)	// 용병신청 유저페이지 (ajax로 전체조회)
 	@ResponseBody	
@@ -112,12 +112,6 @@ public class AdminController {
 		return seemoomapper.teamsupdate(vo);
 	}
 	
-//	@ResponseBody
-//	@RequestMapping(value = "/userupdate", method = RequestMethod.GET) 		// 유저권한수정
-//	public int usersupdate(MembersVO vo) {
-//		return seemoomapper.membersupdate(vo);
-//		 
-//	}
 	
 //........................................................................................................................................
 	
@@ -139,6 +133,11 @@ public class AdminController {
 		seemoomapper.teamsdelete(vo);
 	}
 	
+	@ResponseBody
+	@RequestMapping(value = "/blackteamupdate", method = RequestMethod.GET) 	// 팀권한수정(수정)
+	public int blackteamupdate(TeamVO vo) {
+		return seemoomapper.blackteamupdate(vo);
+	}
 	
 //	@ResponseBody
 //	@RequestMapping(value = "/userdelete/{id}", method=RequestMethod.DELETE) // 유저관리 페이지 (삭제)
@@ -168,12 +167,11 @@ public class AdminController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/managerupdate", method = RequestMethod.GET) // 매니저관리 페이지 (수정)
-	public MembersVO managerupdate(MembersVO vo) {
-		 seemoomapper.managerupdate(vo);
-		 return vo;
+	public int managerupdate(MembersVO vo) {
+		 return seemoomapper.managerupdate(vo);
 	}
-
-//	====================================================매니저 신청 권한======================================================
+	
+//	====================================================매니저 신청======================================================
 
 	@RequestMapping(value = "/applymanager/ajax", method = RequestMethod.GET) // 매니저(매니저 신청|승인대기)관리 페이지 (ajax로 전체조회)
 	@ResponseBody	
@@ -189,11 +187,23 @@ public class AdminController {
 	
 	@RequestMapping(value = "/managerapplyupdate", method = RequestMethod.GET) // 매니저관리 페이지 (수정)
 	@ResponseBody
-	public MembersVO managerapplyUpdate(MembersVO vo) {
-		 seemoomapper.managerapplyupdate(vo);
-		 return vo;
+	public int managerapplyupdate(MembersVO vo) {
+		 return  seemoomapper.managerapplyupdate(vo);
 	}
 	
+//	====================================================정지 매니저======================================================
+	
+	@RequestMapping(value = "/stopmanager/ajax", method = RequestMethod.GET) //  정지 매니저 조회 (ajax로 전체조회)
+	@ResponseBody	
+	public List<MembersVO> stopmanagerList(Model model, HttpServletRequest request, HttpServletResponse reponse) {
+		return seemoomapper.stopmanagerList();
+	}
+	
+	@RequestMapping(value = "/admin/stopmanager", method = RequestMethod.GET) // 정지 매니저 조회
+	public String stopmanager(Model model, MembersVO vo, HttpServletRequest request, HttpServletResponse reponse) {
+		model.addAttribute("stopmanager", seemoomapper.stopmanagerList());
+		return "seemoo/stopmanager";
+	}
 
 //	====================================================공지사항======================================================
 
@@ -220,14 +230,6 @@ public class AdminController {
 	 public int noticeupdate(NoticeVO vo) {
 		 return seemoomapper.noticeupdate(vo); 
 	 }
-	
-//		@ResponseBody
-//		@RequestMapping(value = "/userupdate", method = RequestMethod.GET) 		// 유저권한수정
-//		public int usersupdate(MembersVO vo) {
-//			return seemoomapper.membersupdate(vo);
-//			 
-//		}
-//	 
 	
 	@ResponseBody
 	@RequestMapping(value = "/noticeinsert", method = RequestMethod.POST) //공지사항 입력

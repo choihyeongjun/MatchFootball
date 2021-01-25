@@ -75,7 +75,7 @@ String tel = (String) session.getAttribute("point.pnum");
             pay_method : 'card',	// 결제 수단
             merchant_uid: 'merchant_' + new Date().getTime(),
             name: '매치풋볼 : 포인트 충전',
-            amount: money, //.money,           
+            amount: 100, //.money,           
             buyer_name : 'aaa',<%-- '<%=id%>' --%>
             buyer_tel : '010-0000-0000'<%-- '<%=tel%>' --%>
            

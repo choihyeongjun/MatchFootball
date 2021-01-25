@@ -35,17 +35,21 @@ public interface SeemooMapper {
 	
 	public List<BlackTeamListVO> blackteamList(BlackTeamListVO vo);	// 블랙팀(ajax) 전체조회
 	public List<TeamVO> blackteamList();							// 블랙팀 전체조회
+	public int blackteamupdate(TeamVO vo); 							//블랙팀 권한수정
 	public int teamsdelete(TeamVO vo);								// 블랙팀 삭제
 	
 // ============================================================================================
 	
 	public List<MembersVO> managerList(); 				// 매니저(ajax) 전체조회
 	public MembersVO managerselect(MembersVO vo); 		// 매니저 단건조회	
-	public int managerupdate(MembersVO vo);				// 매니저 수정
+	public int managerupdate(MembersVO vo);				// 매니저권한(정지) 줄 수정
 	
 	
 	public List<ManagerapplyVO> managerapplyList(); 	// 매니저 승인|대기 전체조회
-	public MembersVO managerapplyupdate(MembersVO vo);	// 매니저 권한 수정
+	
+	public int managerapplyupdate(MembersVO vo);		// 매니저 권한 수정
+	
+	public List<MembersVO> stopmanagerList(); // 정지매니저
 	
 // ============================================================================================
 	

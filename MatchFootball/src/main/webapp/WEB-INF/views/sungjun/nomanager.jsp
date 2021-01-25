@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-.btn.sf {
+/* .btn.sft {
 	line-height: 32px;
 	font-size: 15px;
 	color: black;
@@ -15,45 +15,59 @@
 	background-color: #3540A5;
 	color: white;
 	border-radius: 10px;
-}
+	cursor: pointer;
+} */
 </style>
+<script>
+	$(function() {
+		$(".sft").on("click", function() {
+			var m_no = $(this).data("pn");
+			modal = $("#nomanager");
+			$.ajax({
+				url : "nomanagerapplym?m_no=" + m_no +"&match_info=" +m_no,
+				success : function(result) {
+					modal.find('#body11').html(result);
+					modal.modal('show');
+				}
+			});
+		});
+	})
+</script>
 </head>
 <body>
-
-	<div class="scedule">
-		<h3>매니저 참가 신청</h3>
+	<div class="container" style="margin-bottom: 140px; margin-top: 140px">
+		<div class="scedule" style="text-align: center; margin: 30px">
+			<h1>참가 가능한 매치 목록</h1>
+		</div>
+		<div class="allscedule" style="margin: 30px; text-align: center; margin-top:50px;">
+			<ul>
+				<c:forEach var="nomanager" items="${nomanager }">
+					<li style="margin: 40px;"><a class="sft" data-toggle="modal"
+						style="text-decoration: none;" data-target="#nomanager"
+						data-pn="${nomanager.m_no }">
+							<div style=" display:flex; margin: 5px; margin-left: 400px;">
+								<div style="">
+									<span class="mdetail" style="font-size: 20px;">
+										${nomanager.m_date }</span>
+								</div>
+								<div style="margin-left: 10px;">
+									<span style="font-weight: bold; font-size: 24px;">${nomanager.f_name }</span>
+								</div>
+							
+							</div>
+					</a></li>
+				</c:forEach>
+			</ul>
+		</div>
 	</div>
-	<div class="allscedule" style="margin: 20px;">
-		<ul>
-			<c:forEach var="nomanager" items="${nomanager }">
-				<li>
-					<div style="display: flex; margin: 5px;">
-						<div style="margin-bottom: 7px; width: 20%">
-							<p class="mdetail" style="font-size: 14px; margin-bottom: 1px;">
-								${nomanager.m_date }</p>
-							<a>${nomanager.f_address } </a>
-						</div>
-						<div style="width: 20%; text-align: center; margin-top: 12px;">
-							<a style="margin-top: 10px; font-weight: bold;">${nomanager.f_name }</a>
-						</div>
-						<div style="width: 30%; margin-left: 200px;">
-							<form action="matchmapply" name="matchmapply" id="matchmapply">
-								<input type="hidden" name="id" value="${sessionScope.id }">
-								<input type="hidden" name="match_info" value="${nomanager.m_no }">
-									<button class="btn sf" type="submit">매니저 참가 신청</button>
-								<%-- <c:if test="${empty tmapplysel}">
-								</c:if>
-								
-								<c:if test="${!empty tmapplysel}">
-									<button class="btn sf" type="submit">신청 완료</button>
-								</c:if> --%>
-							</form>
-						</div>
-					</div>
-				</li>
-			</c:forEach>
-		</ul>
+	<!-- 매니저 없는 매치  매니저 신청 모달창 -->
+	<div class="modal fade" id="nomanager" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-body" id="body11"></div>
+			</div>
+		</div>
 	</div>
-
 </body>
 </html>

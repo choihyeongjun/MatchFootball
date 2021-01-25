@@ -156,17 +156,17 @@ a {
 </script>
 </head>
 <body>
-	<div class="container">
-		<div>
-			<img src="resources/img/11.jpg" class="d-block w-100" alt="..."
-				width="929" height="520">
+	<div class="container" style="padding: 50px;">
+		<div >
+			<img src="${pageContext.request.contextPath}/images/구장1.jpeg" class="d-block w-100" alt="..."
+			style="width:929px; height:520px;"	>
 		</div>
 		<div style="margin-left: 200px; margin-right: 200px; margin-top: 30px">
 
 			<div class="tlwn">
 				<div style="margin: 10px;">
 					<img alt="npe"
-						src="${pageContext.request.contextPath}/resources/img/${team.t_logo}"
+						src="${pageContext.request.contextPath}/images/${team.t_logo}"
 						style="width: 200px; height: 200px; border-radius: 20%; marging: 5px;" />
 				</div>
 				<div class="m-im-t">
@@ -202,13 +202,16 @@ a {
 					<div>
 						<label for="exampleFormControlInput1" class="form-label labelbel">주장
 						</label> <input type="texy" class="form-control" value="${member.name }"
-							style="background-color: white;" readonly> <label
-							for="exampleFormControlInput1" class="form-label labelbel">평균
+							style="background-color: white;" readonly> 
+							<%-- <label	for="exampleFormControlInput1" class="form-label labelbel">평균
 							연령대 </label> <input type="texy" class="form-control"
-							value="${team.t_age }대" style="background-color: white;" readonly>
-						<label for="exampleFormControlInput1" class="form-label labelbel">팀
+							value="${team.t_age }대" style="background-color: white;" readonly> --%>
+						<%-- <label for="exampleFormControlInput1" class="form-label labelbel">팀
 							LV </label> <input type="texy" class="form-control"
-							value="${team.t_level}" style="background-color: white;" readonly>
+							value="${team.t_level}" style="background-color: white;" readonly> --%>
+							<label for="exampleFormControlInput1" class="form-label labelbel">연고지</label>
+							 <input type="texy" class="form-control"
+							value="${team.t_address }" style="background-color: white;" readonly>
 						<label for="exampleFormControlInput1" class="form-label labelbel">팀
 							소개 </label> <input type="texy" class="form-control"
 							value="${team.t_info }" style="background-color: white;" readonly>

@@ -37,6 +37,9 @@ public interface SungjunMapper {
 	//개인 매치 선수 리뷰 등록
 	public int pmreviewapp(List<PreviewVO> preview);
 	public int reviewup(P_matchVO p_match);
+	//팀 매치 리뷰작성 및 팀매치 업데이트
+		public int teamreviewup(TeammatchVO teammatchVO);
+		public int teamreview(List<ReviewVO> review);
 	//개인 매치  리뷰 등록한지 체크
 	public PreviewVO selrrrr(PreviewVO preview);
 	//매니저 신청할떄 멤버에 권한 웨이트로 바꾸기
@@ -88,8 +91,11 @@ public interface SungjunMapper {
 	public Integer tmapply(MmatchlistVO mmatchlistvo);
 	public List<TeammatchVO> nomanager(TeammatchVO teammatch);
 	public Integer tmapplysel(MmatchlistVO mmatchlistvo);
-	
-	//같은 시간대 예약 찾기
+	//매니저없는 팀매치 단거 조회
+	public TeammatchVO nomanagersel(TeammatchVO teammatch);
+	//같은 시간대 팀매치 예약 찾기
+	public Integer selteamtime(TeammatchVO p_match);
+	//같은 시간대  개인매치예약 찾기
 	public Integer seltime(P_matchVO p_match);
 	//해당날 개인매치있는지 없는지 체크
 	public Integer daysel(P_matchVO p_match);
@@ -115,7 +121,5 @@ public interface SungjunMapper {
 	public int lvpmatch(P_matchVO p_matchVO);
 	//최소인원 조회
 	public TeammatchVO minteam(TeammatchVO teammatchVO);
-	//팀 매치 리뷰작성 및 팀매치 업데이트
-	public int teamreviewup(TeammatchVO teammatchVO);
-	public int teamreview(ReviewVO reviewVO);
+	
 }

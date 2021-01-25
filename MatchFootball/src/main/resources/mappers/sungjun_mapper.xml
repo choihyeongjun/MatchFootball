@@ -5,7 +5,8 @@
 <mapper namespace="co.company.MatchFootball.mapper.SungjunMapper"> <!-- 패키지.EmpMapper -->
 	<!-- 선택 매치 가격 조회 -->
 	<select id="price" resultType="P_matchVO">
-		select price from p_match where m_no=#{m_no}
+		select price from p_match where
+		m_no=#{m_no}
 	</select>
 	<!--로그인 한사람 포인트 조회 -->
 	<select id="pointssss" resultType="Integer">
@@ -21,10 +22,6 @@
 		where
 		id= #{id}
 	</select>
-	<!--팀 매치 등록 -->
-	<!-- <insert id="teammatchRegi"> insert into teammatch(m_no,t_num,mtype,f_name,f_address,price,t_name,t_cap,t_level,m_info,m_date,m_hour) 
-		valuse( #{m_no},#{t_num}, #{mtype},#{f_name}, #{f_address},#{price}, #{t_name},#{t_cap}, 
-		#{t_level},#{m_info}, #{m_date},#{m_hour} ) </insert> -->
 	<!--로그인 한사람 팀장인지 조회 팀 번호 -->
 	<select id="cappp" resultType="MembersVO"
 		parameterType="MembersVO">
@@ -39,16 +36,18 @@
 	<!--해당 날 개인매치가 있는지 없는지 조회 -->
 	<select id="daysel" resultType="int">
 		select count(*) as day from p_match
-		where substr(m_date,1,10) = #{m_date}
+		where substr(m_date,1,10) =
+		#{m_date}
 		and to_date(m_date,'yyyy-mm-ddhh24:mi')<![CDATA[ >= sysdate +9/24]]>
 	</select>
 	<!--해당 날 팀매치가 있는지 없는지 조회 -->
 	<select id="daysel1" resultType="int">
 		select count(*) as day from teammatch
-		where substr(m_date,1,10) = #{m_date}
+		where substr(m_date,1,10) =
+		#{m_date}
 		and to_date(m_date,'yyyy-mm-ddhh24:mi')<![CDATA[ >= sysdate +9/24]]>
 	</select>
-	
+
 	<!--해당 날의 개인 매치 조회 및 신청 인원 -->
 	<select id="pmatchselect" parameterType="P_matchVO"
 		resultType="P_matchVO">
@@ -91,7 +90,8 @@
 		,#{p_id},#{npoint},sysdate,#{p_con})
 	</insert>
 	<update id="pointplus">
-		update fieldmanager set point = point + #{point} where f_id = #{f_id}
+		update fieldmanager set point = point + #{point}
+		where f_id = #{f_id}
 	</update>
 	<!--point 매니저비 입금 내역 -->
 	<select id="pointconselect" parameterType="PointVO"
@@ -219,21 +219,52 @@
 	<!--매니저 개인매치 일정 조회 -->
 	<select id="pmatchlist" parameterType="P_matchVO"
 		resultType="P_matchVO">
-		select * from (select * from p_match
-		where m_id = #{m_id}
-		order by
-		m_date desc, m_hour asc)
-		where <![CDATA[rownum <=5]]>
+		select * from (select
+		d.m_no,d.m_type,d.f_name,d.f_address,d.price,d.lv,d.p_max,d.m_id,
+		substr(d.m_date, 12, 5) as m_hour,d.m_date,
+		substr(d.m_date, 1,4) as m_year,substr(d.m_date, 6,2) as
+		m_month,substr(d.m_date,9, 2) as m_day,
+		substr(d.m_date, 12,2) as m_ho,
+		d.t_type,d.f_id,nvl(f,0)f
+			,nvl((select 1 from pplayers
+			where m_no=d.m_no),0)
+			as sel
+		from p_match d, ( select a.m_no
+		,count(*) f
+		from p_match a,pplayers b
+		where a.m_no = b.m_no
+		group by
+		a.m_no )c
+		where d.m_no = c.m_no(+)
+		and
+		d.m_id = #{m_id}
+		order by m_date desc)
+		where <![CDATA[rownum <=7]]>
 	</select>
 	<!--매니저 개인매치 일정 전체 조회 -->
 	<select id="pmatchselectall" parameterType="P_matchVO"
 		resultType="P_matchVO">
 		select * from( select a.*, rownum rn from (
-		select * from
-		p_match
-		where m_id = #{m_id}
-		order by m_date
-		desc, m_hour asc
+		select
+		d.m_no,d.m_type,d.f_name,d.f_address,d.price,d.lv,d.p_max,d.m_id,
+		substr(d.m_date, 12, 5) as m_hour,d.m_date,
+		substr(d.m_date, 1,4) as m_year,substr(d.m_date, 6,2) as
+		m_month,substr(d.m_date,9, 2) as m_day,
+		substr(d.m_date, 12,2) as m_ho,
+		d.t_type,d.f_id,nvl(f,0)f
+			,nvl((select 1 from pplayers
+			where m_no=d.m_no),0)
+			as sel
+		from p_match d, ( select a.m_no
+		,count(*) f
+		from p_match a,pplayers b
+		where a.m_no = b.m_no
+		group by
+		a.m_no )c
+		where d.m_no = c.m_no(+)
+		and
+		d.m_id = #{m_id}
+		order by m_date desc
 		)a ) b where
 		rn between #{first} and #{last}
 	</select>
@@ -317,9 +348,9 @@
 		</foreach>
 	</insert>
 	<update id="pointminus1" parameterType="MembersVO">
-	 update members set point = point - (#{point}/2)
-	  where id=#{id};
-		</update>
+		update members set point = point - (#{point}/2)
+		where id=#{id}
+	</update>
 	<!-- <insert id="pointcomm" parameterType="MembersVO"> insert into point 
 		(p_seq,p_id,npoint,p_date,p_con) values(point_seq.nextval ,#{p_id},#{npoint},sysdate,#{p_con}) 
 		</insert> -->
@@ -337,11 +368,13 @@
 	<!--매니저 신청한지안한지 조회 -->
 	<select id="chekma" resultType="int">
 		select 1 from manageraply
-		where id=#{id}
+		where
+		id=#{id}
 	</select>
 	<!--매니저 신청 취소 -->
 	<delete id="delapply" parameterType="ManageraplyVO">
-		delete from manageraply where id =#{id}
+		delete from manageraply
+		where id =#{id}
 
 	</delete>
 	<!--팀 매치 매니저 신청 -->
@@ -351,19 +384,40 @@
 		values(#{id},#{match_info})
 	</insert>
 	<!--팀 매치 매니저 신청 조회 -->
-	<select id="tmapplysel" parameterType="MembersVO">
+	<select id="tmapplysel" resultType="int">
 		select 1 from mmatchlist where id= #{id} and match_info= #{match_info}
 	</select>
 	<!--매니저 없는 매치 -->
 	<select id="nomanager" parameterType="TeammatchVO"
 		resultType="TeammatchVO">
-		select * from (select * from (select 'a',m_no,f_name,
+		select m_no, f_name,m_date,f_address from (select * from
+		(select 'a',m_no,f_name,
 		m_date, f_address from teammatch
-		where id='없음' union all
+		where id='없음'
+		union all
 		select
-		'b',m_no,f_name, m_date, f_address from p_match where m_id='없음')
+		'b',m_no,f_name, m_date, f_address from p_match where
+		m_id='없음')
 		where
 		to_date(m_date,'yyyy-mm-ddhh24:mi') >= sysdate +9/24)
+		order by
+		m_date
+		desc
+	</select>
+	<!--매니저 없는 해당 매치 조회 -->
+	<select id="nomanagersel" parameterType="TeammatchVO"
+		resultType="TeammatchVO">
+		select m_no, f_name,m_date,f_address from (select * from
+		(select 'a',m_no,f_name,
+		m_date, f_address from teammatch
+		where id='없음'
+		union all
+		select
+		'b',m_no,f_name, m_date, f_address from p_match where
+		m_id='없음')
+		where m_no= #{m_no}
+		and to_date(m_date,'yyyy-mm-ddhh24:mi')
+		>= sysdate +9/24)
 		order by
 		m_date
 		desc
@@ -386,7 +440,7 @@
 		select * from preview
 		where m_no=#{m_no}
 	</select>
-	
+
 	<!--뛴 선수 리뷰 등록 -->
 	<insert id="pmreviewapp">
 		<foreach collection="list" item="vo" open="INSERT ALL "
@@ -398,7 +452,7 @@
 	<update id="reviewup">
 		update p_match set review = 'Y' where m_no =#{m_no}
 	</update>
-	<!--같은 시간대 예약 찾기 -->
+	<!--같은 시간대 개인매치 예약 찾기 -->
 	<select id="seltime" resultType="int">
 		select 1 from p_match a ,
 		pplayers b
@@ -406,35 +460,51 @@
 		and substr(a.m_date,1,13) =
 		substr(#{m_date},1,13) and id= #{id}
 	</select>
-	<!--해당 매치 조회  -->
+	<!--같은 시간대 팀매치 예약 찾기 -->
+	<select id="selteamtime" resultType="int">
+		select 1 from teammatch
+		where so_num = #{t_num}
+		and substr(m_date,1,13) = substr(#{m_date},1,13)
+	</select>
+	<!--해당 매치 조회 -->
 	<select id="matchsell" resultType="P_matchVO">
-		select * from p_match where m_no=#{m_no}
+		select * from p_match where
+		m_no=#{m_no}
 	</select>
-	<!--팀 매치 정보 조회   -->
+	<!--팀 매치 정보 조회 -->
 	<select id="teammatchselect" resultType="TeammatchVO">
-		select * from teammatch where m_no= #{m_no}
+		select * from teammatch
+		where m_no= #{m_no}
 	</select>
-	<!--개인 레벨 조회   -->
+	<!--개인 레벨 조회 -->
 	<select id="lvsel" resultType="int">
-		select lv from members where id= #{id}
+		select lv from members where id=
+		#{id}
 	</select>
-	<!--개인매치 레벨 조회   -->
+	<!--개인매치 레벨 조회 -->
 	<select id="lvpmatch" resultType="int">
-		select lv from p_match where m_no= #{m_no}
+		select lv from p_match where
+		m_no= #{m_no}
 	</select>
-		<!--팀매치 최소인원 조회   -->
+	<!--팀매치 최소인원 조회 -->
 	<select id="minteam" resultType="TeammatchVO">
-		select min from teammatch where m_no= #{m_no}
+		select min from teammatch where
+		m_no= #{m_no}
 	</select>
-	<!--팀매치 레벨 조회   -->
+	<!--팀매치 레벨 조회 -->
 	<select id="lvteammatch" resultType="int">
-		select t_level from teammatch where m_no= #{m_no}
+		select t_level from
+		teammatch where m_no= #{m_no}
 	</select>
 	<!--팀 매치 리뷰 작성 및 팀 매치 리뷰작성 y로 업데이트 -->
-	<insert id="teamreview" >
-		insert into review values(#{t_num},#{m_no},#{score},#{manager_id},#{manner})
+	<insert id="teamreview">
+		<foreach collection="list" item="voo" open="INSERT ALL "
+			separator=" " close="SELECT * FROM DUAL">
+			 into review
+			values(#{voo.t_num},#{voo.m_no},#{voo.score},#{voo.manager_id},#{voo.manner})
+		</foreach>
 	</insert>
 	<update id="teamreviewup">
-	update teammatch set review ='Y' where m_no
+		update teammatch set review ='Y' where m_no =#{m_no}
 	</update>
 </mapper>

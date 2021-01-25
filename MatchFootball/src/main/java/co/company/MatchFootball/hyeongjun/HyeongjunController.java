@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import co.company.MatchFootball.mapper.HyeongjunMapper;
 import co.company.MatchFootball.mapper.SungjunMapper;
+import co.company.MatchFootball.vo.CuponVO;
 import co.company.MatchFootball.vo.FboardVO;
 import co.company.MatchFootball.vo.FieldVO;
 import co.company.MatchFootball.vo.InviteVO;
@@ -61,7 +62,7 @@ public class HyeongjunController {
 	@RequestMapping("/bollow")
 	public String bollow(Model model, TeammatchVO vo, HttpSession session) {
 		// model.addAttribute("list",hyeongjunMapper.getbollowlist());
-		vo.setId((String) session.getAttribute("id"));
+		vo.setT_cap((String) session.getAttribute("id"));
 		model.addAttribute("matchlist", hyeongjunMapper.selectmatch(vo));
 		return "hyeongjun/bollowlist";
 	}
@@ -91,7 +92,7 @@ public class HyeongjunController {
 	public String updateinvite1(InviteVO vo, HttpSession session, @PathVariable String c_id) {
 		vo.setR_id((String) session.getAttribute("id"));
 		vo.setC_id(c_id);
-		hyeongjunMapper.updateinvite(vo);
+	//	hyeongjunMapper.updateinvite(vo);
 		hyeongjunMapper.updateinvite1(vo);
 		return "redirect:/inviteselect";
 	}
@@ -109,7 +110,7 @@ public class HyeongjunController {
 			vo.setImg(multipartFile.getOriginalFilename());
 		}
 		hyeongjunMapper.fieldinsert(vo);
-		return "hyeongjun/fieldlist";
+		return "redirect:/fieldlist";
 	}
 
 	@RequestMapping("/fieldinsert")
@@ -121,6 +122,11 @@ public class HyeongjunController {
 	@RequestMapping("/fielddetailmanagerlist")
 	public List<Mmatchlistnmember> fielddetailmanagerlist(Mmatchlistnmember vo) {
 		return hyeongjunMapper.matchmanagerlist(vo);
+	}
+	@ResponseBody
+	@RequestMapping("/couponlist")
+	public List<CuponVO>cucponlist(CuponVO vo){
+		return hyeongjunMapper.cuponlist(vo);
 	}
 
 	@ResponseBody
@@ -339,7 +345,7 @@ public class HyeongjunController {
 	public String logout(HttpSession session) {
 
 		session.invalidate();
-		return "home";
+		return "redirect:/match";
 	}
 
 	@RequestMapping("/invitelist")
@@ -414,7 +420,7 @@ public class HyeongjunController {
 	}
 
 	@RequestMapping("/managerresult")
-	public String managerresult(MmatchlistVO vo, MmatchnmatchVO vo1, Model model, HttpSession session) {
+	public String managerresult(MmatchlistVO vo, MmatchnmatchVO vo1, Model model, HttpSession session,TeammatchVO vo2,MembersVO vo3) {
 		List<MmatchlistVO> list = hyeongjunMapper.mmatchsearch((String) session.getAttribute("id"));
 		for (MmatchlistVO v1 : list) {
 			System.out.println(v1);
@@ -422,6 +428,9 @@ public class HyeongjunController {
 			vo1.setId(v1.getId());
 			if (hyeongjunMapper.teammatchsearch(v1.getMatch_info()) != null) {
 				model.addAttribute("list", hyeongjunMapper.matchresult(vo1));
+				vo3.setId((String)session.getAttribute("id"));
+				vo.setId((String)session.getAttribute("id"));
+				model.addAttribute("nomanager",dao.nomanager(vo2));
 			} else {
 				model.addAttribute("list", hyeongjunMapper.matchresult1(vo1));
 			}

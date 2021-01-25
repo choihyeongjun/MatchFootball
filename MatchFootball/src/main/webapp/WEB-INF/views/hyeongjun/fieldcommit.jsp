@@ -32,6 +32,13 @@ function openDaumZipAddress() {
     line-height: 170%;
     color: white;
 }
+.btn-primary {
+	background-color: #314d9f !important;
+}
+.btn-primary:hover {
+	background-color: #0d6efd !important;
+	color: white !important;
+}
 </style>				
 </head>
 <body>
@@ -86,7 +93,7 @@ function openDaumZipAddress() {
                         <textarea name="comm" style="width: 1000px; margin-left: -110px;" placeholder="구장 상세 설명"></textarea>
                     </div>
                     <div style="text-align: center;">
-                        <button type="submit" class="site-btn">구장등록</button>
+                        <button type="submit" class="btn btn-primary site-btn">구장등록</button>
                     </div>
                 </div>
             </form>

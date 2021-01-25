@@ -137,6 +137,7 @@ a {
 	color: white;
 	border-radius: 10px;
 }
+
 .btn.sff {
 	line-height: 32px;
 	font-size: 15px;
@@ -155,7 +156,18 @@ a {
 	background-color: #ea3e42;
 	color: white;
 	border-radius: 10px;
-	cursor:
+	cursor: default;
+}
+
+.btn.sf2 {
+	line-height: 32px;
+	font-size: 15px;
+	color: black;
+	text-decoration: none !important;
+	background-color: #999;
+	color: white;
+	border-radius: 10px;
+	cursor: default;
 }
 
 #body1 {
@@ -227,30 +239,6 @@ a {
 				}
 			});
 		});
-		//매치에 매니저 신청
-		$(".tma").on("click", function() {
-			var m_no = $(this).data("npp");
-			modal = $("#nomanager");
-			$.ajax({
-				url : "managermypagemmm?m_no=" + m_no,
-				success : function(result) {
-					modal.find('#body11').html(result);
-					modal.modal('show');
-				}
-			});
-		});
-		//모든 매치 내역 창
-		$(".allmatchlist").on("click", function() {
-			var id = $(this).data("al");
-			modal = $("#allmatchlist11");
-			$.ajax({
-				url : "managermypagemmmall?id=" + id,
-				success : function(result) {
-					modal.find('#body12').html(result);
-					modal.modal('show');
-				}
-			});
-		});
 	})
 </script>
 </head>
@@ -284,38 +272,52 @@ a {
 					</h3>
 				</div>
 				<c:if test="${!empty p_match }">
-				<c:forEach var="p_match" items="${p_match }">
-					<div class="mamama">
-						<ul style="padding: 0px;">
-							<li
-								style="display: flex; padding-left: 20px; margin-bottom: 10px;">
-								<div class="matchc">
-									<a class="mdetail" data-toggle="modal"
-										data-target="#matchdetail" data-num="${p_match.m_no }"
-										style="cursor: pointer;"> <span
-										style="font-size: 18px; font-weight: bold;">${p_match.m_date }</span>
-										<span> ${p_match.f_name }</span>
-									</a> <input type="hidden" value="${p_match.m_no }">
-								</div>
-								<div style="width: 20%">
-									<c:if test="${empty p_match.review && p_match.m_date > sysdate }">
-										<a class="btn sf" data-toggle="modal" data-target="#pmreivew"
-											data-pn="${p_match.m_no }"> 리뷰 작성</a>
-									</c:if>
-									<c:if test="${p_match.m_date < sysdate }">
-									<b class="btn sf1">경기 시작 전</b>
-									</c:if>
-									<c:if test="${!empty p_match.review }">
-										<b class="btn sf1"> 작성 완료</b>
-									</c:if>
-								</div>
-							</li>
-						</ul>
-					</div>
-				</c:forEach>
+					<c:forEach var="p_match" items="${p_match }">
+						<div class="mamama">
+							<ul style="padding: 0px;">
+								<li
+									style="display: flex; padding-left: 20px; margin-bottom: 10px;">
+									<div class="matchc">
+										<a class="mdetail" data-toggle="modal"
+											data-target="#matchdetail" data-num="${p_match.m_no }"
+											style="cursor: pointer;"> <span
+											style="font-size: 18px; font-weight: bold;">${p_match.m_date }</span>
+											<span> ${p_match.f_name }</span>
+										</a> <input type="hidden" value="${p_match.m_no }">
+									</div>
+
+									<div style="width: 20%">
+										<fmt:parseDate value="${p_match.m_date}" var="m_date"
+											pattern="yyyy-MM-dd HH:mm" />
+										<fmt:formatDate value="${m_date}" var="m_date"
+											pattern="yyyy-MM-dd HH" />
+										<fmt:parseNumber value="${p_match.p_max}" var="p_max" />
+										<fmt:parseNumber value="${p_match.f}" var="f" />
+										<c:if
+											test="${p_match.review ne 'Y' && m_date <= sysdate && p_max <= f}">
+											<a class="btn sf" data-toggle="modal" data-target="#pmreivew"
+												data-pn="${p_match.m_no }"> 리뷰 작성</a>
+										</c:if>
+										<c:if test="${m_date > sysdate && p_max <= f}">
+											<p class="btn sf1">경기 시작 전</p>
+										</c:if>
+										<c:if test="${m_date <= sysdate && p_max > f }">
+											<p class="btn sf2">매칭 실패</p>
+										</c:if>
+										<c:if test="${p_match.review eq 'Y' }">
+											<p class="btn sf2">작성 완료</p>
+										</c:if>
+										<c:if test="${m_date > sysdate && p_max > f}">
+											<p class="btn sf1">매칭 중</p>
+										</c:if>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</c:forEach>
 				</c:if>
 				<c:if test="${empty p_match }">
-				<div style="margin: 30px">내역이 없습니다</div>
+					<div style="margin: 30px">내역이 없습니다</div>
 				</c:if>
 			</div>
 			<!-- 개인매치 리뷰 모달창 -->
@@ -345,42 +347,53 @@ a {
 					</h3>
 				</div>
 				<c:if test="${!empty t_match }">
-				<c:forEach var="t_match" items="${t_match }">
-					<div class="mamamaa">
-						<ul style="margin: 0;">
-							<li style="display: flex; margin-bottom: 10px;">
-								<div class="matchc">
-									<a class="tmdetail" data-toggle="modal"
-										data-nom="${t_match.m_no }" date-sonum="${t_match.so_num }"
-										data-tnum="${t_match.t_num }"
-										style="cursor: pointer; font-size: 18px;">
-										<p style="font-weight: bold; margin: 0px;">${t_match.m_date }</p>
-										<p>
-											<b>${t_match.t_name }</b> vs <b>${t_match.so_name }</b>
-										</p>
-									</a> <input type="hidden" name="m_no" value="${t_match.m_no }">
-									<input type="hidden" name="t_num" value="${t_match.t_num }">
-									<input type="hidden" name="so_num" value="${t_match.so_num }">
-									<input type="hidden" name="so_name" value="${t_match.so_name }">
-								</div>
-								<div style="width: 20%">
-									<c:if test="${empty t_match.review }">
-										<a class="btn sff" data-toggle="modal"
-											data-target="#teamreviewapl" data-pn="${t_match.m_no }"
-											style="align-items: center; margin-top: 20px;"> 리뷰 작성</a>
-									</c:if>
-									<c:if test="${!empty t_match.review }">
-										<b class="btn sf1"> 작성 완료</b>
-									</c:if>
-
-								</div>
-							</li>
-						</ul>
-					</div>
-				</c:forEach>
+					<c:forEach var="t_match" items="${t_match }">
+						<div class="mamamaa">
+							<ul style="margin: 0;">
+								<li style="display: flex;">
+									<div class="matchc">
+										<a class="tmdetail" data-toggle="modal"
+											data-nom="${t_match.m_no }" date-sonum="${t_match.so_num }"
+											data-tnum="${t_match.t_num }"
+											style="cursor: pointer; font-size: 18px;">
+											<p style="font-weight: bold; margin: 0px;">${t_match.m_date }</p>
+											<p>
+												<b>${t_match.t_name }</b> vs <b>${t_match.so_name }</b>
+											</p>
+										</a> <input type="hidden" name="m_no" value="${t_match.m_no }">
+										<input type="hidden" name="t_num" value="${t_match.t_num }">
+										<input type="hidden" name="so_num" value="${t_match.so_num }">
+										<input type="hidden" name="so_name"
+											value="${t_match.so_name }">
+									</div>
+									<div style="width: 20%">
+										<fmt:parseDate value="${t_match.m_date}" var="m_date"
+											pattern="yyyy-MM-dd HH:mm" />
+										<fmt:formatDate value="${m_date}" var="m_date"
+											pattern="yyyy-MM-dd HH" />
+										<c:if
+											test="${t_match.review eq null && m_date <= sysdate && t_match.so_num ne null }">
+											<a class="btn sff" data-toggle="modal"
+												data-target="#teamreviewapl" data-pn="${t_match.m_no }"
+												style="align-items: center; margin-top: 20px;"> 리뷰 작성</a>
+										</c:if>
+										<c:if test="${t_match.review eq 'Y' }">
+											<b class="btn sf2" style="margin-top: 20px;"> 작성 완료</b>
+										</c:if>
+										<c:if test="${m_date > sysdate && t_match.so_num ne null }">
+											<b class="btn sf1" style="margin-top: 20px;"> 경기 시작전</b>
+										</c:if>
+										<c:if test="${t_match.so_num eq null and m_date < sysdate }">
+											<b class="btn sf2" style="margin-top: 20px;"> 매칭 실패</b>
+										</c:if>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</c:forEach>
 				</c:if>
 				<c:if test="${empty t_match }">
-				<div style="margin: 30px">내역이 없습니다</div>
+					<div style="margin: 30px">내역이 없습니다</div>
 				</c:if>
 			</div>
 			<!-- 팀매치 정보 모달창 -->
@@ -406,7 +419,10 @@ a {
 			<!-- 입금 -->
 			<div class="allscedule">
 				<div class="allcha">
-					<h3><i class="fas fa-coins" style="color: #ffc645; padding-right: 10px;"></i> 입금내역</h3>
+					<h3>
+						<i class="fas fa-coins"
+							style="color: #ffc645; padding-right: 10px;"></i> 입금내역
+					</h3>
 					<div class="scedulemore">
 						<a class="pointalll" data-toggle="modal"
 							data-target="#staticBackdrop" style="cursor: pointer;">전체 보기</a>
@@ -428,13 +444,11 @@ a {
 			<div class="allscedule">
 				<div class="managermenu">
 					<ul>
-						<li><a class="allmatchlist" data-toggle="modal"
-							data-target="#allmatchlist11" data-al="${member.id}"> <i
+						<li><a href="${pageContext.request.contextPath}/allmatchlist"><i
 								class="fas fa-futbol"
-								style="padding-right: 10px; color: #ffc645;"></i>경기 내역 전체 보기
-						</a></li>
-						<li><a class="tma" data-toggle="modal"
-							data-target="#nomanager" data-npp="${teammatch.m_no}"><i
+								style="padding-right: 10px; color: #ffc645;"></i>경기 내역 전체 보기 </a></li>
+						<li><a class="tma"
+							href="${pageContext.request.contextPath}/nomanager"><i
 								class="fas fa-ad" style="padding-right: 10px; color: #ffc645;"></i>매치
 								매니저 신청</a></li>
 					</ul>
@@ -478,7 +492,7 @@ a {
 					</c:forEach>
 				</c:if>
 				<c:if test="${empty p_pointall}">
-					<div style="text-align: center; margin: 30px ">내역이 없습니다</div>
+					<div style="text-align: center; margin: 30px">내역이 없습니다</div>
 				</c:if>
 			</div>
 		</div>

@@ -52,6 +52,9 @@ footer {
    background: rgba(0, 0, 0, 0.5);
    z-index: -1;
 }
+.close {
+	border: 0;
+}
 </style>
 <script>
    $(function() {
@@ -115,21 +118,31 @@ footer {
       });
    }//memberlist
    function memberListResult(data) {
-      $("#search").empty();
+      $('.search').empty();
       $.each(data, function(idx, item) {
-         $('<tr>')
-            .append($('<td>').html(item.id))
-            .append($('<td>').html(item.name))
-            .append($('<td>').html(item.gender))
-            .append($('<td>').html(item.location1))
-            .append($('<td>').html(item.pnum))
-            .append($('<td>').html(item.manner))
-            .append($('<td>').html(item.lv))
-            .append($('<td>').html(item.pos))
-            .append($('<input type=\'hidden\' id=\'hidden_userId\'>').val(item.id))
-            .append($('<td>').html('<button type="button" class="btn btn-primary" id=\'btnSelect\'>초대하기</button>'))
-            .appendTo('#search');
-         });
+    	  $('.search').append('<tr><td><b>포지션</b></td><td>'+item.pos+'</td><td><b>실력</b></td><td>'+item.lv+'</td>'
+			                + '<td><b>아이디</b></td><td>'+item.id+'</td>'
+			                + '<input type=\'hidden\' id=\'hidden_userId\' value=\''+item.id+'\'>'
+			                + '<td rowspan="3" style="border-bottom: 3px solid #dfe2e6;"><button type="button" class="btn btn-primary" id=\'btnSelect\' >초대하기</button></td></tr>'
+			                + '<tr><td><b>이름</b></td><td>'+item.name+'</td><td><b>성별</b></td><td>'+item.gender+'</td>'
+			                + '<td><b>연락처</b></td><td>'+item.pnum+'</td></tr>'
+			                + '<tr><td style="border-bottom: 3px solid #dfe2e6;"><b>주소</b></td><td colspan="5" style="border-bottom: 3px solid #dfe2e6;">'+item.location1+'</td></tr>');
+      });
+    	  
+//    	 $('<tr>')
+//            .append($('<td>').html(item.id))
+//            .append($('<td>').html(item.name))
+//            .append($('<td>').html(item.gender))
+//            .append($('<td>').html(item.location1))
+//            .append($('<td>').html(item.pnum))
+//            .append($('<td>').html(item.manner))
+//            .append($('<td>').html(item.lv))
+//            .append($('<td>').html(item.pos))
+//            .append($('<input type=\'hidden\' id=\'hidden_userId\'>').val(item.id))
+//            .append($('<td>').html('<button type="button" class="btn btn-primary" id=\'btnSelect\'>초대하기</button>'))
+//            .appendTo('#search');
+        
+           
       $('#dataTable').DataTable();
    };
 </script>
@@ -137,7 +150,9 @@ footer {
 </head>
 
 <body>
-      <div class="card mb-4" style="width: 65%; float: left; margin-left: 10px; margin-top: 10px;">
+<section class="home" style="padding-bottom: 110px;">
+	<div class="container">
+      <div class="card mb-4" style="width: 55%; float: left; margin-left: 10px; margin-top: 10px;">
          <div class="card-header">
             <i class="fas fa-table mr-1"></i> 용병참가 목록
             <div style="float: right;">
@@ -150,18 +165,12 @@ footer {
                   <table class="table table-bordered" id="dataTable">
                      <thead style="text-align: center;">
                         <tr>
-                     <th>아이디</th>
-                     <th>이 름</th>
-                     <th>성 별</th>
-                     <th>주 소</th>
-                     <th>전화번호</th>
-                     <th>매 너 도</th>
-                     <th>실력</th>
-                     <th>포지션</th>
-                     <th>초대</th>
-                  </tr>
+		                     <th colspan="6" style="border-top: 3px solid #dfe2e6; border-bottom: 3px solid #dfe2e6;">용병목록</th>
+		                     <th style="border-top: 3px solid #dfe2e6; border-bottom: 3px solid #dfe2e6;">초대</th>
+		                </tr>
                      </thead>
-                       <tbody id="search" style="text-align: center;">
+                     <tbody class="search" style="text-align: center;">
+                       
                   </tbody>
                   </table>
                </div>
@@ -169,7 +178,7 @@ footer {
          </div>
       </div>
       
-      <div class="card mb-4" style="float: right; width: 32%; margin-right: 10px; margin-top: 10px;">
+      <div class="card mb-4" style="float: right; width: 42%; margin-right: 10px; margin-top: 10px;">
          <div class="card-header">
             <i class="fas fa-table mr-1"></i> 초대된 목록
          </div>
@@ -179,12 +188,12 @@ footer {
                   <table class="table table-bordered">
                      <thead align="center">
                         <tr class="tr1">
-                     <th>아이디</th>
-                     <th>초대날짜</th>
-                     <th>제목</th>
-                     <th>내용</th>
-                     <th>초대 여부</th>
-                  </tr>
+		                     <th>아이디</th>
+		                     <th>초대날짜</th>
+		                     <th>제목</th>
+		                     <th>내용</th>
+		                     <th>초대 여부</th>
+		                </tr>
                      </thead>
                      <tbody id="dd"  style="text-align: center;">
             </tbody>
@@ -196,41 +205,37 @@ footer {
       
    <div class="modal fade" id="myModal">
       <div class="modal-dialog">
-         <div class="modal-content">
+         <div class="modal-content" style="width: 117%;">
 
-            <div class="modal-header">
-               <h3 class="modal-title">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;초대장</h3>
-               <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <div class="modal-header" style="width: 585px;">
+               <h3 class="modal-title" style="margin-left: 25px;">초대장</h3>
             </div>
-            <form method="get" action="${pageContext.request.contextPath}/bollowsearch/ajax">
                <!-- Modal body -->
                <div class="modal-body" style="height: 300px">
+	            <form method="get" action="${pageContext.request.contextPath}/bollowsearch/ajax">
                   <table style="margin: 0% 4% 0% 4%">
                      <tr>
-                        <td>제목:</td>
-                        <td style="width: 300px"><input id="title" name="title" type="text"
-                           style="width: 372px; margin: 1%"></td>
+                        <td>제목</td>
+                        <td><input id="title" name="title" type="text" style="margin: 1%"></td>
                         <br>
                      </tr>
                      <tr>
-                        <td>내용:</td>
-                        <td><textarea id="comm" name="comm" type="text" rows="4" cols="50"
-                              style="margin: 1%; resize: none;"></textarea></td>
+                        <td>내용</td>
+                        <td><textarea id="comm" name="comm" type="text" rows="4" cols="50" style="margin: 1%; resize: none;"></textarea></td>
                      </tr>
                      <tr>
-                        <td>매치선택:</td>
+                        <td>매치선택</td>
                         <td>
-                        <select id="select" title="경기를선택하세요">
-                        <c:forEach items="${matchlist}" var="m">
-                        <option value="${m.m_no}">${m.m_date},${m.f_name}</option>
-                        </c:forEach>
-                        </select>
+	                        <select id="select" title="경기를선택하세요">
+		                        <c:forEach items="${matchlist}" var="m">
+		                        	<option value="${m.m_no}">${m.m_date},${m.f_name}</option>
+		                        </c:forEach>
+	                        </select>
                         </td>
                      </tr>
                   </table>
+	            </form>
                </div>
-            </form>
 
             <!-- Modal footer -->
             <div class="modal-footer">
@@ -240,6 +245,8 @@ footer {
          </div>
       </div>
    </div>
+	</div>
+</section>
    
    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>

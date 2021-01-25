@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -406,10 +407,14 @@ public class HyenDongController {
 
 	// 팀 매치 내역 페이지
 	@RequestMapping("/teamMatchList")
-	public String teamMatchList(Model model, TeammatchVO teammatchVO, HttpSession session) {
+	public String teamMatchList(Model model, TeammatchVO teammatchVO, HttpSession session, TeamlistVO teamlistVO) {
 		String tNum = (String) session.getAttribute("t_num");
+		String id = (String) session.getAttribute("id");
 		teammatchVO.setT_num(tNum);
 		model.addAttribute("match", hyendongMapper.teamMatchWait(teammatchVO));
+		teamlistVO.setT_num(tNum);
+		teamlistVO.setId(id);
+		model.addAttribute("author", hyendongMapper.getTeamMemberss(teamlistVO));
 		return "hyendong/teamMatchList";
 	}
 
@@ -613,11 +618,11 @@ public class HyenDongController {
 	}
 
 	// 토너먼트 상금 전달 처리
-	@RequestMapping("/winTournament")
+	@RequestMapping("/admin/winTournament")
 	public String winTournament(MembersVO membersVO, TournamentVO tournamentVO) {
 		hyendongMapper.getTournament(tournamentVO);
 		hyendongMapper.winTournament(membersVO);
-		return "redirect:/tournamentPVP?t_no=" + tournamentVO.getT_no();
+		return "redirect:/admin/tournamentPVP?t_no=" + tournamentVO.getT_no();
 	}
 
 	// 구장관리자 회원가입 폼
@@ -629,10 +634,19 @@ public class HyenDongController {
 	// 구장관리자 처리
 	@RequestMapping("/fieldRegisterr")
 	public String fieldRegisterr(FieldmanagerVO fieldmanagerVO) {
-		hyendongMapper.fieldRegister(fieldmanagerVO);
-		return "sungjun/match";
+		int result = hyendongMapper.fmIdCheck(fieldmanagerVO);
+		try {
+			if(result == 1) {
+				return "hyendong/fieldRegister";
+			}else if(result==0) {
+				hyendongMapper.fieldRegister(fieldmanagerVO);
+				
+			}} catch (Exception e) {
+				throw new RuntimeException();
+			}
+		return "redirect:/";
 	}
-
+	
 	// 구장관리자 로그인 처리
 	@RequestMapping("/fieldLogin")
 	public String fieldLogin(FieldmanagerVO fieldmanagerVO, HttpServletRequest req, HttpSession session) {
@@ -647,5 +661,12 @@ public class HyenDongController {
 		} else {
 			return "hyeongjun/login";
 		}
+	}
+	
+	// 구장관리자 아이디 중복체크
+	@RequestMapping(value="/fmIdCheck", method = RequestMethod.POST)
+	public int fmIdCheck(FieldmanagerVO fVO) {
+		int result = hyendongMapper.fmIdCheck(fVO);
+		return result;
 	}
 }
