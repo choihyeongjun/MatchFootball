@@ -336,7 +336,7 @@ public class HyeongjunController {
 			return "redirect:/match";
 		} else {
 			session.setAttribute("login", "아이디 또는 비밀번호가 맞지않습니다");
-			return "hyeongjun/login";
+			return "redirect:/match";
 		}
 		// return "redirect:/sungjun/match";
 	}

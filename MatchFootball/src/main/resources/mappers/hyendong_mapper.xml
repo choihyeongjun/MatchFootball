@@ -410,9 +410,15 @@
 		where id=#{id}
 	</select>
 	
-	<!-- 팀 매치 신청 내역 -->
+	<!-- 팀 매치 등록 내역 -->
 	<select id="teamMatchWait" resultType="TeammatchVO">
 		select so_num, so_name, m_no, mtype, f_name, f_address, price, substr(m_date, 0, 10) as m_date, substr(m_date, 12) as m_hour from teammatch where t_num = #{t_num}
+		order by m_date
+	</select>
+	
+	<!-- 팀 매치 신청 내역-->
+	<select id="teamMatchVS" resultType="TeammatchVO">
+		select m_no, mtype, t_name,f_name, f_address, price, substr(m_date, 0, 10) as m_date, substr(m_date, 12) as m_hour from teammatch where so_num=#{so_num}
 		order by m_date
 	</select>
 	
@@ -490,7 +496,7 @@
 	
 	<!-- 토너먼트 상금 전달 -->
 	<update id="winTournament">
-		update members set point = (select t_point from tournament where t_no=#{t_no}) 
+		update members set point =  point + (select t_point from tournament where t_no=#{t_no}) 
 		where id = (select id from members where id = (select b.id from tournamentteam a join teamlist b 
 		                                               on a.t_num=b.t_num where a.t_wn='우승' 
 		                                               and a.t_no=#{t_no} and b.t_author='팀장'))
@@ -546,6 +552,6 @@
 	<!-- 구장관리자 아이디 중복체크 -->
 	<select id="fmIdCheck" resultType="int">
 		select count(*) from fieldmanager
-		where f_id=#{f_id};
+		where f_id=#{f_id}
 	</select>
 </mapper>

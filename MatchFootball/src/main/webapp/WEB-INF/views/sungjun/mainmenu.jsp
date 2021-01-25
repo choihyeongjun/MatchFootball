@@ -139,7 +139,7 @@ body, html {
                   ${sessionScope.request}
             </c:if>
             <c:if test="${sessionScope.id eq null}">
-               <button type="button" class="btn abc" data-toggle="modal"
+               <button type="button" class="btn abc" id="abcd" data-toggle="modal"
                   data-target="#id02">
                   <i class="fas fa-user fa-1x"></i>
                </button>
@@ -151,7 +151,7 @@ body, html {
           		  </button>
           		  
              <c:if test="${sessionScope.id eq null}">
-                <button type="button" class="btn abc" data-toggle="modal"
+                <button type="button" class="btn abc" id="abcd" data-toggle="modal"
                   data-target="#id01">
                               구장관리자
                </button>
@@ -437,8 +437,10 @@ body, html {
                      <ul class="menul" style="color: white; font-size: 20px;">
                         <li class="lili"><a
                            href="${pageContext.request.contextPath}/fieldlist">구장 정보</a></li>
+                           <c:if test="${sessionScope.f ne null}">
                         <li class="lili"><a
                            href="${pageContext.request.contextPath}/fieldinsert">구장 등록</a></li>
+                           </c:if>
                      </ul>
                   </div>
 

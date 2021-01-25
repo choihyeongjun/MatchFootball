@@ -412,6 +412,8 @@ public class HyenDongController {
 		String id = (String) session.getAttribute("id");
 		teammatchVO.setT_num(tNum);
 		model.addAttribute("match", hyendongMapper.teamMatchWait(teammatchVO));
+		teammatchVO.setSo_num(tNum);
+		model.addAttribute("match2", hyendongMapper.teamMatchVS(teammatchVO));
 		teamlistVO.setT_num(tNum);
 		teamlistVO.setId(id);
 		model.addAttribute("author", hyendongMapper.getTeamMemberss(teamlistVO));
@@ -657,6 +659,7 @@ public class HyenDongController {
 			session.setAttribute("name", fieldmanagerVO.getName());
 			session.setAttribute("pnum", fieldmanagerVO.getPnum());
 			session.setAttribute("point", fieldmanagerVO.getPoint());
+			session.setAttribute("f","1");
 			return "redirect:/match";
 		} else {
 			return "hyeongjun/login";
