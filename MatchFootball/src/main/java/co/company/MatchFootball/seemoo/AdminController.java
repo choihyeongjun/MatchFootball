@@ -277,13 +277,13 @@ public class AdminController {
 			return "redirect:/noticeView?n_no=" + vo.getN_no() ; 
 		}
 		
-	// 공지 댓글 등록 처리
+	// 공지 댓글 삭제 처리
 		@RequestMapping("/nboarddelete")
 		public String nboarddelete(NboardVO vo) {
 			seemoomapper.nboarddelete(vo);
 			return "redirect:/noticeView?n_no=" + vo.getN_no() ; 
 		}
-	
+		
 //	====================================================리뷰======================================================
 
 	@ResponseBody
@@ -319,6 +319,12 @@ public class AdminController {
 	public String match(Model model, P_matchVO vo, HttpServletRequest request, HttpServletResponse reponse) {
 		model.addAttribute("match", seemoomapper.matchList(vo));
 		return "seemoo/match";
+	}
+	
+	@RequestMapping("/matchdelete")
+	public String matchdelete(P_matchVO vo) {
+		seemoomapper.matchdelete(vo);
+		return "redirect:/match?m_no=" + vo.getM_no(); 
 	}
 	
 	@RequestMapping(value = "/admin/field") // 경기장관리 페이지

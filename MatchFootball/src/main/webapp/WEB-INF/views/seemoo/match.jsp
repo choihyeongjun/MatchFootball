@@ -59,7 +59,8 @@ body { margin-top: 40px; font-size: 14px; font-family: Arial, Helvetica Neue, He
 											<td>${matchList.t_type }</td>
 											<td>${matchList.f_id }</td>
 											<td>
-											<button type="submit" class="btn btn-danger" id="btnInsert">삭제</button>
+											<button type="submit" class="btn btn-danger" 
+											onclick="javascript: form.action='${pageContext.request.contextPath}/matchdelete'">삭제</button>
 											</td>
 										</tr>
 									</c:forEach>
