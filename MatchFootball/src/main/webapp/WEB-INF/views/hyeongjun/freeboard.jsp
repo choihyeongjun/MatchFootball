@@ -346,7 +346,7 @@ var btn_like = document.getElementById("love");
 					<br />
 				</div>
 
-				<div class="card mb-4">
+				<div class="card mb-4" style="width: 1150px; height: 700px;">
 					<div class="card-header">
 						<i class="fas fa-table mr-1" style="margin-top: 15px;"></i> 자유게시판
 						<div style="float: right;">
@@ -358,9 +358,8 @@ var btn_like = document.getElementById("love");
 
 					<div class="card-body">
 						<div class="table-responsive">
-							<table class="table table-bordered" id="dataTable" width="100%"
-								cellspacing="0">
-								<thead>
+							<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+								<thead align="center">
 									<tr>
 										<th>번호</th>
 										<th>제목</th>
@@ -370,7 +369,7 @@ var btn_like = document.getElementById("love");
 										<th>조회수</th>
 									</tr>
 								</thead>
-								<tfoot>
+								<tfoot align="center">
 									<tr>
 										<th>번호</th>
 										<th>제목</th>

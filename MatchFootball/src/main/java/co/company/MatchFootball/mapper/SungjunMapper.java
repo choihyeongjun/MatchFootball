@@ -25,6 +25,7 @@ public interface SungjunMapper {
 	//페이징 내역수 
 	public int getCount1(P_matchVO p_matchVO);
 	public int getCount2(TeammatchVO team_matchVO);
+	public int getCount3(TeammatchVO team_matchVO);
 	
 	public MembersVO memberselect(MembersVO membersvo);
 	public List<PointVO> pointallselect(PointVO p_point);

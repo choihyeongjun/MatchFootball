@@ -437,8 +437,10 @@ body, html {
                      <ul class="menul" style="color: white; font-size: 20px;">
                         <li class="lili"><a
                            href="${pageContext.request.contextPath}/fieldlist">구장 정보</a></li>
+                           <c:if test="${sessionScope.f ne null}">
                         <li class="lili"><a
                            href="${pageContext.request.contextPath}/fieldinsert">구장 등록</a></li>
+                           </c:if>
                      </ul>
                   </div>
 
@@ -462,7 +464,7 @@ body, html {
                         <h3 style="color: red; font-size: 30px;">관리자</h3>
                      </div>
                      <ul class="menul" style="color: white; font-size: 20px;">
-                        <li class="lili"><a href="${pageContext.request.contextPath}/admin">관리자페이지</a></li>
+                        <li class="lili"><a href="${pageContext.request.contextPath}/admin/user">관리자페이지</a></li>
                      </ul>
                   </div>
 				  </c:if>

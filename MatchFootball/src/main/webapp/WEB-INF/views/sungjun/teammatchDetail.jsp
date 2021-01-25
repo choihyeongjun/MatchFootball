@@ -191,6 +191,7 @@ a {
 				<h5 style="font-weight: bold;">${teammatch.price}원</h5>
 				<input type="hidden" id="price" value="${teammatch.price }" /> <input
 					type="hidden" id="minusprice" value="-${teammatch.price }" />
+				<h5 >최소 인원 : ${teammatch.min}명</h5>	
 			</div>
 			<div style="border-bottom: 1px solid #ddd;">
 				<div>
