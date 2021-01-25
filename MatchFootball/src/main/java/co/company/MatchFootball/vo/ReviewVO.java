@@ -9,5 +9,4 @@ public class ReviewVO {
 	String score;//승패
 	String manager_id;//매니저아이디
 	String manner;//매너 점수
-	String m_id;
 }

@@ -498,10 +498,10 @@
 	</select>
 	<!--팀 매치 리뷰 작성 및 팀 매치 리뷰작성 y로 업데이트 -->
 	<insert id="teamreview">
-		<foreach collection="list" item="vo" open="INSERT ALL "
+		<foreach collection="list" item="voo" open="INSERT ALL "
 			separator=" " close="SELECT * FROM DUAL">
-			insert into review
-			values(#{vo.t_num},#{vo.m_no},#{vo.score},#{vo.manager_id},#{vo.manner})
+			 into review
+			values(#{voo.t_num},#{voo.m_no},#{voo.score},#{voo.manager_id},#{voo.manner})
 		</foreach>
 	</insert>
 	<update id="teamreviewup">
