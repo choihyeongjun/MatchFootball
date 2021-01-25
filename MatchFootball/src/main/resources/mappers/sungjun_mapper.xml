@@ -116,11 +116,24 @@
 		SELECT COUNT(*) FROM teammatch
 		where id = #{id}
 	</select>
+	<!--매니저 없는 매치 내역 수 페이징 -->
+	<select id="getCount3" resultType="int">
+		select count(*) from (select * from
+		(select 'a',m_no,f_name,
+		m_date, f_address from teammatch
+		where id='없음'
+		union all
+		select
+		'b',m_no,f_name, m_date, f_address from p_match where
+		m_id='없음')
+		where
+		to_date(m_date,'yyyy-mm-ddhh24:mi') >= sysdate +9/24)
+	</select>
 	<!-- 선택개인매치 조회 -->
 	<select id="pmatchlist1" parameterType="P_matchVO"
 		resultType="P_matchVO">
 		select
-		d.m_no,d.m_type,d.f_name,d.f_address,round(d.price,-2) as price,d.lv,d.p_max,d.m_id,
+		d.m_no,d.m_type,d.f_name,d.f_address,round(d.price,0) as price,d.lv,d.p_max,d.m_id,
 		substr(d.m_date, 12, 5) as m_hour,substr(d.m_date, 1,10) as m_date,
 		substr(d.m_date, 1,4) as m_year,substr(d.m_date, 6,2) as
 		m_month,substr(d.m_date,9, 2) as m_day,
@@ -390,6 +403,7 @@
 	<!--매니저 없는 매치 -->
 	<select id="nomanager" parameterType="TeammatchVO"
 		resultType="TeammatchVO">
+		select * from( select a.*, rownum rn from (
 		select m_no, f_name,m_date,f_address from (select * from
 		(select 'a',m_no,f_name,
 		m_date, f_address from teammatch
@@ -403,10 +417,13 @@
 		order by
 		m_date
 		desc
+			)a ) b where
+		rn between #{first} and #{last}
 	</select>
 	<!--매니저 없는 해당 매치 조회 -->
 	<select id="nomanagersel" parameterType="TeammatchVO"
 		resultType="TeammatchVO">
+		
 		select m_no, f_name,m_date,f_address from (select * from
 		(select 'a',m_no,f_name,
 		m_date, f_address from teammatch

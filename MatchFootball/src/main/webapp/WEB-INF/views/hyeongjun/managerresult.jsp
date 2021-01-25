@@ -91,6 +91,14 @@ $(function() {
 							</div>
 					</a></li>
 				</c:forEach>
+				<script>
+				function goPage(q) {
+					location.href = "managerresult?page=" + q;
+				}
+			</script>
+			<div style="font-size: 20px; text-align: center; margin-left: 50%;">
+				<my:paging paging="${paging}" jsfunc="goPage" />
+			</div>
 			</ul>
 		</div>
 	</div>
