@@ -25,7 +25,7 @@ $(function(){
 	})
 })
 </script>
-<<<<<<< HEAD
+
 <style>
 .navbar-brand {
 	padding: 0;
@@ -90,7 +90,7 @@ $(function(){
 }
 </style>
 
-=======
+
 
 <style>
 #dataTable_filter { padding-left: 358px; }
@@ -130,7 +130,6 @@ footer { position: fixed; left: 0px; bottom: 0px; width: 100%; background: grey;
     padding-left: 35px;
 }
 </style>
->>>>>>> branch 'master' of https://github.com/tjdwns631/MatchFootball.git
 
 </head>
 
