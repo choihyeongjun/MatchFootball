@@ -418,21 +418,24 @@ public class JunController {
 				 Model model , ReviewVO reviewVO) throws IOException {
 			String[] score = request.getParameterValues("score");
 			String[] m_no = request.getParameterValues("m_no");
-			String[] m_id = request.getParameterValues("m_id");
+			String[] manager_id = request.getParameterValues("manager_id");
 			String[] manner = request.getParameterValues("manner");
 			String[] t_num = request.getParameterValues("t_num");
+			System.out.println(score[0]);
+
 			ArrayList<ReviewVO> review = new ArrayList<ReviewVO>();
 			for (int i = 0; i < t_num.length; i++) {
 				ReviewVO voo = new ReviewVO();
 				voo.setM_no(m_no[i]);
 				voo.setT_num(t_num[i]);
-				voo.setM_id(m_id[i]);
+				voo.setManager_id(manager_id[i]);
 				voo.setManner(manner[i]);
+				voo.setScore(score[i]);
 				review.add(voo);
 				System.out.println(voo);
 			}
 			// 다건 등록
-			dao.teamreview(reviewVO);
+			dao.teamreview(review);
 			// 멤버 업데이트
 			teammatchVO.setM_no(m_no[0]);
 			dao.teamreviewup(teammatchVO);
