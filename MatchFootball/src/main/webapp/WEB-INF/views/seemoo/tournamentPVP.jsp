@@ -132,6 +132,23 @@
 	.match_g01 .match_list.win .line_sty_L.on {
 		border-color: #137eaa;
 	}
+	.champion_box .txt {
+    line-height: 40px;
+    margin-top: 0;
+    font-size: 36px;
+    font-weight: bold;
+    color: #000160;
+}
+
+element.style {
+    background: #000160;
+    border-radius: 3em;
+}
+.btn-primary {
+    color: #fff;
+    background-color: #000160;
+    border-color: #000160;
+}
 </style>
 <script>
 	var link = [
@@ -565,7 +582,7 @@
 						</div>
 						<div class="champion_box" style="margin-top: -70px; padding-bottom: 20px;">
 							<p class="txt">WINNER</p>
-							<div class="player" data-seq="15" style="background: #d38923; border-radius: 3em;">
+							<div class="player" data-seq="15" style="background: #000160; border-radius: 3em;">
 								<div class="winner">
 									<p style="color: white"></p>
 								</div>
@@ -577,7 +594,7 @@
 						<input type="text" value="${tournamentPVP[3].t_name }" name="t_num" style="display:none">
 						<input type="text" value="${tournamentPVP[0].t_no }" name="t_no" style="display:none">
 						<div align="right" style="padding-right: 180px">
-							<input type="submit" value="상금전달" class="genric-btn info circle">
+							<input type="submit" value="상금전달" class="btn btn-primary">
 						</div>
 					</form>
 				</div>

@@ -226,7 +226,7 @@
 	<!-- 토너먼트 대진표 조회 -->
 	<select id="tournamentPVP" parameterType="TournamentTeamVO"
 		resultType="TournamentTeamVO">
-		select t.t_name, tt.t_no from tournamentteam tt join team t on tt.t_num = t.t_num where t_no=#{t_no}
+		select * from tournamentteam tt join team t on tt.t_num = t.t_num where t_no=#{t_no}
 	</select>
 	
 	<!-- 멤버 팀 번호 변경 -->
