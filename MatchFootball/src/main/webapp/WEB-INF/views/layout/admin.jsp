@@ -43,7 +43,7 @@
 				<div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
 					<a class="dropdown-item" href="${pageContext.request.contextPath}/match">홈페이지</a> 
 				<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="${pageContext.request.contextPath}/admin">로그아웃</a>
+					<a class="dropdown-item" href="${pageContext.request.contextPath}/match">로그아웃</a>
 				</div>
 			</li>
 		</ul>
@@ -57,10 +57,10 @@
 				<div class="sb-sidenav-menu">
 					<div class="nav">
 						<div class="sb-sidenav-menu-heading">Home</div>
-						<a class="nav-link" href="${pageContext.request.contextPath}/admin">
+						<a class="nav-link" href="${pageContext.request.contextPath}/match">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-tachometer-alt"></i>
-							</div> 메인페이지
+							</div> 홈페이지 이동
 						</a>
 						<div class="sb-sidenav-menu-heading">고객관리</div>
 						<a class="nav-link collapsed" href="#" data-toggle="collapse"
@@ -102,65 +102,12 @@
 								<a class="nav-link" href="${pageContext.request.contextPath}/admin/field">경기장관리</a>
 							</nav>
 						</div>
-
 						<div class="sb-sidenav-menu-heading">전체게시판</div>
-						<a class="nav-link collapsed" href="#" data-toggle="collapse"
-							data-target="#collapsePages" aria-expanded="false"
-							aria-controls="collapsePages">
+						<a class="nav-link" href="${pageContext.request.contextPath}/admin/notice/noticewrite">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-book-open"></i>
-							</div> 게시판관리
-							<div class="sb-sidenav-collapse-arrow">
-								<i class="fas fa-angle-down"></i>
-							</div>
+							</div> 공지사항
 						</a>
-						<div class="collapse" id="collapsePages"
-							aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
-							<nav class="sb-sidenav-menu-nested nav accordion"
-								id="sidenavAccordionPages">
-								<a class="nav-link collapsed" href="#" data-toggle="collapse"
-									data-target="#pagesCollapseAuth" aria-expanded="false"
-									aria-controls="pagesCollapseAuth"> 커뮤니티관리
-									<div class="sb-sidenav-collapse-arrow">
-										<i class="fas fa-angle-down"></i>
-									</div>
-								</a>
-								
-								<div class="collapse" id="pagesCollapseAuth"
-									aria-labelledby="headingOne"
-									data-parent="#sidenavAccordionPages">
-									<nav class="sb-sidenav-menu-nested nav">
-										<a class="nav-link" href="${pageContext.request.contextPath}/admin/notice/noticewrite">공지사항</a>
-										<a class="nav-link" href="${pageContext.request.contextPath}/admin/community">커뮤니티</a> 
-									</nav>
-								</div>
-								<a class="nav-link collapsed" href="#" data-toggle="collapse"
-									data-target="#pagesCollapseError" aria-expanded="false"	
-									aria-controls="pagesCollapseError"> 매니저 리뷰관리
-									<div class="sb-sidenav-collapse-arrow">
-										<i class="fas fa-angle-down"></i>
-									</div>
-								</a>
-								<div class="collapse" id="pagesCollapseError"
-									aria-labelledby="headingOne"
-									data-parent="#sidenavAccordionPages">
-									<nav class="sb-sidenav-menu-nested nav">
-										<a class="nav-link" href="${pageContext.request.contextPath}/admin/review">개인리뷰</a> 
-										<a class="nav-link" href="${pageContext.request.contextPath}/admin/teamreview">팀리뷰</a> 
-										<a class="nav-link" href="${pageContext.request.contextPath}/admin/reviewerite">리뷰작성</a>
-									</nav>
-								</div>
-
-							</nav>
-						</div>
-						
-						<div class="sb-sidenav-menu-heading">통계관리</div>
-						<a class="nav-link" href="${pageContext.request.contextPath}/admin/sales">
-							<div class="sb-nav-link-icon">
-								<i class="fas fa-chart-area"></i>
-							</div> 통계관리
-						</a>
-						 
 					</div>
 				</div>
 				
