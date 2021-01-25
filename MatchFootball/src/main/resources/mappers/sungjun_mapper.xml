@@ -239,9 +239,6 @@
 		m_month,substr(d.m_date,9, 2) as m_day,
 		substr(d.m_date, 12,2) as m_ho,
 		d.t_type,d.f_id,nvl(f,0)f
-			,nvl((select 1 from pplayers
-			where m_no=d.m_no),0)
-			as sel
 		from p_match d, ( select a.m_no
 		,count(*) f
 		from p_match a,pplayers b
@@ -404,13 +401,13 @@
 	<select id="nomanager" parameterType="TeammatchVO"
 		resultType="TeammatchVO">
 		select * from( select a.*, rownum rn from (
-		select m_no, f_name,m_date,f_address from (select * from
+		select m_no, f_name,m_date,m_hour,f_address from (select * from
 		(select 'a',m_no,f_name,
-		m_date, f_address from teammatch
+		m_date,m_hour, f_address from teammatch
 		where id='없음'
 		union all
 		select
-		'b',m_no,f_name, m_date, f_address from p_match where
+		'b',m_no,f_name, m_date,m_hour, f_address from p_match where
 		m_id='없음')
 		where
 		to_date(m_date,'yyyy-mm-ddhh24:mi') >= sysdate +9/24)

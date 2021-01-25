@@ -21,7 +21,7 @@
 <body>
 	<div>
 		<h2 style="text-align: center;">
-			팀 매치 등록
+			팀 리뷰 등록
 		</h2>
 			<div>
 				<form action="teamreview" name="teamreview" id="teamreview" method="post" >
