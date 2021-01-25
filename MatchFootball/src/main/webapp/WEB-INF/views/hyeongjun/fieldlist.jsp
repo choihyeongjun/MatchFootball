@@ -71,18 +71,10 @@ footer{
 #pagination {margin:10px auto;text-align: center;}
 #pagination a {display:inline-block;margin-right:10px;}
 #pagination .on {font-weight: bold; cursor: default;color:#777;}
-<<<<<<< HEAD
+#submitBtn { float: right; }
+.col-lg-9 { max-width: 100%; }
 
-#submitBtn {
-	float: right;
-}
-
-.col-lg-9 {
-	max-width: 100%;
-}
-=======
-#a1 img { height: 260px; width: 400px;}
->>>>>>> branch 'master' of https://github.com/tjdwns631/MatchFootball.git
+div #abcd { display: none;}
 </style>
 	
 
@@ -376,24 +368,6 @@ function removeAllChildNods(el) {
 				</div>
 			</div>
 			
-<<<<<<< HEAD
-=======
-			<c:forEach var="field" items="${list}">
-			<div class="col-lg-4 col-md-6 col-sm-6">
-				<div class="product__item">
-					<div class="product__item__pic set-bg" id="a1">
-					<img src="${pageContext.request.contextPath}/images/${field.img}">
-					</div>
-					<div class="product__item__text">
-						<h6>
-							<a href="${pageContext.request.contextPath}/fieldlist/fielddetail/${field.f_id}">${field.name}</a>
-						</h6>
-						<h5>${field.price}</h5>
-					</div>
-				</div>
-			</div>
-		</c:forEach>
->>>>>>> branch 'master' of https://github.com/tjdwns631/MatchFootball.git
 		</div>
 	</div>
 </section>

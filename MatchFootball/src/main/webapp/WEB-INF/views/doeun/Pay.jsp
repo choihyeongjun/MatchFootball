@@ -57,6 +57,7 @@ String tel = (String) session.getAttribute("point.pnum");
 	$(function() {	   
         IMP.init('imp22665146');
         pay();
+        change();
 	});	
 	
 	function pay(){
@@ -251,17 +252,6 @@ String tel = (String) session.getAttribute("point.pnum");
 									</div>
 								</div>
 								<hr>
-
-								<h4 id="item-2-3">포인트 환전</h4>
-								<br>
-								<div>
-									<p>내 포인트</p>
-									<br>
-									<p>환전 가능한 포인트</p>
-									<div align="right">
-										<button type="button" class="btn btn-primary">환전</button>
-									</div>
-								</div>
 							</div>
 						</div>
 					</div>

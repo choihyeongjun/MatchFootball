@@ -120,7 +120,7 @@
 	<select id="pmatchlist1" parameterType="P_matchVO"
 		resultType="P_matchVO">
 		select
-		d.m_no,d.m_type,d.f_name,d.f_address,d.price,d.lv,d.p_max,d.m_id,
+		d.m_no,d.m_type,d.f_name,d.f_address,round(d.price,-2) as price,d.lv,d.p_max,d.m_id,
 		substr(d.m_date, 12, 5) as m_hour,substr(d.m_date, 1,10) as m_date,
 		substr(d.m_date, 1,4) as m_year,substr(d.m_date, 6,2) as
 		m_month,substr(d.m_date,9, 2) as m_day,

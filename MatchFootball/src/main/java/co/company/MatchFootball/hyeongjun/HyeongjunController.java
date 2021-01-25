@@ -420,7 +420,7 @@ public class HyeongjunController {
 	}
 
 	@RequestMapping("/managerresult")
-	public String managerresult(MmatchlistVO vo, MmatchnmatchVO vo1, Model model, HttpSession session) {
+	public String managerresult(MmatchlistVO vo, MmatchnmatchVO vo1, Model model, HttpSession session,TeammatchVO vo2,MembersVO vo3) {
 		List<MmatchlistVO> list = hyeongjunMapper.mmatchsearch((String) session.getAttribute("id"));
 		for (MmatchlistVO v1 : list) {
 			System.out.println(v1);
@@ -428,6 +428,9 @@ public class HyeongjunController {
 			vo1.setId(v1.getId());
 			if (hyeongjunMapper.teammatchsearch(v1.getMatch_info()) != null) {
 				model.addAttribute("list", hyeongjunMapper.matchresult(vo1));
+				vo3.setId((String)session.getAttribute("id"));
+				vo.setId((String)session.getAttribute("id"));
+				model.addAttribute("nomanager",dao.nomanager(vo2));
 			} else {
 				model.addAttribute("list", hyeongjunMapper.matchresult1(vo1));
 			}

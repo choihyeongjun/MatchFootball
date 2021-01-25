@@ -104,7 +104,7 @@ $(function(){
     padding-bottom: .5rem;
     margin-top: -27px;
     margin-left: -27px;
-    width: 1660px;
+    width: 1900px;
     height: 71px
 }
 .navbar-brand { margin-top: -33px;}
