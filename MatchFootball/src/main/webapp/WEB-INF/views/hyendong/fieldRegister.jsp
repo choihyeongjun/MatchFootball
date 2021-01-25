@@ -32,34 +32,68 @@
 		var p1 = document.getElementById('pw1').value;
 		var p2 = document.getElementById('pw2').value;
 
-		if (p1.length < 6) {
-			alert('비밀번호는 6글자 이상이어야 합니다.');
-			return false;
-		}
-
 		if (p1 != p2) {
 			alert("비밀번호가 일치 하지 않습니다");
 			return false;
 		} else {
-			alert("비밀번호가 일치합니다");
+			alert("회원가입 완료")
+			document.makeTeam.submit();
 			return true;
 		}
 	}
+	function fn_idChk(){
+		$.ajax({
+			url : "/fmIdCheck",
+			type : "post",
+			dataType : "json",
+			data : {"userId" : $("#f_id").val()},
+			success : function(data){
+				if(data==1){
+					alert("중복된 아이디입니다.");
+				}else if(data==0){
+					$("#idChk").attr("value", "Y");
+					alert("사용가능한 아이디입니다.");
+				}
+			}
+		});	
+	}
+
 </script>
+<style>
+.form-control {
+    display: block;
+    width: 350px;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+</style>
 <body>
-	<div style="padding-bottom: 250px">
+	<div style="padding-bottom: 190px; padding-left: 750px">
 		<article class="container">
 			<div class="page-header">
 				<div class="col-md-6 col-md-offset-3">
+				<br>
 					<h3>구장 관리자 회원가입</h3>
+					<br>
 				</div>
 			</div>
 			<div class="col-sm-6 col-md-offset-3">
-				<form action="fieldRegisterr" method="post">
+				<form action="fieldRegisterr" method="post" name="makeTeam">
 					<div class="form-group">
-						<label for="inputName">Id</label> <input type="text"
-							class="form-control" name="f_id" placeholder="Id를 입력해 주세요"
-							required="required">
+						<label for="inputName">아이디</label> <input type="text" id="f_id"
+							class="form-control" name="f_id" placeholder="아이디를 입력해 주세요"
+							required="required"><button type="button" id="idChk" onclick="fn_idChk();" value="N">중복확인</button>
 					</div>
 					<br>
 					<div class="form-group">
@@ -82,7 +116,7 @@
 					<br>
 					<div class="form-group">
 						<label for="inputMobile">휴대폰 번호</label> <input type="tel"
-							class="form-control" name="pnum" placeholder="휴대폰번호를 입력해 주세요"
+							class="form-control" name="pnum" placeholder="휴대폰 번호를 입력해 주세요"
 							required="required">
 					</div>
 					<br>
@@ -93,12 +127,12 @@
 							type="radio" id="inputPasswordCheck" value="여" name="gender">
 					</div>
 					<br>
-					<div class="form-group text-center">
-						<button type="submit" id="join-submit" class="btn btn-primary"
+					<div class="form-group text-center" style="padding-right: 204px;">
+						<button type="button" id="join-submit" class="btn btn-primary"
 							onclick="check()">
 							회원가입<i class="fa fa-check spaceLeft"></i>
 						</button>
-						<button type="submit" class="btn btn-warning">
+						<button type="button" class="btn btn-warning" onclick="history.back(-1)">
 							가입취소<i class="fa fa-times spaceLeft"></i>
 						</button>
 					</div>

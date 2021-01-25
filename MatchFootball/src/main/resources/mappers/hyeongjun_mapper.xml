@@ -258,6 +258,9 @@
    select t_num from members where id=#{id})
    
    </select>
-   
+   <select id="cuponlist" parameterType="cuponVO">
+   select * from coupon
+   where m_id=#{m_id}
+   </select>
 
 </mapper>

@@ -101,6 +101,14 @@ body, html {
       location.href=url
    }
 }
+   
+   function logins(url){
+	   if('${sessionScope.id}' == ''){
+	      alert("로그인 하셔야 이용이 가능합니다")
+	   }else{
+	      location.href=url
+	   }
+	}
 </script>
 
 </head>
@@ -125,15 +133,20 @@ body, html {
             </c:if>
             <c:if test="${sessionScope.id eq null}">
                <button type="button" class="btn abc" data-toggle="modal"
-                  data-target="#id01">
+                  data-target="#id02">
                   <i class="fas fa-user fa-1x"></i>
                </button>
-            </c:if>
-
-            <button type="button" class="btn bbb" data-toggle="modal"
+             </c:if>
+             <button type="button" class="btn bbb" data-toggle="modal"
                data-target="#main_menu">
                <i class="fas fa-bars fa-2x"></i>
-            </button>
+          		  </button>
+             <c:if test="${sessionScope.id eq null}">
+                <button type="button" class="btn abc" data-toggle="modal"
+                  data-target="#id01">
+                              구장관리자
+               </button>
+            </c:if>
          </div>
       </div>
 
@@ -147,32 +160,25 @@ body, html {
          style="width: 400px">
          <div class="modal-content" style="background-color: none;">
             <div class="container">
-               <section class="login first grey" style="height: 450px">
+               <section class="login first grey" style="height: 280px">
                   <div class="container">
                      <div class="box-wrapper">
                         <div class="box box-border">
                            <div class="box-body">
                               <h2 style="text-align: center;">Login</h2>
-                              <div align="right"><input type="radio"
-                                    name="login" class="login" value="fadmin" /> <label
-                                    for="fadmin">회원</label> 
-                             		 <input type="radio"
-                                    name="login" class="login" value="fadmin" /> <label
-                                    for="fadmin">구장관리자</label> <br>
-                              </div>
                               <form action="${pageContext.request.contextPath}/fieldLogin"
                                  method="post">
                                  <div class="form-group">
-                                    <label>Username</label> <input type="text" name="f_id"
+                                    <label>FieldAdmin</label> <input type="text" name="f_id"
                                        class="form-control">
                                  </div>
                                  <div class="form-group">
                                     <label class="fw">Password</label> <input type="password"
                                        name="pw" class="form-control">
                                  </div>
-                                 <a href="forgot.html" class="pull-right">비밀번호 찾기</a>
                                  <div class="form-group text-right"
                                     style="text-align: center;">
+                                    <br>
                                     <button class="btn btn-primary btn-block">로그인</button>
                                     <td>${sessionScope.login}</td>
                                  </div>
@@ -183,18 +189,33 @@ body, html {
                                        href="${pageContext.request.contextPath}/fieldRegister" style="color: blue;">가입하기</a>
                                  </div>
                                  <br>
-                                 <div class="hr-sect">USER</div>
                                  <br>
-                                 <div class="title-line" style="text-align: center;">
-                                    <a id="custom-login-btn"
-                                       href="https://kauth.kakao.com/oauth/authorize?client_id=7e3b7c35576002f01608bd949ca669da&redirect_uri=http://localhost/MatchFootball/kakaologin&response_type=code">
-                                       <img
-                                       src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg"
-                                       width="222" /></a>
-                                 </div>
                               </form>
-                              
-                               <form action="${pageContext.request.contextPath}/logincheck"
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </section>
+            </div>
+         </div>
+      </div>
+   </div>
+   
+   <!--로그인  -->
+   <div class="modal fade bd-example-modal-xl" id="id02" tabindex="-1"
+      role="dialog" aria-labelledby="myExtraLargeModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog modal-xl" role="document"
+         style="width: 400px">
+         <div class="modal-content" style="background-color: none;">
+            <div class="container">
+               <section class="login first grey" style="height: 400px">
+                  <div class="container">
+                     <div class="box-wrapper">
+                        <div class="box box-border">
+                           <div class="box-body">
+                              <h2 style="text-align: center;">Login</h2>
+                           <form action="${pageContext.request.contextPath}/logincheck"
                                  method="post">
                                  <div class="form-group">
                                     <label>Username</label> <input type="text" name="id"
@@ -204,18 +225,13 @@ body, html {
                                     <label class="fw">Password</label> <input type="password"
                                        name="pw" class="form-control">
                                  </div>
-                                 <a href="forgot.html" class="pull-right">비밀번호 찾기</a>
                                  <div class="form-group text-right"
                                     style="text-align: center;">
+                                    <br>
                                     <button class="btn btn-primary btn-block">로그인</button>
                                     <td>${sessionScope.login}</td>
                                  </div>
                                  <br>
-                                 <div class="form-group text-center"
-                                    style="text-align: center;">
-                                    <span class="text-muted">구장 관계자는 여기서 </span> <a
-                                       href="${pageContext.request.contextPath}/fieldRegister" style="color: blue;">가입하기</a>
-                                 </div>
                                  <br>
                                  <div class="hr-sect">USER</div>
                                  <br>
@@ -319,14 +335,14 @@ body, html {
                      <ul class="menul" style="color: white; font-size: 20px;" id="a4">
                         <li class="lili" id="a5"><a style="font-size: 17px;">${sessionScope.kname}${sessionScope.name}님 안녕하세요</a>
                         <li class="lili"><a
-                           href="${pageContext.request.contextPath}/mypage/profile">내정보</a></li>
+                           href="javascript:logins('${pageContext.request.contextPath}/mypage/profile')">내정보</a></li>
                         <li class="lili"><a
-                           href="${pageContext.request.contextPath}/mypage/pay">결제 |
+                           href="javascript:logins('${pageContext.request.contextPath}/mypage/pay')">결제 |
                               쿠폰</a></li>
                         <li class="lili"><a
-                           href="${pageContext.request.contextPath}/mypage/matching">매칭 관리</a></li>
+                           href="javascript:logins('${pageContext.request.contextPath}/mypage/matching')">매칭 관리</a></li>
                         <li class="lili"><a
-                           href="${pageContext.request.contextPath}/mypage/msg">쪽지 |
+                           href="javascript:logins('${pageContext.request.contextPath}/mypage/msg')">쪽지 |
                               게시글</a></li>
                         <c:if test="${sessionScope.author eq 'user'}">
                            <li class="lili"><a
@@ -346,7 +362,12 @@ body, html {
                            <li class="lili"><a
                               href="${pageContext.request.contextPath}/allmatchlist">전체경기
                                  일정</a></li>
+                                 <li class="lili"><a
+                              href="${pageContext.request.contextPath}/managerresult">매니저 경기신청 결과
+                                 </a></li>
                         </ul>
+                         
+                       
                      </div>
                   </c:if>
                   <div class="col-md-3 col-sm-6">
@@ -422,10 +443,8 @@ body, html {
                            style="color: white;">공지사항</a></li>
                         <li class="lili"><a
                            href="${pageContext.request.contextPath}/free">자유게시판</a></li>
-                        <li class="lili"><a
-                           href="${pageContext.request.contextPath}/productlist">중고장터</a></li>
-                        <li class="lili"><a
-                           href="${pageContext.request.contextPath}/tournamentList">토너먼트</a></li>
+                           
+                        <li class="lili"><a href="${pageContext.request.contextPath}/tournamentList">토너먼트</a></li>
                      </ul>
                   </div>
                   <c:if test="${sessionScope.id eq 'ad1' }">

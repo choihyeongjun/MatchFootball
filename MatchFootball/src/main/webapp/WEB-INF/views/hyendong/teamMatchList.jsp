@@ -72,7 +72,7 @@ element.style {
 		<div class="card-header">
 			<i class="fas fa-table mr-1"></i> 팀매치 신청 내역
 		</div>
-		<div class="card-body" style="margin-left:140px">
+		<div class="card-body" style="margin-left:0px">
 			<div class="table-responsive" style="margin-left: 150px; margin-bottom: 100px">
 				<div class="container" style="float: left;">
 					<table class="table table-bordered" id="dataTable">
@@ -103,11 +103,18 @@ element.style {
 									<c:if test="${match.so_num ne null}">
 									<td class="text-center">${match.so_name }</td>
 									</c:if>
-									<c:if test="${match.so_num eq null}">
+									<c:if test="${match.so_num eq null && author.t_author eq '팀장'}">
 									<td align="center"><form action="teamMatchDelete" method="post">
 									<input type="text" value="${match.m_no }" name="m_no" style="display:none">
 									<input type="submit" class="btn btn-danger" value="경기취소"></form></td>
 									</c:if>
+									
+									<c:if test="${match.so_num eq null && author.t_author eq '팀원'}">
+									<td align="center"><form action="teamMatchDelete" method="post">
+									<input type="text" value="${match.m_no }" name="m_no" style="display:none">
+									<input type="submit" class="btn btn-danger" value="경기취소" disabled="disabled"></form></td>
+									</c:if>
+									
 									<c:if test="${match.so_num ne null}">
 									<td align="center"><input type="button" value="매칭완료" disabled="disabled"></td>
 									</c:if>

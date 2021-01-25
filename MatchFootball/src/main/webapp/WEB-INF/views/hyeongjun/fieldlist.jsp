@@ -71,33 +71,46 @@ footer{
 #pagination {margin:10px auto;text-align: center;}
 #pagination a {display:inline-block;margin-right:10px;}
 #pagination .on {font-weight: bold; cursor: default;color:#777;}
+<<<<<<< HEAD
+
+#submitBtn {
+	float: right;
+}
+
+.col-lg-9 {
+	max-width: 100%;
+}
+=======
+#a1 img { height: 260px; width: 400px;}
+>>>>>>> branch 'master' of https://github.com/tjdwns631/MatchFootball.git
 </style>
 	
 
 
 <body>
-
-	<div class="col-lg-9 col-md-7" style="text-align: center; margin-left: 15%; margin-top: 15px;">
-		<div style="test-align:center;" >
-				<h2>경기장 리스트</h2>
+<section class="home">
+	<div class="container">
+		<div class="col-lg-9 col-md-7" style="text-align: center; width: 100%; margin-top: 15px;">
+			<div style="test-align:center;" >
+					<h2>경기장 리스트</h2>
 			</div>
-	<div class="map_wrap">
-    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
-
-    <div id="menu_wrap" class="bg_white">
-        <div class="option">
-            <div>
-                <form onsubmit="searchPlaces(); return false;">
-                    키워드 : <input type="text" value="" id="keyword" size="15"> 
-                    <button type="submit">검색하기</button> 
-                </form>
-            </div>
-        </div>
-        <hr>
-        <ul id="placesList"></ul>
-        <div id="pagination"></div>
-    </div>
-</div>
+			<div class="map_wrap">
+		    	<div id="map" style="width:100%; height:100%; position:relative;overflow:hidden;"></div>
+		
+			    <div id="menu_wrap" class="bg_white">
+			        <div class="option">
+			            <div>
+			                <form onsubmit="searchPlaces(); return false;">
+			                    키워드 : <input type="text" value="" id="keyword" size="15"> 
+			                    <button type="submit">검색하기</button> 
+			                </form>
+			            </div>
+			        </div>
+			        <hr>
+			        <ul id="placesList"></ul>
+			        <div id="pagination"></div>
+			    </div>
+			</div>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c53a2f38f2293a05c7f311d007c7d8f1&libraries=services"></script>
 <script>
@@ -320,36 +333,55 @@ function removeAllChildNods(el) {
     }
 }
 </script>
-		<div class="filter__item">
-			<div class="row">
-				<div class="col-lg-4 col-md-5">
-					<div class="filter__sort">
-						<span>Sort By</span> <select>
-							<option value="0">Default</option>
-							<option value="0">Default</option>
-						</select>
+			<div class="filter__item">
+				<div class="row">
+					<div class="col-lg-4 col-md-5">
+						<div class="filter__sort">
+							<span>Sort By</span> <select>
+								<option value="0">등록일순</option>
+								<option value="0">가격순</option>
+							</select>
+						</div>
 					</div>
-				</div>
-				<div class="col-lg-4 col-md-4">
-					<div class="filter__found">
-						<h6>
-							<span>16</span> Products found
-						</h6>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-3">
-					<div class="filter__option">
-						<span class="icon_grid-2x2"></span> <span class="icon_ul"></span>
+					<div class="col-lg-4 col-md-4">
+						<div class="filter__found">
+							<h6>
+								<span>13</span> Fields found
+							</h6>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		<div class="row">
+			<div class="row">
+				
+				<c:forEach var="field" items="${list}">
+				<div class="col-lg-4 col-md-6 col-sm-6">
+					<div class="product__item">
+						<div class="product__item__pic set-bg">
+						<img src="${pageContext.request.contextPath}/images/${field.img}" style="height: 100%; width: 100%">
+						</div>
+						<div class="product__item__text">
+							<h6>
+								<a href="${pageContext.request.contextPath}/fieldlist/fielddetail/${field.f_id}">${field.name}</a>
+							</h6>
+							<h5>${field.price}</h5>
+						</div>
+					</div>
+				</div>
+				</c:forEach>
+				<div class="row">
+					<div style="height: 50px; float:right;">
+						<button type="submit" class="btn btn-primary" id="submitBtn" onclick="location.href='${pageContext.request.contextPath}/fieldinsert'">등록</button>
+					</div>
+				</div>
+			</div>
 			
+<<<<<<< HEAD
+=======
 			<c:forEach var="field" items="${list}">
 			<div class="col-lg-4 col-md-6 col-sm-6">
 				<div class="product__item">
-					<div class="product__item__pic set-bg">
+					<div class="product__item__pic set-bg" id="a1">
 					<img src="${pageContext.request.contextPath}/images/${field.img}">
 					</div>
 					<div class="product__item__text">
@@ -361,14 +393,10 @@ function removeAllChildNods(el) {
 				</div>
 			</div>
 		</c:forEach>
+>>>>>>> branch 'master' of https://github.com/tjdwns631/MatchFootball.git
 		</div>
-		
-		<div class="product__pagination">
-			<a href="#">1</a> <a href="#">2</a> <a href="#">3</a> <a href="#"><i
-				class="fa fa-long-arrow-right"></i></a>
-		</div>
-		<button type="submit"  class="btn btn-primary" id="submitBtn" onclick="location.href='${pageContext.request.contextPath}/fieldinsert'">등록</button>
 	</div>
+</section>
 </body>
 <!-- Js Plugins -->
 <script src="${pageContext.request.contextPath}/resources/hyeongjun/js/jquery-3.3.1.min.js"></script>

@@ -24,16 +24,119 @@ $(function(){
 		
 	})
 })
-
-		
-
 </script>
+<<<<<<< HEAD
+<style>
+.navbar-brand {
+	padding: 0;
+}
+
+.modal.show .modal-dialog {
+    transform: none;
+}
+
+.modal-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    pointer-events: auto;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,.2);
+    border-radius: .3rem;
+    outline: 0;
+}
+
+.container-fluid {
+    width: 100%;
+    padding-right: var(--bs-gutter-x,.75rem);
+    padding-left: var(--bs-gutter-x,.75rem);
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1050;
+    display: none;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    outline: 0;
+}
+
+.lili {
+    padding: 3px 0 3px 0;
+    text-indent: -30px;
+    line-height: 170%;
+    color: white;
+}
+
+.row>* {
+    flex-shrink: 0;
+    width: 100%;
+    max-width: 100%;
+    padding-right: calc(var(--bs-gutter-x)/ 2);
+    padding-left: calc(var(--bs-gutter-x)/ 2);
+    margin-top: var(--bs-gutter-y);
+}
+
+.col-md-3 {
+    flex: 0 0 auto;
+    width: 25%;
+}
+</style>
+
+=======
+
+<style>
+#dataTable_filter { padding-left: 358px; }
+#aa {
+	position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    margin-top: -27px;
+    margin-left: -27px;
+    width: 1660px;
+    height: 71px
+}
+.navbar-brand { margin-top: -33px;}
+footer { position: fixed; left: 0px; bottom: 0px; width: 100%; background: grey; color: white; }
+
+#a2{   
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    flex-direction: column;
+    width: 1000px;
+    margin-left: -200px;
+    pointer-events: auto;
+    background-color: #fff;
+    background-clip: padding-box;
+    outline: 0;
+}
+.lili a {
+    padding: 3px 0 3px 0;
+    line-height: 170%;
+    margin-left: -23px;
+    color: white;
+    padding-left: 35px;
+}
+</style>
+>>>>>>> branch 'master' of https://github.com/tjdwns631/MatchFootball.git
+
 </head>
 
 <body>
-
+<section class="home" style="padding-bottom: 110px;">
    <div class="container">
-	
       <!-- 일자 클릭시 메뉴오픈 -->
       <div id="contextMenu" class="dropdown clearfix">
          <ul class="dropdown-menu dropNewEvent" role="menu"
@@ -52,7 +155,7 @@ $(function(){
          </ul>
       </div>
 
-      <div id="wrapper">
+      <div id="wrapper" style="position: sticky;">
          <div id="loading"></div>
          <div id="calendar"></div>
       </div>
@@ -126,11 +229,19 @@ $(function(){
                         </select>
                      </div>
                   </div>
-                  <div class="row">
+                   <div class="row">
                      <div class="col-xs-12">
                         <label class="col-xs-4" for="edit-desc">설명</label>
                         <textarea rows="4" cols="50" class="inputModal" name="edit-desc"
                            id="edit-desc"></textarea>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-xs-12">
+                        <label class="col-xs-4" for="coupon">쿠폰</label> <select
+                           class="inputModal"  name="coupon" id="coupon">
+                           <option value="없음">없음</option>
+                        </select>
                      </div>
                   </div>
                   
@@ -139,7 +250,6 @@ $(function(){
                         <label class="col-xs-4" for="edit-type">매니저</label> <select
                            class="inputModal" type="text" name="manager" id="manager">
                            <option value="없음">없음</option>
-                           
                         </select>
                      </div>
                   </div>
@@ -268,7 +378,14 @@ $(function(){
                            id="edit-price" value="${price}" readonly="readonly"/>
                      </div>
                   </div>
-            
+            		<div class="row">
+                     <div class="col-xs-12">
+                        <label class="col-xs-4" for="coupon">쿠폰</label> <select
+                           class="inputModal"  name="coupon1" id="coupon1">
+                           <option value="없음">없음</option>
+                        </select>
+                     </div>
+                  </div>
                   <div class="row">
                      <div class="col-xs-12">
                         <label class="col-xs-4" for="edit-desc">설명</label>
@@ -282,7 +399,7 @@ $(function(){
                         <label class="col-xs-4" for="manager1">매니저</label> <select
                            class="inputModal" type="text" name="manager1" id="manager1">
                            <option value="없음">없음</option>
-                           <option value="풋살"></option>
+                           
                         </select>
                      </div>
                   </div>
@@ -310,13 +427,13 @@ $(function(){
       ${f_id}
       ${author}
      <div id="result"></div>
-      <div class="card mb-4">
+      <div class="card mb-4" style="height: 500px;">
          <div class="card-header">
             <i class="fas fa-table mr-1"></i> 경기예약일정
          </div>
          
          <div class="card-body">
-            <div class="table-responsive">
+            <div class="table-responsive" style="padding: 10px;">
                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                      <tr>
@@ -352,6 +469,8 @@ $(function(){
             </div>
          </div>
       </div>
+	</div>
+</section>
       <!-- /.container -->
 		
       <script src="${pageContext.request.contextPath}/resources/hyeongjun/calander/vendor/js/jquery.min.js"></script>

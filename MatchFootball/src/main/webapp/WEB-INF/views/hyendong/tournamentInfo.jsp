@@ -16,6 +16,12 @@ li {
 .info {
 	background: rgba(0,0,0,0)
 }
+.lili a {
+    padding: 3px 0 3px 0;
+    line-height: 170%;
+    color: white;
+    padding-left: 35px;
+}
 </style>
 <script>
 function joinSuccess(){

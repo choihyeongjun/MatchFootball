@@ -24,15 +24,12 @@
     position: relative;
     display: -ms-flexbox;
     display: flex;
-    -ms-flex-direction: column;
     flex-direction: column;
     width: 1000px;
-    margin-left: -180px;
+    margin-left: -200px;
     pointer-events: auto;
     background-color: #fff;
     background-clip: padding-box;
-    border: 1px solid rgba(0,0,0,.2);
-    border-radius: .3rem;
     outline: 0;
 }
 #az{
@@ -137,7 +134,7 @@ a {
 					location.href = "teamList?page=" + q;
 				}
 			</script>
-			<div style="font-size: 20px; text-align: center; margin-left: 380px;">
+			<div style="font-size: 20px; text-align: center; margin-left: 50%;">
 				<my:paging paging="${paging}" jsfunc="goPage" />
 			</div>
 		</div>

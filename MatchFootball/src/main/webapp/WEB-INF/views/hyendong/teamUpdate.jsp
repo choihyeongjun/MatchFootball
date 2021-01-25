@@ -27,6 +27,7 @@
 	<script type="text/javascript">
 	function teamUpdate(){
 		if (confirm("팀 정보를 변경 하시겠습니까?") == true){    //확인
+			document.hihi.submit();
 			alert("팀 정보가 변경되었습니다");
 			    
 			 }else{   //취소
@@ -76,7 +77,7 @@
         </div>
     </div>
 </nav>
-	<form action="teamUpdateUpdate" method="post" encType="multipart/form-data">
+	<form action="teamUpdateUpdate" method="post" encType="multipart/form-data" name="hihi">
 		<div class="section-top-border" style="margin-left: 670px; width: 50%">
 			<div class="row">
 				<div class="col-lg-8 col-md-8">

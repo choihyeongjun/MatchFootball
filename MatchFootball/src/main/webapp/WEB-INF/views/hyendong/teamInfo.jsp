@@ -17,6 +17,7 @@ a { text-decoration: none;}
 table.type05 { border-collapse: separate; border-spacing: 1px; text-align: left; line-height: 1.5; border-top: 1px solid #ccc; margin: 20px 10px; }
 table.type05 th { width: 100px; padding: 10px; font-weight: bold; vertical-align: top; border-bottom: 1px solid #ccc; background: #efefef; }
 table.type05 td { width: 100px; padding: 10px; vertical-align: top; border-bottom: 1px solid #ccc; }
+#main_menu {}
 </style>
 
 <script>
@@ -126,9 +127,7 @@ function teamOut(){
                </tr>
                <tr>
                   <th scope="row">지역</th>
-                  <td>${teamInfo.t_address }</td>
-                  <th scope="row">승률</th>
-                  <td>75%</td>
+                  <td colspan="3">${teamInfo.t_address }</td>
                </tr>
                <tr>
                   <th scope="row" style="height: 100px; margin-top: 10px" >팀 소개</th>
