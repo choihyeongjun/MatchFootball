@@ -7,45 +7,39 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta property="og:image"
-	content="https://raw.githubusercontent.com/nauvalazhar/Magz/master/images/preview.png" />
+<meta property="og:image" content="https://raw.githubusercontent.com/nauvalazhar/Magz/master/images/preview.png" />
 <title>Insert title here</title>
 
 <link rel="stylesheet" href="/css/owl.carousel.css">
 <!-- Bootstrap -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/hyeongjun/scripts/bootstrap/bootstrap.min.css">
-<!-- IonIcons -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/hyeongjun/scripts/ionicons/css/ionicons.min.css">
-<!-- Toast -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/hyeongjun/scripts/toast/jquery.toast.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/hyeongjun/scripts/bootstrap/bootstrap.min.css">
+<!-- IonIcons --> 
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/hyeongjun/scripts/ionicons/css/ionicons.min.css">
+<!-- Toast --> 
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/hyeongjun/scripts/toast/jquery.toast.min.css">
 <!-- OwlCarousel -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/hyeongjun/scripts/owlcarousel/dist/assets/owl.carousel.min.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/hyeongjun/scripts/owlcarousel/dist/assets/owl.theme.default.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/hyeongjun/scripts/owlcarousel/dist/assets/owl.carousel.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/hyeongjun/scripts/owlcarousel/dist/assets/owl.theme.default.min.css">
 <!-- Magnific Popup -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/hyeongjun/scripts/magnific-popup/dist/magnific-popup.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/hyeongjun/scripts/sweetalert/dist/sweetalert.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/hyeongjun/scripts/magnific-popup/dist/magnific-popup.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/hyeongjun/scripts/sweetalert/dist/sweetalert.css">
 <!-- Custom style -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/hyeongjun/css1/style.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script
-	src="${pageContext.request.contextPath}/resources/hyeongjun/js1/e-magz.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/hyeongjun/css1/style.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/hyeongjun/js1/e-magz.js"></script>
 
 <style>
+div #abcd { display: none;}
 .ion-android-favorite:before {
 	content: "\f388";
 }
 
 .ion-android-favorite-outline111:before {
 	content: "\f387";
+}
+
+div .btn abc {
+	display: none;
 }
 
 div .page-link {
@@ -110,10 +104,6 @@ div #a2 {
 	background-color: #0d6efd;
 	border-color: #0d6efd;
 }
-
-
-
-
 
 .dropbtn {
   background-color: #314d9f;
