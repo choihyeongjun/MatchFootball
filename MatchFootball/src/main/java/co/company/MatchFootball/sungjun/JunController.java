@@ -335,17 +335,17 @@ public class JunController {
 	}
 
 	// 매니저 참가 신청 페이지
-	@RequestMapping(value = "/nomanager")
-	public ModelAndView test16(HttpSession session, MmatchlistVO mmatchlistvo, TeammatchVO teammatch, PlayersVO players,
-			MembersVO member) throws IOException {
-		ModelAndView ma = new ModelAndView();
-		member.setId((String) session.getAttribute("id"));
-		mmatchlistvo.setId((String) session.getAttribute("id"));
-		// 매니저 없는 매치 조회
-		ma.addObject("nomanager", dao.nomanager(teammatch));
-		ma.setViewName("sungjun/nomanager");
-		return ma;
-	}
+//	@RequestMapping(value = "/nomanager")
+//	public ModelAndView test16(HttpSession session, MmatchlistVO mmatchlistvo, TeammatchVO teammatch, PlayersVO players,
+//			MembersVO member) throws IOException {
+//		ModelAndView ma = new ModelAndView();
+//		member.setId((String) session.getAttribute("id"));
+//		mmatchlistvo.setId((String) session.getAttribute("id"));
+//		// 매니저 없는 매치 조회
+//		ma.addObject("nomanager", dao.nomanager(teammatch));
+//		ma.setViewName("sungjun/nomanager");
+//		return ma;
+//	}
 	// 매니저 참가 신청 모달
 	@RequestMapping(value = "/nomanagerapplym")
 	public ModelAndView test17(HttpSession session, MmatchlistVO mmatchlistvo, TeammatchVO teammatch, PlayersVO players,

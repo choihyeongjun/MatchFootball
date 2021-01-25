@@ -20,7 +20,6 @@
 </style>
 <script>
 	$(function() {
-		//팀 매치 리뷰작성 
 		$(".sft").on("click", function() {
 			var m_no = $(this).data("pn");
 			modal = $("#nomanager");
