@@ -18,7 +18,7 @@ $(function() {
 </c:if>
 					
 <form id="msgFrm" action="${pageContext.request.contextPath}/sendmsg" method="post">						
-	<table class="userInfoTable" align="center">
+	<table class="userInfoTable" style="align:center;">
 		<tr>
 			<td>
 				<input type ="hidden" name="m_no" value="${msg.m_no}" style="display:none;">
@@ -32,13 +32,17 @@ $(function() {
 		</tr>
 		<tr>
 			<td>
-				<input type ="hidden" name="send_id" value="${msg.send_id}" style="display:none;">
+			<c:if test="${msg.send_id eq sessionScope.id}">
+				<input type ="text" name="send_id" value="${msg.send_id}" style="display:none;">
+			</c:if>
+			<c:if test="${msg.send_id ne sessionScope.id}">
+				<input type ="text" name="send_id" value="${msg.to_id}" style="display:none;">
+			</c:if>
 			</td>
 			<td>
 				<label style="width: 70px">받는사람</label>
-				<input type ="text" name="to_id" value="${msg.to_id}" required="required">
+				<input type ="text" name="to_id" value="${msg.send_id}" required="required">
 				<c:if test ="${msg.to_id eq null }">
-				<label>보낼 ID 찾기</label>
 				<select>
 				<c:forEach items="${ID}" var="id">
 				<option>${id.id}</option>

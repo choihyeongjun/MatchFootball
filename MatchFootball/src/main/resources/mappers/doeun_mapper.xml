@@ -249,4 +249,5 @@
 	from fboard 
 	where num= #{num}
 	</delete>
+	
 </mapper>
