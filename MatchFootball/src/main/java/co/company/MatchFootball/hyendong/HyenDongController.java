@@ -3,6 +3,7 @@ package co.company.MatchFootball.hyendong;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -671,5 +672,19 @@ public class HyenDongController {
 	public int fmIdCheck(FieldmanagerVO fVO) {
 		int result = hyendongMapper.fmIdCheck(fVO);
 		return result;
+	}
+	
+	//대진표
+	@RequestMapping("/tournament_proc")
+	@ResponseBody
+	public String tournament_proc(Map<String, String> map, HttpServletRequest request) {
+		map.put("p_match_no", request.getParameter("match_no"));
+		map.put("p_win_team", request.getParameter("win_team"));
+		map.put("p_lose_team", request.getParameter("lose_team"));
+		map.put("p_msg", request.getParameter("msg"));
+		
+		hyendongMapper.tournament_proc(map);
+		
+		return map.get("p_result");
 	}
 }

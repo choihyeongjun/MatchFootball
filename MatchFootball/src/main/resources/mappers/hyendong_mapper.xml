@@ -40,7 +40,8 @@
 		t_type,
 		t_info,
 		t_logo,
-		t_hidden
+		t_hidden,
+		author
 		)
 		VALUES(
 		#{t_num},
@@ -50,7 +51,8 @@
 		#{t_type},
 		#{t_info},
 		#{t_logo,jdbcType=VARCHAR},
-		#{t_hidden}
+		#{t_hidden},
+		'team'
 		)
 	</insert>
 	
@@ -224,7 +226,7 @@
 	<!-- 토너먼트 대진표 조회 -->
 	<select id="tournamentPVP" parameterType="TournamentTeamVO"
 		resultType="TournamentTeamVO">
-		select t.t_name, tt.t_no from tournamentteam tt join team t on tt.t_num = t.t_num where t_no=#{t_no}
+		select * from tournamentteam tt join team t on tt.t_num = t.t_num where t_no=#{t_no}
 	</select>
 	
 	<!-- 멤버 팀 번호 변경 -->
@@ -554,4 +556,15 @@
 		select count(*) from fieldmanager
 		where f_id=#{f_id}
 	</select>
+	
+	<!-- 대진표 -->
+<select id="tournament_proc" parameterType="java.util.Map" statementType="CALLABLE">
+        CALL tournament_proc(
+        #{p_match_no, mode=IN, jdbcType=VARCHAR, javaType=String},
+        #{p_win_team, mode=IN, jdbcType=VARCHAR, javaType=String},
+        #{p_lose_team, mode=IN, jdbcType=VARCHAR, javaType=String},
+        #{p_msg, mode=IN, jdbcType=VARCHAR, javaType=String},
+        #{p_result, mode=OUT, jdbcType=VARCHAR, javaType=String}
+        )
+</select>
 </mapper>

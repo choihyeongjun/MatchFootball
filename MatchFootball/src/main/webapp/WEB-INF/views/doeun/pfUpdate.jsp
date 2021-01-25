@@ -251,7 +251,7 @@
 											<c:if test="${mb.birth ne null}">
 										<input type="text" id="birth" name="birth" id = "birth"
 											class="form-control form-control-lg birth"
-											value="${mb.birth}" required="required">
+											value="${mb.birth}" required="required" placeholder="년-월-일 형식">
 											</c:if>
 									</div>
 									<div class="form-group">

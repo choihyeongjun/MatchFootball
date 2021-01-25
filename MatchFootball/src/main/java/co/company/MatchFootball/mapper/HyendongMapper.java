@@ -1,6 +1,7 @@
 package co.company.MatchFootball.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import co.company.MatchFootball.vo.ComeInviteVO;
 import co.company.MatchFootball.vo.FieldmanagerVO;
@@ -94,4 +95,6 @@ public interface HyendongMapper {
 	public int fieldRegister(FieldmanagerVO fieldmanagerVO); //구장 관리자 회원가입
 	public FieldmanagerVO fieldLogin(FieldmanagerVO fieldmanagerVO); //구장 관리자 로그인
 	public int fmIdCheck(FieldmanagerVO fieldmanagerVO); //구장 관리자 아이디 중복체크
+	
+	public void tournament_proc(Map<String, String> map);
 }

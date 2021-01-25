@@ -132,6 +132,23 @@
 	.match_g01 .match_list.win .line_sty_L.on {
 		border-color: #137eaa;
 	}
+	.champion_box .txt {
+    line-height: 40px;
+    margin-top: 0;
+    font-size: 36px;
+    font-weight: bold;
+    color: #000160;
+}
+
+element.style {
+    background: #000160;
+    border-radius: 3em;
+}
+.btn-primary {
+    color: #fff;
+    background-color: #000160;
+    border-color: #000160;
+}
 </style>
 <script>
 	var link = [
@@ -145,93 +162,210 @@
 		['05', '03', '02_02']
 	]
 
-	
+
 
 	$(function () {
+
+
+		var match_no = '${tournamentPVP[0].t_num }';
+
 		$(".noClick").on('click', function () {
 
-			// 아래부분 스타일 변경.
-			// $('.noClickdown').removeClass('clickdown'); 아래로 변경.
-			$(this).next().removeClass('clickdown');
+			var $this = $(this);
+			var win_team = $this.data('seq');
+			var lose_team = win_team % 2 == 1 ? win_team + 1 : win_team - 1;
+			var data_title = $(this).parentsUntil('.round_group').parent().data('title');
+			win_team = $('#rel_' + win_team).data('num');
+			lose_team = $('#rel_' + lose_team).data('num');
+			console.log(win_team, lose_team, data_title);
 
-			var t = 2;
-			for (i = 0; i < link[t].length; i++) {
-				$(this).parent().find(".line_sty" + link[t][i]).removeClass('on');
-			}
+			$.ajax({
+				url: '${pageContext.request.contextPath}/tournament_proc',
+				data: {
+					match_no: match_no,
+					win_team: win_team,
+					lose_team: lose_team,
+					msg: data_title
+				},
+				success: function (resolve) {
+					if (resolve == 'success') {
+						// 아래부분 스타일 변경.
+						// $('.noClickdown').removeClass('clickdown'); 아래로 변경.
+						$this.next().removeClass('clickdown');
 
-			$(this).toggleClass('click');
-			var s = parseInt($(this).data('id'));
-			for (i = 0; i < link[s].length; i++) {
-				$(this).parent().find(".line_sty" + link[s][i]).toggleClass('on');
-			}
+						var t = 2;
+						for (i = 0; i < link[t].length; i++) {
+							$this.parent().find(".line_sty" + link[t][i]).removeClass('on');
+						}
 
-			settingLocation($(this));
+						$this.toggleClass('click');
+						var s = parseInt($this.data('id'));
+						for (i = 0; i < link[s].length; i++) {
+							$this.parent().find(".line_sty" + link[s][i]).toggleClass('on');
+						}
+
+						settingLocation($this, $this.data('num'));
+
+					} else {
+						console.log('cannot update');
+					}
+				},
+				error: function (reject) {
+					console.log(reject);
+				}
+			});
+
 		});
 
 		$(".noClickdown").on('click', function () {
 
-			// $('.noClick').removeClass('click');
-			$(this).prev().removeClass('click');
+			var $this = $(this);
+			var win_team = $this.data('seq');
+			var lose_team = win_team % 2 == 1 ? win_team + 1 : win_team - 1;
+			var data_title = $(this).parentsUntil('.round_group').parent().data('title');
+			win_team = $('#rel_' + win_team).data('num');
+			lose_team = $('#rel_' + lose_team).data('num');
+			console.log(win_team, lose_team, data_title);
 
-			var t = 1;
-			for (i = 0; i < link[t].length; i++) {
-				$(this).parent().find(".line_sty" + link[t][i]).removeClass('on');
-			}
+			$.ajax({
+				url: '${pageContext.request.contextPath}/tournament_proc',
+				data: {
+					match_no: match_no,
+					win_team: win_team,
+					lose_team: lose_team,
+					msg: data_title
+				},
+				success: function (resolve) {
+					if (resolve == 'success') {
+						// $('.noClick').removeClass('click');
+						$this.prev().removeClass('click');
 
-			$(this).toggleClass('clickdown')
-			var s = parseInt($(this).data('id'));
-			for (i = 0; i < link[s].length; i++) {
-				$(this).parent().find(".line_sty" + link[s][i]).toggleClass('on');
-			}
+						var t = 1;
+						for (i = 0; i < link[t].length; i++) {
+							$this.parent().find(".line_sty" + link[t][i]).removeClass('on');
+						}
 
-			// var v = $(this).find('p').html();
-			// $('div[data-seq="9"]').find('p').html(v);
-			settingLocation($(this));
+						$this.toggleClass('clickdown')
+						var s = parseInt($this.data('id'));
+						for (i = 0; i < link[s].length; i++) {
+							$this.parent().find(".line_sty" + link[s][i]).toggleClass('on');
+						}
+
+						// var v = $(this).find('p').html();
+						// $('div[data-seq="9"]').find('p').html(v);
+						settingLocation($this, $this.data('num'));
+
+					} else {
+						console.log('cannot update');
+					}
+				},
+				error: function (reject) {
+					console.log(reject);
+				}
+			});
+
 		});
 
 
 		$(".noClick2").on('click', function () {
 
-			$(this).next().removeClass('clickdown2');
-			var t = 2;
-			for (i = 0; i < link[t].length; i++) {
-				$(this).parent().find(".line_sty" + link2[t][i]).removeClass('on');
-			}
+			var $this = $(this);
+			var win_team = $this.data('seq');
+			var lose_team = win_team % 2 == 1 ? win_team + 1 : win_team - 1;
+			var data_title = $(this).parentsUntil('.round_group').parent().data('title');
+			win_team = $('#rel_' + win_team).data('num');
+			lose_team = $('#rel_' + lose_team).data('num');
+			console.log(win_team, lose_team, data_title);
 
-			$(this).toggleClass('click2');
-			var s = parseInt($(this).data('id'))
-			for (i = 0; i < link2[s].length; i++) {
-				$(this).parent().find(".line_sty" + link2[s][i]).toggleClass('on');
-			}
+			$.ajax({
+				url: '${pageContext.request.contextPath}/tournament_proc',
+				data: {
+					match_no: match_no,
+					win_team: win_team,
+					lose_team: lose_team,
+					msg: data_title
+				},
+				success: function (resolve) {
+					if (resolve == 'success') {
 
-			// var v = $(this).find('p').html();
-			// $('div[data-seq="10"]').find('p').html(v);
-			settingLocation($(this));
+						$this.next().removeClass('clickdown2');
+						var t = 2;
+						for (i = 0; i < link[t].length; i++) {
+							$this.parent().find(".line_sty" + link2[t][i]).removeClass('on');
+						}
+
+						$this.toggleClass('click2');
+						var s = parseInt($this.data('id'))
+						for (i = 0; i < link2[s].length; i++) {
+							$this.parent().find(".line_sty" + link2[s][i]).toggleClass('on');
+						}
+
+						// var v = $(this).find('p').html();
+						// $('div[data-seq="10"]').find('p').html(v);
+						settingLocation($this, $this.data('num'));
+					} else {
+						console.log('cannot update');
+					}
+				},
+				error: function (reject) {
+					console.log(reject);
+				}
+			});
+
 		});
 
 		$(".noClickdown2").on('click', function () {
 
-			$(this).prev().removeClass('click2');
-			var t = 1;
-			for (i = 0; i < link[t].length; i++) {
-				$(this).parent().find(".line_sty" + link2[t][i]).removeClass('on');
-			}
+			var $this = $(this);
+			var win_team = $this.data('seq');
+			var lose_team = win_team % 2 == 1 ? win_team + 1 : win_team - 1;
+			var data_title = $(this).parentsUntil('.round_group').parent().data('title');
+			win_team = $('#rel_' + win_team).data('num');
+			lose_team = $('#rel_' + lose_team).data('num');
+			console.log(win_team, lose_team, data_title);
 
-			$(this).toggleClass('clickdown2');
-			var s = parseInt($(this).data('id'))
-			for (i = 0; i < link2[s].length; i++) {
-				$(this).parent().find(".line_sty" + link2[s][i]).toggleClass('on');
-			}
+			$.ajax({
+				url: '${pageContext.request.contextPath}/tournament_proc',
+				data: {
+					match_no: match_no,
+					win_team: win_team,
+					lose_team: lose_team,
+					msg: data_title
+				},
+				success: function (resolve) {
+					if (resolve == 'success') {
 
-			// var v = $(this).find('p').html();
-			// $('div[data-seq="10"]').find('p').html(v);
-			settingLocation($(this));
+						$this.prev().removeClass('click2');
+						var t = 1;
+						for (i = 0; i < link[t].length; i++) {
+							$this.parent().find(".line_sty" + link2[t][i]).removeClass('on');
+						}
+
+						$this.toggleClass('clickdown2');
+						var s = parseInt($this.data('id'))
+						for (i = 0; i < link2[s].length; i++) {
+							$this.parent().find(".line_sty" + link2[s][i]).toggleClass('on');
+						}
+
+						// var v = $(this).find('p').html();
+						// $('div[data-seq="10"]').find('p').html(v);
+						settingLocation($this, $this.data('num'));
+					} else {
+						console.log('cannot update');
+					}
+				},
+				error: function (reject) {
+					console.log(reject);
+				}
+			});
+
 		});
-		
-		function settingLocation($this) {
-			console.log($this)
+
+
+		function settingLocation($this, t_num) {
+			console.log($this, t_num)
 			var seq = $this.data('seq');
-			console.log(seq);
+			//console.log(seq);
 			var dest = 0;
 			if (seq == '1' || seq == '2') {
 				dest = '9';
@@ -250,8 +384,11 @@
 			}
 
 			var v = $this.find('p').html();
-			console.log(v);
+			//console.log(v);
 			$('div[data-seq="' + dest + '"]').find('p').html(v);
+			$('div[data-seq="' + dest + '"]').data('num', t_num);
+			var data_num = $('div[data-seq="' + dest + '"]').data('num');
+			console.log('data_num: ', data_num);
 		}
 	})
 </script>
@@ -264,22 +401,25 @@
 		<div class="match_list_outer" id="bracket_capture">
 			<div id="loser_players" class="team_player_1"></div>
 			<div id="team_players" class="team_player_1">
-				<div class="match01 round_group">
+				<!-- match 1번째 -->
+				<div class="match01 round_group" data-title='4강'>
 					<div class="match_g01">
 						<div class="match_list">
 							<p class="bracket_num">
 								#<em>01</em> <span>&gt;</span>
 							</p>
 							<div class="box_s">
-								<div class="noClick" data-id="1" data-seq="1">
+								<div class="noClick" data-id="1" data-seq="1" id="rel_1"
+									data-num='${tournamentPVP[0].t_num }'>
 									<div style="height: 25px">
-										<p>${tournamentPVP[0].t_name }</p>
+										<p>${tournamentPVP[0].t_name } / ${tournamentPVP[0].t_num }</p>
 									</div>
 									<em></em>
 								</div>
-								<div class="noClickdown" data-id="2" data-seq="2">
+								<div class="noClickdown" data-id="2" data-seq="2" id="rel_2"
+									data-num='${tournamentPVP[1].t_num }'>
 									<div style="height: 25px">
-										<p>${tournamentPVP[1].t_name }</p>
+										<p>${tournamentPVP[1].t_name } / ${tournamentPVP[1].t_num }</p>
 									</div>
 									<em></em>
 								</div>
@@ -294,15 +434,17 @@
 								#<em>02</em> <span>&gt;</span>
 							</p>
 							<div class="box_s">
-								<div class="noClick2" data-id="1" data-seq="3">
+								<div class="noClick2" data-id="1" data-seq="3" id="rel_3"
+									data-num='${tournamentPVP[2].t_num }'>
 									<div style="height: 25px">
-										<p>${tournamentPVP[2].t_name }</p>
+										<p>${tournamentPVP[2].t_name } / ${tournamentPVP[2].t_num }</p>
 									</div>
 									<em></em>
 								</div>
-								<div class="noClickdown2" data-id="2" data-seq="4">
+								<div class="noClickdown2" data-id="2" data-seq="4" id="rel_4"
+									data-num='${tournamentPVP[3].t_num }'>
 									<div style="height: 25px">
-										<p>${tournamentPVP[3].t_name }</p>
+										<p>${tournamentPVP[3].t_name } / ${tournamentPVP[3].t_num }</p>
 									</div>
 									<em></em>
 								</div>
@@ -319,15 +461,17 @@
 								#<em>03</em> <span>&gt;</span>
 							</p>
 							<div class="box_s">
-								<div class="noClick" data-id="1" data-seq="5">
+								<div class="noClick" data-id="1" data-seq="5" id="rel_5"
+									data-num='${tournamentPVP[4].t_num }'>
 									<div style="height: 25px">
-										<p>${tournamentPVP[4].t_name }</p>
+										<p>${tournamentPVP[4].t_name } / ${tournamentPVP[4].t_num }</p>
 									</div>
 									<em></em>
 								</div>
-								<div class="noClickdown" data-id="2" data-seq="6">
+								<div class="noClickdown" data-id="2" data-seq="6" id="rel_6"
+									data-num='${tournamentPVP[5].t_num }'>
 									<div style="height: 25px">
-										<p>${tournamentPVP[5].t_name }</p>
+										<p>${tournamentPVP[5].t_name } / ${tournamentPVP[5].t_num }</p>
 									</div>
 									<em></em>
 								</div>
@@ -342,15 +486,17 @@
 								#<em>04</em> <span>&gt;</span>
 							</p>
 							<div class="box_s">
-								<div class="noClick2" data-id="1" data-seq="7">
+								<div class="noClick2" data-id="1" data-seq="7" id="rel_7"
+									data-num='${tournamentPVP[6].t_num }'>
 									<div style="height: 25px">
-										<p>${tournamentPVP[6].t_name }</p>
+										<p>${tournamentPVP[6].t_name } / ${tournamentPVP[6].t_num }</p>
 									</div>
 									<em></em>
 								</div>
-								<div class="noClickdown2" data-id="2" data-seq="8">
+								<div class="noClickdown2" data-id="2" data-seq="8" id="rel_8"
+									data-num='${tournamentPVP[7].t_num }'>
 									<div style="height: 25px">
-										<p>${tournamentPVP[7].t_name }</p>
+										<p>${tournamentPVP[7].t_name } / ${tournamentPVP[7].t_num }</p>
 									</div>
 									<em></em>
 								</div>
@@ -362,20 +508,21 @@
 						</div>
 					</div>
 				</div>
-				<div class="match02 round_group">
+				<!-- match2번째 -->
+				<div class="match02 round_group" data-title='결승'>
 					<div class="match_g01">
 						<div class="match_list">
 							<p class="bracket_num">
 								#<em>05</em> <span>&gt;</span>
 							</p>
 							<div class="box_s">
-								<div class="noClick" data-id="1" data-seq="9">
+								<div class="noClick" data-id="1" data-seq="9" id="rel_9" data-num="">
 									<div style="height: 25px">
 										<p></p>
 									</div>
 									<em></em>
 								</div>
-								<div class="noClickdown" data-id="2" data-seq="10">
+								<div class="noClickdown" data-id="2" data-seq="10" id="rel_10" data-num="">
 									<div style="height: 25px">
 										<p></p>
 									</div>
@@ -392,13 +539,13 @@
 								#<em>06</em> <span>&gt;</span>
 							</p>
 							<div class="box_s">
-								<div class="noClick2" data-id="1" data-seq="11">
+								<div class="noClick2" data-id="1" data-seq="11" id="rel_11" data-num="">
 									<div style="height: 25px">
 										<p></p>
 									</div>
 									<em></em>
 								</div>
-								<div class="noClickdown2" data-id="2" data-seq="12">
+								<div class="noClickdown2" data-id="2" data-seq="12" id="rel_12" data-num="">
 									<div style="height: 25px">
 										<p></p>
 									</div>
@@ -412,20 +559,20 @@
 						</div>
 					</div>
 				</div>
-				<div class="match03 round_group last_match">
+				<div class="match03 round_group last_match" data-title='우승'>
 					<div class="match_g01">
 						<div class="match_list win">
 							<p class="bracket_num">
 								#<em>07</em> <span>&gt;</span>
 							</p>
 							<div class="box_s">
-								<div class="noClick" data-id="1" data-seq="13">
+								<div class="noClick" data-id="1" data-seq="13" id="rel_13" data-num="">
 									<div style="height: 25px">
 										<p></p>
 									</div>
 									<em></em>
 								</div>
-								<div class="noClickdown" data-id="2" data-seq="14">
+								<div class="noClickdown" data-id="2" data-seq="14" id="rel_14" data-num="">
 									<div style="height: 25px">
 										<p></p>
 									</div>
@@ -435,7 +582,7 @@
 						</div>
 						<div class="champion_box" style="margin-top: -70px; padding-bottom: 20px;">
 							<p class="txt">WINNER</p>
-							<div class="player" data-seq="15" style="background: #d38923; border-radius: 3em;">
+							<div class="player" data-seq="15" style="background: #000160; border-radius: 3em;">
 								<div class="winner">
 									<p style="color: white"></p>
 								</div>
@@ -447,7 +594,7 @@
 						<input type="text" value="${tournamentPVP[3].t_name }" name="t_num" style="display:none">
 						<input type="text" value="${tournamentPVP[0].t_no }" name="t_no" style="display:none">
 						<div align="right" style="padding-right: 180px">
-							<input type="submit" value="상금전달" class="genric-btn info circle">
+							<input type="submit" value="상금전달" class="btn btn-primary">
 						</div>
 					</form>
 				</div>
