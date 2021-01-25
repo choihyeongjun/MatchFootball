@@ -424,7 +424,7 @@ public class HyeongjunController {
 		List<MmatchlistVO> list = hyeongjunMapper.mmatchsearch((String) session.getAttribute("id"));
 		vo3.setId((String)session.getAttribute("id"));
 		vo.setId((String)session.getAttribute("id"));
-		model.addAttribute("nomanager",dao.nomanager(vo2));
+		//페이징
 		paging.setPageUnit(7); // (한페이지를 출력 할)레코드 수
 		paging.setPageSize(10); // 페이지 번호 수
 		vo2.setFirst(paging.getFirst());
@@ -432,6 +432,7 @@ public class HyeongjunController {
 		paging.setTotalRecord(dao.getCount3(vo2));
 		model.addAttribute("paging", paging);
 		
+		model.addAttribute("nomanager",dao.nomanager(vo2));
 		for (MmatchlistVO v1 : list) {
 			System.out.println(v1);
 			vo1.setM_no(v1.getMatch_info());
