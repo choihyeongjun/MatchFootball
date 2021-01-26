@@ -123,7 +123,7 @@ function teamOut(){
                   <th scope="row">팀원수</th>
                   <td>${count.c }명</td>
                   <th scope="row">실력</th>
-                  <td>${teamInfo.t_type }</td>
+                  <td>LV ${teamInfo.lv }</td>
                </tr>
                <tr>
                   <th scope="row">지역</th>
