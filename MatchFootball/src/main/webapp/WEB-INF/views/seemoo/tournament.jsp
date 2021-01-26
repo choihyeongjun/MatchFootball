@@ -46,7 +46,7 @@
 		<div class="section-top-border" style="margin-left: 670px; width: 70%; padding-top: 70px">
 			<div class="row">
 				<div class="col-lg-8 col-md-8" style="width: 1500px">
-					<h3>토너먼트 생성</h3>
+					<h3 align="center">토너먼트 만들기</h3><br>
 					<div class="mt-10">
 						<div style="float: left; padding-top: 10px; padding-right: 10px">대&nbsp;&nbsp;회&nbsp;&nbsp;&nbsp;명</div>
 						<input type="text" name="title" placeholder="대회명" class="single-input-accent" style="float: left;">
@@ -94,7 +94,7 @@
 				</div>
 			</div>
 			<br> <input type="text" value="${sessionScope.id }" name="a_id" style="display: none"> 
-			<input type="submit" class="genric-btn info circle" value="토너먼트 생성" />
+			<input type="submit" class="genric-btn info circle" value="토너먼트 생성" style="margin-left: 120px;" />
 		</div>
 	</form>
 </body>

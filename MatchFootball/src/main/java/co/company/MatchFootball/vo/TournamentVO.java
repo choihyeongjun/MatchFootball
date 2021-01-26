@@ -17,4 +17,7 @@ public class TournamentVO {
 	String t_point;//상금
 	String a_id;//관리자아이디
 	String count;
+	String t_log;
+	String t_wn;
+	String t_num;
 }

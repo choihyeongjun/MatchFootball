@@ -113,23 +113,23 @@
 </nav>
 	<form action="teamMakeInsert" method="post" name="makeTeam"
 		encType="multipart/form-data">
-		<div class="section-top-border" style="margin-left: 670px; width: 50%">
+		<div class="section-top-border" style="margin-left: 743px; width: 50%">
 			<div class="row">
 				<div class="col-lg-8 col-md-8">
-					<h3>팀 생성</h3>
-					<div class="mt-10">
+					<h3 align="center">팀 만들기</h3><br>
+					<div class="mt-10" style="margin-right: -64px;">
 						<input type="text" name="t_name" placeholder="팀명"
 							class="single-input-accent" required="required" >
 					</div>
 					<hr>
-					<div class="mt-10">
+					<div class="mt-10" style="margin-right: -64px;">
 						<input type="text" name="t_max" placeholder="최대 팀원수"
 							class="single-input-accent" required="required">
 					</div>
 					<hr>
 					<div class="input-group-icon mt-10">
 						<div class="form-select" id="default-select"
-							style="border: none; padding-right: 2px">
+							style="border: none; padding-right: 10px">
 							<select name="t_address">
 								<option selected>선택</option>
 								<option value="중구">중구</option>
@@ -146,7 +146,7 @@
 					<hr>
 					<div class="input-group-icon mt-10">
 						<div class="form-select" id="default-select2"
-							style="border: none; padding-right: 2px">
+							style="border: none; padding-right: 10px">
 							<select name="t_type">
 								<option value="축구">축구</option>
 								<option value="풋살">풋살</option>
@@ -154,7 +154,7 @@
 						</div>
 					</div>
 					<hr>
-					<div class="mt-30">
+					<div class="mt-30" style="margin-right: -64px;">
 						<textarea name="t_info" class="single-input-accent"
 							placeholder="팀소개"></textarea>
 					</div>

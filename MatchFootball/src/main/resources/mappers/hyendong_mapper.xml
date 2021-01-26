@@ -565,4 +565,8 @@
         #{p_result, mode=OUT, jdbcType=VARCHAR, javaType=String}
         )
 </select>
+	<!-- 토너먼트 참가 조회 -->
+	<select id="tournaPVPselect" resultType="TournamentVO">
+	select tt.t_log, tt.t_wn, t.title, t_point from tournamentteam tt join tournament t on tt.t_no=t.t_no where t_num=#{t_num}
+	</select>
 </mapper>

@@ -103,7 +103,7 @@ public class HyenDongController {
 	// 팀정보
 	@RequestMapping("/teamInfo")
 	public String teamInfo(Model model, TeamVO teamVO, MembersVO membersVO, HttpSession session, TeamlistVO teamlistVO,
-			TinviteVO tinviteVO, Paging paging) {
+			TinviteVO tinviteVO, Paging paging, TournamentVO tournamentVO) {
 		String id = (String) session.getAttribute("id");
 		membersVO.setId(id);
 		model.addAttribute("members", hyendongMapper.memberSelect(membersVO)); // 멤버 단건 조회
@@ -124,6 +124,7 @@ public class HyenDongController {
 		model.addAttribute("where", hyendongMapper.whereJoin(tinviteVO));
 		model.addAttribute("count", hyendongMapper.selectCount(teamlistVO));
 		model.addAttribute("avgAge", hyendongMapper.avgAge(membersVO));
+		model.addAttribute("tournaPVPselect", hyendongMapper.tournaPVPselect(tournamentVO));
 		return "hyendong/teamInfo";
 	}
 

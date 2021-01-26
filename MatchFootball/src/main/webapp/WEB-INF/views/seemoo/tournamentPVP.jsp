@@ -140,14 +140,10 @@
     color: #000160;
 }
 
-element.style {
-    background: #000160;
-    border-radius: 3em;
-}
 .btn-primary {
     color: #fff;
-    background-color: #000160;
-    border-color: #000160;
+    background-color: #6c7b89;
+    border-color: #ffffff;
 }
 </style>
 <script>
@@ -165,8 +161,6 @@ element.style {
 
 
 	$(function () {
-
-
 		var match_no = '${tournamentPVP[0].t_num }';
 
 		$(".noClick").on('click', function () {
@@ -581,8 +575,8 @@ element.style {
 							</div>
 						</div>
 						<div class="champion_box" style="margin-top: -70px; padding-bottom: 20px;">
-							<p class="txt">WINNER</p>
-							<div class="player" data-seq="15" style="background: #000160; border-radius: 3em;">
+							<p class="txt" style="color: #6c7b89">WINNER</p>
+							<div class="player" data-seq="15" style="background: #6c7b89; border-radius: 3em;">
 								<div class="winner">
 									<p style="color: white"></p>
 								</div>
@@ -593,8 +587,8 @@ element.style {
 					<form action="winTournament" method="post" style="padding-top: 150px; padding-right:10px">
 						<input type="text" value="${tournamentPVP[3].t_name }" name="t_num" style="display:none">
 						<input type="text" value="${tournamentPVP[0].t_no }" name="t_no" style="display:none">
-						<div align="right" style="padding-right: 180px">
-							<input type="submit" value="상금전달" class="btn btn-primary">
+						<div align="right" style="padding-right: 164px">
+							<input type="submit" value="상금전달" class="btn btn-primary" style="font-size: 15px">
 						</div>
 					</form>
 				</div>

@@ -11,10 +11,10 @@ import co.company.MatchFootball.mapper.HyeongjunMapper;
 public class Scheduling {
    @Autowired HyeongjunMapper hyeongjunmapper;
   // @Autowired DoeunMapper doeun;
-   @Scheduled(fixedRate=5000)
+   @Scheduled(fixedRate=600000)
    public void doSomething() {
       
-  //     hyeongjunmapper.deleteinvite();
+       hyeongjunmapper.deleteinvite();
        System.out.println("안녕하세요");
    }
 }
