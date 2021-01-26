@@ -258,16 +258,16 @@ public class DoeunController {
 		return "doeun/PApplyDetail";
 	}
 
-	@RequestMapping(value = "mypage/teamMatching") // 팀경기참가내역
+	@RequestMapping(value = "mypage/teamMatching") // 용병참가내역
 	public ModelAndView t_matchList(TeammatchVO tmat, HttpSession session, Paging paging, Model model) {
 		tmat.setId((String) session.getAttribute("id"));
-		 paging.setPageUnit(3);
-		 paging.setPageSize(10);
-		 tmat.setFirst(paging.getFirst());
-		 tmat.setLast(paging.getLast());
-		 paging.setTotalRecord(dao.getTmatCnt(tmat));
-		 model.addAttribute("paging", paging);
-		List<Map<String, Object>> list = dao.AppTmatList(tmat);
+		// paging.setPageUnit(3);
+		// paging.setPageSize(10);
+		// tmat.setFirst(paging.getFirst());
+		// tmat.setLast(paging.getLast());
+		// paging.setTotalRecord(dao.getTmatCnt(tmat));
+	//	 model.addAttribute("paging", paging);
+		List<Map<String, Object>> list = dao.selectHelper(tmat);
 
 		Map<String, Object> map = new HashMap<String, Object>();
 
@@ -339,5 +339,5 @@ public class DoeunController {
 		return "";
 	}
 	
-
+	
 }

@@ -110,8 +110,8 @@
 								</div>
 								<div align="right">
 									<a href="matching"> 개인 매칭 </a>
-									<c:if test="${sessionScope.t_num ne null}">
-										<a href="teamMatching">| 팀 매칭 신청 </a>
+									<c:if test="${sessionScope.autour2 eq 'Y'}">
+										<a href="teamMatching">| 용병 매칭 신청 </a>
 									</c:if>
 								</div>
 								<div id="tr-template">

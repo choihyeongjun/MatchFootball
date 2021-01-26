@@ -84,23 +84,23 @@
 									</h1>
 								</div>
 								<div align="right">
-									<a href="matching"> 개인 매칭 </a><a href="teamMatching"> | 팀
+									<a href="matching"> 개인 매칭 </a><a href="teamMatching"> | 용병
 										매칭 참가 </a>
 								</div>
 								<br>
 									<div id="tr-template">
-								<c:forEach items="${tmat}" var="tmat">
+								<c:forEach items="${tmat}" var="tmat" begin="0">
 									<div style="border: 1px">
 										<div class="media mt-0" style="margin-bottom: 10px;">
 											<div class="media-left">
-												<img class="media-object rounded-circle" src="#" width="100"
-													height="100" alt="">지도 맵
+												<img class="media-object rounded-circle" src="${pageContext.request.contextPath}/images/${tmat.T_LOGO }" width="100"
+													height="100" >
 											</div>
 											<div class="media-body row" style="position: relative; margin-top: 10px;" >
 												<div style="margin-bottom: 10px;">
 													<div>
 														<div align="right" style="float: left;">${tmat.F_NAME}</div>
-														<div class="text-muted" align="right">${tmat.T_NAME} VS ${tmat.so_name}</div>
+														<div class="text-muted" align="right">${tmat.T_NAME} VS ${tmat.SO_NAME}</div>
 													</div>
 												</div>
 												<p class="text-muted">
