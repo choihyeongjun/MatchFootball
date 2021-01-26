@@ -86,12 +86,19 @@ body, html {
 
 <script>
    $(function() {
-      $(".abc").on("show.bs.modal", function() {
+       $(".abc").on("show.bs.modal", function() {
          $("#id01").load();
       });
-      $(".bbb").on("show.bs.modal", function() {
-         $("#main_menu").load();
-      });
+     
+      $(".bbb").on("click", function() {
+    	  if('${sessionScope.author}' == 'stop'){
+    		  alert('이용 할수 없습니다')
+    	  }else if('${sessionScope.id}' == ''){
+         	  alert('로그인 하고 이용 하세요')
+    	  }else {
+    		  $("#main_menu").modal('show');
+    	  }
+      }); 
    })
    
    function login(url){
@@ -132,17 +139,19 @@ body, html {
                   ${sessionScope.request}
             </c:if>
             <c:if test="${sessionScope.id eq null}">
-               <button type="button" class="btn abc" data-toggle="modal"
+               <button type="button" class="btn abc" id="abcd" data-toggle="modal"
                   data-target="#id02">
                   <i class="fas fa-user fa-1x"></i>
                </button>
              </c:if>
+             
              <button type="button" class="btn bbb" data-toggle="modal"
-               data-target="#main_menu">
+               >
                <i class="fas fa-bars fa-2x"></i>
           		  </button>
+          		  
              <c:if test="${sessionScope.id eq null}">
-                <button type="button" class="btn abc" data-toggle="modal"
+                <button type="button" class="btn abc" id="abcd" data-toggle="modal"
                   data-target="#id01">
                               구장관리자
                </button>
@@ -319,7 +328,7 @@ body, html {
 
 
 
-   <!-- Extra large modal -->
+   <!-- 메인메뉴 -->
    <div class="modal fade bd-example-modal-xl" id="main_menu"
       tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel"
       aria-hidden="true" style="background-color: black; opacity: 0.6;">
@@ -428,8 +437,10 @@ body, html {
                      <ul class="menul" style="color: white; font-size: 20px;">
                         <li class="lili"><a
                            href="${pageContext.request.contextPath}/fieldlist">구장 정보</a></li>
+                           <c:if test="${sessionScope.f ne null}">
                         <li class="lili"><a
                            href="${pageContext.request.contextPath}/fieldinsert">구장 등록</a></li>
+                           </c:if>
                      </ul>
                   </div>
 
@@ -453,7 +464,7 @@ body, html {
                         <h3 style="color: red; font-size: 30px;">관리자</h3>
                      </div>
                      <ul class="menul" style="color: white; font-size: 20px;">
-                        <li class="lili"><a href="${pageContext.request.contextPath}/admin">관리자페이지</a></li>
+                        <li class="lili"><a href="${pageContext.request.contextPath}/admin/user">관리자페이지</a></li>
                      </ul>
                   </div>
 				  </c:if>

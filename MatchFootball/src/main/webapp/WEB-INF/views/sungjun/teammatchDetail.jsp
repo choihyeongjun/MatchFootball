@@ -177,8 +177,7 @@ a {
 			</div>
 
 			<div>
-				<p style="text-align: left; font-size: 26px; font-weight: 400;">${teammatch.m_date}
-					${teammatch.m_hour}</p>
+				<p style="text-align: left; font-size: 26px; font-weight: 400;">${teammatch.m_date}</p>
 			</div>
 			<div style="align: left;">
 				<h2 style="color: #08088A; font-weight: bold;">${teammatch.f_name}</h2>
@@ -192,6 +191,7 @@ a {
 				<h5 style="font-weight: bold;">${teammatch.price}원</h5>
 				<input type="hidden" id="price" value="${teammatch.price }" /> <input
 					type="hidden" id="minusprice" value="-${teammatch.price }" />
+				<h5 >최소 인원 : ${teammatch.min}명</h5>	
 			</div>
 			<div style="border-bottom: 1px solid #ddd;">
 				<div>

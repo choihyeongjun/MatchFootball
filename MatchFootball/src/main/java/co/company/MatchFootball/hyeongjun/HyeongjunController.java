@@ -2,7 +2,6 @@ package co.company.MatchFootball.hyeongjun;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.http.HttpRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,6 +31,7 @@ import co.company.MatchFootball.vo.MmatchlistVO;
 import co.company.MatchFootball.vo.Mmatchlistnmember;
 import co.company.MatchFootball.vo.MmatchnmatchVO;
 import co.company.MatchFootball.vo.P_matchVO;
+import co.company.MatchFootball.vo.Paging;
 import co.company.MatchFootball.vo.PointVO;
 import co.company.MatchFootball.vo.RfieldVO;
 import co.company.MatchFootball.vo.TeammatchVO;
@@ -336,7 +336,7 @@ public class HyeongjunController {
 			return "redirect:/match";
 		} else {
 			session.setAttribute("login", "아이디 또는 비밀번호가 맞지않습니다");
-			return "hyeongjun/login";
+			return "redirect:/match";
 		}
 		// return "redirect:/sungjun/match";
 	}
@@ -420,22 +420,31 @@ public class HyeongjunController {
 	}
 
 	@RequestMapping("/managerresult")
-	public String managerresult(MmatchlistVO vo, MmatchnmatchVO vo1, Model model, HttpSession session,TeammatchVO vo2,MembersVO vo3) {
+	public String managerresult(Paging paging,MmatchlistVO vo, MmatchnmatchVO vo1, Model model, HttpSession session,TeammatchVO vo2,MembersVO vo3) {
 		List<MmatchlistVO> list = hyeongjunMapper.mmatchsearch((String) session.getAttribute("id"));
+		vo3.setId((String)session.getAttribute("id"));
+		vo.setId((String)session.getAttribute("id"));
+		//페이징
+		paging.setPageUnit(7); // (한페이지를 출력 할)레코드 수
+		paging.setPageSize(10); // 페이지 번호 수
+		vo2.setFirst(paging.getFirst());
+		vo2.setLast(paging.getLast());
+		paging.setTotalRecord(dao.getCount3(vo2));
+		model.addAttribute("paging", paging);
+		
+		model.addAttribute("nomanager",dao.nomanager(vo2));
 		for (MmatchlistVO v1 : list) {
 			System.out.println(v1);
 			vo1.setM_no(v1.getMatch_info());
 			vo1.setId(v1.getId());
 			if (hyeongjunMapper.teammatchsearch(v1.getMatch_info()) != null) {
 				model.addAttribute("list", hyeongjunMapper.matchresult(vo1));
-				vo3.setId((String)session.getAttribute("id"));
-				vo.setId((String)session.getAttribute("id"));
-				model.addAttribute("nomanager",dao.nomanager(vo2));
+				
 			} else {
 				model.addAttribute("list", hyeongjunMapper.matchresult1(vo1));
 			}
 		}
-
+		
 		return "hyeongjun/managerresult";
 	}
 

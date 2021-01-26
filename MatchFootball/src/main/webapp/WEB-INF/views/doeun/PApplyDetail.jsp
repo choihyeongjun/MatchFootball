@@ -118,13 +118,9 @@
 									<c:forEach items="${p_mat}" var="mat">
 										<div style="border: 1px">
 											<div class="media mt-0">
-												<div class="media-left">
-													<img class="media-object rounded-circle" src="#"
-														width="100" height="100" alt="">
-												</div>
 												<div class="media-body row" style="position: relative">
 <input type="hidden" name="price" value="${mat.price}" id="mat_price">
-													<div class="main-riw col-12 col-sm-6 col-md-8">
+													<div class="main-riw col-12 col-sm-6 col-md-8" >
 														<p class="text-muted">${mat.f_name}</p>
 														<p class="text-muted">
 															<i class="fas fa-map-marker-alt"> 구장 주소:
@@ -132,7 +128,7 @@
 														</p>
 														<p class="text-muted">경기 예정일 및 시간: ${mat.m_date}</p>
 													</div>
-													<div class="riw-btn col-6 col-md-4">
+													<div class="riw-btn col-6 col-md-4" style="padding-left: 87px;">
 														<c:if test="${mat.gubun eq 'N'}">
 															<input type="button" class="btn btn-link"
 																style="position: absolute; bottom: 50%" value="취소불가능">

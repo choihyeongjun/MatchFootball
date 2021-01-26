@@ -3,6 +3,7 @@ package co.company.MatchFootball.hyendong;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -412,6 +413,8 @@ public class HyenDongController {
 		String id = (String) session.getAttribute("id");
 		teammatchVO.setT_num(tNum);
 		model.addAttribute("match", hyendongMapper.teamMatchWait(teammatchVO));
+		teammatchVO.setSo_num(tNum);
+		model.addAttribute("match2", hyendongMapper.teamMatchVS(teammatchVO));
 		teamlistVO.setT_num(tNum);
 		teamlistVO.setId(id);
 		model.addAttribute("author", hyendongMapper.getTeamMemberss(teamlistVO));
@@ -657,6 +660,7 @@ public class HyenDongController {
 			session.setAttribute("name", fieldmanagerVO.getName());
 			session.setAttribute("pnum", fieldmanagerVO.getPnum());
 			session.setAttribute("point", fieldmanagerVO.getPoint());
+			session.setAttribute("f","1");
 			return "redirect:/match";
 		} else {
 			return "hyeongjun/login";
@@ -668,5 +672,19 @@ public class HyenDongController {
 	public int fmIdCheck(FieldmanagerVO fVO) {
 		int result = hyendongMapper.fmIdCheck(fVO);
 		return result;
+	}
+	
+	//대진표
+	@RequestMapping("/tournament_proc")
+	@ResponseBody
+	public String tournament_proc(Map<String, String> map, HttpServletRequest request) {
+		map.put("p_match_no", request.getParameter("match_no"));
+		map.put("p_win_team", request.getParameter("win_team"));
+		map.put("p_lose_team", request.getParameter("lose_team"));
+		map.put("p_msg", request.getParameter("msg"));
+		
+		hyendongMapper.tournament_proc(map);
+		
+		return map.get("p_result");
 	}
 }

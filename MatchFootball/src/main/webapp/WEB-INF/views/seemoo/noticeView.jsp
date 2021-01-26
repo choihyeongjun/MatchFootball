@@ -51,7 +51,7 @@ body #form1 { width: 1000px; height: 600px; margin: auto; margin-top: 20px; }
 				</div>
 
 				<div align="center">
-					<textarea id="summernote" name="n_comm" style="width: 1000px" disabled >${noticeView.n_comm }</textarea><br> 
+					<textarea id="summernote" name="n_comm" style="width: 1000px" disabled readonly="readonly">${noticeView.n_comm }</textarea><br> 
 						<button type="submit" onclick="javascript: form.action='${pageContext.request.contextPath}/notice'" class="btn btn-primary" id="btnInsert">목록으로</button> 
 				</div>
 			</form>
@@ -74,20 +74,20 @@ body #form1 { width: 1000px; height: 600px; margin: auto; margin-top: 20px; }
 		    </form>
 	    </c:if>
 	    
-			<div class="progress-table" align="center" style="margin-left: 315px; padding-bottom:44px; width: 70%; height: 1000px">
+			<div class="progress-table" align="center" style="margin-left: 315px; padding-bottom: 44px; width: 70%; height: 300px;">
 				<div class="aa">
 				<c:forEach items="${nboardselect}" var="nboardselect">
 						<div class="table-row">
-						<div class="serial" style="margin-right: 315px;">${nboardselect.n_comm}</div>
-							<div class="serial" style="width: 100px">${nboardselect.id}</div>
-							<div class="visit" style="width: 100px">${nboardselect.n_date}</div>
+						<div class="serial" style="margin-right: 970px;">${nboardselect.n_comm}</div>
+							<div class="serial" style="width: 100px; margin-top: -20px; margin-left: 800px;">${nboardselect.id}</div>
+							<div class="visit" style="width: 100px; margin-top: -20px; margin-left: 1000px;">${nboardselect.n_date}</div>
 						    <form method="post">
 							<input type="text" value="${noticeView.n_no }" name="n_no"  style="display: none">
 						    <input type="text" value="${sessionScope.id }" name="id"  style="display: none">
 							<input type="text" value="${nboardselect.n_seq }" name="n_seq"  style="display: none">
 						<c:if test="${sessionScope.id eq nboardselect.id }">
 							<button type="submit" class="btn btn-danger" onclick="javascript: form.action='${pageContext.request.contextPath}/nboarddelete'" 
-							style="margin-right: -60px; width: 60px;">삭제</button>
+							style="margin-left: 1200px; width: 60px; margin-top: -50px;">삭제</button>
 						</c:if>
 							</form>
 						</div>

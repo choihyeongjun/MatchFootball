@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib tagdir="/WEB-INF/tags" prefix="my"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -91,6 +92,14 @@ $(function() {
 							</div>
 					</a></li>
 				</c:forEach>
+				<script>
+				function goPage(q) {
+					location.href = "managerresult?page=" + q;
+				}
+			</script>
+			<div style="font-size: 20px; text-align: center; margin-left: 50%;">
+				<my:paging paging="${paging}" jsfunc="goPage" />
+			</div>
 			</ul>
 		</div>
 	</div>

@@ -93,7 +93,7 @@
 					</div>
 				</div>
 			</div>
-			<br> <input type="text" value="${sessionScope.id }" name="a_id"> 
+			<br> <input type="text" value="${sessionScope.id }" name="a_id" style="display: none"> 
 			<input type="submit" class="genric-btn info circle" value="토너먼트 생성" />
 		</div>
 	</form>

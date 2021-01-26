@@ -24,8 +24,6 @@ body { margin-top: 40px; font-size: 14px; font-family: Arial, Helvetica Neue, He
 </head>
 <body>
   		<div class="card mb-4" style="margin-left: 240px; margin-top: 30px; width: 1650px;">
-  			<p style="text-align: center;">전체 경기 일정</p>
-				<iframe src="http://localhost/MatchFootball/allmatchlist" width="100%" height="600"></iframe>
 			<div class="card-header">
 				<i class="fas fa-table mr-1"></i> 매치 경기일정
 						</div>
@@ -59,7 +57,8 @@ body { margin-top: 40px; font-size: 14px; font-family: Arial, Helvetica Neue, He
 											<td>${matchList.t_type }</td>
 											<td>${matchList.f_id }</td>
 											<td>
-											<button type="submit" class="btn btn-danger" id="btnInsert">삭제</button>
+											<button type="submit" class="btn btn-danger" 
+											onclick="javascript: form.action='${pageContext.request.contextPath}/matchdelete'">삭제</button>
 											</td>
 										</tr>
 									</c:forEach>

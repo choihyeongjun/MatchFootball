@@ -75,6 +75,7 @@ public interface SeemooMapper {
 
 	public List<FwboardVO> rcommList(FwboardVO vo); // 조회
 	public List<P_matchVO> matchList(P_matchVO vo); // 매치조회
+	public int matchdelete(P_matchVO vo);	//매치 삭제
 	
 	public List<FieldVO> fieldList(); 			// 경기장 전체조회
 	public FieldVO fieldselect(FieldVO vo); 	// 경기장 단건조회

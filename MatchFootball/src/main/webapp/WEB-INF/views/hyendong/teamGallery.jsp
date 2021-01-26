@@ -33,6 +33,16 @@ footer {
    background: grey;
    color: white;
 }
+.btn-primary {
+    color: #fff;
+    background-color: #030a29;
+    border-color: #ffffff;
+}
+a {
+    color: #ffffff;
+    text-decoration: none;
+    background-color: transparent;
+}
 </style>
 
 </head>
@@ -88,8 +98,8 @@ footer {
 </nav>
    <div class="card-header" style="text-align: center;">
    <input type="text" name="t_num" value="${teamInfo.t_num }" style="display:none">
-   <input type="file" name="file" multiple="multiple" required="required">
-   <input type="submit" value="등록">
+   <input type="file" name="file" multiple="multiple" required="required" class="btn btn-primary">
+   <input type="submit" value="등록" class="btn btn-primary">
    </div>
    <br>
    <div class="site-section">

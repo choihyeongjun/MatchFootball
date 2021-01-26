@@ -128,15 +128,6 @@ a {
 	list-style: none;
 }
 
-.btn.sf {
-	line-height: 32px;
-	font-size: 15px;
-	color: black;
-	text-decoration: none !important;
-	background-color: #3540A5;
-	color: white;
-	border-radius: 10px;
-}
 
 .btn.sff {
 	line-height: 32px;
@@ -158,13 +149,32 @@ a {
 	border-radius: 10px;
 	cursor: default;
 }
-
 .btn.sf2 {
 	line-height: 32px;
 	font-size: 15px;
 	color: black;
 	text-decoration: none !important;
 	background-color: #999;
+	color: white;
+	border-radius: 10px;
+	cursor: default;
+}
+.btn.sf3 {
+	line-height: 32px;
+	font-size: 15px;
+	color: black;
+	text-decoration: none !important;
+	background-color: #ddd;
+	color: white;
+	border-radius: 10px;
+	cursor: default;
+}
+.btn.sf4 {
+	line-height: 32px;
+	font-size: 15px;
+	color: black;
+	text-decoration: none !important;
+	background-color: #1c62cc;
 	color: white;
 	border-radius: 10px;
 	cursor: default;
@@ -295,14 +305,14 @@ a {
 										<fmt:parseNumber value="${p_match.f}" var="f" />
 										<c:if
 											test="${p_match.review ne 'Y' && m_date <= sysdate && p_max <= f}">
-											<a class="btn sf" data-toggle="modal" data-target="#pmreivew"
+											<a class="btn sff" data-toggle="modal" data-target="#pmreivew"
 												data-pn="${p_match.m_no }"> 리뷰 작성</a>
 										</c:if>
 										<c:if test="${m_date > sysdate && p_max <= f}">
-											<p class="btn sf1">경기 시작 전</p>
+											<p class="btn sf4">경기 시작 전</p>
 										</c:if>
 										<c:if test="${m_date <= sysdate && p_max > f }">
-											<p class="btn sf2">매칭 실패</p>
+											<p class="btn sf3">매칭 실패</p>
 										</c:if>
 										<c:if test="${p_match.review eq 'Y' }">
 											<p class="btn sf2">작성 완료</p>
@@ -381,10 +391,13 @@ a {
 											<b class="btn sf2" style="margin-top: 20px;"> 작성 완료</b>
 										</c:if>
 										<c:if test="${m_date > sysdate && t_match.so_num ne null }">
-											<b class="btn sf1" style="margin-top: 20px;"> 경기 시작전</b>
+											<b class="btn sf4" style="margin-top: 20px;"> 경기 시작전</b>
 										</c:if>
 										<c:if test="${t_match.so_num eq null and m_date < sysdate }">
-											<b class="btn sf2" style="margin-top: 20px;"> 매칭 실패</b>
+											<b class="btn sf3" style="margin-top: 20px;"> 매칭 실패</b>
+										</c:if>
+											<c:if test="${m_date > sysdate && t_match.so_num eq null}">
+											<b class="btn sf1" style="margin-top: 20px;">매칭 중</b>
 										</c:if>
 									</div>
 								</li>
@@ -448,9 +461,9 @@ a {
 								class="fas fa-futbol"
 								style="padding-right: 10px; color: #ffc645;"></i>경기 내역 전체 보기 </a></li>
 						<li><a class="tma"
-							href="${pageContext.request.contextPath}/nomanager"><i
+							href="${pageContext.request.contextPath}/managerresult"><i
 								class="fas fa-ad" style="padding-right: 10px; color: #ffc645;"></i>매치
-								매니저 신청</a></li>
+								매니저 신청 및 내역 </a></li>
 					</ul>
 				</div>
 			</div>

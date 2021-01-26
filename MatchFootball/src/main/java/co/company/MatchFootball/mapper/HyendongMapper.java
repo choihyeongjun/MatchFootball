@@ -1,6 +1,7 @@
 package co.company.MatchFootball.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import co.company.MatchFootball.vo.ComeInviteVO;
 import co.company.MatchFootball.vo.FieldmanagerVO;
@@ -72,8 +73,9 @@ public interface HyendongMapper {
 	public List<ComeInviteVO> inviteSelect2(ComeInviteVO comeInviteVO);//팀장이 초대한거 조회
 	public int invitePass(ComeInviteVO comeInviteVO); //팀 온거 거절
 	
-	public List<TeammatchVO> teamMatchWait(TeammatchVO teammatchVO); //팀매치 신청 내역
-	public int teamMatchDelete(TeammatchVO teammatchVO); //팀매치 신청 삭제
+	public List<TeammatchVO> teamMatchWait(TeammatchVO teammatchVO); //팀매치 등록 내역
+	public List<TeammatchVO> teamMatchVS(TeammatchVO teammatchVO); //팀매치 신청 내역
+	public int teamMatchDelete(TeammatchVO teammatchVO); //팀매치 등록 삭제
 	
 	public MembersVO avgAge(MembersVO membersVO); //팀 평균 나이
 	public MembersVO scoutInvite(MembersVO membersVO); //스카웃 테이블 있고없고 셀렉트
@@ -93,4 +95,6 @@ public interface HyendongMapper {
 	public int fieldRegister(FieldmanagerVO fieldmanagerVO); //구장 관리자 회원가입
 	public FieldmanagerVO fieldLogin(FieldmanagerVO fieldmanagerVO); //구장 관리자 로그인
 	public int fmIdCheck(FieldmanagerVO fieldmanagerVO); //구장 관리자 아이디 중복체크
+	
+	public void tournament_proc(Map<String, String> map);
 }

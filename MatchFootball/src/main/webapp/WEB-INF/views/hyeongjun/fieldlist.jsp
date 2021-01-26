@@ -71,16 +71,10 @@ footer{
 #pagination {margin:10px auto;text-align: center;}
 #pagination a {display:inline-block;margin-right:10px;}
 #pagination .on {font-weight: bold; cursor: default;color:#777;}
+#submitBtn { float: right; }
+.col-lg-9 { max-width: 100%; }
 
-
-#submitBtn {
-	float: right;
-}
-
-.col-lg-9 {
-	max-width: 100%;
-}
-
+div #abcd { display: none;}
 </style>
 	
 

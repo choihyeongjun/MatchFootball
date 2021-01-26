@@ -105,8 +105,6 @@ function fieldDelete() {
 </head>
 <body>
   		<div class="card mb-4" style="margin-left: 240px; margin-top: 30px; width: 1650px;">
-  			<p style="text-align: center;">구장페이지</p>
-				<iframe src="${pageContext.request.contextPath}/#" width="100%" height="600"></iframe>
 			<div class="card-header">
 				<i class="fas fa-table mr-1"></i> 경기장 등록 현황
 						</div>

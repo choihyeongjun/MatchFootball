@@ -19,6 +19,7 @@ public class TeamVO {
 	String author; 
 	String stop_date;
 	String sel;
+	String min;
 	int first;
 	int last;
 	String teamListCount;
