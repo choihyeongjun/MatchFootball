@@ -308,7 +308,7 @@ function tdeta(url){
 								<div class="m-im-t">
 									<p
 										style="font-weight: bold; font-size: 20px; text-align: center;">${teammatch.t_name }</p>
-									<p class="wnwnwn" style="font-size: 15px">2전 1승 1무 1패</p>
+									
 									<input type="hidden" value="${teammatch.m_no }" /> <input
 										type="hidden" value="${teammatch.t_num }" />
 								</div>

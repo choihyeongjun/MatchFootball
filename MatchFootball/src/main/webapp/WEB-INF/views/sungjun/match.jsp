@@ -297,7 +297,7 @@ function mdeta(url){
 									<c:if test="${p_max > f && p_match.sel eq '0'}">
 										<p class="ap-info" style="">신청 가능</p>
 									</c:if>
-									<c:if test="${p_max <= f }">
+									<c:if test="${sessionScope.id ne null && p_max <= f }">
 										<p class="ap-info1">마감</p>
 									</c:if>
 									

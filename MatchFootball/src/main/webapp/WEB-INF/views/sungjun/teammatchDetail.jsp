@@ -171,7 +171,6 @@ a {
 				</div>
 				<div class="m-im-t">
 					<p style="font-weight: bold; font-size: 80px; text-align:;">${teammatch.t_name }</p>
-					<p class="wnwnwn" style="font-size: 20px;">2전 1승 1무 1패</p>
 					<input type="hidden" id="m_no" value="${teammatch.m_no }" />
 				</div>
 			</div>
