@@ -249,7 +249,7 @@ public class JunController {
 			mvo.addObject("msg", "포인트가 부족합니다");
 			mvo.addObject("url", "mypage/pay");
 			return mvo;
-		} else if (lv >= plv) {
+		} else if (lv <= plv) {
 			ModelAndView vi = new ModelAndView();
 			vi.setViewName("no/sungjun/mesaage");
 			vi.addObject("msg", "실력이 맞지 않습니다");

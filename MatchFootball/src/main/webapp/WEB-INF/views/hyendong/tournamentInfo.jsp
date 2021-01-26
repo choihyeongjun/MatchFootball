@@ -25,7 +25,7 @@ li {
 </style>
 <script>
 function joinSuccess(){
-    if (confirm("토너먼트에 참가 하시겠습니까?") == true){    //확인
+    if (confirm("참가 시 100,000 포인트가 차감됩니다") == true){    //확인
     	document.joinGame.submit();
     	alert("참가 완료");
         }else{   //취소
