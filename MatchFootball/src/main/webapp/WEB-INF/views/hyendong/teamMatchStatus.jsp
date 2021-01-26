@@ -9,6 +9,16 @@
 <link rel="stylesheet" href="resources/css/teamMenu.css">
 
 </head>
+<style>
+footer {
+   position: fixed;
+   left: 0px;
+   bottom: 0px;
+   width: 100%;
+   background: grey;
+   color: white;
+}
+</style>
 <body>
 	<div>
 		<!-- 4 - contained in center example -->
