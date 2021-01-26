@@ -233,6 +233,7 @@ public class JunController {
 	@PostMapping(value = "/sendmatchapply")
 	public ModelAndView test12(HttpServletResponse response, Model model, MembersVO membersvo, PplayersVO pplayers,
 			HttpSession session, PointVO pointvo, P_matchVO p_match, FieldmanagerVO fieldmanager) throws IOException {
+		
 		membersvo.setId((String) session.getAttribute("id"));
 		pplayers.setId((String) session.getAttribute("id"));
 		pointvo.setP_id((String) session.getAttribute("id"));
@@ -451,6 +452,7 @@ public class JunController {
 	@PostMapping(value = "/inreview")
 	public ModelAndView test18(P_matchVO p_match, HttpServletRequest request, HttpServletResponse response,
 			PreviewVO preview, Model model) throws IOException {
+		
 		String[] id = request.getParameterValues("id");
 		String[] m_no = request.getParameterValues("m_no");
 		String[] m_id = request.getParameterValues("m_id");
