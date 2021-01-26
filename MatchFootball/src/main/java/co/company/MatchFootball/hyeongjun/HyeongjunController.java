@@ -437,12 +437,9 @@ public class HyeongjunController {
 			System.out.println(v1);
 			vo1.setM_no(v1.getMatch_info());
 			vo1.setId(v1.getId());
-			if (hyeongjunMapper.teammatchsearch(v1.getMatch_info()) != null) {
 				model.addAttribute("list", hyeongjunMapper.matchresult(vo1));
-				
-			} else {
 				model.addAttribute("list", hyeongjunMapper.matchresult1(vo1));
-			}
+			
 		}
 		
 		return "hyeongjun/managerresult";
