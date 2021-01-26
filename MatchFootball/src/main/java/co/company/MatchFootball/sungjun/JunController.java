@@ -112,13 +112,14 @@ public class JunController {
 		ModelAndView mv = new ModelAndView("no/sungjun/teammatchapply");
 		membersvo.setId((String) session.getAttribute("id"));
 		membersvo.setT_num((String) session.getAttribute("t_num"));
-
+		teamvo.setT_num((String) session.getAttribute("t_num"));
 		teammatch.setT_num(dao.memberselect(membersvo).getT_num());
+		
 		mv.addObject("member", dao.memberselect(membersvo));
 		mv.addObject("teamlist", dao.teamlist(membersvo));
 		mv.addObject("teamname", dao.teamname(membersvo));
 		mv.addObject("teamage", hyendong.avgAge(membersvo));
-		//mv.addObject("teamlv", hyendong.avgAge(membersvo));
+		mv.addObject("teamlv", hyendong.getTeam(teamvo));
 		mv.addObject("min", dao.minteam(teammatch));
 		return mv;
 	}
@@ -373,7 +374,7 @@ public class JunController {
 		dao.tmapply(mmatchlistvo);
 		ma.setViewName("no/sungjun/mesaage");
 		ma.addObject("msg", "신청 되었습니다");
-		ma.addObject("url", "managermypage");
+		ma.addObject("url", "managerresult");
 		return ma;
 	}
 	//개인 매치 정보창
