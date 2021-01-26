@@ -108,8 +108,8 @@ delMsg();
 					<div class="card mb-4">
 						<div class="card-header">
 							<div align="right" style="float: left; margin-top: 10px;">
-								<a href="msg" id="받은 메일함"> 수신 쪽지함 |</a>
-								<a href="outmsg" id="보낸 메일함"> 발신 쪽지함 </a>
+								<a href="msg" id="받은 메일함" style="color: black;"> 수신 쪽지함 |</a>
+								<a href="outmsg" id="보낸 메일함" style="color: black;"> 발신 쪽지함 </a>
 							
 							</div>
 							<div style="float: right;">
@@ -192,5 +192,5 @@ delMsg();
 		</script>
 	</form>
 </body>
-	<script src="${pageContext.request.contextPath}/resources/seemoo/assets/demo/datatables-demo.js"></script> 
+
 </html>

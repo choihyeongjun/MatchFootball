@@ -100,7 +100,7 @@
 													<tr>
 														<td><input type="text" value="${my.num}" name="num" style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px; width:20px;"></td>
 														<td><a
-															href="${pageContext.request.contextPath}/free/freedetail/${my.num}/${my.cnt}">${my.title}</a></td>
+															href="${pageContext.request.contextPath}/free/freedetail/${my.num}/${my.cnt}" style="color: black;">${my.title}"</a></td>
 														<td>${my.b_date}</td>
 														<td>${my.likeit}</td>
 														<td>${my.cnt}</td>

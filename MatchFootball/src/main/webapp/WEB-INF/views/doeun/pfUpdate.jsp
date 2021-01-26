@@ -308,6 +308,7 @@
 					</div>
 				</div>
 			</div>
+			
 			</div>
 			<button type="button" class="btn btn-primary btn-circle" id="to-top"
 				style="visibility: visible; opacity: 0.5;">
@@ -315,6 +316,7 @@
 				<i class="fa fa-angle-up"></i>
 			</button>
 	</form>
+	
 </body>
 
 

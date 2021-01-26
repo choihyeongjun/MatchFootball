@@ -80,7 +80,7 @@
 									</h1>
 								</div>
 								<div align="right">
-									<a href="matching"> 개인 매칭 </a><a href="teamMatching"> | 용병
+									<a href="matching" style="color: black;"> 개인 매칭 </a><a href="teamMatching" style="color: black;"> | 용병
 										매칭 참가 </a>
 								</div>
 								<br>
