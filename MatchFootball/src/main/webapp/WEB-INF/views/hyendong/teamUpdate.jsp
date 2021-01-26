@@ -78,24 +78,24 @@
     </div>
 </nav>
 	<form action="teamUpdateUpdate" method="post" encType="multipart/form-data" name="hihi">
-		<div class="section-top-border" style="margin-left: 670px; width: 50%">
+		<div class="section-top-border" style="margin-left: 743px; width: 50%">
 			<div class="row">
 				<div class="col-lg-8 col-md-8">
 				<input type="text" name="t_num" value="${teamUpdate.t_num }" style="display:none"/>
-					<h3>팀 수정</h3>
-					<div class="mt-10">
+					<h3 align="center">팀 정보 변경</h3><br>
+					<div class="mt-10" style="margin-right: -64px;">
 						<input type="text" name="t_name" placeholder="팀명"
 							value="${teamUpdate.t_name }" class="single-input-accent" required="required">
 					</div>
 					<hr>
-					<div class="mt-10">
+					<div class="mt-10" style="margin-right: -64px;">
 						<input type="text" name="t_max" placeholder="최대 팀원수"
 							value="${teamUpdate.t_max }" class="single-input-accent" required="required">
 					</div>
 					<hr>
 					<div class="input-group-icon mt-10">
 						<div class="form-select" id="default-select"
-							style="border: none; padding-right: 2px">
+							style="border: none; padding-right: 10px">
 							<select name="t_address">
 								<option selected>${teamUpdate.t_address }</option>
 								<option value="중구">중구</option>
@@ -112,7 +112,7 @@
 					<hr>
 					<div class="input-group-icon mt-10">
 						<div class="form-select" id="default-select2"
-							style="border: none; padding-right: 2px">
+							style="border: none; padding-right: 10px">
 							<select name="t_type">
 								<option selected>${teamUpdate.t_type }</option>
 								<option value="축구">축구</option>
@@ -121,7 +121,7 @@
 						</div>
 					</div>
 					<hr>
-					<div class="mt-30">
+					<div class="mt-30" style="margin-right: -64px;">
 						<textarea name="t_info" class="single-input-accent"
 							placeholder="팀소개">${teamUpdate.t_info }</textarea>
 					</div>

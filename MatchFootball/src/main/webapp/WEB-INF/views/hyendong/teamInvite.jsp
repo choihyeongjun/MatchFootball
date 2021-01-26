@@ -85,6 +85,7 @@ function teamInvite(){
                            <th>아이디</th>
                            <th>이름</th>
                            <th>성별</th>
+                           <th>연락처</th>
                            <th>주소</th>
                            <th>매너도</th>
                            <th>실력</th>
@@ -100,9 +101,10 @@ function teamInvite(){
                                  <td>${f.id}</td>
                                  <td>${f.name}</td>
                                  <td>${f.gender}</td>
+                                 <td>${f.pnum }</td>
                                  <td>${f.location1}</td>
                                  <td>${f.manner}</td>
-                                 <td>${f.lv}</td>
+                                 <td>Lv ${f.lv}</td>
                                  <td>${f.pos}</td>
                                  <c:if test="${updateButton.t_author eq '팀장'}">
                                     <td><form action="inviteComeon" method="post" name="inviteSuccess">
@@ -148,7 +150,7 @@ function teamInvite(){
                            <td class="text-center">${tinvite.id}</td>
                            <td class="text-center">${tinvite.i_age}</td>
                            <td class="text-center">${tinvite.i_pos}</td>
-                           <td class="text-center">${tinvite.i_lv}</td>
+                           <td class="text-center">Lv ${tinvite.i_lv}</td>
                            <td class="text-center">${tinvite.i_manner}</td>
                            <c:if test="${updateButton.t_author eq '팀장' }">
                               <td>
