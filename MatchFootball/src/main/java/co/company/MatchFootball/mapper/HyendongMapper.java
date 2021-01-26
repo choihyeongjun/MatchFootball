@@ -97,4 +97,5 @@ public interface HyendongMapper {
 	public int fmIdCheck(FieldmanagerVO fieldmanagerVO); //구장 관리자 아이디 중복체크
 	
 	public void tournament_proc(Map<String, String> map);
+	public TournamentVO tournaPVPselect(TournamentVO tournamentVO);
 }

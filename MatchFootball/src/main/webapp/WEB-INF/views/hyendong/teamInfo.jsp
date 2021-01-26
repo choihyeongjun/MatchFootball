@@ -110,7 +110,27 @@ function teamOut(){
       <br>
       <div> <h1>${teamInfo.t_name}의 팀 정보</h1> </div>
       <hr>
-         <div class="card" style="float: left; margin-left: 37%; height: 600px;">
+      <div style="float:left; margin-left:17%">
+     	 <table class="table table-hover">
+               <thead>
+                  <tr class="table-secondary" align="center">
+                     <th scope="col" style="width: 187px;">토너먼트</th>
+                     <th scope="col" style="width: 60px;">결과</th>
+                     <th scope="col" style="width: 60px;">패배</th>
+                     <th scope="col" style="width: 60px;">상금</th>
+                  </tr>
+               </thead>
+                  <tbody align="center">
+                     <tr>
+                        <td scope="col">${tournaPVPselect.title }</td>
+                        <td scope="col">${tournaPVPselect.t_wn }</td>
+                        <td scope="col">${tournaPVPselect.t_log }</td>
+                        <td scope="col">${tournaPVPselect.t_point }</td>
+                     </tr>
+                  </tbody>
+            </table>
+         </div>
+         <div class="card" style="float: left; margin-left: 2%; height: 600px;">
             <img class="size" src="images/${teamInfo.t_logo }" class="img-thumbnail" style=" text-align: center; ">
             <hr> 
             
