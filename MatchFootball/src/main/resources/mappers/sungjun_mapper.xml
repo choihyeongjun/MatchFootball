@@ -262,9 +262,7 @@
 		m_month,substr(d.m_date,9, 2) as m_day,
 		substr(d.m_date, 12,2) as m_ho,
 		d.t_type,d.f_id,nvl(f,0)f
-			,nvl((select 1 from pplayers
-			where m_no=d.m_no),0)
-			as sel
+			
 		from p_match d, ( select a.m_no
 		,count(*) f
 		from p_match a,pplayers b

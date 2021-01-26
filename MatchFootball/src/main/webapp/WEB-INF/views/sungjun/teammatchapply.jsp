@@ -67,7 +67,7 @@ $(function(){
 			</div>
 			<div class="form-floating">
 				<input class="form-control" placeholder="Leave"
-					id="floatingTextarea" readonly value="${teamname.t_level }LV">
+					id="floatingTextarea" readonly value="${teamlv.lv }LV">
 				<label for="floatingTextarea">팀레벨</label>
 			</div>
 			<div class="form-floating">
