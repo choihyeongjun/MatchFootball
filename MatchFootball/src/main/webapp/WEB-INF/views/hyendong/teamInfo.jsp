@@ -18,6 +18,14 @@ table.type05 { border-collapse: separate; border-spacing: 1px; text-align: left;
 table.type05 th { width: 100px; padding: 10px; font-weight: bold; vertical-align: top; border-bottom: 1px solid #ccc; background: #efefef; }
 table.type05 td { width: 100px; padding: 10px; vertical-align: top; border-bottom: 1px solid #ccc; }
 #main_menu {}
+footer {
+   position: fixed;
+   left: 0px;
+   bottom: 0px;
+   width: 100%;
+   background: grey;
+   color: white;
+}
 </style>
 
 <script>
