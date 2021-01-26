@@ -327,6 +327,7 @@ public class HyeongjunController {
 			session.setAttribute("t_num", vo.getT_num());
 			session.setAttribute("author", vo.getAuthor());
 			session.setAttribute("point", vo.getPoint());
+			session.setAttribute("author2", vo.getAuthor2());
 			MembersVO dd = dao.cappp(vo);
 			if (dd != null) {
 				session.setAttribute("cap", 1);

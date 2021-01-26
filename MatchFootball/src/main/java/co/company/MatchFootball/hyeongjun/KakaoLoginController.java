@@ -70,6 +70,7 @@ public class KakaoLoginController {
     	  session.setAttribute("point", dao.getUser(mb).getPoint());
     session.setAttribute("author", dao.getUser(mb).getAuthor());
     session.setAttribute("t_num", dao.getUser(mb).getT_num());
+    session.setAttribute("author2", dao.getUser(mb).getAuthor2());
     	  mav.setViewName("redirect:/match");    	  
       }else {
     	 mav.setViewName("doeun/pfUpdate");       	 
