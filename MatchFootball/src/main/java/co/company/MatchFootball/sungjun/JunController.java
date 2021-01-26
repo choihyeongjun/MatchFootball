@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import co.company.MatchFootball.mapper.HyendongMapper;
 import co.company.MatchFootball.mapper.SungjunMapper;
 import co.company.MatchFootball.vo.CalVO;
 import co.company.MatchFootball.vo.FieldmanagerVO;
@@ -43,7 +44,8 @@ public class JunController {
 
 	@Autowired
 	SungjunMapper dao;
-
+	@Autowired
+	HyendongMapper hyendong;
 //	/*
 //	 * @RequestMapping(value="/mainmenu") public ModelAndView
 //	 * test(HttpServletResponse response) throws IOException{ return new
@@ -110,11 +112,14 @@ public class JunController {
 		ModelAndView mv = new ModelAndView("no/sungjun/teammatchapply");
 		membersvo.setId((String) session.getAttribute("id"));
 		membersvo.setT_num((String) session.getAttribute("t_num"));
-
+		teamvo.setT_num((String) session.getAttribute("t_num"));
 		teammatch.setT_num(dao.memberselect(membersvo).getT_num());
+		
 		mv.addObject("member", dao.memberselect(membersvo));
 		mv.addObject("teamlist", dao.teamlist(membersvo));
 		mv.addObject("teamname", dao.teamname(membersvo));
+		mv.addObject("teamage", hyendong.avgAge(membersvo));
+		mv.addObject("teamlv", hyendong.getTeam(teamvo));
 		mv.addObject("min", dao.minteam(teammatch));
 		return mv;
 	}
@@ -243,7 +248,7 @@ public class JunController {
 			mvo.addObject("msg", "포인트가 부족합니다");
 			mvo.addObject("url", "mypage/pay");
 			return mvo;
-		} else if (lv > plv) {
+		} else if (lv >= plv) {
 			ModelAndView vi = new ModelAndView();
 			vi.setViewName("no/sungjun/mesaage");
 			vi.addObject("msg", "실력이 맞지 않습니다");
@@ -369,7 +374,7 @@ public class JunController {
 		dao.tmapply(mmatchlistvo);
 		ma.setViewName("no/sungjun/mesaage");
 		ma.addObject("msg", "신청 되었습니다");
-		ma.addObject("url", "managermypage");
+		ma.addObject("url", "managerresult");
 		return ma;
 	}
 	//개인 매치 정보창

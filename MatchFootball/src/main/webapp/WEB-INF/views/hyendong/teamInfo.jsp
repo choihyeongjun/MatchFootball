@@ -18,6 +18,14 @@ table.type05 { border-collapse: separate; border-spacing: 1px; text-align: left;
 table.type05 th { width: 100px; padding: 10px; font-weight: bold; vertical-align: top; border-bottom: 1px solid #ccc; background: #efefef; }
 table.type05 td { width: 100px; padding: 10px; vertical-align: top; border-bottom: 1px solid #ccc; }
 #main_menu {}
+footer {
+   position: fixed;
+   left: 0px;
+   bottom: 0px;
+   width: 100%;
+   background: grey;
+   color: white;
+}
 </style>
 
 <script>
@@ -117,13 +125,13 @@ function teamOut(){
                   <th scope="row">경기유형</th>
                   <td>${teamInfo.t_type }</td>
                   <th scope="col">연령대</th>
-                  <td><input type="text" value=${teamInfo.t_num } name="t_num" style="display: none">${avgAge.age }</td>
+                  <td><input type="text" value=${teamInfo.t_num } name="t_num" style="display: none">${avgAge.age }세</td>
                </tr>
                <tr>
                   <th scope="row">팀원수</th>
                   <td>${count.c }명</td>
                   <th scope="row">실력</th>
-                  <td>${teamInfo.t_type }</td>
+                  <td>LV ${teamInfo.lv }</td>
                </tr>
                <tr>
                   <th scope="row">지역</th>

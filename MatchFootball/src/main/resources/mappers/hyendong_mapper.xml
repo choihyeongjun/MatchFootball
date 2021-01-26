@@ -71,9 +71,7 @@
 
 	<!-- 팀 단건 정보 조회 -->
 	<select id="getTeam" parameterType="TeamVO" resultType="TeamVO">
-		SELECT *
-		FROM team
-		WHERE t_num = #{t_num}
+		select t_num, t_name, t_max, t_address, t_type, t_age, t_level, t_info, t_logo, t_hidden, author, (select round(avg(lv),0) from members where t_num=#{t_num}) as lv from team where t_num=#{t_num}
 	</select>
 
 	<!-- 팀원 조회 -->
@@ -464,7 +462,7 @@
 	
 	<!-- 팀 평균 나이 구하기 -->
 	<select id="avgAge" resultType="membersVO" parameterType="membersVO">
-		select round(avg(nvl(trunc(months_between(sysdate, to_date(substr(birth, 1, 4), 'yyyy'))/12), 0)+1),1) as age from members where t_num=#{t_num}
+		select round(avg(nvl(trunc(months_between(sysdate, to_date(substr(birth, 1, 4), 'yyyy'))/12), 0)+1),0) as age from members where t_num=#{t_num}
 	</select>
 	
 	<!-- 팀매치 취소 -->

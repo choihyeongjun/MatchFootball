@@ -9,6 +9,16 @@
 <link rel="stylesheet" href="resources/css/teamMenu.css">
 
 </head>
+<style>
+footer {
+   position: fixed;
+   left: 0px;
+   bottom: 0px;
+   width: 100%;
+   background: grey;
+   color: white;
+}
+</style>
 <body>
 	<div>
 		<!-- 4 - contained in center example -->
@@ -63,7 +73,7 @@
 								<div class="table-responsive">
 									<table class="table table-bordered" id="dataTable">
 										<thead>
-											<tr>
+											<tr align="center">
 												<th>초대한 팀</th>
 												<th>초대한 날짜</th>
 												<th>버튼</th>
@@ -73,7 +83,7 @@
 										</thead>
 										<tbody>
 											<c:forEach items="${select }" var="select">
-											<tr>
+											<tr align="center">
 												<td>${select.c_tname }</td>
 												<td>${select.c_tdate }</td>
 												<td>
@@ -82,12 +92,12 @@
 													<input type="text" value="${sessionScope.id }" name="id" style="display: none">
 													<input type="text" value="팀원" name="t_author" style="display: none">
 													<c:if test="${members.t_num eq null }">
-													<button type="submit" onclick="javascript: form.action='${pageContext.request.contextPath}/inviteOk'">수락</button>
-													<button type="submit" onclick="javascript: form.action='${pageContext.request.contextPath}/invitePass'">거절</button>
+													<button type="submit" onclick="javascript: form.action='${pageContext.request.contextPath}/inviteOk'" class="btn btn-primary">수락</button>
+													<button type="submit" onclick="javascript: form.action='${pageContext.request.contextPath}/invitePass'" class="btn btn-danger">거절</button>
 													</c:if>
 												</form>
 												</td>
-												<td><button type="button" onclick="location.href='teamInfo?t_num=${select.t_num}'">해당 팀 보기</button></td>
+												<td><button type="button" onclick="location.href='teamInfo?t_num=${select.t_num}'" class="btn btn-primary">해당 팀 보기</button></td>
 											</tr>
 											</c:forEach>
 										</tbody>

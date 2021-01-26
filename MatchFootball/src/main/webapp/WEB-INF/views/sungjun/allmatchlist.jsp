@@ -26,7 +26,6 @@ a {
 ul {
 	list-style: none;
 }
-
 .btn.sf {
 	line-height: 32px;
 	font-size: 15px;
@@ -37,13 +36,67 @@ ul {
 	color: white;
 	float: right;
 }
-
 .scedule {
 	padding: 10px 10px 10px 10px;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	background-color: white;
+}
+.btn.sf1 {
+	line-height: 32px;
+	font-size: 15px;
+	color: black;
+	text-decoration: none !important;
+	background-color: #3540A5;
+	color: white;
+	border-radius: 10px;
+}
+.btn.sf2 {
+	line-height: 32px;
+	font-size: 15px;
+	color: black;
+	text-decoration: none !important;
+	background-color: #ea3e42;
+	color: white;
+	border-radius: 10px;
+}
+.btn.sf3 {
+	line-height: 32px;
+	font-size: 15px;
+	color: black;
+	text-decoration: none !important;
+	background-color: #999;
+	color: white;
+	border-radius: 10px;
+}
+.btn.sf4 {
+	line-height: 32px;
+	font-size: 15px;
+	color: black;
+	text-decoration: none !important;
+	background-color: #ddd;
+	color: white;
+	border-radius: 10px;
+	cursor: default;
+}
+.matchc {
+	color: #666666;
+	font-family: 'NanumSquareRound';
+	font-size: 14px;
+	font-weight: normal;
+	letter-spacing: 0.01em;
+	-webkit-font-smoothing: antialiased;
+	-webkit-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%;
+	-webkit-font-feature-settings: "kern" 1;
+	-moz-font-feature-settings: "kern" 1;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding-bottom: 10px;
+	padding-top: 5px;
+	width: 70%;
 }
 </style>
 <script>
@@ -73,56 +126,6 @@ ul {
 		})
 	})
 </script>
-<style>
-.btn.sf1 {
-	line-height: 32px;
-	font-size: 15px;
-	color: black;
-	text-decoration: none !important;
-	background-color: #3540A5;
-	color: white;
-	border-radius: 10px;
-}
-
-.btn.sf2 {
-	line-height: 32px;
-	font-size: 15px;
-	color: black;
-	text-decoration: none !important;
-	background-color: #ea3e42;
-	color: white;
-	border-radius: 10px;
-}
-
-.btn.sf3 {
-	line-height: 32px;
-	font-size: 15px;
-	color: black;
-	text-decoration: none !important;
-	background-color: #999;
-	color: white;
-	border-radius: 10px;
-}
-
-.matchc {
-	color: #666666;
-	font-family: 'NanumSquareRound';
-	font-size: 14px;
-	font-weight: normal;
-	letter-spacing: 0.01em;
-	-webkit-font-smoothing: antialiased;
-	-webkit-text-size-adjust: 100%;
-	-ms-text-size-adjust: 100%;
-	-webkit-font-feature-settings: "kern" 1;
-	-moz-font-feature-settings: "kern" 1;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding-bottom: 10px;
-	padding-top: 5px;
-	width: 70%;
-}
-</style>
 </head>
 
 <body>
@@ -153,7 +156,7 @@ ul {
 												pattern="yyyy-MM-dd HH" />
 
 											<c:if test="${p_max > f && m_date <= sysdate}">
-												<p class="btn sf3">매칭 실패</p>
+												<p class="btn sf4">매칭 실패</p>
 											</c:if>
 											<c:if test="${m_date > sysdate && p_max <= f }">
 												<p class="btn sf3">경기 시작 전</p>
@@ -230,12 +233,15 @@ ul {
 											<fmt:formatDate value="${m_date}" var="m_date"
 												pattern="yyyy-MM-dd HH" />
 											<c:if test="${t_match.so_num eq null and m_date <= sysdate }">
-												<p class="btn sf3">매칭 실패</p>
+												<p class="btn sf4">매칭 실패</p>
 											</c:if>
 											<c:if test="${m_date > sysdate && t_match.so_num ne null }">
-												<p class="btn sf2">경기 시작전</p>
+												<p class="btn sf3">경기 시작전</p>
 											</c:if>
-											<c:if test="${m_date < sysdate && t_match.so_num ne null }">
+											<c:if test="${m_date > sysdate && t_match.so_num eq null }">
+												<p class="btn sf2">매칭 중 </p>
+											</c:if>
+											<c:if test="${m_date <= sysdate && t_match.so_num ne null }">
 												<p class="btn sf1">경기 완료</p>
 											</c:if>
 										</div>
