@@ -41,23 +41,6 @@
 			return true;
 		}
 	}
-	function fn_idChk(){
-		$.ajax({
-			url : "/fmIdCheck",
-			type : "post",
-			dataType : "json",
-			data : {"userId" : $("#f_id").val()},
-			success : function(data){
-				if(data==1){
-					alert("중복된 아이디입니다.");
-				}else if(data==0){
-					$("#idChk").attr("value", "Y");
-					alert("사용가능한 아이디입니다.");
-				}
-			}
-		});	
-	}
-
 </script>
 <style>
 .form-control {
@@ -93,7 +76,7 @@
 					<div class="form-group">
 						<label for="inputName">아이디</label> <input type="text" id="f_id"
 							class="form-control" name="f_id" placeholder="아이디를 입력해 주세요"
-							required="required"><button type="button" id="idChk" onclick="fn_idChk();" value="N">중복확인</button>
+							required="required">
 					</div>
 					<br>
 					<div class="form-group">
