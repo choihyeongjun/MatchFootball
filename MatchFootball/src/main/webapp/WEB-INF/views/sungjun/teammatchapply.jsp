@@ -56,7 +56,7 @@ $(function(){
 				<div class="tlwn" style="padding: 10px;">
 					<div style="margin: 10px;">
 						<img alt="npe"
-							src="${pageContext.request.contextPath}/resources/img/${teamname.t_logo}"
+							src="${pageContext.request.contextPath}/images/${teamname.t_logo}"
 							style="width: 150px; height: 150px; border-radius: 20%; marging: 5px;" />
 					</div>
 					<div class="m-im-t">
