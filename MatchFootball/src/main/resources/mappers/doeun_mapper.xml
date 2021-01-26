@@ -249,5 +249,10 @@
 	from fboard 
 	where num= #{num}
 	</delete>
-	
+	<!-- 용병 신청 조회 -->
+	<select id="selectHelper" parameterType="TeammatchVO" resultType="map" >
+
+	select * from teammatch c ,players d
+    where c.m_no = d.m_no and d.state = '용병' and d.id=#{id}
+	</select>
 </mapper>

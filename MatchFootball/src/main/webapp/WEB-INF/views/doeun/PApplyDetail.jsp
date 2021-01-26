@@ -70,8 +70,8 @@
 			alert("취소 하시겠습니까?");
 			var bbbb = $(this).parent().parent().parent();
 			var m_no = $(this).data("num");
-			var price=$("#mat_price").val()
-			
+			var price = $("#mat_price").val()
+
 			$.ajax({
 				url : "matching/del",
 				type : 'POST',
@@ -109,40 +109,50 @@
 									</h1>
 								</div>
 								<div align="right">
-									<a href="matching"> 개인 매칭 </a>
-									<c:if test="${sessionScope.t_num ne null}">
-										<a href="teamMatching">| 팀 매칭 신청 </a>
+									<a href="matching" style="color: black;"> 개인 매칭 </a>
+									<c:if test="${sessionScope.autour2 ne 'Y'}">
+										<a href="teamMatching" style="color: black;">| 용병 매칭 신청 </a>
 									</c:if>
 								</div>
 								<div id="tr-template">
 									<c:forEach items="${p_mat}" var="mat">
-										<div style="border: 1px">
-											<div class="media mt-0">
-												<div class="media-body row" style="position: relative">
-<input type="hidden" name="price" value="${mat.price}" id="mat_price">
-													<div class="main-riw col-12 col-sm-6 col-md-8" >
-														<p class="text-muted">${mat.f_name}</p>
-														<p class="text-muted">
-															<i class="fas fa-map-marker-alt"> 구장 주소:
-																${mat.f_address}</i>
-														</p>
-														<p class="text-muted">경기 예정일 및 시간: ${mat.m_date}</p>
-													</div>
-													<div class="riw-btn col-6 col-md-4" style="padding-left: 87px;">
-														<c:if test="${mat.gubun eq 'N'}">
-															<input type="button" class="btn btn-link"
-																style="position: absolute; bottom: 50%" value="취소불가능">
-														</c:if>
-														<c:if test="${mat.gubun eq 'Y'}">
-															<button type="button" data-num="${mat.m_no}"
-																data-id="${mat.id}" class="btn btn-link riw-delete"
-																style="position: absolute; bottom: 50%">신청취소</button>
-														</c:if>
+												<c:if test="${mat.f_address eq null }">
+													매칭된 경기가 없습니다.
+												</c:if>
+												<c:if test="${mat.f_address ne null }">
 
+										<div style="border: 1px; margin-bottom: 10px;">
+											<div class="media mt-0">
+
+													<div class="media-body row" style="position: relative">
+														<div class="main-riw col-12 col-sm-6 col-md-8">
+															<p class="text-muted">${mat.f_name}</p>
+															<p class="text-muted">
+																<i class="fas fa-map-marker-alt"> 구장 주소:
+																	${mat.f_address}</i>
+															</p>
+															<div class="text-muted">경기 예정일 및 시간: ${mat.m_date}
+															</div>
+															참가비: <input type="text" name="price" value="${mat.price}"
+																id="mat_price" style="border: 0;">
+														</div>
+														<div class="riw-btn col-6 col-md-4"
+															style="padding-left: 87px;">
+															<c:if test="${mat.gubun eq 'N'}">
+																<input type="button" class="btn btn-link"
+																	style="position: absolute; bottom: 50%" value="취소불가능">
+															</c:if>
+															<c:if test="${mat.gubun eq 'Y'}">
+																<button type="button" data-num="${mat.m_no}"
+																	data-id="${mat.id}" class="btn btn-link riw-delete"
+																	style="position: absolute; bottom: 50%">신청취소</button>
+															</c:if>
+
+														</div>
 													</div>
-												</div>
 											</div>
 										</div>
+												</c:if>
 									</c:forEach>
 									<div align="center">
 										<my:paging paging="${paging}" jsfunc="goPage" />

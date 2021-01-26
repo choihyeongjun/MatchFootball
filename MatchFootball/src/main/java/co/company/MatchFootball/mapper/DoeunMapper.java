@@ -28,7 +28,6 @@ public interface DoeunMapper {
 	public List<Map<String, Object>> p_matchedList(P_matchVO pmat); // 개인매치이력 조회
 	public int getPmatCnt(P_matchVO pmat);                                                                             
 	public List<Map<String, Object>> AppTmatList(TeammatchVO tmat); //팀매치 신청 조회
-	public int getTmatCnt(TeammatchVO tmat);
 	public int Pcharge(PointVO pay); // 포인트 충전
 	public int Autocpup(CuponVO cp);// 충전 시 쿠폰 자동 등록
 	public List<CuponVO> selectCp(CuponVO cp); // 내 쿠폰 조회
@@ -40,5 +39,6 @@ public interface DoeunMapper {
 	public int cntMyWrite(FboardVO fboard);// 내가 쓴 게시글 페이징
 	public int delMywrite(FboardVO fboard); // 내가 쓴 게시글 삭제
 	public List<MembersVO> findId(MembersVO mem);
-
+	public List<Map<String, Object>> selectHelper(TeammatchVO tmat); //용병 참가조회
+	public int getTmatCnt(TeammatchVO tmat);
 }

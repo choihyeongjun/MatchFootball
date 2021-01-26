@@ -25,7 +25,8 @@ $(function() {
 <h1>MESSAGE</h1>
 </c:if>
 					
-<form id="msgFrm" action="${pageContext.request.contextPath}/sendmsg" method="post">						
+<form id="msgFrm" action="${pageContext.request.contextPath}/sendmsg" method="post">		
+				
 	<table class="userInfoTable" style="align:center;">
 		<tr>
 			<td>
@@ -67,10 +68,11 @@ $(function() {
 		</tr>
 		<tr>
 			<td colspan="3" style="text-align: center;">
-				<button type="submit" class="btn btn-primary">보내기</button>
+				<button type="submit" class="btn btn-primary send">보내기</button>
 				<button type="button" class="btn btn-danger" data-dismiss="modal">닫기</button>
 			</td>
 		</tr>
 	</table>
+ 
 </form>
 </div>

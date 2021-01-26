@@ -61,11 +61,7 @@
 	color: #777777;
 }
 </style>
-<script>
-	function goPage(q) {
-		location.href = "teamMatching?page=" + q;
-	}
-</script>
+
 <body>
 	<div id="main" style="height: 850px">
 
@@ -80,43 +76,43 @@
 							<div class="col-md-7 col-lg-8 col-xl-8">
 								<div class="page-header bordered">
 									<h1>
-										매치 신청내역<small>APPLICATION MATCH</small>
+										용병 팀 매치 <small>APPLICATION MATCH</small>
 									</h1>
 								</div>
 								<div align="right">
-									<a href="matching"> 개인 매칭 </a><a href="teamMatching"> | 팀
+									<a href="matching" style="color: black;"> 개인 매칭 </a><a href="teamMatching" style="color: black;"> | 용병
 										매칭 참가 </a>
 								</div>
 								<br>
-									<div id="tr-template">
-								<c:forEach items="${tmat}" var="tmat">
-									<div style="border: 1px">
-										<div class="media mt-0" style="margin-bottom: 10px;">
-											<div class="media-left">
-												<img class="media-object rounded-circle" src="#" width="100"
-													height="100" alt="">지도 맵
-											</div>
-											<div class="media-body row" style="position: relative; margin-top: 10px;" >
-												<div style="margin-bottom: 10px;">
-													<div>
-														<div align="right" style="float: left;">${tmat.F_NAME}</div>
-														<div class="text-muted" align="right">${tmat.T_NAME} VS ${tmat.so_name}</div>
-													</div>
-												</div>
-												<p class="text-muted">
-													<i class="fas fa-map-marker-alt"> ${tmat.F_ADDRESS}</i>
-												</p>
-												<p class="text-muted">경기일 및 경기 시간: ${tmat.M_DATE}</p>
+								
+								<div id="tr-template">
+									<c:forEach items="${tmat}" var="tmat" begin="0">
+											<c:if test="${tmat.F_ADDRESS eq null }">
+									매칭 된 경기가 없습니다.
+									</c:if>
+									<c:if test="${tmat.F_ADDRESS ne null }">
+										<div style="border: 1px">
+											<div class="media mt-0" style="margin-bottom: 10px;">
 
+												<div class="media-body row"
+													style="position: relative; margin-top: 10px;">
+													<div style="margin-bottom: 10px;">
+														<div>
+															<div align="right" style="float: left;">${tmat.F_NAME}</div>
+															<div class="text-muted" align="right">${tmat.T_NAME}
+																VS ${tmat.SO_NAME}</div>
+														</div>
+													</div>
+													<p class="text-muted">
+														<i class="fas fa-map-marker-alt"> ${tmat.F_ADDRESS}</i>
+													</p>
+													<p class="text-muted">경기일 및 경기 시간: ${tmat.M_DATE}</p>
+												</div>
 											</div>
 										</div>
-									</div>
-								</c:forEach>
-									</div>
-								<div align="center">
-									<my:paging paging="${paging}" jsfunc="goPage" />
+										</c:if>
+									</c:forEach>
 								</div>
-
 							</div>
 						</div>
 					</div>

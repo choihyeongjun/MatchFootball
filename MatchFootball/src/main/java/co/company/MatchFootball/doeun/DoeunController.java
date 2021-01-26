@@ -1,11 +1,7 @@
 package co.company.MatchFootball.doeun;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.http.HttpResponse;
 import java.text.ParseException;
 import java.util.HashMap;
 import java.util.List;
@@ -15,18 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.http.HttpHost;
-import org.apache.http.auth.AuthScope;
-import org.apache.http.auth.UsernamePasswordCredentials;
-import org.apache.http.client.AuthCache;
-import org.apache.http.client.CredentialsProvider;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.client.protocol.HttpClientContext;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.auth.BasicScheme;
-import org.apache.http.impl.client.BasicAuthCache;
-import org.apache.http.impl.client.BasicCredentialsProvider;
-import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,6 +25,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import co.company.MatchFootball.mapper.DoeunMapper;
+import co.company.MatchFootball.mapper.SungjunMapper;
 import co.company.MatchFootball.vo.CuponVO;
 import co.company.MatchFootball.vo.FboardVO;
 import co.company.MatchFootball.vo.MembersVO;
@@ -54,7 +40,8 @@ public class DoeunController {
 
 	@Autowired
 	DoeunMapper dao;
-
+	@Autowired
+	SungjunMapper sj;
 	@RequestMapping("mypage/profile") // 프로필(메인마이페이지)
 	public String profile(MembersVO mb, Model model, HttpSession session, HttpServletResponse response) {
 		mb.setId((String) session.getAttribute("id")); // test용
@@ -258,16 +245,16 @@ public class DoeunController {
 		return "doeun/PApplyDetail";
 	}
 
-	@RequestMapping(value = "mypage/teamMatching") // 팀경기참가내역
+	@RequestMapping(value = "mypage/teamMatching") // 용병참가내역
 	public ModelAndView t_matchList(TeammatchVO tmat, HttpSession session, Paging paging, Model model) {
 		tmat.setId((String) session.getAttribute("id"));
-		 paging.setPageUnit(3);
-		 paging.setPageSize(10);
-		 tmat.setFirst(paging.getFirst());
-		 tmat.setLast(paging.getLast());
-		 paging.setTotalRecord(dao.getTmatCnt(tmat));
-		 model.addAttribute("paging", paging);
-		List<Map<String, Object>> list = dao.AppTmatList(tmat);
+		// paging.setPageUnit(3);
+		// paging.setPageSize(10);
+		// tmat.setFirst(paging.getFirst());
+		// tmat.setLast(paging.getLast());
+		// paging.setTotalRecord(dao.getTmatCnt(tmat));
+	//	 model.addAttribute("paging", paging);
+		List<Map<String, Object>> list = dao.selectHelper(tmat);
 
 		Map<String, Object> map = new HashMap<String, Object>();
 
@@ -338,6 +325,44 @@ public class DoeunController {
 		dao.delPMatchProc(pmat);
 		return "";
 	}
-	
+	//문자를 보낼때 맵핑되는 메소드
+    @RequestMapping(value = "mypage/sendSms.do")
+      public String sendSms(HttpServletRequest request, HttpSession session) throws Exception {
 
+        String api_key = "NCSEX0GUEFGRLEH0"; //위에서 받은 api key를 추가
+        String api_secret = "CXAYGXW0DGLJEM2UNSLFS3VC3APYLWDH";  //위에서 받은 api secret를 추가
+
+        co.company.MatchFootball.doeun.Coolsms coolsms = new co.company.MatchFootball.doeun.Coolsms(api_key, api_secret);
+        //이 부분은 홈페이지에서 받은 자바파일을 추가한다음 그 클래스를 import해야 쓸 수 있는 클래스이다.
+        
+
+        HashMap<String, String> set = new HashMap<String, String>();
+        set.put("to", (String)request.getParameter("to")); // 수신번호
+
+        set.put("from", (String)session.getAttribute("pnum")); // 발신번호, jsp에서 전송한 발신번호를 받아 map에 저장한다.
+        set.put("text", (String)request.getParameter("text")); // 문자내용, jsp에서 전송한 문자내용을 받아 map에 저장한다.
+        set.put("type", "sms"); // 문자 타입
+
+        System.out.println(set);
+
+        JSONObject result = coolsms.send(set); // 보내기&전송결과받기
+
+        if ((boolean)result.get("status") == true) {
+          // 메시지 보내기 성공 및 전송결과 출력
+          System.out.println("성공");
+          System.out.println(request.getParameter("from"));
+          System.out.println(request.getParameter("to"));
+          System.out.println(request.getParameter("text"));
+        } 
+        return "doeun/Message"; //문자 메시지 발송 성공했을때 number페이지로 이동함
+       
+      }
+
+    //문자 모달창
+    @RequestMapping(value = "mypage/moonja")
+    public String sendSms1(HttpServletRequest request) throws Exception {
+		return "no/doeun/moonja";
+    	
+    }
+	
 }
