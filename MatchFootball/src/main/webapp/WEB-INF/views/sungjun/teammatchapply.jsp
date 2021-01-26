@@ -77,7 +77,7 @@ $(function(){
 			</div>
 			<div class="form-floating">
 				<input class="form-control" placeholder="Leave"
-					id="floatingTextarea" value="평균 ${teamname.t_age}살" required="required">
+					id="floatingTextarea" value="평균 ${teamage.age}살" required="required">
 				<label for="floatingTextarea">연령대</label>
 			</div>
 			<div class="form-floating">

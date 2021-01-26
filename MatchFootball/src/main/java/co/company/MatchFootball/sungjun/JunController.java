@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import co.company.MatchFootball.mapper.HyendongMapper;
 import co.company.MatchFootball.mapper.SungjunMapper;
 import co.company.MatchFootball.vo.CalVO;
 import co.company.MatchFootball.vo.FieldmanagerVO;
@@ -43,7 +44,8 @@ public class JunController {
 
 	@Autowired
 	SungjunMapper dao;
-
+	@Autowired
+	HyendongMapper hyendong;
 //	/*
 //	 * @RequestMapping(value="/mainmenu") public ModelAndView
 //	 * test(HttpServletResponse response) throws IOException{ return new
@@ -115,6 +117,8 @@ public class JunController {
 		mv.addObject("member", dao.memberselect(membersvo));
 		mv.addObject("teamlist", dao.teamlist(membersvo));
 		mv.addObject("teamname", dao.teamname(membersvo));
+		mv.addObject("teamage", hyendong.avgAge(membersvo));
+		//mv.addObject("teamlv", hyendong.avgAge(membersvo));
 		mv.addObject("min", dao.minteam(teammatch));
 		return mv;
 	}
