@@ -138,7 +138,15 @@ a {
 	color: white;
 	border-radius: 10px;
 }
-
+.btn.sf {
+	line-height: 32px;
+	font-size: 15px;
+	color: black;
+	text-decoration: none !important;
+	background-color: #3540A5;
+	color: white;
+	border-radius: 10px;
+}
 .btn.sf1 {
 	line-height: 32px;
 	font-size: 15px;
@@ -305,7 +313,7 @@ a {
 										<fmt:parseNumber value="${p_match.f}" var="f" />
 										<c:if
 											test="${p_match.review ne 'Y' && m_date <= sysdate && p_max <= f}">
-											<a class="btn sff" data-toggle="modal" data-target="#pmreivew"
+											<a class="btn sf" data-toggle="modal" data-target="#pmreivew"
 												data-pn="${p_match.m_no }"> 리뷰 작성</a>
 										</c:if>
 										<c:if test="${m_date > sysdate && p_max <= f}">

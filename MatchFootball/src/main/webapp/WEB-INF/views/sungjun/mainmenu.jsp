@@ -246,7 +246,7 @@ body, html {
                                  <br>
                                  <div class="title-line" style="text-align: center;">
                                     <a id="custom-login-btn"
-                                       href="https://kauth.kakao.com/oauth/authorize?client_id=7e3b7c35576002f01608bd949ca669da&redirect_uri=http://localhost/MatchFootball/kakaologin&response_type=code">
+                                       href="https://kauth.kakao.com/oauth/authorize?client_id=7e3b7c35576002f01608bd949ca669da&redirect_uri=http://192.168.0.82/MatchFootball/kakaologin&response_type=code">
                                        <img
                                        src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg"
                                        width="222" /></a>

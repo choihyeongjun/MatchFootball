@@ -13,7 +13,14 @@
    <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>-->
    
    <style>
-   footer {  left: 0px; bottom: 0px; width: 100%; background: grey; color: white; }
+   footer {
+   position: fixed;
+   left: 0px;
+   bottom: 0px;
+   width: 100%;
+   background: grey;
+   color: white;
+}
    </style>
    </head>
    <body>
